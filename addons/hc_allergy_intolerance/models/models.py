@@ -47,8 +47,8 @@ class AllergyIntolerance(models.Model):
 #        help="Related Person source of the information about the allergy.")
 #   reporter_practitioner_id = fields.Many2one(comodel_name="hc.res.practitioner", string="Reporter Practitioner", 
 #        help="Practitioner source of the information about the allergy.")
-#    substance_id = fields.Many2one(comodel_name="hc.vs.allergy.intolerance.substance", 
-#        string="Substance", required=True, help="Type of the substance and Negation codes for reporting no known allergies.")
+    substance_id = fields.Many2one(comodel_name="hc.vs.allergy.intolerance.substance", 
+       string="Substance", required=True, help="Type of the substance and Negation codes for reporting no known allergies.")
     status = fields.Selection(
         string="Allergy Intolerance Status", 
         selection=[
@@ -117,8 +117,3 @@ class AllergyIntoleranceReaction(models.Model):
 #        help="The route or physiological path of administration of a therapeutic agent into or onto the body of a subject.")
 #   note_ids = fields.One2many(comodel_name="hc.allergy.intolerance.reaction.annotation", inverse_name="allergy_intolerance_reaction_id", string="Notes", 
 #       help="Text about event not captured in other fields.")
-
-#
-#     @api.depends('value')
-#     def _value_pc(self):
-#         self.value2 = float(self.value) / 100

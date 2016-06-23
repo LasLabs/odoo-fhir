@@ -9,7 +9,7 @@ class ValueSetContains(models.AbstractModel):
     _order = "code"
 
     system = fields.Char(
-        string="Source URL", 
+        string="Source URL",
         help="Web address of the source of the code.")
     is_abstract = fields.Boolean(
         string="Abstract", 
@@ -42,6 +42,7 @@ class ValueSetContains(models.AbstractModel):
         'UNIQUE(code)',
         "The concept code must be unique.")
         ]
+
 
     # @api.one
     # @api.constrains('name', 'description')

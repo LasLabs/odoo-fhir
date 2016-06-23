@@ -5,4 +5,4 @@ access_hc_patient_hc_patient_communication,hc.patient.hc.patient.communication,m
 access_hc_patient_hc_patient_link,hc.patient.hc.patient.link,model_hc_patient_link,,1,0,0,0
 access_hc_patient_hc_res_patient,hc.patient.hc.res.patient,model_hc_res_patient,,1,0,0,0
 access_hc_patient_hc_patient_marital_status,hc.patient.hc.patient.marital.status,model_hc_patient_marital_status,,1,0,0,0
-
+access_hc_patient_hc_patient_identifier,hc.patient.hc.patient.identifier,model_hc_patient_identifier,,1,0,0,0

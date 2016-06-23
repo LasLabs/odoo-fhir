@@ -1,2 +1,3 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_hc_related_person_hc_related_person,hc_related_person.hc_related_person,model_hc_related_person_hc_related_person,,1,0,0,0
+access_hc_related_person_hc_res_related_person,hc.related.person.hc.res.related.person,model_hc_res_related_person,,1,0,0,0
+access_hc_related_person_hc_related_person_identifier,hc.related.person.hc.related.person.identifier,model_hc_related_person_identifier,,1,0,0,0

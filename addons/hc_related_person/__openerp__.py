@@ -29,13 +29,13 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'hc_person', 'hc_patient'],
+    'depends': ['base', 'hc_patient'],
 
     # always loaded
     'data': [
         # 'security/ir.model.access.csv',
-        'views/views.xml',
-        'views/templates.xml',
+        'views/hc_res_related_person_views.xml',
+        'views/hc_res_related_person_templates.xml',
     ],
     # only loaded in demonstration mode
     'demo': [

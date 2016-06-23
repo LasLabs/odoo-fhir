@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>      
+<openerp>
+    <data>
+
+        <!-- AU State Type -->
+
+        <record id="hc_base.state_type_au_state" model="hc.vs.country.state.type">  
+            <field name="name">state</field>
+            <field name="source_id">base.iso_3166_au</field>
+            <field model="res.country" name="country_id" search="[('code','=','AU')]"/>
+        </record> 
+
+        <record id="hc_base.state_type_au_territory" model="hc.vs.country.state.type">  
+            <field name="name">territory</field>
+            <field name="source_id">base.iso_3166_au</field>
+            <field model="res.country" name="country_id" search="[('code','=','AU')]"/>
+        </record>
+
+        <record id="base.iso_3166_au" model="res.partner">  
+            <field name="name">"ISO 3166-2:AU"</field>
+            <field name="category_id">"res_partner_category_source, res_partner_category_document"</field>
+            <field name="website">"en.wikipedia.org/wiki/ISO_3166-2:AU"</field>
+            <field model="res.country" name="country_id" search="[('code','=','AU')]"/>
+        </record>
+
+    </data>     
+</openerp>

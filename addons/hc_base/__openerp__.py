@@ -25,10 +25,11 @@
     'data': [
         'security/ir.model.access.csv',
         'data/hc_base_data.xml',
+        # 'data/l10n_au/country_pl.xml',
         'data/l10n_ph/country_pl.xml',
         'data/l10n_us/country_pl.xml',
         'data/l10n_us/res.country.state.csv',
-        # 'data/l10n_us/hc.vs.country.city.type.csv',
+        'data/l10n_us/hc.vs.country.city.type.csv',
         'views/hc_value_set_views.xml',
         'views/views.xml',
         'views/hc_address_views.xml',
@@ -36,7 +37,7 @@
         'views/hc_attachment_views.xml',
         'views/hc_human_name_views.xml',
         'views/hc_identifier_views.xml',
-        # 'views/hc_telecom_views.xml',
+        'views/hc_telecom_views.xml',
         'views/templates.xml',    
     ],
     # only loaded in demonstration mode

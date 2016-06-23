@@ -16,10 +16,12 @@ class Telecom(models.Model):
         default="phone",
         help="Telecommunications form for contact point - what communications system is required to make use of the contact.")   
     name = fields.Char(
-        string="Value", 
+        string="Value",
+        size=50, 
         help="The actual telecom contact point details (e.g., Phone: +22 607 123 4567, Email: jdoe@isp.com, Url: www.doecorp.com).")
-    natl_value = fields.Char(
-        string="National Value", 
+    natl_number = fields.Char(
+        string="National Value",
+        size=14, 
         help="The domestic format for a phone number (e.g., (607) 123 4567).")
 
 # class ObjectTelecom(models.Model):  

@@ -159,56 +159,56 @@ class HumanName(models.Model):
 # compute: Full_Reverse = Prefix + Family + Given + Suffix
 # compute: Full_Family_Reverse = Prefix + Given + Family_Reverse + Suffix
 
-class HcExtensionHumanName(models.Model):
-    _inherit = 'hc.human.name'
+# class HcExtensionHumanName(models.Model):
+#     _inherit = 'hc.human.name'
 
-    @api.model
-    def create(self, vals):
+#     @api.model
+#     def create(self, vals):
 
-        first = self.env['hc.human.name.term'].browse(vals['first_id']).name
+#         first = self.env['hc.human.name.term'].browse(vals['first_id']).name
         # middle = self.env['hc.human.name.term'].browse(vals['middle_ids']).name
-        last = self.env['hc.human.name.term'].browse(vals['surname_id']).name
-        maiden = self.env['hc.human.name.term'].browse(vals['mother_maiden_name_id']).name
-        full = first+' '+last
+        # last = self.env['hc.human.name.term'].browse(vals['surname_id']).name
+        # maiden = self.env['hc.human.name.term'].browse(vals['mother_maiden_name_id']).name
+        # full = first+' '+last
         # full_first = first+' '+middle
-        full_family = maiden+' '+last
-        vals['name'] = full
+        # full_family = maiden+' '+last
+        # vals['name'] = full
         # vals['given'] = full_first
-        vals['family'] = full_family
+        # vals['family'] = full_family
 
-        return super(HcExtensionHumanName, self).create(vals)
+        # return super(HcExtensionHumanName, self).create(vals)
 
-    @api.multi
-    def write(self, vals):
+    # @api.multi
+    # def write(self, vals):
        
-        if 'first_id' in vals:   
-            first = self.env['hc.human.name.term'].browse(vals['first_id']).name
-        else:
-            first = self.first_id.name
+    #     if 'first_id' in vals:   
+    #         first = self.env['hc.human.name.term'].browse(vals['first_id']).name
+    #     else:
+    #         first = self.first_id.name
 
         # if 'middle_ids' in vals:   
         #     middle = self.env['hc.human.name.term'].browse(vals['middle_ids']).name
         # else:
         #     middle = self.middle_ids.name
 
-        if 'mother_maiden_name_id' in vals:    
-            maiden = self.env['hc.human.name.term'].browse(vals['mother_maiden_name_id']).name
-        else:
-            maiden = self.mother_maiden_name_id.name    
+        # if 'mother_maiden_name_id' in vals:    
+        #     maiden = self.env['hc.human.name.term'].browse(vals['mother_maiden_name_id']).name
+        # else:
+        #     maiden = self.mother_maiden_name_id.name    
 
-        if 'surname_id' in vals:    
-            last = self.env['hc.human.name.term'].browse(vals['surname_id']).name
-        else:
-            last = self.surname_id.name
+        # if 'surname_id' in vals:    
+        #     last = self.env['hc.human.name.term'].browse(vals['surname_id']).name
+        # else:
+        #     last = self.surname_id.name
 
-        full = first+' '+last
+        # full = first+' '+last
         # full_first = first+' '+middle
-        full_family = maiden+' '+last
-        vals['name'] = full
+        # full_family = maiden+' '+last
+        # vals['name'] = full
         # vals['given'] = full_first
-        vals['family'] = full_family
+        # vals['family'] = full_family
 
-        return super(HcExtensionHumanName, self).create(vals)
+        # return super(HcExtensionHumanName, self).create(vals)
 
 class HumanName(models.Model):
     _inherit = 'hc.human.name'

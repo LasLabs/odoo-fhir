@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
-    <data noupdate="1">
+    <data noupdate="0">
     
     <!-- Identifier Type -->
     
@@ -653,5 +653,41 @@
             <field name="definition">A number associated with a permit for a person who is granted permission to work in a country for a specified time period.</field>
         </record>   
   
+
+        <!-- Partner Category -->
+
+        <record id="partner_category_source" model="res.partner.category">  
+            <field name="code">source</field>
+            <field name="name">Source</field>
+        </record>
+        <record id="partner_category_person" model="res.partner.category">  
+            <field name="code">person</field>
+            <field name="name">Person</field>
+        </record>
+        <record id="partner_category_animal" model="res.partner.category">  
+            <field name="code">animal</field>
+            <field name="name">Animal</field>
+        </record>
+        <record id="partner_category_practitioner" model="res.partner.category">  
+            <field name="code">practitioner</field>
+            <field name="name">Practitioner</field>
+        </record>
+        <record id="partner_category_related_person" model="res.partner.category">  
+            <field name="code">related_person</field>
+            <field name="name">Related Person</field>
+        </record>
+        <record id="partner_category_organization" model="res.partner.category">  
+            <field name="code">organization</field>
+            <field name="name">Organization</field>
+        </record>
+        <record id="partner_category_document" model="res.partner.category">  
+            <field name="code">document</field>
+            <field name="name">Document</field>
+        </record>
+        <record id="partner_category_patient" model="res.partner.category">  
+            <field name="code">patient</field>
+            <field name="name">Patient</field>
+        </record>       
+
     </data>
 </openerp>

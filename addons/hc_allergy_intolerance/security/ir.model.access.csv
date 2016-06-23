@@ -1,2 +1,3 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_hc_allergy_intolerance_hc_allergy_intolerance,hc_allergy_intolerance.hc_allergy_intolerance,model_hc_allergy_intolerance_hc_allergy_intolerance,,1,0,0,0
+access_hc_allergy_intolerance_hc_res_allergy_intolerance,hc.allergy.intolerance.hc.res.allergy.intolerance,model_hc_res_allergy_intolerance,,1,0,0,0
+access_hc_allergy_intolerance_hc_allergy_intolerance_reaction,hc.allergy.intolerance.hc.allergy.intolerance.reaction,model_hc_allergy_intolerance_reaction,,1,0,0,0

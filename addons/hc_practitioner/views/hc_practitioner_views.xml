@@ -1,59 +1,28 @@
 <openerp>
-  <data>
-    <!-- explicit list view definition -->
-    <!--
-    <record model="ir.ui.view" id="hc_practitioner.list">
-      <field name="name">hc_practitioner list</field>
-      <field name="model">hc_practitioner.hc_practitioner</field>
-      <field name="arch" type="xml">
-        <tree>
-          <field name="name"/>
-          <field name="value"/>
-          <field name="value2"/>
-        </tree>
-      </field>
-    </record>
-    -->
+    <data>
 
-    <!-- actions opening views on models -->
-    <!--
-    <record model="ir.actions.act_window" id="hc_practitioner.action_window">
-      <field name="name">hc_practitioner window</field>
-      <field name="res_model">hc_practitioner.hc_practitioner</field>
-      <field name="view_mode">tree,form</field>
-    </record>
-    -->
+        <record id="hc_res_practitioner_action" model="ir.actions.act_window">  
+            <field name="name">HC Practitioners</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hc.res.practitioner</field>
+            <field name="domain"></field>
+            <field name="search_view_id"></field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
 
-    <!-- server action to the one above -->
-    <!--
-    <record model="ir.actions.server" id="hc_practitioner.action_server">
-      <field name="name">hc_practitioner server</field>
-      <field name="model_id" ref="model_hc_practitioner_hc_practitioner"/>
-      <field name="code">
-        action = {
-          "type": "ir.actions.act_window",
-          "view_mode": "tree,form",
-          "res_model": self._name,
-        }
-      </field>
-    </record>
-    -->
+<!--         <record id="hc_res_practitioner_role_action" model="ir.actions.act_window">  
+            <field name="name">HC Practitioner Roles</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hc.res.practitioner.role</field>
+            <field name="domain"></field>
+            <field name="search_view_id"></field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>  -->  
 
-    <!-- Top menu item -->
-    <!--
-    <menuitem name="hc_practitioner" id="hc_practitioner.menu_root"/>
-    -->
-    <!-- menu categories -->
-    <!--
-    <menuitem name="Menu 1" id="hc_practitioner.menu_1" parent="hc_practitioner.menu_root"/>
-    <menuitem name="Menu 2" id="hc_practitioner.menu_2" parent="hc_practitioner.menu_root"/>
-    -->
-    <!-- actions -->
-    <!--
-    <menuitem name="List" id="hc_practitioner.menu_1_list" parent="hc_practitioner.menu_1"
-              action="hc_practitioner.action_window"/>
-    <menuitem name="Server to list" id="hc_practitioner" parent="hc_practitioner.menu_2"
-              action="hc_practitioner.action_server"/>
-    -->
-  </data>
+        <menuitem id="hc_practitioner.menu_prac" name="Practitioners" parent="hc_base.menu_id_ind" action="hc_res_practitioner_action" sequence="20"/>
+        <!-- <menuitem id="hc_practitioner_role.menu_prac_role" name="Practitioner Roles" parent="hc_base.menu_id_ind" action="hc_res_practitioner_role_action" sequence="30"/> -->
+
+    </data>
 </openerp>

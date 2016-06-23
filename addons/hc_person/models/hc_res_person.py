@@ -21,8 +21,8 @@ class Person(models.Model):
         comodel_name="hc.person.name", 
         inverse_name="person_id", 
         string="Names", 
-        help="A name associated with the person.")
-    telecom_contact_ids = fields.One2many(
+        help="A name associated with this person.")
+    telecom_ids = fields.One2many(
         comodel_name="hc.person.telecom", 
         inverse_name="person_id", 
         string="Telecom Contacts", 
@@ -48,8 +48,8 @@ class Person(models.Model):
         inverse_name="person_id", 
         string="Attachments", 
         help="Image of the Person.")
-    # managing_organization_id = fields.Many2one(comodel_name="hc.res.organization", string="Managing Organization", help="The Organization that is the custodian of the person record.")
-    is_active = fields.Boolean(
+    # person_managing_organization_id = fields.Many2one(comodel_name="hc.res.organization", string="Managing Organization", help="The Organization that is the custodian of the person record.")
+    is_active_person = fields.Boolean(
         string="Active", 
         help="This person's record is in active use.")
     link_ids = fields.One2many(
@@ -64,14 +64,25 @@ class Person(models.Model):
         ondelete="restrict", 
         help="Partner associated with this person.")
 
-# class hc_person(model.Model):
-#     _inherit = ["hc.res.person"]
-
     @api.model
     def create(self, vals):
         name = self.env['hc.human.name'].browse(vals['name_id'])
         vals['name'] = name.first_id.name+' '+name.surname_id.name
         return super(Person, self).create(vals)
+
+    _defaults = {
+        "is_company": False,
+        "customer": False,
+        "company_type": "individual",
+        }
+
+class Partner(models.Model):
+ 
+    _inherit = ["res.partner"]
+
+    is_person = fields.Boolean(
+        string="Is a person", 
+        help="This partner is a health care person.")
 
 class PersonLink(models.Model): 
 
@@ -99,7 +110,6 @@ class PersonLink(models.Model):
         help="Level of assurance that this link is actually associated with the target resource.")
 
 class PersonAddress(models.Model):
-
     _name = "hc.person.address" 
     _description = "Person Address"
     _inherit = ["hc.basic.association"]
@@ -134,21 +144,12 @@ class PersonAddress(models.Model):
 class PersonIdentifier(models.Model):   
     _name = "hc.person.identifier"  
     _description = "Person Identifier"
-    _inherit = ["hc.object.identifier"]
+    _inherit = ["hc.basic.association", "hc.identifier"]
 
     person_id = fields.Many2one(
         comodel_name="hc.res.person", 
         string="Person", 
         help="Person associated with this identifier.")
-    identifier_id = fields.Many2one(
-        comodel_name="hc.identifier", 
-        string="Identifier", 
-        required=True,
-        ondelete="restrict", 
-        help="Identifier associated with this person.")
-    value = fields.Char(
-        string="Value", 
-        help="The value of this identifier that is unique.")
 
 class PersonName(models.Model): 
     _name = "hc.person.name"    
@@ -165,7 +166,7 @@ class PersonName(models.Model):
         string="Human Name",
         required=True,
         ondelete="restrict", 
-        help="Identifies human name associated with this person name.")
+        help="Human name associated with this person name.")
         
 class PersonTelecom(models.Model):  
     _name = "hc.person.telecom" 
@@ -176,10 +177,10 @@ class PersonTelecom(models.Model):
     person_id = fields.Many2one(
         comodel_name="hc.res.person", 
         string="Person", 
-        help="Entity associated with this telecom contact point.")
+        help="Person associated with this telecom contact point.")
     telecom_id = fields.Many2one(
-        comodel_name="hc.human.name",
-        string="Human Name",
+        comodel_name="hc.telecom",
+        string="Telecom",
         required=True,
         ondelete="restrict",
         help="Telecom contact point associated with this person.")

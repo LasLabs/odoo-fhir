@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data>  
 
@@ -63,6 +64,7 @@
                             <page string="Telecom">
                                 <field name="telecom_contact_ids" mode="tree">
                                     <tree>
+                                        <field name="is_preferred"/>
                                         <field name="telecom_id"/>
                                         <field name="use"/>
                                     </tree>
@@ -74,10 +76,10 @@
                                                     <field name="use"/>
                                                 </group>
                                                 <group>
-                                                    <!-- <field name="is_preferred"/>
+                                                    <field name="is_preferred"/>
                                                     <field name="is_active"/>
                                                     <field name="start_date" placeholder="Valid From"/>
-                                                    <field name="end_date" placeholder="Valid To"/> -->
+                                                    <field name="end_date" placeholder="Valid To"/>
                                                 </group>
                                             </group>
                                         </sheet>

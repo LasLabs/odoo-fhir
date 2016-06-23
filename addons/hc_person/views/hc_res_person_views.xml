@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data>
       
@@ -86,13 +87,13 @@
                             <page string="Identifiers">
                                 <field name="identifier_ids" mode="tree">
                                     <tree>
-                                        <field name="identifier_id"/>
+                                        <field name="name"/>
                                         <field name="value"/>
                                     </tree>
                                     <form>
                                         <sheet>
                                             <group col="4" colspan="4">
-                                                <field name="identifier_id"/>
+                                                <field name="name"/>
                                                 <field name="value"/>
                                             </group>
                                         </sheet>
@@ -127,8 +128,9 @@
                                 </field>        
                             </page>         
                             <page string="Telecom">
-                                <field name="telecom_contact_ids" mode="tree">
+                                <field name="telecom_ids" mode="tree">
                                     <tree>
+                                        <field name="is_preferred"/>
                                         <field name="telecom_id"/>
                                         <field name="use"/>
                                     </tree>
@@ -204,7 +206,7 @@
             </field>
         </record>
 
-        <record id="hc_person.hc_res_person_action" model="ir.actions.act_window">  
+        <record id="hc_res_person_action" model="ir.actions.act_window">  
             <field name="name">HC Persons</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">hc.res.person</field>
@@ -216,7 +218,7 @@
             id="hc_person.menu_pers"
             name="Persons"  
             parent="hc_base.menu_id_ent" 
-            action="hc_person.hc_res_person_action" 
+            action="hc_res_person_action" 
             sequence="3"/>
 
     </data>

@@ -9,4 +9,5 @@ access_hc_practitioner_hc_practitioner_role_healthcare_service,hc.practitioner.h
 access_hc_practitioner_hc_practitioner_role_identifier,hc.practitioner.hc.practitioner.role.identifier,model_hc_practitioner_role_identifier,,1,0,0,0
 access_hc_practitioner_hc_available_time,hc.practitioner.hc.available.time,model_hc_available_time,,1,0,0,0
 access_hc_practitioner_hc_not_available_time,hc.practitioner.hc.not.available.time,model_hc_not_available_time,,1,0,0,0
-
+access_hc_practitioner_hc_available_time_days_of_week,hc.practitioner.hc.available.time.days.of.week,model_hc_available_time_days_of_week,,1,0,0,0
+access_hc_practitioner_hc_practitioner_language,hc.practitioner.hc.practitioner.language,model_hc_practitioner_language,,1,0,0,0
