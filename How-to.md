@@ -94,18 +94,12 @@ sudo git fetch origin
 sudo git pull origin master
 ```
 
-##Make changes
-* Change module 
-* Logout Odoo
-* Stop server
-* Close VM
-* Start VM
-* Start server
-* Login Odoo
-* Activate developer mode
-* Upgrade module
-* Verify change
-
+##Create database
+```
+cd /odoo/odoo-server
+createdb FHIR-DEV
+./odoo.py -d FHIR-DEV --addons-path /odoo/odoo-fhir/addons
+```
 ##Update Changes
 
 syntax: ./odoo.py -d <database> --addons-path <directories> -i <modules>
