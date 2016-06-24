@@ -105,7 +105,8 @@ createdb FHIR-DEV
 syntax: ./odoo.py -d <database> --addons-path <directories> -i <modules>
 ```
 cd /odoo/odoo-server
-./odoo.py -d FHIR-DEV --addons-path /odoo/odoo-fhir/addons -u hc_base
+sudo service odoo-server stop
+./odoo.py -d FHIR-DEV --addons-path /odoo/odoo-fhir/addons,/odoo/odoo-server/addons -u hc_base
 ```
 
 ##Error
