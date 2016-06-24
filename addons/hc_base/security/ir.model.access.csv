@@ -18,4 +18,3 @@ access_hc_base_hc_telecom,hc.base.hc.telecom,model_hc_telecom,,1,0,0,0
 access_hc_base_hc_human_name,hc.base.hc.human.name,model_hc_human_name,,1,0,0,0
 access_hc_base_hc_human_name_term,hc.base.hc.human.name.term,model_hc_human_name_term,,1,0,0,0
 access_hc_base_hc_human_name_suffix,hc.base.hc.suffix.human.name,model_hc_human_name_suffix,,1,0,0,0
-access_hc_base_hc_object_address,hc.base.hc.object.address,model_hc_object_address,,1,0,0,0

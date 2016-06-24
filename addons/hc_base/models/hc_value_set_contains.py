@@ -37,11 +37,11 @@ class ValueSetContains(models.AbstractModel):
         string="Comments", 
         help="Additional notes about how to use the code.")
 
-    _sql_constraints = [
-        ('code_unique',
-        'UNIQUE(code)',
-        "The concept code must be unique.")
-        ]
+    # _sql_constraints = [
+    #     ('code_unique',
+    #     'UNIQUE(code)',
+    #     "The concept code must be unique.")
+    #     ]
 
 
     # @api.one

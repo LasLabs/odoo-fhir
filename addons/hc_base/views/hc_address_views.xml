@@ -906,6 +906,7 @@
             <field name="model">hc.vs.country.region.type</field>                       
             <field name="arch" type="xml">                      
                 <tree string="Region Types">                        
+                    <field name="code"/>
                     <field name="name"/>            
                     <field name="country_id"/>                        
                 </tree>                 

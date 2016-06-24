@@ -656,7 +656,7 @@
 
         <!-- Partner Category -->
 
-        <record id="partner_category_source" model="res.partner.category">  
+        <!-- <record id="partner_category_source" model="res.partner.category">  
             <field name="code">source</field>
             <field name="name">Source</field>
         </record>
@@ -687,7 +687,7 @@
         <record id="partner_category_patient" model="res.partner.category">  
             <field name="code">patient</field>
             <field name="name">Patient</field>
-        </record>       
+        </record>        -->
 
     </data>
 </openerp>
