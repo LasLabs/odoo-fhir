@@ -39,7 +39,7 @@ class CountryDivisionType(models.Model):
     name = fields.Char(
         string="Division Type", 
         help="Type of grouping of principal subdivisions (e.g., Division in the US).")
-    country_id = fields.Many2one(comodel_name="res.country", string="Country", help="Country that maintains the division type.")
+    country_id = fields.Many2one(comodel_name="res.country", string="Country", required=False, help="Country that maintains the division type.")
 
 class CountryDivision(models.Model):  
     _name = "hc.vs.country.division"  
@@ -64,14 +64,41 @@ class CountryState(models.Model):
     _description = "Country State"       
     _inherit = ["res.country.state"]
 
-    name = fields.Char(string="Name", help="Sub-unit (i.e., primary subdivision) of a country (abreviations ok).")
-    code = fields.Char(string="Code", help="The suffix of the ISO 3166-2 code that uniquely identifies a principal subdivision (e.g., states or provinces) within a country.")
-    numeric_code = fields.Char(string="Numeric Code", help="Numeric code that uniquely identifies a principal subdivision (e.g., state or province) within a country.")
-    type_id = fields.Many2one(comodel_name="hc.vs.country.state.type", string="State Type", help="Type of principal subdivision of a country (e.g., state, province).")
+    name = fields.Char(
+        string="Name", 
+        help="Sub-unit (i.e., primary subdivision) of a country (abreviations ok).")
+    code = fields.Char(
+        string="Code", 
+        help="The suffix of the ISO 3166-2 code that uniquely identifies a principal subdivision (e.g., states or provinces) within a country.")
+    numeric_code = fields.Char(
+        string="Numeric Code", 
+        help="Numeric code that uniquely identifies a principal subdivision (e.g., state or province) within a country.")
+    type_id = fields.Many2one(
+        comodel_name="hc.vs.country.state.type", 
+        string="State Type", 
+        help="Type of principal subdivision of a country (e.g., state, province).")
+    division_id = fields.Many2one(
+        comodel_name="hc.vs.country.division", 
+        string="Division", 
+        help="Group of primary subdivisions (e.g., Pacific and Mountain in the US).")
+    region_id = fields.Many2one(
+        comodel_name="hc.vs.country.region", 
+        string="Region", 
+        help="A grouping of divisions or states (e.g. West, Midwest).")
+    source_id = fields.Many2one(
+        comodel_name="res.partner",
+        string="Source", 
+        help="The source of the definition of the code.")
+    system = fields.Char(
+        string="Source URL", 
+        help="Web address of the source of the code.")
+
+class HcExtensionState(models.Model):
+    _inherit = 'res.country.state'
+
     division_id = fields.Many2one(comodel_name="hc.vs.country.division", string="Division", help="Group of primary subdivisions (e.g., Pacific and Mountain in the US).")
-    region_id = fields.Many2one(comodel_name="hc.vs.country.region", string="Region", help="A grouping of divisions or states (e.g. West, Midwest).")
-    source = fields.Char(string="Source", help="The source of the definition of the code.")
-    system = fields.Char(string="Source URL", help="Web address of the source of the code.")
+    region_id = fields.Many2one(related='division_id.region_id', string="Region", help="A grouping of divisions or states (e.g. West, Midwest).")
+    country_id = fields.Many2one(related='division_id.country_id', string="Country", help="Country (can be ISO-3166 3-letter code).")
 
 class CountryDistrictType(models.Model):    
     _name = "hc.vs.country.district.type"    

@@ -154,3 +154,33 @@ sudo git checkout master
 sudo git merge upstream/master
 sudo git push origin master
 ```
+##Install Times Roman Font
+
+* create **fonts** folder in `/usr/lib/python2.7/dist-packages/reportlab/`
+```
+cd /usr/lib/python2.7/dist-packages/reportlab/
+sudo mkdir fonts
+```
+
+* download [pfbfer.zip] (http://www.reportlab.com/ftp/fonts/pfbfer.zip) to download folder
+* extract it
+* Put all files in `/usr/lib/python2.7/dist-packages/reportlab/fonts/`
+
+```
+sudo mv _abi____.pfb /usr/lib/python2.7/dist-packages/reportlab/fonts/_abi____.pfb
+sudo mv _ab_____.pfb /usr/lib/python2.7/dist-packages/reportlab/fonts/_ab_____.pfb
+sudo mv _ai_____.pfb /usr/lib/python2.7/dist-packages/reportlab/fonts/_ai_____.pfb
+sudo mv _a______.pfb /usr/lib/python2.7/dist-packages/reportlab/fonts/_a______.pfb
+sudo mv cobo____.pfb /usr/lib/python2.7/dist-packages/reportlab/fonts/cobo____.pfb
+sudo mv cob_____.pfb /usr/lib/python2.7/dist-packages/reportlab/fonts/cob_____.pfb
+sudo mv com_____.pfb /usr/lib/python2.7/dist-packages/reportlab/fonts/com_____.pfb
+sudo mv coo_____.pfb /usr/lib/python2.7/dist-packages/reportlab/fonts/coo_____.pfb
+sudo mv _ebi____.pfb /usr/lib/python2.7/dist-packages/reportlab/fonts/_ebi____.pfb
+sudo mv _eb_____.pfb /usr/lib/python2.7/dist-packages/reportlab/fonts/_eb_____.pfb
+sudo mv _ei_____.pfb /usr/lib/python2.7/dist-packages/reportlab/fonts/_ei_____.pfb
+sudo mv _er_____.pfb /usr/lib/python2.7/dist-packages/reportlab/fonts/_er_____.pfb
+sudo mv sy______.pfb /usr/lib/python2.7/dist-packages/reportlab/fonts/sy______.pfb
+sudo mv zd______.pfb /usr/lib/python2.7/dist-packages/reportlab/fonts/zd______.pfb
+sudo mv zx______.pfb /usr/lib/python2.7/dist-packages/reportlab/fonts/zx______.pfb
+sudo mv zy______.pfb /usr/lib/python2.7/dist-packages/reportlab/fonts/zy______.pfb
+```

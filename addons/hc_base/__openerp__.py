@@ -24,12 +24,14 @@
     # always loaded
     'data': [
         'security/ir.model.access.csv',
-        'data/hc_base_data.xml',
+        'security/hc_base_security.xml',
+        'data/data_identifier_type.xml',
+        # 'data/hc_base_data.xml',
         # 'data/l10n_au/country_pl.xml',
         # 'data/l10n_ph/country_pl.xml',
-        'data/l10n_us/country_pl.xml',
-        'data/l10n_us/res.country.state.csv',
-        'data/l10n_us/hc.vs.country.city.type.csv',
+        # 'data/l10n_us/country_pl.xml',
+        # 'data/l10n_us/res.country.state.csv',
+        # 'data/l10n_us/hc.vs.country.city.type.csv',
         'views/hc_value_set_views.xml',
         'views/views.xml',
         'views/hc_address_views.xml',

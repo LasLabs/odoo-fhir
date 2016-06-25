@@ -2,17 +2,33 @@
 
 from openerp import models, fields, api
 
+class IdentifierTypeClass(models.Model): 
+    _name = "hc.vs.identifier.type.class" 
+    _description = "Identifier Type Class"
+    _inherit = ["hc.value.set.contains"]
+
+    name = fields.Char(
+        string="Name", 
+        help="Name of this identifier type class (e.g., Government).")
+    code = fields.Char(
+        string="Code", 
+        help="Code of this identifier type class (e.g., GOV).")
+
 class IdentifierType(models.Model): 
     _name = "hc.vs.identifier.type" 
     _description = "Identifier Type"
     _inherit = ["hc.value.set.contains"]
 
     name = fields.Char(
-        string="Identifier Type Name", 
+        string="Name", 
         help="Name of this identifier type (e.g., Driver's License Number).")
     code = fields.Char(
-        string="Identifier Type Code", 
+        string="Code", 
         help="Code of this identifier type (e.g., DL).")
+    class_id = fields.Many2one(
+        comodel_name="hc.vs.identifier.type.class", 
+        string="Class", 
+        help="Type of grouping of identifier types (e.g. Government).")
 
 class Identifier(models.Model):
     _name = "hc.identifier"
@@ -25,7 +41,7 @@ class Identifier(models.Model):
         string="Code", 
         help="Code of this identifier (e.g., CA DL).")
     use = fields.Selection(
-        string="Identifier Use", 
+        string="Use", 
         selection=[
             ("usual", "Usual"), 
             ("official", "Official"), 

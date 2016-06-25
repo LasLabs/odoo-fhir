@@ -1,0 +1,804 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        
+        <!-- Identifier Type Class -->
+
+        <record id="employment" model="hc.vs.identifier.type.class">
+            <field name="name">Employment</field>
+            <field name="code">EMP</field>
+        </record>
+        <record id="enterprise" model="hc.vs.identifier.type.class">    
+            <field name="name">Enterprise</field>
+            <field name="code">ENT</field>
+        </record>   
+        <record id="financial" model="hc.vs.identifier.type.class"> 
+            <field name="name">Financial</field>
+            <field name="code">FIN</field>
+        </record>   
+        <record id="geography" model="hc.vs.identifier.type.class"> 
+            <field name="name">Geography</field>
+            <field name="code">GEO</field>
+        </record>   
+        <record id="government" model="hc.vs.identifier.type.class">    
+            <field name="name">Government</field>
+            <field name="code">GOV</field>
+        </record>   
+        <record id="insurance" model="hc.vs.identifier.type.class"> 
+            <field name="name">Insurance</field>
+            <field name="code">INS</field>
+        </record>   
+        <record id="medical" model="hc.vs.identifier.type.class">   
+            <field name="name">Medical</field>
+            <field name="code">MED</field>
+        </record>  
+
+        <!-- Identifier Type -->
+        
+        <record id="an" model="hc.vs.identifier.type">  
+            <field name="code">AN</field>
+            <field name="name">Account Number</field>
+            <field name="system"></field>
+            <field name="class_id" ref="financial"/>
+            <field name="definition">An identifier that is unique to an account.</field>
+        </record>   
+        <record id="anc" model="hc.vs.identifier.type"> 
+            <field name="code">ANC</field>
+            <field name="name">Account Number Creditor</field>
+            <field name="system"></field>
+            <field name="class_id" ref="financial"/>
+            <field name="definition">A more precise definition of an account number: sometimes two distinct account numbers must be transmitted in the same message, one as the creditor, the other as the debitor.</field>
+        </record>   
+        <record id="and" model="hc.vs.identifier.type"> 
+            <field name="code">AND</field>
+            <field name="name">Account Number Debitor</field>
+            <field name="system"></field>
+            <field name="class_id" ref="financial"/>
+            <field name="definition">A more precise definition of an account number: sometimes two distinct account numbers must be transmitted in the same message, one as the creditor, the other as the debitor.</field>
+        </record>   
+        <record id="anon" model="hc.vs.identifier.type">    
+            <field name="code">ANON</field>
+            <field name="name">Anonymous Identifier</field>
+            <field name="system"></field>
+            <field name="class_id" ref="medical"/>
+            <field name="definition">An identifier for a living subject whose real identity is protected or suppressed.</field>
+        </record>   
+        <record id="ant" model="hc.vs.identifier.type"> 
+            <field name="code">ANT</field>
+            <field name="name">Temporary Account Number</field>
+            <field name="system"></field>
+            <field name="class_id" ref="financial"/>
+            <field name="definition">Temporary version of an Account Number.</field>
+        </record>   
+        <record id="aprn" model="hc.vs.identifier.type">    
+            <field name="code">APRN</field>
+            <field name="name">Advanced Practice Registered Nurse Number</field>
+            <field name="system"></field>
+            <field name="class_id" ref="medical"/>
+            <field name="definition">An identifier that is unique to an advanced practice registered nurse within the jurisdiction of a certifying board.</field>
+        </record>   
+        <record id="ba" model="hc.vs.identifier.type">  
+            <field name="code">BA</field>
+            <field name="name">Bank Account Number</field>
+            <field name="system"></field>
+            <field name="class_id" ref="financial"/>
+            <field name="definition"></field>
+        </record>   
+        <record id="bc" model="hc.vs.identifier.type">  
+            <field name="code">BC</field>
+            <field name="name">Bank Card Number</field>
+            <field name="system"></field>
+            <field name="class_id" ref="financial"/>
+            <field name="definition">An identifier that is unique to a person's bank card. Replaces AM, DI, DS, MS, and VS beginning in v 2.5.</field>
+        </record>   
+        <record id="br" model="hc.vs.identifier.type">  
+            <field name="code">BR</field>
+            <field name="name">Birth Registry Number</field>
+            <field name="system"></field>
+            <field name="class_id" ref="government"/>
+            <field name="definition">An identifier unique within the Assigning Authority that is the official legal record of a person's birth.</field>
+        </record>   
+        <record id="brn" model="hc.vs.identifier.type"> 
+            <field name="code">BRN</field>
+            <field name="name">Breed Registry Number</field>
+            <field name="system">http://hl7.org/fhir/v2/0203</field>
+            <field name="class_id" ref="government"/>
+            <field name="definition"></field>
+        </record>   
+        <record id="cc" model="hc.vs.identifier.type">  
+            <field name="code">CC</field>
+            <field name="name">Cost Center Number</field>
+            <field name="system"></field>
+            <field name="class_id" ref="financial"/>
+            <field name="definition">An identifier used for transmitting information about invoices.</field>
+        </record>   
+        <record id="cy" model="hc.vs.identifier.type">  
+            <field name="code">CY</field>
+            <field name="name">County Number</field>
+            <field name="system"></field>
+            <field name="class_id" ref="geography"/>
+            <field name="definition"></field>
+        </record>   
+        <record id="dds" model="hc.vs.identifier.type"> 
+            <field name="code">DDS</field>
+            <field name="name">Dentist License Number</field>
+            <field name="system"></field>
+            <field name="class_id" ref="medical"/>
+            <field name="definition">An identifier that is unique to a dentist within the jurisdiction of the licensing board</field>
+        </record>   
+        <record id="dea" model="hc.vs.identifier.type"> 
+            <field name="code">DEA</field>
+            <field name="name">Drug Enforcement Administration Registration Number</field>
+            <field name="system">www.deadiversion.usdoj.gov/webforms/</field>
+            <field name="class_id" ref="government"/>
+            <field name="definition">An identifier for an individual or organization relative to controlled substance regulation and transactions.</field>
+        </record>   
+        <record id="dfn" model="hc.vs.identifier.type"> 
+            <field name="code">DFN</field>
+            <field name="name">Drug Furnishing or Prescriptive Authority Number</field>
+            <field name="system"></field>
+            <field name="class_id" ref="medical"/>
+            <field name="definition">An identifier issued to a health care provider authorizing the person to write drug orders.</field>
+        </record>   
+        <record id="dl" model="hc.vs.identifier.type">  
+            <field name="code">DL</field>
+            <field name="name">Driver’s License Number</field>
+            <field name="system">http://hl7.org/fhir/v2/0203</field>
+            <field name="class_id" ref="government"/>
+            <field name="definition"></field>
+        </record>   
+        <record id="dn" model="hc.vs.identifier.type">  
+            <field name="code">DN</field>
+            <field name="name">Doctor Number</field>
+            <field name="system"></field>
+            <field name="class_id" ref="medical"/>
+            <field name="definition"></field>
+        </record>   
+        <record id="do" model="hc.vs.identifier.type">  
+            <field name="code">DO</field>
+            <field name="name">Osteopathic License Number</field>
+            <field name="system"></field>
+            <field name="class_id" ref="medical"/>
+            <field name="definition">An identifier that is unique to an osteopath within the jurisdiction of a licensing board.</field>
+        </record>   
+        <record id="dpm" model="hc.vs.identifier.type"> 
+            <field name="code">DPM</field>
+            <field name="name">Podiatrist License Number</field>
+            <field name="system"></field>
+            <field name="class_id" ref="medical"/>
+            <field name="definition">An identifier that is unique to a podiatrist within the jurisdiction of the licensing board.</field>
+        </record>   
+        <record id="dr" model="hc.vs.identifier.type">  
+            <field name="code">DR</field>
+            <field name="name">Donor Registration Number</field>
+            <field name="system">http://hl7.org/fhir/v2/0203</field>
+            <field name="class_id" ref="medical"/>
+            <field name="definition"></field>
+        </record>   
+        <record id="ei" model="hc.vs.identifier.type">  
+            <field name="code">EI</field>
+            <field name="name">Employee Number</field>
+            <field name="system"></field>
+            <field name="class_id" ref="employment"/>
+            <field name="definition">A number that uniquely identifies an employee to an employer.</field>
+        </record>   
+        <record id="en" model="hc.vs.identifier.type">  
+            <field name="code">EN</field>
+            <field name="name">Employer Number</field>
+            <field name="system">http://hl7.org/fhir/v2/0203</field>
+            <field name="class_id" ref="employment"/>
+            <field name="definition"></field>
+        </record>   
+        <record id="fi" model="hc.vs.identifier.type">  
+            <field name="code">FI</field>
+            <field name="name">Facility ID</field>
+            <field name="system"></field>
+            <field name="class_id" ref="enterprise"/>
+            <field name="definition"></field>
+        </record>   
+        <record id="fill" model="hc.vs.identifier.type">    
+            <field name="code">FILL</field>
+            <field name="name">Filler Identifier</field>
+            <field name="system">http://hl7.org/fhir/identifier-type</field>
+            <field name="class_id" ref="enterprise"/>
+            <field name="definition">The Identifier associated with the person, or service, who produces the observations or fulfills the order requested by the requestor.</field>
+        </record>   
+        <record id="gi" model="hc.vs.identifier.type">  
+            <field name="code">GI</field>
+            <field name="name">Guarantor Internal Identifier</field>
+            <field name="system"></field>
+            <field name="class_id" ref="financial"/>
+            <field name="definition"></field>
+        </record>   
+        <record id="gl" model="hc.vs.identifier.type">  
+            <field name="code">GL</field>
+            <field name="name">General Ledger Number</field>
+            <field name="system"></field>
+            <field name="class_id" ref="financial"/>
+            <field name="definition"></field>
+        </record>   
+        <record id="gn" model="hc.vs.identifier.type">  
+            <field name="code">GN</field>
+            <field name="name">Guarantor External Identifier</field>
+            <field name="system"></field>
+            <field name="class_id" ref="financial"/>
+            <field name="definition"></field>
+        </record>   
+        <record id="hc" model="hc.vs.identifier.type">  
+            <field name="code">HC</field>
+            <field name="name">Health Card Number</field>
+            <field name="system"></field>
+            <field name="class_id" ref="medical"/>
+            <field name="definition"></field>
+        </record>   
+        <record id="ind" model="hc.vs.identifier.type"> 
+            <field name="code">IND</field>
+            <field name="name">Indigenous/Aboriginal</field>
+            <field name="system"></field>
+            <field name="class_id" ref="government"/>
+            <field name="definition">A number assigned to a member of an indigenous or aboriginal group outside of Canada.</field>
+        </record>   
+        <record id="jhn" model="hc.vs.identifier.type"> 
+            <field name="code">JHN</field>
+            <field name="name">Jurisdictional Health Number (Canada)</field>
+            <field name="system"></field>
+            <field name="class_id" ref="insurance"/>
+            <field name="definition">2 uses: a) UK jurisdictional CHI number; b) Canadian provincial health card number</field>
+        </record>   
+        <record id="li" model="hc.vs.identifier.type">  
+            <field name="code">LI</field>
+            <field name="name">Labor And Industries Number</field>
+            <field name="system"></field>
+            <field name="class_id" ref="government"/>
+            <field name="definition"></field>
+        </record>   
+        <record id="ln" model="hc.vs.identifier.type">  
+            <field name="code">LN</field>
+            <field name="name">License Number</field>
+            <field name="system"></field>
+            <field name="class_id" ref="enterprise"/>
+            <field name="definition"></field>
+        </record>   
+        <record id="lr" model="hc.vs.identifier.type">  
+            <field name="code">LR</field>
+            <field name="name">Local Registry ID</field>
+            <field name="system"></field>
+            <field name="class_id" ref="government"/>
+            <field name="definition"></field>
+        </record>   
+        <record id="ma" model="hc.vs.identifier.type">  
+            <field name="code">MA</field>
+            <field name="name">Patient Medicaid Number</field>
+            <field name="system">www.medicaid.gov</field>
+            <field name="class_id" ref="insurance"/>
+            <field name="definition"></field>
+        </record>   
+        <record id="mb" model="hc.vs.identifier.type">  
+            <field name="code">MB</field>
+            <field name="name">Member Number</field>
+            <field name="system"></field>
+            <field name="class_id" ref="insurance"/>
+            <field name="definition">An identifier for the insured of an insurance policy (this insured always has a subscriber), usually assigned by the insurance carrier.</field>
+        </record>   
+        <record id="mc" model="hc.vs.identifier.type">  
+            <field name="code">MC</field>
+            <field name="name">Patient’s Medicare Number</field>
+            <field name="system">www.medicare.gov</field>
+            <field name="class_id" ref="insurance"/>
+            <field name="definition"></field>
+        </record>   
+        <record id="mcd" model="hc.vs.identifier.type"> 
+            <field name="code">MCD</field>
+            <field name="name">Practitioner Medicaid Number</field>
+            <field name="system"></field>
+            <field name="class_id" ref="insurance"/>
+            <field name="definition"></field>
+        </record>   
+        <record id="mcn" model="hc.vs.identifier.type"> 
+            <field name="code">MCN</field>
+            <field name="name">Microchip Number</field>
+            <field name="system">http://hl7.org/fhir/v2/0203</field>
+            <field name="class_id" ref="enterprise"/>
+            <field name="definition"></field>
+        </record>   
+        <record id="mcr" model="hc.vs.identifier.type"> 
+            <field name="code">MCR</field>
+            <field name="name">Practitioner Medicare Number</field>
+            <field name="system"></field>
+            <field name="class_id" ref="insurance"/>
+            <field name="definition"></field>
+        </record>   
+        <record id="md" model="hc.vs.identifier.type">  
+            <field name="code">MD</field>
+            <field name="name">Medical License Number</field>
+            <field name="system">http://hl7.org/fhir/v2/0203</field>
+            <field name="class_id" ref="medical"/>
+            <field name="definition">An identifier that is unique to a medical doctor within the jurisdiction of a licensing board.</field>
+        </record>   
+        <record id="mi" model="hc.vs.identifier.type">  
+            <field name="code">MI</field>
+            <field name="name">Military ID Number</field>
+            <field name="system"></field>
+            <field name="class_id" ref="government"/>
+            <field name="definition">A number assigned to an individual who has had military duty, but is not currently on active duty. The number is assigned by the DOD or Veterans' Affairs (VA).</field>
+        </record>   
+        <record id="mr" model="hc.vs.identifier.type">  
+            <field name="code">MR</field>
+            <field name="name">Medical Record Number</field>
+            <field name="system">http://hl7.org/fhir/v2/0203</field>
+            <field name="class_id" ref="medical"/>
+            <field name="definition">An identifier that is unique to a patient within a set of medical records, not necessarily unique within an application.</field>
+        </record>   
+        <record id="mrt" model="hc.vs.identifier.type"> 
+            <field name="code">MRT</field>
+            <field name="name">Temporary Medical Record Number</field>
+            <field name="system"></field>
+            <field name="class_id" ref="medical"/>
+            <field name="definition">Temporary version of a Medical Record Number.</field>
+        </record>   
+        <record id="ne" model="hc.vs.identifier.type">  
+            <field name="code">NE</field>
+            <field name="name">National Employer Identifier</field>
+            <field name="system"></field>
+            <field name="class_id" ref="insurance"/>
+            <field name="definition">In the US, the Assigning Authority for this value is typically CMS, but it may be used by all providers and insurance companies in HIPAA related transactions.</field>
+        </record>   
+        <record id="nh" model="hc.vs.identifier.type">  
+            <field name="code">NH</field>
+            <field name="name">National Health Plan Identifier</field>
+            <field name="system"></field>
+            <field name="class_id" ref="insurance"/>
+            <field name="definition">Used for the UK NHS national identifier.</field>
+        </record>   
+        <record id="ni" model="hc.vs.identifier.type">  
+            <field name="code">NI</field>
+            <field name="name">National Unique Individual Identifier</field>
+            <field name="system"></field>
+            <field name="class_id" ref="insurance"/>
+            <field name="definition">In the US, the Assigning Authority for this value is typically CMS, but it may be used by all providers and insurance companies in HIPAA related transactions.</field>
+        </record>   
+        <record id="nii" model="hc.vs.identifier.type"> 
+            <field name="code">NII</field>
+            <field name="name">National Insurance Organization Identifier</field>
+            <field name="system"></field>
+            <field name="class_id" ref="insurance"/>
+            <field name="definition">In Germany a national identifier for an insurance company. It is printed on the insurance card (health card). It is not to be confused with the health card number itself.</field>
+        </record>   
+        <record id="niip" model="hc.vs.identifier.type">    
+            <field name="code">NIIP</field>
+            <field name="name">National Insurance Payor Identifier (Payor)</field>
+            <field name="system">http://hl7.org/fhir/v2/0203</field>
+            <field name="class_id" ref="insurance"/>
+            <field name="definition">In Germany the insurance identifier addressed as the payor.</field>
+        </record>   
+        <record id="nnxxx" model="hc.vs.identifier.type">   
+            <field name="code">NNxxx</field>
+            <field name="name">National Person Identifier where the xxx is the ISO table 3166 3-character (alphabetic) country code</field>
+            <field name="system"></field>
+            <field name="class_id" ref="government"/>
+            <field name="definition"></field>
+        </record>   
+        <record id="np" model="hc.vs.identifier.type">  
+            <field name="code">NP</field>
+            <field name="name">Nurse Practitioner Number</field>
+            <field name="system"></field>
+            <field name="class_id" ref="medical"/>
+            <field name="definition">An identifier that is unique to a nurse practitioner within the jurisdiction of a certifying board.</field>
+        </record>   
+        <record id="npi" model="hc.vs.identifier.type"> 
+            <field name="code">NPI</field>
+            <field name="name">National Provider Identifier</field>
+            <field name="system"></field>
+            <field name="class_id" ref="insurance"/>
+            <field name="definition">In the US, the Assigning Authority for this value is typically CMS, but it may be used by all providers and insurance companies in HIPAA related transactions.</field>
+        </record>   
+        <record id="od" model="hc.vs.identifier.type">  
+            <field name="code">OD</field>
+            <field name="name">Optometrist License Number</field>
+            <field name="system"></field>
+            <field name="class_id" ref="medical"/>
+            <field name="definition">A number that is unique to an individual optometrist within the jurisdiction of the licensing board.</field>
+        </record>   
+        <record id="pa" model="hc.vs.identifier.type">  
+            <field name="code">PA</field>
+            <field name="name">Physician Assistant Number</field>
+            <field name="system"></field>
+            <field name="class_id" ref="medical"/>
+            <field name="definition">An identifier that is unique to a physician assistant within the jurisdiction of a licensing board.</field>
+        </record>   
+        <record id="pcn" model="hc.vs.identifier.type"> 
+            <field name="code">PCN</field>
+            <field name="name">Penitentiary/correctional institution Number</field>
+            <field name="system"></field>
+            <field name="class_id" ref="government"/>
+            <field name="definition">A number assigned to individual who is incarcerated.</field>
+        </record>   
+        <record id="pe" model="hc.vs.identifier.type">  
+            <field name="code">PE</field>
+            <field name="name">Living Subject Enterprise Number</field>
+            <field name="system"></field>
+            <field name="class_id" ref="medical"/>
+            <field name="definition">An identifier that is unique to a living subject within an enterprise (as identified by the Assigning Authority).</field>
+        </record>   
+        <record id="pen" model="hc.vs.identifier.type"> 
+            <field name="code">PEN</field>
+            <field name="name">Pension Number</field>
+            <field name="system"></field>
+            <field name="class_id" ref="government"/>
+            <field name="definition"></field>
+        </record>   
+        <record id="pi" model="hc.vs.identifier.type">  
+            <field name="code">PI</field>
+            <field name="name">Patient Internal Identifier</field>
+            <field name="system"></field>
+            <field name="class_id" ref="medical"/>
+            <field name="definition">A number that is unique to a patient within an Assigning Authority.</field>
+        </record>   
+        <record id="plac" model="hc.vs.identifier.type">    
+            <field name="code">PLAC</field>
+            <field name="name">Placer Identifier</field>
+            <field name="system">http://hl7.org/fhir/identifier-type</field>
+            <field name="class_id" ref="medical"/>
+            <field name="definition">The identifier associated with the person or service that requests or places an order.</field>
+        </record>   
+        <record id="pn" model="hc.vs.identifier.type">  
+            <field name="code">PN</field>
+            <field name="name">Person Number</field>
+            <field name="system"></field>
+            <field name="class_id" ref="enterprise"/>
+            <field name="definition">A number that is unique to a living subject within an Assigning Authority.</field>
+        </record>   
+        <record id="pnt" model="hc.vs.identifier.type"> 
+            <field name="code">PNT</field>
+            <field name="name">Temporary Living Subject Number</field>
+            <field name="system"></field>
+            <field name="class_id" ref="medical"/>
+            <field name="definition">Temporary version of a Lining Subject Number.</field>
+        </record>   
+        <record id="ppn" model="hc.vs.identifier.type"> 
+            <field name="code">PPN</field>
+            <field name="name">Passport Number</field>
+            <field name="system">http://hl7.org/fhir/v2/0203</field>
+            <field name="class_id" ref="government"/>
+            <field name="definition">A unique number assigned to the document affirming that a person is a citizen of the country. In the US this number is issued only by the State Department.</field>
+        </record>   
+        <record id="prc" model="hc.vs.identifier.type"> 
+            <field name="code">PRC</field>
+            <field name="name">Permanent Resident Card Number</field>
+            <field name="system"></field>
+            <field name="class_id" ref="government"/>
+            <field name="definition"></field>
+        </record>   
+        <record id="prn" model="hc.vs.identifier.type"> 
+            <field name="code">PRN</field>
+            <field name="name">Provider Number</field>
+            <field name="system">http://hl7.org/fhir/v2/0203</field>
+            <field name="class_id" ref="medical"/>
+            <field name="definition">A number that is unique to an individual provider, a provider group or an organization within an Assigning Authority.</field>
+        </record>   
+        <record id="pt" model="hc.vs.identifier.type">  
+            <field name="code">PT</field>
+            <field name="name">Patient External Identifier</field>
+            <field name="system"></field>
+            <field name="class_id" ref="medical"/>
+            <field name="definition"></field>
+        </record>   
+        <record id="qa" model="hc.vs.identifier.type">  
+            <field name="code">QA</field>
+            <field name="name">QA Number</field>
+            <field name="system"></field>
+            <field name="class_id" ref="medical"/>
+            <field name="definition"></field>
+        </record>   
+        <record id="ri" model="hc.vs.identifier.type">  
+            <field name="code">RI</field>
+            <field name="name">Resource Identifier</field>
+            <field name="system"></field>
+            <field name="class_id" ref="enterprise"/>
+            <field name="definition">A generalized resource identifier.</field>
+        </record>   
+        <record id="rn" model="hc.vs.identifier.type">  
+            <field name="code">RN</field>
+            <field name="name">Registered Nurse Number</field>
+            <field name="system"></field>
+            <field name="class_id" ref="medical"/>
+            <field name="definition">An identifier that is unique to a registered nurse within the jurisdiction of the licensing board.</field>
+        </record>   
+        <record id="rph" model="hc.vs.identifier.type"> 
+            <field name="code">RPH</field>
+            <field name="name">Pharmacist License Number</field>
+            <field name="system"></field>
+            <field name="class_id" ref="medical"/>
+            <field name="definition">An identifier that is unique to a pharmacist within the jurisdiction of the licensing board.</field>
+        </record>   
+        <record id="rr" model="hc.vs.identifier.type">  
+            <field name="code">RR</field>
+            <field name="name">Railroad Retirement Number</field>
+            <field name="system"></field>
+            <field name="class_id" ref="government"/>
+            <field name="definition">An identifier for an individual enrolled with the Railroad Retirement Administration. Analogous to, but distinct from, a Social Security Number.</field>
+        </record>   
+        <record id="rri" model="hc.vs.identifier.type"> 
+            <field name="code">RRI</field>
+            <field name="name">Regional Registry ID</field>
+            <field name="system"></field>
+            <field name="class_id" ref="government"/>
+            <field name="definition"></field>
+        </record>   
+        <record id="sb" model="hc.vs.identifier.type">  
+            <field name="code">SB</field>
+            <field name="name">Social Beneficiary Identifier</field>
+            <field name="system">http://hl7.org/fhir/identifier-type</field>
+            <field name="class_id" ref="government"/>
+            <field name="definition">An identifier issued by a governmental organization to an individual for the purpose of the receipt of social services and benefits.</field>
+        </record>   
+        <record id="sl" model="hc.vs.identifier.type">  
+            <field name="code">SL</field>
+            <field name="name">State License</field>
+            <field name="system"></field>
+            <field name="class_id" ref="government"/>
+            <field name="definition"></field>
+        </record>   
+        <record id="sn" model="hc.vs.identifier.type">  
+            <field name="code">SN</field>
+            <field name="name">Subscriber Number</field>
+            <field name="system"></field>
+            <field name="class_id" ref="insurance"/>
+            <field name="definition">An identifier for a subscriber of an insurance policy which is unique for, and usually assigned by, the insurance carrier.</field>
+        </record>   
+        <record id="sno" model="hc.vs.identifier.type"> 
+            <field name="code">SNO</field>
+            <field name="name">Serial Number</field>
+            <field name="system">http://hl7.org/fhir/identifier-type</field>
+            <field name="class_id" ref="enterprise"/>
+            <field name="definition">An identifier affixed to an item by the manufacturer when it is first made, where each item has a different identifier.</field>
+        </record>   
+        <record id="sr" model="hc.vs.identifier.type">  
+            <field name="code">SR</field>
+            <field name="name">State Registry ID</field>
+            <field name="system"></field>
+            <field name="class_id" ref="government"/>
+            <field name="definition"></field>
+        </record>   
+        <record id="ss" model="hc.vs.identifier.type">  
+            <field name="code">SS</field>
+            <field name="name">Social Security Number</field>
+            <field name="system"></field>
+            <field name="class_id" ref="government"/>
+            <field name="definition"></field>
+        </record>   
+        <record id="tax" model="hc.vs.identifier.type"> 
+            <field name="code">TAX</field>
+            <field name="name">Tax ID Number</field>
+            <field name="system">http://hl7.org/fhir/v2/0203</field>
+            <field name="class_id" ref="government"/>
+            <field name="definition"></field>
+        </record>   
+        <record id="u" model="hc.vs.identifier.type">   
+            <field name="code">U</field>
+            <field name="name">Unspecified Identifier</field>
+            <field name="system"></field>
+            <field name="class_id" ref="enterprise"/>
+            <field name="definition"></field>
+        </record>   
+        <record id="udi" model="hc.vs.identifier.type"> 
+            <field name="code">UDI</field>
+            <field name="name">Universal Device Identifier</field>
+            <field name="system">http://hl7.org/fhir/identifier-type</field>
+            <field name="class_id" ref="medical"/>
+            <field name="definition">A identifier assigned to a device using the Universal Device Identifier framework as defined by FDA (http://www.fda.gov/MedicalDevices/DeviceRegulationandGuidance/UniqueDeviceIdentification/).</field>
+        </record>   
+        <record id="upin" model="hc.vs.identifier.type">    
+            <field name="code">UPIN</field>
+            <field name="name">Universal Physician Identification Numbers</field>
+            <field name="system"></field>
+            <field name="class_id" ref="insurance"/>
+            <field name="definition">An identifier for a provider within the CMS/Medicare program. A globally unique identifier for the provider in the Medicare program.</field>
+        </record>   
+        <record id="vn" model="hc.vs.identifier.type">  
+            <field name="code">VN</field>
+            <field name="name">Visit Number</field>
+            <field name="system"></field>
+            <field name="class_id" ref="medical"/>
+            <field name="definition"></field>
+        </record>   
+        <record id="wc" model="hc.vs.identifier.type">  
+            <field name="code">WC</field>
+            <field name="name">WIC Identifier</field>
+            <field name="system">http://www.fns.usda.gov/wic/women-infants-and-children-wic</field>
+            <field name="class_id" ref="medical"/>
+            <field name="definition">WIC (Women, Infant and Children) is a health and nutrition program funded by the US Government.</field>
+        </record>   
+        <record id="wcn" model="hc.vs.identifier.type"> 
+            <field name="code">WCN</field>
+            <field name="name">Workers Comp Number</field>
+            <field name="system"></field>
+            <field name="class_id" ref="insurance"/>
+            <field name="definition"></field>
+        </record>   
+        <record id="xx" model="hc.vs.identifier.type">  
+            <field name="code">XX</field>
+            <field name="name">Organization Identifier</field>
+            <field name="system"></field>
+            <field name="class_id" ref="enterprise"/>
+            <field name="definition"></field>
+        </record>   
+        <record id="acsn" model="hc.vs.identifier.type">    
+            <field name="code">ACSN</field>
+            <field name="name">Accession ID</field>
+            <field name="system"></field>
+            <field name="class_id" ref="medical"/>
+            <field name="definition">Accession Identifier</field>
+        </record>   
+        <record id="ama" model="hc.vs.identifier.type"> 
+            <field name="code">AMA</field>
+            <field name="name">American Medical Association Number</field>
+            <field name="system">http://www.ama-assn.org/</field>
+            <field name="class_id" ref="medical"/>
+            <field name="definition">A physician identifier assigned by the AMA.</field>
+        </record>   
+        <record id="asid" model="hc.vs.identifier.type">    
+            <field name="code">ASID</field>
+            <field name="name">Ancestor Specimen ID</field>
+            <field name="system"></field>
+            <field name="class_id" ref="medical"/>
+            <field name="definition">A unique identifier for the ancestor specimen. All child, grandchild, etc. specimens of the ancestor specimen share the same Ancestor Specimen ID.</field>
+        </record>   
+        <record id="bct" model="hc.vs.identifier.type"> 
+            <field name="code">BCT</field>
+            <field name="name">Birth Certificate</field>
+            <field name="system"></field>
+            <field name="class_id" ref="government"/>
+            <field name="definition">A number associated with a document identifying the event of a person's birth.</field>
+        </record>   
+        <record id="bsnr" model="hc.vs.identifier.type">    
+            <field name="code">BSNR</field>
+            <field name="name">Primary physician office number</field>
+            <field name="system"></field>
+            <field name="class_id" ref="medical"/>
+            <field name="definition">Betriebsstättennummer - for use in the German realm.</field>
+        </record>   
+        <record id="conm" model="hc.vs.identifier.type">    
+            <field name="code">CONM</field>
+            <field name="name">Change of Name Document</field>
+            <field name="system"></field>
+            <field name="class_id" ref="government"/>
+            <field name="definition">A number associated with a document identifying a person's legal change of name.</field>
+        </record>   
+        <record id="cz" model="hc.vs.identifier.type">  
+            <field name="code">CZ</field>
+            <field name="name">Citizenship Card</field>
+            <field name="system"></field>
+            <field name="class_id" ref="government"/>
+            <field name="definition">A number assigned by a person's country of residence to identify a person's citizenship.</field>
+        </record>   
+        <record id="dp" model="hc.vs.identifier.type">  
+            <field name="code">DP</field>
+            <field name="name">Diplomatic Passport</field>
+            <field name="system"></field>
+            <field name="class_id" ref="government"/>
+            <field name="definition">A number assigned to a diplomatic passport.</field>
+        </record>   
+        <record id="esn" model="hc.vs.identifier.type"> 
+            <field name="code">ESN</field>
+            <field name="name">Staff Enterprise Number</field>
+            <field name="system"></field>
+            <field name="class_id" ref="enterprise"/>
+            <field name="definition">An identifier that is unique to a staff member within an enterprise (as identified by the Assigning Authority).</field>
+        </record>   
+        <record id="lacsn" model="hc.vs.identifier.type">   
+            <field name="code">LACSN</field>
+            <field name="name">Laboratory Accession ID</field>
+            <field name="system"></field>
+            <field name="class_id" ref="medical"/>
+            <field name="definition">A laboratory accession id is used in the laboratory domain. The concept of accession is used in other domains such as radiology, so the LACSN is used to distinguish a lab accession id from an radiology accession id.</field>
+        </record>   
+        <record id="lanr" model="hc.vs.identifier.type">    
+            <field name="code">LANR</field>
+            <field name="name">Lifelong physician number</field>
+            <field name="system"></field>
+            <field name="class_id" ref="medical"/>
+            <field name="definition">Lebenslange Arztnummer - for use in German realm.</field>
+        </record>   
+        <record id="mct" model="hc.vs.identifier.type"> 
+            <field name="code">MCT</field>
+            <field name="name">Marriage Certificate</field>
+            <field name="system"></field>
+            <field name="class_id" ref="government"/>
+            <field name="definition">A number associated with a document identifying the event of a person's marriage.</field>
+        </record>   
+        <record id="nbsnr" model="hc.vs.identifier.type">   
+            <field name="code">NBSNR</field>
+            <field name="name">Secondary physician office number</field>
+            <field name="system"></field>
+            <field name="class_id" ref="medical"/>
+            <field name="definition">Nebenbetriebsstättennummer - for use in the German realm.</field>
+        </record>   
+        <record id="nct" model="hc.vs.identifier.type"> 
+            <field name="code">NCT</field>
+            <field name="name">Naturalization Certificate</field>
+            <field name="system"></field>
+            <field name="class_id" ref="government"/>
+            <field name="definition">A number associated with a document identifying a person's retention of citizenship in a particular country.</field>
+        </record>   
+        <record id="nnxxx" model="hc.vs.identifier.type">   
+            <field name="code">NNXXX</field>
+            <field name="name">National Person Identifier</field>
+            <field name="system"></field>
+            <field name="class_id" ref="government"/>
+            <field name="definition">Identifies a person in a country where the xxx is the ISO table 3166 3-character (alphabetic) country code.</field>
+        </record>   
+        <record id="pc" model="hc.vs.identifier.type">  
+            <field name="code">PC</field>
+            <field name="name">Parole Card</field>
+            <field name="system"></field>
+            <field name="class_id" ref="government"/>
+            <field name="definition">A number identifying a person on parole.</field>
+        </record>   
+        <record id="ppin" model="hc.vs.identifier.type">    
+            <field name="code">PPIN</field>
+            <field name="name">Medicare/CMS Performing Provider Identification Number</field>
+            <field name="system"></field>
+            <field name="class_id" ref="insurance"/>
+            <field name="definition"></field>
+        </record>   
+        <record id="rrp" model="hc.vs.identifier.type"> 
+            <field name="code">RRP</field>
+            <field name="name">Railroad Retirement Provider</field>
+            <field name="system"></field>
+            <field name="class_id" ref="insurance"/>
+            <field name="definition"></field>
+        </record>   
+        <record id="sid" model="hc.vs.identifier.type"> 
+            <field name="code">SID</field>
+            <field name="name">Specimen ID</field>
+            <field name="system"></field>
+            <field name="class_id" ref="medical"/>
+            <field name="definition">Identifier for a specimen. Used when it is not known if the specimen ID is a unique specimen ID (USID) or an ancestor ID (ASID).</field>
+        </record>   
+        <record id="sp" model="hc.vs.identifier.type">  
+            <field name="code">SP</field>
+            <field name="name">Study Permit</field>
+            <field name="system"></field>
+            <field name="class_id" ref="government"/>
+            <field name="definition">A number associated with a permit identifying a person who is a resident of a jurisdiction for the purpose of education.</field>
+        </record>   
+        <record id="tn" model="hc.vs.identifier.type">  
+            <field name="code">TN</field>
+            <field name="name">Treaty Number/ (Canada)</field>
+            <field name="system"></field>
+            <field name="class_id" ref="government"/>
+            <field name="definition"></field>
+        </record>   
+        <record id="tpr" model="hc.vs.identifier.type"> 
+            <field name="code">TPR</field>
+            <field name="name">Temporary Permanent Resident (Canada)</field>
+            <field name="system"></field>
+            <field name="class_id" ref="government"/>
+            <field name="definition">A number associated with a document identifying a person's temporary permanent resident status.</field>
+        </record>   
+        <record id="usid" model="hc.vs.identifier.type">    
+            <field name="code">USID</field>
+            <field name="name">Unique Specimen ID</field>
+            <field name="system"></field>
+            <field name="class_id" ref="medical"/>
+            <field name="definition">A unique identifier for a specimen.</field>
+        </record>   
+        <record id="vp" model="hc.vs.identifier.type">  
+            <field name="code">VP</field>
+            <field name="name">Visitor Permit</field>
+            <field name="system"></field>
+            <field name="class_id" ref="government"/>
+            <field name="definition">A number associated with a document identifying a person as a visitor of a jurisdiction or country.</field>
+        </record>   
+        <record id="wp" model="hc.vs.identifier.type">  
+            <field name="code">WP</field>
+            <field name="name">Work Permit</field>
+            <field name="system"></field>
+            <field name="class_id" ref="government"/>
+            <field name="definition">A number associated with a permit for a person who is granted permission to work in a country for a specified time period.</field>
+        </record>   
+
+    </data>
+</odoo>
+

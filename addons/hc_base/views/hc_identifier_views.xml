@@ -1,5 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
 <openerp>
-    <data>
+    <data>    
+
+        <menuitem 
+            id="hc_base.menu_ident" 
+            name="Identifier" 
+            parent="hc_base.menu_datatype" 
+            sequence="50"/>
+
+        <!-- Identifier Type Class Views -->                            
+                            
+        <record id="hc_vs_identifier_type_class_view_search" model="ir.ui.view">                            
+            <field name="name">Identifier Type Class Search</field>                     
+            <field name="model">hc.vs.identifier.type.class</field>                     
+            <field name="arch" type="xml">                      
+                <search string="Identifier Type Classes">                   
+                    <field name="name"/>                
+                </search>                   
+            </field>                        
+        </record>                           
+                                    
+        <record id="hc_vs_identifier_type_class_view_tree" model="ir.ui.view">                          
+            <field name="name">Identifier Type Class Tree</field>                       
+            <field name="model">hc.vs.identifier.type.class</field>                     
+            <field name="arch" type="xml">                       
+                <tree string="Identifier Type Classes">                 
+                    <field name="name"/>                
+                    <field name="code"/>              
+                </tree>                 
+            </field>                        
+        </record>                           
+                                    
+        <record id="hc_vs_identifier_type_class_view_form" model="ir.ui.view">                          
+            <field name="name">Identifier Type Class Form</field>                       
+            <field name="model">hc.vs.identifier.type.class</field>                     
+            <field name="arch" type="xml">                      
+                <form string="Identifier Type Class">                   
+                    <sheet>
+                        <div class="oe_title oe_left">          
+                            <h1>        
+                                <field name="name" default_focus="1" placeholder="Name (e.g., Government)"/>  
+                            </h1>       
+                        </div>          
+                        <group>         
+                            <group>     
+                                <field name="code" placeholder="(e.g., GOV)"/>
+                                <field name="definition"/>  
+                            </group>        
+                            <group>     
+                            </group>        
+                        </group>            
+                    </sheet>                
+                </form>                 
+            </field>                        
+        </record>                           
+                                    
+        <!-- Identifier Type Action and Menu -->                            
+                                    
+        <record id="hc_vs_identifier_type_class_action" model="ir.actions.act_window">                          
+            <field name="name">HC Identifier Type Classes</field>                      
+            <field name="type">ir.actions.act_window</field>                        
+            <field name="res_model">hc.vs.identifier.type.class</field>                     
+            <field name="view_type">form</field>                        
+            <field name="view_mode">tree,form</field>                       
+        </record>                           
+
+
+        <menuitem 
+            id="hc_base.menu_ident_type_class" 
+            name="Identifier Type Classes" 
+            parent="hc_base.menu_ident" 
+            action="hc_vs_identifier_type_class_action" 
+            sequence="20"/>
 
         <!-- Identifier Type Views -->            
             
@@ -8,7 +80,8 @@
             <field name="model">hc.vs.identifier.type</field>         
             <field name="arch" type="xml">          
                 <search string="Identifier Types">        
-                    <field name="name"/>      
+                    <field name="name"/>
+                    <field name="class_id"/>      
                 </search>       
             </field>          
         </record>           
@@ -19,7 +92,8 @@
             <field name="arch" type="xml">          
                 <tree string="Identifier Types">        
                     <field name="name"/>      
-                    <field name="code"/>      
+                    <field name="code"/>
+                    <field name="class_id"/>    
                     <field name="system"/>      
                 </tree>       
             </field>          
@@ -39,8 +113,9 @@
                         <group>   
                             <group> 
                                 <field name="code" placeholder="Unique code (e.g., DL)"/>
-                                <field name="system" widget="url"/>
+                                <field name="class_id"/>
                                 <field name="definition"/>
+                                <field name="system" widget="url"/>
                             </group>  
                             <group> 
                             </group>  
@@ -53,18 +128,13 @@
         <!-- Identifier Type Action and Menu -->            
                     
         <record id="hc_vs_identifier_type_action" model="ir.actions.act_window">            
-            <field name="name">Identifier Type</field>          
+            <field name="name">HC Identifier Types</field>          
             <field name="type">ir.actions.act_window</field>          
             <field name="res_model">hc.vs.identifier.type</field>         
             <field name="view_type">form</field>          
             <field name="view_mode">tree,form</field>         
         </record>           
 
-        <menuitem 
-            id="hc_base.menu_ident" 
-            name="Identifier" 
-            parent="hc_base.menu_datatype" 
-            sequence="50"/>
         <menuitem 
             id="hc_base.menu_ident_type" 
             name="Identifier Types" 

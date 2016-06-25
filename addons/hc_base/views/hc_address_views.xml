@@ -674,7 +674,13 @@
           <field name="view_mode">tree,form</field>         
         </record>           
 
-        <menuitem id="hc_base.menu_addr_state" name="States/Provinces" parent="hc_base.menu_addr" action="res_country_state_action" sequence="50"/>
+        <menuitem 
+          id="hc_base.menu_addr_state" 
+          name="States/Provinces" 
+          parent="hc_base.menu_addr" 
+          action="res_country_state_action" 
+          groups="group_hc_base_user"
+          sequence="50"/>
 
         <record id="hc_vs_country_state_type_action" model="ir.actions.act_window"> 
             <field name="name">HC Country State Types</field>
@@ -685,7 +691,12 @@
         </record>   
 
 
-        <menuitem id="hc_base.menu_addr_state_type" name="State/Province Types" parent="hc_base.menu_addr" action="hc_vs_country_state_type_action" sequence="51"/>
+        <menuitem 
+          id="hc_base.menu_addr_state_type" 
+          name="State/Province Types" 
+          parent="hc_base.menu_addr" 
+          action="hc_vs_country_state_type_action" 
+          sequence="51"/>
 
 
         <!-- Division Views -->
@@ -875,7 +886,6 @@
                   <group>
                     <field name="code"/>
                     <field name="type_id"/>
-                    <field name="country_id"/>
                   </group>  
                   <group>
                         <field name="source_id" placeholder="e.g., U.S. Census Bureau"/>   
