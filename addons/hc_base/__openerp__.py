@@ -26,6 +26,7 @@
         'security/ir.model.access.csv',
         'security/hc_base_security.xml',
         'data/data_identifier_type.xml',
+        'data/data_participation_type.xml',
         # 'data/hc_base_data.xml',
         # 'data/l10n_au/country_pl.xml',
         # 'data/l10n_ph/country_pl.xml',
@@ -40,6 +41,7 @@
         'views/hc_human_name_views.xml',
         'views/hc_identifier_views.xml',
         'views/hc_telecom_views.xml',
+        'views/hc_participation_type_views.xml',
         'views/templates.xml',    
     ],
     # only loaded in demonstration mode

@@ -6,4 +6,5 @@ import hc_annotation
 import hc_attachment
 import hc_human_name
 import hc_identifier
+import hc_participation_type
 import hc_telecom

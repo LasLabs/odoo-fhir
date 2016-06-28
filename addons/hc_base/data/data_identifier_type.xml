@@ -231,13 +231,13 @@
             <field name="class_id" ref="medical"/>
             <field name="definition"></field>
         </record>   
-        <record id="ind" model="hc.vs.identifier.type"> 
+        <!-- <record id="ind" model="hc.vs.identifier.type"> 
             <field name="code">IND</field>
             <field name="name">Indigenous/Aboriginal</field>
             <field name="system"></field>
             <field name="class_id" ref="government"/>
             <field name="definition">A number assigned to a member of an indigenous or aboriginal group outside of Canada.</field>
-        </record>   
+        </record>  -->  
         <record id="jhn" model="hc.vs.identifier.type"> 
             <field name="code">JHN</field>
             <field name="name">Jurisdictional Health Number (Canada)</field>

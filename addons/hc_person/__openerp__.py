@@ -31,6 +31,7 @@
     # always loaded
     'data': [
         'security/ir.model.access.csv',
+        'security/hc_person_security.xml',
         'views/hc_res_person_views.xml',
         'views/hc_res_person_templates.xml',
     ],

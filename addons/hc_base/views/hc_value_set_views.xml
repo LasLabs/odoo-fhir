@@ -3,6 +3,18 @@
 
     	<!-- Value Set View --> 
 
+        <record id="hc_value_set_contains_view_search" model="ir.ui.view">          
+            <field name="name">Value Set Contains Search</field>        
+            <field name="model">hc.value.set.contains</field>           
+            <field name="arch" type="xml">      
+                <search string="Value Set Contains">   
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="definition"/>
+                </search>   
+            </field>        
+        </record>           
+
         <record id="hc_value_set_contains_view_tree" model="ir.ui.view">           
             <field name="name">Value Set Tree</field>         
             <field name="model">hc.value.set.contains</field>          

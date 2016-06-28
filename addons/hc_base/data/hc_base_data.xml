@@ -5,7 +5,7 @@
     
         <!-- Partner Category -->
 
-       <!--  <record id="source" model="res.partner.category">  
+        <record id="source" model="res.partner.category">  
             <field name="code">source</field>
             <field name="name">Source</field>
         </record>
@@ -36,7 +36,7 @@
         <record id="patient" model="res.partner.category">  
             <field name="code">patient</field>
             <field name="name">Patient</field>
-        </record> -->       
+        </record>       
 
         <!-- Country Group -->
 
