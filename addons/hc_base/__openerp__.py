@@ -23,8 +23,8 @@
 
     # always loaded
     'data': [
-        # 'security/ir.model.access.csv',
-        # 'security/hc_base_security.xml',
+        'security/ir.model.access.csv',
+        'security/hc_base_security.xml',
         'data/data_identifier_type.xml',
         'data/data_participation_type.xml',
         # 'data/hc_base_data.xml',
