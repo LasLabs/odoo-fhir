@@ -31,6 +31,11 @@ class Patient(models.Model):
     deceased_time = fields.Char(
         string="Deceased Time", 
         help="The time when the patient died.")
+    language_ids = fields.One2many(
+        comodel_name="hc.patient.language",
+        inverse_name="patient_id",
+        string="Languages",
+        help="Language of a person")
     marital_status_ids = fields.One2many(
         comodel_name="hc.patient.marital.status",
         inverse_name="patient_id", 
@@ -194,6 +199,45 @@ class MaritalStatus(models.Model):
     _description = "Marital Status" 
     _inherit = ["hc.value.set.contains"]
 
+class Language(models.Model):
+    _name = "hc.vs.language"
+    _description = "Language"
+    _inherit = ["hc.value.set.contains"]
+
+class PatientLanguage(models.Model):
+    _name = "hc.patient.language"
+    _description = "Patient Language"
+    _inherit = ["hc.basic.association"]
+
+    language_id = fields.Many2one(
+        comodel_name="hc.language", 
+        string="Language",
+        help="Language associated with this patient.")
+    patient_id = fields.Many2one(
+        comodel_name="hc.res.patient", 
+        string="Patient", 
+        help="Patient associated with this language.")
+
+
+class PatientLanguageProficiency(models.Model):
+    _name = "hc.patient.language.proficiency"
+    _description = "Patient Language Proficiency"
+
+    patient_language_id = fields.Many2one(
+        comodel_name="hc.patient.language", 
+        string="Patient Language",
+        help="Patient language associated with this language proficiency.")
+    language_proficiency_id = fields.Many2one(
+        comodel_name="hc.vs.language.proficiency", 
+        string="Language Proficiency", 
+        help="Language proficiency associated with this patient language.")
+    language_skill_id = fields.Many2one(
+        comodel_name="hc.vs.language.skill", 
+        string="Language Skill", 
+        help="Language skill associated with this language proficiency.")
+
+
+
 class PatientMaritalStatus(models.Model):   
     _name = "hc.patient.marital.status"  
     _description = "Patient Marital Status"
@@ -301,6 +345,11 @@ class AnimalGenderStatus(models.Model):
 class PatientCommunication(models.Model):   
     _name = "hc.patient.communication"  
     _description = "Patient Communication"
+
+class PatientLink(models.Model):    
+    _name = "hc.patient.link"   
+    _description = "Patient Link" 
+
 
     patient_id = fields.Many2one(
         comodel_name="hc.res.patient", 

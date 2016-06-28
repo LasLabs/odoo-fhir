@@ -87,8 +87,59 @@
                                 </field>
                             </page>                    
                             <page string="Attachments"/>
-                            <page string="Marital Statuses"/>                   
-                            <page string="Languages"/>                  
+                            <page string="Marital Statuses">
+                                <field name="marital_status_ids" mode="tree">
+                                    <tree>
+                                        <field name="marital_status_id"/>
+                                        <field name="start_date"/>
+                                        <field name="end_date"/>
+                                    </tree>
+                                    <form>
+                                        <sheet>
+                                            <group>
+                                                <group>
+                                                    <field name="marital_status_id"/>
+                                                    <field name="start_date"/>
+                                                    <field name="end_date"/>
+                                                </group>
+                                                <group>
+                                                    <!-- <field name="is_preferred"/>
+                                                    <field name="is_active"/>
+                                                    <field name="start_date" placeholder="Valid From"/>
+                                                    <field name="end_date" placeholder="Valid To"/> -->
+                                                </group>
+                                            </group>
+                                        </sheet>
+                                    </form>
+                                </field>
+                            </page>                   
+                            <page string="Languages">
+                                <field name="language_ids" mode="tree">
+                                    <tree>
+                                        <field name="is_preferred"/>
+                                        <field name="language_id"/>
+            <!--                             <field name="language_proficiency_id"/>
+                                        <field name="language_skill_id"/> -->
+                                    </tree>
+                                    <form>
+                                        <sheet>
+                                            <group>
+                                                <group>
+                                                    <field name="language_id"/>
+            <!--                                         <field name="language_proficiency_id"/>
+                                                    <field name="language_skill_id"/> -->
+                                                    <field name="is_preferred"/>
+                                                    <field name="is_active"/>
+                                                    <field name="start_date" placeholder="Valid From"/>
+                                                    <field name="end_date" placeholder="Valid To"/>
+                                                </group>
+                                                <group>
+                                                </group>
+                                            </group>
+                                        </sheet>
+                                    </form>
+                                </field>
+                            </page>                  
                             <page string="Related Persons"/>                    
                             <page string="Contacts"/>                   
                         </notebook>                     
