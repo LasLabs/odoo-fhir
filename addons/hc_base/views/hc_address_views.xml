@@ -678,16 +678,9 @@
           id="hc_base.menu_addr_state" 
           name="States/Provinces" 
           parent="hc_base.menu_addr" 
-          action="res_country_state_action" 
-          sequence="50"/>
-
-<!--         <menuitem 
-          id="hc_base.menu_addr_state" 
-          name="States/Provinces" 
-          parent="hc_base.menu_addr" 
-          action="res_country_state_action" 
+          action="res_country_state_action"
           groups="group_hc_base_user"
-          sequence="50"/> -->
+          sequence="50"/>
 
         <record id="hc_vs_country_state_type_action" model="ir.actions.act_window"> 
             <field name="name">HC Country State Types</field>
