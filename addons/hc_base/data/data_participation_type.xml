@@ -12,6 +12,14 @@
             <field name="country_id" ref="base.us"/>
         </record>
 
+        <record id="base.hl7fhir" model="res.partner">  
+            <field name="name">HL7 FHIR</field>
+            <field name="company_type">company</field>
+            <field name="website">www.hl7.org</field>
+            <!-- <field name="category_id" eval="[(6, 0, [ref('partner_category_source'), ref('partner_category_document')])]"/> -->
+            <field name="country_id" ref="base.us"/>
+        </record>
+
         <!-- Participation Type -->
 
         <record id="part" model="hc.vs.participation.type"> 
@@ -112,6 +120,28 @@
             <field name="definition">A person having referred the subject of the service to the performer (referring physician). Typically, a referring physician will receive a report.</field>
             <field name="comments"></field>
         </record>   
+        <record id="transl" model="hc.vs.participation.type">    
+            <field name="code">translator</field>
+            <field name="name">Translator</field>
+            <field name="level">3</field>
+            <field name="is_abstract"></field>
+            <field name="parent_id" ref="partan"/>
+            <field name="source_id" ref="base.hl7fhir"/>
+            <field name="system">http://hl7.org/fhir/valueset-encounter-participant-type.html</field>
+            <field name="definition">A person who is facilitating communication with the patient during the encounter.</field>
+            <field name="comments"></field>
+        </record>
+        <record id="emer" model="hc.vs.participation.type">    
+            <field name="code">emergency</field>
+            <field name="name">Emergency</field>
+            <field name="level">3</field>
+            <field name="is_abstract"></field>
+            <field name="parent_id" ref="partan"/>
+            <field name="source_id" ref="base.hl7fhir"/>
+            <field name="system">http://hl7.org/fhir/valueset-encounter-participant-type.html</field>
+            <field name="definition">A person to be contacted in case of an emergency during the encounter.</field>
+            <field name="comments"></field>
+        </record>
         <record id="partig" model="hc.vs.participation.type">   
             <field name="code">PARTIG</field>
             <field name="name">ParticipationInformationGenerator</field>

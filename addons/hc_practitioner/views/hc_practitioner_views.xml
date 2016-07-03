@@ -1,15 +1,128 @@
 <openerp>
     <data>
 
-        <record id="hc_res_practitioner_action" model="ir.actions.act_window">  
-            <field name="name">HC Practitioners</field>
-            <field name="type">ir.actions.act_window</field>
-            <field name="res_model">hc.res.practitioner</field>
-            <field name="domain"></field>
-            <field name="search_view_id"></field>
-            <field name="view_type">form</field>
-            <field name="view_mode">tree,form</field>
-        </record>
+        <!-- Practitioner Views -->                                     
+                                                
+        <record id="hc_res_practitioner_view_search" model="ir.ui.view">                                        
+            <field name="name">Practitioner Search</field>                                  
+            <field name="model">hc.res.practitioner</field>                                 
+            <field name="arch" type="xml">                                  
+                <search string="Practitioners">                             
+                    <field name="name"/>                            
+                    <field name="qualification_ids"/>                           
+                </search>                               
+            </field>                                    
+        </record>                                       
+                                                
+        <record id="hc_res_practitioner_view_tree" model="ir.ui.view">                                      
+            <field name="name">Practitioner Tree</field>                                    
+            <field name="model">hc.res.practitioner</field>                                 
+            <field name="arch" type="xml">                                  
+                <tree string="Practitioners">                               
+                    <field name="name"/>                            
+                    <field name="qualification_ids"/>                           
+                </tree>                             
+            </field>                                    
+        </record>                                       
+                                                
+        <record id="hc_res_practitioner_view_form" model="ir.ui.view">                                      
+            <field name="name">Practitioner Form</field>                                    
+            <field name="model">hc.res.practitioner</field>                                 
+            <field name="arch" type="xml">                                  
+                <form string="Practitioner">                              
+                    <sheet>                         
+                        <field name="image" widget="image" class="oe_left oe_avatar" options="{'preview_image': 'image_medium', 'size': [90, 90]}"/>                        
+                        <div class="oe_title">                     
+                            <h1>                    
+                                <field name="person_id" default_focus="1" placeholder="Name"/>             
+                            </h1>                   
+                        </div>                      
+                        <div name="buttons" class="oe_right oe_button_box"></div>                       
+                        <group>                     
+                            <group>                 
+                                <field name="gender"/>              
+                                <field name="birthdate"/>               
+                            </group>                    
+                            <group>                 
+                            </group>                    
+                        </group>                        
+                        <notebook colspan="4">                      
+                            <page string="Names"/>
+                                <field name="name_ids" mode="tree">
+                                    <tree>
+                                        <field name="is_preferred"/>
+                                        <field name="first_id"/>
+                                        <field name="surname_id"/>
+                                        <field name="given"/>
+                                        <field name="family"/>
+                                    </tree>
+                                    <form>
+                                        <sheet>
+                                            <group>
+                                                <field name="is_preferred"/>
+                                                <field name="human_name_id"/>
+                                            </group>
+                                            <group>
+                                                <field name="first_id"/>
+                                                <field name="middle_ids" widget="many2many_tags"/>
+                                                <field name="mother_maiden_name_id"/>
+                                                <field name="surname_id"/>
+                                                <field name="name"/>
+                                                <field name="family"/>
+                                                <field name="given"/>
+                                            </group>
+                                        </sheet>
+                                    </form>
+                                </field>                  
+                            <page string="Identifiers"/>                    
+                            <page string="Addresses" autofocus="autofocus">                 
+                                <field name="address_ids" mode="tree">              
+                                    <tree>          
+                                        <field name="use" widget="radio"/>      
+                                        <field name="is_preferred"/>        
+                                        <field name="line1"/>       
+                                        <field name="line2"/>       
+                                        <field name="city_id"/>     
+                                        <field name="postal_code_id"/>      
+                                        <field name="country_id"/>      
+                                        <field name="start_date"/>      
+                                        <field name="end_date"/>        
+                                    </tree>         
+                                    <form>          
+                                        <sheet>     
+                                            <group col="4" colspan="4"> 
+                                                <field name="use" widget="radio" colspan="4"/>
+                                                <field name="address_id" class="oe_no_button"/>
+                                                <field name="is_preferred"/>
+                                                <field name="is_active" widget="boolean_button"/>
+                                                <field name="start_date" placeholder="Valid From"/>
+                                                <field name="end_date" placeholder="Valid To"/>
+                                            </group>    
+                                        </sheet>        
+                                    </form>         
+                                </field>                
+                            </page>                                         
+                            <page string="Telecom"/>                    
+                            <page string="Languages"/>                  
+                            <page string="Attachments"/>                    
+                            <page string="Qualifications"/>                 
+                            <page string="Roles"/>                  
+                        </notebook>                     
+                    </sheet>                            
+                </form>                             
+            </field>                                    
+        </record>                                       
+                                       
+
+        <!-- Practitioner Action and Menu -->       
+                
+        <record id="hc_res_practitioner_action" model="ir.actions.act_window">      
+            <field name="name">HC Practitioners</field> 
+            <field name="type">ir.actions.act_window</field>    
+            <field name="res_model">hc.res.practitioner</field> 
+            <field name="view_type">form</field>    
+            <field name="view_mode">tree,form</field>   
+        </record>       
 
 <!--         <record id="hc_res_practitioner_role_action" model="ir.actions.act_window">  
             <field name="name">HC Practitioner Roles</field>
@@ -23,6 +136,31 @@
 
         <menuitem id="hc_practitioner.menu_prac" name="Practitioners" parent="hc_base.menu_id_ind" action="hc_res_practitioner_action" sequence="20"/>
         <!-- <menuitem id="hc_practitioner_role.menu_prac_role" name="Practitioner Roles" parent="hc_base.menu_id_ind" action="hc_res_practitioner_role_action" sequence="30"/> -->
+        
+        <!-- Annotation View -->
 
+        <!-- <record id="base.view_partner_form_inherited_practitioner" model="ir.ui.view">     
+            <field name="name">res.partner.form</field>   
+            <field name="model">res.partner</field>   
+            <field name="inherit_id" ref="base.view_partner_form"/>   
+            <field name="arch" type="xml">
+                <field name="parent_id" position="after">
+                    <label for="is_practitioner" string="HC Practitioner"/>  
+                        <field name="is_practitioner"/>
+                </field>
+            </field>
+        </record> -->
+
+        <record id="hc_annotation_view_form_inherited_practitioner" model="ir.ui.view">     
+            <field name="name">Annotation Form</field>   
+            <field name="model">hc.annotation</field>   
+            <field name="inherit_id" ref="hc_base.hc_annotation_view_form"/>   
+            <field name="arch" type="xml">
+                <field name="author_type" position="after">
+                    <field name="author_practitioner_id" attrs="{'invisible': [('author_type', '!=', 'practitioner')]}"/>  
+                </field>
+            </field>
+        </record>
+    
     </data>
 </openerp>

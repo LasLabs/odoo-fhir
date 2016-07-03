@@ -184,3 +184,8 @@ sudo mv zd______.pfb /usr/lib/python2.7/dist-packages/reportlab/fonts/zd______.p
 sudo mv zx______.pfb /usr/lib/python2.7/dist-packages/reportlab/fonts/zx______.pfb
 sudo mv zy______.pfb /usr/lib/python2.7/dist-packages/reportlab/fonts/zy______.pfb
 ```
+
+##Create Data Set
+* Create model file `sudo nano /odoo/odoo-fhir/addons/hc_base/models/hc_participation_type.py`
+* Add model file to `__openerp__.py/data` `'data/hc_vs_participation_type_type.xml',`
+* Create view file `sudo nano /odoo/odoo-fhir/addons/hc_base/views/hc_participation_type_views.xml`

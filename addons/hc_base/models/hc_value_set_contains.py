@@ -62,9 +62,9 @@ class BasicAssociation(models.AbstractModel):
     is_preferred = fields.Boolean(
         string="Preferred", 
         help="Record preference indicator.")        
-    start_date = fields.Datetime(
+    start_date = fields.Date(
         string="Start Date", 
         help="Start of the period during which this record is valid.")        
-    end_date = fields.Datetime(
+    end_date = fields.Date(
         string="End Date", 
         help="End of the period during which this record is valid.")     

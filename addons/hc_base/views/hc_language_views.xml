@@ -5,39 +5,43 @@
                 
         <record id="hc_language_view_search" model="ir.ui.view">            
             <field name="name">Language Search</field>          
-            <field name="model">hc.language</field>         
+            <field name="model">hc.vs.language</field>         
             <field name="arch" type="xml">          
                 <search string="Languages">      
-                    <field name="name"/>      
-<!--                     <field name="mimetype"/>      
-                    <field name="language_id"/>     --> 
+                    <field name="name"/>
+                    <field name="code"/>
                 </search>       
             </field>          
         </record>           
         
         <record id="hc_language_view_tree" model="ir.ui.view">            
             <field name="name">Language Tree</field>          
-            <field name="model">hc.language</field>         
+            <field name="model">hc.vs.language</field>         
             <field name="arch" type="xml">          
             <tree string="Languages">       
                 <field name="name"/>
+                <field name="display_name"/>
+                <field name="code"/>
             </tree>       
             </field>          
         </record>           
         
         <record id="hc_language_view_form" model="ir.ui.view">            
             <field name="name">Language Form</field>          
-            <field name="model">hc.language</field>         
+            <field name="model">hc.vs.language</field>
+<!--             <field name="inherit_id" ref="base.res_lang_form"/>     -->   
             <field name="arch" type="xml">          
                 <form string="Languages">        
                     <sheet>     
                         <div class="oe_title oe_left">    
                             <h1>  
-                            <field name="name" default_focus="1" placeholder="Language"/>
+                            <field name="name" default_focus="1" placeholder="Language (e.g., English US)"/>
                             </h1> 
                         </div>    
                         <group>   
-                            <group> 
+                            <group>
+                            <field name="code" placeholder="locale code (e.g., en_US)"/>
+                            <field name="direction"/>
                             </group>  
                             <group> 
                             </group>  
@@ -54,7 +58,7 @@
         <record id="hc_language_action" model="ir.actions.act_window">            
             <field name="name">HC Language</field>         
             <field name="type">ir.actions.act_window</field>          
-            <field name="res_model">hc.language</field>         
+            <field name="res_model">hc.vs.language</field>         
             <field name="view_type">form</field>          
             <field name="view_mode">tree,form</field>         
         </record>

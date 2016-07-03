@@ -1,59 +1,129 @@
 <openerp>
-  <data>
-    <!-- explicit list view definition -->
-    <!--
-    <record model="ir.ui.view" id="hc_related_person.list">
-      <field name="name">hc_related_person list</field>
-      <field name="model">hc_related_person.hc_related_person</field>
-      <field name="arch" type="xml">
-        <tree>
-          <field name="name"/>
-          <field name="value"/>
-          <field name="value2"/>
-        </tree>
-      </field>
-    </record>
-    -->
+    <data>
 
-    <!-- actions opening views on models -->
-    <!--
-    <record model="ir.actions.act_window" id="hc_related_person.action_window">
-      <field name="name">hc_related_person window</field>
-      <field name="res_model">hc_related_person.hc_related_person</field>
-      <field name="view_mode">tree,form</field>
-    </record>
-    -->
+        <record id="hc_res_related_person_view_search" model="ir.ui.view">  
+            <field name="name">Related Person Search</field>
+            <field name="model">hc.res.related.person</field>
+            <field name="arch" type="xml">
+                <search string="Related Persons">
+                    <field name="name"/>
+                    <field name="gender"/>
+                    <field name="birthdate"/>
+                </search>
+            </field>
+        </record> 
 
-    <!-- server action to the one above -->
-    <!--
-    <record model="ir.actions.server" id="hc_related_person.action_server">
-      <field name="name">hc_related_person server</field>
-      <field name="model_id" ref="model_hc_related_person_hc_related_person"/>
-      <field name="code">
-        action = {
-          "type": "ir.actions.act_window",
-          "view_mode": "tree,form",
-          "res_model": self._name,
-        }
-      </field>
-    </record>
-    -->
+        <record id="hc_res_related_person_view_tree" model="ir.ui.view">            
+            <field name="name">Related Person Tree</field>      
+            <field name="model">hc.res.related.person</field>       
+            <field name="arch" type="xml">      
+                <tree string="Related Persons"> 
+                    <field name="name"/>
+                    <field name="patient_id"/>
+                    <field name="relationship_id"/>
+                </tree> 
+            </field>        
+        </record>           
 
-    <!-- Top menu item -->
-    <!--
-    <menuitem name="hc_related_person" id="hc_related_person.menu_root"/>
-    -->
-    <!-- menu categories -->
-    <!--
-    <menuitem name="Menu 1" id="hc_related_person.menu_1" parent="hc_related_person.menu_root"/>
-    <menuitem name="Menu 2" id="hc_related_person.menu_2" parent="hc_related_person.menu_root"/>
-    -->
-    <!-- actions -->
-    <!--
-    <menuitem name="List" id="hc_related_person.menu_1_list" parent="hc_related_person.menu_1"
-              action="hc_related_person.action_window"/>
-    <menuitem name="Server to list" id="hc_related_person" parent="hc_related_person.menu_2"
-              action="hc_related_person.action_server"/>
-    -->
-  </data>
+        <record id="hc_res_related_person_view_form" model="ir.ui.view">                                        
+            <field name="name">Related Person Form</field>                                  
+            <field name="model">hc.res.related.person</field>                                   
+            <field name="arch" type="xml">                                  
+                <form string="Related Person">                              
+                    <sheet>                         
+                        <field name="image" widget="image" class="oe_left oe_avatar" options="{'preview_image': 'image_medium', 'size': [90, 90]}"/>                        
+                        <div class="oe_title">                     
+                            <h1>                    
+                                <field name="person_id" default_focus="1" placeholder="Person"/>               
+                            </h1>                   
+                        </div>                      
+                        <div name="buttons" class="oe_right oe_button_box"></div>                       
+                        <group>                     
+                            <group>                 
+                                <field name="patient_id"/> 
+                                <field name="relationship_id"/>              
+                                <field name="start_date"/>
+                                <field name="end_date"/>                 
+                            </group>                    
+                            <group>                 
+                            </group>                    
+                        </group>                        
+                        <notebook colspan="4">                      
+                            <page string="Names"/>                  
+                            <page string="Identifiers"/>                    
+                            <page string="Addresses" autofocus="autofocus">                 
+                                <field name="address_ids" mode="tree">              
+                                    <tree>          
+                                        <field name="use" widget="radio"/>      
+                                        <field name="is_preferred"/>        
+                                        <field name="line1"/>       
+                                        <field name="line2"/>       
+                                        <field name="city_id"/>     
+                                        <field name="postal_code_id"/>      
+                                        <field name="country_id"/>      
+                                        <field name="start_date"/>      
+                                        <field name="end_date"/>        
+                                    </tree>         
+                                    <form>          
+                                        <sheet>     
+                                            <group col="4" colspan="4"> 
+                                                <field name="use" widget="radio" colspan="4"/>
+                                                <field name="address_id" class="oe_no_button"/>
+                                                <field name="is_preferred"/>
+                                                <field name="is_active" widget="boolean_button"/>
+                                                <field name="start_date" placeholder="Valid From"/>
+                                                <field name="end_date" placeholder="Valid To"/>
+                                            </group>    
+                                        </sheet>        
+                                    </form>         
+                                </field>                
+                            </page>                 
+                            <page string="Telecom"/>                    
+                            <page string="Attachments"/>                    
+                        </notebook>                     
+                    </sheet>                            
+                </form>                             
+            </field>                                    
+        </record>                                       
+
+        <act_window id="hc_res_related_person_action"   
+            name="HC Related Persons"
+            res_model="hc.res.related.person"
+            view_mode="tree,form"
+            domain=""
+            context=""
+            limit=""/>
+
+        <menuitem id="hc_related_person.menu_rel_pers" 
+            name="Related Persons" 
+            parent="hc_base.menu_id_ind" 
+            action="hc_res_related_person_action" 
+            sequence="40"/>
+
+        <!-- External Reference View -->
+
+        <!-- <record id="base.view_partner_form_inherited_related_person" model="ir.ui.view">     
+            <field name="name">res.partner.form</field>   
+            <field name="model">res.partner</field>   
+            <field name="inherit_id" ref="base.view_partner_form"/>   
+            <field name="arch" type="xml">
+                <field name="parent_id" position="after">
+                    <label for="is_related_person" string="HC Related Person"/>  
+                        <field name="is_related_person"/>
+                </field>
+            </field>
+        </record> -->
+
+        <record id="hc_annotation_view_form_inherited_related_person" model="ir.ui.view">     
+            <field name="name">Annotation Form</field>   
+            <field name="model">hc.annotation</field>   
+            <field name="inherit_id" ref="hc_base.hc_annotation_view_form"/>   
+            <field name="arch" type="xml">
+                <field name="author_type" position="after">
+                    <field name="author_related_person_id" attrs="{'invisible': [('author_type', '!=', 'related person')]}"/>  
+                </field>
+            </field>
+        </record>
+
+    </data>
 </openerp>

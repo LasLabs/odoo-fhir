@@ -34,9 +34,8 @@
                             name="image" 
                             widget="image" 
                             class="oe_left oe_avatar" 
-                            options="{'preview_image': 'image_medium', 'size': [90, 90]}"/>         
-                        <div 
-                            class="oe_title oe_left">           
+                            options="{'preview_image': 'image_medium', 'size': [90, 90]}"/>
+                            <div class="oe_title">           
                             <h1>          
                                 <field 
                                     name="name_id" 
@@ -46,7 +45,8 @@
                         </div>            
                         <div 
                             name="buttons" 
-                            class="oe_right oe_button_box"></div>           
+                            class="oe_right oe_button_box">
+                        </div>           
                         <group>           
                             <group>         
                                 <field name="gender"/>        
@@ -174,11 +174,25 @@
                                     </form>
                                 </field>
                             </page>
-                            <page string="Languages">
-                            </page>         
-                            <page string="Related Persons"/>          
-                            <page string="Contacts"/>         
-                            <page string="Marital Status"/>         
+                            <page string="Person Links"/>
+                                <field name="link_ids" mode="tree">
+                                    <tree>
+                                        <field name="person_id"/>
+                                        <field name="assurance_level"/>
+                                    </tree>
+                                    <form>
+                                        <sheet>
+                                            <group>
+                                                <group>
+                                                    <field name="person_id"/>
+                                                </group>
+                                                <group>
+                                                    <field name="assurance_level"/>
+                                                </group>
+                                            </group>
+                                        </sheet>
+                                    </form>
+                                </field>         
                         </notebook>           
                     </sheet>              
                 </form>               
@@ -220,6 +234,26 @@
             parent="hc_base.menu_id_ent" 
             action="hc_res_person_action" 
             sequence="3"/>
+
+        <!-- External Reference View -->
+
+        <record id="base.view_partner_form_inherited_person" model="ir.ui.view">     
+          <field name="name">res.partner.form</field>   
+          <field name="model">res.partner</field>   
+          <field name="inherit_id" ref="base.view_partner_form"/>   
+          <field name="arch" type="xml">
+              <field name="parent_id" position="after">
+                <label for="is_person" string="HC Person"/>  
+                <field name="is_person"/>
+                <label for="is_patient" string="HC Patient"/>  
+                <field name="is_patient"/>
+                <label for="is_practitioner" string="HC Practitioner"/>  
+                <field name="is_practitioner"/>
+                <label for="is_related_person" string="HC Related Person"/>  
+                <field name="is_related_person"/>
+              </field>
+          </field>
+        </record>
 
     </data>
 </openerp>

@@ -8,6 +8,12 @@ class Person(models.Model):
     _description = "Person"
     _inherits = {"res.partner": "partner_id"}
 
+    partner_id = fields.Many2one(
+        comodel_name="res.partner", 
+        string="Partner", 
+        required=True, 
+        ondelete="restrict", 
+        help="Partner associated with this person.")
     name_id = fields.Many2one(
         comodel_name="hc.human.name",
         string="Full Name",
@@ -22,10 +28,15 @@ class Person(models.Model):
         inverse_name="person_id", 
         string="Names", 
         help="A name associated with this person.")
+    address_ids = fields.One2many(
+        comodel_name="hc.person.address", 
+        inverse_name="person_id", 
+        string="Addresses", 
+        help="One or more addresses for the person.")
     telecom_ids = fields.One2many(
         comodel_name="hc.person.telecom", 
         inverse_name="person_id", 
-        string="Telecom Contacts", 
+        string="Telecom Contact Points", 
         help="A contact detail for the person.")
     gender = fields.Selection(
         string="Gender", 
@@ -38,11 +49,6 @@ class Person(models.Model):
     birthdate = fields.Date(
         string="Birth Date", 
         help="The birth date for the person.")
-    address_ids = fields.One2many(
-        comodel_name="hc.person.address", 
-        inverse_name="person_id", 
-        string="Addresses", 
-        help="One or more addresses for the person.")
     attachment_ids = fields.One2many(
         comodel_name="hc.person.attachment", 
         inverse_name="person_id", 
@@ -57,12 +63,6 @@ class Person(models.Model):
         inverse_name="person_id", 
         string="Person Links", 
         help="Link to a resource that concerns the same actual person.")
-    partner_id = fields.Many2one(
-        comodel_name="res.partner", 
-        string="Partner", 
-        required=True, 
-        ondelete="restrict", 
-        help="Partner associated with this person.")
 
     @api.model
     def create(self, vals):
@@ -73,16 +73,9 @@ class Person(models.Model):
     _defaults = {
         "is_company": False,
         "customer": False,
-        "company_type": "individual",
+        "company_type": "person",
+        "is_person": True,
         }
-
-class Partner(models.Model):
- 
-    _inherit = ["res.partner"]
-
-    is_person = fields.Boolean(
-        string="Is a person", 
-        help="This partner is a health care person.")
 
 class PersonLink(models.Model): 
 
@@ -93,13 +86,13 @@ class PersonLink(models.Model):
         comodel_name="hc.res.person", 
         string="Person", 
         help="Person associated with this person link.")
-#    target_patient_id = fields.Many2one(comodel_name="hc.res.patient", string="Target Patient", required=True, help="Patient who is the resource to which this actual person is associated.")
-#    target_related_practitioner_id = fields.Many2one(comodel_name="hc.res.practitioner", string="Target Practitioner", help="Practitioner who is the resource to which this actual person is associated.")
-#    target_related_person_id = fields.Many2one(comodel_name="hc.res.related.person", string="Target Related Person", help="Related Person who is the resource to which this actual person is associated.")
     target_person_id = fields.Many2one(
         comodel_name="hc.res.person", 
         string="Target Person", 
         help="Person who is the resource to which this actual person is associated.")
+#    target_patient_id = fields.Many2one(comodel_name="hc.res.patient", string="Target Patient", required=True, help="Patient who is the resource to which this actual person is associated.")
+#    target_practitioner_id = fields.Many2one(comodel_name="hc.res.practitioner", string="Target Practitioner", help="Practitioner who is the resource to which this actual person is associated.")
+#    target_related_person_id = fields.Many2one(comodel_name="hc.res.related.person", string="Target Related Person", help="Related Person who is the resource to which this actual person is associated.")
     assurance_level = fields.Selection(
         string="Link Assurance Level", 
         selection=[
@@ -209,3 +202,23 @@ class PersonAttachment(models.Model):
         required=True,
         ondelete="restrict",  
         help="Attachment associated with this entity.")
+
+# External Reference
+
+class Partner(models.Model):
+    _inherit = ["res.partner"]
+
+    name = fields.Char(
+        help="First Name + Last Name")
+    is_person = fields.Boolean(
+        string="Is a person", 
+        help="This partner is a health care person.")
+    is_patient = fields.Boolean(
+        string="Is a patient", 
+        help="This partner is a patient.")
+    is_practitioner = fields.Boolean(
+        string="Is a practitioner", 
+        help="This partner is a health care practitioner.")
+    is_related_person = fields.Boolean(
+        string="Is a related person", 
+        help="This partner is a related person.")

@@ -7,12 +7,13 @@ class Practitioner(models.Model):
     _description = "Practitioner"   
     _inherits = {"hc.res.person": "person_id"}
 
+
     person_id = fields.Many2one(
         comodel_name="hc.res.person",
         string="Person",
         required=True,
         ondelete="restrict",
-        help="Person associated with this practitioner.")
+        help="Person who is this practitioner.")
     identifier_ids = fields.One2many(
         comodel_name="hc.practitioner.identifier", 
         inverse_name="practitioner_id", 
@@ -23,7 +24,7 @@ class Practitioner(models.Model):
         inverse_name="practitioner_id", 
         string="Names", 
         help="A name associated with this practitioner.")
-    telecom_contact_ids = fields.One2many(
+    telecom_ids = fields.One2many(
         comodel_name="hc.practitioner.telecom", 
         inverse_name="practitioner_id", 
         string="Telecom Contacts", 
@@ -38,17 +39,17 @@ class Practitioner(models.Model):
         inverse_name="practitioner_id", 
         string="Telecom Contacts", 
         help="A language the practitioner is able to use in patient communication.")
-    gender = fields.Selection(
-        string="Gender", 
-        selection=[
-            ("male", "Male"), 
-            ("female", "Female"), 
-            ("other", "Other"), 
-            ("unknown", "Unknown")],          
-        help="The gender of a practitioner used for administrative purposes.")
-    birthdate = fields.Date(
-        string="Birth Date", 
-        help="The birth date for the practitioner.")
+    # gender = fields.Selection(
+    #     string="Gender", 
+    #     selection=[
+    #         ("male", "Male"), 
+    #         ("female", "Female"), 
+    #         ("other", "Other"), 
+    #         ("unknown", "Unknown")],          
+    #     help="The gender of a practitioner used for administrative purposes.")
+    # birthdate = fields.Date(
+    #     string="Birth Date", 
+    #     help="The birth date for the practitioner.")
     attachment_ids = fields.One2many(
         comodel_name="hc.practitioner.attachment", 
         inverse_name="practitioner_id", 
@@ -69,34 +70,18 @@ class Practitioner(models.Model):
         string="Role", 
         help="Roles/organizations that the practitioner is associated with.")
 
-    @api.model
-    def create(self, vals):
-        name = self.env['hc.human.name'].browse(vals['name_id'])
-        vals['name'] = name.first_id.name+' '+name.surname_id.name
-        return super(Practitionerd, self).create(vals)
+    # @api.model
+    # def create(self, vals):
+    #     name = self.env['hc.human.name'].browse(vals['name_id'])
+    #     vals['name'] = name.first_id.name+' '+name.surname_id.name
+    #     return super(Practitioner, self).create(vals)
 
-class Partner(models.Model):
-    _inherit = ["res.partner"]
-
-    is_practitioner = fields.Boolean(
-        string="Is a practitioner", 
-        help="This partner is a health care practitioner.")
-
-class PersonLink(models.Model):
-    _inherit = ["hc.person.link"]
-
-    target_related_practitioner_id = fields.Many2one(
-        comodel_name="hc.res.practitioner", 
-        string="Target Practitioner", 
-        help="Practitioner who is the resource to which this actual person is associated.")
-
-class PatientCareProviderPractitioner(models.Model):
-    _inherit = ["hc.patient.care.provider.practitioner"]
-
-    practitioner_id = fields.Many2one(
-        comodel_name="hc.res.practitioner", 
-        string="Practitioner", 
-        help="Practitioner associated with this care provider.")
+    # _defaults = {
+    #     "is_company": False,
+    #     "customer": False,
+    #     "company_type": "person",
+    #     "is_person": True,
+    #     }
 
 class PractitionerIdentifier(models.Model):   
     _name = "hc.practitioner.identifier"  
@@ -483,4 +468,37 @@ class AvailableTimeDaysOfWeek(models.Model):
     available_time_id = fields.Many2one(
         comodel_name="hc.available.time", 
         string="Available Time", 
-        help="Available time associated with the day of week.")              
+        help="Available time associated with the day of week.")
+
+# External Reference
+
+# class Partner(models.Model):
+#     _inherit = ["res.partner"]
+
+#     is_practitioner = fields.Boolean(
+#         string="Is a practitioner", 
+#         help="This partner is a health care practitioner.")
+
+class PersonLink(models.Model):
+    _inherit = ["hc.person.link"]
+
+    target_practitioner_id = fields.Many2one(
+        comodel_name="hc.res.practitioner", 
+        string="Target Practitioner", 
+        help="Practitioner who is the resource to which this actual person is associated.")
+
+class PatientCareProviderPractitioner(models.Model):
+    _inherit = ["hc.patient.care.provider.practitioner"]
+
+    practitioner_id = fields.Many2one(
+        comodel_name="hc.res.practitioner", 
+        string="Care Provider Practitioner", 
+        help="Practitioner who is this care provider.")
+
+class Annotation(models.Model):
+    _inherit = ["hc.annotation"]
+
+    author_practitioner_id = fields.Many2one(
+        comodel_name="hc.res.patient", 
+        string="Author Practitioner", 
+        help="Practitioner responsible for the annotation.")

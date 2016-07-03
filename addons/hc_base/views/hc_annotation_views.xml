@@ -8,9 +8,7 @@
               <field name="model">hc.annotation</field>               
               <field name="arch" type="xml">                
                     <search string="Annotations">             
-                          <field name="name"/>           
-                          <field name="author_type"/>
-                         <!--  <field name="author_id"/>  -->           
+                          <field name="name"/>                   
                           <field name="recorded_date"/>           
                     </search>             
               </field>                
@@ -22,8 +20,7 @@
               <field name="arch" type="xml">                
                     <tree string="Annotations">             
                           <field name="name"/>            
-                          <field name="author_type"/>
-                          <!-- <field name="author_id"/>  -->           
+                          <field name="author_type"/>       
                           <field name="recorded_date"/>           
                     </tree>             
               </field>                
@@ -36,18 +33,17 @@
                     <form string="Annotation">              
                           <sheet>           
                                 <div class="oe_title oe_left">          
-                                      <h1>        
-                                            <field name="name" default_focus="1" placeholder="Annotation"/>     
-                                      </h1>       
+                                    <h1>        
+                                        <field name="name" default_focus="1" placeholder="Annotation"/>
+                                    </h1>     
                                 </div>          
                                 <group>         
-                                      <group>       
-                                            <!-- <field name="author_id"/> -->
-                                            <field name="author_type"/>          
-                                            <field name="recorded_date"/>     
-                                      </group>        
-                                      <group>       
-                                      </group>        
+                                    <group>
+                                        <field name="author_type"/>          
+                                        <field name="recorded_date"/>
+                                    </group>
+                                    <group>       
+                                    </group>        
                                 </group>          
                           </sheet>            
                     </form>             
@@ -56,15 +52,27 @@
                           
         <!-- Annotation Action and Menu -->                 
                           
-        <record id="hc_annotation_action" model="ir.actions.act_window">                  
-              <field name="name">HC Annotations</field>               
-              <field name="type">ir.actions.act_window</field>                
-              <field name="res_model">hc.annotation</field>               
-              <field name="view_type">form</field>                
-              <field name="view_mode">tree,form</field>               
-        </record>
+        <act_window id="hc_annotation_action"   
+            name="HC Annotations"
+            res_model="hc.annotation"
+            view_mode="tree,form"
+            domain=""
+            context=""
+            limit=""/>
 
-        <menuitem name="Annotation" id="hc_base.menu_anno" parent="hc_base.menu_datatype" action="hc_annotation_action" sequence="20"/>
+<!--         <record id="hc_annotation_action" model="ir.actions.act_window">
+          <field name="name">HC Annotations</field>
+          <field name="type">ir.actions.act_window</field>
+          <field name="res_model">hc.annotation</field>
+          <field name="view_type">form</field>
+          <field name="view_mode">tree,form</field>
+          <field name="domain"></field>
+          <field name="context"></field>
+          <field name="limit">80</field>
+          <field name="search_view_id" ref="res_lang_search"/>
+        </record> -->
+
+        <menuitem id="hc_base.menu_anno" name="Annotation" parent="hc_base.menu_datatype" action="hc_annotation_action" groups="group_hc_base_manager" sequence="20"/>
 
     </data>
 </openerp>

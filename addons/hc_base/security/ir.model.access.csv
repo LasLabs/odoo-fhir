@@ -51,6 +51,8 @@ access_hc_base_hc_vs_identifier_type_manager,hc.base.hc.vs.identifier.type.manag
 access_hc_base_hc_vs_identifier_type_user,hc.base.hc.vs.identifier.type.user,model_hc_vs_identifier_type,group_hc_base_user,1,0,0,0
 access_hc_base_hc_vs_identifier_type_class_manager,hc.base.hc.vs.identifier.type.class.manager,model_hc_vs_identifier_type_class,group_hc_base_manager,1,1,1,1
 access_hc_base_hc_vs_identifier_type_class_user,hc.base.hc.vs.identifier.type.class.user,model_hc_vs_identifier_type_class,group_hc_base_user,1,0,0,0
+access_hc_base_hc_vs_language_manager,hc.base.hc.vs.language.manager,model_hc_vs_language,group_hc_base_manager,1,1,1,1
+access_hc_base_hc_vs_language_user,hc.base.hc.vs.language.user,model_hc_vs_language,group_hc_base_user,1,0,0,0
 access_hc_base_hc_vs_mime_type_manager,hc.base.hc.vs.mime.type.manager,model_hc_vs_mime_type,group_hc_base_manager,1,1,1,1
 access_hc_base_hc_vs_mime_type_user,hc.base.hc.vs.mime.type.user,model_hc_vs_mime_type,group_hc_base_user,1,0,0,0
 access_hc_base_res_country_state_manager,hc.base.res.country.state.manager,model_res_country_state,group_hc_base_manager,1,1,1,1

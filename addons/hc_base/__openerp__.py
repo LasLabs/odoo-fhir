@@ -40,7 +40,7 @@
         'views/hc_attachment_views.xml',
         'views/hc_human_name_views.xml',
         'views/hc_identifier_views.xml',
-        'views/hc_language_views.xml',
+        # 'views/hc_language_views.xml',
         'views/hc_telecom_views.xml',
         'views/hc_participation_type_views.xml',
         'views/templates.xml',    

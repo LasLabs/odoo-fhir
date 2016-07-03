@@ -15,13 +15,16 @@ class Annotation(models.Model):
     author_type = fields.Selection(
     	string="Author Type", 
         selection=[
-            ("person", "Person"), 
             ("practitioner", "Practitioner"),
             ("patient", "Patient"),
             ("related person", "Related Person")],
-        help="The use of a human name."
-        )
-    # author_id = fields.Many2one(
+        help="Type of individual responsible for the annotation.")
+    # author_practitioner_id = fields.Many2one(comodel_name="hc.res.practitioner", string="Author Practitioner", help="Practitioner responsible for the annotation.")
+    # author_patient_id = fields.Many2one(comodel_name="hc.res.patient", string="Author Patient", help="Patient responsible for the annotation.")
+    # author_related_person_id = fields.Many2one(comodel_name="hc.res.related.person", string="Author Related Person", help="Related person responsible for the annotation.")
+
+
+# author_id = fields.Many2one(
     # 	comodel_name="hc.res.person", 
     # 	string="Author", 
     # 	help="Individual responsible for the annotation."

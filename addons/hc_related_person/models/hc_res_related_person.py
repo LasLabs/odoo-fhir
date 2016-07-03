@@ -13,15 +13,15 @@ class RelatedPerson(models.Model):
         required=True,
         ondelete="restrict",
         help="Person who is this patient.")
-    name_id = fields.Many2one(
-        comodel_name="hc.human.name",
-        string="Full Name",
-        help="Related person's First Name and Last Name")
-    identifier_ids = fields.One2many(
-        comodel_name="hc.related.person.identifier", 
-        inverse_name="related_person_id", 
-        string="Identifiers", 
-        help="A human identifier for this related person.")
+    # name_id = fields.Many2one(
+    #     comodel_name="hc.human.name",
+    #     string="Full Name",
+    #     help="Related person's First Name and Last Name")
+    # identifier_ids = fields.One2many(
+    #     comodel_name="hc.related.person.identifier", 
+    #     inverse_name="related_person_id", 
+    #     string="Identifiers", 
+    #     help="A human identifier for this related person.")
     patient_id = fields.Many2one(
         comodel_name="hc.res.patient", 
         string="Patient", 
@@ -31,34 +31,27 @@ class RelatedPerson(models.Model):
         comodel_name="hc.vs.related.person.relationship.type", 
         string="Relationship", 
         help="The nature of the relationship.")
-    name_ids = fields.One2many(
-        comodel_name="hc.related.person.name", 
-        inverse_name="related_person_id", 
-        string="Names", 
-        help="A name associated with this related person.")
-    address_ids = fields.One2many(
-        comodel_name="hc.related.person.address", 
-        inverse_name="related_person_id", 
-        string="Addresses", 
-        help="One or more addresses for the person.")
-    attachment_ids = fields.One2many(
-        comodel_name="hc.related.person.attachment", 
-        inverse_name="related_person_id", 
-        string="Attachments", 
-        help="Image of the patient.")
-    start_date = fields.Datetime(
+    # name_ids = fields.One2many(
+    #     comodel_name="hc.related.person.name", 
+    #     inverse_name="related_person_id", 
+    #     string="Names", 
+    #     help="A name associated with this related person.")
+    # address_ids = fields.One2many(
+    #     comodel_name="hc.related.person.address", 
+    #     inverse_name="related_person_id", 
+    #     string="Addresses", 
+    #     help="One or more addresses for the person.")
+    # attachment_ids = fields.One2many(
+    #     comodel_name="hc.related.person.attachment", 
+    #     inverse_name="related_person_id", 
+    #     string="Attachments", 
+    #     help="Image of the related person.")
+    start_date = fields.Date(
         string="Start Date", 
         help="Start of the period of time that this relationship is considered valid.")       
-    end_date = fields.Datetime(
+    end_date = fields.Date(
         string="End Date", 
         help="End of the period of time that this relationship is considered valid.")
-
-class Partner(models.Model):
-    _inherit = ["res.partner"]
-
-    is_related_person = fields.Boolean(
-        string="Is a related person", 
-        help="This partner is a related person.")
 
 class PersonLink(models.Model):
     _inherit = ["hc.person.link"]
@@ -180,3 +173,20 @@ class RelatedPersonAttachment(models.Model):
         comodel_name="hc.res.person", 
         string="Related Person", 
         help="Related person associated with this attachment.")      
+
+# External Reference
+
+# class Partner(models.Model):
+#     _inherit = ["res.partner"]
+
+#     is_related_person = fields.Boolean(
+#         string="Is a related person", 
+#         help="This partner is a related person.")
+
+class Annotation(models.Model):
+    _inherit = ["hc.annotation"]
+
+    author_related_person_id = fields.Many2one(
+        comodel_name="hc.res.patient", 
+        string="Author Related Person", 
+        help="Related person responsible for the annotation.")
