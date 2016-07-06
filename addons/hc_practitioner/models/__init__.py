@@ -1,3 +1,3 @@
 # -*- coding: utf-8 -*-
 
-from . import hc_res_practitioner
+# from . import hc_res_practitioner

@@ -79,11 +79,11 @@
         	name="Value Sets" 
         	parent="hc_base.menu_datatype" 
         	sequence="70"/>
-		<menuitem id="hc_base.menu_vs_partic" 
-			name="Participation Types" 
-			parent="hc_base.menu_vs"
-			action="hc_vs_participation_type_action" 
-			sequence="10"/>
+        <menuitem id="hc_base.menu_vs_partic" 
+            name="Participation Types" 
+            parent="hc_base.menu_vs"
+            action="hc_vs_participation_type_action" 
+            sequence="10"/>
 
     </data>
 </openerp>

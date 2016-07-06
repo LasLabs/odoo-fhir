@@ -73,7 +73,7 @@ sudo git clone --depth 1 https://github.com/luigisison/odoo-fhir.git
 ### Setup addons directory /odoo/odoo-fhir/addons
 ```
 sudo nano /etc/odoo-server.conf
-addons_path=/odoo/enterprise/addons,/odoo/odoo-server/addons,/odoo/odoo-fhir/addons
+addons_path=/odoo/odoo-server/openerp/addons,/odoo/odoo-server/addons,/odoo/odoo-fhir/addons,/odoo/odoo-server/addons/web_kanban
 ```
 
 ## Do every time a change occurs
@@ -82,6 +82,7 @@ addons_path=/odoo/enterprise/addons,/odoo/odoo-server/addons,/odoo/odoo-fhir/add
 ```
 cd /odoo/odoo-fhir
 sudo git add .
+sudo git status
 sudo git commit -m "Initial Commit" -a
 sudo git push origin master
 ```
@@ -186,6 +187,25 @@ sudo mv zy______.pfb /usr/lib/python2.7/dist-packages/reportlab/fonts/zy______.p
 ```
 
 ##Create Data Set
-* Create model file `sudo nano /odoo/odoo-fhir/addons/hc_base/models/hc_participation_type.py`
-* Add model file to `__openerp__.py/data` `'data/hc_vs_participation_type_type.xml',`
-* Create view file `sudo nano /odoo/odoo-fhir/addons/hc_base/views/hc_participation_type_views.xml`
+*Create model file `sudo nano /odoo/odoo-fhir/addons/hc_base/models/hc_participation_type.py`
+*Add model file to `__openerp__.py/data` `'data/hc_vs_participation_type_type.xml',`
+*Create view file `sudo nano /odoo/odoo-fhir/addons/hc_base/views/hc_participation_type_views.xml`
+
+##Create Module
+
+*Rename files
+```
+cd /odoo/odoo-fhir/addons/hc_res_practitioner_role
+sudo mv models/models.py models/hc_res_practioner_role.py
+sudo mv views/views.xml views/hc_res_practioner_role_views.xml
+sudo mv views/templates.xml views/hc_res_practioner_role_templates.xml
+```
+*Modify manifest files
+```
+#models/__init__.py
+from . import hc_res_practitioner_role
+
+#hc_practitioner_role/__openerp__.py
+'views/hc_res_practitioner_role_views.xml',
+'views/hc_res_practitioner_role_templates.xml',
+```

@@ -220,6 +220,8 @@
             </field>
         </record>
 
+        <!-- Person Action and Menu --> 
+
         <record id="hc_res_person_action" model="ir.actions.act_window">  
             <field name="name">HC Persons</field>
             <field name="type">ir.actions.act_window</field>
@@ -229,11 +231,16 @@
         </record> 
 
         <menuitem 
+            id="hc_base.menu_id_ent" 
+            name="Entities" 
+            parent="hc_base.menu_id" 
+            sequence="30"/>
+        <menuitem 
             id="hc_person.menu_pers"
             name="Persons"  
             parent="hc_base.menu_id_ent" 
             action="hc_res_person_action" 
-            sequence="3"/>
+            sequence="30"/>
 
         <!-- External Reference View -->
 

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>  
 <openerp>   
-    <data noupdate="0">
+    <data noupdate="1">
 
         
         <!-- PH State Type -->
@@ -9,7 +9,7 @@
             <field name="name">Philippine Statistics Authority</field>
             <field name="company_type">company</field>
             <field name="website">www.psa.gov.ph</field>
-            <field name="category_id" eval="[(6, 0, [ref('partner_category_source'), ref('partner_category_organization')])]"/>
+            <field name="category_id" eval="[(6, 0, [ref('hc_base.source'), ref('hc_base.organization')])]"/>
             <field name="country_id" ref="base.ph"/>
         </record>
 

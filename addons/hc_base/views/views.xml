@@ -9,9 +9,21 @@
             <menuitem name="Diagnostics" id="hc_base.menu_clinic_diag" parent="hc_base.menu_clinic" action="hc_value_set_contains_action" sequence="40"/>
 
     <menuitem id="hc_base.menu_id" name="Identification" parent="hc_base.menu_root" sequence="20"/>
-        <!-- <menuitem name="Individuals" id="hc_base.menu_id_ind" parent="hc_base.menu_id" action="hc_value_set_contains_action" sequence="1"/> -->
-        <menuitem name="Groups" id="hc_base.menu_id_grp" parent="hc_base.menu_id" action="hc_value_set_contains_action" sequence="2"/>
-        <menuitem name="Entities" id="hc_base.menu_id_ent" parent="hc_base.menu_id" sequence="3"/>
+<!--         <menuitem 
+            id="hc_base.menu_id_ind" 
+            name="Individuals" 
+            parent="hc_base.menu_id" 
+            sequence="10"/> -->
+        <!-- <menuitem 
+            id="hc_base.menu_id_grp" 
+            name="Groups" 
+            parent="hc_base.menu_id" 
+            sequence="20"/> -->
+<!--         <menuitem 
+            id="hc_base.menu_id_ent" 
+            name="Entities" 
+            parent="hc_base.menu_id" 
+            sequence="30"/> -->
         <menuitem name="Devices" id="hc_base.menu_id_dev" parent="hc_base.menu_id" action="hc_value_set_contains_action" sequence="4"/>
     
     <menuitem id="hc_base.menu_work" name="Workflow" parent="hc_base.menu_root" sequence="30"/>

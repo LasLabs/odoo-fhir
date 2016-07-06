@@ -8,7 +8,7 @@
             <field name="name">U.S. Census Bureau</field>
             <field name="company_type">company</field>
             <field name="website">www.census.gov</field>
-            <field name="category_id" eval="[(6, 0, [ref('partner_category_source'), ref('partner_category_organization')])]"/>
+            <field name="category_id" eval="[(6, 0, [ref('hc_base.source'), ref('hc_base.organization')])]"/>
             <field name="country_id" ref="base.us"/>
         </record>
 

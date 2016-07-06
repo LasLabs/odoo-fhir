@@ -185,8 +185,17 @@
             <field name="view_mode">tree,form</field>                   
         </record>
 
-        <menuitem id="hc_base.menu_id_ind" name="Individuals" parent="hc_base.menu_id" sequence="10"/>
-        <menuitem id="hc_patient.menu_pat" name="Patients" parent="hc_base.menu_id_ind" action="hc_res_patient_action" sequence="10"/>
+        <menuitem 
+            id="hc_base.menu_id_ind" 
+            name="Individuals" 
+            parent="hc_base.menu_id" 
+            sequence="10"/>
+        <menuitem 
+            id="hc_patient.menu_pat" 
+            name="Patients" 
+            parent="hc_base.menu_id_ind" 
+            action="hc_res_patient_action" 
+            sequence="10"/>
     
         <!-- Patient Language Views -->
 

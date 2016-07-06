@@ -102,7 +102,31 @@
                                     </form>         
                                 </field>                
                             </page>                                         
-                            <page string="Telecom"/>                    
+                            <page string="Telecom">
+                                <field name="telecom_ids" mode="tree">
+                                    <tree>
+                                        <field name="is_preferred"/>
+                                        <field name="telecom_id"/>
+                                        <field name="use"/>
+                                    </tree>
+                                    <form>
+                                        <sheet>
+                                            <group>
+                                                <group>
+                                                    <field name="telecom_id"/>
+                                                    <field name="use"/>
+                                                </group>
+                                                <group>
+                                                    <field name="is_preferred"/>
+                                                    <field name="is_active"/>
+                                                    <field name="start_date" placeholder="Valid From"/>
+                                                    <field name="end_date" placeholder="Valid To"/>
+                                                </group>
+                                            </group>
+                                        </sheet>
+                                    </form>
+                                </field>
+                            </page>                    
                             <page string="Languages"/>                  
                             <page string="Attachments"/>                    
                             <page string="Qualifications"/>                 
@@ -137,7 +161,7 @@
         <menuitem id="hc_practitioner.menu_prac" name="Practitioners" parent="hc_base.menu_id_ind" action="hc_res_practitioner_action" sequence="20"/>
         <!-- <menuitem id="hc_practitioner_role.menu_prac_role" name="Practitioner Roles" parent="hc_base.menu_id_ind" action="hc_res_practitioner_role_action" sequence="30"/> -->
         
-        <!-- Annotation View -->
+        <!-- External Reference View -->
 
         <!-- <record id="base.view_partner_form_inherited_practitioner" model="ir.ui.view">     
             <field name="name">res.partner.form</field>   

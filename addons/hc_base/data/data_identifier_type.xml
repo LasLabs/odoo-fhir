@@ -7,10 +7,12 @@
         <record id="employment" model="hc.vs.identifier.type.class">
             <field name="name">Employment</field>
             <field name="code">EMP</field>
+            <field name="definition">Uniquely identifies a person in specific work-related domain (e.g., employer, employee, trade, profession).</field>
         </record>
         <record id="enterprise" model="hc.vs.identifier.type.class">    
             <field name="name">Enterprise</field>
             <field name="code">ENT</field>
+            <field name="definition">Uniquely identifies a person in specific enterprise domain (e.g., business, company, project, undertaking).</field>
         </record>   
         <record id="financial" model="hc.vs.identifier.type.class"> 
             <field name="name">Financial</field>
@@ -207,7 +209,7 @@
             <field name="code">GI</field>
             <field name="name">Guarantor Internal Identifier</field>
             <field name="system"></field>
-            <field name="class_id" ref="financial"/>
+            <field name="class_id" ref="insurance"/>
             <field name="definition"></field>
         </record>   
         <record id="gl" model="hc.vs.identifier.type">  
@@ -221,7 +223,7 @@
             <field name="code">GN</field>
             <field name="name">Guarantor External Identifier</field>
             <field name="system"></field>
-            <field name="class_id" ref="financial"/>
+            <field name="class_id" ref="insurance"/>
             <field name="definition"></field>
         </record>   
         <record id="hc" model="hc.vs.identifier.type">  
@@ -231,13 +233,13 @@
             <field name="class_id" ref="medical"/>
             <field name="definition"></field>
         </record>   
-        <!-- <record id="ind" model="hc.vs.identifier.type"> 
-            <field name="code">IND</field>
+        <record id="indig" model="hc.vs.identifier.type"> 
+            <field name="code">INDIG</field>
             <field name="name">Indigenous/Aboriginal</field>
             <field name="system"></field>
             <field name="class_id" ref="government"/>
             <field name="definition">A number assigned to a member of an indigenous or aboriginal group outside of Canada.</field>
-        </record>  -->  
+        </record>   
         <record id="jhn" model="hc.vs.identifier.type"> 
             <field name="code">JHN</field>
             <field name="name">Jurisdictional Health Number (Canada)</field>
