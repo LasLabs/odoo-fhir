@@ -176,12 +176,12 @@ class RelatedPersonAttachment(models.Model):
 
 # External Reference
 
-# class Partner(models.Model):
-#     _inherit = ["res.partner"]
+class Partner(models.Model):
+    _inherit = ["res.partner"]
 
-#     is_related_person = fields.Boolean(
-#         string="Is a related person", 
-#         help="This partner is a related person.")
+    is_related_person = fields.Boolean(
+        string="Is a related person", 
+        help="This partner is a related person.")
 
 class Annotation(models.Model):
     _inherit = ["hc.annotation"]

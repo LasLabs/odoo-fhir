@@ -78,7 +78,31 @@
                                     </form>         
                                 </field>                
                             </page>                 
-                            <page string="Telecom"/>                    
+                            <page string="Telecom">
+                                <field name="telecom_ids" mode="tree">
+                                    <tree>
+                                        <field name="is_preferred"/>
+                                        <field name="telecom_id"/>
+                                        <field name="use"/>
+                                    </tree>
+                                    <form>
+                                        <sheet>
+                                            <group>
+                                                <group>
+                                                    <field name="telecom_id"/>
+                                                    <field name="use"/>
+                                                </group>
+                                                <group>
+                                                    <field name="is_preferred"/>
+                                                    <field name="is_active"/>
+                                                    <field name="start_date" placeholder="Valid From"/>
+                                                    <field name="end_date" placeholder="Valid To"/>
+                                                </group>
+                                            </group>
+                                        </sheet>
+                                    </form>
+                                </field>
+                            </page>                    
                             <page string="Attachments"/>                    
                         </notebook>                     
                     </sheet>                            
@@ -87,18 +111,19 @@
         </record>                                       
 
         <act_window id="hc_res_related_person_action"   
-            name="HC Related Persons"
-            res_model="hc.res.related.person"
-            view_mode="tree,form"
-            domain=""
-            context=""
-            limit=""/>
+                    name="HC Related Persons"
+                    res_model="hc.res.related.person"
+                    view_mode="tree,form"
+                    domain=""
+                    context=""
+                    limit=""/>
 
         <menuitem id="hc_related_person.menu_rel_pers" 
-            name="Related Persons" 
-            parent="hc_base.menu_id_ind" 
-            action="hc_res_related_person_action" 
-            sequence="40"/>
+                  name="Related Persons" 
+                  parent="hc_base.menu_id_ind" 
+                  action="hc_res_related_person_action" 
+                  groups="hc_base.group_hc_base_manager" 
+                  sequence="40"/>
 
         <!-- External Reference View -->
 
