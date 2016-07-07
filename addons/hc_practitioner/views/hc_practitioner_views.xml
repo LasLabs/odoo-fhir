@@ -159,7 +159,6 @@
         </record>  -->  
 
         <menuitem id="hc_practitioner.menu_prac" name="Practitioners" parent="hc_base.menu_id_ind" action="hc_res_practitioner_action" sequence="20"/>
-        <!-- <menuitem id="hc_practitioner_role.menu_prac_role" name="Practitioner Roles" parent="hc_base.menu_id_ind" action="hc_res_practitioner_role_action" sequence="30"/> -->
         
         <!-- External Reference View -->
 

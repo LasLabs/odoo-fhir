@@ -28,9 +28,9 @@
 
     # always loaded
     'data': [
-        # 'security/ir.model.access.csv',
-        # 'views/hc_res_practitioner_role_views.xml',
-        # 'views/hc_res_practitioner_role_templates.xml',
+        'security/ir.model.access.csv',
+        'views/hc_res_practitioner_role_views.xml',
+        'views/hc_res_practitioner_role_templates.xml',
     ],
     # only loaded in demonstration mode
     'demo': [

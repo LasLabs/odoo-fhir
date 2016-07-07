@@ -13,10 +13,10 @@ class PractitionerRole(models.Model):
         required=True,
         ondelete="restrict",
         help="Person who is this practitioner.")  
-    # practitioner_id = fields.Many2one(
-    #     comodel_name="hc.res.practitioner", 
-    #     string="Practitioner", 
-    #     help="Practitioner that is able to provide the defined services for the organization.")
+    practitioner_id = fields.Many2one(
+        comodel_name="hc.res.practitioner", 
+        string="Practitioner", 
+        help="Practitioner that is able to provide the defined services for the organization.")
     # organization_id = fields.Many2one(
     #     comodel_name="hc.res.organization", 
     #     string="Organization", 
@@ -65,7 +65,7 @@ class PractitionerRole(models.Model):
         help="Description of availability exceptions.")
 
 class PractitionerRoleRole(models.Model):  
-    _name = "hc.vs.practioner.role"  
+    _name = "hc.vs.practitioner.role"  
     _description = "Practitioner Role" 
     _inherit = ["hc.value.set.contains"]
 
