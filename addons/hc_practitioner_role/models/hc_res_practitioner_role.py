@@ -22,7 +22,7 @@ class PractitionerRole(models.Model):
     #     string="Organization", 
     #     help="Organization where the roles are performed.")
     role_id = fields.Many2one(
-        comodel_name="hc.vs.practioner.role", 
+        comodel_name="hc.vs.practitioner.role", 
         string="Role", 
         help="Roles which this practitioner may perform.")
     specialty_ids = fields.One2many(
@@ -84,7 +84,7 @@ class PractitionerRoleSpecialty(models.Model):
         help="Specialty associated with a practitioner role.")             
     # is_active_practitioner_specialty = fields.Boolean(
     #     string="Active", 
-    #     help="Whether this practioner role specialty record is in active use.")               
+    #     help="Whether this practitioner role specialty record is in active use.")               
     # start_date = fields.Datetime(
     #     string="Start Date", 
     #     help="Start of the period when the practitioner role specialty is/was valid.")                

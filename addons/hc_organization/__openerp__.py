@@ -23,7 +23,7 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base','hc_base','hc_practitioner'],
+    'depends': ['hc_practitioner'],
 
     # always loaded
     'data': [
