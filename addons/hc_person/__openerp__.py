@@ -3,11 +3,15 @@
     'name': "Person",
 
     'summary': """
-        Demographics and administrative information about a person 
-	    independent of a specific health-related context.
+        A person independent of a specific health-related context.
     """,
 
     'description': """
+        
+        Demographics and administrative information about a person independent of a specific health-related context.
+
+        Scope and Usage
+        ===============
         An individual has identity outside of a healthcare setting. The Person resource is used to capture 
         this information and to relate the person as an individual to other resources that do have a health-related context.
 
@@ -16,8 +20,11 @@
         across different organizations and their unique patient identity domains.
     """,
 
-    'author': "Luigi Sison",
+    'author': "HL7 FHIR",
     'website': "https://hl7-fhir.github.io/person.html",
+    'contributors': "Luigi Sison",
+    'maintainer': "Luigi Sison",
+    'license': "GPL-3",
 
     # Categories can be used to filter modules in modules listing
     # Check https://github.com/odoo/odoo/blob/master/openerp/addons/base/module/module_data.xml

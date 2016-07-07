@@ -34,6 +34,7 @@
     # any module necessary for this one to work correctly
     'depends': ['base', 'hc_person'],
 
+
     # always loaded
     'data': [
         'security/ir.model.access.csv',

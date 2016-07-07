@@ -230,3 +230,14 @@ class PractitionerRoleNotAvailableTime(models.Model):
 #         comodel_name="hc.practitioner.role.available.time", 
 #         string="Available Time", 
 #         help="Available time associated with the day of week.")
+
+# External Reference
+
+class Practitioner(models.Model):
+    _inherit = ["hc.res.practitioner"]
+
+    role_ids = fields.One2many(
+        comodel_name="hc.res.practitioner.role", 
+        inverse_name="practitioner_id", 
+        string="Role", 
+        help="Roles/organizations that the practitioner is associated with.")

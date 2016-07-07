@@ -12,7 +12,8 @@
         * code system - defines a set of codes with meanings (also known as enumeration, terminology, classification, and/or ontology)
         * value set - selects a set of codes from those defined by one or more code systems
 
-        Code systems define which codes (symbols and/or expressions) exist, and how they are understood. Value sets select a set of codes from one or more code systems to specify which codes can be used in a particular context.
+        Code systems define which codes (symbols and/or expressions) exist, and how they are understood. 
+        Value sets select a set of codes from one or more code systems to specify which codes can be used in a particular context.
     """,
 
     'author': "Luigi Sison",
@@ -25,7 +26,7 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['hc_base'],
+    'depends': ['base', 'hc_base'],
 
     # always loaded
     'data': [

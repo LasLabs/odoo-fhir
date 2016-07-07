@@ -187,6 +187,6 @@ class Annotation(models.Model):
     _inherit = ["hc.annotation"]
 
     author_related_person_id = fields.Many2one(
-        comodel_name="hc.res.patient", 
+        comodel_name="hc.res.related.person", 
         string="Author Related Person", 
         help="Related person responsible for the annotation.")
