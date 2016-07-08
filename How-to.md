@@ -38,9 +38,9 @@ sudo git --version
 
 # GitHub
 
-* Reference: [How to Install Git on Ubuntu] (https://www.digitalocean.com/community/tutorials/how-to-install-git-on-ubuntu-14-04)
-* Reference: [Git - Installng Git] (https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
-* Reference: [Ubuntu Server Guide] (https://help.ubuntu.com/lts/serverguide/git.html)
+* Reference: [How to Install Git on Ubuntu](https://www.digitalocean.com/community/tutorials/how-to-install-git-on-ubuntu-14-04)
+* Reference: [Git - Installng Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
+* Reference: [Ubuntu Server Guide](https://help.ubuntu.com/lts/serverguide/git.html)
 
 ## Setup - Do once
 
@@ -193,6 +193,14 @@ sudo mv zy______.pfb /usr/lib/python2.7/dist-packages/reportlab/fonts/zy______.p
 
 ##Create Module
 
+*Create scaffold
+```
+cd /odoo/odoo-server
+./odoo.py scaffold hc_location addons
+cd addons
+sudo mv hc_location /odoo/odoo-fhir/addons/hc_location
+
+```
 *Rename files
 ```
 cd /odoo/odoo-fhir/addons/hc_res_location
@@ -206,6 +214,15 @@ sudo mv views/templates.xml views/hc_res_location_templates.xml
 from . import hc_res_practitioner_role
 
 #hc_practitioner_role/__openerp__.py
-'views/hc_res_practitioner_role_views.xml',
-'views/hc_res_practitioner_role_templates.xml',
+'name': "Location"
+'summary': """
+'description': """
+'author': "Luigi Sison",
+'website': "https://hl7-fhir.github.io/location.html",
+'category': 'Health Care',
+'depends': ['hc_organization'],
+'data': [
+        'security/ir.model.access.csv',
+        'views/hc_res_location_views.xml',
+        'views/hc_res_location_templates.xml',
 ```

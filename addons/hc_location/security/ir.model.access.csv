@@ -1,2 +1,6 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_hc_location_hc_location,hc_location.hc_location,model_hc_location_hc_location,,1,0,0,0
+access_hc_location_hc_res_location_user,hc.location.hc.res.location.user,model_hc_res_location,hc_base.group_hc_base_user,1,0,0,0
+access_hc_location_hc_location_identifier_user,hc.location.hc.location.identifier.user,model_hc_location_identifier,hc_base.group_hc_base_user,1,0,0,0
+access_hc_location_hc_location_telecom_user,hc.location.hc.location.telecom.user,model_hc_location_telecom,hc_base.group_hc_base_user,1,0,0,0
+access_hc_location_hc_vs_location_physical_type_manager,hc.location.hc.vs.location.physical.type.manager,model_hc_vs_location_physical_type,hc_base.group_hc_base_manager,1,1,1,1
+access_hc_location_hc_vs_location_type_manager,hc.location.hc.vs.location.type.manager,model_hc_vs_location_type,hc_base.group_hc_base_manager,1,1,1,1

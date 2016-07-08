@@ -81,7 +81,7 @@ class Location(models.Model):
 
     class locationIdentifier(models.Model):   
         _name = "hc.location.identifier"  
-        _description = "location Identifier"
+        _description = "Location Identifier"
         _inherit = ["hc.basic.association"]
         _inherits = {"hc.identifier": "identifier_id"}
 
