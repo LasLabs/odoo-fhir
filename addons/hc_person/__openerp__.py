@@ -11,7 +11,7 @@
         Demographics and administrative information about a person independent of a specific health-related context.
 
         Scope and Usage
-        ===============
+        
         An individual has identity outside of a healthcare setting. The Person resource is used to capture 
         this information and to relate the person as an individual to other resources that do have a health-related context.
 

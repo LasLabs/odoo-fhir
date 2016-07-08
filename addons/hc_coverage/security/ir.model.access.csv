@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_hc_coverage_hc_coverage,hc_coverage.hc_coverage,model_hc_coverage_hc_coverage,,1,0,0,0

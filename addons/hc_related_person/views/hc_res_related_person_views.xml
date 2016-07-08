@@ -19,8 +19,8 @@
             <field name="arch" type="xml">      
                 <tree string="Related Persons"> 
                     <field name="name"/>
-                    <field name="patient_id"/>
-                    <field name="relationship_id"/>
+                    <field name="gender"/>
+                    <field name="birthdate"/>
                 </tree> 
             </field>        
         </record>           
@@ -39,19 +39,35 @@
                         </div>                      
                         <div name="buttons" class="oe_right oe_button_box"></div>                       
                         <group>                     
-                            <group>                 
-                                <field name="patient_id"/> 
-                                <field name="relationship_id"/>              
-                                <field name="start_date"/>
-                                <field name="end_date"/>                 
+                            <group>                               
                             </group>                    
                             <group>                 
                             </group>                    
                         </group>                        
-                        <notebook colspan="4">                      
+                        <notebook colspan="4">
+                            <page string="Patients" autofocus="autofocus">
+                                <field name="patient_ids" mode="tree">
+                                    <tree>
+                                        <field name="patient_id"/>
+                                        <field name="relationship_id"/>              
+                                        <field name="start_date"/>
+                                        <field name="end_date"/>
+                                    </tree>
+                                    <form>
+                                        <sheet>
+                                            <group>
+                                                <field name="patient_id"/>
+                                                <field name="relationship_id"/>              
+                                                <field name="start_date"/>
+                                                <field name="end_date"/>                                                
+                                            </group>
+                                        </sheet>
+                                    </form>
+                                </field>
+                            </page>                      
                             <page string="Names"/>                  
                             <page string="Identifiers"/>                    
-                            <page string="Addresses" autofocus="autofocus">                 
+                            <page string="Addresses">                 
                                 <field name="address_ids" mode="tree">              
                                     <tree>          
                                         <field name="use" widget="radio"/>      

@@ -165,8 +165,28 @@
                                         </sheet>
                                     </form>
                                 </field>
-                            </page>                  
-                            <page string="Related Persons"/>                    
+                            </page>
+                            <!-- <page string="Related Persons"/>  -->                 
+                            <!-- <page string="Related Persons">
+                                <field name="related_person_ids" mode="tree">
+                                    <tree>
+                                        <field name="related_person_id"/>
+                                        <field name="relationship_id"/>              
+                                        <field name="start_date"/>
+                                        <field name="end_date"/>
+                                    </tree>
+                                    <form>
+                                        <sheet>
+                                            <group>
+                                                <field name="related_person_id"/>
+                                                <field name="relationship_id"/>              
+                                                <field name="start_date" placeholder="Valid From"/>
+                                                <field name="end_date" placeholder="Valid To"/>                                                
+                                            </group>
+                                        </sheet>
+                                    </form>
+                                </field>
+                            </page> -->                    
                             <page string="Contacts"/>                   
                         </notebook>                     
                     </sheet>                            

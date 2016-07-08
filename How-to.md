@@ -195,10 +195,10 @@ sudo mv zy______.pfb /usr/lib/python2.7/dist-packages/reportlab/fonts/zy______.p
 
 *Rename files
 ```
-cd /odoo/odoo-fhir/addons/hc_res_practitioner_role
-sudo mv models/models.py models/hc_res_practioner_role.py
-sudo mv views/views.xml views/hc_res_practioner_role_views.xml
-sudo mv views/templates.xml views/hc_res_practioner_role_templates.xml
+cd /odoo/odoo-fhir/addons/hc_res_location
+sudo mv models/models.py models/hc_res_location.py
+sudo mv views/views.xml views/hc_res_location_views.xml
+sudo mv views/templates.xml views/hc_res_location_templates.xml
 ```
 *Modify manifest files
 ```
