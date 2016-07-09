@@ -33,7 +33,7 @@
 
     # always loaded
     'data': [
-        # 'security/ir.model.access.csv',
+        'security/ir.model.access.csv',
         'data/hc_vs_related_person_relationship_type.xml',
         'views/hc_res_related_person_views.xml',
         'views/hc_res_related_person_templates.xml',

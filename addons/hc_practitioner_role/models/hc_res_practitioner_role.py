@@ -172,14 +172,10 @@ class DaysOfWeek(models.Model):
     _description = "Days Of Week"     
     _inherit = ["hc.value.set.contains"]
 
-class PractitionerRoleAvailableTime(models.Model):  
-    _name = "hc.practitioner.role.available.time" 
-    _description = "Practitioner Role Available Time"
-
-    practitioner_role_id = fields.Many2one(
-        comodel_name="hc.res.practitioner.role",  
-        string="Practitioner Role", 
-        help="Practitioner role associated with available time.")       
+class AvailableTime(models.Model):  
+    _name = "hc.available.time" 
+    _description = "Available Time"
+     
     days_of_week_ids = fields.Many2many(
         comodel_name="hc.vs.days.of.week",
         string="Days Of Week", 
@@ -194,23 +190,39 @@ class PractitionerRoleAvailableTime(models.Model):
         string="Available End Time", 
         help="Closing time of day (ignored if allDay = true).")       
 
-class PractitionerRoleNotAvailableTime(models.Model):   
-    _name = "hc.practitioner.role.not.available.time" 
-    _description = "Practitioner Role Not Available Time"     
+class PractitionerRoleAvailableTime(models.Model):  
+    _name = "hc.practitioner.role.available.time" 
+    _description = "Practitioner Role Available Time"
+    _inherit =["hc.available.time"]
 
     practitioner_role_id = fields.Many2one(
         comodel_name="hc.res.practitioner.role",  
         string="Practitioner Role", 
-        help="Practitioner role associated with time not available.")
-    # description = fields.Char(
-    #     string="Description", 
-    #     help="Reason presented to the user explaining why time not available.")             
+        help="Practitioner role associated with available time.")       
+
+class NotAvailableTime(models.Model):   
+    _name = "hc.not.available.time" 
+    _description = "Not Available Time"     
+
+    description = fields.Char(
+        string="Description", 
+        help="Reason presented to the user explaining why time not available.")             
     not_available_start_time = fields.Char(
         string="Not Available Start Time", 
         help="Start of the period service not available from this date.")             
     not_available_end_time = fields.Char(
         string="Not Available End Time", 
-        help="End of the period service not available from this date.")               
+        help="End of the period service not available from this date.")
+
+class PractitionerRoleNotAvailableTime(models.Model):   
+    _name = "hc.practitioner.role.not.available.time" 
+    _description = "Practitioner Role Not Available Time"
+    _inherit =["hc.not.available.time"]     
+
+    practitioner_role_id = fields.Many2one(
+        comodel_name="hc.res.practitioner.role",  
+        string="Practitioner Role", 
+        help="Practitioner role associated with time not available.")             
 
 # class PractitionerRoleAvailableTimeDaysOfWeek(models.Model):    
 #     _name = "hc.practitioner.role.available.time.days.of.week"    
