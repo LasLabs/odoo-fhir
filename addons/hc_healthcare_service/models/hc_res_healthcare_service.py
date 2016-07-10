@@ -54,7 +54,7 @@ class HealthcareService(models.Model):
         string="Telecoms", 
         help="List of contacts related to this specific healthcare service. If this is empty, then refer to the location's contacts.")     
     coverage_area_ids = fields.One2many(
-        comodel_name="hc.healthcare.service.covered.area", 
+        comodel_name="hc.healthcare.service.coverage.area", 
         inverse_name="healthcare_service_id", 
         string="Coverage Areas", 
         help="The location(s) that this service is available to (not where the service is provided).")       
@@ -214,6 +214,15 @@ class HealthcareServiceTelecom(models.Model):
         comodel_name="hc.res.healthcare.service", 
         string="Healthcare Service", 
         help="Healthcare service which is associated with this telecom contact point.")                  
+    use = fields.Selection(
+        string="Telecom Use", 
+        selection=[
+            ("home", "Home"), 
+            ("work", "Work"), 
+            ("temp", "Temp"),                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
+            ("old", "Old"),
+            ("mobile", "Mobile")], 
+        help="Purpose of this telecom contact point.")
 
 class HealthcareServiceProgramName(models.Model):  
     _name = "hc.healthcare.service.program.name"    
@@ -223,7 +232,9 @@ class HealthcareServiceProgramName(models.Model):
         comodel_name="hc.res.healthcare.service", 
         string="Healthcare Service", 
         help="Healthcare service which is associated with this name.")                   
-    name = fields.Char( string="Program Name", help="Name of this healthcare service program.")                 
+    name = fields.Char(
+        string="Program Name", 
+        help="Name of this healthcare service program.")                 
 
 class HealthcareServiceCharacteristic(models.Model):    
     _name = "hc.healthcare.service.characteristic"  
@@ -264,15 +275,15 @@ class HealthcareServiceProvisionCode(models.Model):
     healthcare_service_id = fields.Many2one(
         comodel_name="hc.res.healthcare.service", 
         string="Healthcare Service", 
-        help="Healthcare service which is associated with this provision code.")                 
-    service_referral_method_id = fields.Many2one(
+        help="Healthcare service which is associated with this service provision condition.")                 
+    service_provision_condition_id = fields.Many2one(
         comodel_name="hc.vs.service.provision.conditions", 
-        string="Service Referral Method", 
-        help="Service referral method which is associated with this healthcare service.")                 
+        string="Service Provision Condition", 
+        help="Service provision condition which is associated with this healthcare service.")             
 
-class HealthcareServiceCoveredArea(models.Model):   
-    _name = "hc.healthcare.service.covered.area"    
-    _description = "Healthcare Service Covered Area"        
+class HealthcareServiceCoverageArea(models.Model):   
+    _name = "hc.healthcare.service.coverage.area"    
+    _description = "Healthcare Service Coverage Area"        
     _inherit = ["hc.basic.association"] 
     _inherits = {"hc.res.location": "location_id"}
 
@@ -281,11 +292,11 @@ class HealthcareServiceCoveredArea(models.Model):
         string="Location",
         required=True, 
         ondelete="restrict", 
-        help="Covered area which is associated with this healthcare service.") 
+        help="Coverage area which is associated with this healthcare service.") 
     healthcare_service_id = fields.Many2one(
         comodel_name="hc.res.healthcare.service", 
         string="Healthcare Service", 
-        help="Healthcare service which is associated with this covered area.")                   
+        help="Healthcare service which is associated with this coverage area.")                   
 
 class HealthcareServiceReferralMethod(models.Model):    
     _name = "hc.healthcare.service.referral.method" 
