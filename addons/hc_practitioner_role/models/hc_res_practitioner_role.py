@@ -125,8 +125,8 @@ class PractitionerRoleIdentifier(models.Model):
 class PractitionerRoleTelecom(models.Model):    
     _name = "hc.practitioner.role.telecom"  
     _description = "Practitioner Role Telecom"      
-    _inherits = {"hc.telecom": "telecom_id"}
     _inherit = ["hc.basic.association"]
+    _inherits = {"hc.telecom": "telecom_id"}
 
     telecom_id = fields.Many2one(
         comodel_name="hc.telecom", 
@@ -204,7 +204,7 @@ class NotAvailableTime(models.Model):
     _name = "hc.not.available.time" 
     _description = "Not Available Time"     
 
-    description = fields.Char(
+    description = fields.Text(
         string="Description", 
         help="Reason presented to the user explaining why time not available.")             
     not_available_start_time = fields.Char(

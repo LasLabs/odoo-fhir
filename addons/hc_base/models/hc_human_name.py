@@ -9,7 +9,7 @@ class HumanNameTerm(models.Model):
 
     name = fields.Char(
         string="Human Name Term", 
-        help="A single term (part) of a human name (e.g., John, Smith).")
+        help="A single term of a human name (e.g., John, Smith).")
 
     _sql_constraints = [
         ("name_unique",
@@ -24,7 +24,7 @@ class SuffixHumanName(models.Model):
 
     name = fields.Char(
         string="Suffix Human Name Term", 
-        help="Parts that come after the name. Aka post-nominal letters. May be a family title (e.g., Jr.) a credential (e.g., RN), a title (.e.g., OBE), or a degree (e.g., PhD).")
+        help="Terms that come after the given and last names. Aka post-nominal letters. May be a family title (e.g., Jr.) a credential (e.g., RN), a title (.e.g., OBE), or a degree (e.g., PhD).")
 
 class HumanName(models.Model):
 
@@ -44,42 +44,42 @@ class HumanName(models.Model):
         store=True,
         string="Family Name", 
         readonly=True,
-        help="The parts of a name that links to the genealogy. (e.g., surname, birth last name).")
+        help="The terms of a name that links to the genealogy. (e.g., surname, birth last name).")
     prefix_ids = fields.Many2many(
         comodel_name="res.partner.title", 
         string="Prefix Names", 
-        help="Parts that come before the name.")
+        help="Terms that come before the name.")
     first_id = fields.Many2one(
         comodel_name="hc.human.name.term", 
         string="First Name", 
-        help="Part of given name.")
+        help="Term of given name.")
     middle_ids = fields.Many2many(
         comodel_name="hc.human.name.term", 
         relation="middle_name_human_term_rel", 
         string="Middle Names", 
-        help="Part of given name.")
+        help="Term of given name.")
     initial_ids = fields.Many2many(
         comodel_name="hc.human.name.term", 
         relation="initial_name_human_term_rel", 
         string="Initial Names", 
-        help="Part of given name.")
+        help="Term of given name.")
     nickname_ids = fields.Many2many(
         comodel_name="hc.human.name.term", 
         relation="nickname_human_term_rel", 
         string="Nicknames", 
-        help="Part of given name.")
+        help="Term of given name.")
     surname_id = fields.Many2one(
         comodel_name="hc.human.name.term", 
         string="Surname", 
-        help="Part of family name.")
+        help="Term of family name.")
     previous_last_id = fields.Many2one(
         comodel_name="hc.human.name.term", 
         string="Previous Surname", 
-        help="Part of family name (e.g., previous married family name).")
+        help="Term of family name (e.g., previous married family name).")
     suffix_ids = fields.Many2many(
         comodel_name="hc.human.name.suffix", 
         string="Suffix Names", 
-        help="Parts that come after the name.")
+        help="Terms that come after the name.")
     preferred_name = fields.Char(
         string="Preferred Name", 
         help="How the person prefers to be addressed in a conversation (e.g., John, Mr. Smith).")
@@ -249,9 +249,9 @@ class HumanName(models.Model):
         string="Full Name",
         help="A full text representation of the human name.")
 
-    middle_ids = fields.Many2many("hc.human.name.term", "middle_name_human_term_rel", string="Middle Names", help="Part of given name.")
-    initial_ids = fields.Many2many("hc.human.name.term", "initial_name_human_term_rel", string="Initial Names", help="Part of given name.")
-    nickname_ids = fields.Many2many("hc.human.name.term", "nick_name_human_term_rel", string="Nickname", help="Part of given name.")
+    middle_ids = fields.Many2many("hc.human.name.term", "middle_name_human_term_rel", string="Middle Names", help="Term of given name.")
+    initial_ids = fields.Many2many("hc.human.name.term", "initial_name_human_term_rel", string="Initial Names", help="Term of given name.")
+    nickname_ids = fields.Many2many("hc.human.name.term", "nick_name_human_term_rel", string="Nickname", help="Term of given name.")
     
     # class ObjectHumanName(models.AbstractModel): 
     #     _name = "hc.object.human.name"    
