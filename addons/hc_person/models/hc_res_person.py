@@ -137,15 +137,15 @@ class PersonAddress(models.Model):
 class PersonIdentifier(models.Model):   
     _name = "hc.person.identifier"  
     _description = "Person Identifier"
-    _inherit = ["hc.basic.association"]
-    _inherits = {"hc.identifier": "identifier_id"}
+    _inherit = ["hc.basic.association", "hc.identifier"]
+    # _inherits = {"hc.identifier": "identifier_id"}
 
-    identifier_id = fields.Many2one(
-        comodel_name="hc.identifier",
-        string="Identifier",
-        required=True,
-        ondelete="restrict", 
-        help="Identifier associated with this person identifier.")
+    # identifier_id = fields.Many2one(
+    #     comodel_name="hc.identifier",
+    #     string="Identifier",
+    #     required=True,
+    #     ondelete="restrict", 
+    #     help="Identifier associated with this person identifier.")
     person_id = fields.Many2one(
         comodel_name="hc.res.person", 
         string="Person", 

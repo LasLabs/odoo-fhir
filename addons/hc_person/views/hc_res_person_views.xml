@@ -85,14 +85,14 @@
                                 <field name="identifier_ids" mode="tree">
                                     <tree>
                                         <field name="is_preferred"/>
-                                        <field name="identifier_id"/>
+                                        <field name="name"/>
                                         <field name="value"/>
                                     </tree>
                                     <form>
                                         <sheet>
                                             <div>
                                                 <h1>
-                                                    <field name="identifier_id" placeholder="Identifier"/>
+                                                    <field name="name" placeholder="Identifier"/>
                                                 </h1>
                                             </div>
                                             <group col="4" colspan="4">

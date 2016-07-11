@@ -59,7 +59,36 @@
                         </group>                        
                         <notebook colspan="4">                      
                             <page string="Names"/>                  
-                            <page string="Identifiers"/>                    
+                            <!-- <page string="Identifiers"/> -->                    
+                            <page string="Identifiers">
+                                <field name="identifier_ids" mode="tree">
+                                    <tree>
+                                        <field name="is_preferred"/>
+                                        <field name="name"/>
+                                        <field name="value"/>
+                                    </tree>
+                                    <form>
+                                        <sheet>
+                                            <div>
+                                                <h1>
+                                                    <field name="name" placeholder="Identifier"/>
+                                                </h1>
+                                            </div>
+                                            <group col="4" colspan="4">
+                                                <group>
+                                                    <field name="value"/>
+                                                    <field name="is_preferred"/>
+                                                    <field name="is_active"/>
+                                                </group>
+                                                <group>
+                                                    <field name="start_date" placeholder="Valid From"/>
+                                                    <field name="end_date" placeholder="Valid To"/>
+                                               </group>
+                                            </group>
+                                        </sheet>
+                                    </form>
+                                </field>
+                            </page>
                             <page string="Addresses"/>                                               
                             <page string="Telecom">
                                 <field name="telecom_ids" mode="tree">

@@ -3,10 +3,14 @@
     'name': "Family Member History",
 
     'summary': """
-        Significant health events and conditions for a person related to the patient relevant in the context of care for the patient.
+        Health events and conditions of relatives
     """,
 
     'description': """
+        Significant health events and conditions for a person related to the patient relevant in the context of care for the patient.
+
+        Scope and Usage
+
         This resource records significant health events and conditions for a particular individual related to the subject. This information can be known to different levels of accuracy. Sometimes the exact condition ('asthma') is known, and sometimes it is less precise ('some sort of cancer'). Equally, sometimes the person can be identified ('my aunt Agatha') and sometimes all that is known is that the person was an uncle.
 
         This resource represents a simple structure used to capture an 'elementary' family history for a particular family member. However, it can also be the basis for capturing a more rigorous history useful for genetic and other analysis - refer to the Genetic Pedigree profile for an example.
@@ -26,7 +30,7 @@
 
     # always loaded
     'data': [
-        # 'security/ir.model.access.csv',
+        'security/ir.model.access.csv',
         'views/views.xml',
         'views/templates.xml',
     ],
