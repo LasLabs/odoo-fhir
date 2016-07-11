@@ -58,7 +58,7 @@ class FamilyMemberHistory(models.Model):
     born_date = fields.Date(
         string="Born Date", 
         help="(approximate) date of birth.")
-    born_note = fields.Char(
+    born_note = fields.Text(
         string="Born Note", 
         help="General note about (approximate) date of birth.")
     is_age_known = fields.Boolean(
@@ -180,3 +180,14 @@ class UOM(models.Model):
     _name = "hc.vs.uom"
     _description = "UOM"
     _inherit = ["hc.value.set.contains"]
+
+# External Reference
+
+class Patient(models.Model):
+    _inherit = ["hc.res.patient"]
+
+    family_member_ids = fields.One2many(
+        comodel_name="hc.res.family.member.history",
+        inverse_name="patient_id", 
+        string="Family Members", 
+        help="Relation with this patient.")
