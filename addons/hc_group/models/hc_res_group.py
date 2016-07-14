@@ -7,9 +7,9 @@ class Group(models.Model):
     _description = "Group"        
 
     identifier_ids = fields.One2many(comodel_name="hc.group.identifier", inverse_name="group_id", string="Identifier", help="Unique id.")                
-    type = fields.Selection(string="Group Type", required="True", selection=[("person", "Person"), ("animal", "Animal"), ("practitioner", "Practitioner"), ("device", "Device"), ("medication", "Medication"), ("substance", "Substance")], help="Identifies the broad classification of the kind of resources the group includes.")                
-    is_actual = fields.Boolean(string="Actual", required="True", help="Descriptive or actual.")                
-    is_active = fields.Boolean(string="Active", help="Whether this group's record is in active use.")                
+    type = fields.Selection(string="Type", required="True", selection=[("person", "Person"), ("animal", "Animal"), ("practitioner", "Practitioner"), ("device", "Device"), ("medication", "Medication"), ("substance", "Substance")], help="Identifies the broad classification of the kind of resources the group includes.")                
+    is_actual = fields.Boolean(string="Actual", default=True, help="Descriptive or actual.")                
+    is_active = fields.Boolean(string="Active", default=True, help="Whether this group's record is in active use.")                
     code_id = fields.Many2one(comodel_name="hc.vs.group.code", string="Code", help="Kind of Group members.")                
     name = fields.Char(string="Name", help="Label for Group.")                
     quantity = fields.Integer(string="Quantity", help="Number of members.")                
@@ -21,15 +21,15 @@ class GroupCharacteristic(models.Model):
     _description = "Group Characteristic"        
 
     group_id = fields.Many2one(comodel_name="hc.res.group", string="Group", required="True", help="Group associated with this characteristic.")                
-    code_id = fields.Many2one(comodel_name="hc.vs.group.characteristic.code", string="Code", required="True", help="Kind of characteristic.")                
-    value_type = fields.Selection(string="Characteristic Value Type", selection=[("CodeableConcept", "Codeableconcept"), ("boolean", "Boolean"),("Quantity", "Quantity"),("Range", "Range")], help="Type of value held by characteristic.")                
-    value_code_id = fields.Many2one(comodel_name="hc.vs.group.characteristic.value.code", string="Value Code", help="CodebleConcept value held by characteristic.")                
-    # value_diagnostic_order_id = fields.Many2one(comodel_name="hc.res.diagnostic.order", string="Value Diagnostic Order", help="DiagnosticOrder value held by characteristic.")                
+    code_id = fields.Many2one(comodel_name="hc.vs.group.characteristic.code", string="Code", required="True", help="Kind of trait being asserted (e.g., gender, age, owner, location, etc.).")                
+    value_type = fields.Selection(string="Value Type", required=True, widget="selection", selection=[("CodeableConcept", "Codeable Concept"), ("boolean", "Boolean"),("Quantity", "Quantity"),("Range", "Range")], help="Type of value held by characteristic.")
+    value_name = fields.Char(string="Value", help="Value held by characteristic.")                
+    value_code_id = fields.Many2one(comodel_name="hc.vs.group.characteristic.value.code", string="Value Code", help="Codeble Concept value held by characteristic.")                               
     value_boolean = fields.Boolean( string="Value Boolean", help="Boolean value held by characteristic.")                
     value_quantity = fields.Float( string="Value Quantity", help="Quantity value held by characteristic.")                
     value_low_limit = fields.Float(string="Value Low Limit", help="Low limit of value held by characteristic.")                
     value_high_limit = fields.Float(string="Value High Limit", help="High limit of value held by characteristic.")                
-    exclude = fields.Float(string="Exclude", help="Group includes or excludes.")                
+    is_included = fields.Boolean(string="Include", default=True, help="Group includes or excludes this characteristic.")                
     period_start_date = fields.Datetime(string="Period Start Date", help="Start of the period over which characteristic is tested.")                
     period_end_date = fields.Datetime(string="Period End Date", help="End of the period over which characteristic is tested.")                
 
@@ -38,7 +38,8 @@ class GroupMember(models.Model):
     _description = "Group Member"
 
     group_id = fields.Many2one(comodel_name="hc.res.group", string="Group", required="True", help="Group associated with this member.")                
-    entity_type = fields.Selection(string="Member Entity Type", required="True", selection=[("Patient", "Patient"), ("Practitioner", "Practitioner"),("Device", "Device"),("Medication", "Medication"),("Substance", "Substance")], help="Type of reference to the group member.")                
+    entity_type = fields.Selection(string="Type", required="True", selection=[("Patient", "Patient"), ("Practitioner", "Practitioner"),("Device", "Device"),("Medication", "Medication"),("Substance", "Substance")], help="Type of reference to the group member.")                
+    entity_name = fields.Char(string="Entity", help="Entity reference to the group member.")
     entity_patient_id = fields.Many2one(comodel_name="hc.res.patient", string="Entity Patient", help="Patient reference to the group member.")                
     entity_practitioner_id = fields.Many2one(comodel_name="hc.res.practitioner", string="Entity Practitioner", help="Practitioner reference to the group member.")                
     # entity_device_id = fields.Many2one(comodel_name="hc.res.device", string="Entity Device", help="Device reference to the group member.")                
@@ -46,7 +47,7 @@ class GroupMember(models.Model):
     # entity_substance_id = fields.Many2one(comodel_name="hc.res.substance", string="Entity Substance", help="Substance reference to the group member.")                
     period_start_date = fields.Datetime(string="Period Start Date", help="Start of the period member belonged to the group.")                
     period_end_date = fields.Datetime(string="Period End Date", help="End of the period member belonged to the group.")                
-    boolean = fields.Boolean( string="Boolean", help="If member is no longer in group.")                
+    is_member = fields.Boolean(string="Member", default=True, help="Uncheck if member is no longer in group.")                
 
 class GroupCode(models.Model):    
     _name = "hc.vs.group.code"    

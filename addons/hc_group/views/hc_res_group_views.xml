@@ -35,35 +35,61 @@
         			<sheet>							
         				<div class="oe_title oe_left">						
         					<h1>					
-        						<field name="name" default_focus="1" placeholder="Patient"/>				
+        						<field name="name" default_focus="1" placeholder="Group"/>				
         					</h1>					
         				</div>						
         				<group>						
-        					<group>					
-        						<field name="code_id"/>				
-        						<field name="type"/>				
+        					<group>
+                    <field name="type"/>					
+        						<field name="code_id"/>
         						<field name="quantity"/>				
         					</group>					
         					<group>					
-        						<field name="is_actual"/>				
-        						<field name="is_active"/>				
+        						<field name="is_actual" widget="upgrade_boolean"/>				
+        						<field name="is_active" widget="upgrade_boolean"/>				
         					</group>					
         				</group>						
         				<notebook colspan="4">						
         					<page string="Identifiers"/>					
-        					<page string="Characteristics"/>					
+        					<!-- <page string="Characteristics"/> -->
+                  <page string="Characteristics">         
+                    <field name="characteristic_ids" mode="tree">       
+                      <tree>      
+                        <field name="code_id"/>
+                        <field name="value_name"/>
+                        <field name="value_type"/>   
+                      </tree>     
+                      <form>      
+                        <sheet>   
+                            <group>
+                                <group col="4" colspan="4"> 
+                                    <field name="code_id"/>
+                                    <field name="value_name"/>
+                                    <field name="value_type"/>   
+                                </group>
+                                <group>
+                                    <field name="is_included" widget="upgrade_boolean"/>
+                                    <field name="period_start_date"/>
+                                    <field name="period_end_date"/>  
+                                </group>
+                            </group>
+                        </sheet>    
+                      </form>     
+                    </field>        
+                  </page> 			
         					<page string="Members">					
-        						<field name="members_ids" mode="tree">				
+        						<field name="member_ids" mode="tree">				
         							<tree>			
-        								<field name="entity_type" widget="radio"/>		
-        								<field name="entity_patient_id" widget="radio"/>		
+        								<field name="entity_type"/>
+        								<field name="entity_name"/>		
         							</tree>			
         							<form>			
         								<sheet>		
         									<group col="4" colspan="4">	
-        										<field name="entity_type" widget="radio" colspan="4"/>
-        										<field name="entity_patient" class="oe_no_button"/>
-        									</group>	
+        										<field name="entity_type"/>
+        										<field name="entity_name"/>
+                                                <field name="is_member" widget="upgrade_boolean"/>
+        									</group>
         								</sheet>		
         							</form>			
         						</field>				
