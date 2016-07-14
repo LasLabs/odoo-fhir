@@ -19,7 +19,8 @@
               <field name="model">hc.annotation</field>               
               <field name="arch" type="xml">                
                     <tree string="Annotations">             
-                          <field name="name"/>            
+                          <field name="name"/>
+                          <field name="author_name"/>
                           <field name="author_type"/>       
                           <field name="recorded_date"/>           
                     </tree>             
@@ -39,6 +40,7 @@
                                 </div>          
                                 <group>         
                                     <group>
+                                        <field name="author_name"/> 
                                         <field name="author_type"/>          
                                         <field name="recorded_date"/>
                                     </group>
