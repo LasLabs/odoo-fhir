@@ -1,6 +1,8 @@
 <openerp>
     <data>
 
+        
+        
         <!-- Group Action and Menu -->  
     
         <act_window id="hc_res_group_action"    
