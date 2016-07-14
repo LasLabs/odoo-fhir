@@ -1,20 +1,6 @@
 <openerp>
     <data>
 
-<<<<<<< HEAD
-        
-        
-=======
-        <!-- Group Action and Menu -->										
-										
-        <act_window id="hc_res_group_action"										
-        	name="HC Groups"									
-        	res_model="hc.res.group"									
-        	view_mode="tree,form"									
-        	domain=""									
-        	context=""									
-        	limit=""/>									
-        										
         <!-- Group Views -->										
         										
         <record id="hc_res_group_view_search" model="ir.ui.view">										
@@ -88,9 +74,6 @@
         	</field>									
         </record>										
 
-
-
->>>>>>> b125efd4b820d564b11c400520ed65d74f88737a
         <!-- Group Action and Menu -->  
     
         <act_window id="hc_res_group_action"    
