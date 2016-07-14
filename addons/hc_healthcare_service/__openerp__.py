@@ -9,7 +9,7 @@
     'description': """
         The details of a healthcare service available at a location.
 
-        Scope and Usage
+        **Scope and Usage**
 
         The Healthcare Service resource is used to describe a single healthcare service or category of services 
         that are provided by an organization at a location. The location of the services could be virtual, as with TeleMedicine Services.

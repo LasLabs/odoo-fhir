@@ -3,12 +3,16 @@
     'name': "Condition",
 
     'summary': """
-        Detailed information about conditions, problems or diagnoses recognized by a clinician. 
-        There are many uses including: recording a diagnosis during an encounter; 
-        populating a problem list or a summary statement, such as a discharge summary.
+        Conditions, problems or diagnoses
     """,
 
     'description': """
+        Detailed information about conditions, problems or diagnoses recognized by a clinician. 
+        There are many uses including: recording a diagnosis during an encounter; 
+        populating a problem list or a summary statement, such as a discharge summary.
+
+        **Scope and Usage**
+
         Used to record detailed information pertinent to a clinician's assessment and assertion 
         of a particular aspect of a person's state of health. Examples of condition include problems, 
         diagnoses, concerns, issues. There are many uses of condition which include:

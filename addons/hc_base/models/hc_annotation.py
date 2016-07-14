@@ -2,15 +2,22 @@
 
 from openerp import models, fields, api
 
-class Annotation(models.Model):
+class Annotation(models.AbstractModel):
 
     _name = "hc.annotation"
     _description = "Annotation"
-
-    name = fields.Text(
-    	string="Annotation", 
-    	help="The text content.")
-    recorded_date = fields.Datetime(string="Recorded Date", help="When the annotation was made.")
+ 
+    name = fields.Char(
+    	string="Name",
+        required="True",
+    	help="The name of the annotation.")
+    annotation = fields.Text(
+        string="Annotation",
+        required="True", 
+        help="The text content.")
+    recorded_date = fields.Datetime(
+        string="Recorded Date", 
+        help="When the annotation was made.")
     author_type = fields.Selection(
     	string="Author Type", 
         selection=[

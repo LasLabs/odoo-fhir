@@ -3,10 +3,14 @@
     'name': "Procedure",
 
     'summary': """
-        An action that is or was performed on a patient. This can be a physical intervention like an operation, or less invasive like counseling or hypnotherapy.
+        Operation, counseling, or other health-related action
         """,
 
     'description': """
+        An action that is or was performed on a patient. This can be a physical intervention like an operation, or less invasive like counseling or hypnotherapy.
+
+        **Scope and Usage**
+
         This resource is used to record the details of procedures performed on a patient. A procedure is an activity that is performed with or on a patient as part of the provision of care. Examples include surgical procedures, diagnostic procedures, endoscopic procedures, biopsies, counseling, physiotherapy, exercise, etc. Procedures may be performed by a healthcare professional, a friend or relative or in some cases by the patient themselves.
 
         This resource provides summary information about the occurrence of the procedure and is not intended to provide real-time snapshots of a procedure as it unfolds, though for long-running procedures such as psychotherapy, it could represent summary level information about overall progress. The creation of a resource to support detailed real-time procedure information awaits the identification of a specific implementation use-case to share such information.

@@ -69,7 +69,7 @@ class FamilyMemberHistory(models.Model):
         size=3, 
         help="(approximate) age.")
     age_uom_id = fields.Many2one(
-        comodel_name="hc.uom", 
+        comodel_name="hc.vs.uom", 
         string="Age UOM", 
         default="year", 
         help="Age unit of measure. Default = year.")
@@ -93,7 +93,7 @@ class FamilyMemberHistory(models.Model):
         size=3, 
         help="How old/when?")
     deceased_age_uom_id = fields.Many2one(
-        comodel_name="hc.uom", 
+        comodel_name="hc.vs.uom", 
         string="Deceased Age UOM", 
         default="year", help="Age unit of measure. Default = year.")
     deceased_age_range_low = fields.Float(
@@ -133,7 +133,7 @@ class FamilyMemberHistoryCondition(models.Model):
         size=3, 
         help="When condition first manifested.")
     onset_age_uom_id = fields.Many2one(
-        comodel_name="hc.uom", 
+        comodel_name="hc.vs.uom", 
         string="Onset Age UOM", 
         default="year", 
         help="Age unit of measure. Default = year.")

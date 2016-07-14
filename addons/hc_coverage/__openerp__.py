@@ -9,7 +9,7 @@
     'description': """
         Financial instrument which may be used to pay for or reimburse health care products and services.
 
-        Scope and Usage
+        **Scope and Usage**
 
         The Coverage resource is intended to provide the high level identifiers and potentially descriptors of 
         insurance plans which may used to pay for, in part or in whole, the provision of health care products and services.

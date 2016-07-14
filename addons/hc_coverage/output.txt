@@ -1,348 +1,0 @@
-Script started on Thu 07 Jul 2016 09:14:29 PM PDT
-]0;odoo@odoo-VirtualBox: /odoo/odoo-fhir/addons/hc_coverageodoo@odoo-VirtualBox:/odoo/odoo-fhir/addons/hc_coverage$ exit./odoo.py -d FHIR-DEV ---addons-path /odoo/odoo-fhir/addons,/odoo/odoo-server/addons -u hc_patient[K[K[K[K[K[K[K[K[K[K[K[Ku hc_location
-bash: ./odoo.py: No such file or directory
-]0;odoo@odoo-VirtualBox: /odoo/odoo-fhir/addons/hc_coverageodoo@odoo-VirtualBox:/odoo/odoo-fhir/addons/hc_coverage$ cd /odoo/odoo-server
-]0;odoo@odoo-VirtualBox: /odoo/odoo-serverodoo@odoo-VirtualBox:/odoo/odoo-server$ cd /odoo/odoo-server./odoo.py -d FHIR-DEV --addons-path /odooo/odoo-fhir/addons,/odoo/odoo-server/addons -u hc_location
-2016-07-08 04:14:54,302 7063 [1;32m[1;49mINFO[0m ? openerp: OpenERP version 9.0c
-2016-07-08 04:14:54,303 7063 [1;32m[1;49mINFO[0m ? openerp: addons paths: ['/home/odoo/.local/share/Odoo/addons/9.0', u'/odoo/odoo-fhir/addons', u'/odoo/odoo-server/addons', '/odoo/odoo-server/openerp/addons']
-2016-07-08 04:14:54,303 7063 [1;32m[1;49mINFO[0m ? openerp: database: default@default:default
-2016-07-08 04:14:54,525 7063 [1;32m[1;49mINFO[0m ? openerp.service.server: HTTP service (werkzeug) running on 0.0.0.0:8069
-Exception in thread openerp.service.httpd:
-Traceback (most recent call last):
-  File "/usr/lib/python2.7/threading.py", line 810, in __bootstrap_inner
-    self.run()
-  File "/usr/lib/python2.7/threading.py", line 763, in run
-    self.__target(*self.__args, **self.__kwargs)
-  File "/odoo/odoo-server/openerp/service/server.py", line 247, in http_thread
-    self.httpd = ThreadedWSGIServerReloadable(self.interface, self.port, app)
-  File "/odoo/odoo-server/openerp/service/server.py", line 106, in __init__
-    handler=RequestHandler)
-  File "/usr/lib/python2.7/dist-packages/werkzeug/serving.py", line 410, in __init__
-    HTTPServer.__init__(self, (host, int(port)), handler)
-  File "/usr/lib/python2.7/SocketServer.py", line 419, in __init__
-    self.server_bind()
-  File "/odoo/odoo-server/openerp/service/server.py", line 116, in server_bind
-    super(ThreadedWSGIServerReloadable, self).server_bind()
-  File "/usr/lib/python2.7/BaseHTTPServer.py", line 108, in server_bind
-    SocketServer.TCPServer.server_bind(self)
-  File "/usr/lib/python2.7/SocketServer.py", line 430, in server_bind
-    self.socket.bind(self.server_address)
-  File "/usr/lib/python2.7/socket.py", line 224, in meth
-    return getattr(self._sock,name)(*args)
-error: [Errno 98] Address already in use
-
-2016-07-08 04:14:54,551 7063 [1;32m[1;49mINFO[0m FHIR-DEV openerp.modules.loading: loading 1 modules...
-2016-07-08 04:14:54,579 7063 [1;32m[1;49mINFO[0m FHIR-DEV openerp.modules.loading: 1 modules loaded in 0.03s, 0 queries
-2016-07-08 04:14:56,590 7063 [1;32m[1;49mINFO[0m FHIR-DEV openerp.modules.loading: loading 39 modules...
-2016-07-08 04:14:56,597 7063 [1;32m[1;49mINFO[0m FHIR-DEV passlib.registry: registered crypt handler 'pbkdf2_sha512': <class 'passlib.handlers.pbkdf2.pbkdf2_sha512'>
-2016-07-08 04:14:56,602 7063 [1;32m[1;49mINFO[0m FHIR-DEV passlib.registry: registered crypt handler 'md5_crypt': <class 'passlib.handlers.md5_crypt.md5_crypt'>
-2016-07-08 04:14:56,712 7063 [1;32m[1;49mINFO[0m ? openerp.addons.bus.models.bus: Bus.loop listen imbus on db postgres
-2016-07-08 04:14:56,817 7063 [1;32m[1;49mINFO[0m FHIR-DEV openerp.addons.report.models.report: Will use the Wkhtmltopdf binary at /usr/local/bin/wkhtmltopdf
-2016-07-08 04:14:57,046 7063 [1;37m[1;41mCRITICAL[0m FHIR-DEV openerp.modules.module: Couldn't load module hc_location
-2016-07-08 04:14:57,047 7063 [1;37m[1;41mCRITICAL[0m FHIR-DEV openerp.modules.module: expected an indented block (hc_res_location.py, line 6)
-2016-07-08 04:14:57,047 7063 [1;31m[1;49mERROR[0m FHIR-DEV openerp.modules.registry: Failed to load registry
-Traceback (most recent call last):
-  File "/odoo/odoo-server/openerp/modules/registry.py", line 386, in new
-    openerp.modules.load_modules(registry._db, force_demo, status, update_module)
-  File "/odoo/odoo-server/openerp/modules/loading.py", line 334, in load_modules
-    force, status, report, loaded_modules, update_module)
-  File "/odoo/odoo-server/openerp/modules/loading.py", line 237, in load_marked_modules
-    loaded, processed = load_module_graph(cr, graph, progressdict, report=report, skip_modules=loaded_modules, perform_checks=perform_checks)
-  File "/odoo/odoo-server/openerp/modules/loading.py", line 123, in load_module_graph
-    load_openerp_module(package.name)
-  File "/odoo/odoo-server/openerp/modules/module.py", line 324, in load_openerp_module
-    __import__('openerp.addons.' + module_name)
-  File "/odoo/odoo-server/openerp/modules/module.py", line 61, in load_module
-    mod = imp.load_module('openerp.addons.' + module_part, f, path, descr)
-  File "/odoo/odoo-fhir/addons/hc_location/__init__.py", line 4, in <module>
-    from . import models
-  File "/odoo/odoo-fhir/addons/hc_location/models/__init__.py", line 3, in <module>
-    from . import hc_res_location
-  File "/odoo/odoo-fhir/addons/hc_location/models/hc_res_location.py", line 6
-    _name = "hc.res.location"
-        ^
-IndentationError: expected an indented block
-2016-07-08 04:14:57,049 7063 [1;37m[1;41mCRITICAL[0m FHIR-DEV openerp.service.server: Failed to initialize database `FHIR-DEV`.
-Traceback (most recent call last):
-  File "/odoo/odoo-server/openerp/service/server.py", line 892, in preload_registries
-    registry = RegistryManager.new(dbname, update_module=update_module)
-  File "/odoo/odoo-server/openerp/modules/registry.py", line 386, in new
-    openerp.modules.load_modules(registry._db, force_demo, status, update_module)
-  File "/odoo/odoo-server/openerp/modules/loading.py", line 334, in load_modules
-    force, status, report, loaded_modules, update_module)
-  File "/odoo/odoo-server/openerp/modules/loading.py", line 237, in load_marked_modules
-    loaded, processed = load_module_graph(cr, graph, progressdict, report=report, skip_modules=loaded_modules, perform_checks=perform_checks)
-  File "/odoo/odoo-server/openerp/modules/loading.py", line 123, in load_module_graph
-    load_openerp_module(package.name)
-  File "/odoo/odoo-server/openerp/modules/module.py", line 324, in load_openerp_module
-    __import__('openerp.addons.' + module_name)
-  File "/odoo/odoo-server/openerp/modules/module.py", line 61, in load_module
-    mod = imp.load_module('openerp.addons.' + module_part, f, path, descr)
-  File "/odoo/odoo-fhir/addons/hc_location/__init__.py", line 4, in <module>
-    from . import models
-  File "/odoo/odoo-fhir/addons/hc_location/models/__init__.py", line 3, in <module>
-    from . import hc_res_location
-  File "/odoo/odoo-fhir/addons/hc_location/models/hc_res_location.py", line 6
-    _name = "hc.res.location"
-        ^
-IndentationError: expected an indented block
-^C2016-07-08 04:23:12,004 7063 [1;32m[1;49mINFO[0m FHIR-DEV openerp.service.server: Initiating shutdown
-2016-07-08 04:23:12,004 7063 [1;32m[1;49mINFO[0m FHIR-DEV openerp.service.server: Hit CTRL-C again or send a second signal to force the shutdown.
-]0;odoo@odoo-VirtualBox: /odoo/odoo-serverodoo@odoo-VirtualBox:/odoo/odoo-server$ ^C
-]0;odoo@odoo-VirtualBox: /odoo/odoo-serverodoo@odoo-VirtualBox:/odoo/odoo-server$ ./odoo.py -d FHIR-DEV --addons-path /odooo/odoo-fhir/addons,/odoo/odoo-server/addons -u hc_location
-2016-07-08 04:23:15,595 7115 [1;32m[1;49mINFO[0m ? openerp: OpenERP version 9.0c
-2016-07-08 04:23:15,595 7115 [1;32m[1;49mINFO[0m ? openerp: addons paths: ['/home/odoo/.local/share/Odoo/addons/9.0', u'/odoo/odoo-fhir/addons', u'/odoo/odoo-server/addons', '/odoo/odoo-server/openerp/addons']
-2016-07-08 04:23:15,595 7115 [1;32m[1;49mINFO[0m ? openerp: database: default@default:default
-2016-07-08 04:23:15,805 7115 [1;32m[1;49mINFO[0m ? openerp.service.server: HTTP service (werkzeug) running on 0.0.0.0:8069
-Exception in thread openerp.service.httpd:
-Traceback (most recent call last):
-  File "/usr/lib/python2.7/threading.py", line 810, in __bootstrap_inner
-    self.run()
-  File "/usr/lib/python2.7/threading.py", line 763, in run
-    self.__target(*self.__args, **self.__kwargs)
-  File "/odoo/odoo-server/openerp/service/server.py", line 247, in http_thread
-    self.httpd = ThreadedWSGIServerReloadable(self.interface, self.port, app)
-  File "/odoo/odoo-server/openerp/service/server.py", line 106, in __init__
-    handler=RequestHandler)
-  File "/usr/lib/python2.7/dist-packages/werkzeug/serving.py", line 410, in __init__
-    HTTPServer.__init__(self, (host, int(port)), handler)
-  File "/usr/lib/python2.7/SocketServer.py", line 419, in __init__
-    self.server_bind()
-  File "/odoo/odoo-server/openerp/service/server.py", line 116, in server_bind
-    super(ThreadedWSGIServerReloadable, self).server_bind()
-  File "/usr/lib/python2.7/BaseHTTPServer.py", line 108, in server_bind
-    SocketServer.TCPServer.server_bind(self)
-  File "/usr/lib/python2.7/SocketServer.py", line 430, in server_bind
-    self.socket.bind(self.server_address)
-  File "/usr/lib/python2.7/socket.py", line 224, in meth
-    return getattr(self._sock,name)(*args)
-error: [Errno 98] Address already in use
-
-2016-07-08 04:23:15,831 7115 [1;32m[1;49mINFO[0m FHIR-DEV openerp.modules.loading: loading 1 modules...
-2016-07-08 04:23:15,859 7115 [1;32m[1;49mINFO[0m FHIR-DEV openerp.modules.loading: 1 modules loaded in 0.03s, 0 queries
-2016-07-08 04:23:16,193 7115 [1;32m[1;49mINFO[0m FHIR-DEV openerp.modules.loading: loading 39 modules...
-2016-07-08 04:23:16,198 7115 [1;32m[1;49mINFO[0m FHIR-DEV passlib.registry: registered crypt handler 'pbkdf2_sha512': <class 'passlib.handlers.pbkdf2.pbkdf2_sha512'>
-2016-07-08 04:23:16,198 7115 [1;32m[1;49mINFO[0m FHIR-DEV passlib.registry: registered crypt handler 'md5_crypt': <class 'passlib.handlers.md5_crypt.md5_crypt'>
-2016-07-08 04:23:16,308 7115 [1;32m[1;49mINFO[0m ? openerp.addons.bus.models.bus: Bus.loop listen imbus on db postgres
-2016-07-08 04:23:16,401 7115 [1;32m[1;49mINFO[0m FHIR-DEV openerp.addons.report.models.report: Will use the Wkhtmltopdf binary at /usr/local/bin/wkhtmltopdf
-2016-07-08 04:23:16,631 7115 [1;37m[1;41mCRITICAL[0m FHIR-DEV openerp.modules.module: Couldn't load module hc_location
-2016-07-08 04:23:16,632 7115 [1;37m[1;41mCRITICAL[0m FHIR-DEV openerp.modules.module: expected an indented block (hc_res_location.py, line 83)
-2016-07-08 04:23:16,632 7115 [1;31m[1;49mERROR[0m FHIR-DEV openerp.modules.registry: Failed to load registry
-Traceback (most recent call last):
-  File "/odoo/odoo-server/openerp/modules/registry.py", line 386, in new
-    openerp.modules.load_modules(registry._db, force_demo, status, update_module)
-  File "/odoo/odoo-server/openerp/modules/loading.py", line 334, in load_modules
-    force, status, report, loaded_modules, update_module)
-  File "/odoo/odoo-server/openerp/modules/loading.py", line 237, in load_marked_modules
-    loaded, processed = load_module_graph(cr, graph, progressdict, report=report, skip_modules=loaded_modules, perform_checks=perform_checks)
-  File "/odoo/odoo-server/openerp/modules/loading.py", line 123, in load_module_graph
-    load_openerp_module(package.name)
-  File "/odoo/odoo-server/openerp/modules/module.py", line 324, in load_openerp_module
-    __import__('openerp.addons.' + module_name)
-  File "/odoo/odoo-server/openerp/modules/module.py", line 61, in load_module
-    mod = imp.load_module('openerp.addons.' + module_part, f, path, descr)
-  File "/odoo/odoo-fhir/addons/hc_location/__init__.py", line 4, in <module>
-    from . import models
-  File "/odoo/odoo-fhir/addons/hc_location/models/__init__.py", line 3, in <module>
-    from . import hc_res_location
-  File "/odoo/odoo-fhir/addons/hc_location/models/hc_res_location.py", line 83
-    _name = "hc.location.identifier"
-        ^
-IndentationError: expected an indented block
-2016-07-08 04:23:16,634 7115 [1;37m[1;41mCRITICAL[0m FHIR-DEV openerp.service.server: Failed to initialize database `FHIR-DEV`.
-Traceback (most recent call last):
-  File "/odoo/odoo-server/openerp/service/server.py", line 892, in preload_registries
-    registry = RegistryManager.new(dbname, update_module=update_module)
-  File "/odoo/odoo-server/openerp/modules/registry.py", line 386, in new
-    openerp.modules.load_modules(registry._db, force_demo, status, update_module)
-  File "/odoo/odoo-server/openerp/modules/loading.py", line 334, in load_modules
-    force, status, report, loaded_modules, update_module)
-  File "/odoo/odoo-server/openerp/modules/loading.py", line 237, in load_marked_modules
-    loaded, processed = load_module_graph(cr, graph, progressdict, report=report, skip_modules=loaded_modules, perform_checks=perform_checks)
-  File "/odoo/odoo-server/openerp/modules/loading.py", line 123, in load_module_graph
-    load_openerp_module(package.name)
-  File "/odoo/odoo-server/openerp/modules/module.py", line 324, in load_openerp_module
-    __import__('openerp.addons.' + module_name)
-  File "/odoo/odoo-server/openerp/modules/module.py", line 61, in load_module
-    mod = imp.load_module('openerp.addons.' + module_part, f, path, descr)
-  File "/odoo/odoo-fhir/addons/hc_location/__init__.py", line 4, in <module>
-    from . import models
-  File "/odoo/odoo-fhir/addons/hc_location/models/__init__.py", line 3, in <module>
-    from . import hc_res_location
-  File "/odoo/odoo-fhir/addons/hc_location/models/hc_res_location.py", line 83
-    _name = "hc.location.identifier"
-        ^
-IndentationError: expected an indented block
-^C2016-07-08 04:23:58,673 7115 [1;32m[1;49mINFO[0m FHIR-DEV openerp.service.server: Initiating shutdown
-2016-07-08 04:23:58,673 7115 [1;32m[1;49mINFO[0m FHIR-DEV openerp.service.server: Hit CTRL-C again or send a second signal to force the shutdown.
-]0;odoo@odoo-VirtualBox: /odoo/odoo-serverodoo@odoo-VirtualBox:/odoo/odoo-server$ ^C
-]0;odoo@odoo-VirtualBox: /odoo/odoo-serverodoo@odoo-VirtualBox:/odoo/odoo-server$ ./odoo.py -d FHIR-DEV --addons-path /odooo/odoo-fhir/addons,/odoo/odoo-server/addons -u hc_location
-2016-07-08 04:24:01,361 7132 [1;32m[1;49mINFO[0m ? openerp: OpenERP version 9.0c
-2016-07-08 04:24:01,361 7132 [1;32m[1;49mINFO[0m ? openerp: addons paths: ['/home/odoo/.local/share/Odoo/addons/9.0', u'/odoo/odoo-fhir/addons', u'/odoo/odoo-server/addons', '/odoo/odoo-server/openerp/addons']
-2016-07-08 04:24:01,361 7132 [1;32m[1;49mINFO[0m ? openerp: database: default@default:default
-2016-07-08 04:24:01,577 7132 [1;32m[1;49mINFO[0m ? openerp.service.server: HTTP service (werkzeug) running on 0.0.0.0:8069
-Exception in thread openerp.service.httpd:
-Traceback (most recent call last):
-  File "/usr/lib/python2.7/threading.py", line 810, in __bootstrap_inner
-    self.run()
-  File "/usr/lib/python2.7/threading.py", line 763, in run
-    self.__target(*self.__args, **self.__kwargs)
-  File "/odoo/odoo-server/openerp/service/server.py", line 247, in http_thread
-    self.httpd = ThreadedWSGIServerReloadable(self.interface, self.port, app)
-  File "/odoo/odoo-server/openerp/service/server.py", line 106, in __init__
-    handler=RequestHandler)
-  File "/usr/lib/python2.7/dist-packages/werkzeug/serving.py", line 410, in __init__
-    HTTPServer.__init__(self, (host, int(port)), handler)
-  File "/usr/lib/python2.7/SocketServer.py", line 419, in __init__
-    self.server_bind()
-  File "/odoo/odoo-server/openerp/service/server.py", line 116, in server_bind
-    super(ThreadedWSGIServerReloadable, self).server_bind()
-  File "/usr/lib/python2.7/BaseHTTPServer.py", line 108, in server_bind
-    SocketServer.TCPServer.server_bind(self)
-  File "/usr/lib/python2.7/SocketServer.py", line 430, in server_bind
-    self.socket.bind(self.server_address)
-  File "/usr/lib/python2.7/socket.py", line 224, in meth
-    return getattr(self._sock,name)(*args)
-error: [Errno 98] Address already in use
-
-2016-07-08 04:24:01,603 7132 [1;32m[1;49mINFO[0m FHIR-DEV openerp.modules.loading: loading 1 modules...
-2016-07-08 04:24:01,630 7132 [1;32m[1;49mINFO[0m FHIR-DEV openerp.modules.loading: 1 modules loaded in 0.03s, 0 queries
-2016-07-08 04:24:01,980 7132 [1;32m[1;49mINFO[0m FHIR-DEV openerp.modules.loading: loading 39 modules...
-2016-07-08 04:24:01,985 7132 [1;32m[1;49mINFO[0m FHIR-DEV passlib.registry: registered crypt handler 'pbkdf2_sha512': <class 'passlib.handlers.pbkdf2.pbkdf2_sha512'>
-2016-07-08 04:24:01,985 7132 [1;32m[1;49mINFO[0m FHIR-DEV passlib.registry: registered crypt handler 'md5_crypt': <class 'passlib.handlers.md5_crypt.md5_crypt'>
-2016-07-08 04:24:02,105 7132 [1;32m[1;49mINFO[0m ? openerp.addons.bus.models.bus: Bus.loop listen imbus on db postgres
-2016-07-08 04:24:02,201 7132 [1;32m[1;49mINFO[0m FHIR-DEV openerp.addons.report.models.report: Will use the Wkhtmltopdf binary at /usr/local/bin/wkhtmltopdf
-2016-07-08 04:24:03,184 7132 [1;32m[1;49mINFO[0m FHIR-DEV openerp.modules.module: module hc_location: creating or updating database tables
-2016-07-08 04:24:05,346 7132 [1;32m[1;49mINFO[0m FHIR-DEV openerp.modules.loading: loading hc_location/views/hc_res_location_views.xml
-2016-07-08 04:24:05,349 7132 [1;32m[1;49mINFO[0m FHIR-DEV openerp.modules.loading: loading hc_location/views/hc_res_location_templates.xml
-2016-07-08 04:24:05,351 7132 [1;32m[1;49mINFO[0m FHIR-DEV openerp.modules.loading: loading hc_location/demo/demo.xml
-2016-07-08 04:24:05,821 7132 [1;32m[1;49mINFO[0m FHIR-DEV openerp.modules.module: module hc_healthcare_service: creating or updating database tables
-2016-07-08 04:24:05,827 7132 [1;32m[1;49mINFO[0m FHIR-DEV openerp.modules.loading: loading hc_healthcare_service/views/hc_res_healthcare_service_views.xml
-2016-07-08 04:24:05,830 7132 [1;32m[1;49mINFO[0m FHIR-DEV openerp.modules.loading: loading hc_healthcare_service/views/hc_res_healthcare_service_templates.xml
-2016-07-08 04:24:05,832 7132 [1;32m[1;49mINFO[0m FHIR-DEV openerp.modules.loading: loading hc_healthcare_service/demo/demo.xml
-2016-07-08 04:24:05,902 7132 [1;32m[1;49mINFO[0m FHIR-DEV openerp.modules.loading: 39 modules loaded in 3.92s, 0 queries
-2016-07-08 04:24:06,279 7132 [1;33m[1;49mWARNING[0m FHIR-DEV openerp.modules.loading: The model lang has no access rules, consider adding one. E.g. access_lang,access_lang,model_lang,,1,0,0,0
-2016-07-08 04:24:06,280 7132 [1;33m[1;49mWARNING[0m FHIR-DEV openerp.modules.loading: The model hc.patient.communication has no access rules, consider adding one. E.g. access_hc_patient_communication,access_hc_patient_communication,model_hc_patient_communication,,1,0,0,0
-2016-07-08 04:24:06,280 7132 [1;33m[1;49mWARNING[0m FHIR-DEV openerp.modules.loading: The model hc.res.location has no access rules, consider adding one. E.g. access_hc_res_location,access_hc_res_location,model_hc_res_location,,1,0,0,0
-2016-07-08 04:24:06,280 7132 [1;33m[1;49mWARNING[0m FHIR-DEV openerp.modules.loading: The model hc.res.related.person has no access rules, consider adding one. E.g. access_hc_res_related_person,access_hc_res_related_person,model_hc_res_related_person,,1,0,0,0
-2016-07-08 04:24:06,280 7132 [1;33m[1;49mWARNING[0m FHIR-DEV openerp.modules.loading: The model hc.related.person.identifier has no access rules, consider adding one. E.g. access_hc_related_person_identifier,access_hc_related_person_identifier,model_hc_related_person_identifier,,1,0,0,0
-2016-07-08 04:24:06,522 7132 [1;33m[1;49mWARNING[0m FHIR-DEV openerp.modules.loading: Model hc.vs.practioner.role is declared but cannot be loaded! (Perhaps a module was partially removed or renamed)
-2016-07-08 04:24:06,801 7132 [1;32m[1;49mINFO[0m FHIR-DEV openerp.modules.loading: Modules loaded.
-^C2016-07-08 04:24:56,321 7132 [1;32m[1;49mINFO[0m FHIR-DEV openerp.service.server: Initiating shutdown
-2016-07-08 04:24:56,321 7132 [1;32m[1;49mINFO[0m FHIR-DEV openerp.service.server: Hit CTRL-C again or send a second signal to force the shutdown.
-]0;odoo@odoo-VirtualBox: /odoo/odoo-serverodoo@odoo-VirtualBox:/odoo/odoo-server$ ^C
-]0;odoo@odoo-VirtualBox: /odoo/odoo-serverodoo@odoo-VirtualBox:/odoo/odoo-server$ ^C
-]0;odoo@odoo-VirtualBox: /odoo/odoo-serverodoo@odoo-VirtualBox:/odoo/odoo-server$ ^C
-]0;odoo@odoo-VirtualBox: /odoo/odoo-serverodoo@odoo-VirtualBox:/odoo/odoo-server$ ./odoo.py -d FHIR-DEV --addons-path /odooo/odoo-fhir/addons,/odoo/odoo-server/addons -u hc_location
-2016-07-08 04:26:00,295 7171 [1;32m[1;49mINFO[0m ? openerp: OpenERP version 9.0c
-2016-07-08 04:26:00,296 7171 [1;32m[1;49mINFO[0m ? openerp: addons paths: ['/home/odoo/.local/share/Odoo/addons/9.0', u'/odoo/odoo-fhir/addons', u'/odoo/odoo-server/addons', '/odoo/odoo-server/openerp/addons']
-2016-07-08 04:26:00,296 7171 [1;32m[1;49mINFO[0m ? openerp: database: default@default:default
-2016-07-08 04:26:00,514 7171 [1;32m[1;49mINFO[0m ? openerp.service.server: HTTP service (werkzeug) running on 0.0.0.0:8069
-Exception in thread openerp.service.httpd:
-Traceback (most recent call last):
-  File "/usr/lib/python2.7/threading.py", line 810, in __bootstrap_inner
-    self.run()
-  File "/usr/lib/python2.7/threading.py", line 763, in run
-    self.__target(*self.__args, **self.__kwargs)
-  File "/odoo/odoo-server/openerp/service/server.py", line 247, in http_thread
-    self.httpd = ThreadedWSGIServerReloadable(self.interface, self.port, app)
-  File "/odoo/odoo-server/openerp/service/server.py", line 106, in __init__
-    handler=RequestHandler)
-  File "/usr/lib/python2.7/dist-packages/werkzeug/serving.py", line 410, in __init__
-    HTTPServer.__init__(self, (host, int(port)), handler)
-  File "/usr/lib/python2.7/SocketServer.py", line 419, in __init__
-    self.server_bind()
-  File "/odoo/odoo-server/openerp/service/server.py", line 116, in server_bind
-    super(ThreadedWSGIServerReloadable, self).server_bind()
-  File "/usr/lib/python2.7/BaseHTTPServer.py", line 108, in server_bind
-    SocketServer.TCPServer.server_bind(self)
-  File "/usr/lib/python2.7/SocketServer.py", line 430, in server_bind
-    self.socket.bind(self.server_address)
-  File "/usr/lib/python2.7/socket.py", line 224, in meth
-    return getattr(self._sock,name)(*args)
-error: [Errno 98] Address already in use
-
-2016-07-08 04:26:00,540 7171 [1;32m[1;49mINFO[0m FHIR-DEV openerp.modules.loading: loading 1 modules...
-2016-07-08 04:26:00,568 7171 [1;32m[1;49mINFO[0m FHIR-DEV openerp.modules.loading: 1 modules loaded in 0.03s, 0 queries
-2016-07-08 04:26:02,442 7171 [1;32m[1;49mINFO[0m FHIR-DEV openerp.modules.loading: loading 39 modules...
-2016-07-08 04:26:02,464 7171 [1;32m[1;49mINFO[0m FHIR-DEV passlib.registry: registered crypt handler 'pbkdf2_sha512': <class 'passlib.handlers.pbkdf2.pbkdf2_sha512'>
-2016-07-08 04:26:02,465 7171 [1;32m[1;49mINFO[0m FHIR-DEV passlib.registry: registered crypt handler 'md5_crypt': <class 'passlib.handlers.md5_crypt.md5_crypt'>
-2016-07-08 04:26:02,562 7171 [1;32m[1;49mINFO[0m ? openerp.addons.bus.models.bus: Bus.loop listen imbus on db postgres
-2016-07-08 04:26:02,667 7171 [1;32m[1;49mINFO[0m FHIR-DEV openerp.addons.report.models.report: Will use the Wkhtmltopdf binary at /usr/local/bin/wkhtmltopdf
-2016-07-08 04:26:03,588 7171 [1;32m[1;49mINFO[0m FHIR-DEV openerp.modules.module: module hc_location: creating or updating database tables
-2016-07-08 04:26:03,775 7171 [1;32m[1;49mINFO[0m FHIR-DEV openerp.modules.loading: loading hc_location/views/hc_res_location_views.xml
-2016-07-08 04:26:03,777 7171 [1;32m[1;49mINFO[0m FHIR-DEV openerp.modules.loading: loading hc_location/views/hc_res_location_templates.xml
-2016-07-08 04:26:03,780 7171 [1;32m[1;49mINFO[0m FHIR-DEV openerp.modules.loading: loading hc_location/demo/demo.xml
-2016-07-08 04:26:04,290 7171 [1;32m[1;49mINFO[0m FHIR-DEV openerp.modules.module: module hc_healthcare_service: creating or updating database tables
-2016-07-08 04:26:04,297 7171 [1;32m[1;49mINFO[0m FHIR-DEV openerp.modules.loading: loading hc_healthcare_service/views/hc_res_healthcare_service_views.xml
-2016-07-08 04:26:04,299 7171 [1;32m[1;49mINFO[0m FHIR-DEV openerp.modules.loading: loading hc_healthcare_service/views/hc_res_healthcare_service_templates.xml
-2016-07-08 04:26:04,309 7171 [1;32m[1;49mINFO[0m FHIR-DEV openerp.modules.loading: loading hc_healthcare_service/demo/demo.xml
-2016-07-08 04:26:04,367 7171 [1;32m[1;49mINFO[0m FHIR-DEV openerp.modules.loading: 39 modules loaded in 1.92s, 0 queries
-2016-07-08 04:26:04,726 7171 [1;33m[1;49mWARNING[0m FHIR-DEV openerp.modules.loading: The model lang has no access rules, consider adding one. E.g. access_lang,access_lang,model_lang,,1,0,0,0
-2016-07-08 04:26:04,727 7171 [1;33m[1;49mWARNING[0m FHIR-DEV openerp.modules.loading: The model hc.patient.communication has no access rules, consider adding one. E.g. access_hc_patient_communication,access_hc_patient_communication,model_hc_patient_communication,,1,0,0,0
-2016-07-08 04:26:04,727 7171 [1;33m[1;49mWARNING[0m FHIR-DEV openerp.modules.loading: The model hc.res.related.person has no access rules, consider adding one. E.g. access_hc_res_related_person,access_hc_res_related_person,model_hc_res_related_person,,1,0,0,0
-2016-07-08 04:26:04,727 7171 [1;33m[1;49mWARNING[0m FHIR-DEV openerp.modules.loading: The model hc.res.location has no access rules, consider adding one. E.g. access_hc_res_location,access_hc_res_location,model_hc_res_location,,1,0,0,0
-2016-07-08 04:26:04,727 7171 [1;33m[1;49mWARNING[0m FHIR-DEV openerp.modules.loading: The model hc.related.person.identifier has no access rules, consider adding one. E.g. access_hc_related_person_identifier,access_hc_related_person_identifier,model_hc_related_person_identifier,,1,0,0,0
-2016-07-08 04:26:04,954 7171 [1;33m[1;49mWARNING[0m FHIR-DEV openerp.modules.loading: Model hc.vs.practioner.role is declared but cannot be loaded! (Perhaps a module was partially removed or renamed)
-2016-07-08 04:26:05,193 7171 [1;32m[1;49mINFO[0m FHIR-DEV openerp.modules.loading: Modules loaded.
-^^V  ^C2016-07-08 04:26:57,397 7171 [1;32m[1;49mINFO[0m FHIR-DEV openerp.service.server: Initiating shutdown
-2016-07-08 04:26:57,397 7171 [1;32m[1;49mINFO[0m FHIR-DEV openerp.service.server: Hit CTRL-C again or send a second signal to force the shutdown.
-^C
-]0;odoo@odoo-VirtualBox: /odoo/odoo-serverodoo@odoo-VirtualBox:/odoo/odoo-server$ sudo git[K[K[K[K[K[K[K[Kcd /odoo/odoo-fhir
-]0;odoo@odoo-VirtualBox: /odoo/odoo-fhirodoo@odoo-VirtualBox:/odoo/odoo-fhir$ sudo git add .
-[sudo] password for odoo: 
-]0;odoo@odoo-VirtualBox: /odoo/odoo-fhirodoo@odoo-VirtualBox:/odoo/odoo-fhir$ sdo [K[K[Kudo git commit -m "Added Lcatio[K[K[K[K[Kocaton[K[Kion Module"  -a
-[master 4d7a437] Added Location Module
- 54 files changed, 1158 insertions(+), 83 deletions(-)
- create mode 100644 addons/hc_coverage/__init__.py
- create mode 100644 addons/hc_coverage/__init__.pyc
- create mode 100644 addons/hc_coverage/__openerp__.py
- create mode 100644 addons/hc_coverage/controllers/__init__.py
- create mode 100644 addons/hc_coverage/controllers/__init__.pyc
- create mode 100644 addons/hc_coverage/controllers/controllers.py
- create mode 100644 addons/hc_coverage/controllers/controllers.pyc
- create mode 100644 addons/hc_coverage/demo/demo.xml
- create mode 100644 addons/hc_coverage/models/__init__.py
- create mode 100644 addons/hc_coverage/models/__init__.pyc
- create mode 100644 addons/hc_coverage/models/hc_res_coverage.py
- create mode 100644 addons/hc_coverage/models/hc_res_coverage.pyc
- create mode 100644 addons/hc_coverage/output.txt
- create mode 100644 addons/hc_coverage/security/ir.model.access.csv
- create mode 100644 addons/hc_coverage/views/hc_res_coverage_templates.xml
- create mode 100644 addons/hc_coverage/views/hc_res_coverage_views.xml
- create mode 100644 addons/hc_healthcare_service/__init__.py
- create mode 100644 addons/hc_healthcare_service/__init__.pyc
- create mode 100644 addons/hc_healthcare_service/__openerp__.py
- create mode 100644 addons/hc_healthcare_service/controllers/__init__.py
- create mode 100644 addons/hc_healthcare_service/controllers/__init__.pyc
- create mode 100644 addons/hc_healthcare_service/controllers/controllers.py
- create mode 100644 addons/hc_healthcare_service/controllers/controllers.pyc
- create mode 100644 addons/hc_healthcare_service/demo/demo.xml
- create mode 100644 addons/hc_healthcare_service/models/__init__.py
- create mode 100644 addons/hc_healthcare_service/models/__init__.pyc
- create mode 100644 addons/hc_healthcare_service/models/hc_res_healthcare_service.py
- create mode 100644 addons/hc_healthcare_service/models/hc_res_healthcare_service.pyc
- create mode 100644 addons/hc_healthcare_service/security/ir.model.access.csv
- create mode 100644 addons/hc_healthcare_service/views/hc_res_healthcare_service_templates.xml
- create mode 100644 addons/hc_healthcare_service/views/hc_res_healthcare_service_views.xml
- create mode 100644 addons/hc_location/__init__.py
- create mode 100644 addons/hc_location/__init__.pyc
- create mode 100644 addons/hc_location/__openerp__.py
- create mode 100644 addons/hc_location/controllers/__init__.py
- create mode 100644 addons/hc_location/controllers/__init__.pyc
- create mode 100644 addons/hc_location/controllers/controllers.py
- create mode 100644 addons/hc_location/controllers/controllers.pyc
- create mode 100644 addons/hc_location/demo/demo.xml
- create mode 100644 addons/hc_location/models/__init__.py
- create mode 100644 addons/hc_location/models/__init__.pyc
- create mode 100644 addons/hc_location/models/hc_res_location.py
- create mode 100644 addons/hc_location/models/hc_res_location.pyc
- create mode 100644 addons/hc_location/security/ir.model.access.csv
- create mode 100644 addons/hc_location/views/hc_res_location_templates.xml
- create mode 100644 addons/hc_location/views/hc_res_location_views.xml
- rewrite addons/hc_related_person/security/ir.model.access.csv (77%)
-]0;odoo@odoo-VirtualBox: /odoo/odoo-fhirodoo@odoo-VirtualBox:/odoo/odoo-fhir$ sudo git push ri[K[Korigin master
-Username for 'https://github.com': lsison@moy xl ylus.com
-Password for 'https://lsison@moxylus.com@github.com': 
-Counting objects: 76, done.
-Compressing objects:   1% (1/69)   Compressing objects:   2% (2/69)   Compressing objects:   4% (3/69)   Compressing objects:   5% (4/69)   Compressing objects:   7% (5/69)   Compressing objects:   8% (6/69)   Compressing objects:  10% (7/69)   Compressing objects:  11% (8/69)   Compressing objects:  13% (9/69)   Compressing objects:  14% (10/69)   Compressing objects:  15% (11/69)   Compressing objects:  17% (12/69)   Compressing objects:  18% (13/69)   Compressing objects:  20% (14/69)   Compressing objects:  21% (15/69)   Compressing objects:  23% (16/69)   Compressing objects:  24% (17/69)   Compressing objects:  26% (18/69)   Compressing objects:  27% (19/69)   Compressing objects:  28% (20/69)   Compressing objects:  30% (21/69)   Compressing objects:  31% (22/69)   Compressing objects:  33% (23/69)   Compressing objects:  34% (24/69)   Compressing objects:  36% (25/69)   Compressing objects:  37% (26/69)   Compressing objects:  39% (27/69)   Compressing objects:  40% (28/69)   Compressing objects:  42% (29/69)   Compressing objects:  43% (30/69)   Compressing objects:  44% (31/69)   Compressing objects:  46% (32/69)   Compressing objects:  47% (33/69)   Compressing objects:  49% (34/69)   Compressing objects:  50% (35/69)   Compressing objects:  52% (36/69)   Compressing objects:  53% (37/69)   Compressing objects:  55% (38/69)   Compressing objects:  56% (39/69)   Compressing objects:  57% (40/69)   Compressing objects:  59% (41/69)   Compressing objects:  60% (42/69)   Compressing objects:  62% (43/69)   Compressing objects:  63% (44/69)   Compressing objects:  65% (45/69)   Compressing objects:  66% (46/69)   Compressing objects:  68% (47/69)   Compressing objects:  69% (48/69)   Compressing objects:  71% (49/69)   Compressing objects:  72% (50/69)   Compressing objects:  73% (51/69)   Compressing objects:  75% (52/69)   Compressing objects:  76% (53/69)   Compressing objects:  78% (54/69)   Compressing objects:  79% (55/69)   Compressing objects:  81% (56/69)   Compressing objects:  82% (57/69)   Compressing objects:  84% (58/69)   Compressing objects:  85% (59/69)   Compressing objects:  86% (60/69)   Compressing objects:  88% (61/69)   Compressing objects:  89% (62/69)   Compressing obje

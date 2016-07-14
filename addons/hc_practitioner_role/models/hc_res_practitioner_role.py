@@ -100,16 +100,20 @@ class PractitionerSpecialty(models.Model):
 class PractitionerRoleIdentifier(models.Model): 
     _name = "hc.practitioner.role.identifier"   
     _description = "Practitioner Role Identifier"       
-    _inherit = ["hc.basic.association", "hc.identifier"]
+    _inherits = {"hc.person.identifier": "person_identifier_id"}
     
+    person_identifier_id = fields.Many2one(
+        comodel_name="hc.person.identifier", 
+        string="Person Identifier",
+        required=True, 
+        ondelete="restrict", 
+        help="Identifier associated with this practitioner role.")
     practitioner_role_id = fields.Many2one(
         comodel_name="hc.res.practitioner.role",  
-        string="Practitioner Role", 
+        string="Practitioner Role",
         help="Practitioner role associated with this identifier.")              
-    # identifier_id = fields.Many2one(
-    #     comodel_name="hc.identifier", 
-    #     string="Identifier", 
-    #     help="Identifier associated with this practitioner role.")               
+
+              
     # identifier_use = fields.Selection(
     #     string="Identifier Use", 
     #     selection=[

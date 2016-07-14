@@ -1,0 +1,22 @@
+<openerp>
+    <data>
+
+        <!-- Group Action and Menu -->  
+    
+        <act_window id="hc_res_group_action"    
+                    name="HC Groups"
+                    res_model="hc.res.group"
+                    view_mode="tree,form"
+                    domain=""
+                    context=""
+                    limit=""/>
+
+        <menuitem id="hc_group.menu_group" 
+                  name="Groups" 
+                  parent="hc_base.menu_id_grp" 
+                  action="hc_res_group_action"
+                  groups="hc_base.group_hc_base_manager" 
+                  sequence="30"/>
+
+    </data>
+</openerp>

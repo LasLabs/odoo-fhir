@@ -3,10 +3,14 @@
     'name': "Patient",
 
     'summary': """
-        Demographics and other administrative information about an individual or animal receiving care or other health-related services.
+        Person or animal receiving health-related services
         """,
 
     'description': """
+        Demographics and other administrative information about an individual or animal receiving care or other health-related services.
+
+        **Scope and Usage**
+
         This Resource covers data about patients and animals involved in a wide range of health-related activities, including:
 
         * Curative activities
