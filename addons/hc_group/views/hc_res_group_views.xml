@@ -1,6 +1,91 @@
 <openerp>
     <data>
 
+        <!-- Group Action and Menu -->										
+										
+        <act_window id="hc_res_group_action"										
+        	name="HC Groups"									
+        	res_model="hc.res.group"									
+        	view_mode="tree,form"									
+        	domain=""									
+        	context=""									
+        	limit=""/>									
+        										
+        <!-- Group Views -->										
+        										
+        <record id="hc_res_group_view_search" model="ir.ui.view">										
+        	<field name="name">Group Search</field>									
+        	<field name="model">hc.res.group</field>									
+        	<field name="arch" type="xml">									
+        		<search string="Groups">								
+        			<field name="name"/>							
+        			<field name="type"/>							
+        		</search>								
+        	</field>									
+        </record>										
+        										
+        <record id="hc_res_group_view_tree" model="ir.ui.view">										
+        	<field name="name">Group Tree</field>									
+        	<field name="model">hc.res.group</field>									
+        	<field name="arch" type="xml">									
+        		<tree string="Groups">								
+        			<field name="name"/>							
+        			<field name="code_id"/>							
+        			<field name="type"/>							
+        			<field name="quantity"/>							
+        		</tree>								
+        	</field>									
+        </record>										
+        										
+        <record id="hc_res_group_view_form" model="ir.ui.view">										
+        	<field name="name">Group Form</field>									
+        	<field name="model">hc.res.group</field>									
+        	<field name="arch" type="xml">									
+        		<form string="Group">								
+        			<sheet>							
+        				<div class="oe_title oe_left">						
+        					<h1>					
+        						<field name="name" default_focus="1" placeholder="Patient"/>				
+        					</h1>					
+        				</div>						
+        				<group>						
+        					<group>					
+        						<field name="code_id"/>				
+        						<field name="type"/>				
+        						<field name="quantity"/>				
+        					</group>					
+        					<group>					
+        						<field name="is_actual"/>				
+        						<field name="is_active"/>				
+        					</group>					
+        				</group>						
+        				<notebook colspan="4">						
+        					<page string="Identifiers"/>					
+        					<page string="Characteristics"/>					
+        					<page string="Members">					
+        						<field name="members_ids" mode="tree">				
+        							<tree>			
+        								<field name="entity_type" widget="radio"/>		
+        								<field name="entity_patient_id" widget="radio"/>		
+        							</tree>			
+        							<form>			
+        								<sheet>		
+        									<group col="4" colspan="4">	
+        										<field name="entity_type" widget="radio" colspan="4"/>
+        										<field name="entity_patient" class="oe_no_button"/>
+        									</group>	
+        								</sheet>		
+        							</form>			
+        						</field>				
+        					</page>					
+        				</notebook>						
+        			</sheet>							
+        		</form>								
+        	</field>									
+        </record>										
+
+
+
         <!-- Group Action and Menu -->  
     
         <act_window id="hc_res_group_action"    
