@@ -27,6 +27,7 @@ sudo wget https://raw.githubusercontent.com/luigisison/moxylus/master/Odoo8/odoo
 sudo mkdir mydir --create directory
 sudo rm -rf mydir --delete directory
 clear --clear the terminal screen
+sudo touch /odoo/odoo-fhir/addons/hc_allergy_intolerance/views/hc_route_codes_views.xml --create file
 ```
 * Update GIT
 ```
