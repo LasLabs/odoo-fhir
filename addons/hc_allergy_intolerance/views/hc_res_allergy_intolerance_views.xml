@@ -160,8 +160,16 @@
         <menuitem id="hc_allergy_intolerance.menu_allergy" 
                   name="Allergy Intolerances" 
                   parent="hc_base.menu_clinic_gen" 
-                  action="hc_res_allergy_intolerance_action" 
+                  action="hc_res_allergy_intolerance_action"
+                  groups="group_hc_base_manager"
                   sequence="10"/>
+        
+        <menuitem id="hc_base.menu_vs_route_admin" 
+                  name="Routes of Administration" 
+                  parent="hc_base.menu_vs" 
+                  action="hc_vs_route_codes_action"
+                  groups="group_hc_base_manager"
+                  sequence="11"/>
 
     </data>
 </openerp>
