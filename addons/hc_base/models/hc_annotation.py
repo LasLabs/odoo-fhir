@@ -19,7 +19,7 @@ class Annotation(models.AbstractModel):
         string="Recorded Date", 
         help="When the annotation was made.")
     author_type = fields.Selection(
-    	string="Author Type", 
+        string="Author Type", 
         selection=[
             ("string", "String"),
             ("practitioner", "Practitioner"),
@@ -46,7 +46,9 @@ class Annotation(models.AbstractModel):
     # @api.multi
     # def compute_author_name(self):
     #     for hc_annot in self:
-    #         if hc_annotation.author_type == 'practitioner':
+    #         if hc_annotation.author_type == 'string':
+    #             hc_annotation.author_name = hc_annotation.author_string
+    #         elif hc_annotation.author_type == 'practitioner':
     #             hc_annotation.author_name = hc_annotation.author_practitioner_id.name
     #         elif hc_annotation.author_type == 'patient':
     #             hc_annotation.author_name = hc_annotation.author_patient_id.name

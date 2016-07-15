@@ -66,6 +66,17 @@ class AllergyIntolerance(models.Model):
     recorded_date = fields.Datetime(
         string="Recorded Date", 
         help="When recorded.")                  
+    
+    recorder_type = fields.Selection(
+        string="Recorder Type", 
+        selection=[
+            ("practitioner", "Practitioner"),
+            ("patient", "Patient")],
+        help="Type of individual who recorded the sensitivity.")
+    recorder_name = fields.Char(
+        string="Recorder",
+        compute="compute_recorder_name",
+        help="Individual who recorded the sensitivity.")
     recorder_practitioner_id = fields.Many2one(
         comodel_name="hc.res.practitioner", 
         string="Recorder Practitioner", 
@@ -74,6 +85,18 @@ class AllergyIntolerance(models.Model):
         comodel_name="hc.res.patient", 
         string="Recorder Patient", 
         help="Patient who recorded the sensitivity.")                   
+    
+    reporter_type = fields.Selection(
+        string="Reporter Type", 
+        selection=[
+            ("practitioner", "Practitioner"),
+            ("patient", "Patient"),
+            ("related person", "Related Person")],
+        help="Type of source of the information about the allergy.")
+    reporter_name = fields.Char(
+        string="Reporter",
+        compute="compute_reporter_name",
+        help="Individuals ource of the information about the allergy.")
     reporter_patient_id = fields.Many2one(
         comodel_name="hc.res.patient", 
         string="Reporter Patient", 
@@ -86,6 +109,7 @@ class AllergyIntolerance(models.Model):
         comodel_name="hc.res.practitioner", 
         string="Reporter Practitioner", 
         help="Practitioner source of the information about the allergy.")                    
+    
     onset = fields.Datetime(
         string="Onset Date", 
         help="Date(/time) when manifestations showed.")                    
@@ -103,6 +127,25 @@ class AllergyIntolerance(models.Model):
         string="Reactions", 
   
         help="Adverse Reaction Events linked to exposure to substance.")
+
+    @api.multi
+    def compute_recorder_name(self):
+        for hc_annotation in self:
+
+            if hc_annotation.recorder_type == 'practitioner':
+                hc_annotation.recorder_name = hc_annotation.recorder_practitioner_id.name
+            elif hc_annotation.recorder_type == 'patient':
+                hc_annotation.recorder_name = hc_annotation.recorder_patient_id.name
+            
+    @api.multi
+    def compute_reporter_name(self):
+        for hc_annotation in self:
+            if hc_annotation.reporter_type == 'practitioner':
+                hc_annotation.reporter_name = hc_annotation.reporter_practitioner_id.name
+            elif hc_annotation.reporter_type == 'patient':
+                hc_annotation.reporter_name = hc_annotation.reporter_patient_id.name
+            elif hc_annotation.reporter_type == 'related person':
+                hc_annotation.reporter_name = hc_annotation.reporter_related_person_id.name
 
     # @api.depends('patient','substance','patient_id','substance_id')
     # def compute_allergy(self):
@@ -181,7 +224,19 @@ class AllergyIntoleranceAnnotation(models.Model):
     allergy_intolerance_id = fields.Many2one(
         comodel_name="hc.res.allergy.intolerance", 
         string="Allergy Intolerance", 
-        help="Allergy Intolerance with this annotation.")                 
+        help="Allergy Intolerance with this annotation.")
+
+    @api.multi
+    def compute_author_name(self):
+        for hc_allergy_intolerance_annotation in self:
+            if hc_allergy_intolerance_annotation.author_type == 'string':
+                hc_allergy_intolerance_annotation.author_name = hc_allergy_intolerance_annotation.author_string
+            elif hc_allergy_intolerance_annotation.author_type == 'practitioner':
+                hc_allergy_intolerance_annotation.author_name = hc_allergy_intolerance_annotation.author_practitioner_id.name
+            elif hc_allergy_intolerance_annotation.author_type == 'patient':
+                hc_allergy_intolerance_annotation.author_name = hc_allergy_intolerance_annotation.author_patient_id.name
+            elif hc_allergy_intolerance_annotation.author_type == 'related person':
+                hc_allergy_intolerance_annotation.author_name = hc_allergy_intolerance_annotation.author_related_person_id.name                    
 
 class AllergyIntoleranceReactionAnnotation(models.Model):   
     _name = "hc.allergy.intolerance.reaction.annotation"    
@@ -191,7 +246,19 @@ class AllergyIntoleranceReactionAnnotation(models.Model):
     allergy_intolerance_reaction_id = fields.Many2one(
         comodel_name="hc.allergy.intolerance.reaction", 
         string="Allergy Intolerance Reaction", 
-        help="Allergy Intolerance Reaction with this annotation.")                 
+        help="Allergy Intolerance Reaction with this annotation.")
+
+    @api.multi
+    def compute_author_name(self):
+        for hc_allergy_intolerance_reaction_annotation in self:
+            if hc_allergy_intolerance_reaction_annotation.author_type == 'string':
+                hc_allergy_intolerance_reaction_annotation.author_name = hc_allergy_intolerance_reaction_annotation.author_string
+            elif hc_allergy_intolerance_reaction_annotation.author_type == 'practitioner':
+                hc_allergy_intolerance_reaction_annotation.author_name = hc_allergy_intolerance_reaction_annotation.author_practitioner_id.name
+            elif hc_allergy_intolerance_reaction_annotation.author_type == 'patient':
+                hc_allergy_intolerance_reaction_annotation.author_name = hc_allergy_intolerance_reaction_annotation.author_patient_id.name
+            elif hc_allergy_intolerance_reaction_annotation.author_type == 'related person':
+                hc_allergy_intolerance_reaction_annotation.author_name = hc_allergy_intolerance_reaction_annotation.author_related_person_id.name                  
               
 class AllergyIntoleranceSubstanceCode(models.Model):    
     _name = "hc.vs.allergy.intolerance.substance.code"  
