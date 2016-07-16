@@ -93,6 +93,7 @@ sudo git push origin master
 
 When remote repository changes or when error "! [rejected] master -> master (fetch first) error" occurs
 ```
+cd /odoo/odoo-fhir
 sudo git fetch origin
 sudo git pull origin master
 ```
