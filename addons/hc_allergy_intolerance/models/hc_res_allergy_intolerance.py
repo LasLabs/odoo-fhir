@@ -120,7 +120,7 @@ class AllergyIntolerance(models.Model):
         comodel_name="hc.allergy.intolerance.annotation", 
         inverse_name="allergy_intolerance_id", 
         string="Notes", 
-        help="Additional text not captured in other fields.")
+        help="Additional text (i.e., comment, explanation) not captured in other fields.")
     reaction_ids = fields.One2many(
         comodel_name="hc.allergy.intolerance.reaction", 
         inverse_name="allergy_intolerance_id", 

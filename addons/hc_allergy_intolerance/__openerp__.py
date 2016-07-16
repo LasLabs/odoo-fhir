@@ -46,6 +46,7 @@
         'security/ir.model.access.csv',
         'views/hc_res_allergy_intolerance_views.xml',
         'views/hc_res_allergy_intolerance_templates.xml',
+        'views/hc_route_codes_views.xml',
     ],
     # only loaded in demonstration mode
     'demo': [

@@ -2,24 +2,6 @@
 <odoo>
     <data noupdate="0">
 
-        <!-- Source -->
-
-        <record id="base.hl7v3" model="res.partner">  
-            <field name="name">HL7 v3</field>
-            <field name="company_type">company</field>
-            <field name="website">www.hl7.org</field>
-            <!-- <field name="category_id" eval="[(6, 0, [ref('partner_category_source'), ref('partner_category_document')])]"/> -->
-            <field name="country_id" ref="base.us"/>
-        </record>
-
-        <record id="base.hl7fhir" model="res.partner">  
-            <field name="name">HL7 FHIR</field>
-            <field name="company_type">company</field>
-            <field name="website">www.hl7.org</field>
-            <!-- <field name="category_id" eval="[(6, 0, [ref('partner_category_source'), ref('partner_category_document')])]"/> -->
-            <field name="country_id" ref="base.us"/>
-        </record>
-
         <!-- Participation Type -->
 
         <record id="part" model="hc.vs.participation.type"> 

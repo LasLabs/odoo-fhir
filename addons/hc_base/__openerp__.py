@@ -25,9 +25,10 @@
     'data': [
         'security/hc_base_security.xml',
         'security/ir.model.access.csv',
+        'data/data_partner_category.xml',
+        'data/data_source.xml',
         'data/data_identifier_type.xml',
         'data/data_participation_type.xml',
-        'data/data_partner_category.xml',
         'data/hc_base_data.xml',
         # 'data/l10n_au/country_pl.xml',
         'data/l10n_ph/country_pl.xml',

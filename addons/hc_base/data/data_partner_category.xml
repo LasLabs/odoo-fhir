@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data noupdate="0">
-    
-    
-        <!-- Partner Category -->
 
         <record id="source" model="res.partner.category">  
             <field name="name">Source</field>
