@@ -3,10 +3,13 @@
     'name': "Practitioner Role",
 
     'summary': """
-        A specific set of Roles/Locations/specialties/services that a practitioner may perform at an organization for a period of time.
+        Practitioner Roles/Locations/specialties/services
     """,
 
     'description': """
+        A specific set of Roles/Locations/specialties/services that a practitioner may perform at an organization for a period of time.
+
+        **Scope and Usage**
         PractitionerRole covers the recording of the location and types of services that Practitioners are able to provide for an organization.
 
         The role, specialty, Location telecom and HealthcareService properties can be repeated if required in other instances of the PractitionerRole. 

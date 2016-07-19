@@ -3,12 +3,16 @@
     'name': "Allergy Intolerance",
 
     'summary': """
-        Risk of harmful or undesirable, 
-        physiological response which is unique to an individual 
-        and associated with exposure to a substance.
+        Allergy, Intolerance
     """,
 
     'description': """
+        Risk of harmful or undesirable, 
+        physiological response which is unique to an individual 
+        and associated with exposure to a substance.
+
+        **Scope and Usage**
+
         A record of a clinical assessment of an allergy or intolerance; 
         a propensity, or a potential risk to an individual, to have an 
         adverse reaction on future exposure to the specified substance, 
@@ -35,13 +39,14 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['hc_base'],
+    'depends': ['hc_related_person'],
 
     # always loaded
     'data': [
-        # 'security/ir.model.access.csv',
-        'views/views.xml',
-        'views/templates.xml',
+        'security/ir.model.access.csv',
+        'views/hc_res_allergy_intolerance_views.xml',
+        'views/hc_res_allergy_intolerance_templates.xml',
+        'views/hc_route_codes_views.xml',
     ],
     # only loaded in demonstration mode
     'demo': [

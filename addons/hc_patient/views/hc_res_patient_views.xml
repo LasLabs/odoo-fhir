@@ -229,7 +229,8 @@
         <record id="hc_res_patient_action" model="ir.actions.act_window">                       
             <field name="name">HC Patients</field>                  
             <field name="type">ir.actions.act_window</field>                    
-            <field name="res_model">hc.res.patient</field>                                
+            <field name="res_model">hc.res.patient</field>
+<!--             <field name="context">{'default_is_patient':'value'}</field>  -->                           
             <field name="view_type">form</field>                    
             <field name="view_mode">tree,form</field>                   
         </record>

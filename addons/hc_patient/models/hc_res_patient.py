@@ -435,3 +435,11 @@ class Annotation(models.Model):
         comodel_name="hc.res.patient", 
         string="Author Patient", 
         help="Patient responsible for the annotation.")
+
+    @api.multi
+    def compute_author_name(self):
+        for hc_annotation in self:
+            if hc_annotation.author_type == 'string':
+                hc_annotation.author_name = hc_annotation.author_string
+            elif hc_annotation.author_type == 'patient':
+                hc_annotation.author_name = hc_annotation.author_patient_id.name

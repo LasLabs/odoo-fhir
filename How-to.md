@@ -5,7 +5,7 @@
 * Go to Ubuntu directory where you want to install the software. For example: ```cd /opt```
 * Place install script in the directory
 ```
-# Odoo 9 Enterprise
+#Odoo 9 Enterprise
 sudo wget https://raw.githubusercontent.com/luigisison/moxylus/master/Odoo9Enterprise/odoo-install.sh
 
 #Odoo 9 Community
@@ -21,12 +21,13 @@ sudo wget https://raw.githubusercontent.com/luigisison/moxylus/master/Odoo8/odoo
 
 #Linux
 
-## Cheatsheet
+##Cheatsheet
 
 ```
 sudo mkdir mydir --create directory
 sudo rm -rf mydir --delete directory
 clear --clear the terminal screen
+sudo touch /odoo/odoo-fhir/addons/hc_allergy_intolerance/views/hc_route_codes_views.xml --create file
 ```
 * Update GIT
 ```
@@ -36,49 +37,50 @@ sudo apt-get install git
 sudo git --version
 ```
 
-# GitHub
+#GitHub
 
 * Reference: [How to Install Git on Ubuntu](https://www.digitalocean.com/community/tutorials/how-to-install-git-on-ubuntu-14-04)
 * Reference: [Git - Installng Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 * Reference: [Ubuntu Server Guide](https://help.ubuntu.com/lts/serverguide/git.html)
 
-## Setup - Do once
+##Setup - Do once
 
-### Install Git dependencies
+###Install Git dependencies
 ```
 sudo apt-get install build-essential libssl-dev libcurl4-gnutls-dev libexpat1-dev gettext unzip
 ```
 
-### Install Git
+###Install Git
+* [Check latest version](https://github.com/git/git/tree/master/Documentation)
 ```
 cd /opt
-sudo wget https://github.com/git/git/archive/v2.8.0.zip -O git.zip
+sudo wget https://github.com/git/git/archive/v2.9.2.zip -O git.zip
 sudo unzip git.zip
 cd git-*
 sudo make prefix=/usr/local install
 ```
-### Register GitHub account
+###Register GitHub account
 ```
 git config --list
 git config --global user.name "Luigi Sison"
 git config --global user.email lsison@moxylus.com
 ```
 
-### Initialize odoo-fhir with content from GitHub
+###Initialize odoo-fhir with content from GitHub
 ```
 cd /odoo
 sudo git clone --depth 1 https://github.com/luigisison/odoo-fhir.git
 ```
 
-### Setup addons directory /odoo/odoo-fhir/addons
+###Setup addons directory /odoo/odoo-fhir/addons
 ```
 sudo nano /etc/odoo-server.conf
 addons_path=/odoo/odoo-server/openerp/addons,/odoo/odoo-server/addons,/odoo/odoo-fhir/addons,/odoo/odoo-server/addons/web_kanban
 ```
 
-## Do every time a change occurs
+##Do every time a change occurs
 
-### Upload changes
+###Upload changes
 ```
 cd /odoo/odoo-fhir
 sudo git add .
@@ -91,6 +93,7 @@ sudo git push origin master
 
 When remote repository changes or when error "! [rejected] master -> master (fetch first) error" occurs
 ```
+cd /odoo/odoo-fhir
 sudo git fetch origin
 sudo git pull origin master
 ```
@@ -163,7 +166,7 @@ cd /usr/lib/python2.7/dist-packages/reportlab/
 sudo mkdir fonts
 ```
 
-* download [pfbfer.zip] (http://www.reportlab.com/ftp/fonts/pfbfer.zip) to download folder
+* download [pfbfer.zip](http://www.reportlab.com/ftp/fonts/pfbfer.zip) to download folder
 * extract it
 * Put all files in `/usr/lib/python2.7/dist-packages/reportlab/fonts/`
 

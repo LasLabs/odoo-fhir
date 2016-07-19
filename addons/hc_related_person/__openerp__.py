@@ -3,13 +3,16 @@
     'name': "Related Person",
 
     'summary': """
-        Information about a person that is involved in the care for a patient, but who is not the target of healthcare, nor has a formal responsibility in the care process.
+        A related person or animal involved in patient care but with no formal responsibility
         """,
 
     'description': """
-        RelatedPersons typically have a personal or non-healthcare-specific professional relationship to the patient. A RelatedPerson resource is primarily used for attribution of information, since RelatedPersons are often a source of information about the patient. For keeping information about people for contact purposes for a patient, use a Patient's Contact element. Some individuals may serve as both a Patient's Contact and a Related Person.
+        Information about a person or animal that is involved in the care for a patient, but who is not the target of healthcare, nor has a formal responsibility in the care process.
 
-        Example RelatedPersons are:
+        **Scope and Usage**
+        Related Persons typically have a personal or non-healthcare-specific professional relationship to the patient. A RelatedPerson resource is primarily used for attribution of information, since RelatedPersons are often a source of information about the patient. For keeping information about people for contact purposes for a patient, use a Patient's Contact element. Some individuals may serve as both a Patient's Contact and a Related Person.
+
+        Example Related Persons are:
 
         * A patient's wife or husband
         * A patient's relatives or friends
@@ -29,7 +32,7 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['hc_patient'],
+    'depends': ['hc_practitioner'],
 
     # always loaded
     'data': [

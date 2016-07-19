@@ -3,10 +3,14 @@
     'name': "Practitioner",
 
     'summary': """
-        A person who is directly or indirectly involved in the provisioning of healthcare.
+        Physician, nurse, allied health professional, administrative personnnel, service animal, etc.
     """,
 
     'description': """
+        A person or animal who is directly or indirectly involved in the provisioning of healthcare.
+
+        **Scope and Usage**
+
         Practitioner covers all individuals who are engaged in the healthcare process and healthcare-related services as part of their formal responsibilities and this Resource is used for attribution of activities and responsibilities to these individuals. Practitioners include (but are not limited to):
 
         * physicians, dentists, pharmacists

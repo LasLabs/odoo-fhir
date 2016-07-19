@@ -223,3 +223,15 @@ class Annotation(models.Model):
         comodel_name="hc.res.related.person", 
         string="Author Related Person", 
         help="Related person responsible for the annotation.")
+
+    @api.multi
+    def compute_author_name(self):
+        for hc_annotation in self:
+            if hc_annotation.author_type == 'string':
+                hc_annotation.author_name = hc_annotation.author_string
+            elif hc_annotation.author_type == 'patient':
+                hc_annotation.author_name = hc_annotation.author_patient_id.name
+            elif hc_annotation.author_type == 'practitioner':
+                hc_annotation.author_name = hc_annotation.author_practitioner_id.name
+            elif hc_annotation.author_type == 'related person':
+                hc_annotation.author_name = hc_annotation.author_related_person_id.name

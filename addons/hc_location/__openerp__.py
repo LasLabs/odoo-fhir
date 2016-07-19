@@ -10,7 +10,7 @@
         Details and position information for a physical place where services are provided 
         and resources and participants may be stored, found, contained or accommodated.
 
-        Scope and Usage
+        **Scope and Usage**
 
         A Location includes both incidental locations (a place which is used for healthcare without prior designation or authorization) 
         and dedicated, formally appointed locations. Locations may be private, public, mobile or fixed and scale from small freezers to 

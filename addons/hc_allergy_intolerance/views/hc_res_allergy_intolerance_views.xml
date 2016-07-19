@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <!-- Allergy Intolerance Views -->          
+                
+        <record id="hc_res_allergy_intolerance_view_search" model="ir.ui.view">         
+            <field name="name">Allergy Intolerance Search</field>       
+            <field name="model">hc.res.allergy.intolerance</field>      
+            <field name="arch" type="xml">      
+                <search string="Allergy Intolerances">
+                    <!-- <field name="substance_id"/>
+                    <field name="patient_id"/> -->
+                </search>   
+            </field>        
+        </record>           
+   
+        <record id="hc_res_allergy_intolerance_view_tree" model="ir.ui.view">            
+            <field name="name">Allergy Intolerance Tree</field>     
+            <field name="model">hc.res.allergy.intolerance</field>      
+            <field name="arch" type="xml">      
+                <tree string="Allergy Intolerances">
+                    <field name="patient_id"/>
+                    <field name="substance_id"/>
+                </tree> 
+            </field>        
+        </record>
+
+        <record id="hc_res_allergy_intolerance_view_form" model="ir.ui.view">                                       
+            <field name="name">Allergy Intolerance Form</field>                                 
+            <field name="model">hc.res.allergy.intolerance</field>                                  
+            <field name="arch" type="xml">                                  
+                <form string="Allergy Intolerance">                             
+                    <sheet>                                
+                        <div class="oe_title oe_left">                      
+                            <h1>                    
+                                <field name="patient_id" default_focus="1" placeholder="Patient"/>              
+                            </h1>                   
+                        </div>                      
+                        <div name="buttons" class="oe_right oe_button_box"></div>                       
+                        <group>                     
+                            <group>                 
+                                <field name="substance_id"/>
+                                <field name="status"/>              
+                                <field name="type"/>                
+                            </group>                    
+                            <group>                 
+                            </group>                    
+                        </group>                        
+                        <notebook colspan="4">                                        
+                            <page string="Reactions">                   
+                                <field name="reaction_ids" mode="tree">             
+                                    <tree>              
+                                        <field name="description"/>      
+                                        <field name="onset"/>       
+                                        <field name="duration"/>        
+                                        <field name="severity"/>     
+                                    </tree>         
+                                    <form>          
+                                        <sheet>
+                                        <div class="oe_title oe_left">                      
+                                            <h1>                    
+                                                <field name="substance_id" readonly="1"/>              
+                                            </h1>
+                                        </div>     
+                                            <group col="4" colspan="4">
+                                                <group>   
+                                                    <field name="description"/>      
+                                                    <field name="onset"/>       
+                                                    <field name="duration"/>        
+                                                </group>
+                                                <group>
+                                                    <field name="severity"/>
+                                                    <field name="certainty"/>
+                                                    <field name="manifestation_ids" widget="many2many_tags"/>          
+                                                    <field name="exposure_route_id"/>
+                                                </group>
+                                            </group>
+                                            <notebook>
+                                                <page string="Notes">
+                                                    <field name="note_ids" mode="tree">
+                                                        <tree>
+                                                            <field name="annotation"/>
+                                                            <field name="author_type"/>
+                                                            <field name="recorded_date"/>
+                                                        </tree>
+                                                        <form>
+                                                            <sheet>
+                                                                <field name="annotation" placeholder="Annotation"/>
+                                                                <field name="author_type" placeholder="Author Type"/>
+                                                                <field name="recorded_date" placeholder="Recorded Date"/>
+                                                            </sheet>
+                                                        </form>
+                                                    </field>
+                                                </page>
+                                            </notebook>    
+                                        </sheet>        
+                                    </form>         
+                                </field>                
+                            </page>
+                            <page string="Identifiers"/>                    
+                            <page string="Annotations">
+                                <field name="note_ids" mode="tree">
+                                    <tree>
+                                        <field name="annotation"/>    
+                                        <field name="author_name"/>
+                                        <field name="author_type"/>       
+                                        <field name="recorded_date"/> 
+                                    </tree>
+                                    <form>
+                                        <sheet>
+                                            <div class="oe_title oe_left">          
+                                                <h1>        
+                                                    <field name="annotation" default_focus="1" placeholder="Annotation"/>
+                                                </h1>     
+                                            </div>          
+                                            <group>         
+                                                <group>
+                                                    <field name="author_type"/>
+                                                    <field name="author_string" attrs="{'invisible': [('author_type','!=','string')]}"/>
+                                                    <field name="author_patient_id" attrs="{'invisible': [('author_type','!=','patient')]}"/>
+                                                    <field name="author_practitioner_id" attrs="{'invisible': [('author_type','!=','practitioner')]}"/>
+                                                    <field name="author_related_person_id" attrs="{'invisible': [('author_type','!=','related person')]}"/>          
+                                                    <field name="recorded_date"/>
+                                                </group>
+                                                <group>       
+                                                </group>
+                                            </group>
+                                        </sheet>
+                                    </form>
+                                </field>
+                            </page>                                       
+                        </notebook>                     
+                    </sheet>                            
+                </form>                             
+            </field>                                    
+        </record>                                       
+
+
+        <!-- Attachment Type Action and Menu -->  
+      
+    <!--     <record id="hc_res_allergy_intolerance_action" model="ir.actions.act_window"> 
+            <field name="name">HC Allergy Intolerances</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hc.res.allergy.intolerance</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>  -->
+
+        <!-- Allergy Intolerance Action and Menu -->    
+        
+        <act_window id="hc_res_allergy_intolerance_action"  
+                    name="HC Allergy Intolerances"
+                    res_model="hc.res.allergy.intolerance"
+                    view_mode="tree,form"
+                    domain=""
+                    context=""
+                    limit=""/>
+
+        <menuitem id="hc_allergy_intolerance.menu_allergy" 
+                  name="Allergy Intolerances" 
+                  parent="hc_base.menu_clinic_gen" 
+                  action="hc_res_allergy_intolerance_action"
+                  groups="hc_base.group_hc_base_manager"
+                  sequence="10"/>
+        
+    </data>
+</openerp>
