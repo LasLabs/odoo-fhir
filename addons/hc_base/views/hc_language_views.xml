@@ -10,6 +10,9 @@
                 <search string="Languages">      
                     <field name="name"/>
                     <field name="code"/>
+                    <field name="iso3_code"/>
+                    <field name="country_id"/>
+                    <field name="language"/>
                 </search>       
             </field>          
         </record>           
@@ -22,6 +25,9 @@
                 <field name="name"/>
                 <field name="display_name"/>
                 <field name="code"/>
+                <field name="iso3_code"/>
+                <field name="country_id"/>
+                <field name="language"/>
             </tree>       
             </field>          
         </record>           

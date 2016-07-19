@@ -26,6 +26,21 @@ class lang(models.Model):
         string ='Direction', 
         required=True)
 
+    iso3_code = fields.Char(
+        string="ISO3 code",
+        size=16, 
+        help="A 3-character representation of the ISO language code.")
+
+    country_id = fields.Many2one(
+        comodel_name="res.country", 
+        string="Country", 
+        help="Country that the ISO language belongs to.")
+
+    language = fields.Char(
+        string="Language",
+        size=16,
+        help="A language.")
+
 class LanguageProficiency(models.Model): 
     _name = "hc.vs.language.proficiency"   
     _description = "Language Proficiency"
@@ -38,16 +53,16 @@ class LanguageSkill(models.Model):
 
 # External Reference
 
-class lang(models.Model):
-    _inherit = ["res.lang"]
+# class lang(models.Model):
+#     _inherit = ["res.lang"]
 
-    iso3_code = fields.Char(
-        string="ISO3 code",
-        size=16, 
-        help="A 3-character representation of the ISO language code.")
+#     iso3_code = fields.Char(
+#         string="ISO3 code",
+#         size=16, 
+#         help="A 3-character representation of the ISO language code.")
 
-    country_id = fields.Many2one(
-        comodel_name="res.country", 
-        string="Country", 
-        help="Country that the ISO language belongs to.")
+#     country_id = fields.Many2one(
+#         comodel_name="res.country", 
+#         string="Country", 
+#         help="Country that the ISO language belongs to.")
 
