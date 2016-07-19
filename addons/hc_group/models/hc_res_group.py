@@ -6,9 +6,21 @@ class Group(models.Model):
     _name = "hc.res.group"    
     _description = "Group"        
 
-    identifier_ids = fields.One2many(comodel_name="hc.group.identifier", inverse_name="group_id", string="Identifier", help="Unique id.")                
-    type = fields.Selection(string="Type", required="True", selection=[("person", "Person"), ("animal", "Animal"), ("practitioner", "Practitioner"), ("device", "Device"), ("medication", "Medication"), ("substance", "Substance")], help="Identifies the broad classification of the kind of resources the group includes.")                
-    is_actual = fields.Boolean(string="Actual", default=True, help="Descriptive or actual.")                
+    identifier_ids = fields.One2many(
+        comodel_name="hc.group.identifier", 
+        inverse_name="group_id", 
+        string="Identifier", 
+        help="Unique id.")                
+    type = fields.Selection(
+        string="Type", required="True", 
+        selection=[
+            ("person", "Person"), 
+            ("animal", "Animal"), 
+            ("practitioner", "Practitioner"), ("device", "Device"), ("medication", "Medication"), ("substance", "Substance")], 
+        help="Identifies the broad classification of the kind of resources the group includes.")                
+    is_actual = fields.Boolean(
+        string="Actual", default=True, 
+        help="Descriptive or actual.")                
     is_active = fields.Boolean(string="Active", default=True, help="Whether this group's record is in active use.")                
     code_id = fields.Many2one(comodel_name="hc.vs.group.code", string="Code", help="Kind of Group members.")                
     name = fields.Char(string="Name", help="Label for Group.")                

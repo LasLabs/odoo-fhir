@@ -20,14 +20,14 @@
             <field name="country_id" ref="base.us"/>
         </record>
 
-<!--         <record id="base.snomed" model="res.partner">  
+        <record id="base.snomed" model="res.partner">  
             <field name="name">SNOMED CT</field>
             <field name="company_type">company</field>
             <field name="website">www.ihtsdo.org/snomed-ct</field>
             <field name="notify_email">none</field>
             <field name="category_id" eval="[(6, 0, [ref('hc_base.source'), ref('hc_base.organization')])]"/>
             <field name="country_id" ref="base.dk"/>
-        </record> -->
+        </record>
 
     </data>
 </openerp>
