@@ -6,8 +6,9 @@
         <record id="hc_language_view_search" model="ir.ui.view">            
             <field name="name">Language Search</field>          
             <field name="model">hc.vs.language</field>         
-            <field name="arch" type="xml">          
-                <search string="Languages">      
+            <field name="arch" type="xml">
+            <field name="country" context="{'group_by':'country_id'}"/>          
+                <search string="Languages"> 
                     <field name="name"/>
                     <field name="code"/>
                     <field name="iso3_code"/>
