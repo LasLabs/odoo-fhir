@@ -26,7 +26,7 @@
         'security/hc_base_security.xml',
         'security/ir.model.access.csv',
         # 'data/data_identifier_type.xml',
-        'data/data_language.xml',
+        # 'data/data_language.xml',
         # 'data/data_participation_type.xml',
         'data/data_partner_category.xml',
         'data/data_partner_category.xml',
