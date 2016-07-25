@@ -47,7 +47,6 @@ class lang(models.Model):
         help="Country that the ISO language belongs to.")
     language = fields.Char(
         string="Language",
-        size=16,
         help="A language.")
 
 class LanguageProficiency(models.Model): 
