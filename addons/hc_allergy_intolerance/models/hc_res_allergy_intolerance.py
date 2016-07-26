@@ -176,7 +176,7 @@ class AllergyIntoleranceReaction(models.Model):
             ("confirmed", "Confirmed")], 
         help="Statement about the degree of clinical certainty that a Specific Substance was the cause of the Manifestation in a reaction event.")                   
     manifestation_ids = fields.Many2many(
-        comodel_name="hc.vs.manifestation.codes",
+        comodel_name="hc.vs.manifestation.code",
         string="Manifestations", 
         required=True, 
         help="Clinical symptoms and/or signs that are observed or associated with an Adverse Reaction Event.")
@@ -197,7 +197,7 @@ class AllergyIntoleranceReaction(models.Model):
             ("severe", "Severe")], 
         help="Clinical assessment of the severity of a reaction event as a whole, potentially considering multiple different manifestations.")                    
     exposure_route_id = fields.Many2one(
-        comodel_name="hc.vs.route.codes", 
+        comodel_name="hc.vs.route.code", 
         string="Exposure Route", 
         help="The route or physiological path of administration of a therapeutic agent into or onto the body of a subject.")                 
     note_ids = fields.One2many(
@@ -270,14 +270,14 @@ class SubstanceCode(models.Model):
     _description = "Substance Code"     
     _inherit = ["hc.value.set.contains"]    
 
-class ManifestationCodes(models.Model): 
-    _name = "hc.vs.manifestation.codes" 
-    _description = "Manifestation Codes"        
+class ManifestationCode(models.Model): 
+    _name = "hc.vs.manifestation.code" 
+    _description = "Manifestation Code"        
     _inherit = ["hc.value.set.contains"]    
 
-class RouteCodes(models.Model): 
-    _name = "hc.vs.route.codes" 
-    _description = "Route Codes"        
+class RouteCode(models.Model): 
+    _name = "hc.vs.route.code" 
+    _description = "Route Code"        
     _inherit = ["hc.value.set.contains"]    
 
 # External Reference

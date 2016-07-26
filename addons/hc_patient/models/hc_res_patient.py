@@ -107,6 +107,11 @@ class Patient(models.Model):
         "is_patient": True,
         }
 
+    @api.model
+    def create(self, vals):
+        vals['is_patient'] = self.env.context.get('is_patient', False)
+        return super(Patient, self).create(vals)
+
 class PatientIdentifier(models.Model):  
     _name = "hc.patient.identifier" 
     _description = "Patient Identifier"         

@@ -68,6 +68,9 @@ class Person(models.Model):
     def create(self, vals):
         name = self.env['hc.human.name'].browse(vals['name_id'])
         vals['name'] = name.first_id.name+' '+name.surname_id.name
+        vals['is_patient'] = self.env.context.get('is_patient', False)
+        vals['is_practitioner'] = self.env.context.get('is_practitioner', False)
+        vals['is_related_person'] = self.env.context.get('is_related_person', False)
         return super(Person, self).create(vals)
 
     _defaults = {

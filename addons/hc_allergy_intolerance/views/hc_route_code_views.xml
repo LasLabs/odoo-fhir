@@ -5,7 +5,7 @@
 		
         <act_window id="hc_vs_route_codes_action"		
         	        name="HC Route Codes"	
-                	res_model="hc.vs.route.codes"	
+                	res_model="hc.vs.route.code"	
                 	view_mode="tree,form"	
                 	domain=""	
                 	context=""	
