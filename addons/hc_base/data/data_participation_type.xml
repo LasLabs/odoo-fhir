@@ -399,7 +399,7 @@
             <field name="definition">Target that is not substantially present in the act and which is not directly affected by the act, but which will be a focus of the record or documentation of the act.</field>
             <field name="comments"></field>
         </record>   
-        <record id="ben" model="hc.vs.participation.type">  
+<!--         <record id="ben" model="hc.vs.participation.type">  
             <field name="code">BEN</field>
             <field name="name">beneficiary</field>
             <field name="level">3</field>
@@ -409,7 +409,7 @@
             <field name="system">http://hl7.org/fhir/v3/ParticipationType</field>
             <field name="definition">Target on behalf of whom the service happens, but that is not necessarily present in the service. Can occur together with direct target to indicate that a target is both, as in the case where the patient is the indirect beneficiary of a service rendered to a family member, e.g. counseling or given home care instructions. This concept includes a participant, such as a covered party, who derives benefits from a service act covered by a coverage act.</field>
             <field name="comments">Note that the semantic role of the intended recipient who benefits from the happening denoted by the verb in the clause. Thus, a patient who has no coverage under a policy or program may be a beneficiary of a health service while not being the beneficiary of coverage for that service.</field>
-        </record>   
+        </record>    -->
         <record id="cagnt" model="hc.vs.participation.type">    
             <field name="code">CAGNT</field>
             <field name="name">causative agent</field>
@@ -687,7 +687,7 @@
             <field name="definition">A verifier who attests to the accuracy of an act, but who does not have privileges to legally authenticate the act.</field>
             <field name="comments">Example: A resident physician who sees a patient and dictates a note, then later signs it. Their signature constitutes an authentication.</field>
         </record>   
-        <record id="la" model="hc.vs.participation.type">   
+<!--         <record id="la" model="hc.vs.participation.type">   
             <field name="code">LA</field>
             <field name="name">legal authenticator</field>
             <field name="level">3</field>
@@ -698,6 +698,6 @@
             <field name="definition">A verifier who legally authenticates the accuracy of an act.</field>
             <field name="comments">Example: A staff physician who sees a patient and dictates a note, then later signs it. Their signature constitutes a legal authentication.</field>
         </record>
-
+ -->
     </data>
 </odoo>
