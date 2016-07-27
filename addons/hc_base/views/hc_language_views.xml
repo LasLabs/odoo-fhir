@@ -15,6 +15,7 @@
                     <field name="country_id"/>
                     <group string="Group By"> 
                         <filter name="group_by_language" string="Language" context="{'group_by': 'language'}"/>
+                        <filter name="group_by_country" string="Country" context="{'group_by': 'country_id'}"/>
                     </group> 
                 </search>       
             </field>          

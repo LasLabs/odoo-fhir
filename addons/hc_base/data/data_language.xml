@@ -4563,13 +4563,13 @@
             <field name="language">Pashto</field>               
             <field name="country_id" ref=""/>               
         </record>                   
-        <record id="ps_ar" model="res.lang">                    
-            <field name="code">ps_AR</field>                
+        <record id="ps_af" model="res.lang">                    
+            <field name="code">ps_AF</field>                
             <field name="name">Pashto - Afghanistan</field>             
             <field name="iso_code">ps</field>               
             <field name="iso3_code">pus</field>             
             <field name="language">Pashto</field>               
-            <field name="country_id" ref="base.ar"/>                
+            <field name="country_id" ref="base.af"/>                
         </record>                   
         <record id="pst" model="res.lang">                  
             <field name="code">pst</field>              
