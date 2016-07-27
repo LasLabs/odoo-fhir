@@ -37,13 +37,13 @@
 
         <!-- Identifier Type -->
         
-        <record id="an" model="hc.vs.identifier.type">  
+<!--         <record id="an" model="hc.vs.identifier.type">  
             <field name="code">AN</field>
             <field name="name">Account Number</field>
             <field name="system"></field>
             <field name="class_id" ref="financial"/>
             <field name="definition">An identifier that is unique to an account.</field>
-        </record>   
+        </record>    -->
         <record id="anc" model="hc.vs.identifier.type"> 
             <field name="code">ANC</field>
             <field name="name">Account Number Creditor</field>
@@ -79,13 +79,13 @@
             <field name="class_id" ref="medical"/>
             <field name="definition">An identifier that is unique to an advanced practice registered nurse within the jurisdiction of a certifying board.</field>
         </record>   
-        <record id="ba" model="hc.vs.identifier.type">  
+<!--         <record id="ba" model="hc.vs.identifier.type">  
             <field name="code">BA</field>
             <field name="name">Bank Account Number</field>
             <field name="system"></field>
             <field name="class_id" ref="financial"/>
             <field name="definition"></field>
-        </record>   
+        </record>  -->  
         <record id="bc" model="hc.vs.identifier.type">  
             <field name="code">BC</field>
             <field name="name">Bank Card Number</field>
@@ -93,13 +93,13 @@
             <field name="class_id" ref="financial"/>
             <field name="definition">An identifier that is unique to a person's bank card. Replaces AM, DI, DS, MS, and VS beginning in v 2.5.</field>
         </record>   
-        <record id="br" model="hc.vs.identifier.type">  
+<!--         <record id="br" model="hc.vs.identifier.type">  
             <field name="code">BR</field>
             <field name="name">Birth Registry Number</field>
             <field name="system"></field>
             <field name="class_id" ref="government"/>
             <field name="definition">An identifier unique within the Assigning Authority that is the official legal record of a person's birth.</field>
-        </record>   
+        </record>    -->
         <record id="brn" model="hc.vs.identifier.type"> 
             <field name="code">BRN</field>
             <field name="name">Breed Registry Number</field>
@@ -114,13 +114,13 @@
             <field name="class_id" ref="financial"/>
             <field name="definition">An identifier used for transmitting information about invoices.</field>
         </record>   
-        <record id="cy" model="hc.vs.identifier.type">  
+<!--         <record id="cy" model="hc.vs.identifier.type">  
             <field name="code">CY</field>
             <field name="name">County Number</field>
             <field name="system"></field>
             <field name="class_id" ref="geography"/>
             <field name="definition"></field>
-        </record>   
+        </record>    -->
         <record id="dds" model="hc.vs.identifier.type"> 
             <field name="code">DDS</field>
             <field name="name">Dentist License Number</field>
@@ -191,13 +191,13 @@
             <field name="class_id" ref="employment"/>
             <field name="definition"></field>
         </record>   
-        <record id="fi" model="hc.vs.identifier.type">  
+<!--         <record id="fi" model="hc.vs.identifier.type">  
             <field name="code">FI</field>
             <field name="name">Facility ID</field>
             <field name="system"></field>
             <field name="class_id" ref="enterprise"/>
             <field name="definition"></field>
-        </record>   
+        </record>   --> 
         <record id="fill" model="hc.vs.identifier.type">    
             <field name="code">FILL</field>
             <field name="name">Filler Identifier</field>
@@ -212,20 +212,20 @@
             <field name="class_id" ref="insurance"/>
             <field name="definition"></field>
         </record>   
-        <record id="gl" model="hc.vs.identifier.type">  
+<!--         <record id="gl" model="hc.vs.identifier.type">  
             <field name="code">GL</field>
             <field name="name">General Ledger Number</field>
             <field name="system"></field>
             <field name="class_id" ref="financial"/>
             <field name="definition"></field>
-        </record>   
-        <record id="gn" model="hc.vs.identifier.type">  
+        </record>   --> 
+<!--         <record id="gn" model="hc.vs.identifier.type">  
             <field name="code">GN</field>
             <field name="name">Guarantor External Identifier</field>
             <field name="system"></field>
             <field name="class_id" ref="insurance"/>
             <field name="definition"></field>
-        </record>   
+        </record>  -->  
         <record id="hc" model="hc.vs.identifier.type">  
             <field name="code">HC</field>
             <field name="name">Health Card Number</field>
@@ -247,20 +247,20 @@
             <field name="class_id" ref="insurance"/>
             <field name="definition">2 uses: a) UK jurisdictional CHI number; b) Canadian provincial health card number</field>
         </record>   
-        <record id="li" model="hc.vs.identifier.type">  
+<!--         <record id="li" model="hc.vs.identifier.type">  
             <field name="code">LI</field>
             <field name="name">Labor And Industries Number</field>
             <field name="system"></field>
             <field name="class_id" ref="government"/>
             <field name="definition"></field>
-        </record>   
-        <record id="ln" model="hc.vs.identifier.type">  
+        </record>   --> 
+<!--         <record id="ln" model="hc.vs.identifier.type">  
             <field name="code">LN</field>
             <field name="name">License Number</field>
             <field name="system"></field>
             <field name="class_id" ref="enterprise"/>
             <field name="definition"></field>
-        </record>   
+        </record>  -->  
         <record id="lr" model="hc.vs.identifier.type">  
             <field name="code">LR</field>
             <field name="name">Local Registry ID</field>
@@ -317,20 +317,20 @@
             <field name="class_id" ref="medical"/>
             <field name="definition">An identifier that is unique to a medical doctor within the jurisdiction of a licensing board.</field>
         </record>   
-        <record id="mi" model="hc.vs.identifier.type">  
+<!--         <record id="mi" model="hc.vs.identifier.type">  
             <field name="code">MI</field>
             <field name="name">Military ID Number</field>
             <field name="system"></field>
             <field name="class_id" ref="government"/>
             <field name="definition">A number assigned to an individual who has had military duty, but is not currently on active duty. The number is assigned by the DOD or Veterans' Affairs (VA).</field>
-        </record>   
-        <record id="mr" model="hc.vs.identifier.type">  
+        </record>  -->  
+<!--         <record id="mr" model="hc.vs.identifier.type">  
             <field name="code">MR</field>
             <field name="name">Medical Record Number</field>
             <field name="system">http://hl7.org/fhir/v2/0203</field>
             <field name="class_id" ref="medical"/>
             <field name="definition">An identifier that is unique to a patient within a set of medical records, not necessarily unique within an application.</field>
-        </record>   
+        </record>  -->  
         <record id="mrt" model="hc.vs.identifier.type"> 
             <field name="code">MRT</field>
             <field name="name">Temporary Medical Record Number</field>
@@ -338,13 +338,13 @@
             <field name="class_id" ref="medical"/>
             <field name="definition">Temporary version of a Medical Record Number.</field>
         </record>   
-        <record id="ne" model="hc.vs.identifier.type">  
+<!--         <record id="ne" model="hc.vs.identifier.type">  
             <field name="code">NE</field>
             <field name="name">National Employer Identifier</field>
             <field name="system"></field>
             <field name="class_id" ref="insurance"/>
             <field name="definition">In the US, the Assigning Authority for this value is typically CMS, but it may be used by all providers and insurance companies in HIPAA related transactions.</field>
-        </record>   
+        </record>   --> 
         <record id="nh" model="hc.vs.identifier.type">  
             <field name="code">NH</field>
             <field name="name">National Health Plan Identifier</field>
@@ -401,13 +401,13 @@
             <field name="class_id" ref="medical"/>
             <field name="definition">A number that is unique to an individual optometrist within the jurisdiction of the licensing board.</field>
         </record>   
-        <record id="pa" model="hc.vs.identifier.type">  
+<!--         <record id="pa" model="hc.vs.identifier.type">  
             <field name="code">PA</field>
             <field name="name">Physician Assistant Number</field>
             <field name="system"></field>
             <field name="class_id" ref="medical"/>
             <field name="definition">An identifier that is unique to a physician assistant within the jurisdiction of a licensing board.</field>
-        </record>   
+        </record>  -->  
         <record id="pcn" model="hc.vs.identifier.type"> 
             <field name="code">PCN</field>
             <field name="name">Penitentiary/correctional institution Number</field>
@@ -429,13 +429,13 @@
             <field name="class_id" ref="government"/>
             <field name="definition"></field>
         </record>   
-        <record id="pi" model="hc.vs.identifier.type">  
+<!--         <record id="pi" model="hc.vs.identifier.type">  
             <field name="code">PI</field>
             <field name="name">Patient Internal Identifier</field>
             <field name="system"></field>
             <field name="class_id" ref="medical"/>
             <field name="definition">A number that is unique to a patient within an Assigning Authority.</field>
-        </record>   
+        </record>   --> 
         <record id="plac" model="hc.vs.identifier.type">    
             <field name="code">PLAC</field>
             <field name="name">Placer Identifier</field>
@@ -478,13 +478,13 @@
             <field name="class_id" ref="medical"/>
             <field name="definition">A number that is unique to an individual provider, a provider group or an organization within an Assigning Authority.</field>
         </record>   
-        <record id="pt" model="hc.vs.identifier.type">  
+<!--         <record id="pt" model="hc.vs.identifier.type">  
             <field name="code">PT</field>
             <field name="name">Patient External Identifier</field>
             <field name="system"></field>
             <field name="class_id" ref="medical"/>
             <field name="definition"></field>
-        </record>   
+        </record>  -->  
         <record id="qa" model="hc.vs.identifier.type">  
             <field name="code">QA</field>
             <field name="name">QA Number</field>
@@ -499,13 +499,13 @@
             <field name="class_id" ref="enterprise"/>
             <field name="definition">A generalized resource identifier.</field>
         </record>   
-        <record id="rn" model="hc.vs.identifier.type">  
+<!--         <record id="rn" model="hc.vs.identifier.type">  
             <field name="code">RN</field>
             <field name="name">Registered Nurse Number</field>
             <field name="system"></field>
             <field name="class_id" ref="medical"/>
             <field name="definition">An identifier that is unique to a registered nurse within the jurisdiction of the licensing board.</field>
-        </record>   
+        </record>   --> 
         <record id="rph" model="hc.vs.identifier.type"> 
             <field name="code">RPH</field>
             <field name="name">Pharmacist License Number</field>
@@ -534,20 +534,20 @@
             <field name="class_id" ref="government"/>
             <field name="definition">An identifier issued by a governmental organization to an individual for the purpose of the receipt of social services and benefits.</field>
         </record>   
-        <record id="sl" model="hc.vs.identifier.type">  
+<!--         <record id="sl" model="hc.vs.identifier.type">  
             <field name="code">SL</field>
             <field name="name">State License</field>
             <field name="system"></field>
             <field name="class_id" ref="government"/>
             <field name="definition"></field>
-        </record>   
-        <record id="sn" model="hc.vs.identifier.type">  
+        </record>  -->  
+<!--         <record id="sn" model="hc.vs.identifier.type">  
             <field name="code">SN</field>
             <field name="name">Subscriber Number</field>
             <field name="system"></field>
             <field name="class_id" ref="insurance"/>
             <field name="definition">An identifier for a subscriber of an insurance policy which is unique for, and usually assigned by, the insurance carrier.</field>
-        </record>   
+        </record>  -->  
         <record id="sno" model="hc.vs.identifier.type"> 
             <field name="code">SNO</field>
             <field name="name">Serial Number</field>
@@ -555,20 +555,20 @@
             <field name="class_id" ref="enterprise"/>
             <field name="definition">An identifier affixed to an item by the manufacturer when it is first made, where each item has a different identifier.</field>
         </record>   
-        <record id="sr" model="hc.vs.identifier.type">  
+<!--         <record id="sr" model="hc.vs.identifier.type">  
             <field name="code">SR</field>
             <field name="name">State Registry ID</field>
             <field name="system"></field>
             <field name="class_id" ref="government"/>
             <field name="definition"></field>
-        </record>   
-        <record id="ss" model="hc.vs.identifier.type">  
+        </record>    -->
+<!--         <record id="ss" model="hc.vs.identifier.type">  
             <field name="code">SS</field>
             <field name="name">Social Security Number</field>
             <field name="system"></field>
             <field name="class_id" ref="government"/>
             <field name="definition"></field>
-        </record>   
+        </record>  -->  
         <record id="tax" model="hc.vs.identifier.type"> 
             <field name="code">TAX</field>
             <field name="name">Tax ID Number</field>
@@ -751,13 +751,13 @@
             <field name="class_id" ref="insurance"/>
             <field name="definition"></field>
         </record>   
-        <record id="sid" model="hc.vs.identifier.type"> 
+<!--         <record id="sid" model="hc.vs.identifier.type"> 
             <field name="code">SID</field>
             <field name="name">Specimen ID</field>
             <field name="system"></field>
             <field name="class_id" ref="medical"/>
             <field name="definition">Identifier for a specimen. Used when it is not known if the specimen ID is a unique specimen ID (USID) or an ancestor ID (ASID).</field>
-        </record>   
+        </record>   --> 
         <record id="sp" model="hc.vs.identifier.type">  
             <field name="code">SP</field>
             <field name="name">Study Permit</field>
@@ -765,13 +765,13 @@
             <field name="class_id" ref="government"/>
             <field name="definition">A number associated with a permit identifying a person who is a resident of a jurisdiction for the purpose of education.</field>
         </record>   
-        <record id="tn" model="hc.vs.identifier.type">  
+<!--         <record id="tn" model="hc.vs.identifier.type">  
             <field name="code">TN</field>
             <field name="name">Treaty Number/ (Canada)</field>
             <field name="system"></field>
             <field name="class_id" ref="government"/>
             <field name="definition"></field>
-        </record>   
+        </record>    -->
         <record id="tpr" model="hc.vs.identifier.type"> 
             <field name="code">TPR</field>
             <field name="name">Temporary Permanent Resident (Canada)</field>
