@@ -1,2 +1,8 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_hc_group_hc_group,hc_group.hc_group,model_hc_group_hc_group,,1,0,0,0
+access_hc_group_hc_res_group_user,hc.group.hc.res.group.user,model_hc_res_group,hc_base.group_hc_base_user,1,0,0,0
+access_hc_group_hc_group_characteristic_user,hc.group.hc.group.characteristic.user,model_hc_group_characteristic,hc_base.group_hc_base_user,1,0,0,0
+access_hc_group_hc_group_member_user,hc.group.hc.group.member.user,model_hc_group_member,hc_base.group_hc_base_user,1,0,0,0
+access_hc_group_hc_vs_group_code_manager,hc.group.hc.vs.group.code.manager,model_hc_vs_group_code,hc_base.group_hc_base_manager,1,1,1,1
+access_hc_group_hc_vs_group_characteristic_code_manager,hc.group.hc.vs.group.characteristic.code.manager,model_hc_vs_group_characteristic_code,hc_base.group_hc_base_manager,1,1,1,1
+access_hc_group_hc_vs_group_characteristic_value_code_manager,hc.group.hc.vs.group.characteristic.value.code.manager,model_hc_vs_group_characteristic_value_code,hc_base.group_hc_base_manager,1,1,1,1
+access_hc_group_hc_group_identifier_user,hc.group.hc.group.identifier.user,model_hc_group_identifier,hc_base.group_hc_base_user,1,0,0,0

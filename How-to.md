@@ -214,7 +214,7 @@ sudo mv views/templates.xml views/hc_res_location_templates.xml
 *Modify manifest files
 ```
 #models/__init__.py
-from . import hc_res_practitioner_role
+from . import hc_res_location
 
 #hc_practitioner_role/__openerp__.py
 'name': "Location"

@@ -26,13 +26,13 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['hc_base'],
+    'depends': ['hc_group'],
 
     # always loaded
     'data': [
-        # 'security/ir.model.access.csv',
-        'views/views.xml',
-        'views/templates.xml',
+        'security/ir.model.access.csv',
+        'views/hc_res_procedure_views.xml',
+        'views/hc_res_procedure_templates.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
