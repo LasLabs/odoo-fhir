@@ -92,11 +92,6 @@ class PractitionerRoleSpecialty(models.Model):
     #     string="End Date", 
     #     help="End of the period when the practitioner role specialty is/was valid.")              
 
-class PractitionerSpecialty(models.Model):  
-    _name = "hc.vs.practitioner.specialty"  
-    _description = "Practitioner Specialty"     
-    _inherit = ["hc.value.set.contains"]
-
 class PractitionerRoleIdentifier(models.Model): 
     _name = "hc.practitioner.role.identifier"   
     _description = "Practitioner Role Identifier"       
@@ -170,11 +165,6 @@ class PractitionerRoleHealthcareService(models.Model):
     #     comodel_name="hc.res.healthcare service", 
     #     string="Healthcare Service", 
     #     help="Healthcare service associated with this practitioner role.")               
-
-class DaysOfWeek(models.Model):  
-    _name = "hc.vs.days.of.week"  
-    _description = "Days Of Week"     
-    _inherit = ["hc.value.set.contains"]
 
 class AvailableTime(models.Model):  
     _name = "hc.available.time" 

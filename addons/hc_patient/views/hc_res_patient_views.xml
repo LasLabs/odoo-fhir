@@ -22,7 +22,7 @@
             <field name="model">hc.res.patient</field>                  
             <field name="arch" type="xml">                  
                 <tree string="Patients">                
-                    <field name="name"/>
+                    <field name="name" string="Patient Name"/>
                     <field name="birthdate" string="DOB"/>             
                 </tree>             
             </field>                    

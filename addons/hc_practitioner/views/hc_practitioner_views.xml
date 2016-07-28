@@ -19,8 +19,8 @@
             <field name="model">hc.res.practitioner</field>                                 
             <field name="arch" type="xml">                                  
                 <tree string="Practitioners">                               
-                    <field name="name"/>                            
-                    <field name="qualification_ids"/>                           
+                    <field name="name" string="Practitioner Name"/>                            
+                    <field name="specialty_id"/>                           
                 </tree>                             
             </field>                                    
         </record>                                       
@@ -43,7 +43,8 @@
                                 <field name="gender"/>              
                                 <field name="birthdate"/>               
                             </group>                    
-                            <group>                 
+                            <group>
+                                <field name="specialty_id"/>                 
                             </group>                    
                         </group>                        
                         <notebook colspan="4">                      
@@ -142,7 +143,8 @@
                 
         <record id="hc_res_practitioner_action" model="ir.actions.act_window">      
             <field name="name">HC Practitioners</field> 
-            <field name="type">ir.actions.act_window</field>    
+            <field name="type">ir.actions.act_window</field>
+            <field name="context">{'is_practitioner':True}</field>    
             <field name="res_model">hc.res.practitioner</field> 
             <field name="view_type">form</field>    
             <field name="view_mode">tree,form</field>   

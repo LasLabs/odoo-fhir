@@ -166,21 +166,6 @@ class FamilyMemberIdentifier(models.Model):
         string="Family Member", 
         help="Relation with this condition.")
 
-class ConditionOutcome(models.Model):
-    _name = "hc.vs.condition.code"
-    _description = "Condition"
-    _inherit = ["hc.value.set.contains"]
-
-class ConditionOutcome(models.Model):
-    _name = "hc.vs.condition.outcome"
-    _description = "Condition Outcome"
-    _inherit = ["hc.value.set.contains"]
-
-class UOM(models.Model):
-    _name = "hc.vs.uom"
-    _description = "UOM"
-    _inherit = ["hc.value.set.contains"]
-
 # External Reference
 
 class Patient(models.Model):

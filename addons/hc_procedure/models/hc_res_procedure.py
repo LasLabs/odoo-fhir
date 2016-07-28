@@ -564,12 +564,7 @@ class ProcedureNotPerformedReason(models.Model):
 class ProcedureNotPerformed(models.Model):  
     _name = "hc.vs.procedure.not.performed" 
     _description = "Procedure Not Performed"        
-    _inherit = ["hc.value.set.contains"]    
-
-class BodySite(models.Model):   
-    _name = "hc.vs.body.site"   
-    _description = "Body Site"      
-    _inherit = ["hc.value.set.contains"]    
+    _inherit = ["hc.value.set.contains"]      
 
 class ProcedureCategory(models.Model):  
     _name = "hc.vs.procedure.category"  

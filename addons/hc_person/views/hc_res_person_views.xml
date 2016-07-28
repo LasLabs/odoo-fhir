@@ -17,7 +17,7 @@
             <field name="model">hc.res.person</field>     
             <field name="arch" type="xml">      
                 <tree string="Persons">   
-                    <field name="name"/>  
+                    <field name="name" string="Person Name"/>  
                     <field name="gender"/>  
                     <field name="birthdate"/> 
                 </tree>   

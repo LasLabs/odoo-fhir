@@ -53,6 +53,11 @@ class RelatedPerson(models.Model):
         required=True, 
         help="Patient(s) related to this person.")
 
+    @api.model
+    def create(self, vals):
+        vals['is_related_person'] = self.env.context.get('is_related_person', False)
+        return super(RelatedPerson, self).create(vals)
+
 class RelatedPersonIdentifier(models.Model):  
     _name = "hc.related.person.identifier" 
     _description = "Related Person Identifier"         

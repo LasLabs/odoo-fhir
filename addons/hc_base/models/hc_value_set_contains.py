@@ -67,4 +67,34 @@ class BasicAssociation(models.AbstractModel):
         help="Start of the period during which this record is valid.")        
     end_date = fields.Date(
         string="End Date", 
-        help="End of the period during which this record is valid.")     
+        help="End of the period during which this record is valid.")
+
+class BodySite(models.Model):   
+    _name = "hc.vs.body.site"   
+    _description = "Body Site"      
+    _inherit = ["hc.value.set.contains"]  
+
+class ConditionCode(models.Model):
+    _name = "hc.vs.condition.code"
+    _description = "Condition"
+    _inherit = ["hc.value.set.contains"]
+
+class ConditionOutcome(models.Model):
+    _name = "hc.vs.condition.outcome"
+    _description = "Condition Outcome"
+    _inherit = ["hc.value.set.contains"]        
+
+class DaysOfWeek(models.Model):  
+    _name = "hc.vs.days.of.week"  
+    _description = "Days Of Week"     
+    _inherit = ["hc.value.set.contains"]
+
+class OccupationCode(models.Model):  
+    _name = "hc.vs.occupation.code"  
+    _description = "Occupation Code" 
+    _inherit = ["hc.value.set.contains"]
+
+class UOM(models.Model):
+    _name = "hc.vs.uom"
+    _description = "Unit of Measure"
+    _inherit = ["hc.value.set.contains"]

@@ -2,6 +2,3 @@ id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_hc_family_member_history_hc_res_family_member_history_user,hc.family.member.history.hc.res.family.member.history.user,model_hc_res_family_member_history,hc_base.group_hc_base_user,1,0,0,0
 access_hc_family_member_history_hc_family_member_history_condition_user,hc.family.member.history.hc.family.member.history.condition.user,model_hc_family_member_history_condition,hc_base.group_hc_base_user,1,0,0,0
 access_hc_family_member_history_hc_family_member_identifier_user,hc.family.member.history.hc.family.member.identifier.user,model_hc_family_member_identifier,hc_base.group_hc_base_user,1,0,0,0
-access_hc_family_member_history_hc_vs_condition_code_manager,hc.family.member.history.hc.vs.condition.code.manager,model_hc_vs_condition_code,hc_base.group_hc_base_manager,1,1,1,1
-access_hc_family_member_history_hc_vs_condition_outcome_manager,hc.family.member.history.hc.vs.condition.outcome.manager,model_hc_vs_condition_outcome,hc_base.group_hc_base_manager,1,1,1,1
-access_hc_family_member_history_hc_vs_uom_manager,hc.family.member.history.hc.vs.uom.manager,model_hc_vs_uom,hc_base.group_hc_base_manager,1,1,1,1

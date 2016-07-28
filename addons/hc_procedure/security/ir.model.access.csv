@@ -14,11 +14,9 @@ access_hc_procedure_hc_procedure_note_user,hc.procedure.hc.procedure.note.user,m
 access_hc_procedure_hc_vs_procedure_code_manager,hc.procedure.hc.vs.procedure.code.manager,model_hc_vs_procedure_code,hc_base.group_hc_base_manager,1,1,1,1
 access_hc_procedure_hc_vs_procedure_not_performed_reason_manager,hc.procedure.hc.vs.procedure.not.performed.reason.manager,model_hc_vs_procedure_not_performed_reason,hc_base.group_hc_base_manager,1,1,1,1
 access_hc_procedure_hc_vs_procedure_not_performed_manager,hc.procedure.hc.vs.procedure.not.performed.manager,model_hc_vs_procedure_not_performed,hc_base.group_hc_base_manager,1,1,1,1
-access_hc_procedure_hc_vs_body_site_manager,hc.procedure.hc.vs.body.site.manager,model_hc_vs_body_site,hc_base.group_hc_base_manager,1,1,1,1
 access_hc_procedure_hc_vs_procedure_category_manager,hc.procedure.hc.vs.procedure.category.manager,model_hc_vs_procedure_category,hc_base.group_hc_base_manager,1,1,1,1
 access_hc_procedure_hc_vs_procedure_reason_code_manager,hc.procedure.hc.vs.procedure.reason.code.manager,model_hc_vs_procedure_reason_code,hc_base.group_hc_base_manager,1,1,1,1
 access_hc_procedure_hc_vs_procedure_outcome_manager,hc.procedure.hc.vs.procedure.outcome.manager,model_hc_vs_procedure_outcome,hc_base.group_hc_base_manager,1,1,1,1
-access_hc_procedure_hc_vs_condition_code_manager,hc.procedure.hc.vs.condition.code.manager,model_hc_vs_condition_code,hc_base.group_hc_base_manager,1,1,1,1
 access_hc_procedure_hc_vs_procedure_follow_up_manager,hc.procedure.hc.vs.procedure.follow.up.manager,model_hc_vs_procedure_follow_up,hc_base.group_hc_base_manager,1,1,1,1
 access_hc_procedure_hc_vs_procedure_used_code_manager,hc.procedure.hc.vs.procedure.used.code.manager,model_hc_vs_procedure_used_code,hc_base.group_hc_base_manager,1,1,1,1
 access_hc_procedure_hc_vs_performer_role_manager,hc.procedure.hc.vs.performer.role.manager,model_hc_vs_performer_role,hc_base.group_hc_base_manager,1,1,1,1

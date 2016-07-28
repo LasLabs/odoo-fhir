@@ -58,6 +58,10 @@ class Practitioner(models.Model):
         string="Active Practitioner", 
         default=True, 
         help="Whether this practitioner's record is in active use.")
+    specialty_id = fields.Many2one(
+        comodel_name="hc.vs.practitioner.specialty", 
+        string="Primary Specialty", 
+        help="Primary specialty of the practitioner.")
     qualification_ids = fields.One2many(
         comodel_name="hc.practitioner.qualification", 
         inverse_name="practitioner_id", 
@@ -81,6 +85,11 @@ class Practitioner(models.Model):
     #     "company_type": "person",
     #     "is_person": True,
     #     }
+
+    @api.model
+    def create(self, vals):
+        vals['is_practitioner'] = self.env.context.get('is_practitioner', False)
+        return super(Practitioner, self).create(vals)
 
 class PractitionerIdentifier(models.Model):   
     _name = "hc.practitioner.identifier"  
@@ -230,17 +239,16 @@ class PractitionerQualification(models.Model):
     #     string="Issuer Organization", 
     #     help="Organization that regulates and issues the qualification.")        
 
-class OccupationCode(models.Model):  
-    _name = "hc.vs.occupation.code"  
-    _description = "Occupation Code" 
+class PractitionerSpecialty(models.Model):  
+    _name = "hc.vs.practitioner.specialty"  
+    _description = "Practitioner Specialty"     
     _inherit = ["hc.value.set.contains"]
 
 class PractitionerQualificationIdentifier(models.Model):  
     _name = "hc.practitioner.qualification.identifier"  
     _description = "Practitioner Qualification Identifier" 
     _inherit = ["hc.basic.association", "hc.identifier"]
-
-   
+ 
     practitioner_qualification_id = fields.Many2one(
         comodel_name="hc.practitioner.qualification", 
         string="Practitioner Qualification", 

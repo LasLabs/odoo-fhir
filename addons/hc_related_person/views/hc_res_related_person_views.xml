@@ -131,7 +131,7 @@
                     res_model="hc.res.related.person"
                     view_mode="tree,form"
                     domain=""
-                    context=""
+                    context="{'is_related_person':True}"
                     limit=""/>
 
         <menuitem id="hc_related_person.menu_rel_pers" 
