@@ -2,28 +2,28 @@
 <openerp>
     <data noupdate="0">
 
-        <record id="source" model="res.partner.category">  
+        <record id="partner_source" model="res.partner.category">  
             <field name="name">Source</field>
         </record>
-        <record id="person" model="res.partner.category">  
+        <record id="partner_person" model="res.partner.category">  
             <field name="name">Person</field>
         </record>
-        <record id="animal" model="res.partner.category">  
+        <record id="partner_animal" model="res.partner.category">  
             <field name="name">Animal</field>
         </record>
-        <record id="practitioner" model="res.partner.category">  
+        <record id="partner_practitioner" model="res.partner.category">  
             <field name="name">Practitioner</field>
         </record>
-        <record id="related_person" model="res.partner.category">  
+        <record id="partner_related_person" model="res.partner.category">  
             <field name="name">Related Person</field>
         </record>
-        <record id="organization" model="res.partner.category">  
+        <record id="partner_organization" model="res.partner.category">  
             <field name="name">Organization</field>
         </record>
-        <record id="document" model="res.partner.category">  
+        <record id="partner_document" model="res.partner.category">  
             <field name="name">Document</field>
         </record>
-        <record id="patient" model="res.partner.category">  
+        <record id="partner_patient" model="res.partner.category">  
             <field name="name">Patient</field>
         </record>
 
