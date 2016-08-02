@@ -2,25 +2,7 @@
     <data>
 
          <!-- Language Views -->           
-                
-        <!-- <record id="hc_language_view_search" model="ir.ui.view">            
-            <field name="name">Language Search</field>          
-            <field name="model">res.lang</field>         
-            <field name="arch" type="xml">
-                <search string="Languages"> 
-                    <field name="name"/>
-                    <field name="code"/>
-                    <field name="iso3_code"/>
-                    <field name="language"/>
-                    <field name="country_id"/>
-                    <group string="Group By"> 
-                        <filter name="group_by_language" string="Language" context="{'group_by': 'language'}"/>
-                        <filter name="group_by_country" string="Country" context="{'group_by': 'country_id'}"/>
-                    </group> 
-                </search>       
-            </field>          
-        </record> -->           
-        
+                         
         <record id="res_lang_search_inherit" model="ir.ui.view">                
             <field name="name">Language Search</field>          
             <field name="model">res.lang</field>            
@@ -36,47 +18,23 @@
             </field>                    
         </record>               
 
-
-        <record id="hc_language_view_tree" model="ir.ui.view">            
+        <record id="res_lang_tree_inherit" model="ir.ui.view">                
             <field name="name">Language Tree</field>          
-            <field name="model">res.lang</field>         
-            <field name="arch" type="xml">          
-            <tree string="Languages">       
-                <field name="name" string="Language Name"/>
-                <field name="code"/>
-                <field name="iso3_code"/>
-                <field name="language"/>
-                <field name="country_id"/>
-            </tree>       
-            </field>          
-        </record>           
-        
-        <record id="hc_language_view_form" model="ir.ui.view">            
+            <field name="model">res.lang</field>            
+            <field name="inherit_id" ref="base.res_lang_tree"/>           
+            <field name="arch" type="xml">
+                <field name="direction" position="after"/>          
+            </field>                    
+        </record>   
+
+        <record id="res_lang_form_inherit" model="ir.ui.view">                
             <field name="name">Language Form</field>          
-            <field name="model">res.lang</field>
-<!--             <field name="inherit_id" ref="base.res_lang_form"/>     -->   
-            <field name="arch" type="xml">          
-                <form string="Languages">        
-                    <sheet>     
-                        <div class="oe_title oe_left">    
-                            <h1>  
-                            <field name="name" default_focus="1" placeholder="Language (e.g., English US)"/>
-                            </h1> 
-                        </div>    
-                        <group>   
-                            <group>
-                            <field name="code" placeholder="locale code (e.g., en_US)"/>
-                            <field name="direction"/>
-                            </group>  
-                            <group> 
-                            </group>  
-                        </group>    
-                    </sheet>      
-                </form>       
-            </field>          
-        </record>           
-                    
-                 
+            <field name="model">res.lang</field>            
+            <field name="inherit_id" ref="base.res_lang_form"/>           
+            <field name="arch" type="xml">
+                <field name="direction" position="after"/> 
+            </field>                    
+        </record>   
                                               
 <!-- Language Action and Menu -->           
                     
