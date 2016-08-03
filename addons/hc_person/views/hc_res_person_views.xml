@@ -231,27 +231,22 @@
         </record>
 
         <!-- Person Action and Menu --> 
+    
+        <act_window id="hc_res_person_action"   
+                    name="HC Person"
+                    res_model="hc.res.person"
+                    view_mode="tree,form"
+                    domain=""
+                    context=""
+                    limit=""/>
 
-        <record id="hc_res_person_action" model="ir.actions.act_window">  
-            <field name="name">HC Persons</field>
-            <field name="type">ir.actions.act_window</field>
-            <field name="res_model">hc.res.person</field>
-            <field name="view_type">form</field>
-            <field name="view_mode">tree,form</field>
-        </record> 
-
-        <menuitem 
-            id="hc_base.menu_id_ent" 
-            name="Entities" 
-            parent="hc_base.menu_id" 
-            sequence="30"/>
-        <menuitem 
-            id="hc_person.menu_pers"
-            name="Persons"  
-            parent="hc_base.menu_id_ent" 
-            action="hc_res_person_action" 
-            sequence="30"/>
-
+        <menuitem id="hc_person.menu_pers" 
+                  name="Persons" 
+                  parent="hc_base.menu_indiv" 
+                  action="hc_res_person_action" 
+                  groups="hc_base.group_hc_base_manager" 
+                  sequence="50"/>
+        
         <!-- External Reference View -->
 
         <record id="base.view_partner_form_inherited_person" model="ir.ui.view">     

@@ -13,10 +13,10 @@
 
     <menuitem id="hc_location.menu_loc" 
               name="Locations" 
-              parent="hc_base.menu_id_ent" 
+              parent="hc_base.menu_entity" 
               action="hc_res_location_action" 
               groups="hc_base.group_hc_base_manager" 
-              sequence="10"/>
-
+              sequence="40"/>
+              
   </data>
 </openerp>

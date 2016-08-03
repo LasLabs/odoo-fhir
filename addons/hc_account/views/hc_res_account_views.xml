@@ -1,0 +1,22 @@
+<openerp>
+    <data>
+    
+        <!-- Account Action and Menu -->    
+    
+        <act_window id="hc_res_account_action"  
+                    name="HC Accounts"
+                    res_model="hc.res.account"
+                    view_mode="tree,form"
+                    domain=""
+                    context=""
+                    limit=""/>
+
+        <menuitem id="hc_account.menu_acct" 
+                  name="Accounts" 
+                  parent="hc_base.menu_pat_mgt" 
+                  action="hc_res_account_action" 
+                  groups="hc_base.group_hc_base_manager" 
+                  sequence="40"/>
+
+    </data>
+</openerp>

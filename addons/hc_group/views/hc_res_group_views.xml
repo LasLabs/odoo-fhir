@@ -112,10 +112,10 @@
 
         <menuitem id="hc_group.menu_group" 
                   name="Groups" 
-                  parent="hc_base.menu_id_grp" 
-                  action="hc_res_group_action"
+                  parent="hc_base.menu_indiv" 
+                  action="hc_res_group_action" 
                   groups="hc_base.group_hc_base_manager" 
-                  sequence="30"/>
+                  sequence="60"/>
 
     </data>
 </openerp>

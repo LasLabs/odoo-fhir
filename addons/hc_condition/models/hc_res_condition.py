@@ -104,7 +104,7 @@ class Condition(models.Model):
         string="Onset Name", 
         compute="compute_onset_name", 
         help="Estimated or actual date, date-time, or age.")             
-    onset = fields.Datetime(
+    onset_datetime = fields.Datetime(
         string="Onset", 
         help="Estimated or actual date, date-time, or age.")                    
     onset_age = fields.Integer(
@@ -142,7 +142,7 @@ class Condition(models.Model):
         string="Abatement Name", 
         compute="compute_abatement_name", 
         help="If/when in resolution/remission .")                   
-    abatement = fields.Date(
+    abatement_date = fields.Date(
         string="Abatement Date", 
         help="date if/when in resolution/remission.")                    
     abatement_age = fields.Integer(
@@ -157,12 +157,12 @@ class Condition(models.Model):
     is_abatement = fields.Boolean(
         string="Abatement", 
         help="boolean if/when in resolution/remission.")                    
-    start_date = fields.Datetime(
-        string="Start Date", 
-        help="Start of the if/when in resolution/remission.")                    
-    end_date = fields.Datetime(
-        string="End Date", 
-        help="End of the if/when in resolution/remission.")                    
+    abatement_start_date = fields.Datetime(
+        string="Abatement Start Date", 
+        help="Start of the if/when in resolution/remission.")
+    abatement_end_date = fields.Datetime(
+        string="Abatement End Date", 
+        help="End of the if/when in resolution/remission.")                 
     abatement_range_low = fields.Float(
         string="Abatement Range Low", 
         help="Low limit of if/when in resolution/remission.")                    
@@ -173,7 +173,7 @@ class Condition(models.Model):
         string="Abatement", 
         help="string if/when in resolution/remission.")                    
     date_asserted = fields.Date(
-        string="Date Asserted", 
+        string="Date Asserted",
         help="When first entered.")                    
     asserter_type = fields.Selection(
         string="Condition Asserter Type", 
@@ -367,9 +367,4 @@ class ConditionEvidenceCode(models.Model):
 class ConditionStage(models.Model):    
     _name = "hc.vs.condition.stage"    
     _description = "Condition Stage"        
-    _inherit = ["hc.value.set.contains"]    
-
-class ConditionCategory(models.Model):    
-    _name = "hc.vs.condition.category"    
-    _description = "Condition Category"        
-    _inherit = ["hc.value.set.contains"]    
+    _inherit = ["hc.value.set.contains"]

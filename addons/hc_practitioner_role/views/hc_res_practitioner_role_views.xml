@@ -4,19 +4,19 @@
         <!-- Practitioner Role Action and Menu -->
 
         <act_window id="hc_res_practitioner_role_action"        
-            name="HC Practitioner Roles"    
-            res_model="hc.res.practitioner.role"    
-            view_mode="tree,form"   
-            domain=""   
-            context=""  
-            limit=""/>  
+                    name="HC Practitioner Roles"    
+                    res_model="hc.res.practitioner.role"    
+                    view_mode="tree,form"   
+                    domain=""   
+                    context=""  
+                    limit=""/>  
 
-        <menuitem 
-            id="hc_practitioner_role.menu_prac_role" 
-            name="Practitioner Roles" 
-            parent="hc_base.menu_id_ind" 
-            action="hc_res_practitioner_role_action" 
-            sequence="30"/>
+        <menuitem id="hc_practitioner_role.menu_prac_role" 
+                  name="Practitioner Roles" 
+                  parent="hc_base.menu_indiv" 
+                  action="hc_res_practitioner_role_action" 
+                  groups="hc_base.group_hc_base_manager" 
+                  sequence="30"/>
 
     </data>
 </openerp>

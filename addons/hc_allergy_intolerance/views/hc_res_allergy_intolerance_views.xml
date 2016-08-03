@@ -20,7 +20,7 @@
             <field name="model">hc.res.allergy.intolerance</field>      
             <field name="arch" type="xml">      
                 <tree string="Allergy Intolerances">
-                    <field name="patient_id"/>
+                    <field name="patient_id" string="Patient Name"/>
                     <field name="substance_id"/>
                 </tree> 
             </field>        

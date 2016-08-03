@@ -19,7 +19,7 @@
 # ./create-module.sh
 ################################################################################# 
 
-./odoo.py scaffold hc_account addons
+# ./odoo.py scaffold hc_account addons
 # ./odoo.py scaffold hc_allergy_intolerance addons
 ./odoo.py scaffold hc_appointment addons
 ./odoo.py scaffold hc_appointment_response addons
@@ -32,7 +32,7 @@
 ./odoo.py scaffold hc_care_team addons
 ./odoo.py scaffold hc_claim addons
 ./odoo.py scaffold hc_claim_response addons
-./odoo.py scaffold hc_clinical_impression addons
+# ./odoo.py scaffold hc_clinical_impression addons
 ./odoo.py scaffold hc_code_system addons
 ./odoo.py scaffold hc_communication addons
 ./odoo.py scaffold hc_communication_request addons
@@ -46,7 +46,7 @@
 ./odoo.py scaffold hc_data_element addons
 ./odoo.py scaffold hc_decision_support_rule addons
 ./odoo.py scaffold hc_decision_support_service_module addons
-./odoo.py scaffold hc_detected_issue addons
+# ./odoo.py scaffold hc_detected_issue addons
 ./odoo.py scaffold hc_device addons
 ./odoo.py scaffold hc_device_component addons
 ./odoo.py scaffold hc_device_metric addons
@@ -58,14 +58,14 @@
 ./odoo.py scaffold hc_document_reference addons
 ./odoo.py scaffold hc_eligibility_request addons
 ./odoo.py scaffold hc_eligibility_response addons
-./odoo.py scaffold hc_encounter addons
+# ./odoo.py scaffold hc_encounter addons
 ./odoo.py scaffold hc_enrollment_request addons
 ./odoo.py scaffold hc_enrollment_response addons
-./odoo.py scaffold hc_episode_of_care addons
+# ./odoo.py scaffold hc_episode_of_care addons
 ./odoo.py scaffold hc_expansion_profile addons
 ./odoo.py scaffold hc_explanation_of_benefit addons
 # ./odoo.py scaffold hc_family_member_history addons
-./odoo.py scaffold hc_flag addons
+# ./odoo.py scaffold hc_flag addons
 ./odoo.py scaffold hc_goal addons
 ./odoo.py scaffold hc_group addons
 ./odoo.py scaffold hc_guidance_response addons
@@ -126,7 +126,7 @@
 ./odoo.py scaffold hc_structure_definition addons
 ./odoo.py scaffold hc_structure_map addons
 ./odoo.py scaffold hc_subscription addons
-./odoo.py scaffold hc_substance addons
+# ./odoo.py scaffold hc_substance addons
 ./odoo.py scaffold hc_supply_delivery addons
 ./odoo.py scaffold hc_supply_request addons
 ./odoo.py scaffold hc_task addons
@@ -135,7 +135,7 @@
 ./odoo.py scaffold hc_vision_prescription addons
 
 cd addons
-sudo mv hc_account /odoo/odoo-fhir/addons/hc_account
+# sudo mv hc_account /odoo/odoo-fhir/addons/hc_account
 # sudo mv hc_allergy_intolerance /odoo/odoo-fhir/addons/hc_allergy_intolerance
 sudo mv hc_appointment /odoo/odoo-fhir/addons/hc_appointment
 sudo mv hc_appointment_response /odoo/odoo-fhir/addons/hc_appointment_response
@@ -148,7 +148,7 @@ sudo mv hc_care_plan /odoo/odoo-fhir/addons/hc_care_plan
 sudo mv hc_care_team /odoo/odoo-fhir/addons/hc_care_team
 sudo mv hc_claim /odoo/odoo-fhir/addons/hc_claim
 sudo mv hc_claim_response /odoo/odoo-fhir/addons/hc_claim_response
-sudo mv hc_clinical_impression /odoo/odoo-fhir/addons/hc_clinical_impression
+# sudo mv hc_clinical_impression /odoo/odoo-fhir/addons/hc_clinical_impression
 sudo mv hc_code_system /odoo/odoo-fhir/addons/hc_code_system
 sudo mv hc_communication /odoo/odoo-fhir/addons/hc_communication
 sudo mv hc_communication_request /odoo/odoo-fhir/addons/hc_communication_request
@@ -162,7 +162,7 @@ sudo mv hc_coverage /odoo/odoo-fhir/addons/hc_coverage
 sudo mv hc_data_element /odoo/odoo-fhir/addons/hc_data_element
 sudo mv hc_decision_support_rule /odoo/odoo-fhir/addons/hc_decision_support_rule
 sudo mv hc_decision_support_service_module /odoo/odoo-fhir/addons/hc_decision_support_service_module
-sudo mv hc_detected_issue /odoo/odoo-fhir/addons/hc_detected_issue
+# sudo mv hc_detected_issue /odoo/odoo-fhir/addons/hc_detected_issue
 sudo mv hc_device /odoo/odoo-fhir/addons/hc_device
 sudo mv hc_device_component /odoo/odoo-fhir/addons/hc_device_component
 sudo mv hc_device_metric /odoo/odoo-fhir/addons/hc_device_metric
@@ -174,14 +174,14 @@ sudo mv hc_document_manifest /odoo/odoo-fhir/addons/hc_document_manifest
 sudo mv hc_document_reference /odoo/odoo-fhir/addons/hc_document_reference
 sudo mv hc_eligibility_request /odoo/odoo-fhir/addons/hc_eligibility_request
 sudo mv hc_eligibility_response /odoo/odoo-fhir/addons/hc_eligibility_response
-sudo mv hc_encounter /odoo/odoo-fhir/addons/hc_encounter
+# sudo mv hc_encounter /odoo/odoo-fhir/addons/hc_encounter
 sudo mv hc_enrollment_request /odoo/odoo-fhir/addons/hc_enrollment_request
 sudo mv hc_enrollment_response /odoo/odoo-fhir/addons/hc_enrollment_response
-sudo mv hc_episode_of_care /odoo/odoo-fhir/addons/hc_episode_of_care
+# sudo mv hc_episode_of_care /odoo/odoo-fhir/addons/hc_episode_of_care
 sudo mv hc_expansion_profile /odoo/odoo-fhir/addons/hc_expansion_profile
 sudo mv hc_explanation_of_benefit /odoo/odoo-fhir/addons/hc_explanation_of_benefit
 # sudo mv hc_family_member_history /odoo/odoo-fhir/addons/hc_family_member_history
-sudo mv hc_flag /odoo/odoo-fhir/addons/hc_flag
+# sudo mv hc_flag /odoo/odoo-fhir/addons/hc_flag
 sudo mv hc_goal /odoo/odoo-fhir/addons/hc_goal
 sudo mv hc_group /odoo/odoo-fhir/addons/hc_group
 sudo mv hc_guidance_response /odoo/odoo-fhir/addons/hc_guidance_response
@@ -242,7 +242,7 @@ sudo mv hc_specimen /odoo/odoo-fhir/addons/hc_specimen
 sudo mv hc_structure_definition /odoo/odoo-fhir/addons/hc_structure_definition
 sudo mv hc_structure_map /odoo/odoo-fhir/addons/hc_structure_map
 sudo mv hc_subscription /odoo/odoo-fhir/addons/hc_subscription
-sudo mv hc_substance /odoo/odoo-fhir/addons/hc_substance
+# sudo mv hc_substance /odoo/odoo-fhir/addons/hc_substance
 sudo mv hc_supply_delivery /odoo/odoo-fhir/addons/hc_supply_delivery
 sudo mv hc_supply_request /odoo/odoo-fhir/addons/hc_supply_request
 sudo mv hc_task /odoo/odoo-fhir/addons/hc_task

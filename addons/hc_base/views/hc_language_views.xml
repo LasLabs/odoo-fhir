@@ -23,7 +23,8 @@
             <field name="model">res.lang</field>            
             <field name="inherit_id" ref="base.res_lang_tree"/>           
             <field name="arch" type="xml">
-                <field name="direction" position="after"/>          
+                <field name="direction" position="after"/>
+                <!-- <field name="language"/> -->          
             </field>                    
         </record>   
 
@@ -46,7 +47,12 @@
             <field name="view_mode">tree,form</field>         
         </record>
 
-        <menuitem name="Language" id="hc_base.menu_language" parent="hc_base.menu_datatype" action="hc_language_action" sequence="60"/>
+        <menuitem id="hc_base.menu_language" 
+                  name="Languages" 
+                  parent="hc_base.menu_datatype" 
+                  action="hc_language_action" 
+                  groups="hc_base.group_hc_base_manager" 
+                  sequence="55"/>
 
     </data>
 </openerp>
