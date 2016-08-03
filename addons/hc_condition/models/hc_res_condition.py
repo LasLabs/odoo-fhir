@@ -78,7 +78,7 @@ class Condition(models.Model):
         selection=[
             ("Encounter", "Encounter"), 
             ("Episode Of Care", "Episode of Care")], 
-        help="Encounter when condition first asserted.")                    
+        help="Type of encounter when condition first asserted.")                    
     context_name = fields.Char(
         string="Context Name", 
         compute="compute_context_name", 
