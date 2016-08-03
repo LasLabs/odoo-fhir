@@ -23,8 +23,14 @@
             <field name="model">res.lang</field>            
             <field name="inherit_id" ref="base.res_lang_tree"/>           
             <field name="arch" type="xml">
-                <field name="direction" position="after"/>
-                <!-- <field name="language"/> -->          
+                <field name="direction" invisible="1" position="replace"/>
+                <field name="translatable" invisible="1" position="replace"/>
+                <field name="active" invisible="1" position="replace"/>
+                <field name="iso_code" position="after">
+                    <field name="iso3_code"/>
+                    <field name="language"/>
+                    <field name="country_id"/>
+                </field>            
             </field>                    
         </record>   
 
@@ -33,7 +39,11 @@
             <field name="model">res.lang</field>            
             <field name="inherit_id" ref="base.res_lang_form"/>           
             <field name="arch" type="xml">
-                <field name="direction" position="after"/> 
+                <field name="iso_code" position="after"> 
+                    <field name="iso3_code"/>
+                    <field name="language" />
+                    <field name="country_id"/>
+                </field>
             </field>                    
         </record>   
                                               
