@@ -25,8 +25,8 @@
             <!-- <field name="inherit_id" ref="hc_value_set_contains_view_tree"/>   -->   
             <field name="arch" type="xml">      
                 <tree string="Participation Types">
+                    <field name="name" string="Participation Type"/>
                     <field name="code"/>
-                    <field name="name"/>
                     <field name="definition"/>
                 </tree> 
             </field>        

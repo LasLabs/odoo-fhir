@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_hc_flag_hc_res_flag_user,hc.flag.hc.res.flag.user,model_hc_res_flag,hc_base.group_hc_base_user,1,0,0,
+access_hc_flag_hc_flag_identifier_user,hc.flag.hc.flag.identifier.user,model_hc_flag_identifier,hc_base.group_hc_base_user,1,0,0,
+access_hc_flag_hc_vs_flag_category_manager,hc.flag.hc.vs.flag.category.manager,model_hc_vs_flag_category,hc_base.group_hc_base_manager,1,1,1,
+access_hc_flag_hc_vs_flag_code_manager,hc.flag.hc.vs.flag.code.manager,model_hc_vs_flag_code,hc_base.group_hc_base_manager,1,1,1,

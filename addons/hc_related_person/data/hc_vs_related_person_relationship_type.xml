@@ -2,14 +2,14 @@
 <odoo>
     <data noupdate="0">
         
-        <record id="base.hl7fhir" model="res.partner">  
+<!--         <record id="base.hl7fhir" model="res.partner">  
             <field name="name">HL7 FHIR</field>
             <field name="company_type">company</field>
             <field name="website">www.hl7.org</field>
             <field name="notify_email">none</field>
-            <field name="category_id" eval="[(6, 0, [ref('hc_base.source'), ref('hc_base.document')])]"/>
+            <field name="category_id" eval="[(6, 0, [ref('hc_base.partner_source'), ref('hc_base.partner_document')])]"/>
             <field name="country_id" ref="base.us"/>
-        </record>
+        </record> -->
 
         <record id="person_rel_emergency" model="hc.vs.related.person.relationship.type">  
             <field name="code">emergency</field>

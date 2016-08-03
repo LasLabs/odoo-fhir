@@ -13,7 +13,7 @@
 
         <menuitem id="hc_healthcare_service.menu_hc_service" 
                   name="Healthcare Services" 
-                  parent="hc_base.menu_id_grp" 
+                  parent="hc_base.menu_entity" 
                   action="hc_res_healthcare_service_action" 
                   groups="hc_base.group_hc_base_manager" 
                   sequence="20"/>

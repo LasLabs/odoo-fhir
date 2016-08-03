@@ -1,22 +1,23 @@
 <openerp>
     <data>
-        <!-- <template id="listing"> -->
-        <!--   <ul> -->
-        <!--     <li t-foreach="objects" t-as="object"> -->
-        <!--       <a t-attf-href="#{ root }/objects/#{ object.id }"> -->
-        <!--         <t t-esc="object.display_name"/> -->
-        <!--       </a> -->
-        <!--     </li> -->
-        <!--   </ul> -->
-        <!-- </template> -->
-        <!-- <template id="object"> -->
-        <!--   <h1><t t-esc="object.display_name"/></h1> -->
-        <!--   <dl> -->
-        <!--     <t t-foreach="object._fields" t-as="field"> -->
-        <!--       <dt><t t-esc="field"/></dt> -->
-        <!--       <dd><t t-esc="object[field]"/></dd> -->
-        <!--     </t> -->
-        <!--   </dl> -->
-        <!-- </template> -->
+
+        <!-- Coverage Action and Menu -->   
+    
+        <act_window id="hc_res_coverage_action" 
+                    name="HC Coverages"
+                    res_model="hc.res.coverage"
+                    view_mode="tree,form"
+                    domain=""
+                    context=""
+                    limit=""/>
+
+        <menuitem id="hc_coverage.menu_cov" 
+                  name="Coverage" 
+                  parent="hc_base.menu_fina_supp" 
+                  action="hc_res_coverage_action" 
+                  groups="hc_base.group_hc_base_manager" 
+                  sequence="10"/>
+
+
     </data>
 </openerp>

@@ -4,24 +4,19 @@
         <!-- Organization Action and Menu -->       
         
         <act_window id="hc_res_organization_action"     
-            name="HC Organizations" 
-            res_model="hc.res.organization" 
-            view_mode="tree,form"   
-            domain=""   
-            context=""  
-            limit=""/> 
+                    name="HC Organizations" 
+                    res_model="hc.res.organization" 
+                    view_mode="tree,form"   
+                    domain=""   
+                    context=""  
+                    limit=""/> 
 
-        <menuitem 
-            id="hc_base.menu_id_grp" 
-            name="Groups" 
-            parent="hc_base.menu_id" 
-            sequence="20"/>
-        <menuitem 
-            id="hc_organization.menu_org" 
-            name="Organizations" 
-            parent="hc_base.menu_id_grp" 
-            action="hc_res_organization_action" 
-            sequence="10"/>
+        <menuitem id="hc_organization.menu_org" 
+                  name="Organizations" 
+                  parent="hc_base.menu_entity" 
+                  action="hc_res_organization_action" 
+                  groups="hc_base.group_hc_base_manager" 
+                  sequence="10"/>
 
     </data>   
 </openerp>

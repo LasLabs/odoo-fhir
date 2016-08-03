@@ -2,14 +2,14 @@
 <odoo>
     <data noupdate="0">
 
-        <record id="base.hl7v3" model="res.partner">  
+        <!-- <record id="base.hhl7v3" model="res.partner">  
             <field name="name">HL7 v3</field>
             <field name="company_type">company</field>
             <field name="website">www.hl7.org</field>
             <field name="notify_email">none</field>
-            <field name="category_id" eval="[(6, 0, [ref('hc_base.source'), ref('hc_base.document')])]"/>
+            <field name="category_id" eval="[(6, 0, [ref('hc_base.partner_source'), ref('hc_base.partner_document')])]"/>
             <field name="country_id" ref="base.us"/>
-        </record>
+        </record> -->
 
         <!-- Participation Type -->
 
@@ -18,7 +18,7 @@
             <field name="name">Participation</field>
             <field name="level">1</field>
             <field name="is_abstract"></field>
-            <field name="source_id" ref="base.l7v3"/>
+            <field name="source_id" ref="base.hl7v3"/>
             <field name="system">http://hl7.org/fhir/v3/ParticipationType</field>
             <field name="definition">Indicates that the target of the participation is involved in some manner in the act, but does not qualify how.</field>
             <field name="comments"></field>
@@ -29,7 +29,7 @@
             <field name="level">2</field>
             <field name="is_abstract">True</field>
             <field name="parent_id" ref="part_part"/>
-            <field name="source_id" ref="base.l7v3"/>
+            <field name="source_id" ref="base.hl7v3"/>
             <field name="system">http://hl7.org/fhir/v3/ParticipationType</field>
             <field name="definition">Participations related, but not primary to an act. The Referring, Admitting, and Discharging practitioners must be the same person as those authoring the ControlAct event for their respective trigger events.</field>
             <field name="comments"></field>
@@ -40,7 +40,7 @@
             <field name="level">3</field>
             <field name="is_abstract"></field>
             <field name="parent_id" ref="part_partan"/>
-            <field name="source_id" ref="base.l7v3"/>
+            <field name="source_id" ref="base.hl7v3"/>
             <field name="system">http://hl7.org/fhir/v3/ParticipationType</field>
             <field name="definition">The practitioner who is responsible for admitting a patient to a patient encounter.</field>
             <field name="comments"></field>
@@ -51,7 +51,7 @@
             <field name="level">3</field>
             <field name="is_abstract"></field>
             <field name="parent_id" ref="part_partan"/>
-            <field name="source_id" ref="base.l7v3"/>
+            <field name="source_id" ref="base.hl7v3"/>
             <field name="system">http://hl7.org/fhir/v3/ParticipationType</field>
             <field name="definition">The practitioner that has responsibility for overseeing a patient's care during a patient encounter.</field>
             <field name="comments"></field>
@@ -62,7 +62,7 @@
             <field name="level">3</field>
             <field name="is_abstract"></field>
             <field name="parent_id" ref="part_partan"/>
-            <field name="source_id" ref="base.l7v3"/>
+            <field name="source_id" ref="base.hl7v3"/>
             <field name="system">http://hl7.org/fhir/v3/ParticipationType</field>
             <field name="definition">A person or organization who should be contacted for follow-up questions about the act in place of the author.</field>
             <field name="comments"></field>
@@ -73,7 +73,7 @@
             <field name="level">3</field>
             <field name="is_abstract"></field>
             <field name="parent_id" ref="part_partan"/>
-            <field name="source_id" ref="base.l7v3"/>
+            <field name="source_id" ref="base.hl7v3"/>
             <field name="system">http://hl7.org/fhir/v3/ParticipationType</field>
             <field name="definition">An advisor participating in the service by performing evaluations and making recommendations.</field>
             <field name="comments"></field>
@@ -84,7 +84,7 @@
             <field name="level">3</field>
             <field name="is_abstract"></field>
             <field name="parent_id" ref="part_partan"/>
-            <field name="source_id" ref="base.l7v3"/>
+            <field name="source_id" ref="base.hl7v3"/>
             <field name="system">http://hl7.org/fhir/v3/ParticipationType</field>
             <field name="definition">The practitioner who is responsible for the discharge of a patient from a patient encounter.</field>
             <field name="comments"></field>
@@ -95,7 +95,7 @@
             <field name="level">3</field>
             <field name="is_abstract"></field>
             <field name="parent_id" ref="part_partan"/>
-            <field name="source_id" ref="base.l7v3"/>
+            <field name="source_id" ref="base.hl7v3"/>
             <field name="system">http://hl7.org/fhir/v3/ParticipationType</field>
             <field name="definition">Only with Transportation services. A person who escorts the patient.</field>
             <field name="comments"></field>
@@ -106,7 +106,7 @@
             <field name="level">3</field>
             <field name="is_abstract"></field>
             <field name="parent_id" ref="part_partan"/>
-            <field name="source_id" ref="base.l7v3"/>
+            <field name="source_id" ref="base.hl7v3"/>
             <field name="system">http://hl7.org/fhir/v3/ParticipationType</field>
             <field name="definition">A person having referred the subject of the service to the performer (referring physician). Typically, a referring physician will receive a report.</field>
             <field name="comments"></field>
@@ -117,7 +117,7 @@
             <field name="level">3</field>
             <field name="is_abstract"></field>
             <field name="parent_id" ref="part_partan"/>
-            <field name="source_id" ref="part_base.hl7fhir"/>
+            <field name="source_id" ref="base.hl7v3"/>
             <field name="system">http://hl7.org/fhir/valueset-encounter-participant-type.html</field>
             <field name="definition">A person who is facilitating communication with the patient during the encounter.</field>
             <field name="comments"></field>
@@ -128,7 +128,7 @@
             <field name="level">3</field>
             <field name="is_abstract"></field>
             <field name="parent_id" ref="part_partan"/>
-            <field name="source_id" ref="part_base.hl7fhir"/>
+            <field name="source_id" ref="base.hl7v3"/>
             <field name="system">http://hl7.org/fhir/valueset-encounter-participant-type.html</field>
             <field name="definition">A person to be contacted in case of an emergency during the encounter.</field>
             <field name="comments"></field>
@@ -139,7 +139,7 @@
             <field name="level">2</field>
             <field name="is_abstract">True</field>
             <field name="parent_id" ref="part_part"/>
-            <field name="source_id" ref="base.l7v3"/>
+            <field name="source_id" ref="base.hl7v3"/>
             <field name="system">http://hl7.org/fhir/v3/ParticipationType</field>
             <field name="definition">Parties that may or should contribute or have contributed information to the Act. Such information includes information leading to the decision to perform the Act and how to perform the Act (e.g., consultant), information that the Act itself seeks to reveal (e.g., informant of clinical history), or information about what Act was performed (e.g., informant witness).</field>
             <field name="comments"></field>
@@ -150,7 +150,7 @@
             <field name="level">3</field>
             <field name="is_abstract"></field>
             <field name="parent_id" ref="part_partig"/>
-            <field name="source_id" ref="base.l7v3"/>
+            <field name="source_id" ref="base.hl7v3"/>
             <field name="system">http://hl7.org/fhir/v3/ParticipationType</field>
             <field name="definition">A party that originates the Act and therefore has responsibility for the information given in the Act and ownership of this Act.</field>
             <field name="comments">Example: A "plasma porcelain substance concentration" has analyte a Role with player substance Entity "porcelain".</field>
@@ -161,7 +161,7 @@
             <field name="level">3</field>
             <field name="is_abstract"></field>
             <field name="parent_id" ref="part_partig"/>
-            <field name="source_id" ref="base.l7v3"/>
+            <field name="source_id" ref="base.hl7v3"/>
             <field name="system">http://hl7.org/fhir/v3/ParticipationType</field>
             <field name="definition">A source of reported information (e.g., a next of kin who answers questions about the patient's history). For history questions, the patient is logically an informant, yet the informant of history questions is implicitly the subject.</field>
             <field name="comments"></field>
@@ -172,7 +172,7 @@
             <field name="level">3</field>
             <field name="is_abstract"></field>
             <field name="parent_id" ref="part_partig"/>
-            <field name="source_id" ref="base.l7v3"/>
+            <field name="source_id" ref="base.hl7v3"/>
             <field name="system">http://hl7.org/fhir/v3/ParticipationType</field>
             <field name="definition">An entity entering the data into the originating system. The data entry entity is collected optionally for internal quality control purposes. This includes the transcriptionist for dictated text transcribed into electronic form.</field>
             <field name="comments"></field>
@@ -183,7 +183,7 @@
             <field name="level">4</field>
             <field name="is_abstract"></field>
             <field name="parent_id" ref="part_trans"/>
-            <field name="source_id" ref="base.l7v3"/>
+            <field name="source_id" ref="base.hl7v3"/>
             <field name="system">http://hl7.org/fhir/v3/ParticipationType</field>
             <field name="definition">A person entering the data into the originating system. The data entry person is collected optionally for internal quality control purposes. This includes the transcriptionist for dictated text.</field>
             <field name="comments"></field>
@@ -194,7 +194,7 @@
             <field name="level">3</field>
             <field name="is_abstract"></field>
             <field name="parent_id" ref="part_partig"/>
-            <field name="source_id" ref="base.l7v3"/>
+            <field name="source_id" ref="base.hl7v3"/>
             <field name="system">http://hl7.org/fhir/v3/ParticipationType</field>
             <field name="definition">Only with service events. A person witnessing the action happening without doing anything. A witness is not necessarily aware, much less approves of anything stated in the service event.</field>
             <field name="comments">Example: Students watching an operation or an advanced directive witness.</field>
@@ -205,7 +205,7 @@
             <field name="level">2</field>
             <field name="is_abstract"></field>
             <field name="parent_id" ref="part_part"/>
-            <field name="source_id" ref="base.l7v3"/>
+            <field name="source_id" ref="base.hl7v3"/>
             <field name="system">http://hl7.org/fhir/v3/ParticipationType</field>
             <field name="definition">An entity (person, organization or device) that is in charge of maintaining the information of this act (e.g., who maintains the report or the master service catalog item, etc.).</field>
             <field name="comments"></field>
@@ -216,7 +216,7 @@
             <field name="level">2</field>
             <field name="is_abstract"></field>
             <field name="parent_id" ref="part_part"/>
-            <field name="source_id" ref="base.l7v3"/>
+            <field name="source_id" ref="base.hl7v3"/>
             <field name="system">http://hl7.org/fhir/v3/ParticipationType</field>
             <field name="definition">Target participant that is substantially present in the act and which is directly involved in the action (includes consumed material, devices, etc.).</field>
             <field name="comments"></field>
@@ -227,7 +227,7 @@
             <field name="level">3</field>
             <field name="is_abstract"></field>
             <field name="parent_id" ref="part_dir"/>
-            <field name="source_id" ref="base.l7v3"/>
+            <field name="source_id" ref="base.hl7v3"/>
             <field name="system">http://hl7.org/fhir/v3/ParticipationType</field>
             <field name="definition">The target of an Observation action. Links an observation to a Role whose player is the substance or most specific component entity (material, micro-organism, etc.) being measured within the subject.</field>
             <field name="comments"></field>
@@ -238,7 +238,7 @@
             <field name="level">3</field>
             <field name="is_abstract"></field>
             <field name="parent_id" ref="part_dir"/>
-            <field name="source_id" ref="base.l7v3"/>
+            <field name="source_id" ref="base.hl7v3"/>
             <field name="system">http://hl7.org/fhir/v3/ParticipationType</field>
             <field name="definition">In an obstetric service, the baby.</field>
             <field name="comments"></field>
@@ -249,7 +249,7 @@
             <field name="level">3</field>
             <field name="is_abstract"></field>
             <field name="parent_id" ref="part_dir"/>
-            <field name="source_id" ref="base.l7v3"/>
+            <field name="source_id" ref="base.hl7v3"/>
             <field name="system">http://hl7.org/fhir/v3/ParticipationType</field>
             <field name="definition">The catalyst of a chemical reaction, such as an enzyme or a platinum surface. In biochemical reactions, connects the enzyme with the molecular interaction</field>
             <field name="comments"></field>
@@ -260,7 +260,7 @@
             <field name="level">3</field>
             <field name="is_abstract"></field>
             <field name="parent_id" ref="part_dir"/>
-            <field name="source_id" ref="base.l7v3"/>
+            <field name="source_id" ref="base.hl7v3"/>
             <field name="system">http://hl7.org/fhir/v3/ParticipationType</field>
             <field name="definition">Participant material that is taken up, diminished, altered, or disappears in the act.</field>
             <field name="comments"></field>
@@ -271,7 +271,7 @@
             <field name="level">4</field>
             <field name="is_abstract"></field>
             <field name="parent_id" ref="part_csm"/>
-            <field name="source_id" ref="base.l7v3"/>
+            <field name="source_id" ref="base.hl7v3"/>
             <field name="system">http://hl7.org/fhir/v3/ParticipationType</field>
             <field name="definition">Something incorporated in the subject of a therapy service to achieve a physiologic effect (e.g., heal, relieve, provoke a condition, etc.) on the subject. In an administration service the therapeutic agent is a consumable, in a preparation or dispense service, it is a product. Thus, consumable or product must be specified in accordance with the kind of service.</field>
             <field name="comments"></field>
@@ -282,7 +282,7 @@
             <field name="level">3</field>
             <field name="is_abstract"></field>
             <field name="parent_id" ref="part_dir"/>
-            <field name="source_id" ref="base.l7v3"/>
+            <field name="source_id" ref="base.hl7v3"/>
             <field name="system">http://hl7.org/fhir/v3/ParticipationType</field>
             <field name="definition">Participant used in performing the act without being substantially affected by the act (i.e. durable or inert with respect to that particular service).</field>
             <field name="comments">Examples: Monitoring equipment, tools, but also access/drainage lines, prostheses, pace maker, etc.</field>
@@ -293,7 +293,7 @@
             <field name="level">4</field>
             <field name="is_abstract"></field>
             <field name="parent_id" ref="part_dev"/>
-            <field name="source_id" ref="base.l7v3"/>
+            <field name="source_id" ref="base.hl7v3"/>
             <field name="system">http://hl7.org/fhir/v3/ParticipationType</field>
             <field name="definition">A device that changes ownership due to the service, e.g., a pacemaker, a prosthesis, an insulin injection equipment (pen), etc. Such material may need to be restocked after he service.</field>
             <field name="comments"></field>
@@ -304,7 +304,7 @@
             <field name="level">4</field>
             <field name="is_abstract"></field>
             <field name="parent_id" ref="part_dev"/>
-            <field name="source_id" ref="base.l7v3"/>
+            <field name="source_id" ref="base.hl7v3"/>
             <field name="system">http://hl7.org/fhir/v3/ParticipationType</field>
             <field name="definition">A device that does not change ownership due to the service, i.e., a surgical instrument or tool or an endoscope. The distinction between reuseable and non-reuseable must be made in order to know whether material must be re-stocked.</field>
             <field name="comments"></field>
@@ -315,7 +315,7 @@
             <field name="level">3</field>
             <field name="is_abstract"></field>
             <field name="parent_id" ref="part_dir"/>
-            <field name="source_id" ref="base.l7v3"/>
+            <field name="source_id" ref="base.hl7v3"/>
             <field name="system">http://hl7.org/fhir/v3/ParticipationType</field>
             <field name="definition">In some organ transplantation services and rarely in transfusion services a donor will be a target participant in the service. However, in most cases transplantation is decomposed in three services: explantation, transport, and implantation. The identity of the donor (recipient) is often irrelevant for the explantation (implantation) service.</field>
             <field name="comments"></field>
@@ -326,7 +326,7 @@
             <field name="level">3</field>
             <field name="is_abstract"></field>
             <field name="parent_id" ref="part_dir"/>
-            <field name="source_id" ref="base.l7v3"/>
+            <field name="source_id" ref="base.hl7v3"/>
             <field name="system">http://hl7.org/fhir/v3/ParticipationType</field>
             <field name="definition">The entity playing the associated role is the physical (including energy), chemical or biological substance that is participating in the exposure.</field>
             <field name="comments">Example: In communicable diseases, the associated playing entity is the disease causing pathogen.</field>
@@ -337,7 +337,7 @@
             <field name="level">3</field>
             <field name="is_abstract"></field>
             <field name="parent_id" ref="part_dir"/>
-            <field name="source_id" ref="base.l7v3"/>
+            <field name="source_id" ref="base.hl7v3"/>
             <field name="system">http://hl7.org/fhir/v3/ParticipationType</field>
             <field name="definition">Direct participation in an exposure act where it is unknown that the participant is the source or subject of the exposure. </field>
             <field name="comments">Note: If the participant is known to be the contact of an exposure then the SBJ participation type should be used. If the participant is known to be the source then the EXSRC participation type should be used.</field>
@@ -348,7 +348,7 @@
             <field name="level">4</field>
             <field name="is_abstract"></field>
             <field name="parent_id" ref="part_expart"/>
-            <field name="source_id" ref="base.l7v3"/>
+            <field name="source_id" ref="base.hl7v3"/>
             <field name="system">http://hl7.org/fhir/v3/ParticipationType</field>
             <field name="definition">The entity playing the associated role is the target (contact) of exposure.</field>
             <field name="comments"></field>
@@ -359,7 +359,7 @@
             <field name="level">4</field>
             <field name="is_abstract"></field>
             <field name="parent_id" ref="part_expart"/>
-            <field name="source_id" ref="base.l7v3"/>
+            <field name="source_id" ref="base.hl7v3"/>
             <field name="system">http://hl7.org/fhir/v3/ParticipationType</field>
             <field name="definition">Description:The entity playing the associated role is the source of exposure.</field>
             <field name="comments"></field>
@@ -370,7 +370,7 @@
             <field name="level">3</field>
             <field name="is_abstract"></field>
             <field name="parent_id" ref="part_dir"/>
-            <field name="source_id" ref="base.l7v3"/>
+            <field name="source_id" ref="base.hl7v3"/>
             <field name="system">http://hl7.org/fhir/v3/ParticipationType</field>
             <field name="definition">Participant material that is brought forth (produced) in the act (e.g., specimen in a specimen collection, access or drainage in a placement service, medication package in a dispense service). It does not matter whether the material produced had existence prior to the service, or whether it is created in the service (e.g., in supply services the product is taken from a stock). </field>
             <field name="comments"></field>
@@ -381,7 +381,7 @@
             <field name="level">3</field>
             <field name="is_abstract"></field>
             <field name="parent_id" ref="part_dir"/>
-            <field name="source_id" ref="base.l7v3"/>
+            <field name="source_id" ref="base.hl7v3"/>
             <field name="system">http://hl7.org/fhir/v3/ParticipationType</field>
             <field name="definition">The principle target on which the action happens.</field>
             <field name="comments">Examples: The patient in physical examination, a specimen in a lab observation. May also be a patient's family member (teaching) or a device or room (cleaning, disinfecting, housekeeping). UsageNotes: Not all direct targets are subjects. Consumables and devices used as tools for an act are not subjects. However, a device may be a subject of a maintenance action.</field>
@@ -392,7 +392,7 @@
             <field name="level">4</field>
             <field name="is_abstract"></field>
             <field name="parent_id" ref="part_sbj"/>
-            <field name="source_id" ref="base.l7v3"/>
+            <field name="source_id" ref="base.hl7v3"/>
             <field name="system">http://hl7.org/fhir/v3/ParticipationType</field>
             <field name="definition">The subject of non-clinical (e.g. laboratory) observation services is a specimen.</field>
             <field name="comments"></field>
@@ -403,7 +403,7 @@
             <field name="level">2</field>
             <field name="is_abstract"></field>
             <field name="parent_id" ref="part_part"/>
-            <field name="source_id" ref="base.l7v3"/>
+            <field name="source_id" ref="base.hl7v3"/>
             <field name="system">http://hl7.org/fhir/v3/ParticipationType</field>
             <field name="definition">Target that is not substantially present in the act and which is not directly affected by the act, but which will be a focus of the record or documentation of the act.</field>
             <field name="comments"></field>
@@ -414,7 +414,7 @@
             <field name="level">3</field>
             <field name="is_abstract"></field>
             <field name="parent_id" ref="part_ind"/>
-            <field name="source_id" ref="base.l7v3"/>
+            <field name="source_id" ref="base.hl7v3"/>
             <field name="system">http://hl7.org/fhir/v3/ParticipationType</field>
             <field name="definition">Target on behalf of whom the service happens, but that is not necessarily present in the service. Can occur together with direct target to indicate that a target is both, as in the case where the patient is the indirect beneficiary of a service rendered to a family member, e.g. counseling or given home care instructions. This concept includes a participant, such as a covered party, who derives benefits from a service act covered by a coverage act.</field>
             <field name="comments">Note that the semantic role of the intended recipient who benefits from the happening denoted by the verb in the clause. Thus, a patient who has no coverage under a policy or program may be a beneficiary of a health service while not being the beneficiary of coverage for that service.</field>
@@ -425,7 +425,7 @@
             <field name="level">3</field>
             <field name="is_abstract"></field>
             <field name="parent_id" ref="part_ind"/>
-            <field name="source_id" ref="base.l7v3"/>
+            <field name="source_id" ref="base.hl7v3"/>
             <field name="system">http://hl7.org/fhir/v3/ParticipationType</field>
             <field name="definition">A factor, such as a microorganism, chemical substance, or form of radiation, whose presence, excessive presence, or (in deficiency diseases) relative absence is essential, in whole or in part, for the occurrence of a condition.</field>
             <field name="comments"></field>
@@ -436,7 +436,7 @@
             <field name="level">3</field>
             <field name="is_abstract"></field>
             <field name="parent_id" ref="part_ind"/>
-            <field name="source_id" ref="base.l7v3"/>
+            <field name="source_id" ref="base.hl7v3"/>
             <field name="system">http://hl7.org/fhir/v3/ParticipationType</field>
             <field name="definition">The target participation for an individual in a health care coverage act in which the target role is either the policy holder of the coverage, or a covered party under the coverage.</field>
             <field name="comments"></field>
@@ -447,7 +447,7 @@
             <field name="level">3</field>
             <field name="is_abstract"></field>
             <field name="parent_id" ref="part_ind"/>
-            <field name="source_id" ref="base.l7v3"/>
+            <field name="source_id" ref="base.hl7v3"/>
             <field name="system">http://hl7.org/fhir/v3/ParticipationType</field>
             <field name="definition">The target person or organization contractually recognized by the issuer as a participant who has assumed fiscal responsibility for another personaTMs financial obligations by guaranteeing to pay for amounts owed to a particular account</field>
             <field name="comments">Example: The subscriber of the patient's health insurance policy signs a contract with the provider to be fiscally responsible for the patient billing account balance amount owed.</field>
@@ -458,7 +458,7 @@
             <field name="level">3</field>
             <field name="is_abstract"></field>
             <field name="parent_id" ref="part_ind"/>
-            <field name="source_id" ref="base.l7v3"/>
+            <field name="source_id" ref="base.hl7v3"/>
             <field name="system">http://hl7.org/fhir/v3/ParticipationType</field>
             <field name="definition">Participant who posses an instrument such as a financial contract (insurance policy) usually based on some agreement with the author.</field>
             <field name="comments"></field>
@@ -469,7 +469,7 @@
             <field name="level">3</field>
             <field name="is_abstract"></field>
             <field name="parent_id" ref="part_ind"/>
-            <field name="source_id" ref="base.l7v3"/>
+            <field name="source_id" ref="base.hl7v3"/>
             <field name="system">http://hl7.org/fhir/v3/ParticipationType</field>
             <field name="definition">The record target indicates whose medical record holds the documentation of this act. This is especially important when the subject of a service is not the patient himself.</field>
             <field name="comments"></field>
@@ -480,7 +480,7 @@
             <field name="level">3</field>
             <field name="is_abstract"></field>
             <field name="parent_id" ref="part_ind"/>
-            <field name="source_id" ref="base.l7v3"/>
+            <field name="source_id" ref="base.hl7v3"/>
             <field name="system">http://hl7.org/fhir/v3/ParticipationType</field>
             <field name="definition">The person (or organization) who receives the product of an Act.</field>
             <field name="comments"></field>
@@ -491,7 +491,7 @@
             <field name="level">2</field>
             <field name="is_abstract"></field>
             <field name="parent_id" ref="part_part"/>
-            <field name="source_id" ref="base.l7v3"/>
+            <field name="source_id" ref="base.hl7v3"/>
             <field name="system">http://hl7.org/fhir/v3/ParticipationType</field>
             <field name="definition">A party, who may or should receive or who has recieved the Act or subsequent or derivative information of that Act. Information recipient is inert, i.e., independent of mood."</field>
             <field name="comments">Rationale: this is a generalization of a too diverse family that the definition can't be any more specific, and the concept is abstract so one of the specializations should be used.</field>
@@ -502,7 +502,7 @@
             <field name="level">3</field>
             <field name="is_abstract"></field>
             <field name="parent_id" ref="part_ircp"/>
-            <field name="source_id" ref="base.l7v3"/>
+            <field name="source_id" ref="base.hl7v3"/>
             <field name="system">http://hl7.org/fhir/v3/ParticipationType</field>
             <field name="definition">An information recipient to notify for urgent matters about this Act. (e.g., in a laboratory order, critical results are being called by phone right away, this is the contact to call; or for an inpatient encounter, a next of kin to notify when the patient becomes critically ill).</field>
             <field name="comments"></field>
@@ -513,7 +513,7 @@
             <field name="level">3</field>
             <field name="is_abstract"></field>
             <field name="parent_id" ref="part_ircp"/>
-            <field name="source_id" ref="base.l7v3"/>
+            <field name="source_id" ref="base.hl7v3"/>
             <field name="system">http://hl7.org/fhir/v3/ParticipationType</field>
             <field name="definition">Information recipient to whom an act statement is primarily directed.</field>
             <field name="comments">Examples: A primary care provider receiving a discharge letter from a hospitalist, a health department receiving information on a suspected case of infectious disease. Multiple of these participations may exist on the same act without requiring that recipients be ranked as primary vs. secondary.</field>
@@ -524,7 +524,7 @@
             <field name="level">3</field>
             <field name="is_abstract"></field>
             <field name="parent_id" ref="part_ircp"/>
-            <field name="source_id" ref="base.l7v3"/>
+            <field name="source_id" ref="base.hl7v3"/>
             <field name="system">Typically, a referred by participant will provide a report (e.g. referral).</field>
             <field name="definition">A participant (e.g. provider) who has referred the subject of an act (e.g. patient).</field>
             <field name="comments">Comment: Typically, a referred by participant will provide a report (e.g. referral).</field>
@@ -535,7 +535,7 @@
             <field name="level">3</field>
             <field name="is_abstract"></field>
             <field name="parent_id" ref="part_ircp"/>
-            <field name="source_id" ref="base.l7v3"/>
+            <field name="source_id" ref="base.hl7v3"/>
             <field name="system">http://hl7.org/fhir/v3/ParticipationType</field>
             <field name="definition">The person who receives the patient.</field>
             <field name="comments"></field>
@@ -546,7 +546,7 @@
             <field name="level">3</field>
             <field name="is_abstract"></field>
             <field name="parent_id" ref="part_ircp"/>
-            <field name="source_id" ref="base.l7v3"/>
+            <field name="source_id" ref="base.hl7v3"/>
             <field name="system">http://hl7.org/fhir/v3/ParticipationType</field>
             <field name="definition">A secondary information recipient, who receives copies (e.g., a primary care provider receiving copies of results as ordered by specialist).</field>
             <field name="comments"></field>
@@ -557,7 +557,7 @@
             <field name="level">2</field>
             <field name="is_abstract"></field>
             <field name="parent_id" ref="part_part"/>
-            <field name="source_id" ref="base.l7v3"/>
+            <field name="source_id" ref="base.hl7v3"/>
             <field name="system">http://hl7.org/fhir/v3/ParticipationType</field>
             <field name="definition">The facility where the service is done. May be a static building (or room therein) or a moving location (e.g., ambulance, helicopter, aircraft, train, truck, ship, etc.)</field>
             <field name="comments"></field>
@@ -568,7 +568,7 @@
             <field name="level">3</field>
             <field name="is_abstract"></field>
             <field name="parent_id" ref="part_loc"/>
-            <field name="source_id" ref="base.l7v3"/>
+            <field name="source_id" ref="base.hl7v3"/>
             <field name="system">http://hl7.org/fhir/v3/ParticipationType</field>
             <field name="definition">The destination for services. May be a static building (or room therein) or a movable facility (e.g., ship).</field>
             <field name="comments"></field>
@@ -579,7 +579,7 @@
             <field name="level">3</field>
             <field name="is_abstract"></field>
             <field name="parent_id" ref="part_loc"/>
-            <field name="source_id" ref="base.l7v3"/>
+            <field name="source_id" ref="base.hl7v3"/>
             <field name="system">http://hl7.org/fhir/v3/ParticipationType</field>
             <field name="definition">A location where data about an Act was entered.</field>
             <field name="comments"></field>
@@ -590,7 +590,7 @@
             <field name="level">3</field>
             <field name="is_abstract"></field>
             <field name="parent_id" ref="part_loc"/>
-            <field name="source_id" ref="base.l7v3"/>
+            <field name="source_id" ref="base.hl7v3"/>
             <field name="system">http://hl7.org/fhir/v3/ParticipationType</field>
             <field name="definition">The location of origin for services. May be a static building (or room therein) or a movable facility (e.g., ship).</field>
             <field name="comments"></field>
@@ -601,7 +601,7 @@
             <field name="level">3</field>
             <field name="is_abstract"></field>
             <field name="parent_id" ref="part_loc"/>
-            <field name="source_id" ref="base.l7v3"/>
+            <field name="source_id" ref="base.hl7v3"/>
             <field name="system">http://hl7.org/fhir/v3/ParticipationType</field>
             <field name="definition">Some services take place at multiple concurrent locations (e.g., telemedicine, telephone consultation). The location where the principal performing actor is located is taken as the primary location (LOC) while the other location(s) are considered "remote."</field>
             <field name="comments"></field>
@@ -612,7 +612,7 @@
             <field name="level">3</field>
             <field name="is_abstract"></field>
             <field name="parent_id" ref="part_loc"/>
-            <field name="source_id" ref="base.l7v3"/>
+            <field name="source_id" ref="base.hl7v3"/>
             <field name="system">http://hl7.org/fhir/v3/ParticipationType</field>
             <field name="definition">For services, an intermediate location that specifies a path between origin an destination.</field>
             <field name="comments"></field>
@@ -623,7 +623,7 @@
             <field name="level">2</field>
             <field name="is_abstract"></field>
             <field name="parent_id" ref="part_part"/>
-            <field name="source_id" ref="base.l7v3"/>
+            <field name="source_id" ref="base.hl7v3"/>
             <field name="system">http://hl7.org/fhir/v3/ParticipationType</field>
             <field name="definition">A person, non-person living subject, organization or device that who actually and principally carries out the action. Device should only be assigned as a performer in circumstances where the device is performing independent of human intervention. Need not be the principal responsible actor.</field>
             <field name="comments">Example: A surgery resident operating under supervision of attending surgeon, a search and rescue dog locating survivors, an electronic laboratory analyzer or the laboratory discipline requested to perform a laboratory test. The performer may also be the patient in self-care, e.g. fingerstick blood sugar. The traditional order filler is a performer. This information should accompany every service event. 
@@ -636,7 +636,7 @@
             <field name="level">3</field>
             <field name="is_abstract"></field>
             <field name="parent_id" ref="part_prf"/>
-            <field name="source_id" ref="base.l7v3"/>
+            <field name="source_id" ref="base.hl7v3"/>
             <field name="system">http://hl7.org/fhir/v3/ParticipationType</field>
             <field name="definition">Distributes material used in or generated during the act.</field>
             <field name="comments"></field>
@@ -647,7 +647,7 @@
             <field name="level">3</field>
             <field name="is_abstract"></field>
             <field name="parent_id" ref="part_prf"/>
-            <field name="source_id" ref="base.l7v3"/>
+            <field name="source_id" ref="base.hl7v3"/>
             <field name="system">http://hl7.org/fhir/v3/ParticipationType</field>
             <field name="definition">The principal or primary performer of the act.</field>
             <field name="comments"></field>
@@ -658,7 +658,7 @@
             <field name="level">3</field>
             <field name="is_abstract"></field>
             <field name="parent_id" ref="part_prf"/>
-            <field name="source_id" ref="base.l7v3"/>
+            <field name="source_id" ref="base.hl7v3"/>
             <field name="system">http://hl7.org/fhir/v3/ParticipationType</field>
             <field name="definition">A person assisting in an act through his substantial presence and involvement This includes: assistants, technicians, associates, or whatever the job titles may be.</field>
             <field name="comments"></field>
@@ -669,7 +669,7 @@
             <field name="level">2</field>
             <field name="is_abstract"></field>
             <field name="parent_id" ref="part_part"/>
-            <field name="source_id" ref="base.l7v3"/>
+            <field name="source_id" ref="base.hl7v3"/>
             <field name="system">http://hl7.org/fhir/v3/ParticipationType</field>
             <field name="definition">The person or organization that has primary responsibility for the act. The responsible party is not necessarily present in an action, but is accountable for the action through the power to delegate, and the duty to review actions with the performing actor after the fact. This responsibility may be ethical, legal, contractual, fiscal, or fiduciary in nature.</field>
             <field name="comments">Example: A person who is the head of a biochemical laboratory; a sponsor for a policy or government program.</field>
@@ -680,7 +680,7 @@
             <field name="level">2</field>
             <field name="is_abstract"></field>
             <field name="parent_id" ref="part_part"/>
-            <field name="source_id" ref="base.l7v3"/>
+            <field name="source_id" ref="base.hl7v3"/>
             <field name="system">http://hl7.org/fhir/v3/ParticipationType</field>
             <field name="definition">A person who verifies the correctness and appropriateness of the service (plan, order, event, etc.) and hence takes on accountability.</field>
             <field name="comments"></field>
@@ -691,7 +691,7 @@
             <field name="level">3</field>
             <field name="is_abstract"></field>
             <field name="parent_id" ref="part_vrf"/>
-            <field name="source_id" ref="base.l7v3"/>
+            <field name="source_id" ref="base.hl7v3"/>
             <field name="system">http://hl7.org/fhir/v3/ParticipationType</field>
             <field name="definition">A verifier who attests to the accuracy of an act, but who does not have privileges to legally authenticate the act.</field>
             <field name="comments">Example: A resident physician who sees a patient and dictates a note, then later signs it. Their signature constitutes an authentication.</field>
@@ -702,7 +702,7 @@
             <field name="level">3</field>
             <field name="is_abstract"></field>
             <field name="parent_id" ref="part_vrf"/>
-            <field name="source_id" ref="base.l7v3"/>
+            <field name="source_id" ref="base.hl7v3"/>
             <field name="system">http://hl7.org/fhir/v3/ParticipationType</field>
             <field name="definition">A verifier who legally authenticates the accuracy of an act.</field>
             <field name="comments">Example: A staff physician who sees a patient and dictates a note, then later signs it. Their signature constitutes a legal authentication.</field>

@@ -136,7 +136,7 @@
 
         <menuitem id="hc_related_person.menu_rel_pers" 
                   name="Related Persons" 
-                  parent="hc_base.menu_id_ind" 
+                  parent="hc_base.menu_indiv" 
                   action="hc_res_related_person_action" 
                   groups="hc_base.group_hc_base_manager" 
                   sequence="40"/>

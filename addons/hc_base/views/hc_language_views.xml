@@ -30,7 +30,7 @@
                     <field name="iso3_code"/>
                     <field name="language"/>
                     <field name="country_id"/>
-                </field>     
+                </field>            
             </field>                    
         </record>   
 
@@ -57,7 +57,12 @@
             <field name="view_mode">tree,form</field>         
         </record>
 
-        <menuitem name="Language" id="hc_base.menu_language" parent="hc_base.menu_datatype" action="hc_language_action" sequence="60"/>
+        <menuitem id="hc_base.menu_language" 
+                  name="Languages" 
+                  parent="hc_base.menu_datatype" 
+                  action="hc_language_action" 
+                  groups="hc_base.group_hc_base_manager" 
+                  sequence="55"/>
 
     </data>
 </openerp>

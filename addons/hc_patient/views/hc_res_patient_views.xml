@@ -195,7 +195,7 @@
                                     </form>
                                 </field>
                             </page>
-                            <!-- <page string="Related Persons"/>  -->                 
+                            <page string="Related Persons"/>           
                             <!-- <page string="Related Persons">
                                 <field name="related_person_ids" mode="tree">
                                     <tree>
@@ -210,7 +210,7 @@
                                                 <field name="related_person_id"/>
                                                 <field name="relationship_id"/>              
                                                 <field name="start_date" placeholder="Valid From"/>
-                                                <field name="end_date" placeholder="Valid To"/>                                                
+                                                <field name="end_date" placeholder="Valid To"/>
                                             </group>
                                         </sheet>
                                     </form>
@@ -237,17 +237,12 @@
 
         </record>
 
-        <menuitem 
-            id="hc_base.menu_id_ind" 
-            name="Individuals" 
-            parent="hc_base.menu_id" 
-            sequence="10"/>
-        <menuitem 
-            id="hc_patient.menu_pat" 
-            name="Patients" 
-            parent="hc_base.menu_id_ind" 
-            action="hc_res_patient_action" 
-            sequence="10"/>
+        <menuitem id="hc_patient.menu_pat" 
+                  name="Patients" 
+                  parent="hc_base.menu_indiv" 
+                  action="hc_res_patient_action" 
+                  groups="hc_base.group_hc_base_manager" 
+                  sequence="10"/>
     
         <!-- Patient Language Views -->
 

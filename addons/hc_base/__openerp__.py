@@ -6,7 +6,7 @@
         Module needed by all Health Care modules.""",
 
     'description': """
-        Contains: FHIR Complex Types, common definitions
+        Contains: FHIR Complex Types, common definitions and data sets
     """,
 
     'author': "Luigi Sison",
@@ -19,7 +19,7 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base'],
+    'depends': ['base', 'mail'],
 
     # always loaded
     'data': [
@@ -29,7 +29,7 @@
         'data/data_source.xml',
         'data/data_identifier_type.xml',
         'data/data_language.xml',
-        # 'data/data_participation_type.xml',
+        'data/data_participation_type.xml',
         'data/hc_base_data.xml',
         # 'data/l10n_au/country_pl.xml',
         # 'data/l10n_ph/country_pl.xml',

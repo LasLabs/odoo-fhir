@@ -60,23 +60,30 @@
             </field>          
         </record>           
                   
-        <!-- Value Set Contains Action -->           
-                  
-        <record id="hc_value_set_contains_action" model="ir.actions.act_window">           
-            <field name="name">HC Value Set Contains</field>         
-            <field name="type">ir.actions.act_window</field>          
-            <field name="res_model">hc.value.set.contains</field>          
-            <field name="view_type">form</field>          
-            <field name="view_mode">tree,form</field>         
-        </record>
+        <!-- Value Set Contains Action and Menu --> 
+    
+        <act_window id="hc_value_set_contains_action"   
+                    name="HC Value Set Contains"
+                    res_model="hc.value.set.contains"
+                    view_mode="tree,form"
+                    domain=""
+                    context=""
+                    limit=""/>
 
-        <menuitem 
-            id="hc_base.menu_root" 
-            name="FHIR"
-            web_icon="hc_base,static/description/icon.png"
-            sequence="1"/>
-        <menuitem id="hc_base.menu_datatype" name="Data Type" parent="hc_base.menu_root" sequence="70"/>
-        <menuitem id="hc_base.menu_val_set" name="Value Set Contains" parent="hc_base.menu_datatype" action="hc_value_set_contains_action" sequence="1"/>
+        <menuitem id="hc_base.menu_root" 
+                  name="FHIR" 
+                  web_icon="hc_base,static/description/icon.png" 
+                  sequence="1"/>
+            <menuitem id="hc_base.menu_datatype" 
+                      name="Data Type" 
+                      parent="hc_base.menu_root" 
+                      sequence="70"/>
+                <menuitem id="hc_base.menu_val_set" 
+                          name="Value Set Contains" 
+                          parent="hc_base.menu_datatype" 
+                          action="hc_value_set_contains_action" 
+                          groups="hc_base.group_hc_base_manager" 
+                          sequence="1"/>
 
     </data>
 </openerp>

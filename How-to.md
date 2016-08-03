@@ -216,10 +216,13 @@ sudo mv views/templates.xml views/hc_res_location_templates.xml
 #models/__init__.py
 from . import hc_res_location
 
-#hc_practitioner_role/__openerp__.py
+#hc_location/__openerp__.py
 'name': "Location"
 'summary': """
 'description': """
+**Scope and Usage**
+* Bullet
+"""
 'author': "Luigi Sison",
 'website': "https://hl7-fhir.github.io/location.html",
 'category': 'Health Care',
