@@ -27,7 +27,7 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['hc_practitioner'],
+    'depends': ['hc_practitioner_role'],
 
     # always loaded
     'data': [

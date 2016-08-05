@@ -16,25 +16,24 @@ class Procedure(models.Model):
         string="Identifiers", 
         help="External Ids for this procedure.")                    
     subject_type = fields.Selection(
-        string="Procedure Subject Type", 
+        string="Procedure Subject Type",
+        required="True",  
         selection=[
             ("patient", "Patient"), 
             ("group", "Group")], 
         help="Type of subject the procedure was performed on.")                    
     subject_name = fields.Char(
-        string="Subject Name", 
-        compute="compute_subject_name", 
+        string="Subject Name",
         required="True", 
+        compute="compute_subject_name",  
         help="Who the procedure was performed on.")
     subject_patient_id = fields.Many2one(
         comodel_name="hc.res.patient", 
-        string="Subject Patient", 
-        required="True", 
+        string="Subject Patient",  
         help="Patient who the procedure was performed on.")                  
     subject_group_id = fields.Many2one(
         comodel_name="hc.res.group", 
         string="Subject Group", 
-        required="True", 
         help="Group who the procedure was performed on.")                  
     status = fields.Selection(
         string="Procedure Status", 
@@ -204,7 +203,6 @@ class ProcedureUsedReference(models.Model):
     procedure_id = fields.Many2one(
         comodel_name="hc.res.procedure", 
         string="Procedure", 
-        required="True", 
         help="Procedure associated with this procedure used reference.")                   
     # used_reference_type = fields.Selection(
     #     string="Used Reference Type", 
@@ -248,7 +246,6 @@ class ProcedureComponent(models.Model):
     procedure_id = fields.Many2one(
         comodel_name="hc.res.procedure", 
         string="Procedure", 
-        required="True", 
         help="Procedure associated with this procedure component.")                    
     # component_type = fields.Selection(
     #     string="Component Type", 
@@ -291,7 +288,6 @@ class ProcedurePerformer(models.Model):
     procedure_id = fields.Many2one(
         comodel_name="hc.res.procedure", 
         string="Procedure", 
-        required="True", 
         help="Procedure associated with this performer.")
     actor_type = fields.Selection(
         string="Performer Actor Type", 
@@ -303,8 +299,7 @@ class ProcedurePerformer(models.Model):
         help="Type of practitioner who was involved in the procedure.") 
     actor_name = fields.Char(
         string="Actor Name", 
-        compute="compute_actor_name", 
-        required="True", 
+        compute="compute_actor_name",
         help="The name of the entity who performs the procedure.")                                   
     actor_practitioner_id = fields.Many2one(
         comodel_name="hc.res.practitioner", 
@@ -346,7 +341,6 @@ class ProcedureFocalDevice(models.Model):
     procedure_id = fields.Many2one(
         comodel_name="hc.res.procedure", 
         string="Procedure", 
-        required="True", 
         help="Procedure associated with this focal device.")                   
     action_id = fields.Many2one(
         comodel_name="hc.vs.device.action", 

@@ -157,13 +157,10 @@ class OrganizationLocation(models.Model):
     _name = "hc.organization.location" 
     _description = "Organization Location"
     _inherit = ["hc.basic.association"]
-    # _inherits = {"hc.res.endpoint": "endpoint_id"}
 
     # location_id = fields.Many2one(
     #     comodel_name="hc.res.location", 
     #     string="Location",
-    #     equired=True,
-    #     ondelete="restrict", 
     #     help="Location associated with this organization.")
     organization_id = fields.Many2one(
         comodel_name="hc.res.organization", 
@@ -337,18 +334,18 @@ class PatientContact(models.Model):
         string="Patient Contact Organization", 
         help="Organization that is associated with the contact.")
 
-# class PractitionerQualification(models.Model):
-#     _inherit = ["hc.practitioner.qualification"]
+class PractitionerQualification(models.Model):
+    _inherit = ["hc.practitioner.qualification"]
     
-#     qualification_issuer_organization_id = fields.Many2one(
-#         comodel_name="hc.res.organization", 
-#         string="Qualification Issuer Organization", 
-#         help="Organization that regulates and issues the qualification.")        
+    qualification_issuer_organization_id = fields.Many2one(
+        comodel_name="hc.res.organization", 
+        string="Qualification Issuer Organization", 
+        help="Organization that regulates and issues the qualification.")        
 
-# class PractitionerRole(models.Model):
-#     _inherit = ["hc.practitioner.role"]
+class PractitionerRole(models.Model):
+    _inherit = ["hc.res.practitioner.role"]
     
-#     practitioner_role_organization_id = fields.Many2one(
-#         comodel_name="hc.res.organization", 
-#         string="Practitioner Role Organization", 
-#         help="Organization where the roles are performed.")
+    practitioner_role_organization_id = fields.Many2one(
+        comodel_name="hc.res.organization", 
+        string="Practitioner Role Organization", 
+        help="Organization where the roles are performed.")
