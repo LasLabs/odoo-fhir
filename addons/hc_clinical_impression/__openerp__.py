@@ -30,11 +30,11 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base'],
+    'depends': ['hc_allergy_intolerance', 'hc_condition', 'hc_procedure'],
 
     # always loaded
     'data': [
-        # 'security/ir.model.access.csv',
+        'security/ir.model.access.csv',
         'views/hc_res_clinical_impression_views.xml',
         'views/hc_res_clinical_impression_templates.xml',
     ],
