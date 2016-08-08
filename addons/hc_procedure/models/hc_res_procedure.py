@@ -198,7 +198,8 @@ class Procedure(models.Model):
 
 class ProcedureUsedReference(models.Model): 
     _name = "hc.procedure.used.reference"   
-    _description = "Procedure Used Reference"           
+    _description = "Procedure Used Reference"
+    _inherit = ["hc.basic.association"]           
     
     procedure_id = fields.Many2one(
         comodel_name="hc.res.procedure", 

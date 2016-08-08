@@ -35,11 +35,11 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['hc_encounter'],
+    'depends': ['hc_condition'],
 
     # always loaded
     'data': [
-        # 'security/ir.model.access.csv',
+        'security/ir.model.access.csv',
         'views/hc_res_episode_of_care_views.xml',
         'views/hc_res_episode_of_care_templates.xml',
     ],
