@@ -15,7 +15,8 @@
                   name="Coverage" 
                   parent="hc_base.menu_fina_supp" 
                   action="hc_res_coverage_action" 
-                  sequence="20"/>
+                  groups="hc_base.group_hc_base_manager" 
+                  sequence="10"/>
 
     </data>
 </openerp>

@@ -9,3 +9,4 @@ import hc_identifier
 import hc_language
 import hc_participation_type
 import hc_telecom
+import hc_timing

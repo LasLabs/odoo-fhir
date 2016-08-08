@@ -188,7 +188,11 @@ class AllergyIntoleranceReaction(models.Model):
         help="Date(/time) when manifestations showed.")                    
     duration = fields.Float(
         string="Duration", 
-        help="How long Manifestations persisted.")                   
+        help="How long Manifestations persisted.")
+    duration_uom_id = fields.Many2one(
+        comodel_name="product.uom", 
+        string="Duration UOM", 
+        help="How long Manifestations persisted unit of measure.")            
     severity = fields.Selection(
         string="Reaction Severity", 
         selection=[

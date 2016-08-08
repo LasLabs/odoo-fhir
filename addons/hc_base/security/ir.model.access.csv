@@ -62,3 +62,8 @@ access_hc_base_hc_vs_condition_outcome_manager,hc.base.hc.vs.condition.outcome.m
 access_hc_base_hc_vs_uom_manager,hc.base.hc.vs.uom.manager,model_hc_vs_uom,hc_base.group_hc_base_manager,1,1,1,1
 access_hc_base_hc_vs_body_site_manager,hc.base.hc.vs.body.site.manager,model_hc_vs_body_site,hc_base.group_hc_base_manager,1,1,1,1
 access_hc_base_hc_vs_days_of_week_manager,hc.base.hc.vs.days.of.week.manager,model_hc_vs_days_of_week,hc_base.group_hc_base_manager,1,1,1,1
+access_hc_base_hc_timing_user,hc.base.hc.timing.user,model_hc_timing,hc_base.group_hc_base_user,1,0,0,0
+access_hc_base_hc_timing_repeat_user,hc.base.hc.timing.repeat.user,model_hc_timing_repeat,hc_base.group_hc_base_user,1,0,0,0
+access_hc_base_hc_timing_event_user,hc.base.hc.timing.event.user,model_hc_timing_event,hc_base.group_hc_base_user,1,0,0,0
+access_hc_base_hc_vs_event_timing_manager,hc.base.hc.vs.event.timing.manager,model_hc_vs_event_timing,hc_base.group_hc_base_manager,1,1,1,1
+

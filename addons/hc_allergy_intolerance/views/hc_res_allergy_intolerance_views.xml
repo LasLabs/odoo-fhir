@@ -53,7 +53,8 @@
                                     <tree>              
                                         <field name="description"/>      
                                         <field name="onset"/>       
-                                        <field name="duration"/>        
+                                        <field name="duration"/>
+                                        <field name="duration_uom_id"/>       
                                         <field name="severity"/>     
                                     </tree>         
                                     <form>          
@@ -67,7 +68,8 @@
                                                 <group>   
                                                     <field name="description"/>      
                                                     <field name="onset"/>       
-                                                    <field name="duration"/>        
+                                                    <field name="duration"/>
+                                                    <field name="duration_uom_id"/>        
                                                 </group>
                                                 <group>
                                                     <field name="severity"/>

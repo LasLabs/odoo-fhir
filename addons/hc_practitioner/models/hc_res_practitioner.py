@@ -100,12 +100,6 @@ class PractitionerIdentifier(models.Model):
         comodel_name="hc.res.practitioner", 
         string="Practitioner", 
         help="Practitioner who associated with this qualification.")
-    # identifier_id = fields.Many2one(
-    #     comodel_name="hc.identifier", 
-    #     string="Identifier", 
-    #     required=True,
-    #     ondelete="restrict", 
-    #     help="Identifier associated with this person.")
 
 class PractitionerName(models.Model): 
     _name = "hc.practitioner.name"    
@@ -123,7 +117,6 @@ class PractitionerName(models.Model):
         comodel_name="hc.res.practitioner", 
         string="Practitioner", 
         help="Practitioner associated with this human name.")
-
 
 class PractitionerTelecom(models.Model):  
     _name = "hc.practitioner.telecom" 
@@ -253,12 +246,6 @@ class PractitionerQualificationIdentifier(models.Model):
         comodel_name="hc.practitioner.qualification", 
         string="Practitioner Qualification", 
         help="Practitioner Qualification which is associated with this identifier.")
-    # identifier_id = fields.Many2one(
-    #     comodel_name="hc.identifier", 
-    #     string="Identifier", 
-    #     required=True,
-    #     ondelete="restrict", 
-    #     help="Identifier associated with this person.")
 
 # External Reference
 
