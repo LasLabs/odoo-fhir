@@ -1,2 +1,8 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_hc_detected_issue_hc_detected_issue,hc_detected_issue.hc_detected_issue,model_hc_detected_issue_hc_detected_issue,,1,0,0,0
+access_hc_detected_issue_hc_res_detected_issue_user,hc.detected.issue.hc.res.detected.issue.user,model_hc_res_detected_issue,hc_base.group_hc_base_user,1,0,0,0
+access_hc_detected_issue_hc_detected_issue_mitigation_user,hc.detected.issue.hc.detected.issue.mitigation.user,model_hc_detected_issue_mitigation,hc_base.group_hc_base_user,1,0,0,0
+access_hc_detected_issue_hc_detected_issue_implicated_user,hc.detected.issue.hc.detected.issue.implicated.user,model_hc_detected_issue_implicated,hc_base.group_hc_base_user,1,0,0,0
+access_hc_detected_issue_hc_detected_issue_identifier_user,hc.detected.issue.hc.detected.issue.identifier.user,model_hc_detected_issue_identifier,hc_base.group_hc_base_user,1,0,0,0
+access_hc_detected_issue_hc_vs_detected_issue_category_manager,hc.detected.issue.hc.vs.detected.issue.category.manager,model_hc_vs_detected_issue_category,hc_base.group_hc_base_manager,1,1,1,1
+access_hc_detected_issue_hc_vs_detected_issue_mitigation_action_manager,hc.detected.issue.hc.vs.detected.issue.mitigation.action.manager,model_hc_vs_detected_issue_mitigation_action,hc_base.group_hc_base_manager,1,1,1,1
+access_hc_detected_issue_hc_vs_detected_issue_implicated_manager,hc.detected.issue.hc.vs.detected.issue.implicated.manager,model_hc_vs_detected_issue_implicated,hc_base.group_hc_base_manager,1,1,1,1

@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_hc_body_site_hc_res_body_site_user,hc.body.site.hc.res.body.site.user,model_hc_res_body_site,hc_base.group_hc_base_user,1,0,0,0
+access_hc_body_site_hc_body_site_identifier_user,hc.body.site.hc.body.site.identifier.user,model_hc_body_site_identifier,hc_base.group_hc_base_user,1,0,0,0
+access_hc_body_site_hc_body_site_image_attachment_user,hc.body.site.hc.body.site.image.attachment.user,model_hc_body_site_image_attachment,hc_base.group_hc_base_user,1,0,0,0
+access_hc_body_site_hc_vs_body_site_relative_location_manager,hc.body.site.hc.vs.body.site.relative.location.manager,model_hc_vs_body_site_relative_location,hc_base.group_hc_base_manager,1,1,1,1
+access_hc_body_site_hc_vs_body_site_code_manager,hc.body.site.hc.vs.body.site.code.manager,model_hc_vs_body_site_code,hc_base.group_hc_base_manager,1,1,1,1

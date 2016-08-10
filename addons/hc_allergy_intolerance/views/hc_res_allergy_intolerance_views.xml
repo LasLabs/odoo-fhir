@@ -40,9 +40,9 @@
                         <div name="buttons" class="oe_right oe_button_box"></div>                       
                         <group>                     
                             <group>                 
-                                <field name="substance_id"/>
-                                <field name="status"/>              
-                                <field name="type"/>                
+                                <field name="type" widget="radio"/>
+                                <field name="substance_id"/>                        
+                                <field name="status"/>                
                             </group>                    
                             <group>                 
                             </group>                    

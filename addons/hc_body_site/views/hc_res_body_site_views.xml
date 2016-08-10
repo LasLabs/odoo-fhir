@@ -1,0 +1,22 @@
+<openerp>
+    <data>
+
+        <!-- Body Site Action and Menu -->  
+      
+        <act_window id="hc_res_body_site_action"  
+                    name="HC Body Sites"
+                    res_model="hc.res.body.site"
+                    view_mode="tree,form"
+                    domain=""
+                    context=""
+                    limit=""/>
+
+        <menuitem id="hc_body_site.menu_body_site" 
+                  name="Body Sites" 
+                  parent="hc_base.menu_clinic_diag" 
+                  action="hc_res_body_site_action" 
+                  groups="hc_base.group_hc_base_manager" 
+                  sequence="60"/>
+
+    </data>
+</openerp>

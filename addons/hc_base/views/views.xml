@@ -2,90 +2,55 @@
 <openerp>
     <data>
 
-        <menuitem id="hc_base.menu_clinic" name="Clinical" parent="hc_base.menu_root" groups="hc_base.group_hc_base_manager" sequence="10"/>
-            <menuitem id="hc_base.menu_clinic_gen" name="General" parent="hc_base.menu_clinic" groups="hc_base.group_hc_base_manager" sequence="10"/>
-            <menuitem id="hc_base.menu_clinic_care" name="Care Provision" parent="hc_base.menu_clinic" groups="hc_base.group_hc_base_manager" sequence="20"/>
-            <menuitem id="hc_base.menu_med" name="Medication and Immunization" parent="hc_base.menu_clinic" groups="hc_base.group_hc_base_manager" sequence="30"/>
-            <menuitem id="hc_base.menu_clinic_diag" name="Diagnostics" parent="hc_base.menu_clinic" groups="hc_base.group_hc_base_manager" sequence="40"/>
-
-
-       <!--  <menuitem id="hc_base.menu_clinic" name="Clinical" parent="hc_base.menu_root" sequence="10"/>
-            <menuitem id="hc_base.menu_clinic_gen" name="General" parent="hc_base.menu_clinic" sequence="10"/>
-            <menuitem name="Care Provision" id="hc_base.menu_clinic_care" parent="hc_base.menu_clinic" action="hc_value_set_contains_action" sequence="20"/>
-            <menuitem name="Medication and Immunization" id="hc_base.menu_clinic_med" parent="hc_base.menu_clinic" action="hc_value_set_contains_action" sequence="30"/>
-            <menuitem name="Diagnostics" id="hc_base.menu_clinic_diag" parent="hc_base.menu_clinic" action="hc_value_set_contains_action" sequence="40"/> -->
+        <menuitem id="hc_base.menu_clinic" 
+                  name="Clinical" 
+                  parent="hc_base.menu_root" 
+                  groups="hc_base.group_hc_base_manager" 
+                  sequence="10"/>
+            <menuitem id="hc_base.menu_clinic_gen" 
+                      name="General" 
+                      parent="hc_base.menu_clinic" 
+                      groups="hc_base.group_hc_base_manager" 
+                      sequence="10"/>
+            <menuitem id="hc_base.menu_clinic_care" 
+                      name="Care Provision" 
+                      parent="hc_base.menu_clinic" 
+                      groups="hc_base.group_hc_base_manager" 
+                      sequence="20"/>
+            <menuitem id="hc_base.menu_med" 
+                      name="Medication and Immunization" 
+                      parent="hc_base.menu_clinic" 
+                      groups="hc_base.group_hc_base_manager" 
+                      sequence="30"/>
+            <menuitem id="hc_base.menu_clinic_diag" 
+                      name="Diagnostics" 
+                      parent="hc_base.menu_clinic" 
+                      groups="hc_base.group_hc_base_manager" 
+                      sequence="40"/>
 
         <menuitem id="hc_base.menu_adm" name="Administration" parent="hc_base.menu_root" groups="hc_base.group_hc_base_manager" sequence="20"/>
             <menuitem id="hc_base.menu_indiv" name="Individuals" parent="hc_base.menu_adm" groups="hc_base.group_hc_base_manager" sequence="10"/>
             <menuitem id="hc_base.menu_entity" name="Entities" parent="hc_base.menu_adm" groups="hc_base.group_hc_base_manager" sequence="20"/>
             <menuitem id="hc_base.menu_pat_mgt" name="Patient Management" parent="hc_base.menu_adm" groups="hc_base.group_hc_base_manager" sequence="30"/>
-            <!-- <menuitem id="hc_base.menu_dev" name="Devices" parent="hc_base.menu_adm" groups="hc_base.group_hc_base_manager" sequence="40"/>
-            <menuitem id="hc_base.menu_secur" name="Security and Privacy" parent="hc_base.menu_adm" groups="hc_base.group_hc_base_manager" sequence="50"/> -->
-
-    <!-- <menuitem id="hc_base.menu_id" name="Identification" parent="hc_base.menu_root" sequence="20"/> -->
-<!--         <menuitem id="hc_base.menu_id_ind" 
-            name="Individuals" 
-            parent="hc_base.menu_id" 
-            sequence="10"/> -->
-        <!-- <menuitem 
-            id="hc_base.menu_id_grp" 
-            name="Groups" 
-            parent="hc_base.menu_id" 
-            sequence="20"/> -->
-<!--         <menuitem 
-            id="hc_base.menu_id_ent" 
-            name="Entities" 
-            parent="hc_base.menu_id" 
-            sequence="30"/> -->
-        
-        <!-- <menuitem name="Devices" id="hc_base.menu_id_dev" parent="hc_base.menu_id" action="hc_value_set_contains_action" sequence="4"/> -->
     
-    <menuitem id="hc_base.menu_work" name="Workflow" parent="hc_base.menu_root" groups="hc_base.group_hc_base_manager" sequence="30"/>
-        <menuitem id="hc_base.menu_work_sched" name="Scheduling" parent="hc_base.menu_work" groups="hc_base.group_hc_base_manager" sequence="10"/>
-        <menuitem id="hc_base.menu_work_event_1" name="Events 1" parent="hc_base.menu_work" groups="hc_base.group_hc_base_manager" sequence="20"/>
-        <menuitem id="hc_base.menu_work_event_2" name="Events 2" parent="hc_base.menu_work" groups="hc_base.group_hc_base_manager" sequence="30"/>
-        <menuitem id="hc_base.menu_clin_rsn" name="Clinical Reasoning" parent="hc_base.menu_work" groups="hc_base.group_hc_base_manager" sequence="40"/>
+        <menuitem id="hc_base.menu_work" name="Workflow" parent="hc_base.menu_root" groups="hc_base.group_hc_base_manager" sequence="30"/>
+            <menuitem id="hc_base.menu_work_sched" name="Scheduling" parent="hc_base.menu_work" groups="hc_base.group_hc_base_manager" sequence="10"/>
+            <menuitem id="hc_base.menu_work_event_1" name="Events 1" parent="hc_base.menu_work" groups="hc_base.group_hc_base_manager" sequence="20"/>
+            <menuitem id="hc_base.menu_work_event_2" name="Events 2" parent="hc_base.menu_work" groups="hc_base.group_hc_base_manager" sequence="30"/>
+            <menuitem id="hc_base.menu_clin_rsn" name="Clinical Reasoning" parent="hc_base.menu_work" groups="hc_base.group_hc_base_manager" sequence="40"/>
+            
+        <menuitem id="hc_base.menu_found" name="Foundation" parent="hc_base.menu_root" groups="hc_base.group_hc_base_manager" sequence="40"/>
+            <menuitem id="hc_base.menu_doc_quest" name="Documents and Questionnaires" parent="hc_base.menu_found" groups="hc_base.group_hc_base_manager" sequence="10"/>
+            <menuitem id="hc_base.menu_exch" name="Exchange" parent="hc_base.menu_found" groups="hc_base.group_hc_base_manager" sequence="20"/>
+            <menuitem id="hc_base.menu_conf" name="Conformance" parent="hc_base.menu_found" groups="hc_base.group_hc_base_manager" sequence="30"/>
+            <menuitem id="hc_base.menu_term" name="Terminology" parent="hc_base.menu_found" groups="hc_base.group_hc_base_manager" sequence="40"/>
+            <menuitem id="hc_base.menu_impl_supp" name="Implementation Support" parent="hc_base.menu_found" groups="hc_base.group_hc_base_manager" sequence="50"/>
 
-
-    <!-- <menuitem id="hc_base.menu_work" name="Workflow" parent="hc_base.menu_root" sequence="30"/>
-        <menuitem name="Patient Management" id="hc_base.menu_work_pat" parent="hc_base.menu_work" action="hc_value_set_contains_action" sequence="1"/>
-        <menuitem name="Workflow" id="hc_base.menu_work_work" parent="hc_base.menu_work" action="hc_value_set_contains_action" sequence="2"/>
-        <menuitem name="Decision Support/Quality Measurement" id="hc_base.menu_work_dsqm" parent="hc_base.menu_work" action="hc_value_set_contains_action" sequence="3"/> -->
-        
-    <menuitem id="hc_base.menu_found" name="Foundation" parent="hc_base.menu_root" groups="hc_base.group_hc_base_manager" sequence="40"/>
-        <menuitem id="hc_base.menu_doc_quest" name="Documents and Questionnaires" parent="hc_base.menu_found" groups="hc_base.group_hc_base_manager" sequence="10"/>
-        <menuitem id="hc_base.menu_exch" name="Exchange" parent="hc_base.menu_found" groups="hc_base.group_hc_base_manager" sequence="20"/>
-        <menuitem id="hc_base.menu_conf" name="Conformance" parent="hc_base.menu_found" groups="hc_base.group_hc_base_manager" sequence="30"/>
-        <menuitem id="hc_base.menu_term" name="Terminology" parent="hc_base.menu_found" groups="hc_base.group_hc_base_manager" sequence="40"/>
-        <menuitem id="hc_base.menu_impl_supp" name="Implementation Support" parent="hc_base.menu_found" groups="hc_base.group_hc_base_manager" sequence="50"/>
-
-
-    <!-- <menuitem id="hc_base.menu_infra" name="Infrastructure" parent="hc_base.menu_root" sequence="40"/>
-        <menuitem name="Information Tracking" id="hc_base.menu_infra_info" parent="hc_base.menu_infra" action="hc_value_set_contains_action" sequence="1"/>
-        <menuitem name="Documents and Lists" id="hc_base.menu_infra_doc" parent="hc_base.menu_infra" action="hc_value_set_contains_action" sequence="2"/>
-        <menuitem name="Structure" id="hc_base.menu_infra_struc" parent="hc_base.menu_infra" action="hc_value_set_contains_action" sequence="3"/>
-        <menuitem name="Exchange" id="hc_base.menu_infra_exch" parent="hc_base.menu_infra" action="hc_value_set_contains_action" sequence="4"/> -->
-    
         <menuitem id="hc_base.menu_fina" name="Financial" parent="hc_base.menu_root" groups="hc_base.group_hc_base_manager" sequence="50"/>
             <menuitem id="hc_base.menu_fina_supp" name="Support" parent="hc_base.menu_fina" groups="hc_base.group_hc_base_manager" sequence="10"/>
             <menuitem id="hc_base.menu_fina_bill" name="Billing" parent="hc_base.menu_fina" groups="hc_base.group_hc_base_manager" sequence="20"/>
             <menuitem id="hc_base.menu_fina_pmt" name="Payment" parent="hc_base.menu_fina" groups="hc_base.group_hc_base_manager" sequence="30"/>
             <menuitem id="hc_base.menu_fina_oth" name="Other" parent="hc_base.menu_fina" groups="hc_base.group_hc_base_manager" sequence="40"/>
-
-  <!--   <menuitem id="hc_base.menu_conf" name="Conformance" parent="hc_base.menu_root" sequence="50"/>
-        <menuitem name="Terminology" id="hc_base.menu_conf_term" parent="hc_base.menu_conf" action="hc_value_set_contains_action" sequence="1"/>
-        <menuitem name="Content" id="hc_base.menu_conf_cont" parent="hc_base.menu_conf" action="hc_value_set_contains_action" sequence="2"/>
-        <menuitem name="Operations Control" id="hc_base.menu_conf_ops" parent="hc_base.menu_conf" action="hc_value_set_contains_action" sequence="3"/>
-        <menuitem name="Miscellaneous" id="hc_base.menu_conf_misc" parent="hc_base.menu_conf" action="hc_value_set_contains_action" sequence="4"/> -->
-    
-<!--     <menuitem id="hc_base.menu_fina" name="Financial" parent="hc_base.menu_root" sequence="60"/>
-        <menuitem name="Support" id="hc_base.menu_fina_sup" parent="hc_base.menu_fina" sequence="1"/>
-
-        <menuitem name="Billing" id="hc_base.menu_fina_bill" parent="hc_base.menu_fina" action="hc_value_set_contains_action" sequence="2"/>
-        <menuitem name="Payment" id="hc_base.menu_fina_pmt" parent="hc_base.menu_fina" action="hc_value_set_contains_action" sequence="3"/>
-        <menuitem name="Other" id="hc_base.menu_fina_oth" parent="hc_base.menu_fina" action="hc_value_set_contains_action" sequence="4"/> -->
-    
-    
 
   </data>
 </openerp>

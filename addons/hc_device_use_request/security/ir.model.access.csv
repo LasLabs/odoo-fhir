@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_hc_device_use_request_hc_device_use_request,hc_device_use_request.hc_device_use_request,model_hc_device_use_request_hc_device_use_request,,1,0,0,0

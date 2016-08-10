@@ -28,12 +28,14 @@ class AllergyIntolerance(models.Model):
             ("resolved", "Resolved"), 
             ("refuted", "Refuted"), 
             ("entered-in-error", "Entered in Error")], 
+        default="active",
         help="Assertion about certainty associated with a propensity, or potential risk, of a reaction to the identified Substance.")                    
     type = fields.Selection(
         string="Type", 
         selection=[
             ("allergy", "Allergy"), 
-            ("intolerance", "Intolerance")], 
+            ("intolerance", "Intolerance")],
+        default="allergy", 
         help="Identification of the underlying physiological mechanism for a Reaction Risk.")                    
     category = fields.Selection(
         string="Category", 

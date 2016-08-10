@@ -1,59 +1,22 @@
 <openerp>
   <data>
-    <!-- explicit list view definition -->
-    <!--
-    <record model="ir.ui.view" id="hc_substance.list">
-      <field name="name">hc_substance list</field>
-      <field name="model">hc_substance.hc_substance</field>
-      <field name="arch" type="xml">
-        <tree>
-          <field name="name"/>
-          <field name="value"/>
-          <field name="value2"/>
-        </tree>
-      </field>
-    </record>
-    -->
+    
+    <!-- Substance Action and Menu -->      
+      
+    <act_window id="hc_res_substance_action"      
+                name="HC Substances"
+                res_model="hc.res.substance"
+                view_mode="tree,form"
+                domain=""
+                context=""
+                limit=""/>
 
-    <!-- actions opening views on models -->
-    <!--
-    <record model="ir.actions.act_window" id="hc_substance.action_window">
-      <field name="name">hc_substance window</field>
-      <field name="res_model">hc_substance.hc_substance</field>
-      <field name="view_mode">tree,form</field>
-    </record>
-    -->
+    <menuitem id="hc_substance.menu_substance" 
+              name="Substances" 
+              parent="hc_base.menu_entity" 
+              action="hc_res_substance_action" 
+              groups="hc_base.group_hc_base_manager" 
+              sequence="50"/>
 
-    <!-- server action to the one above -->
-    <!--
-    <record model="ir.actions.server" id="hc_substance.action_server">
-      <field name="name">hc_substance server</field>
-      <field name="model_id" ref="model_hc_substance_hc_substance"/>
-      <field name="code">
-        action = {
-          "type": "ir.actions.act_window",
-          "view_mode": "tree,form",
-          "res_model": self._name,
-        }
-      </field>
-    </record>
-    -->
-
-    <!-- Top menu item -->
-    <!--
-    <menuitem name="hc_substance" id="hc_substance.menu_root"/>
-    -->
-    <!-- menu categories -->
-    <!--
-    <menuitem name="Menu 1" id="hc_substance.menu_1" parent="hc_substance.menu_root"/>
-    <menuitem name="Menu 2" id="hc_substance.menu_2" parent="hc_substance.menu_root"/>
-    -->
-    <!-- actions -->
-    <!--
-    <menuitem name="List" id="hc_substance.menu_1_list" parent="hc_substance.menu_1"
-              action="hc_substance.action_window"/>
-    <menuitem name="Server to list" id="hc_substance" parent="hc_substance.menu_2"
-              action="hc_substance.action_server"/>
-    -->
   </data>
 </openerp>

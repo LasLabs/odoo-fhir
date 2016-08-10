@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_hc_risk_assessment_hc_risk_assessment,hc_risk_assessment.hc_risk_assessment,model_hc_risk_assessment_hc_risk_assessment,,1,0,0,0

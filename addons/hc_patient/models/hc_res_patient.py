@@ -354,10 +354,10 @@ class PatientContact(models.Model):
         inverse_name="patient_contact_id", 
         string="Relationships", 
         help="The kind of relationship.")
-    organization_id = fields.Many2one(
-        comodel_name="hc.res.organization", 
-        string="Organization", 
-        help="Organization that is associated with the contact.")
+    # organization_id = fields.Many2one(
+    #     comodel_name="hc.res.organization", 
+    #     string="Organization", 
+    #     help="Organization that is associated with the contact.")
     start_date = fields.Datetime(
         string="Valid from", 
         help="Start of the the period during which this contact person or organization is valid to be contacted relating to this patient.")
