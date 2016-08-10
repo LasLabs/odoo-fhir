@@ -102,3 +102,13 @@ class ParticipantRole(models.Model):
     _description = "Participant Role"       
     _inherit = ["hc.value.set.contains"]
 
+
+# External Reference
+
+class Condition(models.Model):
+    _inherit = ["res.condition"]
+
+    context_episode_of_care_id = fields.Many2one(
+        comodel_name="hc.res.episode.of.care", 
+        string="Context Episode Of Care", 
+        help="Episode Of Care when condition first asserted.")

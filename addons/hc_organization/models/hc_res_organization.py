@@ -284,7 +284,6 @@ class OrganizationContactTelecom(models.Model):
 # External Reference
 
 class Partner(models.Model):
- 
     _inherit = ["res.partner"]
 
     is_organization = fields.Boolean(
