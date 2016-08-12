@@ -199,15 +199,8 @@ class PersonTelecom(models.Model):
 class PersonAttachment(models.Model):   
     _name = "hc.person.attachment"  
     _description = "Person Attachment"
-    _inherit = ["hc.basic.association"]
-    _inherits = {"hc.attachment": "attachment_id"}
+    _inherit = ["hc.basic.association", "hc.attachment"]
 
-    attachment_id = fields.Many2one(
-        comodel_name="hc.attachment", 
-        string="Attachment",
-        required=True,
-        ondelete="restrict",  
-        help="Attachment associated with this entity.")
     person_id = fields.Many2one(
         comodel_name="hc.res.person", 
         string="Person", 

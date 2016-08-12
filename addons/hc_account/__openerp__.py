@@ -21,7 +21,8 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['account', 'hc_healthcare_service', 'hc_coverage'],
+    # 'depends': ['hc_device'],
+    'depends': ['account', 'hc_practitioner', 'hc_healthcare_service', 'hc_coverage'],
 
     # always loaded
     'data': [

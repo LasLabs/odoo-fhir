@@ -3,7 +3,7 @@
     'name': "Clinical Impression",
 
     'summary': """
-        Assessment, impression
+        Assessment, impression, diagnosis
         """,
 
     'description': """
@@ -17,7 +17,10 @@
          
         Performing a clinical assessment is a fundamental part of a clinician's workflow, performed repeatedly throughout 
         the day. In spite of this - or perhaps, because of it - there is wide variance in how clinical impressions 
-        are recorded. Some clinical assessments simply result in an impression recorded as a single text note in the patient 'record' (e.g. "Progress satisfactory, continue with treatment"), while others are associated with careful, detailed record keeping of the evidence gathered, the reasoning leading to a differential diagnosis, and the actions taken during or planned as a result of the clinical assessment, and there is a continuum between these. This resource is intended to be used to cover all these use cases.
+        are recorded. Some clinical assessments simply result in an impression recorded as a single text note in the patient 'record' 
+        (e.g. "Progress satisfactory, continue with treatment"), while others are associated with careful, detailed record keeping of the 
+        evidence gathered, the reasoning leading to a differential diagnosis, and the actions taken during or planned as a result of the 
+        clinical assessment, and there is a continuum between these. This resource is intended to be used to cover all these use cases.
     """,
 
     'author': "Luigi Sison",

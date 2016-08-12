@@ -29,7 +29,8 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['hc_related_person', 'hc_organization', 'hc_account', 'hc_location', 'hc_episode_of_care'],
+    # 'depends': ['hc_appointment']
+    'depends': ['hc_organization', 'hc_account', 'hc_condition'],
 
     # always loaded
     'data': [

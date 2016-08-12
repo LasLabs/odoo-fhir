@@ -225,19 +225,18 @@ class PatientMaritalStatus(models.Model):
 class PatientAttachment(models.Model):   
     _name = "hc.patient.attachment"  
     _description = "Patient Attachment"
-    _inherit = ["hc.basic.association"]
-    _inherits = {"hc.attachment": "attachment_id"}
+    _inherits = {"hc.person.attachment": "attachment_id"}
 
-    patient_id = fields.Many2one(
-        comodel_name="hc.res.patient", 
-        string="Patient", 
-        help="Patient associated with this attachment.")      
     attachment_id = fields.Many2one(
-        comodel_name="hc.attachment", 
+        comodel_name="hc.person.attachment", 
         string="Attachment",
         required=True,
         ondelete="restrict",  
         help="Attachment associated with this patient.")
+    patient_id = fields.Many2one(
+        comodel_name="hc.res.patient", 
+        string="Patient", 
+        help="Patient associated with this attachment.")      
 
 class PatientCareProviderPractitioner(models.Model):
     _name = "hc.patient.care.provider.practitioner"    

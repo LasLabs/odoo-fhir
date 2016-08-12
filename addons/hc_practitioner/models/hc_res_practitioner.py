@@ -179,11 +179,10 @@ class PractitionerAddress(models.Model):
 class PractitionerAttachment(models.Model):   
     _name = "hc.practitioner.attachment"  
     _description = "Practitioner Attachment"
-    _inherit = ["hc.basic.association"]
-    _inherits = {"hc.attachment": "attachment_id"}
+    _inherits = {"hc.person.attachment": "attachment_id"}
 
     attachment_id = fields.Many2one(
-        comodel_name="hc.attachment", 
+        comodel_name="hc.person.attachment", 
         string="Attachment",
         required=True,
         ondelete="restrict",  
