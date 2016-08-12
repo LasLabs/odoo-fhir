@@ -8,9 +8,9 @@
               <field name="model">hc.annotation</field>               
               <field name="arch" type="xml">                
                     <search string="Annotations">             
-                          <field name="annotation"/>
-                          <field name="author_name"/>                   
-                          <field name="recorded_date"/>           
+                        <field name="annotation"/>
+                        <field name="author_name"/>                   
+                        <field name="recorded_date"/>           
                     </search>             
               </field>                
         </record>                 
@@ -20,10 +20,10 @@
               <field name="model">hc.annotation</field>               
               <field name="arch" type="xml">                
                     <tree string="Annotations">
-                          <field name="annotation"/>    
-                          <field name="author_name"/>
-                          <field name="author_type"/>       
-                          <field name="recorded_date"/>           
+                        <field name="annotation"/>    
+                        <field name="author_name"/>
+                        <field name="author_type"/>       
+                        <field name="recorded_date"/>           
                     </tree>             
               </field>                
         </record>
@@ -56,12 +56,12 @@
         <!-- Annotation Action and Menu -->                 
                           
         <act_window id="hc_annotation_action"   
-            name="HC Annotations"
-            res_model="hc.annotation"
-            view_mode="tree,form"
-            domain=""
-            context=""
-            limit=""/>
+                    name="HC Annotations"
+                    res_model="hc.annotation"
+                    view_mode="tree,form"
+                    domain=""
+                    context=""
+                    limit=""/>
 
 <!--         <record id="hc_annotation_action" model="ir.actions.act_window">
           <field name="name">HC Annotations</field>
@@ -75,7 +75,12 @@
           <field name="search_view_id" ref="res_lang_search"/>
         </record> -->
 
-        <menuitem id="hc_base.menu_anno" name="Annotation" parent="hc_base.menu_datatype" action="hc_annotation_action" groups="group_hc_base_manager" sequence="20"/>
+        <menuitem id="hc_base.menu_anno" 
+                  name="Annotation" 
+                  parent="hc_base.menu_datatype" 
+                  action="hc_annotation_action" 
+                  groups="group_hc_base_manager" 
+                  sequence="20"/>
 
     </data>
 </openerp>
