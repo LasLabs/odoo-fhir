@@ -2,13 +2,34 @@
 
 from openerp import models, fields, api
 
+class res_partner_title(models.Model):
+    _inherit = ["res.partner.title"] 
+
+    description = fields.Text(
+        string="Description",
+        help="Describes a term.")
+    type = fields.Selection(
+        string="Type", 
+        selection=[
+            ("academic", "Academic"),
+            ("generational", "Generational"),
+            ("practitioner", "Healthcare Practitioner"), 
+            ("honorary", "Honorary"),
+            ("legal", "Legal"),
+            ("organizational", "Organizational"),
+            ("professional", "Professional"),
+            ("religious", "Religious")],
+        default="generational",
+        help="Category of title.")
+
 class HumanNameTerm(models.Model):  
     _name = "hc.human.name.term" 
     _description = "Human Name Term"
     _inherit = ["res.partner.title"]         
 
     name = fields.Char(
-        string="Human Name Term", 
+        string="Human Name Term",
+        required="True", 
         help="A single term of a human name (e.g., John, Smith).")
 
     _sql_constraints = [
@@ -23,8 +44,22 @@ class SuffixHumanName(models.Model):
     _inherit = ["res.partner.title"]     
 
     name = fields.Char(
-        string="Suffix Human Name Term", 
-        help="Terms that come after the given and last names. Aka post-nominal letters. May be a family title (e.g., Jr.) a credential (e.g., RN), a title (.e.g., OBE), or a degree (e.g., PhD).")
+        string="Suffix Term",
+        required="True",  
+        help="Terms that come after the given and last names. Aka post-nominal letters. May be a generational term (e.g., Jr.) a credential (e.g., RN), an honorary title (.e.g., OBE), or an academic degree (e.g., PhD).")
+    type = fields.Selection(
+        string="Type", 
+        selection=[
+            ("academic", "Academic"),
+            ("generational", "Generational"),
+            ("practitioner", "Healthcare Practitioner"), 
+            ("honorary", "Honorary"),
+            ("legal", "Legal"),
+            ("organizational", "Organizational"),
+            ("professional", "Professional"),
+            ("religious", "Religious")],
+        default="generational",
+        help="Category of suffix.")
 
 class HumanName(models.Model):
 
@@ -32,6 +67,7 @@ class HumanName(models.Model):
     _description = "Human Name"
     
     name = fields.Char(
+        compute='compute_full_name',
         store=True,
         string="Full Name",
         help="A full text representation of the human name.")
@@ -106,10 +142,10 @@ class HumanName(models.Model):
     display_order = fields.Selection(
         string="Display Name Order", 
         selection=[
-            ("given maiden last", "Given Maiden Last (e.g., American name)"), 
-            ("maiden last first", "Maiden Last First (e.g., Chinese name)"),
-            ("first last maiden", "First Last Maiden (e.g., Spanish name)")],
-        default="given maiden last",
+            ("first maiden last", "First Last (default)"), 
+            ("maiden last first", "Last First (e.g., East Asian name)"),
+            ("first last maiden", "First Last Maiden (e.g., Hispanic name)")],
+        default="first maiden last",
         help="The display order of this human name.")
 
 # class HcExtensionHumanNameFull(models.Model):
@@ -210,15 +246,15 @@ class HumanName(models.Model):
 
         # return super(HcExtensionHumanName, self).create(vals)
 
-class HumanName(models.Model):
-    _inherit = 'hc.human.name'
+# class HumanName(models.Model):
+#     _inherit = 'hc.human.name'
 
     @api.depends('display_order', 'prefix_ids', 'first_id', 'middle_ids', 'initial_ids', 'nickname_ids', 'mother_maiden_name_id', 'surname_id', 'suffix_ids', 'previous_last_id', 'birth_last_name_id')
-    def _compute_full_name(self):
+    def compute_full_name(self):
         first_name = self.first_id.name if self.first_id else ''
         middle_name = " ".join([middle.name for middle in self.middle_ids]) if self.middle_ids else ''
         initials = " ".join([initial.name for initial in self.initial_ids]) if self.initial_ids else ''
-        nick_name = " ".join(nickname.name for nickname in self.nickname_ids) if self.nickname_ids else ''
+        nick_name = " ".join([nickname.name for nickname in self.nickname_ids]) if self.nickname_ids else ''
         given = first_name+' '+middle_name+' '+initials+' '+nick_name
         
         maiden_name = self.mother_maiden_name_id.name if self.mother_maiden_name_id else ''
@@ -232,7 +268,7 @@ class HumanName(models.Model):
         prefix = " ".join([prefix.name for prefix in self.prefix_ids]) if self.prefix_ids else ''
         suffix = " ".join([suffix.name for suffix in self.suffix_ids]) if self.suffix_ids else ''
 
-        if self.display_order == 'given maiden last':
+        if self.display_order == 'first maiden last':
             full = prefix +' '+ given +' '+ family +' '+ suffix
             self.name = full
 
@@ -244,14 +280,14 @@ class HumanName(models.Model):
             full_family_reverse = prefix +' '+ given +' '+ family_reverse +' '+ suffix
             self.name = full_family_reverse
 
-    name = fields.Char(compute='_compute_full_name',
-        store=True,
-        string="Full Name",
-        help="A full text representation of the human name.")
+    # name = fields.Char(compute='compute_full_name',
+    #     store=True,
+    #     string="Full Name",
+    #     help="A full text representation of the human name.")
 
-    middle_ids = fields.Many2many("hc.human.name.term", "middle_name_human_term_rel", string="Middle Names", help="Term of given name.")
-    initial_ids = fields.Many2many("hc.human.name.term", "initial_name_human_term_rel", string="Initial Names", help="Term of given name.")
-    nickname_ids = fields.Many2many("hc.human.name.term", "nick_name_human_term_rel", string="Nickname", help="Term of given name.")
+    # middle_ids = fields.Many2many("hc.human.name.term", "middle_name_human_term_rel", string="Middle Names", help="Term of given name.")
+    # initial_ids = fields.Many2many("hc.human.name.term", "initial_name_human_term_rel", string="Initial Names", help="Term of given name.")
+    # nickname_ids = fields.Many2many("hc.human.name.term", "nick_name_human_term_rel", string="Nickname", help="Term of given name.")
     
     # class ObjectHumanName(models.AbstractModel): 
     #     _name = "hc.object.human.name"    

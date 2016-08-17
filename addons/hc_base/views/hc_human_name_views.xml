@@ -17,12 +17,12 @@
           <field name="name">Human Name Term Tree</field>         
           <field name="model">hc.human.name.term</field>          
           <field name="arch" type="xml">          
-            <tree string="Human Name Terms">        
-              <field name="name"/>       
+            <tree string="Human Name Terms" editable="top">        
+                <field name="name"/>      
             </tree>       
           </field>          
         </record>           
-                    
+                     
         <record id="hc_human_name_term_view_form" model="ir.ui.view">           
           <field name="name">Human Name Term Form</field>         
           <field name="model">hc.human.name.term</field>          
@@ -35,7 +35,7 @@
                   </h1> 
                 </div>    
                 <group>   
-                  <group> 
+                  <group>
                   </group>  
                   <group> 
                   </group>  
@@ -47,16 +47,25 @@
 
             <!-- Human Name Term Action and Menu -->            
                         
-            <record id="hc_human_name_term_action" model="ir.actions.act_window">           
-              <field name="name">Human Name Term</field>          
-              <field name="type">ir.actions.act_window</field>          
-              <field name="res_model">hc.human.name.term</field>          
-              <field name="view_type">form</field>          
-              <field name="view_mode">tree,form</field>         
-            </record>           
+            <act_window id="hc_human_name_term_action"  
+                        name="HC Human Name Terms"
+                        res_model="hc.human.name.term"
+                        view_mode="tree,form"
+                        domain=""
+                        context=""
+                        limit=""/>
                   
-            <menuitem name="Human Name" id="hc_base.menu_human_name" parent="hc_base.menu_datatype" sequence="40"/>
-            <menuitem name="Human Name Terms" id="hc_base.menu_human_name_term" parent="hc_base.menu_human_name" action="hc_human_name_term_action" sequence="10"/>
+            <menuitem id="hc_base.menu_human_name" 
+                      name="Human Name" 
+                      parent="hc_base.menu_datatype"
+                      groups="hc_base.group_hc_base_manager" 
+                      sequence="40"/>
+
+                <menuitem id="hc_base.menu_human_name_term" 
+                          name="Terms" parent="hc_base.menu_human_name" 
+                          action="hc_human_name_term_action" 
+                          groups="hc_base.group_hc_base_manager" 
+                          sequence="10"/>
 
             <!-- Human Name Suffix Views -->            
                         
@@ -65,7 +74,12 @@
               <field name="model">hc.human.name.suffix</field>          
               <field name="arch" type="xml">          
                 <search string="Human Name Suffixes">       
-                  <field name="name"/>          
+                  <field name="name"/>
+                  <group> 
+                        <filter name="group_by_type" 
+                                string="Type" 
+                                context="{'group_by': 'type'}"/>
+                    </group>          
                 </search>       
               </field>          
             </record>           
@@ -75,7 +89,10 @@
               <field name="model">hc.human.name.suffix</field>          
               <field name="arch" type="xml">          
                 <tree string="Human Name Suffixes">       
-                  <field name="name"/>               
+                  <field name="name"/>
+                  <field name="shortcut"/>
+                <field name="type"/>
+                <field name="description"/>                
                 </tree>       
               </field>          
             </record>           
@@ -88,11 +105,14 @@
                   <sheet>     
                     <div class="oe_title oe_left">    
                       <h1>  
-                        <field name="name" default_focus="1"/>
+                        <field name="name" placeholder="(e.g., Junior)" default_focus="1"/>
                       </h1> 
                     </div>    
                     <group>   
-                      <group> 
+                      <group>
+                        <field name="shortcut"/>
+                        <field name="type"/>
+                        <field name="description"/>  
                       </group>  
                       <group> 
                       </group>  
@@ -104,15 +124,20 @@
                         
             <!-- Human Name Suffix Action and Menu -->            
                         
-            <record id="hc_suffix_human_name_action" model="ir.actions.act_window">           
-              <field name="name">Human Name Suffix</field>          
-              <field name="type">ir.actions.act_window</field>          
-              <field name="res_model">hc.human.name.suffix</field>          
-              <field name="view_type">form</field>          
-              <field name="view_mode">tree,form</field>         
-            </record>           
-
-            <menuitem name="Suffixes" id="hc_base.menu_human_name_suffix" parent="hc_base.menu_human_name" action="hc_suffix_human_name_action" sequence="20"/>
+            <act_window id="hc_human_name_suffix_action"  
+                        name="HC Human Name Suffixes"
+                        res_model="hc.human.name.suffix"
+                        view_mode="tree,form"
+                        domain=""
+                        context=""
+                        limit=""/>
+           
+            <menuitem id="hc_base.menu_human_name_suffix" 
+                      name="Suffixes" 
+                      parent="hc_base.menu_human_name" 
+                      action="hc_human_name_suffix_action" 
+                      groups="hc_base.group_hc_base_manager" 
+                      sequence="20"/>
 
             <!-- Human Name Views -->           
                 
@@ -130,8 +155,10 @@
               <field name="name">Human Name Tree</field>          
               <field name="model">hc.human.name</field>         
               <field name="arch" type="xml">          
-                <tree string="Human Names">        
-                  <field name="name"/>      
+                <tree string="Human Names" editable="top">        
+                  <field name="first_id"/>
+                  <field name="surname_id"/>
+                  <field name="display_order"/>      
                   <field name="use"/>     
                 </tree>       
               </field>          
@@ -188,15 +215,20 @@
                         
             <!-- Human Name Action and Menu -->           
                         
-            <record id="hc_human_name_action" model="ir.actions.act_window">            
-              <field name="name">HC Human Names</field>         
-              <field name="type">ir.actions.act_window</field>          
-              <field name="res_model">hc.human.name</field>         
-              <field name="view_type">form</field>          
-              <field name="view_mode">tree,form</field>         
-            </record>           
-
-            <menuitem name="Human Names" id="hc_base.menu_human_name_name" parent="hc_base.menu_human_name" action="hc_human_name_action" sequence="1"/>
+            <act_window id="hc_human_name_action"   
+                        name="HC Human Names"
+                        res_model="hc.human.name"
+                        view_mode="tree,form"
+                        domain=""
+                        context=""
+                        limit=""/>
+          
+            <menuitem id="hc_base.menu_human_name_name" 
+                      name="Human Names" 
+                      parent="hc_base.menu_human_name" 
+                      action="hc_human_name_action" 
+                      groups="hc_base.group_hc_base_manager" 
+                      sequence="1"/>
     
     </data>
 </openerp>

@@ -19,6 +19,25 @@ sudo wget https://raw.githubusercontent.com/luigisison/moxylus/master/Odoo8/odoo
 * Execute the script to install Odoo: ```./odoo-install.sh```
 * When prompted, enter your GitHub username and password to download the enterprise package.
 
+##Update Odoo, Thank you, [Yenthe](http://www.odoo.yenthevg.com/update-odoo-environment-github/)
+
+* Go to directory where Odoo is installed
+```
+cd /odoo/odoo-server
+```
+* Fetch latest Odoo version from GitHub
+```
+sudo git fetch origin 9.0
+```
+* Apply changes
+```
+sudo git reset --hard origin/9.0
+```
+* Update databases
+```
+sudo service odoo-server restart -u all -d FHIR-DEV
+```
+
 #Linux
 
 ##Cheatsheet
@@ -231,4 +250,19 @@ from . import hc_res_location
         'security/ir.model.access.csv',
         'views/hc_res_location_views.xml',
         'views/hc_res_location_templates.xml',
+```
+##Create demo data
+*Create sample data in Odoo
+*Export file to ```/home/odoo/Downloads```
+*Transfer file to demo directory ```/odoo/odoo-fhir/addons/hc_base/demo/```
+
+```
+sudo mv /home/odoo/Downloads/hc.human.name.csv /odoo/odoo-fhir/addons/hc_base/demo/hc.human.name.csv
+sudo mv /home/odoo/Downloads/hc.human.name.term.csv /odoo/odoo-fhir/addons/hc_base/demo/hc.human.name.term.csv
+sudo mv /home/odoo/Downloads/hc.res.person.csv /odoo/odoo-fhir/addons/hc_base/demo/hc.res.person.csv
+```
+##Create data
+*Base Module
+```
+sudo mv /home/odoo/Downloads/hc.human.name.suffix.csv /odoo/odoo-fhir/addons/hc_base/data/hc.human.name.suffix.csv
 ```

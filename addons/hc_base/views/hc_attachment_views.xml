@@ -148,35 +148,42 @@
         </record>                       
                                               
 <!-- Attachment Action and Menu -->           
-                    
-        <record id="hc_attachment_action" model="ir.actions.act_window">            
-            <field name="name">HC Attachments</field>         
-            <field name="type">ir.actions.act_window</field>          
-            <field name="res_model">hc.attachment</field>         
-            <field name="view_type">form</field>          
-            <field name="view_mode">tree,form</field>         
-        </record>
 
-        <record id="hc_vs_attachment_type_action" model="ir.actions.act_window">                        
-            <field name="name">HC Attachment Types</field>                  
-            <field name="type">ir.actions.act_window</field>                    
-            <field name="res_model">hc.vs.attachment.type</field>                   
-            <field name="view_type">form</field>                    
-            <field name="view_mode">tree,form</field>                   
-        </record>  
+        <act_window id="hc_vs_attachment_type_action"   
+                    name="HC Attachment Types"
+                    res_model="hc.vs.attachment.type"
+                    view_mode="tree,form"
+                    domain=""
+                    context=""
+                    limit=""/>
         
-        <record id="hc_vs_mime_type_action" model="ir.actions.act_window">                      
-            <field name="name">HC MIME Types</field>                    
-            <field name="type">ir.actions.act_window</field>                    
-            <field name="res_model">hc.vs.mime.type</field>                 
-            <field name="view_type">form</field>                    
-            <field name="view_mode">tree,form</field>                   
-        </record> 
+        <act_window id="hc_vs_mime_type_action" 
+                    name="HC Mime Types"
+                    res_model="hc.vs.mime.type"
+                    view_mode="tree,form"
+                    domain=""
+                    context=""
+                    limit=""/>
 
-        <menuitem id="hc_base.menu_attach" name="Attachment" parent="hc_base.menu_datatype" sequence="30"/>
-        <menuitem id="hc_base.menu_attach_attach" name="Attachments" parent="hc_base.menu_attach" action="hc_attachment_action" sequence="10"/>
-        <menuitem id="hc_base.menu_attach_type" name="Attachment Types" parent="hc_base.menu_attach" action="hc_vs_attachment_type_action" sequence="20"/>
-        <menuitem id="hc_base.menu_attach_mime" name="MIME Types" parent="hc_base.menu_attach" action="hc_vs_mime_type_action" sequence="30"/>
+        <menuitem id="hc_base.menu_attach" 
+                  name="Attachment" 
+                  parent="hc_base.menu_datatype" 
+                  groups="hc_base.group_hc_base_manager" 
+                  sequence="30"/>
+
+            <menuitem id="hc_base.menu_attach_type" 
+                      name="Attachment Types" 
+                      parent="hc_base.menu_attach" 
+                      action="hc_vs_attachment_type_action" 
+                      groups="hc_base.group_hc_base_manager" 
+                      sequence="10"/>
+                      
+            <menuitem id="hc_base.menu_attach_mime" 
+                      name="MIME Types" 
+                      parent="hc_base.menu_attach" 
+                      action="hc_vs_mime_type_action" 
+                      groups="hc_base.group_hc_base_manager" 
+                      sequence="20"/>
 
     </data>
 </openerp>

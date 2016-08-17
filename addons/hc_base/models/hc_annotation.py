@@ -37,7 +37,7 @@ class Annotation(models.AbstractModel):
     # author_patient_id = fields.Many2one(comodel_name="hc.res.patient", string="Author Patient", help="Patient responsible for the annotation.")
     # author_related_person_id = fields.Many2one(comodel_name="hc.res.related.person", string="Author Related Person", help="Related person responsible for the annotation.")
 
-   @api.multi
+    @api.multi
     def compute_author_name(self):
         for hc_annotation in self:
             if hc_annotation.author_type == 'string':

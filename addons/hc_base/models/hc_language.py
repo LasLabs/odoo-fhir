@@ -5,7 +5,7 @@ from openerp import models, fields, api
 class Language(models.Model): 
     _name = "hc.vs.language"    
     _description = "Language"
-    # _inherit = ["hc.value.set.contains"]
+    _inherit = ["hc.value.set.contains"]
     _inherits = {"res.lang": "language_id"}
 
     language_id = fields.Many2one(
@@ -30,13 +30,6 @@ class LanguageSkill(models.Model):
 class lang(models.Model):
     _inherit = ["res.lang"]
 
-    direction = fields.Selection(
-        selection=[
-            ("ltr", "Left-to-Right"), 
-            ("rtl", "Right-to-Left"),
-            ("ttd", "Top-to-Down")], 
-        string ='Direction', 
-        required=True)
     iso3_code = fields.Char(
         string="ISO3 code",
         size=16, 

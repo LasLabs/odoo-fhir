@@ -296,7 +296,11 @@ class Address(models.Model):
     _name = "hc.address"
     _description = "Address"
 
-    name = fields.Char(string="Full Address", compute='compute_address', store=True, help="A full text representation of the address.")
+    name = fields.Char(
+        string="Full Address", 
+        compute='compute_address', 
+        store=True, 
+        help="A full text representation of the address.")
     line1 = fields.Char(string="Address Line 1", help="Street name, number, direction & P.O. Box etc.")
     line2 = fields.Char(string="Address Line 2", help="Street name, number, direction & P.O. Box etc.")
     line3 = fields.Char(string="Address Line 3", help="Street name, number, direction & P.O. Box etc.")

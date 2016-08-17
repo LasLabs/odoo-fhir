@@ -47,4 +47,5 @@
         'demo/demo.xml',
     ],
     'installable': 'True',
+    'auto-install': 'True',
 }

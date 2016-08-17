@@ -49,10 +49,10 @@ class Person(models.Model):
     birthdate = fields.Date(
         string="Birth Date", 
         help="The birth date for the person.")
-    attachment_ids = fields.One2many(
-        comodel_name="hc.person.attachment", 
+    photo_ids = fields.One2many(
+        comodel_name="hc.person.photo", 
         inverse_name="person_id", 
-        string="Attachments", 
+        string="Photos", 
         help="Image of the Person.")
     # person_managing_organization_id = fields.Many2one(comodel_name="hc.res.organization", string="Managing Organization", help="The Organization that is the custodian of the person record.")
     is_active_person = fields.Boolean(
@@ -111,16 +111,17 @@ class PersonAddress(models.Model):
     _inherit = ["hc.basic.association"]
     _inherits = {"hc.address": "address_id"}
 
-    person_id = fields.Many2one(
-        comodel_name="hc.res.person", 
-        string="Person", 
-        help="Entity associated with this address.")
+
     address_id = fields.Many2one(
         comodel_name="hc.address", 
         string="Address", 
         required=True,
         ondelete="restrict", 
         help="Address associated with this entity.") 
+    person_id = fields.Many2one(
+        comodel_name="hc.res.person", 
+        string="Person", 
+        help="Entity associated with this address.")
     use = fields.Selection(string="Use",
         selection=[
             ("home", "Home"), 
@@ -141,14 +142,7 @@ class PersonIdentifier(models.Model):
     _name = "hc.person.identifier"  
     _description = "Person Identifier"
     _inherit = ["hc.basic.association", "hc.identifier"]
-    # _inherits = {"hc.identifier": "identifier_id"}
 
-    # identifier_id = fields.Many2one(
-    #     comodel_name="hc.identifier",
-    #     string="Identifier",
-    #     required=True,
-    #     ondelete="restrict", 
-    #     help="Identifier associated with this person identifier.")
     person_id = fields.Many2one(
         comodel_name="hc.res.person", 
         string="Person", 
@@ -196,15 +190,15 @@ class PersonTelecom(models.Model):
             ("mobile", "Mobile")], 
         help="Purpose of this telecom contact point.")
      
-class PersonAttachment(models.Model):   
-    _name = "hc.person.attachment"  
-    _description = "Person Attachment"
+class PersonPhoto(models.Model):   
+    _name = "hc.person.photo"  
+    _description = "Person Photo"
     _inherit = ["hc.basic.association", "hc.attachment"]
 
     person_id = fields.Many2one(
         comodel_name="hc.res.person", 
         string="Person", 
-        help="Entity associated with this attachment.")      
+        help="Entity associated with this photo.")      
 
 # External Reference
 

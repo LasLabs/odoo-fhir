@@ -16,7 +16,6 @@
               <field name="division_id"/>
               <field name="region_id"/>
               <field name="country_id"/>
-
               <filter name="state_id" string="California" domain="[('state_id', '=', 'base.state_us_5')]"/> 
               <group string="Group By"> 
                 <filter name="group_by_state" string="State" context="{'group_by': 'state_id'}"/>
@@ -73,18 +72,16 @@
             </form>
           </field>
         </record>
-
-        <!-- Address Action -->   
         
-          <record id="hc_address_action" model="ir.actions.act_window">
-            <field name="name">HC Addresses</field>
-            <field name="type">ir.actions.act_window</field>
-            <field name="res_model">hc.address</field>
-            <field name="view_type">form</field>
-            <field name="view_mode">tree,form</field>
-          </record>
-        
-        <!-- Address Menu Item -->
+        <!-- Address Action and Menu -->  
+          
+        <act_window id="hc_address_action"  
+                    name="HC Addresses"
+                    res_model="hc.address"
+                    view_mode="tree,form"
+                    domain=""
+                    context=""
+                    limit=""/>
 
         <menuitem name="Address" id="hc_base.menu_addr" parent="hc_base.menu_datatype" sequence="10"/>
         <menuitem name="Addresses" id="hc_base.menu_addr_addr" parent="hc_base.menu_addr" action="hc_address_action" sequence="10"/>
@@ -210,24 +207,24 @@
 
         <!-- Postal/ZIP Code Action and Menu--> 
 
-        <record id="hc_vs_country_postal_code_action" model="ir.actions.act_window">  
-          <field name="name">HC Postal/ZIP Codes</field>
-          <field name="type">ir.actions.act_window</field>
-          <field name="res_model">hc.vs.country.postal.code</field>
-          <field name="view_type">form</field>
-          <field name="view_mode">tree,form</field>
-        </record> 
+        <act_window id="hc_vs_country_postal_code_action" 
+                    name="HC Postal Codes"
+                    res_model="hc.vs.country.postal.code"
+                    view_mode="tree,form"
+                    domain=""
+                    context=""
+                    limit=""/>
 
         <menuitem name="Postal/ZIP Codes" id="hc_base.menu_addr_post" parent="hc_base.menu_addr" action="hc_vs_country_postal_code_action" sequence="20"/>
 
-        <record id="hc_vs_country_postal_code_type_action" model="ir.actions.act_window">   
-            <field name="name">HC Country Postal/ZIP Code Types</field>
-            <field name="type">ir.actions.act_window</field>
-            <field name="res_model">hc.vs.country.postal.code.type</field>
-            <field name="view_type">form</field>
-            <field name="view_mode">tree,form</field>
-        </record>   
-
+        <act_window id="hc_vs_country_postal_code_type_action"  
+                    name="HC Country Postal/ZIP Code Types"
+                    res_model="hc.vs.country.postal.code.type"
+                    view_mode="tree,form"
+                    domain=""
+                    context=""
+                    limit=""/>
+   
         <menuitem id="hc_base.menu_addr_post_type" name="Postal/ZIP Code Types" parent="hc_base.menu_addr" action="hc_vs_country_postal_code_type_action" sequence="21"/>
 
         <!-- City Views -->           
@@ -386,29 +383,29 @@
 
         <!-- City Action and Menu --> 
 
-        <record id="hc_vs_country_city_action" model="ir.actions.act_window">           
-          <field name="name">HC Country Cities</field>         
-          <field name="type">ir.actions.act_window</field>          
-          <field name="res_model">hc.vs.country.city</field>          
-          <field name="view_type">form</field>          
-          <field name="view_mode">tree,form</field>         
-        </record>
+        <act_window id="hc_vs_country_city_action"  
+                    name="HC Cities"
+                    res_model="hc.vs.country.city"
+                    view_mode="tree,form"
+                    domain=""
+                    context=""
+                    limit=""/>
 
-        <record id="hc_vs_country_city_type_action" model="ir.actions.act_window">           
-          <field name="name">HC Country City Types</field>         
-          <field name="type">ir.actions.act_window</field>          
-          <field name="res_model">hc.vs.country.city.type</field>          
-          <field name="view_type">form</field>          
-          <field name="view_mode">tree,form</field>         
-        </record>
+        <act_window id="hc_vs_country_city_type_action" 
+                    name="HC Country City Types"
+                    res_model="hc.vs.country.city.type"
+                    view_mode="tree,form"
+                    domain=""
+                    context=""
+                    limit=""/>
 
-        <record id="hc_vs_country_city_status_action" model="ir.actions.act_window">      
-          <field name="name">HC Country City Functional Status</field>    
-          <field name="type">ir.actions.act_window</field>    
-          <field name="res_model">hc.vs.country.city.status</field>   
-          <field name="view_type">form</field>    
-          <field name="view_mode">tree,form</field>   
-        </record>              
+        <act_window id="hc_vs_country_city_status_action" 
+                    name="HC Country City Functional Statuses"
+                    res_model="hc.vs.country.city.status"
+                    view_mode="tree,form"
+                    domain=""
+                    context=""
+                    limit=""/>             
         
         <menuitem name="Cities/Places" id="hc_base.menu_addr_city" parent="hc_base.menu_addr" action="hc_vs_country_city_action" sequence="30"/>
         <menuitem name="City/Place Types" id="hc_base.menu_addr_city_type" parent="hc_base.menu_addr" action="hc_vs_country_city_type_action" sequence="31"/>
@@ -538,24 +535,24 @@
                     
         <!-- District Action and Menu -->           
                     
-        <record id="hc_vs_country_district_action" model="ir.actions.act_window">           
-          <field name="name">HC Country Districts/Counties</field>         
-          <field name="type">ir.actions.act_window</field>          
-          <field name="res_model">hc.vs.country.district</field>          
-          <field name="view_type">form</field>          
-          <field name="view_mode">tree,form</field>         
-        </record>           
+        <act_window id="hc_vs_country_district_action"  
+                    name="HC Country Districts"
+                    res_model="hc.vs.country.district"
+                    view_mode="tree,form"
+                    domain=""
+                    context=""
+                    limit=""/>
 
         <menuitem name="Districts/Counties" id="hc_base.menu_addr_dist" parent="hc_base.menu_addr" action="hc_vs_country_district_action" sequence="40"/>
 
-        <record id="hc_vs_country_district_type_action" model="ir.actions.act_window">  
-            <field name="name">HC Country District/County Types</field>
-            <field name="type">ir.actions.act_window</field>
-            <field name="res_model">hc.vs.country.district.type</field>
-            <field name="view_type">form</field>
-            <field name="view_mode">tree,form</field>
-        </record>   
-
+        <act_window id="hc_vs_country_district_type_action" 
+                    name="HC Country District Types"
+                    res_model="hc.vs.country.district.type"
+                    view_mode="tree,form"
+                    domain=""
+                    context=""
+                    limit=""/>
+   
         <menuitem name="District/County Types" id="hc_base.menu_addr_dist_type" parent="hc_base.menu_addr" action="hc_vs_country_district_type_action" sequence="41"/>
 
         <!-- State Views -->
@@ -666,38 +663,34 @@
 
         <!-- State/Province Action and Menu -->           
                     
-        <record id="hc_base.res_country_state_action" model="ir.actions.act_window">           
-          <field name="name">HC Country States</field>         
-          <field name="type">ir.actions.act_window</field>          
-          <field name="res_model">res.country.state</field>          
-          <field name="view_type">form</field>          
-          <field name="view_mode">tree,form</field>         
-        </record>           
+        <act_window id="res_country_state_action" 
+                    name="HC Country States"
+                    res_model="res.country.state"
+                    view_mode="tree,form"
+                    domain=""
+                    context=""
+                    limit=""/>
+           
+        <menuitem id="hc_base.menu_addr_state" 
+                  name="States/Provinces" 
+                  parent="hc_base.menu_addr" 
+                  action="res_country_state_action"
+                  groups="group_hc_base_user"
+                  sequence="50"/>
 
-        <menuitem 
-          id="hc_base.menu_addr_state" 
-          name="States/Provinces" 
-          parent="hc_base.menu_addr" 
-          action="res_country_state_action"
-          groups="group_hc_base_user"
-          sequence="50"/>
-
-        <record id="hc_vs_country_state_type_action" model="ir.actions.act_window"> 
-            <field name="name">HC Country State Types</field>
-            <field name="type">ir.actions.act_window</field>
-            <field name="res_model">hc.vs.country.state.type</field>
-            <field name="view_type">form</field>
-            <field name="view_mode">tree,form</field>
-        </record>   
-
-
-        <menuitem 
-          id="hc_base.menu_addr_state_type" 
-          name="State/Province Types" 
-          parent="hc_base.menu_addr" 
-          action="hc_vs_country_state_type_action" 
-          sequence="51"/>
-
+        <act_window id="hc_vs_country_state_type_action"  
+                    name="HC Country State/Province Types"
+                    res_model="hc.vs.country.state.type"
+                    view_mode="tree,form"
+                    domain=""
+                    context=""
+                    limit=""/>
+ 
+        <menuitem id="hc_base.menu_addr_state_type" 
+                  name="State/Province Types" 
+                  parent="hc_base.menu_addr" 
+                  action="hc_vs_country_state_type_action" 
+                  sequence="51"/>
 
         <!-- Division Views -->
 
@@ -821,23 +814,23 @@
 
         <!-- Division Action and Menu --> 
       
-        <record id="hc_vs_country_division_action" model="ir.actions.act_window"> 
-          <field name="name">HC Country Divisions</field>
-          <field name="type">ir.actions.act_window</field>
-          <field name="res_model">hc.vs.country.division</field>
-          <field name="view_type">form</field>
-          <field name="view_mode">tree,form</field>
-        </record>
+        <act_window id="hc_vs_country_division_action"  
+                    name="HC Country Divisions"
+                    res_model="hc.vs.country.division"
+                    view_mode="tree,form"
+                    domain=""
+                    context=""
+                    limit=""/>
 
         <menuitem name="Divisions" id="hc_base.menu_addr_div" parent="hc_base.menu_addr" action="hc_vs_country_division_action" sequence="60"/>
 
-        <record id="hc_vs_country_division_type_action" model="ir.actions.act_window">                      
-            <field name="name">HC Country Division Types</field>                    
-            <field name="type">ir.actions.act_window</field>                    
-            <field name="res_model">hc.vs.country.division.type</field>                 
-            <field name="view_type">form</field>                    
-            <field name="view_mode">tree,form</field>                   
-        </record>
+        <act_window id="hc_vs_country_division_type_action" 
+                    name="HC Country Division Types"
+                    res_model="hc.vs.country.division.type"
+                    view_mode="tree,form"
+                    domain=""
+                    context=""
+                    limit=""/>
 
         <menuitem name="Division Types" id="hc_base.menu_addr_div_type" parent="hc_base.menu_addr" action="hc_vs_country_division_type_action" sequence="61"/>
 
@@ -957,23 +950,23 @@
 
         <!-- Region Action and Menu --> 
       
-        <record id="hc_vs_country_region_action" model="ir.actions.act_window"> 
-            <field name="name">HC Country Regions</field>
-            <field name="type">ir.actions.act_window</field>
-            <field name="res_model">hc.vs.country.region</field>
-            <field name="view_type">form</field>
-            <field name="view_mode">tree,form</field>
-        </record>
+        <act_window id="hc_vs_country_region_action"  
+                    name="HC Country Regions"
+                    res_model="hc.vs.country.region"
+                    view_mode="tree,form"
+                    domain=""
+                    context=""
+                    limit=""/>
 
         <menuitem name="Regions" id="hc_base.menu_addr_reg" parent="hc_base.menu_addr" action="hc_vs_country_region_action" sequence="70"/>
 
-        <record id="hc_vs_country_region_type_action" model="ir.actions.act_window">    
-            <field name="name">HC Country Region Types</field>
-            <field name="type">ir.actions.act_window</field>
-            <field name="res_model">hc.vs.country.region.type</field>
-            <field name="view_type">form</field>
-            <field name="view_mode">tree,form</field>
-        </record>   
+        <act_window id="hc_vs_country_region_type_action" 
+                    name="HC Country Region Types"
+                    res_model="hc.vs.country.region.type"
+                    view_mode="tree,form"
+                    domain=""
+                    context=""
+                    limit=""/> 
 
         <menuitem name="Region Types" id="hc_base.menu_addr_reg_type" parent="hc_base.menu_addr" action="hc_vs_country_region_type_action" sequence="71"/>
 
