@@ -3,7 +3,8 @@
 from openerp import models, fields, api
 
 class res_partner_title(models.Model):
-    _inherit = ["res.partner.title"] 
+    _inherit = ["res.partner.title"]
+    _order = "name" 
 
     description = fields.Text(
         string="Description",
@@ -40,13 +41,16 @@ class HumanNameTerm(models.Model):
 
 class SuffixHumanName(models.Model):    
     _name = "hc.human.name.suffix"   
-    _description = "Human Name Suffix"      
-    _inherit = ["res.partner.title"]     
+    _description = "Human Name Suffix"
+    _order = "long_name"       
 
-    name = fields.Char(
-        string="Suffix Term",
-        required="True",  
-        help="Terms that come after the given and last names. Aka post-nominal letters. May be a generational term (e.g., Jr.) a credential (e.g., RN), an honorary title (.e.g., OBE), or an academic degree (e.g., PhD).")
+    name = fields.Char( 
+        string="Suffix",
+        required = "True",
+        help="Characters that come after the given and last names. Aka post-nominal letters. May be a generational term (e.g., Jr.) a credential (e.g., RN), an honorary title (.e.g., OBE), or an academic degree (e.g., PhD).")
+    long_name = fields.Char(
+        string="Suffix Name", 
+        help="Full text of suffix abbreviation (e.g., Junior for Jr.)")
     type = fields.Selection(
         string="Type", 
         selection=[
@@ -60,6 +64,9 @@ class SuffixHumanName(models.Model):
             ("religious", "Religious")],
         default="generational",
         help="Category of suffix.")
+    description = fields.Text(
+        string="Description",
+        help="Describes a suffix.")
 
 class HumanName(models.Model):
 

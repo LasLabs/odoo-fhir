@@ -74,6 +74,7 @@
               <field name="model">hc.human.name.suffix</field>          
               <field name="arch" type="xml">          
                 <search string="Human Name Suffixes">       
+                  <field name="long_name"/>
                   <field name="name"/>
                   <group> 
                         <filter name="group_by_type" 
@@ -89,8 +90,8 @@
               <field name="model">hc.human.name.suffix</field>          
               <field name="arch" type="xml">          
                 <tree string="Human Name Suffixes">       
+                  <field name="long_name"/>
                   <field name="name"/>
-                  <field name="shortcut"/>
                 <field name="type"/>
                 <field name="description"/>                
                 </tree>       
@@ -105,12 +106,12 @@
                   <sheet>     
                     <div class="oe_title oe_left">    
                       <h1>  
-                        <field name="name" placeholder="(e.g., Junior)" default_focus="1"/>
+                        <field name="name" placeholder="Suffix (e.g., Jr.)" default_focus="1"/>
                       </h1> 
                     </div>    
                     <group>   
                       <group>
-                        <field name="shortcut"/>
+                        <field name="long_name" placeholder="(e.g., Junior)"/>
                         <field name="type"/>
                         <field name="description"/>  
                       </group>  
@@ -132,6 +133,16 @@
                         context=""
                         limit=""/>
            
+           <!--  <menuitem action="action_partner_title_contact" id="menu_partner_title_contact" name="Contact Titles" 
+                parent="menu_config_address_book" sequence="3" groups="base.group_no_one"/> -->
+
+<!--             <menuitem id="﻿hc_base.menu_human_name_prefix" 
+                      name="Prefixes" 
+                      parent="hc_base.menu_human_name" 
+                      action="base.action_partner_title_contact" 
+                      groups="base.group_no_one" 
+                      sequence="15"/> -->
+
             <menuitem id="hc_base.menu_human_name_suffix" 
                       name="Suffixes" 
                       parent="hc_base.menu_human_name" 
