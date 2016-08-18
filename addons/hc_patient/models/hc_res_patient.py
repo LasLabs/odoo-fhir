@@ -222,21 +222,21 @@ class PatientMaritalStatus(models.Model):
         string="Marital Status", 
         help="Marital Status associated with this patient.")
 
-class PatientAttachment(models.Model):   
-    _name = "hc.patient.attachment"  
-    _description = "Patient Attachment"
-    _inherits = {"hc.person.attachment": "attachment_id"}
+class PatientPhoto(models.Model):   
+    _name = "hc.patient.photo"  
+    _description = "Patient Photo"
+    _inherits = {"hc.person.photo": "photo_id"}
 
-    attachment_id = fields.Many2one(
-        comodel_name="hc.person.attachment", 
-        string="Attachment",
+    photo_id = fields.Many2one(
+        comodel_name="hc.person.photo", 
+        string="Photo",
         required=True,
         ondelete="restrict",  
-        help="Attachment associated with this patient.")
+        help="Photo associated with this patient.")
     patient_id = fields.Many2one(
         comodel_name="hc.res.patient", 
         string="Patient", 
-        help="Patient associated with this attachment.")      
+        help="Patient associated with this photo.")      
 
 class PatientCareProviderPractitioner(models.Model):
     _name = "hc.patient.care.provider.practitioner"    

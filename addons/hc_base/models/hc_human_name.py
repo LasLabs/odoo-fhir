@@ -40,8 +40,9 @@ class HumanNameTerm(models.Model):
         ]
 
 class SuffixHumanName(models.Model):    
-    _name = "hc.human.name.suffix"   
+    _name = "hc.vs.human.name.suffix"   
     _description = "Human Name Suffix"
+    _inherit = "hc.basic.association"
     _order = "long_name"       
 
     name = fields.Char( 
@@ -120,7 +121,7 @@ class HumanName(models.Model):
         string="Previous Surname", 
         help="Term of family name (e.g., previous married family name).")
     suffix_ids = fields.Many2many(
-        comodel_name="hc.human.name.suffix", 
+        comodel_name="hc.vs.human.name.suffix", 
         string="Suffix Names", 
         help="Terms that come after the name.")
     preferred_name = fields.Char(

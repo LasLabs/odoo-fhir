@@ -115,7 +115,7 @@
                                     </form>
                                 </field>
                             </page>                    
-                            <page string="Attachments"/>
+                            <page string="Photos"/>
                             <page string="Marital Statuses">
                                 <field name="marital_status_ids" mode="tree">
                                     <tree>

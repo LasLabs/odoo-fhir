@@ -9,8 +9,7 @@ access_hc_base_hc_basic_association_manager,hc.base.hc.basic.association.manager
 access_hc_base_hc_basic_association_user,hc.base.hc.basic.association.user,model_hc_basic_association,group_hc_base_user,1,0,0,0
 access_hc_base_hc_human_name_manager,hc.base.hc.human.name.manager,model_hc_human_name,group_hc_base_manager,1,1,1,1
 access_hc_base_hc_human_name_user,hc.base.hc.human.name.user,model_hc_human_name,group_hc_base_user,1,0,0,0
-access_hc_base_hc_human_name_suffix_manager,hc.base.hc.human.name.suffix.manager,model_hc_human_name_suffix,group_hc_base_manager,1,1,1,1
-access_hc_base_hc_human_name_suffix_user,hc.base.hc.human.name.suffix.user,model_hc_human_name_suffix,group_hc_base_user,1,0,0,0
+access_hc_base_hc_vs_human_name_suffix_manager,hc.base.hc.vs.human.name.suffix.manager,model_hc_vs_human_name_suffix,group_hc_base_manager,1,1,1,1
 access_hc_base_hc_human_name_term_manager,hc.base.hc.human.name.term.manager,model_hc_human_name_term,group_hc_base_manager,1,1,1,1
 access_hc_base_hc_human_name_term_user,hc.base.hc.human.name.term.user,model_hc_human_name_term,group_hc_base_user,1,0,0,0
 access_hc_base_hc_identifier_manager,hc.base.hc.identifier.manager,model_hc_identifier,group_hc_base_manager,1,1,1,1

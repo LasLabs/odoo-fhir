@@ -71,7 +71,7 @@
                         
             <record id="hc_suffix_human_name_view_search" model="ir.ui.view">           
               <field name="name">Human Name Suffix Search</field>         
-              <field name="model">hc.human.name.suffix</field>          
+              <field name="model">hc.vs.human.name.suffix</field>          
               <field name="arch" type="xml">          
                 <search string="Human Name Suffixes">       
                   <field name="long_name"/>
@@ -87,7 +87,7 @@
                         
             <record id="hc_suffix_human_name_view_tree" model="ir.ui.view">           
               <field name="name">Human Name Suffix Tree</field>         
-              <field name="model">hc.human.name.suffix</field>          
+              <field name="model">hc.vs.human.name.suffix</field>          
               <field name="arch" type="xml">          
                 <tree string="Human Name Suffixes">       
                   <field name="long_name"/>
@@ -100,7 +100,7 @@
                         
             <record id="hc_suffix_human_name_view_form" model="ir.ui.view">           
               <field name="name">Human Name Suffix Form</field>         
-              <field name="model">hc.human.name.suffix</field>          
+              <field name="model">hc.vs.human.name.suffix</field>          
               <field name="arch" type="xml">          
                 <form string="Human Name Suffix">       
                   <sheet>     
@@ -113,7 +113,11 @@
                       <group>
                         <field name="long_name" placeholder="(e.g., Junior)"/>
                         <field name="type"/>
-                        <field name="description"/>  
+                        <field name="description"/>
+                        <field name="is_active"/>
+                        <field name="is_preferred"/>
+                        <field name="start_date" placeholder="Valid From"/>
+                        <field name="end_date" placeholder="Valid To"/>  
                       </group>  
                       <group> 
                       </group>  
@@ -127,7 +131,7 @@
                         
             <act_window id="hc_human_name_suffix_action"  
                         name="HC Human Name Suffixes"
-                        res_model="hc.human.name.suffix"
+                        res_model="hc.vs.human.name.suffix"
                         view_mode="tree,form"
                         domain=""
                         context=""
