@@ -19,7 +19,7 @@
             <field name="model">hc.res.practitioner</field>                                 
             <field name="arch" type="xml">                                  
                 <tree string="Practitioners">                               
-                    <field name="name" string="Practitioner Name"/>                            
+                    <field name="name"/>                            
                     <field name="specialty_id"/>                           
                 </tree>                             
             </field>                                    

@@ -49,10 +49,10 @@ class Location(models.Model):
     altitude = fields.Float(
         string="Altitude", 
         help="Altitude with WGS84 datum.")
-    # managing_organization_id = fields.Many2one(
-    #     comodel_name="hc.res.organization", 
-    #     string="Managing Organization", 
-    #     help="The organization that is responsible for the provisioning and upkeep of the location.")
+    managing_organization_id = fields.Many2one(
+        comodel_name="hc.res.organization", 
+        string="Managing Organization", 
+        help="The organization that is responsible for the provisioning and upkeep of the location.")
     part_of_id = fields.Many2one(
         comodel_name="hc.res.location", 
         string="Part Of", 
@@ -124,18 +124,18 @@ class Location(models.Model):
 
 # External Reference
 
-class PractitionerRoleLocation(models.Model):   
-    _inherit = ["hc.practitioner.role.location"]
+# class PractitionerRoleLocation(models.Model):   
+#     _inherit = ["hc.practitioner.role.location"]
                  
-    location_id = fields.Many2one(
-        comodel_name="hc.res.location", 
-        string="Location", 
-        help="Location associated with this practitioner role.")
+#     location_id = fields.Many2one(
+#         comodel_name="hc.res.location", 
+#         string="Location", 
+#         help="Location associated with this practitioner role.")
 
-class OrganizationLocation(models.Model):
-    _inherit = ["hc.organization.location"] 
+# class OrganizationLocation(models.Model):
+#     _inherit = ["hc.organization.location"] 
 
-    location_id = fields.Many2one(
-        comodel_name="hc.res.location", 
-        string="Location",
-        help="Location associated with this organization.")
+#     location_id = fields.Many2one(
+#         comodel_name="hc.res.location", 
+#         string="Location",
+#         help="Location associated with this organization.")

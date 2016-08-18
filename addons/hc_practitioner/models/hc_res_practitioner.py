@@ -49,10 +49,10 @@ class Practitioner(models.Model):
     # birthdate = fields.Date(
     #     string="Birth Date", 
     #     help="The birth date for the practitioner.")
-    attachment_ids = fields.One2many(
-        comodel_name="hc.practitioner.attachment", 
+    photo_ids = fields.One2many(
+        comodel_name="hc.practitioner.photo", 
         inverse_name="practitioner_id", 
-        string="Attachments", 
+        string="Photos", 
         help="Image of the Practitioner.")
     is_active_practitioner = fields.Boolean(
         string="Active Practitioner", 
@@ -159,7 +159,6 @@ class PractitionerAddress(models.Model):
         comodel_name="hc.res.practitioner", 
         string="Practitioner", 
         help="Practitioner associated with this address.")
-
     use = fields.Selection(string="Use",
         selection=[
             ("home", "Home"), 
@@ -176,37 +175,59 @@ class PractitionerAddress(models.Model):
         default="both", 
         help="Distinguishes between physical addresses (those you can visit) and mailing addresses (e.g. PO Boxes and care-of addresses). Most addresses are both.")
 
-class PractitionerAttachment(models.Model):   
-    _name = "hc.practitioner.attachment"  
-    _description = "Practitioner Attachment"
-    _inherits = {"hc.person.attachment": "attachment_id"}
+class PractitionerPhoto(models.Model):   
+    _name = "hc.practitioner.photo"  
+    _description = "Practitioner Photo"
+    _inherits = {"hc.person.photo": "photo_id"}
 
-    attachment_id = fields.Many2one(
-        comodel_name="hc.person.attachment", 
-        string="Attachment",
+    photo_id = fields.Many2one(
+        comodel_name="hc.person.photo", 
+        string="Photo",
         required=True,
         ondelete="restrict",  
-        help="Attachment associated with this practitioner.")
+        help="Photo associated with this practitioner.")
     practitioner_id = fields.Many2one(
         comodel_name="hc.res.practitioner", 
         string="Practitioner", 
-        help="Practitioner associated with this attachment.")    
+        help="Practitioner associated with this photo.")    
 
 class PractitionerLanguage(models.Model):   
     _name = "hc.practitioner.language"  
     _description = "Practitioner Language"
+    _inherit = ["hc.basic.association"]
 
     practitioner_id = fields.Many2one(
         comodel_name="hc.res.practitioner", 
         string="Practitioner", 
         help="Practitioner associated with this language.") 
     language_id = fields.Many2one(
-        comodel_name="res.lang", 
+        comodel_name="hc.vs.language", 
         string="Language", 
         help="A language the practitioner is able to use in patient communication.")
-    is_preferred = fields.Boolean(
-        string="Preferred", 
-        help="Language preference indicator.")
+    proficiency_ids = fields.One2many(
+        comodel_name="hc.practitioner.language.proficiency", 
+        inverse_name="practitioner_language_id", 
+        string="Proficiencies", 
+        help="Proficiency of the practitioner with this language.")
+
+class PractitionerLanguageProficiency(models.Model):    
+    _name = "hc.practitioner.language.proficiency"  
+    _description = "Practitioner Language Proficiency"      
+    _inherit = ["hc.basic.association"]
+
+    practitioner_language_id = fields.Many2one(
+        comodel_name="hc.practitioner.language", 
+        string="Practitioner Language", 
+        help="Practitioner language with this proficiency and skill.")              
+    language_proficiency_id = fields.Many2one(
+        comodel_name="hc.vs.language.proficiency", 
+        string="Language Proficiency", 
+        help="Language proficiency with this language.")                
+    language_skill_id = fields.Many2one(
+        comodel_name="hc.vs.language.skill", 
+        string="Language Skill", 
+        help="Language skill with this language.")                
+
 
 class PractitionerQualification(models.Model):  
     _name = "hc.practitioner.qualification" 
@@ -263,13 +284,13 @@ class PersonLink(models.Model):
         string="Target Practitioner", 
         help="Practitioner who is the resource to which this actual person is associated.")
 
-class PatientCareProviderPractitioner(models.Model):
-    _inherit = ["hc.patient.care.provider.practitioner"]
+# class PatientCareProviderPractitioner(models.Model):
+#     _inherit = ["hc.patient.care.provider.practitioner"]
 
-    practitioner_id = fields.Many2one(
-        comodel_name="hc.res.practitioner", 
-        string="Care Provider Practitioner", 
-        help="Practitioner who is this care provider.")
+#     practitioner_id = fields.Many2one(
+#         comodel_name="hc.res.practitioner", 
+#         string="Care Provider Practitioner", 
+#         help="Practitioner who is this care provider.")
 
 class Annotation(models.Model):
     _inherit = ["hc.annotation"]
@@ -284,7 +305,5 @@ class Annotation(models.Model):
         for hc_annotation in self:
             if hc_annotation.author_type == 'string':
                 hc_annotation.author_name = hc_annotation.author_string
-            elif hc_annotation.author_type == 'patient':
-                hc_annotation.author_name = hc_annotation.author_patient_id.name
             elif hc_annotation.author_type == 'practitioner':
                 hc_annotation.author_name = hc_annotation.author_practitioner_id.name

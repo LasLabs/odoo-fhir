@@ -65,4 +65,5 @@ access_hc_base_hc_timing_user,hc.base.hc.timing.user,model_hc_timing,hc_base.gro
 access_hc_base_hc_timing_repeat_user,hc.base.hc.timing.repeat.user,model_hc_timing_repeat,hc_base.group_hc_base_user,1,0,0,0
 access_hc_base_hc_timing_event_user,hc.base.hc.timing.event.user,model_hc_timing_event,hc_base.group_hc_base_user,1,0,0,0
 access_hc_base_hc_vs_event_timing_manager,hc.base.hc.vs.event.timing.manager,model_hc_vs_event_timing,hc_base.group_hc_base_manager,1,1,1,1
-
+access_hc_base_hc_available_time_user,hc.base.hc.available.time.user,model_hc_available_time,hc_base.group_hc_base_user,1,0,0,0
+access_hc_base_hc_not_available_time_user,hc.base.hc.not.available.time.user,model_hc_not_available_time,hc_base.group_hc_base_user,1,0,0,0
