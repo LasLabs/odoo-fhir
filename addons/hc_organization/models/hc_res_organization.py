@@ -309,42 +309,42 @@ class Person(models.Model):
         string="Person Managing Organization", 
         help="Organization that is the custodian of the person record.")
 
-class Patient(models.Model):
-    _inherit = ["hc.res.patient"]
+# class Patient(models.Model):
+#     _inherit = ["hc.res.patient"]
 
-    patient_managing_organization_id = fields.Many2one(
-        comodel_name="hc.res.organization", 
-        string="Patient Managing Organization", 
-        help="Organization that is the custodian of the patient record.")
+#     patient_managing_organization_id = fields.Many2one(
+#         comodel_name="hc.res.organization", 
+#         string="Patient Managing Organization", 
+#         help="Organization that is the custodian of the patient record.")
 
-class PatientCareProviderOrganization(models.Model):
-    _inherit = ["hc.patient.care.provider.organization"]
+# class PatientCareProviderOrganization(models.Model):
+#     _inherit = ["hc.patient.care.provider.organization"]
 
-    organization_id = fields.Many2one(
-        comodel_name="hc.res.organization", 
-        string="Organization", 
-        help="Organization associated with this care provider.")
+#     organization_id = fields.Many2one(
+#         comodel_name="hc.res.organization", 
+#         string="Organization", 
+#         help="Organization associated with this care provider.")
 
-class PatientContact(models.Model):
-    _inherit = ["hc.patient.contact"]
+# class PatientContact(models.Model):
+#     _inherit = ["hc.patient.contact"]
 
-    patient_contact_organization_id = fields.Many2one(
-        comodel_name="hc.res.organization", 
-        string="Patient Contact Organization", 
-        help="Organization that is associated with the contact.")
+#     patient_contact_organization_id = fields.Many2one(
+#         comodel_name="hc.res.organization", 
+#         string="Patient Contact Organization", 
+#         help="Organization that is associated with the contact.")
 
-class PractitionerQualification(models.Model):
-    _inherit = ["hc.practitioner.qualification"]
+# class PractitionerQualification(models.Model):
+#     _inherit = ["hc.practitioner.qualification"]
     
-    qualification_issuer_organization_id = fields.Many2one(
-        comodel_name="hc.res.organization", 
-        string="Qualification Issuer Organization", 
-        help="Organization that regulates and issues the qualification.")        
+#     qualification_issuer_organization_id = fields.Many2one(
+#         comodel_name="hc.res.organization", 
+#         string="Qualification Issuer Organization", 
+#         help="Organization that regulates and issues the qualification.")        
 
-class PractitionerRole(models.Model):
-    _inherit = ["hc.res.practitioner.role"]
+# class PractitionerRole(models.Model):
+#     _inherit = ["hc.res.practitioner.role"]
     
-    practitioner_role_organization_id = fields.Many2one(
-        comodel_name="hc.res.organization", 
-        string="Practitioner Role Organization", 
-        help="Organization where the roles are performed.")
+#     practitioner_role_organization_id = fields.Many2one(
+#         comodel_name="hc.res.organization", 
+#         string="Practitioner Role Organization", 
+#         help="Organization where the roles are performed.")
