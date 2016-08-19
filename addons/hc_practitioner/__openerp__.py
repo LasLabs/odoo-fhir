@@ -33,7 +33,7 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['hc_person','hc_healthcare_service'],
+    'depends': ['hc_healthcare_service'],
 
     # always loaded
     'data': [

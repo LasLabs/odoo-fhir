@@ -98,3 +98,33 @@ class UOM(models.Model):
     _name = "hc.vs.uom"
     _description = "Unit of Measure"
     _inherit = ["hc.value.set.contains"]
+
+class Race(models.Model):  
+    _name = "hc.vs.race"  
+    _description = "Race" 
+    _inherit = ["hc.value.set.contains"]
+
+class Ethnicity(models.Model):  
+    _name = "hc.vs.ethnicity"  
+    _description = "Ethnicity" 
+    _inherit = ["hc.value.set.contains"]
+
+class MaritalStatus(models.Model):  
+    _name = "hc.vs.marital.status"  
+    _description = "Marital Status" 
+    _inherit = ["hc.value.set.contains"]
+
+class AnimalSpecies(models.Model):  
+    _name = "hc.vs.animal.species"  
+    _description = "Animal Species" 
+    _inherit = ["hc.value.set.contains"]
+
+class AnimalBreed(models.Model):    
+    _name = "hc.vs.animal.breed"    
+    _description = "Animal Breed"   
+    _inherit = ["hc.value.set.contains"]
+
+class AnimalGenderStatus(models.Model): 
+    _name = "hc.vs.animal.gender.status"    
+    _description = "Animal Gender Status"   
+    _inherit = ["hc.value.set.contains"]

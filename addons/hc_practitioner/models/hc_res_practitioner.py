@@ -38,17 +38,17 @@ class Practitioner(models.Model):
         inverse_name="practitioner_id", 
         string="Telecom Contacts", 
         help="A language the practitioner is able to use in patient communication.")
-    # gender = fields.Selection(
-    #     string="Gender", 
-    #     selection=[
-    #         ("male", "Male"), 
-    #         ("female", "Female"), 
-    #         ("other", "Other"), 
-    #         ("unknown", "Unknown")],          
-    #     help="The gender of a practitioner used for administrative purposes.")
-    # birthdate = fields.Date(
-    #     string="Birth Date", 
-    #     help="The birth date for the practitioner.")
+    gender = fields.Selection(
+        string="Gender", 
+        selection=[
+            ("male", "Male"), 
+            ("female", "Female"), 
+            ("other", "Other"), 
+            ("unknown", "Unknown")],          
+        help="The gender of a practitioner used for administrative purposes.")
+    birthdate = fields.Date(
+        string="Birth Date", 
+        help="The birth date for the practitioner.")
     photo_ids = fields.One2many(
         comodel_name="hc.practitioner.photo", 
         inverse_name="practitioner_id", 

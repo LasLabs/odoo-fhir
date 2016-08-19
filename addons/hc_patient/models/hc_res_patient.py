@@ -13,26 +13,26 @@ class Patient(models.Model):
         required=True,
         ondelete="restrict",
         help="Person who is this patient.")
-    # identifier_ids = fields.One2many(
-    #     comodel_name="hc.patient.identifier", 
-    #     inverse_name="patient_id", 
-    #     string="Identifiers", 
-    #     help="A human identifier for this patient.")
-    # name_ids = fields.One2many(
-    #     comodel_name="hc.patient.name", 
-    #     inverse_name="patient_id", 
-    #     string="Names", 
-    #     help="A name associated with this patient.")
-    # address_ids = fields.One2many(
-    #     comodel_name="hc.patient.address", 
-    #     inverse_name="patient_id", 
-    #     string="Addresses", 
-    #     help="One or more addresses for this patient.")
-    # telecom_ids = fields.One2many(
-    #     comodel_name="hc.patient.telecom", 
-    #     inverse_name="patient_id", 
-    #     string="Telecom Contacts", 
-    #     help="A contact detail for the patient.")
+    identifier_ids = fields.One2many(
+        comodel_name="hc.patient.identifier", 
+        inverse_name="patient_id", 
+        string="Identifiers", 
+        help="A human identifier for this patient.")
+    name_ids = fields.One2many(
+        comodel_name="hc.patient.name", 
+        inverse_name="patient_id", 
+        string="Names", 
+        help="A name associated with this patient.")
+    address_ids = fields.One2many(
+        comodel_name="hc.patient.address", 
+        inverse_name="patient_id", 
+        string="Addresses", 
+        help="One or more addresses for this patient.")
+    telecom_ids = fields.One2many(
+        comodel_name="hc.patient.telecom", 
+        inverse_name="patient_id", 
+        string="Telecom Contacts", 
+        help="A contact detail for the patient.")
     birth_time = fields.Char(
         string="Birth Time", 
         help="The time when the patient was born.")
@@ -66,11 +66,11 @@ class Patient(models.Model):
         relation="ethnicity_patient_rel", 
         string="Ethnicities", 
         help="General ethnicity category reported by the patient - subject may have more than one.")
-    # attachment_ids = fields.One2many(
-    #     comodel_name="hc.patient.attachment", 
-    #     inverse_name="patient_id", 
-    #     string="Attachments", 
-    #     help="Image of the patient.")
+    photo_ids = fields.One2many(
+        comodel_name="hc.patient.photo", 
+        inverse_name="patient_id", 
+        string="Photos", 
+        help="Image of the patient.")
     contact_ids = fields.One2many(
         comodel_name="hc.patient.contact", 
         inverse_name="patient_id", 
@@ -97,7 +97,10 @@ class Patient(models.Model):
         inverse_name="patient_id", 
         string="Care Provider Organizations", 
         help="Organization who is patient's nominated care provider.")
-    # managing_organization_id = fields.Many2one(comodel_name="hc.res.organization", string="Managing Organization", help="Organization that is the custodian of the patient record.")
+    managing_organization_id = fields.Many2one(
+        comodel_name="hc.res.organization", 
+        string="Managing Organization", 
+        help="Organization that is the custodian of the patient record.")
     is_active_patient = fields.Boolean(
         string="Active Patient", 
         default=True, 
@@ -134,16 +137,16 @@ class PatientName(models.Model):
     _inherit = ["hc.basic.association"]
     _inherits = {"hc.human.name": "human_name_id"}
 
-    patient_id = fields.Many2one(
-        comodel_name="hc.res.patient", 
-        string="Patient", 
-        help="Patient associated with this human name.")
     human_name_id = fields.Many2one(
         comodel_name="hc.human.name",
         string="Human Name",
         required=True,
         ondelete="restrict", 
-        help="Human name associated with this patient.")                  
+        help="Human name associated with this patient.")
+    patient_id = fields.Many2one(
+        comodel_name="hc.res.patient", 
+        string="Patient", 
+        help="Patient associated with this human name.")                  
 
 class PatientAddress(models.Model): 
     _name = "hc.patient.address"    
@@ -202,11 +205,6 @@ class PatientTelecom(models.Model):
             ("old", "Old"),
             ("mobile", "Mobile")], 
         help="Purpose of this telecom contact point.")
-     
-class MaritalStatus(models.Model):  
-    _name = "hc.vs.marital.status"  
-    _description = "Marital Status" 
-    _inherit = ["hc.value.set.contains"]
 
 class PatientMaritalStatus(models.Model):   
     _name = "hc.patient.marital.status"  
@@ -247,10 +245,10 @@ class PatientCareProviderPractitioner(models.Model):
         comodel_name="hc.res.patient", 
         string="Patient", 
         help="Patient associated with this care provider.")
-    # practitioner_id = fields.Many2one(
-    #     comodel_name="hc.res.practitioner", 
-    #     string="Care Provider Practitioner", 
-    #     help="Practitioner who is this care provider.")
+    practitioner_id = fields.Many2one(
+        comodel_name="hc.res.practitioner", 
+        string="Care Provider Practitioner", 
+        help="Practitioner who is this care provider.")
 
 class PatientCareProviderOrganization(models.Model):
     _name = "hc.patient.care.provider.organization"    
@@ -261,10 +259,10 @@ class PatientCareProviderOrganization(models.Model):
         comodel_name="hc.res.patient", 
         string="Patient", 
         help="Patient associated with this care provider.")
-    # organization_id = fields.Many2one(
-    #     comodel_name="hc.res.organization", 
-    #     string="Care Provider Organization", 
-    #     help="Organization that is this care provider.")
+    organization_id = fields.Many2one(
+        comodel_name="hc.res.organization", 
+        string="Care Provider Organization", 
+        help="Organization that is this care provider.")
 
 class PatientAnimal(models.Model):  
     _name = "hc.patient.animal" 
@@ -286,21 +284,6 @@ class PatientAnimal(models.Model):
         comodel_name="hc.vs.animal.gender.status", 
         string="Gender Status", 
         help="Indicates the current state of the animal's reproductive organs (e.g., neutered, intact).")
-
-class AnimalSpecies(models.Model):  
-    _name = "hc.vs.animal.species"  
-    _description = "Animal Species" 
-    _inherit = ["hc.value.set.contains"]
-
-class AnimalBreed(models.Model):    
-    _name = "hc.vs.animal.breed"    
-    _description = "Animal Breed"   
-    _inherit = ["hc.value.set.contains"]
-
-class AnimalGenderStatus(models.Model): 
-    _name = "hc.vs.animal.gender.status"    
-    _description = "Animal Gender Status"   
-    _inherit = ["hc.value.set.contains"]
 
 class PatientLanguage(models.Model):
     _name = "hc.patient.language"
@@ -353,10 +336,10 @@ class PatientContact(models.Model):
         inverse_name="patient_contact_id", 
         string="Relationships", 
         help="The kind of relationship.")
-    # organization_id = fields.Many2one(
-    #     comodel_name="hc.res.organization", 
-    #     string="Organization", 
-    #     help="Organization that is associated with the contact.")
+    organization_id = fields.Many2one(
+        comodel_name="hc.res.organization", 
+        string="Organization", 
+        help="Organization that is associated with the contact.")
     start_date = fields.Datetime(
         string="Valid from", 
         help="Start of the the period during which this contact person or organization is valid to be contacted relating to this patient.")
@@ -404,24 +387,7 @@ class PatientLink(models.Model):
             ("seealso", "See also")], 
         help="The type of link between this patient resource and another patient resource.")
 
-class Race(models.Model):  
-    _name = "hc.vs.race"  
-    _description = "Race" 
-    _inherit = ["hc.value.set.contains"]
-
-class Ethnicity(models.Model):  
-    _name = "hc.vs.ethnicity"  
-    _description = "Ethnicity" 
-    _inherit = ["hc.value.set.contains"]
-
 # External Reference
-
-# class Partner(models.Model):
-#     _inherit = ["res.partner"]
-
-#     is_patient = fields.Boolean(
-#         string="Is a patient", 
-#         help="This partner is a patient.")
 
 class PersonLink(models.Model):
     _inherit = ["hc.person.link"]
@@ -431,6 +397,14 @@ class PersonLink(models.Model):
         string="Target Patient", 
         required=True, 
         help="Patient who is the resource to which this actual person is associated.")
+
+class RelatedPersonPatient(models.Model): 
+    _inherit = ["hc.related.person.patient"]
+
+    patient_id = fields.Many2one(
+        comodel_name="hc.res.patient",
+        string="Patient",
+        help="Patient associated with this related person.")
 
 class Annotation(models.Model):
     _inherit = ["hc.annotation"]
@@ -447,5 +421,7 @@ class Annotation(models.Model):
                 hc_annotation.author_name = hc_annotation.author_string
             elif hc_annotation.author_type == 'practitioner':
                 hc_annotation.author_name = hc_annotation.author_practitioner_id.name
+            elif hc_annotation.author_type == 'related person':
+                hc_annotation.author_name = hc_annotation.author_related_person_id.name
             elif hc_annotation.author_type == 'patient':
                 hc_annotation.author_name = hc_annotation.author_patient_id.name

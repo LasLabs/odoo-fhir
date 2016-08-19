@@ -22,7 +22,7 @@
             <field name="model">hc.res.patient</field>                  
             <field name="arch" type="xml">                  
                 <tree string="Patients">                
-                    <field name="name" string="Patient Name"/>
+                    <field name="name"/>
                     <field name="birthdate" string="DOB"/>             
                 </tree>             
             </field>                    
@@ -34,10 +34,16 @@
             <field name="arch" type="xml">                                  
                 <form string="Patient">                             
                     <sheet>                         
-                        <field name="image" widget="image" class="oe_left oe_avatar" options="{'preview_image': 'image_medium', 'size': [90, 90]}"/>                        
+                        <field name="image" 
+                            widget="image" 
+                            class="oe_left oe_avatar" 
+                            options="{'preview_image': 'image_medium', 'size': [90, 90]}"/>                        
                         <div class="oe_title">                     
                             <h1>                    
-                                <field name="person_id" default_focus="1" placeholder="Name" context="{'is_patient': True}"/>               
+                                <field name="person_id" 
+                                    default_focus="1" 
+                                    placeholder="Name" 
+                                    context="{'is_patient': True}"/>               
                             </h1>                   
                         </div>                      
                         <div name="buttons" class="oe_right oe_button_box"></div>                       
@@ -47,10 +53,13 @@
                                 <field name="birthdate"/>
                                 <field name="birth_time"/>              
                                 <field name="is_multiple_birth"/>               
-                                <field name="multiple_birth_count" attrs="{'invisible': [('is_multiple_birth','=',False)]}"/>               
-                                <field name="multiple_birth_order" attrs="{'invisible': [('is_multiple_birth','=',False)]}"/>
+                                <field name="multiple_birth_count" 
+                                       attrs="{'invisible': [('is_multiple_birth','=',False)]}"/>               
+                                <field name="multiple_birth_order" 
+                                       attrs="{'invisible': [('is_multiple_birth','=',False)]}"/>
                                 <field name="is_deceased"/>             
-                                <field name="deceased_date" attrs="{'invisible': [('is_deceased','=',False)]}"/>                 
+                                <field name="deceased_date" 
+                                       attrs="{'invisible': [('is_deceased','=',False)]}"/>                 
                             </group>                    
                             <group>                   
                                 <field name="race_ids" widget="many2many_tags"/>             
@@ -230,8 +239,7 @@
             <field name="name">HC Patients</field>                  
             <field name="type">ir.actions.act_window</field>                    
             <field name="res_model">hc.res.patient</field>
-            <field name="context">{'is_patient':True}</field> 
-<!--             <field name="context">{'default_is_patient':'value'}</field>  -->                           
+            <field name="context">{'is_patient':True}</field>                           
             <field name="view_type">form</field>                    
             <field name="view_mode">tree,form</field>
 

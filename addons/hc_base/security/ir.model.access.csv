@@ -67,3 +67,9 @@ access_hc_base_hc_timing_event_user,hc.base.hc.timing.event.user,model_hc_timing
 access_hc_base_hc_vs_event_timing_manager,hc.base.hc.vs.event.timing.manager,model_hc_vs_event_timing,hc_base.group_hc_base_manager,1,1,1,1
 access_hc_base_hc_available_time_user,hc.base.hc.available.time.user,model_hc_available_time,hc_base.group_hc_base_user,1,0,0,0
 access_hc_base_hc_not_available_time_user,hc.base.hc.not.available.time.user,model_hc_not_available_time,hc_base.group_hc_base_user,1,0,0,0
+access_hc_base_hc_vs_marital_status_manager,hc.base.hc.vs.marital.status.manager,model_hc_vs_marital_status,hc_base.group_hc_base_manager,1,1,1,1
+access_hc_base_hc_vs_animal_breed_manager,hc.base.hc.vs.animal.breed.manager,model_hc_vs_animal_breed,hc_base.group_hc_base_manager,1,1,1,1
+access_hc_base_hc_vs_animal_gender_status_manager,hc.base.hc.vs.animal.gender.status.manager,model_hc_vs_animal_gender_status,hc_base.group_hc_base_manager,1,1,1,1
+access_hc_base_hc_vs_animal_species_manager,hc.base.hc.vs.animal.species.manager,model_hc_vs_animal_species,hc_base.group_hc_base_manager,1,1,1,1
+access_hc_base_hc_vs_race_manager,hc.base.hc.vs.race.manager,model_hc_vs_race,hc_base.group_hc_base_manager,1,1,1,1
+access_hc_base_hc_vs_ethnicity_manager,hc.base.hc.vs.ethnicity.manager,model_hc_vs_ethnicity,hc_base.group_hc_base_manager,1,1,1,1

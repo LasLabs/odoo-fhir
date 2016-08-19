@@ -45,7 +45,7 @@
                             </group>                    
                         </group>                        
                         <notebook colspan="4">
-                            <page string="Patients" autofocus="autofocus">
+                            <!-- <page string="Patients" autofocus="autofocus">
                                 <field name="patient_ids" mode="tree">
                                     <tree>
                                         <field name="patient_id"/>
@@ -64,10 +64,9 @@
                                         </sheet>
                                     </form>
                                 </field>
-                            </page>                      
-                            <page string="Names"/>                  
+                            </page> -->                                     
                             <page string="Identifiers"/>                    
-                            <page string="Addresses">                 
+                            <!-- <page string="Addresses">                 
                                 <field name="address_ids" mode="tree">              
                                     <tree>          
                                         <field name="use" widget="radio"/>      
@@ -93,7 +92,7 @@
                                         </sheet>        
                                     </form>         
                                 </field>                
-                            </page>                 
+                            </page> -->                 
                             <page string="Telecom">
                                 <field name="telecom_ids" mode="tree">
                                     <tree>
@@ -119,7 +118,7 @@
                                     </form>
                                 </field>
                             </page>                    
-                            <page string="Attachments"/>                    
+                            <page string="Photos"/>                      
                         </notebook>                     
                     </sheet>                            
                 </form>                             
