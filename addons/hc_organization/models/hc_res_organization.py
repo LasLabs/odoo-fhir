@@ -103,6 +103,10 @@ class OrganizationTelecom(models.Model):
             ("old", "Old"),
             ("mobile", "Mobile")], 
         help="Purpose of this telecom contact point.")
+    rank = fields.Integer(
+        string="Rank",
+        default="1", 
+        help="Specify preferred order of use (1 = highest).") 
 
 class OrganizationAddress(models.Model):
     _name = "hc.organization.address" 

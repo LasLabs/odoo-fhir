@@ -33,7 +33,7 @@
 
     # any module necessary for this one to work correctly
     # 'depends': ['hc_device', 'hc_medication'],
-    'depends': ['hc_practitioner'],
+    'depends': ['hc_patient'],
 
     # always loaded
     'data': [
@@ -45,4 +45,6 @@
     'demo': [
         'demo/demo.xml',
     ],
+    'installable': 'True',
+    'auto-install': 'True',
 }

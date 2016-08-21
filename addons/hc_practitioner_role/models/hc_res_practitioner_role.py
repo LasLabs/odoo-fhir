@@ -17,10 +17,10 @@ class PractitionerRole(models.Model):
         comodel_name="hc.res.practitioner", 
         string="Practitioner", 
         help="Practitioner that is able to provide the defined services for the organization.")
-    # organization_id = fields.Many2one(
-    #     comodel_name="hc.res.organization", 
-    #     string="Organization", 
-    #     help="Organization where the roles are performed.")
+    organization_id = fields.Many2one(
+        comodel_name="hc.res.organization", 
+        string="Organization", 
+        help="Organization where the roles are performed.")
     role_id = fields.Many2one(
         comodel_name="hc.vs.practitioner.role", 
         string="Role", 
@@ -30,19 +30,19 @@ class PractitionerRole(models.Model):
         inverse_name="practitioner_role_id", 
         string="Specialties", 
         help="Specific specialty of the practitioner.")
-    # identifier_ids = fields.One2many(
-    #     comodel_name="hc.practitioner.role.identifier", 
-    #     inverse_name="practitioner_role_id", 
-    #     string="Identifiers", 
-    #     help="Business Identifiers that are specific to a role/location.")
+    identifier_ids = fields.One2many(
+        comodel_name="hc.practitioner.role.identifier", 
+        inverse_name="practitioner_role_id", 
+        string="Identifiers", 
+        help="Business Identifiers that are specific to a role/location.")
     is_active_practitioner_role = fields.Boolean(
         string="Active", 
         help="Whether this practitioner role record is in active use.")
-    # telecom_ids = fields.One2many(
-    #     comodel_name="hc.practitioner.role.telecom", 
-    #     inverse_name="practitioner_role_id", 
-    #     string="Telecoms", 
-    #     help="Contact details that are specific to the role/location/service.")
+    telecom_ids = fields.One2many(
+        comodel_name="hc.practitioner.role.telecom", 
+        inverse_name="practitioner_role_id", 
+        string="Telecoms", 
+        help="Contact details that are specific to the role/location/service.")
     start_date = fields.Datetime(
         string="Start Date", 
         help="Start of the the period during which the practitioner is authorized to perform in these role(s).")
@@ -82,15 +82,15 @@ class PractitionerRoleSpecialty(models.Model):
         comodel_name="hc.vs.practitioner.specialty", 
         string="Specialty", 
         help="Specialty associated with a practitioner role.")             
-    # is_active_practitioner_specialty = fields.Boolean(
-    #     string="Active", 
-    #     help="Whether this practitioner role specialty record is in active use.")               
-    # start_date = fields.Datetime(
-    #     string="Start Date", 
-    #     help="Start of the period when the practitioner role specialty is/was valid.")                
-    # end_date = fields.Datetime(
-    #     string="End Date", 
-    #     help="End of the period when the practitioner role specialty is/was valid.")              
+    is_active = fields.Boolean(
+        string="Active", 
+        help="Whether this practitioner role specialty record is in active use.")               
+    start_date = fields.Datetime(
+        string="Start Date", 
+        help="Start of the period when the practitioner role specialty is/was valid.")                
+    end_date = fields.Datetime(
+        string="End Date", 
+        help="End of the period when the practitioner role specialty is/was valid.")              
 
 class PractitionerRoleIdentifier(models.Model): 
     _name = "hc.practitioner.role.identifier"   
@@ -108,19 +108,6 @@ class PractitionerRoleIdentifier(models.Model):
         string="Practitioner Role",
         help="Practitioner role associated with this identifier.")              
 
-              
-    # identifier_use = fields.Selection(
-    #     string="Identifier Use", 
-    #     selection=[
-    #         ("usual", "Usual"), 
-    #         ("official", "Official"), 
-    #         ("temp", "Temporary"), 
-    #         ("secondary", "Secondary")], 
-    #     help="The purpose of this identifier.")             
-    # value = fields.Char(
-    #     string="Value", 
-    #     help="The portion of the identifier typically relevant to the user and which is unique within the context of the system.")              
-
 class PractitionerRoleTelecom(models.Model):    
     _name = "hc.practitioner.role.telecom"  
     _description = "Practitioner Role Telecom"      
@@ -137,7 +124,20 @@ class PractitionerRoleTelecom(models.Model):
         comodel_name="hc.res.practitioner.role",  
         string="Practitioner Role", 
         help="Practitioner role associated with this telecom contact point.")               
-                 
+    use = fields.Selection(
+        string="Telecom Use", 
+        selection=[
+            ("home", "Home"), 
+            ("work", "Work"), 
+            ("temp", "Temp"), 
+            ("old", "Old"),
+            ("mobile", "Mobile")], 
+        help="Purpose of this telecom contact point.")
+    rank = fields.Integer(
+        string="Rank",
+        default="1", 
+        help="Specify preferred order of use (1 = highest).")
+
 class PractitionerRoleLocation(models.Model):   
     _name = "hc.practitioner.role.location" 
     _description = "Practitioner Role Location"     
@@ -147,10 +147,10 @@ class PractitionerRoleLocation(models.Model):
         comodel_name="hc.res.practitioner.role",  
         string="Practitioner Role", 
         help="Practitioner role associated with this location.")                
-    # location_id = fields.Many2one(
-    #     comodel_name="hc.res.location", 
-    #     string="Location", 
-    #     help="Location associated with this practitioner role.")               
+    location_id = fields.Many2one(
+        comodel_name="hc.res.location", 
+        string="Location", 
+        help="Location associated with this practitioner role.")               
 
 class PractitionerRoleHealthcareService(models.Model):  
     _name = "hc.practitioner.role.healthcare.service"   

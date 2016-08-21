@@ -92,7 +92,7 @@ class RelatedPersonIdentifier(models.Model):
 class RelatedPersonTelecom(models.Model):  
     _name = "hc.related.person.telecom" 
     _description = "Related Person Telecom"
-    _inherit = ["hc.basic.association"]
+    _inherit = ["hc.telecom.contact.point"]
     _inherits = {"hc.telecom": "telecom_id"}
 
     telecom_id = fields.Many2one(
@@ -105,31 +105,23 @@ class RelatedPersonTelecom(models.Model):
         comodel_name="hc.res.related.person", 
         string="Related Person", 
         help="Related person associated with this telecom contact point.")
-    use = fields.Selection(string="Telecom Use", 
-        selection=[
-            ("home", "Home"), 
-            ("work", "Work"), 
-            ("temp", "Temp"), 
-            ("old", "Old"),
-            ("mobile", "Mobile")], 
-        help="Purpose of this telecom contact point.")
+        
+class RelatedPersonAddress(models.Model):
+    _name = "hc.related.person.address" 
+    _description = "Related Person Address"
+    _inherit = ["hc.basic.association"]
+    _inherits = {"hc.address": "address_id"}
 
-# class RelatedPersonAddress(models.Model):
-#     _name = "hc.related.person.address" 
-#     _description = "Related Person Address"
-#     _inherit = ["hc.basic.association"]
-#     _inherits = {"hc.address": "address_id"}
-
-#     address_id = fields.Many2one(
-#         comodel_name="hc.address", 
-#         string="Address", 
-#         required=True,
-#         ondelete="restrict", 
-#         help="Address associated with this entity.") 
-#     related_person_id = fields.Many2one(
-#         comodel_name="hc.res.related.person", 
-#         string="Related Person", 
-#         help="Related person associated with this address.")
+    address_id = fields.Many2one(
+        comodel_name="hc.address", 
+        string="Address", 
+        required=True,
+        ondelete="restrict", 
+        help="Address associated with this entity.") 
+    related_person_id = fields.Many2one(
+        comodel_name="hc.res.related.person", 
+        string="Related Person", 
+        help="Related person associated with this address.")
 
 #     use = fields.Selection(string="Use",
 #         selection=[

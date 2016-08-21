@@ -121,6 +121,10 @@ class Location(models.Model):
                 ("old", "Old"),
                 ("mobile", "Mobile")], 
             help="Purpose of this telecom contact point.")
+        rank = fields.Integer(
+            string="Rank",
+            default="1", 
+            help="Specify preferred order of use (1 = highest).") 
 
 # External Reference
 

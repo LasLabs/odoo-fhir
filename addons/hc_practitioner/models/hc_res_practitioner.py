@@ -36,7 +36,7 @@ class Practitioner(models.Model):
     language_ids = fields.One2many(
         comodel_name="hc.practitioner.language", 
         inverse_name="practitioner_id", 
-        string="Telecom Contacts", 
+        string="Languages", 
         help="A language the practitioner is able to use in patient communication.")
     gender = fields.Selection(
         string="Gender", 
@@ -121,7 +121,7 @@ class PractitionerName(models.Model):
 class PractitionerTelecom(models.Model):  
     _name = "hc.practitioner.telecom" 
     _description = "Practitioner Telecom"
-    _inherit = ["hc.basic.association"]
+    _inherit = ["hc.telecom.contact.point"]
     _inherits = {"hc.telecom": "telecom_id"}
  
     telecom_id = fields.Many2one(
@@ -134,15 +134,7 @@ class PractitionerTelecom(models.Model):
         comodel_name="hc.res.practitioner", 
         string="Practitioner", 
         help="Practitioner associated with this telecom contact point.")
-    use = fields.Selection(string="Telecom Use", 
-        selection=[
-            ("home", "Home"), 
-            ("work", "Work"), 
-            ("temp", "Temp"), 
-            ("old", "Old"),
-            ("mobile", "Mobile")], 
-        help="Purpose of this telecom contact point.")
-
+        
 class PractitionerAddress(models.Model):
     _name = "hc.practitioner.address" 
     _description = "Practitioner Address"
