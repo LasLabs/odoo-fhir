@@ -1,2 +1,6 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_hc_device_hc_device,hc_device.hc_device,model_hc_device_hc_device,,1,0,0,0
+access_hc_device_hc_res_device_user,hc.device.hc.res.device.user,model_hc_res_device,hc_base.group_hc_base_user,1,0,0,0
+access_hc_device_hc_device_identifier_user,hc.device.hc.device.identifier.user,model_hc_device_identifier,hc_base.group_hc_base_user,1,0,0,0
+access_hc_device_hc_device_telecom_user,hc.device.hc.device.telecom.user,model_hc_device_telecom,hc_base.group_hc_base_user,1,0,0,0
+access_hc_device_hc_device_note_user,hc.device.hc.device.note.user,model_hc_device_note,hc_base.group_hc_base_user,1,0,0,0
+access_hc_device_hc_vs_device_type_manager,hc.device.hc.vs.device.type.manager,model_hc_vs_device_type,hc_base.group_hc_base_manager,1,1,1,1
