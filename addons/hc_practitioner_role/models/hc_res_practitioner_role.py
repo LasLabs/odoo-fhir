@@ -111,7 +111,7 @@ class PractitionerRoleIdentifier(models.Model):
 class PractitionerRoleTelecom(models.Model):    
     _name = "hc.practitioner.role.telecom"  
     _description = "Practitioner Role Telecom"      
-    _inherit = ["hc.basic.association"]
+    _inherit = ["hc.telecom.contact.point"]
     _inherits = {"hc.telecom": "telecom_id"}
 
     telecom_id = fields.Many2one(
@@ -124,19 +124,6 @@ class PractitionerRoleTelecom(models.Model):
         comodel_name="hc.res.practitioner.role",  
         string="Practitioner Role", 
         help="Practitioner role associated with this telecom contact point.")               
-    use = fields.Selection(
-        string="Telecom Use", 
-        selection=[
-            ("home", "Home"), 
-            ("work", "Work"), 
-            ("temp", "Temp"), 
-            ("old", "Old"),
-            ("mobile", "Mobile")], 
-        help="Purpose of this telecom contact point.")
-    rank = fields.Integer(
-        string="Rank",
-        default="1", 
-        help="Specify preferred order of use (1 = highest).")
 
 class PractitionerRoleLocation(models.Model):   
     _name = "hc.practitioner.role.location" 

@@ -239,10 +239,10 @@ class PractitionerQualification(models.Model):
         inverse_name="practitioner_qualification_id", 
         string="Identifiers", 
         help="An identifier for this qualification for the practitioner.")                 
-    # issuer_organization_id = fields.Many2one(
-    #     comodel_name="hc.res.organization", 
-    #     string="Issuer Organization", 
-    #     help="Organization that regulates and issues the qualification.")        
+    issuer_organization_id = fields.Many2one(
+        comodel_name="hc.res.organization", 
+        string="Issuer Organization", 
+        help="Organization that regulates and issues the qualification.")        
 
 class PractitionerSpecialty(models.Model):  
     _name = "hc.vs.practitioner.specialty"  
@@ -275,14 +275,6 @@ class PersonLink(models.Model):
         comodel_name="hc.res.practitioner", 
         string="Target Practitioner", 
         help="Practitioner who is the resource to which this actual person is associated.")
-
-# class PatientCareProviderPractitioner(models.Model):
-#     _inherit = ["hc.patient.care.provider.practitioner"]
-
-#     practitioner_id = fields.Many2one(
-#         comodel_name="hc.res.practitioner", 
-#         string="Care Provider Practitioner", 
-#         help="Practitioner who is this care provider.")
 
 class Annotation(models.Model):
     _inherit = ["hc.annotation"]

@@ -82,31 +82,19 @@ class OrganizationType(models.Model):
 class OrganizationTelecom(models.Model):  
     _name = "hc.organization.telecom" 
     _description = "Organization Telecom"
-    _inherit = ["hc.basic.association"]
+    _inherit = ["hc.telecom.contact.point"]
     _inherits = {"hc.telecom": "telecom_id"}
  
-    organization_id = fields.Many2one(
-        comodel_name="hc.res.organization", 
-        string="Organization", 
-        help="Organization associated with this telecom contact point.")
     telecom_id = fields.Many2one(
         comodel_name="hc.telecom",
         string="Telecom",
         required=True,
         ondelete="restrict",
         help="Telecom contact point associated with this organization.")
-    use = fields.Selection(string="Telecom Use", 
-        selection=[
-            ("home", "Home"), 
-            ("work", "Work"), 
-            ("temp", "Temp"), 
-            ("old", "Old"),
-            ("mobile", "Mobile")], 
-        help="Purpose of this telecom contact point.")
-    rank = fields.Integer(
-        string="Rank",
-        default="1", 
-        help="Specify preferred order of use (1 = highest).") 
+    organization_id = fields.Many2one(
+        comodel_name="hc.res.organization", 
+        string="Organization", 
+        help="Organization associated with this telecom contact point.")
 
 class OrganizationAddress(models.Model):
     _name = "hc.organization.address" 

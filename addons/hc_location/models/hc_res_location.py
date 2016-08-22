@@ -99,7 +99,7 @@ class Location(models.Model):
     class locationTelecom(models.Model):  
         _name = "hc.location.telecom" 
         _description = "location Telecom"
-        _inherit = ["hc.basic.association"]
+        _inherit = ["hc.telecom.contact.point"]
         _inherits = {"hc.telecom": "telecom_id"}
      
         telecom_id = fields.Many2one(
@@ -112,19 +112,6 @@ class Location(models.Model):
             comodel_name="hc.res.location", 
             string="Location", 
             help="location associated with this telecom contact point.")
-        use = fields.Selection(
-            string="Telecom Use", 
-            selection=[
-                ("home", "Home"), 
-                ("work", "Work"), 
-                ("temp", "Temp"),                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
-                ("old", "Old"),
-                ("mobile", "Mobile")], 
-            help="Purpose of this telecom contact point.")
-        rank = fields.Integer(
-            string="Rank",
-            default="1", 
-            help="Specify preferred order of use (1 = highest).") 
 
 # External Reference
 

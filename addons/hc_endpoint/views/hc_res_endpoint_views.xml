@@ -1,0 +1,24 @@
+<openerp>
+    <data>
+        <!-- Endpoint Action and Menu -->	
+	
+        <!-- Endpoint Action and Menu -->   
+    
+        <act_window id="hc_res_endpoint_action" 
+                    name="HC Endpoints"
+                    res_model="hc.res.endpoint"
+                    view_mode="tree,form"
+                    domain=""
+                    context=""
+                    limit=""/>
+
+
+        <menuitem id="hc_endpoint.menu_end" 
+                  name="Endpoints" 
+                  parent="hc_base.menu_entity" 
+                  action="hc_res_endpoint_action" 
+                  groups="hc_base.group_hc_base_manager" 
+                  sequence="30"/>
+
+    </data>
+</openerp>

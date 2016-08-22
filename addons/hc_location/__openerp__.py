@@ -27,8 +27,7 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    # 'depends': ['hc_endpoint'],
-    'depends': ['hc_organization'],
+    'depends': ['hc_endpoint'],
 
     # always loaded
     'data': [
