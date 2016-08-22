@@ -42,7 +42,8 @@ class LinkageItem(models.Model):
             ("alternate", "Alternate"), 
             ("historical", "Historical")], 
         help='Distinguishes which item is "source of truth" (if any) and which items are no longer considered to be current representations.')        
-    resource = fields.One2many(
-        string = "Resource"
-        required="True", 
-        help="Reference resource being linked.")        
+    # resource = fields.One2many(
+    #     comodel_name="hc.res.resource",
+    #     string = "Resource"
+    #     required="True", 
+    #     help="Reference resource being linked.")        

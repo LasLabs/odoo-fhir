@@ -1,2 +1,3 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_hc_linkage_hc_linkage,hc_linkage.hc_linkage,model_hc_linkage_hc_linkage,,1,0,0,0
+access_hc_linkage_hc_res_linkage_user,hc.linkage.hc.res.linkage.user,model_hc_res_linkage,hc_base.group_hc_base_user,1,0,0,0
+access_hc_linkage_hc_linkage_item_user,hc.linkage.hc.linkage.item.user,model_hc_linkage_item,hc_base.group_hc_base_user,1,0,0,0

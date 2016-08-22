@@ -12,7 +12,6 @@
                     context=""
                     limit=""/>
 
-
         <menuitem id="hc_endpoint.menu_end" 
                   name="Endpoints" 
                   parent="hc_base.menu_entity" 

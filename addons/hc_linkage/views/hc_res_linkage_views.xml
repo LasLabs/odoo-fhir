@@ -1,59 +1,22 @@
 <openerp>
-  <data>
-    <!-- explicit list view definition -->
-    <!--
-    <record model="ir.ui.view" id="hc_linkage.list">
-      <field name="name">hc_linkage list</field>
-      <field name="model">hc_linkage.hc_linkage</field>
-      <field name="arch" type="xml">
-        <tree>
-          <field name="name"/>
-          <field name="value"/>
-          <field name="value2"/>
-        </tree>
-      </field>
-    </record>
-    -->
+    <data>
+    
+        <!-- Linkage Action and Menu -->  
+      
+        <act_window id="hc_res_linkage_action"  
+                    name="HC Linkages"
+                    res_model="hc.res.linkage"
+                    view_mode="tree,form"
+                    domain=""
+                    context=""
+                    limit=""/>
 
-    <!-- actions opening views on models -->
-    <!--
-    <record model="ir.actions.act_window" id="hc_linkage.action_window">
-      <field name="name">hc_linkage window</field>
-      <field name="res_model">hc_linkage.hc_linkage</field>
-      <field name="view_mode">tree,form</field>
-    </record>
-    -->
+        <menuitem id="hc_linkage.menu_linkage" 
+                  name="Linkages" 
+                  parent="hc_base.menu_entity" 
+                  action="hc_res_linkage_action" 
+                  groups="hc_base.group_hc_base_manager" 
+                  sequence="60"/>
 
-    <!-- server action to the one above -->
-    <!--
-    <record model="ir.actions.server" id="hc_linkage.action_server">
-      <field name="name">hc_linkage server</field>
-      <field name="model_id" ref="model_hc_linkage_hc_linkage"/>
-      <field name="code">
-        action = {
-          "type": "ir.actions.act_window",
-          "view_mode": "tree,form",
-          "res_model": self._name,
-        }
-      </field>
-    </record>
-    -->
-
-    <!-- Top menu item -->
-    <!--
-    <menuitem name="hc_linkage" id="hc_linkage.menu_root"/>
-    -->
-    <!-- menu categories -->
-    <!--
-    <menuitem name="Menu 1" id="hc_linkage.menu_1" parent="hc_linkage.menu_root"/>
-    <menuitem name="Menu 2" id="hc_linkage.menu_2" parent="hc_linkage.menu_root"/>
-    -->
-    <!-- actions -->
-    <!--
-    <menuitem name="List" id="hc_linkage.menu_1_list" parent="hc_linkage.menu_1"
-              action="hc_linkage.action_window"/>
-    <menuitem name="Server to list" id="hc_linkage" parent="hc_linkage.menu_2"
-              action="hc_linkage.action_server"/>
-    -->
-  </data>
+    </data>
 </openerp>
