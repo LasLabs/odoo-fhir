@@ -30,7 +30,7 @@
 
     # any module necessary for this one to work correctly
     # 'depends': ['hc_appointment']
-    'depends': ['hc_organization', 'hc_account', 'hc_condition'],
+    'depends': ['hc_account', 'hc_condition'],
 
     # always loaded
     'data': [

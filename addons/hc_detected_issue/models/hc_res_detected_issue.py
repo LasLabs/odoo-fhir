@@ -13,7 +13,7 @@ class DetectedIssue(models.Model):
     detail = fields.Char( string="Detail", help="Description and context.")
     date = fields.Datetime(string="Date", help="When identified.")
     author_type = fields.Selection(string="Author Type", required="True", selection=[("practitioner", "Practitioner"), ("device", "Device")], help="Type of provider or device that identified the issue.")
-    author_name = fields.Char(string="Author Name", compute="compute_author_name", help="The provider or device that identified the issue.")
+    author_name = fields.Char(string="Author", compute="compute_author_name", help="The provider or device that identified the issue.")
     author_practitioner_id = fields.Many2one(comodel_name="hc.res.practitioner", string="Author Practitioner", help="Practitioner that identified the issue.")
     # author_device_id = fields.Many2one(
     #     comodel_name="hc.res.device", 
@@ -38,7 +38,7 @@ class DetectedIssueImplicated(models.Model):
 
     detected_issue_id = fields.Many2one(comodel_name="hc.res.detected.issue", string="Detected Issue", help="Detected Issue associated with this detected issue implicated.")
     impicated_type = fields.Selection(string="Impicated Type", required="True", selection=[("string", "String"), ("codeableconcept", "Codeableconcept")], help="Type of resource representing the current activity or proposed activity that is potentially problematic..")
-    implicated_name = fields.Char(string="Implicated Name", compute="compute_implicated_name", help="Indicates the resource representing the current activity or proposed activity that is potentially problematic.")
+    implicated_name = fields.Char(string="Implicated", compute="compute_implicated_name", help="Indicates the resource representing the current activity or proposed activity that is potentially problematic.")
     implicated_string = fields.Char( string="Implicated String", help="String problem resource.")
     implicated_codeable_concept_id = fields.Many2one(comodel_name="hc.vs.detected.issue.implicated", string="Implicated Codeable Concept", help="Codeable Concept problem resource.")
 

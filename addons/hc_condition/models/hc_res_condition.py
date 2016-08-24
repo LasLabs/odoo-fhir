@@ -59,7 +59,7 @@ class Condition(models.Model):
             ("Group", "Group")], 
         help="Type of who has the condition.")
     subject_name = fields.Char(
-        string="Subject Name", 
+        string="Subject", 
         compute="compute_subject_name", 
         required="True", 
         help="Who has the condition?")                
@@ -80,7 +80,7 @@ class Condition(models.Model):
             ("Episode Of Care", "Episode of Care")], 
         help="Type of encounter when condition first asserted.")                    
     context_name = fields.Char(
-        string="Context Name", 
+        string="Context", 
         compute="compute_context_name", 
         help="Encounter when condition first asserted.")                
     # context_encounter_id = fields.Many2one(
@@ -101,7 +101,7 @@ class Condition(models.Model):
             ("string", "String")], 
         help="Type of onset.")
     onset_name = fields.Char(
-        string="Onset Name", 
+        string="Onset", 
         compute="compute_onset_name", 
         help="Estimated or actual date, date-time, or age.")             
     onset_datetime = fields.Datetime(
@@ -139,7 +139,7 @@ class Condition(models.Model):
             ("string", "String")], 
         help="Type of abatement.")                    
     abatement_name = fields.Char(
-        string="Abatement Name", 
+        string="Abatement", 
         compute="compute_abatement_name", 
         help="If/when in resolution/remission .")                   
     abatement_date = fields.Date(
@@ -182,7 +182,7 @@ class Condition(models.Model):
             ("Patient", "Patient")], 
         help="Type of asserter.")                    
     asserter_name = fields.Char(
-        string="Asserter Name", 
+        string="Asserter", 
         compute="compute_asserter_name", 
         help="Person who asserts this condition.")                  
     asserter_practitioner_id = fields.Many2one(
@@ -291,7 +291,7 @@ class ConditionStageAssessment(models.Model):
             ("observation", "Observation")], 
         help="Type of assessment.")                    
     assessment_name = fields.Char(
-        string="Assessment Name", 
+        string="Assessment", 
         compute="compute_assessment_name", 
         help="Formal record of assessment.")                   
     # assessment_clinical_impression_id = fields.Many2one(
@@ -325,7 +325,7 @@ class ConditionEvidenceDetail(models.Model):
             ("diagnostic report", "Diagnostic Report")], 
         help="Type of supporting information found elsewhere.")                    
     detail_name = fields.Char(
-        string="Detail Name", 
+        string="Details", 
         compute="compute_detail_name", 
         help="Supporting information found elsewhere.")                
     detail = fields.Char(

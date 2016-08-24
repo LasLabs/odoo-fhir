@@ -14,7 +14,7 @@ class Linkage(models.Model):
             ("organization", "Organization")], 
         help="Type of who is responsible for linkages.")        
     author_name = fields.Char(
-        string="Author Name", 
+        string="Author", 
         compute="compute_author_name", 
         help="Who is responsible for linkage.")        
     author_practitioner_id = fields.Many2one(

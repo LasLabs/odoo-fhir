@@ -15,13 +15,13 @@ class ClinicalImpression(models.Model):
     code_id = fields.Many2one(comodel_name="hc.vs.clinical.impression.kind", string="Code", help="Kind of impression performed.")                
     description = fields.Char(string="Description", help="Why/how the assessment was performed.")                
     subject_type = fields.Selection(string="Clinical Impression Subject Type", selection=[("Patient", "Patient"), ("Group", "Group")], help="Type of entity assessed.")                
-    subject_name = fields.Char(string="Subject Name", compute="compute_subject_name", required="True", help="Patient or group assessed.")                
+    subject_name = fields.Char(string="Subject", compute="compute_subject_name", required="True", help="Patient or group assessed.")                
     subject_patient_id = fields.Many2one(comodel_name="hc.res.patient", string="Subject Patient", required="True", help="Patient assessed.")                
     subject_group_id = fields.Many2one(comodel_name="hc.res.group", string="Subject Group", required="True", help="Group assessed.")                
     assessor_practitioner_id = fields.Many2one(comodel_name="hc.res.practitioner", string="Assessor Practitioner", help="The clinician performing the assessment.")                
     date = fields.Datetime(string="Date", help="When the assessment occurred.")                
     context_type = fields.Selection(string="Clinical Impression Context Type", selection=[("Encounter", "Encounter"), ("Episode Of Care", "Episode Of Care")], help="Type of Encounter or Episode created from.")                
-    context_name = fields.Char(string="Context Name", compute="compute_context_name", help="Encounter or Episode created from.")                
+    context_name = fields.Char(string="Context", compute="compute_context_name", help="Encounter or Episode created from.")                
     # context_encounter_id = fields.Many2one(
     #     comodel_name="hc.res.encounter", 
     #     string="Context Encounter", 
@@ -56,7 +56,7 @@ class ClinicalImpressionPlan(models.Model):
         string="Clinical Impression", 
         help="Clinical impression associated with this clinical impression plan.")                
     plan_type = fields.Selection(string="Clinical Impression Plan Plan Type", selection=[("care plan", "Care Plan"), ("appointment", "Appointment"),("communication request", "Communication Request"),("device use request", "Device Use Request"),("diagnostic order", "Diagnostic Order"),("medication order", "Medication Order"),("nutrition order", "Nutrition Order"), ("order", "Order"),("procedure request", "Procedure Request"),("process request", "Process Request"),("referral request", "Referral Request"),("supply request", "Supply Request"),("vision prescription", "Vision Prescription")], help="Type of plan of action after assessment.")              
-    plan_name = fields.Char(string="Plan Name", compute="compute_plan_name", help="Plan of action after assessment.")               
+    plan_name = fields.Char(string="Plan", compute="compute_plan_name", help="Plan of action after assessment.")               
     # plan_appointment_id = fields.Many2one(
     #     comodel_name="hc.res.appointment", 
     #     string="Plan Appointment", 
@@ -113,7 +113,7 @@ class ClinicalImpressionAction(models.Model):
 
     clinical_impression_id = fields.Many2one(comodel_name="hc.res.clinical.impression", string="Clinical Impression", help="Clinical impression associated with this clinical impression action.")
     action_type = fields.Selection(string="Clinical Impression Action Action Type", selection=[("Referral Request", "Referral Request"), ("Procedure Request|Procedure|Medication Order|Diagnostic Order|Nutrition Order|Supply Request|Appointment", "Procedure Request|Procedure|Medication Order|Diagnostic Order|Nutrition Order|Supply Request|Appointment")], help="Type of actions taken during assessment.")
-    action_name = fields.Char(string="Action Name", compute="compute_action_name", help="Actions taken during assessment.")
+    action_name = fields.Char(string="Action", compute="compute_action_name", help="Actions taken during assessment.")
     # action_diagnostic_order_id = fields.Many2one(
     #     comodel_name="hc.res.diagnostic.order", 
     #     string="Action Diagnostic Order", 
@@ -155,7 +155,7 @@ class ClinicalImpressionInvestigation(models.Model):
     clinical_impression_id = fields.Many2one(comodel_name="hc.res.clinical.impression", string="Clinical Impression", help="Clinical impression associated with this investigation.")
     code_id = fields.Many2one(comodel_name="hc.vs.investigation.set", string="Code", required="True", help="A name/code for the set.")
     item_type = fields.Selection(string="Investigation Item Type", selection=[("observation", "Observation"), ("questionnaire response", "Questionnaire Response"), ("family member history", "Family Member History"), ("diagnostic report", "Diagnostic Report"), ("risk assessment", "Risk Assessment"), ("imaging study", "Imaging Study")], help="Type of record of a specific investigation.")
-    item_name = fields.Char(string="Item Name", compute="compute_item_name", help="Record of a specific investigation.")
+    item_name = fields.Char(string="Item", compute="compute_item_name", help="Record of a specific investigation.")
     # item_observation_id = fields.Many2one(
     #     comodel_name="hc.res.observation", 
     #     string="Item Observation", 
@@ -194,7 +194,7 @@ class ClinicalImpressionFinding(models.Model):
             ("Condition", "Condition"), 
             ("Observation", "Observation")], 
         help="Type of what was found.")                
-    item_name = fields.Char(string="Item Name", compute="compute_item_name", required="True", help="What was found.")                
+    item_name = fields.Char(string="Item", compute="compute_item_name", required="True", help="What was found.")                
     item_code_id = fields.Many2one(comodel_name="hc.vs.condition.code", string="Item Code", required="True", help="What was found")                
     item_condition_id = fields.Many2one(
         comodel_name="hc.res.condition", 
@@ -249,7 +249,7 @@ class ClinicalImpressionProblem(models.Model):
 
     clinical_impression_id = fields.Many2one(comodel_name="hc.res.clinical.impression", string="Clinical Impression", help="Clinical impression associated with this clinical impression problem.")                
     problem_type = fields.Selection(string="Clinical Impression Problem Problem Type", selection=[("Condition", "Condition"), ("Allergy Intolerance", "Allergy Intolerance")], help="Type of general assessment of patient state.")                
-    problem_name = fields.Char(string="Problem Name", compute="compute_problem_name", help="General assessment of patient state.")                
+    problem_name = fields.Char(string="Problem", compute="compute_problem_name", help="General assessment of patient state.")                
     problem_condition_id = fields.Many2one(
         comodel_name="hc.res.condition", 
         string="Problem Condition", 

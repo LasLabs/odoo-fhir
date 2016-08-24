@@ -225,7 +225,7 @@ sudo mv hc_location /odoo/odoo-fhir/addons/hc_location
 ```
 *Rename files
 ```
-cd /odoo/odoo-fhir/addons/hc_res_location
+cd /odoo/odoo-fhir/addons/hc_location
 sudo mv models/models.py models/hc_res_location.py
 sudo mv views/views.xml views/hc_res_location_views.xml
 sudo mv views/templates.xml views/hc_res_location_templates.xml
@@ -250,6 +250,14 @@ from . import hc_res_location
         'security/ir.model.access.csv',
         'views/hc_res_location_views.xml',
         'views/hc_res_location_templates.xml',
+],
+# only loaded in demonstration mode
+'demo': [
+    'demo/demo.xml',
+],
+'installable': 'True',
+'auto-install': 'True',
+}
 ```
 ##Create demo data
 *Create sample data in Odoo

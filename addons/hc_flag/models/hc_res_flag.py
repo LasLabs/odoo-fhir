@@ -42,7 +42,7 @@ class Flag(models.Model):
             ("procedure", "Procedure")], 
         help="Type of Who/What is flag about.")
     subject_name = fields.Char(
-        string="Subject Name", 
+        string="Subject", 
         compute="compute_subject_name", 
         help="Who/What is flag about.")
     subject_patient_id = fields.Many2one(
@@ -90,7 +90,7 @@ class Flag(models.Model):
             ("practitioner", "Practitioner")], 
         help="Type of flag creator.")					
     author_name = fields.Char(
-        string="Author Name", 
+        string="Author", 
         compute="compute_author_name", 
         help="Flag creator.")					
     # author_device_id = fields.Many2one(

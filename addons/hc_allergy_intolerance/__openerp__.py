@@ -39,7 +39,7 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['hc_related_person'],
+    'depends': ['hc_patient'],
 
     # always loaded
     'data': [

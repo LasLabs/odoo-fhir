@@ -1,2 +1,7 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_hc_device_metric_hc_device_metric,hc_device_metric.hc_device_metric,model_hc_device_metric_hc_device_metric,,1,0,0,0
+access_hc_device_metric_hc_res_device_metric_user,hc.device.metric.hc.res.device.metric.user,model_hc_res_device_metric,hc_base.group_hc_base_user,1,0,0,0
+access_hc_device_metric_hc_device_metric_calibration_user,hc.device.metric.hc.device.metric.calibration.user,model_hc_device_metric_calibration,hc_base.group_hc_base_user,1,0,0,0
+access_hc_device_metric_hc_device_metric_identifier_user,hc.device.metric.hc.device.metric.identifier.user,model_hc_device_metric_identifier,hc_base.group_hc_base_user,1,0,0,0
+access_hc_device_metric_hc_device_metric_measurement_period_user,hc.device.metric.hc.device.metric.measurement.period.user,model_hc_device_metric_measurement_period,hc_base.group_hc_base_user,1,0,0,0
+access_hc_device_metric_hc_vs_device_metric_type_manager,hc.device.metric.hc.vs.device.metric.type.manager,model_hc_vs_device_metric_type,hc_base.group_hc_base_manager,1,1,1,1
+access_hc_device_metric_hc_vs_device_metric_unit_manager,hc.device.metric.hc.vs.device.metric.unit.manager,model_hc_vs_device_metric_unit,hc_base.group_hc_base_manager,1,1,1,1

@@ -44,7 +44,7 @@ class TimingRepeat(models.Model):
             ("period", "Period")], 
         help="Type of bounds.")       
     bounds_name = fields.Char(
-        string="Bounds Name", 
+        string="Bounds", 
         compute="compute_bounds_name", 
         help="Length/Range of lengths, or (Start and/or end) limit.")        
     bounds_duration = fields.Float(

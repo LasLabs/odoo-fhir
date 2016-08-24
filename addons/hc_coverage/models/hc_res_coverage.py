@@ -24,7 +24,7 @@ class Coverage(models.Model):
             ("related person", "Related Person")], 
         help="Type of plan or agreement issuer.")
     issuer_name = fields.Char(
-        string="Issuer Name",
+        string="Issuer",
         required="True", 
         compute="compute_issuer_name", 
         help="Identifier for the plan or agreement issuer.")
@@ -69,7 +69,7 @@ class Coverage(models.Model):
             ("organization", "Organization")], 
         help="Type of plan holder.")
     planholder_name = fields.Char(
-        string="Planholder Name", 
+        string="Planholder", 
         compute="compute_planholder_name", 
         required="True", 
         help="Plan holder.")
@@ -93,7 +93,7 @@ class Coverage(models.Model):
             ("patient", "Patient")], 
         help="Type of plan beneficiary.")
     beneficiary_name = fields.Char(
-        string="Beneficiary Name", 
+        string="Beneficiary", 
         compute="compute_beneficiary_name", 
         required="True", 
         help="Plan Beneficiary.")

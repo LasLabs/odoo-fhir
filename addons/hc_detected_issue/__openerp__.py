@@ -32,8 +32,7 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    # 'depends': ['hc_device'],
-    'depends': ['hc_practitioner'],
+    'depends': ['hc_device'],
 
     # always loaded
     'data': [
@@ -45,4 +44,6 @@
     'demo': [
         'demo/demo.xml',
     ],
+    'installable': 'True',
+    'auto-install': 'True',
 }

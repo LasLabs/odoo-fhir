@@ -23,7 +23,7 @@ class Procedure(models.Model):
             ("group", "Group")], 
         help="Type of subject the procedure was performed on.")                    
     subject_name = fields.Char(
-        string="Subject Name",
+        string="Subject",
         required="True", 
         compute="compute_subject_name",  
         help="Who the procedure was performed on.")
@@ -70,7 +70,7 @@ class Procedure(models.Model):
         string="Reason References", 
         help="Condition that is the reason the procedure performed.")                 
     reason_code_id = fields.Many2one(
-        comodel_name="hc.vs.procedure.reason.code", 
+        comodel_name="hc.vs.procedure.reason", 
         string="Reason Code", 
         help="Coded reason procedure performed.")                    
     performed_date_type = fields.Selection(
@@ -92,10 +92,10 @@ class Procedure(models.Model):
     #     comodel_name="hc.res.encounter", 
     #     string="Encounter", 
     #     help="The encounter associated with the procedure.")                    
-    # location_id = fields.Many2one(
-    #     comodel_name="hc.res.location", 
-    #     string="Location", 
-    #     help="Where the procedure happened.")                  
+    location_id = fields.Many2one(
+        comodel_name="hc.res.location", 
+        string="Location", 
+        help="Where the procedure happened.")                  
     outcome_id = fields.Many2one(
         comodel_name="hc.vs.procedure.outcome", 
         string="Outcome", 
@@ -113,18 +113,18 @@ class Procedure(models.Model):
         comodel_name="hc.vs.procedure.follow.up", 
         string="Follow Ups", 
         help="Instructions for follow up.")                 
-    # request_type = fields.Selection(
-    #     string="Procedure Request Type", 
-    #     selection=[
-    #         ("care plan", "Care Plan"), 
-    #         ("diagnostic order", "Diagnostic Order"),
-    #         ("procedure request", "Procedure Request"),
-    #         ("referral request", "Referral Request")], 
-    #     help="Type of request for this procedure.")                  
-    # request_name = fields.Char(
-    #     string="Request Name", 
-    #     compute="compute_request_name",
-    #     help="Request reference for this procedure.")                    
+    request_type = fields.Selection(
+        string="Procedure Request Type", 
+        selection=[
+            ("care plan", "Care Plan"), 
+            ("diagnostic order", "Diagnostic Order"),
+            ("procedure request", "Procedure Request"),
+            ("referral request", "Referral Request")], 
+        help="Type of request for this procedure.")                  
+    request_name = fields.Char(
+        string="Request", 
+        compute="compute_request_name",
+        help="Request reference for this procedure.")                    
     # request_care_plan_id = fields.Many2one(
     #     comodel_name="hc.res.care.plan", 
     #     string="Request Care Plan", 
@@ -213,7 +213,7 @@ class ProcedureUsedReference(models.Model):
     #         ("Substance", "Substance")], 
     #     help="Type of item used during the procedure")                 
     # used_reference_name = fields.Char(
-    #     string="Used Reference Name", 
+    #     string="Used Reference", 
     #     compute="compute_used_reference_name",
     #     help="The name of the item used during the procedure.")                   
     # used_reference_device_id = fields.Many2one(
@@ -256,7 +256,7 @@ class ProcedureComponent(models.Model):
     #         ("Observation", "Observation")], 
     #     help="Type of item used during the procedure")                   
     # component_name = fields.Char(
-    #     string="Component Name", 
+    #     string="Component", 
     #     compute="compute_component_name",
     #     help="The name of the event related to the procedure.")                  
     # component_medication_administration_id = fields.Many2one(
@@ -299,7 +299,7 @@ class ProcedurePerformer(models.Model):
             ("related person", "Related Person")], 
         help="Type of practitioner who was involved in the procedure.") 
     actor_name = fields.Char(
-        string="Actor Name", 
+        string="Actor", 
         compute="compute_actor_name",
         help="The name of the entity who performs the procedure.")                                   
     actor_practitioner_id = fields.Many2one(
@@ -567,8 +567,8 @@ class ProcedureCategory(models.Model):
     _inherit = ["hc.value.set.contains"]    
 
 class ProcedureReasonCode(models.Model):    
-    _name = "hc.vs.procedure.reason.code"   
-    _description = "Procedure Reason Code"      
+    _name = "hc.vs.procedure.reason"   
+    _description = "Procedure Reason"      
     _inherit = ["hc.value.set.contains"]    
 
 class ProcedureOutcome(models.Model):   

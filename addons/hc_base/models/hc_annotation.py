@@ -27,7 +27,7 @@ class Annotation(models.AbstractModel):
             ("related person", "Related Person")],
         help="Type of individual responsible for the annotation.")
     author_name = fields.Char(
-        string="Author Name",
+        string="Author",
         compute="compute_author_name",
         help="Individual responsible for the annotation.")
     author_string = fields.Char(

@@ -53,7 +53,7 @@ class Account(models.Model):
             ("organization", "Organization")], 
         help="Type of what is account tied to.")                   
     subject_name = fields.Char(
-        string="Subject Name", 
+        string="Subject", 
         compute="compute_subject_name", 
         help="What is account tied to.")                    
     subject_patient_id = fields.Many2one(

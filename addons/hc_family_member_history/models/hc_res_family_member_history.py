@@ -90,7 +90,9 @@ class FamilyMemberHistory(models.Model):
             ("string", "String")], 
         help="Type of age.")                  
     age_name = fields.Char(
-        string="Age", compute="compute_age_name", help="Age.")                  
+        string="Age", 
+        compute="compute_age_name", 
+        help="Age.")                  
     age = fields.Integer(
         string="Age Integer", 
         size=3, 
