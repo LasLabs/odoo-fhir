@@ -73,3 +73,4 @@ access_hc_base_hc_vs_animal_gender_status_manager,hc.base.hc.vs.animal.gender.st
 access_hc_base_hc_vs_animal_species_manager,hc.base.hc.vs.animal.species.manager,model_hc_vs_animal_species,hc_base.group_hc_base_manager,1,1,1,1
 access_hc_base_hc_vs_race_manager,hc.base.hc.vs.race.manager,model_hc_vs_race,hc_base.group_hc_base_manager,1,1,1,1
 access_hc_base_hc_vs_ethnicity_manager,hc.base.hc.vs.ethnicity.manager,model_hc_vs_ethnicity,hc_base.group_hc_base_manager,1,1,1,1
+access_hc_base_hc_vs_participant_role_manager,hc.base.hc.vs.participant.role.manager,model_hc_vs_participant_role,hc_base.group_hc_base_manager,1,1,1,1

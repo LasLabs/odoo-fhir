@@ -11,6 +11,7 @@
                     domain=""
                     context=""
                     limit=""/>
+        
         <menuitem id="hc_medication.menu_med_med" 
                   name="Medications" 
                   parent="hc_base.menu_med" 

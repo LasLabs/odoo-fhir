@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_hc_imaging_manifest_hc_imaging_manifest,hc_imaging_manifest.hc_imaging_manifest,model_hc_imaging_manifest_hc_imaging_manifest,,1,0,0,0

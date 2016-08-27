@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_hc_imaging_study_hc_imaging_study,hc_imaging_study.hc_imaging_study,model_hc_imaging_study_hc_imaging_study,,1,0,0,0

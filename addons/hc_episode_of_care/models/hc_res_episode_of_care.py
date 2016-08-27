@@ -54,7 +54,10 @@ class EpisodeOfCareCondition(models.Model):
     _inherit = ["hc.basic.association"]
 
     episode_of_care_id = fields.Many2one(comodel_name="hc.res.episode.of.care", string="Episode Of Care", required="True", help="Episode of care associated with this episode of care condition.")                
-    condition_id = fields.Many2one(comodel_name="hc.res.condition", string="Condition", help="Condition associated with this episode of care condition.")                
+    # condition_id = fields.Many2one(
+    #     comodel_name="hc.res.condition", 
+    #     string="Condition", 
+    #     help="Condition associated with this episode of care condition.")                
 
 class EpisodeOfCareReferralRequest(models.Model):    
     _name = "hc.episode.of.care.referral.request"    
@@ -89,26 +92,28 @@ class EpisodeOfCareCareTeamRole(models.Model):
     _description = "Episode Of Care Care Team Role"        
     _inherit = ["hc.basic.association"]
 
-    episode_of_care_care_team_id = fields.Many2one(comodel_name="hc.episode.of.care.care.team", string="Episode Of Care", required="True", help="Care Team member associated with this care team role.")                
-    participant_role_id = fields.Many2one(comodel_name="hc.vs.participant.role", string="Participant Role", required="True", help="Participant role associated with this care team member.")                
+    episode_of_care_care_team_id = fields.Many2one(
+        comodel_name="hc.episode.of.care.care.team", 
+        string="Episode Of Care", 
+        required="True", 
+        help="Care Team member associated with this care team role.")                
+    participant_role_id = fields.Many2one(
+        comodel_name="hc.vs.participant.role", 
+        string="Participant Role", 
+        required="True", 
+        help="Participant role associated with this care team member.")                
 
 class EpisodeOfCareType(models.Model):    
     _name = "hc.vs.episode.of.care.type"    
     _description = "Episode Of Care Type"        
     _inherit = ["hc.value.set.contains"]
 
-class ParticipantRole(models.Model):    
-    _name = "hc.vs.participant.role"    
-    _description = "Participant Role"       
-    _inherit = ["hc.value.set.contains"]
-
-
 # External Reference
 
-class Condition(models.Model):
-    _inherit = ["res.condition"]
+# class Condition(models.Model):
+#     _inherit = ["res.condition"]
 
-    context_episode_of_care_id = fields.Many2one(
-        comodel_name="hc.res.episode.of.care", 
-        string="Context Episode Of Care", 
-        help="Episode Of Care when condition first asserted.")
+#     context_episode_of_care_id = fields.Many2one(
+#         comodel_name="hc.res.episode.of.care", 
+#         string="Context Episode Of Care", 
+#         help="Episode Of Care when condition first asserted.")

@@ -279,7 +279,10 @@ class EncounterReferralRequest(models.Model):
     _description = "Encounter Referral Request"     
     _inherit = ["hc.basic.association"]
 
-    encounter_id = fields.Many2one(comodel_name="hc.res.encounter", string="Encounter", help="Encounter associated with this Referral Request.")                
+    encounter_id = fields.Many2one(
+        comodel_name="hc.res.encounter", 
+        string="Encounter", 
+        help="Encounter associated with this Referral Request.")                
     # referral_request_id = fields.Many2one(
     #     comodel_name="hc.res.referral.request", 
     #     string="Referral Request", 
@@ -351,7 +354,7 @@ class AdmittingDiagnosis(models.Model):
     condition_id = fields.Many2one(
         comodel_name="hc.res.condition", 
         string="Condition", 
-        help="Condition associated with this .")                
+        help="Condition associated with this encounter hospitalization admitting diagnosis.")                
 
 class DischargeDiagnosis(models.Model): 
     _name = "hc.discharge.diagnosis"  
@@ -365,7 +368,7 @@ class DischargeDiagnosis(models.Model):
     condition_id = fields.Many2one(
         comodel_name="hc.res.condition", 
         string="Condition", 
-        help="Condition associated with this .")                
+        help="Condition associated with this encounter hospitalization discharge diagnosis.")                
 
 class EncounterParticipantType(models.Model):   
     _name = "hc.encounter.participant.type" 

@@ -304,3 +304,20 @@ class ClinicalImpressionCode(models.Model):
     _name = "hc.vs.clinical.impression.code"    
     _description = "Clinical Impression Code"        
     _inherit = ["hc.value.set.contains"]
+
+
+class ConditionEvidenceDetail(models.Model):    
+    _inherit = ["hc.condition.evidence.detail"]
+
+    detail_clinical_impression_id = fields.Many2one(
+        comodel_name="hc.res.clinical.impression", 
+        string="Detail Clinical Impression", 
+        help="Clinical Impression supporting information found elsewhere.")
+
+class ConditionStageAssessment(models.Model):    
+    _inherit = ["hc.condition.stage.assessment"]
+    
+    assessment_clinical_impression_id = fields.Many2one(
+        comodel_name="hc.res.clinical.impression", 
+        string="Assessment Clinical Impressions", 
+        help="Clinical Impression formal record of assessment.") 

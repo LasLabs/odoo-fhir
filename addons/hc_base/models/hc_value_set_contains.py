@@ -69,6 +69,22 @@ class BasicAssociation(models.AbstractModel):
         string="End Date", 
         help="End of the period during which this record is valid.")
 
+
+class AnimalBreed(models.Model):    
+    _name = "hc.vs.animal.breed"    
+    _description = "Animal Breed"   
+    _inherit = ["hc.value.set.contains"]
+
+class AnimalGenderStatus(models.Model): 
+    _name = "hc.vs.animal.gender.status"    
+    _description = "Animal Gender Status"   
+    _inherit = ["hc.value.set.contains"]
+
+class AnimalSpecies(models.Model):  
+    _name = "hc.vs.animal.species"  
+    _description = "Animal Species" 
+    _inherit = ["hc.value.set.contains"]
+
 class BodySite(models.Model):   
     _name = "hc.vs.body.site"   
     _description = "Body Site"      
@@ -89,21 +105,6 @@ class DaysOfWeek(models.Model):
     _description = "Days Of Week"     
     _inherit = ["hc.value.set.contains"]
 
-class OccupationCode(models.Model):  
-    _name = "hc.vs.occupation.code"  
-    _description = "Occupation Code" 
-    _inherit = ["hc.value.set.contains"]
-
-class UOM(models.Model):
-    _name = "hc.vs.uom"
-    _description = "Unit of Measure"
-    _inherit = ["hc.value.set.contains"]
-
-class Race(models.Model):  
-    _name = "hc.vs.race"  
-    _description = "Race" 
-    _inherit = ["hc.value.set.contains"]
-
 class Ethnicity(models.Model):  
     _name = "hc.vs.ethnicity"  
     _description = "Ethnicity" 
@@ -114,17 +115,22 @@ class MaritalStatus(models.Model):
     _description = "Marital Status" 
     _inherit = ["hc.value.set.contains"]
 
-class AnimalSpecies(models.Model):  
-    _name = "hc.vs.animal.species"  
-    _description = "Animal Species" 
+class OccupationCode(models.Model):  
+    _name = "hc.vs.occupation.code"  
+    _description = "Occupation Code" 
     _inherit = ["hc.value.set.contains"]
 
-class AnimalBreed(models.Model):    
-    _name = "hc.vs.animal.breed"    
-    _description = "Animal Breed"   
+class ParticipantRole(models.Model):    
+    _name = "hc.vs.participant.role"    
+    _description = "Participant Role"      
     _inherit = ["hc.value.set.contains"]
 
-class AnimalGenderStatus(models.Model): 
-    _name = "hc.vs.animal.gender.status"    
-    _description = "Animal Gender Status"   
+class Race(models.Model):  
+    _name = "hc.vs.race"  
+    _description = "Race" 
+    _inherit = ["hc.value.set.contains"]
+
+class UOM(models.Model):
+    _name = "hc.vs.uom"
+    _description = "Unit of Measure"
     _inherit = ["hc.value.set.contains"]

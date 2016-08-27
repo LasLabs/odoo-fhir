@@ -337,7 +337,7 @@ class ConditionEvidenceDetail(models.Model):
     #     help="Observation supporting information found elsewhere.")                    
     # detail_clinical_impression_id = fields.Many2one(
     #     comodel_name="hc.res.clinical.impression", 
-    #     string="Detaill Clinical Impression", 
+    #     string="Detail Clinical Impression", 
     #     help="Clinical Impression supporting information found elsewhere.")                    
     # detail_diagnostic_report_id = fields.Many2one(
     #     comodel_name="hc.res.diagnostic.report", 
@@ -368,3 +368,4 @@ class ConditionStage(models.Model):
     _name = "hc.vs.condition.stage"    
     _description = "Condition Stage"        
     _inherit = ["hc.value.set.contains"]
+
