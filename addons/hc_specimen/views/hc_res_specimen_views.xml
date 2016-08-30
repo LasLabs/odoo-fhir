@@ -1,0 +1,22 @@
+<openerp>
+    <data>
+    
+        <!-- Specimen Action and Menu -->   
+    
+        <act_window id="hc_res_specimen_action" 
+            name="HC Specimens"
+            res_model="hc.res.specimen"
+            view_mode="tree,form"
+            domain=""
+            context=""
+            limit=""/>
+
+        <menuitem id="hc_specimen.menu_specimen" 
+                  name="Specimens" 
+                  parent="hc_base.menu_clinic_diag" 
+                  action="hc_res_specimen_action" 
+                  groups="hc_base.group_hc_base_manager" 
+                  sequence="40"/>
+
+    </data>
+</openerp>
