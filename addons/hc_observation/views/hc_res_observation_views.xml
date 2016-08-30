@@ -1,0 +1,22 @@
+<openerp>
+    <data>
+
+        <!-- Observation Action and Menu -->    
+    
+        <act_window id="hc_res_observation_action"  
+                    name="HC Observations"
+                    res_model="hc.res.observation"
+                    view_mode="tree,form"
+                    domain=""
+                    context=""
+                    limit=""/>
+
+        <menuitem id="hc_observation.menu_obs" 
+                  name="Observations" 
+                  parent="hc_base.menu_clinic_diag" 
+                  action="hc_res_observation_action" 
+                  groups="hc_base.group_hc_base_manager" 
+                  sequence="10"/>
+   
+    </data>
+</openerp>

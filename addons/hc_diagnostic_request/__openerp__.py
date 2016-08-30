@@ -26,7 +26,7 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    # 'depends': ['hc_encounter', 'hc_provenance', 'hc_episode_of_care'],
+    # 'depends': ['hc_encounter', 'hc_provenance'],
     'depends': ['hc_group'],
 
     # always loaded

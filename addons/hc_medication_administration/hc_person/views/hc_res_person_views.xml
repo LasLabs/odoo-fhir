@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+      
+        <record id="hc_res_person_view_search" model="ir.ui.view">        
+            <field name="name">Person Search</field>      
+            <field name="model">hc.res.person</field>     
+            <field name="arch" type="xml">      
+                <search string="Persons">   
+                    <field name="name"/>
+                </search>   
+            </field>      
+        </record>       
+                
+        <record id="hc_res_person_view_tree" model="ir.ui.view">        
+            <field name="name">Person Tree</field>      
+            <field name="model">hc.res.person</field>     
+            <field name="arch" type="xml">      
+                <tree string="Persons">   
+                    <field name="name"/>  
+                    <field name="gender"/>  
+                    <field name="birthdate"/> 
+                </tree>   
+            </field>      
+        </record>       
+
+        <record id="hc_res_person_view_form" model="ir.ui.view">                    
+            <field name="name">Person Form</field>                  
+            <field name="model">hc.res.person</field>                 
+            <field name="arch" type="xml">                  
+                <form string="Person">                
+                    <sheet>
+                        <field name="image" 
+                               widget="image" 
+                               class="oe_left oe_avatar" 
+                               options="{'preview_image': 'image_medium', 'size': [90, 90]}"/>
+                        <div class="oe_title">           
+                            <h1>          
+                                <field name="name_id" 
+                                       default_focus="1" 
+                                       placeholder="Full Name"/>       
+                            </h1>         
+                        </div>            
+                        <div name="buttons" 
+                             class="oe_right oe_button_box">
+                        </div>           
+                        <group>           
+                            <group>         
+                                <field name="gender"/>        
+                                <field name="birthdate"/>        
+                            </group>          
+                            <group>         
+                            </group>          
+                        </group>            
+                        <notebook colspan="4">           
+                            <page string="Names">
+                                <field name="name_ids" mode="tree">
+                                    <tree>
+                                        <field name="is_preferred"/>
+                                        <field name="first_id"/>
+                                        <field name="surname_id"/>
+                                        <field name="given"/>
+                                        <field name="family"/>
+                                    </tree>
+                                    <form>
+                                        <sheet>
+                                            <group>
+                                                <field name="is_preferred"/>
+                                                <field name="human_name_id"/>
+                                            </group>
+                                            <group>
+                                                <field name="first_id"/>
+                                                <field name="middle_ids" widget="many2many_tags"/>
+                                                <field name="mother_maiden_name_id"/>
+                                                <field name="surname_id"/>
+                                                <field name="name"/>
+                                                <field name="family"/>
+                                                <field name="given"/>
+                                            </group>
+                                        </sheet>
+                                    </form>
+                                </field>
+                            </page>   
+                            <page string="Identifiers">
+                                <field name="identifier_ids" mode="tree">
+                                    <tree>
+                                        <field name="is_preferred"/>
+                                        <field name="name"/>
+                                        <field name="value"/>
+                                    </tree>
+                                    <form>
+                                        <sheet>
+                                            <div>
+                                                <h1>
+                                                    <field name="name" placeholder="Identifier"/>
+                                                </h1>
+                                            </div>
+                                            <group col="4" colspan="4">
+                                                <group>
+                                                    <field name="value"/>
+                                                    <field name="is_preferred"/>
+                                                    <field name="is_active"/>
+                                                </group>
+                                                <group>
+                                                    <field name="start_date" placeholder="Valid From"/>
+                                                    <field name="end_date" placeholder="Valid To"/>
+                                               </group>
+                                            </group>
+                                        </sheet>
+                                    </form>
+                                </field>
+                            </page>         
+                            <page string="Addresses">         
+                                <field name="address_ids" mode="tree">
+                                    <tree>      
+                                        <field name="use" widget="radio"/>    
+                                        <field name="is_preferred"/>    
+                                        <field name="line1"/>   
+                                        <field name="line2"/>   
+                                        <field name="city_id"/>   
+                                        <field name="postal_code_id"/>    
+                                        <field name="country_id"/>
+                                        <field name="start_date"/>    
+                                        <field name="end_date"/>
+                                    </tree>     
+                                    <form>      
+                                        <sheet>   
+                                            <group col="4" colspan="4">  
+                                                <field name="use" widget="radio" colspan="4"/>
+                                                <field name="address_id" class="oe_no_button"/>
+                                                <field name="is_preferred"/>
+                                                <field name="is_active"/>
+                                                <field name="start_date" placeholder="Valid From"/>
+                                                <field name="end_date" placeholder="Valid To"/>
+                                            </group>  
+                                        </sheet>    
+                                    </form>     
+                                </field>        
+                            </page>         
+                            <page string="Telecom">
+                                <field name="telecom_ids" mode="tree">
+                                    <tree>
+                                        <field name="is_preferred"/>
+                                        <field name="telecom_id"/>
+                                        <field name="use"/>
+                                    </tree>
+                                    <form>
+                                        <sheet>
+                                            <group>
+                                                <group>
+                                                    <field name="telecom_id"/>
+                                                    <field name="use"/>
+                                                </group>
+                                                <group>
+                                                    <field name="is_preferred"/>
+                                                    <field name="is_active"/>
+                                                    <field name="start_date" placeholder="Valid From"/>
+                                                    <field name="end_date" placeholder="Valid To"/>
+                                                </group>
+                                            </group>
+                                        </sheet>
+                                    </form>
+                                </field>
+                            </page>          
+                            <page string="Photos">
+                                <field name="photo_ids" mode="tree">
+                                    <tree>
+                                        <field name="name" string="Photo Name"/>
+                                    </tree>
+                                    <form>
+                                        <sheet>
+                                            <group>
+                                                <group>
+                                                    <field name="name" string="Photo Name"/>
+                                                    <field name="datas"/>
+                                                </group>
+                                                <group>
+                                                    <field name="is_preferred"/>
+                                                    <field name="is_active"/>
+                                                    <field name="start_date" placeholder="Valid From"/>
+                                                    <field name="end_date" placeholder="Valid To"/>
+                                                </group>
+                                            </group>
+                                        </sheet>
+                                    </form>
+                                </field>
+                            </page>
+                            <page string="Person Links"/>
+                                <field name="link_ids" mode="tree">
+                                    <tree>
+                                        <field name="person_id"/>
+                                        <field name="assurance_level"/>
+                                    </tree>
+                                    <form>
+                                        <sheet>
+                                            <group>
+                                                <group>
+                                                    <field name="person_id"/>
+                                                </group>
+                                                <group>
+                                                    <field name="assurance_level"/>
+                                                </group>
+                                            </group>
+                                        </sheet>
+                                    </form>
+                                </field>         
+                        </notebook>           
+                    </sheet>              
+                </form>               
+            </field>                  
+        </record>                   
+
+        <record id="hc_res_person_view_form_inherit" model="ir.ui.view">
+            <field name="name">Person Form Inherit</field>
+            <field name="model">hc.res.person</field>
+            <field name="inherit_id" ref="hc_res_person_view_form"/>
+            <field name="arch" type="xml">
+<!--                 <xpath expr="//field[@name='name_ids']//form//field[@name='surname_id']" position="after">
+                    <field name="first_id" invisible="1"/>
+                    <field name="surname_id" invisible="1"/>
+                </xpath> -->
+                <xpath expr="//field[@name='address_ids']//form//field[@name='end_date']" position="after">
+                    <!-- As the structure of model is something like that so we have to use the value of same address_id field but
+                    for that we have added the fields value in form view with invisible=1 so their value will be available in one2many field-->
+                    <field name="line1" invisible="1"/>   
+                    <field name="line2" invisible="1"/>   
+                    <field name="city_id" invisible="1"/>   
+                    <field name="postal_code_id" invisible="1"/>    
+                    <field name="country_id" invisible="1"/>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- Person Action and Menu --> 
+    
+        <act_window id="hc_res_person_action"   
+                    name="HC Person"
+                    res_model="hc.res.person"
+                    view_mode="tree,form"
+                    domain=""
+                    context=""
+                    limit=""/>
+
+        <menuitem id="hc_person.menu_pers" 
+                  name="Persons" 
+                  parent="hc_base.menu_indiv" 
+                  action="hc_res_person_action" 
+                  groups="hc_base.group_hc_base_manager" 
+                  sequence="50"/>
+        
+        <!-- External Reference View -->
+
+        <record id="base.view_partner_form_inherited_person" model="ir.ui.view">     
+          <field name="name">res.partner.form</field>   
+          <field name="model">res.partner</field>   
+          <field name="inherit_id" ref="base.view_partner_form"/>   
+          <field name="arch" type="xml">
+              <field name="parent_id" position="after">
+                <label for="is_person" string="HC Person"/>  
+                <field name="is_person"/>
+                <label for="is_patient" string="HC Patient"/>  
+                <field name="is_patient"/>
+                <label for="is_practitioner" string="HC Practitioner"/>  
+                <field name="is_practitioner"/>
+                <label for="is_related_person" string="HC Related Person"/>  
+                <field name="is_related_person"/>
+              </field>
+          </field>
+        </record>
+
+    </data>
+</openerp>

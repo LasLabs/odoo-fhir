@@ -10,7 +10,7 @@ class DiagnosticRequest(models.Model):
     definition_ids = fields.One2many(comodel_name="hc.diagnostic.request.definition", inverse_name="diagnostic_request_id", string="Definitions", help="Protocol or definition.")                    
     based_on_ids = fields.One2many(comodel_name="hc.diagnostic.request.based.on", inverse_name="diagnostic_request_id", string="Based On", help="What request fulfills.")                    
     replaces_ids = fields.One2many(comodel_name="hc.diagnostic.request.replaces", inverse_name="diagnostic_request_id", string="Replaces", help="What request replaces.")                    
-    identifier_ids = fields.One2many(comodel_name="hc.diagnostic.request.identifier", inverse_name="diagnostic_request_id", string="Identifiers", help="Identifier of composite request.")                    
+    requisition_identifier_id = fields.Many2one(comodel_name="hc.diagnostic.request.requisition.identifier", string="Diagnostic Request Requisition Identifier", help="Identifier of composite request.")                    
     status = fields.Selection(string="Diagnostic Request Status", selection=[("requested", "Requested"), ("received", "Received"), ("accepted", "Accepted"), ("in progress", "In Progress"), ("review", "Review"), ("completed", "Completed"), ("suspended", "Suspended"), ("rejected", "Rejected"), ("failed", "Failed")], help="The status of the order.")                    
     stage_id = fields.Many2one(comodel_name="hc.vs.diagnostic.request.stage", string="Diagnostic Request Stage", required="True", help="Whether the request is a proposal, plan, an original order or a reflex order.")
     # stage = fields.Selection(string="Diagnostic Request Stage", required="True", selection=[("proposal", "Proposal"), ("plan", "Plan"), ("original-order", "Original-Order"), ("reflex-order", "Reflex-Order")], help="proposal | plan | original-order | reflex-order.")                    
@@ -65,14 +65,22 @@ class DiagnosticRequestIdentifier(models.Model):
     _description = "Diagnostic Request Identifier"        
     _inherit = ["hc.basic.association", "hc.identifier"]    
 
-    diagnostic_request_id = fields.Many2one(comodel_name="hc.res.diagnostic.request", string="Diagnostic Request", help="Diagnostic Request associated with this diagnostic request identifier." )                    
+    diagnostic_request_id = fields.Many2one(comodel_name="hc.res.diagnostic.request", string="Diagnostic Request", help="Diagnostic Request associated with this diagnostic request identifier.")                    
+
+class DiagnosticRequestRequisitionIdentifier(models.Model): 
+    _name = "hc.diagnostic.request.requisition.identifier"  
+    _description = "Diagnostic Request Requisition Identifier"      
+    _inherit = ["hc.basic.association", "hc.identifier"]
+
+    diagnostic_request_id = fields.Many2one(comodel_name="hc.res.diagnostic.request", string="Diagnostic Request", help="Diagnostic Request associated with this diagnostic request requisition identifier." )              
+
 
 class DiagnosticRequestBasedOn(models.Model):    
     _name = "hc.diagnostic.request.based.on"    
     _description = "Diagnostic Request Based On"        
     _inherit = ["hc.basic.association"]    
     
-    diagnostic_request_id = fields.Many2one(comodel_name="hc.res.diagnostic.request", string="Diagnostic Request", help="Diagnostic Request associated with this diagnostic request based on." )                    
+    diagnostic_request_id = fields.Many2one(comodel_name="hc.res.diagnostic.request", string="Diagnostic Request", help="Diagnostic Request associated with this diagnostic request based on.")                    
     based_on_type = fields.Selection(string="Based On Type", required="True", selection=[("string", "String"), ("code", "Code")], help="Type of what request fulfills.")                    
     based_on_name = fields.Char(string="Based On", compute="compute_based_on_name", required="True", help="What request fulfills.")                    
     based_on_string = fields.Char(string="Based On String", help="String what request fulfills.")                    
@@ -83,7 +91,7 @@ class DiagnosticRequestDefinition(models.Model):
     _description = "Diagnostic Request Definition"        
     _inherit = ["hc.basic.association"]    
     
-    diagnostic_request_id = fields.Many2one(comodel_name="hc.res.diagnostic.request", string="Diagnostic Request", help="Diagnostic Request associated with this diagnostic request definition." )                    
+    diagnostic_request_id = fields.Many2one(comodel_name="hc.res.diagnostic.request", string="Diagnostic Request", help="Diagnostic Request associated with this diagnostic request definition.")                    
     definition_type = fields.Selection(string="Definition Type", required="True", selection=[("string", "String"), ("Diagnostic Request", "Diagnostic Request")], help="Type of protocol or definition.")                    
     definition_name = fields.Char(string="Definition", compute="compute_definition_name", required="True", help="Protocol or definition.")                    
     definition_string = fields.Char(string="Definition String", help="String protocol or definition.")                    
@@ -94,25 +102,25 @@ class DiagnosticRequestNote(models.Model):
     _description = "Diagnostic Request Note"        
     _inherit = ["hc.basic.association", "hc.annotation"]    
     
-    diagnostic_request_id = fields.Many2one(comodel_name="hc.res.diagnostic.request", string="Diagnostic Request", help="Diagnostic Request associated with this diagnostic request note." )                    
+    diagnostic_request_id = fields.Many2one(comodel_name="hc.res.diagnostic.request", string="Diagnostic Request", help="Diagnostic Request associated with this diagnostic request note.")                    
 
 class DiagnosticRequestRelevantHistory(models.Model):    
     _name = "hc.diagnostic.request.relevant.history"   
     _description = "Diagnostic Request Relevant History"        
     _inherit = ["hc.basic.association"]    
     
-    diagnostic_request_id = fields.Many2one(comodel_name="hc.res.diagnostic.request", string="Diagnostic Request", help="Diagnostic Request associated with this diagnostic request relevant history." )                    
+    diagnostic_request_id = fields.Many2one(comodel_name="hc.res.diagnostic.request", string="Diagnostic Request", help="Diagnostic Request associated with this diagnostic request relevant history.")                    
     # relevant_history_id = fields.Many2one(
     #     comodel_name="hc.res.provenance", 
     #     string="Relevant History", 
-    #     help="Provenance associated with this diagnostic request relevant history." )                    
+    #     help="Provenance associated with this diagnostic request relevant history.")                    
 
 class DiagnosticRequestReplaces(models.Model):    
     _name = "hc.diagnostic.request.replaces"    
     _description = "Diagnostic Request Replaces"        
     _inherit = ["hc.basic.association"]
 
-    diagnostic_request_id = fields.Many2one(comodel_name="hc.res.diagnostic.request", string="Diagnostic Request", help="Diagnostic Request associated with this diagnostic request replaces." )                    
+    diagnostic_request_id = fields.Many2one(comodel_name="hc.res.diagnostic.request", string="Diagnostic Request", help="Diagnostic Request associated with this diagnostic request replaces.")                    
     replaces_type = fields.Selection(string="Replaces Type", required="True", selection=[("string", "String"), ("Diagnostic Request", "Diagnostic Request")], help="Type of what request replaces.")                    
     replaces_name = fields.Char(string="Replaces", compute="compute_replaces_name", required="True", help="What request replaces.")                    
     replaces_string = fields.Char(string="Replaces String", help="String what request replaces.")                    
@@ -123,7 +131,7 @@ class DiagnosticRequestSupportingInfo(models.Model):
     _description = "Diagnostic Request Supporting Information"        
     _inherit = ["hc.basic.association"]    
 
-    diagnostic_request_id = fields.Many2one(comodel_name="hc.res.diagnostic.request", string="Diagnostic Request", help="Diagnostic Request associated with this diagnostic request supporting information." )                    
+    diagnostic_request_id = fields.Many2one(comodel_name="hc.res.diagnostic.request", string="Diagnostic Request", help="Diagnostic Request associated with this diagnostic request supporting information.")                    
     supporting_info_type = fields.Selection(string="Supporting Info Type", required="True", selection=[("string", "String"), ("Diagnostic Request", "Diagnostic Request")], help="Type of additional clinical information.")                    
     supporting_info_name = fields.Char(string="Supporting Info", compute="compute_supporting_info_name", required="True", help="Additional clinical information.")                    
     supporting_info_string = fields.Char(string="Supporting Info String", help="String additional clinical information.")                    
@@ -134,7 +142,7 @@ class DiagnosticRequestReason(models.Model):
     _description = "Diagnostic Request Reason"      
     _inherit = ["hc.basic.association"]
 
-    diagnostic_request_id = fields.Many2one(comodel_name="hc.res.diagnostic.request", string="Diagnostic Request", help="Diagnostic Request associated with this diagnostic request reason." )                    
+    diagnostic_request_id = fields.Many2one(comodel_name="hc.res.diagnostic.request", string="Diagnostic Request", help="Diagnostic Request associated with this diagnostic request reason.")                    
     reason_id = fields.Many2one(comodel_name="hc.vs.condition.code", string="Reason", help="Explanation/Justification for test.")                    
 
 class DiagnosticRequest(models.Model):    
