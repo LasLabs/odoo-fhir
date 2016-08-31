@@ -53,15 +53,15 @@ class Condition(models.Model):
         string="Body Sites", 
         help="Anatomical location, if relevant.")               
     subject_type = fields.Selection(
-        string="Condition Subject Type", 
+        string="Condition Subject Type",
+        required="True", 
         selection=[
             ("Patient", "Patient"), 
             ("Group", "Group")], 
         help="Type of who has the condition.")
     subject_name = fields.Char(
         string="Subject", 
-        compute="compute_subject_name", 
-        required="True", 
+        compute="compute_subject_name",  
         help="Who has the condition?")                
     subject_patient_id = fields.Many2one(
         comodel_name="hc.res.patient", 
@@ -74,7 +74,8 @@ class Condition(models.Model):
         required="True", 
         help="Group who has the condition.")                
     context_type = fields.Selection(
-        string="Condition Context Type", 
+        string="Condition Context Type",
+        required="True", 
         selection=[
             ("Encounter", "Encounter"), 
             ("Episode Of Care", "Episode of Care")], 
@@ -92,7 +93,8 @@ class Condition(models.Model):
     #     string="Context Episode Of Care", 
     #     help="Episode Of Care when condition first asserted.")                    
     onset_type = fields.Selection(
-        string="Condition Onset Type", 
+        string="Condition Onset Type",
+        required="True", 
         selection=[
             ("dateTime", "Datetime"), 
             ("Age", "Age"), 
@@ -129,7 +131,8 @@ class Condition(models.Model):
         string="Onset Range High", 
         help="High limit of estimated or actual date, date-time, or age.")                    
     abatement_type = fields.Selection(
-        string="Condition Abatement Type", 
+        string="Condition Abatement Type",
+        required="True", 
         selection=[
             ("date", "Date"), 
             ("Age", "Age"), 
@@ -176,7 +179,8 @@ class Condition(models.Model):
         string="Date Asserted",
         help="When first entered.")                    
     asserter_type = fields.Selection(
-        string="Condition Asserter Type", 
+        string="Condition Asserter Type",
+        required="True", 
         selection=[
             ("Practitioner", "Practitioner"), 
             ("Patient", "Patient")], 
@@ -284,7 +288,8 @@ class ConditionStageAssessment(models.Model):
         string="Stage", 
         help="Stage associated with this condition stage assessment.")                    
     assessment_type = fields.Selection(
-        string="Condition Stage Assessment Assessment Type", 
+        string="Condition Stage Assessment Assessment Type",
+        required="True", 
         selection=[
             ("clinical impression", "Clinical Impression"), 
             ("diagnostic report", "Diagnostic Report"), 
@@ -317,7 +322,8 @@ class ConditionEvidenceDetail(models.Model):
         string="Evidence", 
         help="Evidence associated with this condition evidence detail.")                    
     detail_type = fields.Selection(
-        string="Conditional Evidence Detail Type", 
+        string="Conditional Evidence Detail Type",
+        required="True", 
         selection=[
             ("string", "String"), 
             ("observation", "Observation"), 

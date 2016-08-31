@@ -55,10 +55,10 @@ class Observation(models.Model):
         comodel_name="hc.res.location", 
         string="Subject Location", 
         help="Location who and/or what this is about.")                    
-    # encounter_id = fields.Many2one(
-    #     comodel_name="hc.res.encounter", 
-    #     string="Encounter", 
-    #     help="Healthcare event during which this observation is made.")                    
+    encounter_id = fields.Many2one(
+        comodel_name="hc.res.encounter", 
+        string="Encounter", 
+        help="Healthcare event during which this observation is made.")                    
     effective_type = fields.Selection(
         string="Observation Effective Type", 
         selection=[
@@ -104,7 +104,7 @@ class Observation(models.Model):
     value_name = fields.Char(
         string="Value", 
         compute="compute_value_name", 
-        help="Actual result .")                    
+        help="Actual result.")                    
     value_missing = fields.Char(
         string="Value",
         help="Missing actual result.")                    
@@ -313,7 +313,7 @@ class ObservationComponent(models.Model):
     value_name = fields.Char(
         string="Value", 
         compute="compute_value_name", 
-        help="Actual result .")                    
+        help="Actual result.")                    
     value_missing = fields.Char(
         string="Value",
         help="Missing actual result.")                    

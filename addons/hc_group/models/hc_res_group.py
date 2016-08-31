@@ -24,11 +24,11 @@ class Group(models.Model):
         help="Identifies the broad classification of the kind of resources the group includes.")                
     is_actual = fields.Boolean(
         string="Actual", 
-        default=True, 
+        default="True", 
         help="Descriptive or actual.")                
     is_active = fields.Boolean(
         string="Active", 
-        default=True, 
+        default="True", 
         help="Whether this group's record is in active use.")                
     code_id = fields.Many2one(
         comodel_name="hc.vs.group.code", 
@@ -67,10 +67,10 @@ class GroupCharacteristic(models.Model):
         help="Kind of trait being asserted (e.g., gender, age, owner, location, etc.).")                
     value_type = fields.Selection(
         string="Value Type", 
-        required=True, 
+        required="True", 
         widget="selection", 
         selection=[
-            ("CodeableConcept", "Codeable Concept"), 
+            ("Codeable Concept", "Codeable Concept"), 
             ("boolean", "Boolean"),
             ("Quantity", "Quantity"),
             ("Range", "Range")], 
@@ -96,7 +96,7 @@ class GroupCharacteristic(models.Model):
         help="High limit of value held by characteristic.")                
     is_included = fields.Boolean(
         string="Include", 
-        default=True, 
+        default="True", 
         help="Group includes or excludes this characteristic.")                
     period_start_date = fields.Datetime(
         string="Period Start Date", 
@@ -146,7 +146,7 @@ class GroupMember(models.Model):
         help="End of the period member belonged to the group.")                
     is_member = fields.Boolean(
         string="Member", 
-        default=True, 
+        default="True", 
         help="Uncheck if member is no longer in group.")                
 
 class GroupCode(models.Model):    

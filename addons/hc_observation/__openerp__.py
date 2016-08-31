@@ -40,8 +40,7 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    # 'depends': ['hc_encounter'],
-    'depends': ['hc_device_metric', 'hc_body_site'],
+    'depends': ['hc_device_metric', 'hc_body_site', 'hc_encounter'],
 
     # always loaded
     'data': [
