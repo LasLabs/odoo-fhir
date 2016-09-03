@@ -33,7 +33,10 @@ class EpisodeOfCareCareTeam(models.Model):
     _description = "Episode Of Care Care Team"        
 
     episode_of_care_id = fields.Many2one(comodel_name="hc.res.episode.of.care", string="Episode Of Care", required="True", help="Episode of care associated with this care team.")                
-    member_type = fields.Selection(string="Member Type", required="True", selection=[("practitioner", "Practitioner"), ("organization", "Organization")], help="Type of practitioner (or Organization) within the team.")                
+    member_type = fields.Selection(
+        string="Member Type", 
+        selection=[
+        ("practitioner", "Practitioner"), ("organization", "Organization")], help="Type of practitioner (or Organization) within the team.")                
     member_name = fields.Char(string="Member", compute="compute_member_name", help="The practitioner (or Organization) within the tea.")                
     member_practitioner_id = fields.Many2one(comodel_name="hc.res.practitioner", string="Member Practitioner", help="Practitioner the practitioner (or organization) within the team.")                
     member_organization_id = fields.Many2one(comodel_name="hc.res.organization", string="Member Organization", help="Organization the practitioner (or organization) within the team.")                
@@ -53,7 +56,11 @@ class EpisodeOfCareCondition(models.Model):
     _description = "Episode Of Care Condition"        
     _inherit = ["hc.basic.association"]
 
-    episode_of_care_id = fields.Many2one(comodel_name="hc.res.episode.of.care", string="Episode Of Care", required="True", help="Episode of care associated with this episode of care condition.")                
+    episode_of_care_id = fields.Many2one(
+        comodel_name="hc.res.episode.of.care", 
+        string="Episode Of Care", 
+        required="True", 
+        help="Episode of care associated with this episode of care condition.")                
     # condition_id = fields.Many2one(
     #     comodel_name="hc.res.condition", 
     #     string="Condition", 
@@ -107,13 +114,3 @@ class EpisodeOfCareType(models.Model):
     _name = "hc.vs.episode.of.care.type"    
     _description = "Episode Of Care Type"        
     _inherit = ["hc.value.set.contains"]
-
-# External Reference
-
-# class Condition(models.Model):
-#     _inherit = ["res.condition"]
-
-#     context_episode_of_care_id = fields.Many2one(
-#         comodel_name="hc.res.episode.of.care", 
-#         string="Context Episode Of Care", 
-#         help="Episode Of Care when condition first asserted.")

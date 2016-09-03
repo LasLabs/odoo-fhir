@@ -33,7 +33,7 @@
 
     # any module necessary for this one to work correctly
     # 'depends': ['hc_medication'],
-    'depends': ['hc_device'],
+    'depends': ['hc_device', 'hc_medication'],
 
     # always loaded
     'data': [

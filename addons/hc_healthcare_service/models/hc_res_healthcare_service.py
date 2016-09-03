@@ -207,7 +207,7 @@ class HealthcareServiceTelecom(models.Model):
     telecom_id = fields.Many2one(
         comodel_name="hc.telecom", 
         string="Telecom",
-        required=True, 
+        required="True", 
         ondelete="restrict", 
         help="Telecom contact point associated with this healthcare service.")                    
     healthcare_service_id = fields.Many2one(
@@ -250,7 +250,7 @@ class HealthcareServiceLocation(models.Model):
     location_id = fields.Many2one(
         comodel_name="hc.res.location", 
         string="Location",
-        required=True, 
+        required="True", 
         ondelete="restrict", 
         help="Location which is associated with this location.")                    
     healthcare_service_id = fields.Many2one(
@@ -281,7 +281,7 @@ class HealthcareServiceCoverageArea(models.Model):
     location_id = fields.Many2one(
         comodel_name="hc.res.location", 
         string="Location",
-        required=True, 
+        required="True", 
         ondelete="restrict", 
         help="Coverage area which is associated with this healthcare service.") 
     healthcare_service_id = fields.Many2one(

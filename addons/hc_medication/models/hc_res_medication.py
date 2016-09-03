@@ -63,7 +63,8 @@ class MedicationProductIngredient(models.Model):
         string="Product", 
         help="Product associated with this Ingredient.")                    
     item_type = fields.Selection(
-        string="Ingredient Item Type", 
+        string="Item Type",
+        required="True",
         selection=[
             ("codeable concept", "Codeable Concept"), 
             ("substance", "Substance"), 

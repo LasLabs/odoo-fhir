@@ -13,7 +13,7 @@
                     <field name="code"/>
                     <field name="definition"/>
                     <group> 
-                        <filter name="group_by_parent" string="parent" context="{'group_by': 'parent_id'}"/>
+                        <filter name="group_by_parent" string="parent" context="{'group_by': 'contains_id'}"/>
                     </group>
                 </search>   
             </field>        
@@ -44,12 +44,12 @@
                                 <field name="name" default_focus="1" placeholder="Name (e.g., subject)"/>
                             </h1> 
                             <field name="code" placeholder="Code (e.g., SBJ)"/> 
-                            <field name="definition" placeholder="Definition"/> 
-                            <field name="comments" placeholder="Comments"/> 
-                        </div>    
+                        </div>
+                        <field name="definition" placeholder="Definition"/> 
+                        <field name="comments" placeholder="Comments"/>     
                         <group>   
                             <group> 
-                                <field name="parent_id"/>
+                                <field name="contains_id"/>
                                 <field name="is_abstract" widget="upgrade_boolean"/>
                                 <field name="level" placeholder="An integer (e.g., 1, 2)"/>
                                 <field name="version" placeholder="e.g., v2.5"/>

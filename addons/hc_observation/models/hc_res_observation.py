@@ -259,7 +259,8 @@ class ObservationRelated(models.Model):
             ("interfered-by", "Interfered-By")], 
         help="A code specifying the kind of relationship that exists with the target resource.")                    
     target_type = fields.Selection(
-        string="Related Target Type", 
+        string="Related Target Type",
+        required="True", 
         selection=[
             ("observation", "Observation"), 
             ("questionnaire response", "Questionnaire Response"), 

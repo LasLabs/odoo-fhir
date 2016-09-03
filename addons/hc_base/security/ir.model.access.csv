@@ -75,4 +75,25 @@ access_hc_base_hc_vs_race_manager,hc.base.hc.vs.race.manager,model_hc_vs_race,hc
 access_hc_base_hc_vs_ethnicity_manager,hc.base.hc.vs.ethnicity.manager,model_hc_vs_ethnicity,hc_base.group_hc_base_manager,1,1,1,1
 access_hc_base_hc_vs_participant_role_manager,hc.base.hc.vs.participant.role.manager,model_hc_vs_participant_role,hc_base.group_hc_base_manager,1,1,1,1
 access_hc_base_hc_sampled_data_manager,hc.base.hc.sampled.data.manager,model_hc_sampled_data,hc_base.group_hc_base_manager,1,1,1,1
+access_hc_base_hc_related_resource_user,hc.base.hc.related.resource.user,model_hc_related_resource,hc_base.group_hc_base_user,1,0,0,0
+access_hc_base_hc_related_resource_document_user,hc.base.hc.related.resource.document.user,model_hc_related_resource_document,hc_base.group_hc_base_user,1,0,0,0
+access_hc_base_hc_vs_resource_list_manager,hc.base.hc.vs.resource.list.manager,model_hc_vs_resource_list,hc_base.group_hc_base_manager,1,1,1,1
+access_hc_base_hc_parameter_definition_user,hc.base.hc.parameter.definition.user,model_hc_parameter_definition,hc_base.group_hc_base_user,1,0,0,0
+access_hc_base_hc_vs_fhir_all_type_manager,hc.base.hc.vs.fhir.all.type.manager,model_hc_vs_fhir_all_type,hc_base.group_hc_base_manager,1,1,1,1
+access_hc_base_hc_coding_user,hc.base.hc.coding.user,model_hc_coding,hc_base.group_hc_base_user,1,0,0,0
+access_hc_base_hc_codeable_concept_user,hc.base.hc.codeable.concept.user,model_hc_codeable_concept,hc_base.group_hc_base_user,1,0,0,0
+access_hc_base_hc_codeable_concept_coding_user,hc.base.hc.codeable.concept.coding.user,model_hc_codeable_concept_coding,hc_base.group_hc_base_user,1,0,0,0
+access_hc_base_hc_vs_administrative_gender_manager,hc.base.hc.vs.administrative.gender.manager,model_hc_vs_administrative_gender,hc_base.group_hc_base_manager,1,1,1,1
+access_hc_base_hc_vs_demographic_age_group_manager,hc.base.hc.vs.demographic.age.group.manager,model_hc_vs_demographic_age_group,hc_base.group_hc_base_manager,1,1,1,1
+access_hc_base_hc_vs_clinical_concept_manager,hc.base.hc.vs.clinical.concept.manager,model_hc_vs_clinical_concept,hc_base.group_hc_base_manager,1,1,1,1
+access_hc_base_hc_vs_user_type_manager,hc.base.hc.vs.user.type.manager,model_hc_vs_user_type,hc_base.group_hc_base_manager,1,1,1,1
+access_hc_base_hc_vs_workflow_setting_manager,hc.base.hc.vs.workflow.setting.manager,model_hc_vs_workflow_setting,hc_base.group_hc_base_manager,1,1,1,1
+access_hc_base_hc_vs_workflow_task_manager,hc.base.hc.vs.workflow.task.manager,model_hc_vs_workflow_task,hc_base.group_hc_base_manager,1,1,1,1
+access_hc_base_hc_vs_jurisdiction_manager,hc.base.hc.vs.jurisdiction.manager,model_hc_vs_jurisdiction,hc_base.group_hc_base_manager,1,1,1,1
+access_hc_base_hc_contributor_user,hc.base.hc.contributor.user,model_hc_contributor,hc_base.group_hc_base_user,1,0,0,0
+access_hc_base_hc_contributor_contact_user,hc.base.hc.contributor.contact.user,model_hc_contributor_contact,hc_base.group_hc_base_user,1,0,0,0
+access_hc_base_hc_contact_detail_user,hc.base.hc.contact.detail.user,model_hc_contact_detail,hc_base.group_hc_base_user,1,0,0,0
+access_hc_base_hc_contact_detail_telecom_user,hc.base.hc.contact.detail.telecom.user,model_hc_contact_detail_telecom,hc_base.group_hc_base_user,1,0,0,0
+
+
 

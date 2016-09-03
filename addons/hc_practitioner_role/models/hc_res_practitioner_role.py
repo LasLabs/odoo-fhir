@@ -10,7 +10,7 @@ class PractitionerRole(models.Model):
     person_id = fields.Many2one(
         comodel_name="hc.res.person",
         string="Person",
-        required=True,
+        required="True",
         ondelete="restrict",
         help="Person who is this practitioner.")  
     practitioner_id = fields.Many2one(
@@ -100,7 +100,7 @@ class PractitionerRoleIdentifier(models.Model):
     person_identifier_id = fields.Many2one(
         comodel_name="hc.person.identifier", 
         string="Person Identifier",
-        required=True, 
+        required="True", 
         ondelete="restrict", 
         help="Identifier associated with this practitioner role.")
     practitioner_role_id = fields.Many2one(
@@ -117,7 +117,7 @@ class PractitionerRoleTelecom(models.Model):
     telecom_id = fields.Many2one(
         comodel_name="hc.telecom", 
         string="Telecom", 
-        required=True, 
+        required="True", 
         ondelete="restrict", 
         help="Identifies telecom contact point associated with this practitioner role.") 
     practitioner_role_id = fields.Many2one(

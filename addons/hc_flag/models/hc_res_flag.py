@@ -30,7 +30,8 @@ class Flag(models.Model):
         string="End Date", 
         help="End of the time period when flag is active.")					
     subject_type = fields.Selection(
-        string="Subject Type", 
+        string="Subject Type",
+        required="True", 
         selection=[
             ("patient", "Patient"), 
             ("location", "Location"), 
@@ -69,18 +70,18 @@ class Flag(models.Model):
     #     comodel_name="hc.res.plan.definition", 
     #     string="Subject Plan Definition", 
     #     help="Plan Definition who/what is flag about.")
-    # subject_medication_id = fields.Many2one(
-    #     comodel_name="hc.res.medication", 
-    #     string="Subject Medication", 
-    #     help="Medication who/what is flag about.")
-    # subject_procedure_id = fields.Many2one(
-    #     comodel_name="hc.res.procedure", 
-    #     string="Subject Procedure", 
-    #     help="Procedure who/what is flag about.")				
-    # encounter_id = fields.Many2one(
-    #     comodel_name="hc.res.encounter", 
-    #     string="Encounter", 
-    #     help="Alert relevant during encounter.")					
+    subject_medication_id = fields.Many2one(
+        comodel_name="hc.res.medication", 
+        string="Subject Medication", 
+        help="Medication who/what is flag about.")
+    subject_procedure_id = fields.Many2one(
+        comodel_name="hc.res.procedure", 
+        string="Subject Procedure", 
+        help="Procedure who/what is flag about.")				
+    encounter_id = fields.Many2one(
+        comodel_name="hc.res.encounter", 
+        string="Encounter", 
+        help="Alert relevant during encounter.")					
     author_type = fields.Selection(
         string="Author Type", 
         selection=[
@@ -93,10 +94,10 @@ class Flag(models.Model):
         string="Author", 
         compute="compute_author_name", 
         help="Flag creator.")					
-    # author_device_id = fields.Many2one(
-    #     comodel_name="hc.res.device", 
-    #     string="Author Device", 
-    #     help="Device flag creator.")					
+    author_device_id = fields.Many2one(
+        comodel_name="hc.res.device", 
+        string="Author Device", 
+        help="Device flag creator.")					
     author_organization_id = fields.Many2one(
         comodel_name="hc.res.organization", 
         string="Author Organization", 

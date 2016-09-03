@@ -10,7 +10,7 @@ class Patient(models.Model):
     person_id = fields.Many2one(
         comodel_name="hc.res.person",
         string="Person",
-        required=True,
+        required="True",
         ondelete="restrict",
         help="Person who is this patient.")
     identifier_ids = fields.One2many(
@@ -38,7 +38,7 @@ class Patient(models.Model):
         help="The time when the patient was born.")
     is_deceased = fields.Boolean(
         string="Deceased", 
-        default=False, 
+        required="False", 
         help="Indicates if the patient is deceased or not.")
     deceased_date = fields.Date(
         string="Deceased Date", 
@@ -127,7 +127,7 @@ class PatientIdentifier(models.Model):
     person_identifier_id = fields.Many2one(
         comodel_name="hc.person.identifier", 
         string="Person Identifier",
-        required=True,
+        required="True",
         ondelete="restrict", 
         help="Person identifier associated with this patient.")
 
@@ -140,7 +140,7 @@ class PatientName(models.Model):
     human_name_id = fields.Many2one(
         comodel_name="hc.human.name",
         string="Human Name",
-        required=True,
+        required="True",
         ondelete="restrict", 
         help="Human name associated with this patient.")
     patient_id = fields.Many2one(
@@ -157,7 +157,7 @@ class PatientAddress(models.Model):
     person_address_id = fields.Many2one(
         comodel_name="hc.person.address", 
         string="Person Address", 
-        required=True, 
+        required="True", 
         ondelete="restrict", 
         help="Person address associated with this patient.")                 
     patient_id = fields.Many2one(
@@ -174,7 +174,8 @@ class PatientAddress(models.Model):
         default="home", 
         help="The purpose of this address.")                    
     type = fields.Selection(
-        string="Type", selection=[
+        string="Type", 
+        selection=[
             ("postal", "Postal"), 
             ("physical", "Physical"), 
             ("both", "Both")],
@@ -190,7 +191,7 @@ class PatientTelecom(models.Model):
     telecom_id = fields.Many2one(
         comodel_name="hc.telecom", 
         string="Telecom", 
-        required=True, 
+        required="True", 
         ondelete="restrict", 
         help="Telecom contact point associated with this patient.")
     patient_id = fields.Many2one(
@@ -220,7 +221,7 @@ class PatientPhoto(models.Model):
     photo_id = fields.Many2one(
         comodel_name="hc.person.photo", 
         string="Photo",
-        required=True,
+        required="True",
         ondelete="restrict",  
         help="Photo associated with this patient.")
     patient_id = fields.Many2one(
@@ -369,7 +370,7 @@ class PatientLink(models.Model):
     other_patient_id = fields.Many2one(
         comodel_name="hc.res.patient", 
         string="Other Patient", 
-        required=True, 
+        required="True", 
         help="The other patient resource that the link refers to.")
     type = fields.Selection(
         string="Link Type", 
@@ -387,7 +388,7 @@ class PersonLink(models.Model):
     target_patient_id = fields.Many2one(
         comodel_name="hc.res.patient", 
         string="Target Patient", 
-        required=True, 
+        required="True", 
         help="Patient who is the resource to which this actual person is associated.")
 
 class RelatedPersonPatient(models.Model): 

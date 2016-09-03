@@ -47,7 +47,7 @@
           <field name="arch" type="xml">
             <form string="Address">
               <sheet>
-                <div class="oe_title oe_left">
+                <div class="oe_title oe_left" colwidth="200">
                   <h1>
                     <field name="name" default_focus="1" readonly="1" placeholder="Full Address"/>
                   </h1>
@@ -127,7 +127,7 @@
           <field name="arch" type="xml">        
             <form string="Postal/ZIP Code">      
               <sheet>   
-                <div class="oe_title oe_left">
+                <div class="oe_title oe_left" colwidth="200">
                   <h1>
                     <field name="name" default_focus="1" placeholder="Postal or ZIP Code"/>
                   </h1>
@@ -180,7 +180,7 @@
             <field name="arch" type="xml">                          
                 <form string="Postal/ZIP Code Type">                        
                     <sheet>                 
-                        <div class="oe_title oe_left">              
+                        <div class="oe_title oe_left" colwidth="200">              
                             <h1>            
                                 <field name="name" default_focus="1" placeholder="Name"/>       
                             </h1>           
@@ -272,7 +272,7 @@
           <field name="arch" type="xml">          
             <form string="City/Place">        
               <sheet>     
-                <div class="oe_title oe_left">    
+                <div class="oe_title oe_left" colwidth="200">    
                   <h1>  
                     <field name="name" default_focus="1" placeholder="Name (e.g., San Francisco)"/>
                   </h1>
@@ -329,7 +329,7 @@
           <field name="arch" type="xml">          
             <form string="City/Place Type">      
               <sheet>     
-                <div class="oe_title oe_left">    
+                <div class="oe_title oe_left" colwidth="200">    
                   <h1>  
                     <field name="name" default_focus="1" placeholder="Name (e.g., city, town)"/>
                   </h1> 
@@ -456,7 +456,7 @@
           <field name="arch" type="xml">          
             <form string="District/County">        
               <sheet>     
-                <div class="oe_title oe_left">    
+                <div class="oe_title oe_left" colwidth="200">    
                   <h1>  
                     <field name="name" default_focus="1" placeholder="District/County"/>
                   </h1> 
@@ -507,7 +507,7 @@
           <field name="arch" type="xml">          
             <form string="District/County Type">       
               <sheet>     
-                <div class="oe_title oe_left">    
+                <div class="oe_title oe_left" colwidth="200">    
                   <h1>  
                     <field name="name" default_focus="1" placeholder="Name (e.g., County in US)"/>
                   </h1> 
@@ -636,7 +636,7 @@
             <field name="arch" type="xml">                                  
                 <form string="State/Province Type">                             
                     <sheet>                         
-                        <div class="oe_title oe_left">                      
+                        <div class="oe_title oe_left" colwidth="200">                      
                             <h1>                    
                                 <field name="name" default_focus="1" placeholder="Name"/>               
                             </h1>                   
@@ -735,7 +735,7 @@
           <field name="arch" type="xml">          
             <form string="Division">       
               <sheet>     
-                <div class="oe_title oe_left">    
+                <div class="oe_title oe_left" colwidth="200">    
                   <h1>  
                     <field name="name" default_focus="1" placeholder="Division"/>
                   </h1> 
@@ -787,7 +787,7 @@
             <field name="arch" type="xml">                  
                 <form string="Division Type">               
                     <sheet>         
-                        <div class="oe_title oe_left">      
+                        <div class="oe_title oe_left" colwidth="200">      
                             <h1>    
                                 <field name="name" default_focus="1" placeholder="Name"/>
                             </h1>   
@@ -870,7 +870,7 @@
           <field name="arch" type="xml">          
             <form string="Region">       
               <sheet>     
-                <div class="oe_title oe_left">    
+                <div class="oe_title oe_left" colwidth="200">    
                   <h1>  
                     <field name="name" default_focus="1" placeholder="Region"/>
                   </h1> 
@@ -922,7 +922,7 @@
             <field name="arch" type="xml">                      
                 <form string="Region Type">                   
                     <sheet>             
-                        <div class="oe_title oe_left">          
+                        <div class="oe_title oe_left" colwidth="200">          
                             <h1>        
                                 <field name="name" default_focus="1" placeholder="Name (e.g., Region in US)"/>   
                             </h1>       

@@ -12,7 +12,7 @@
             limit=""/>
 
         <menuitem id="hc_flag.menu_flag" 
-                  name="Flag" 
+                  name="Flags" 
                   parent="hc_base.menu_pat_mgt" 
                   action="hc_res_flag_action" 
                   groups="hc_base.group_hc_base_manager" 

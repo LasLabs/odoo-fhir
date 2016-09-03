@@ -313,7 +313,6 @@ class EncounterIndication(models.Model):
         help="Encounter associated with this encounter indication.")                
     indication_type = fields.Selection(
         string="Indication Type", 
-        required="True", 
         selection=[
             ("Condition", "Condition"), 
             ("Procedure", "Procedure")], 

@@ -57,7 +57,11 @@
       <field name="view_mode">tree,form</field>         
     </record>           
 
-    <menuitem name="Telecom" id="hc_base.menu_telecom" parent="hc_base.menu_datatype" action="hc_telecom_action" sequence="60"/>
+    <menuitem name="Telecom" 
+              id="hc_base.menu_telecom" 
+              parent="hc_base.menu_datatype" 
+              action="hc_telecom_action" 
+              sequence="60"/>
 
   </data>
 </openerp>

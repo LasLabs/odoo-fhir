@@ -136,8 +136,8 @@ class GroupMember(models.Model):
         string="Entity Practitioner", 
         help="Practitioner reference to the group member.")                
     entity_device_id = fields.Many2one(comodel_name="hc.res.device", string="Entity Device", help="Device reference to the group member.")                
-    # entity_medication_id = fields.Many2one(comodel_name="hc.res.medication", string="Entity Medication", help="Medication reference to the group member.")                
-    # entity_substance_id = fields.Many2one(comodel_name="hc.res.substance", string="Entity Substance", help="Substance reference to the group member.")                
+    entity_medication_id = fields.Many2one(comodel_name="hc.res.medication", string="Entity Medication", help="Medication reference to the group member.")                
+    entity_substance_id = fields.Many2one(comodel_name="hc.res.substance", string="Entity Substance", help="Substance reference to the group member.")                
     period_start_date = fields.Datetime(
         string="Period Start Date", 
         help="Start of the period member belonged to the group.")                

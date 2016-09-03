@@ -143,6 +143,7 @@
                                         <field name="is_preferred"/>
                                         <field name="telecom_id"/>
                                         <field name="use"/>
+                                        <field name="rank"/>
                                     </tree>
                                     <form>
                                         <sheet>
@@ -150,6 +151,7 @@
                                                 <group>
                                                     <field name="telecom_id"/>
                                                     <field name="use"/>
+                                                    <field name="rank"/>
                                                 </group>
                                                 <group>
                                                     <field name="is_preferred"/>

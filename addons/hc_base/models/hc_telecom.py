@@ -39,8 +39,10 @@ class TelecomContactPoint(models.AbstractModel):
             ("mobile", "Mobile")], 
         help="Purpose of this contact point.")
     rank = fields.Integer(
-        string="Rank", 
+        string="Rank",
+        default="1", 
         help="Specify preferred order of use (1 = highest).")
+
 
 # class ObjectTelecom(models.Model):  
 #     _name = "hc.object.telecom" 

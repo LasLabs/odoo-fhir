@@ -9,7 +9,6 @@ class CountryRegionType(models.Model):
 
     name = fields.Char(
         string="Region Type",
-        required="True",
         help="Type of grouping of divisions (e.g. Region in the US).")
     country_id = fields.Many2one(
         comodel_name="res.country", 
@@ -23,7 +22,6 @@ class CountryRegion(models.Model):
 
     name = fields.Char(
         string="Region",
-        required="True",  
         help="A grouping of divisions (e.g. West and Midwest in the US).")
     type_id = fields.Many2one(
         comodel_name="hc.vs.country.region.type", 
@@ -41,10 +39,9 @@ class CountryDivisionType(models.Model):
 
     name = fields.Char(
         string="Division Type",
-        required="True", 
         help="Type of grouping of principal subdivisions (e.g., Division in the US).")
     country_id = fields.Many2one(
-        comodel_name="res.country", string="Country", required=False, help="Country that maintains the division type.")
+        comodel_name="res.country", string="Country", help="Country that maintains the division type.")
 
 class CountryDivision(models.Model):  
     _name = "hc.vs.country.division"  
@@ -53,7 +50,6 @@ class CountryDivision(models.Model):
 
     name = fields.Char(
        string="Division",
-       required="True", 
        help="A grouping of principal subdivisions (e.g., England in the UK, West in the US).")
     type_id = fields.Many2one(comodel_name="hc.vs.country.division.type", string="Division Type", help="Type of grouping of principal subdivisions (e.g., Division in the US).")
     region_id = fields.Many2one(comodel_name="hc.vs.country.region", string="Region", help="A grouping of divisions or states (e.g. West, Midwest).")
@@ -66,7 +62,6 @@ class CountryStateType(models.Model):
 
     name = fields.Char(
 		string="State/Province Type",
-        required="True", 
         help="Type of principal subdivision of a country (e.g., state, province, two-tier county).")
     country_id = fields.Many2one(
     	comodel_name="res.country", 
@@ -79,8 +74,7 @@ class CountryState(models.Model):
     _inherit = ["res.country.state"]
 
     name = fields.Char(
-        string="Name",
-        required="True",  
+        string="Name", 
         help="Sub-unit (i.e., primary subdivision) of a country (abreviations ok).")
     code = fields.Char(
         string="Code", 
@@ -125,7 +119,6 @@ class CountryDistrictType(models.Model):
 
     name = fields.Char(
        string="District/County Type",
-       required="True", 
        help="Type of administrative area (e.g., In US, county).")
     country_id = fields.Many2one(comodel_name="res.country", string="Country", help="Country that maintains the district type.")
 
@@ -136,7 +129,6 @@ class CountryDistrict(models.Model):
 
     name = fields.Char(
         string="District/County",
-        required="True", 
         help="Top-level administrative area of a principal subdivision (e.g., County in US State).")
     type_id = fields.Many2one(comodel_name="hc.vs.country.district.type", string="District Type", help="Type of administrative area (e.g., In US, county or parish).")
     city_ids = fields.Many2many(comodel_name="hc.vs.country.city", string="Cities/Places", help="The name of the city, town, village or other community or delivery center.")
@@ -168,8 +160,7 @@ class CountryCityType(models.Model):
     _inherit = ["hc.value.set.contains"]
 
     name = fields.Char(
-       string="City/Place Type",
-       required="True", 
+       string="City/Place Type", 
        help="Type of place or district/county subdivision (e.g., city, town).")
     country_id = fields.Many2one(comodel_name="res.country", string="Country", help="Country that maintains the city/place type.")
 
@@ -180,7 +171,6 @@ class CountryCityCategory(models.Model):
 
     name = fields.Char(
        string="City/Place Category",
-       required="True", 
        help="Category of place or district/county subdivision (e.g., census designated place, incorporated place).")
     country_id = fields.Many2one(comodel_name="res.country", string="Country", help="Country that maintains the city/place category.")
 
@@ -191,7 +181,6 @@ class CountryCityStatus(models.Model):
 
     name = fields.Char(
        string="City/Place Functional Status",
-       required="True", 
        help="Status of a place from a legal and/or statistical perspective.")
     country_id = fields.Many2one(comodel_name="res.country", string="Country", help="Country that maintains the city/place functional status.")
 
@@ -201,8 +190,7 @@ class CountryCity(models.Model):
     _inherit = ["hc.value.set.contains"]
 
     name = fields.Char(
-        string="City/Place",
-        required="True", 
+        string="City/Place", 
         help="The name of the city, town, village or other community or delivery center.")
     numeric_code = fields.Char(
         string="Numeric Code", 
@@ -254,7 +242,6 @@ class CountryPostalCodeType(models.Model):
 
     name = fields.Char(
        string="Postal/ZIP Code Type",
-       required="True", 
        help="Type of postal code (e.g., standard, PO Box).")
     country_id = fields.Many2one(
        comodel_name="res.country", 
@@ -267,8 +254,7 @@ class CountryPostalCode(models.Model):
     _inherit = ["hc.value.set.contains"]
 
     name = fields.Char(
-        string="Postal/ZIP Code",
-        required="True", 
+        string="Postal/ZIP Code", 
         help="A group of numbers or letters and numbers that are added to a postal address to assist the sorting of mail.")
     postal_place = fields.Char(string="Place", help="A geographic point of interest associated with a postal code.")
     type_id = fields.Many2one(comodel_name="hc.vs.country.postal.code.type", string="Postal Code Type", help="Type of postal code (e.g., standard, PO Box).")

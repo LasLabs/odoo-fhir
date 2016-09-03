@@ -28,7 +28,8 @@ class Specimen(models.Model):
         string="Type", 
         help="Kind of material that forms the specimen.")					
     subject_type = fields.Selection(
-        string="Specimen Subject Type", 
+        string="Subject Type",
+        required="True", 
         selection=[
             ("patient", "Patient"), 
             ("group", "Group"), 
@@ -118,7 +119,7 @@ class SpecimenCollection(models.Model):
         string="Collector Practitioner", 
         help="Who collected the specimen.")					
     collected_type = fields.Selection(
-        string="Collection Collected Type", 
+        string="Collected Type", 
         selection=[
             ("dateTime", "Datetime"), 
             ("Period", "Period")], 
@@ -148,7 +149,7 @@ class SpecimenCollection(models.Model):
         string="Method", 
         help="Technique used to perform collection.")					
     body_site_type = fields.Selection(
-        string="Collection Body Site Type", 
+        string="Body Site Type", 
         selection=[
             ("Codeable Concept", "Codeable Concept"), 
             ("Body Site", "Body Site")], 
@@ -222,7 +223,7 @@ class SpecimenContainer(models.Model):
         string="Specimen Quantity UOM", 
         help="Specimen quantity unit of measure.")					
     additive_type = fields.Selection(
-        string="Container Additive Type", 
+        string="Additive Type", 
         selection=[
             ("Codeable Concept", "Codeable Concept"), 
             ("Substance", "Substance")], 
@@ -285,11 +286,11 @@ class SpecimenRequest(models.Model):
         string="Specimen", 
         help="Specimen associated with this specimen request.")					
     request_type = fields.Selection(
-        string="Specimen Request Request Type", 
+        string="Request Type", 
         selection=[
-            ("Codeable Concept", "Codeable Concept"), 
-            ("Substance", "Substance")], 
-        help="Type of additive associated with container.")					
+            ("Diagnostic Request", "Diagnostic Request"), 
+            ("Procedure Request", "Procedure Request")], 
+        help="Type of additive associated with container.")			
     request_name = fields.Char(
         string="Request", 
         compute="compute_request_name", 

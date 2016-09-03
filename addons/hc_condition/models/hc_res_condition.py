@@ -75,7 +75,6 @@ class Condition(models.Model):
         help="Group who has the condition.")                
     context_type = fields.Selection(
         string="Condition Context Type",
-        required="True", 
         selection=[
             ("Encounter", "Encounter"), 
             ("Episode Of Care", "Episode of Care")], 
@@ -88,13 +87,12 @@ class Condition(models.Model):
     #     comodel_name="hc.res.encounter", 
     #     string="Context Encounter", 
     #     help="Encounter when condition first asserted.")                    
-    # context_episode_of_care_id = fields.Many2one(
-    #     comodel_name="hc.res.episode.of.care", 
-    #     string="Context Episode Of Care", 
-    #     help="Episode Of Care when condition first asserted.")                    
+    context_episode_of_care_id = fields.Many2one(
+        comodel_name="hc.res.episode.of.care", 
+        string="Context Episode Of Care", 
+        help="Episode Of Care when condition first asserted.")                    
     onset_type = fields.Selection(
         string="Condition Onset Type",
-        required="True", 
         selection=[
             ("dateTime", "Datetime"), 
             ("Age", "Age"), 
@@ -132,7 +130,6 @@ class Condition(models.Model):
         help="High limit of estimated or actual date, date-time, or age.")                    
     abatement_type = fields.Selection(
         string="Condition Abatement Type",
-        required="True", 
         selection=[
             ("date", "Date"), 
             ("Age", "Age"), 
@@ -180,7 +177,6 @@ class Condition(models.Model):
         help="When first entered.")                    
     asserter_type = fields.Selection(
         string="Condition Asserter Type",
-        required="True", 
         selection=[
             ("Practitioner", "Practitioner"), 
             ("Patient", "Patient")], 
@@ -288,8 +284,7 @@ class ConditionStageAssessment(models.Model):
         string="Stage", 
         help="Stage associated with this condition stage assessment.")                    
     assessment_type = fields.Selection(
-        string="Condition Stage Assessment Assessment Type",
-        required="True", 
+        string="Condition Stage Assessment Assessment Type", 
         selection=[
             ("clinical impression", "Clinical Impression"), 
             ("diagnostic report", "Diagnostic Report"), 
@@ -322,8 +317,7 @@ class ConditionEvidenceDetail(models.Model):
         string="Evidence", 
         help="Evidence associated with this condition evidence detail.")                    
     detail_type = fields.Selection(
-        string="Conditional Evidence Detail Type",
-        required="True", 
+        string="Conditional Evidence Detail Type", 
         selection=[
             ("string", "String"), 
             ("observation", "Observation"), 
@@ -375,3 +369,12 @@ class ConditionStage(models.Model):
     _description = "Condition Stage"        
     _inherit = ["hc.value.set.contains"]
 
+# External Reference
+
+class EpisodeOfCareCondition(models.Model):    
+    _inherit = ["hc.episode.of.care.condition"]    
+              
+    condition_id = fields.Many2one(
+        comodel_name="hc.res.condition", 
+        string="Condition", 
+        help="Condition associated with this episode of care condition.")

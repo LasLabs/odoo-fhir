@@ -489,6 +489,8 @@ class ClinicalImpressionCode(models.Model):
     _description = "Clinical Impression Code"        
     _inherit = ["hc.value.set.contains"]
 
+# External Reference
+
 class ConditionEvidenceDetail(models.Model):    
     _inherit = ["hc.condition.evidence.detail"]
 
@@ -503,4 +505,4 @@ class ConditionStageAssessment(models.Model):
     assessment_clinical_impression_id = fields.Many2one(
         comodel_name="hc.res.clinical.impression", 
         string="Assessment Clinical Impressions", 
-        help="Clinical Impression formal record of assessment.") 
+        help="Clinical Impression formal record of assessment.")

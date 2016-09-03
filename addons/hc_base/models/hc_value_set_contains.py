@@ -6,6 +6,7 @@ class ValueSetContains(models.AbstractModel):
 
     _name = "hc.value.set.contains"
     _description = "Value Set Contains"
+    _inherit = ["hc.codeable.concept.coding"]
     _order = "code"
 
     system = fields.Char(
@@ -17,9 +18,6 @@ class ValueSetContains(models.AbstractModel):
     version = fields.Char(
         string="Version", 
         help="Version in which this code / display is defined.")
-    code = fields.Char(
-        string="Code", 
-        help="Code - if blank, this is not a choosable code.")
     name = fields.Char(
         string="Name", 
         help="User display for the concept.")
@@ -36,6 +34,10 @@ class ValueSetContains(models.AbstractModel):
     comments = fields.Text(
         string="Comments", 
         help="Additional notes about how to use the code.")
+    contains_id = fields.Many2one(
+        comodel_name="hc.value.set.contains", 
+        string="Parent",
+        help="Parent concept.")
 
     _sql_constraints = [
         ('code_unique',
@@ -43,32 +45,16 @@ class ValueSetContains(models.AbstractModel):
         "The concept code must be unique.")
         ]
 
-
     # @api.one
     # @api.constrains('name', 'description')
     # def _check_description(self):
     #     if self.name == self.description:
     #         raise ValidationError("Concept name and description must be different")
 
-
-class BasicAssociation(models.AbstractModel):   
-    _name = "hc.basic.association"  
-    _description = "Basic Association"
-    
-    is_active = fields.Boolean(
-        string="Active", 
-        default=True, 
-        help="Whether this record is in active use.")      
-    is_preferred = fields.Boolean(
-        string="Preferred", 
-        help="Record preference indicator.")        
-    start_date = fields.Date(
-        string="Start Date", 
-        help="Start of the period during which this record is valid.")        
-    end_date = fields.Date(
-        string="End Date", 
-        help="End of the period during which this record is valid.")
-
+class AdministrativeGender(models.Model):   
+    _name = "hc.vs.administrative.gender"   
+    _description = "Administrative Gender"      
+    _inherit = ["hc.value.set.contains"]
 
 class AnimalBreed(models.Model):    
     _name = "hc.vs.animal.breed"    
@@ -90,6 +76,11 @@ class BodySite(models.Model):
     _description = "Body Site"      
     _inherit = ["hc.value.set.contains"]  
 
+class ClinicalConcept(models.Model):    
+    _name = "hc.vs.clinical.concept"    
+    _description = "Clinical Concept"       
+    _inherit = ["hc.value.set.contains"]
+
 class ConditionCode(models.Model):
     _name = "hc.vs.condition.code"
     _description = "Condition"
@@ -105,9 +96,19 @@ class DaysOfWeek(models.Model):
     _description = "Days Of Week"     
     _inherit = ["hc.value.set.contains"]
 
+class DemographicAgeGroup(models.Model):    
+    _name = "hc.vs.demographic.age.group"   
+    _description = "Demographic Age Group"      
+    _inherit = ["hc.value.set.contains"]
+
 class Ethnicity(models.Model):  
     _name = "hc.vs.ethnicity"  
     _description = "Ethnicity" 
+    _inherit = ["hc.value.set.contains"]
+
+class Jurisdiction(models.Model):   
+    _name = "hc.vs.jurisdiction"    
+    _description = "Jurisdiction"       
     _inherit = ["hc.value.set.contains"]
 
 class MaritalStatus(models.Model):  
@@ -125,6 +126,22 @@ class ParticipantRole(models.Model):
     _description = "Participant Role"      
     _inherit = ["hc.value.set.contains"]
 
+class ParticipationType(models.Model): 
+    _name = "hc.vs.participation.type" 
+    _description = "Participation Type"
+    _inherit = ["hc.value.set.contains"]
+
+    name = fields.Char(
+        string="Name", 
+        help="Name of this participation type (e.g., admitter).")
+    code = fields.Char(
+        string="Code", 
+        help="Code of this participation type (e.g., ADM).")
+    contains_id = fields.Many2one(
+        comodel_name="hc.vs.participation.type", 
+        string="Parent",
+        help="Parent concept.")
+
 class Race(models.Model):  
     _name = "hc.vs.race"  
     _description = "Race" 
@@ -134,3 +151,19 @@ class UOM(models.Model):
     _name = "hc.vs.uom"
     _description = "Unit of Measure"
     _inherit = ["hc.value.set.contains"]
+
+class UserType(models.Model):   
+    _name = "hc.vs.user.type"   
+    _description = "User Type"      
+    _inherit = ["hc.value.set.contains"]
+
+class WorkflowSetting(models.Model):    
+    _name = "hc.vs.workflow.setting"    
+    _description = "Workflow Setting"       
+    _inherit = ["hc.value.set.contains"]
+
+class WorkflowTask(models.Model):   
+    _name = "hc.vs.workflow.task"   
+    _description = "Workflow Task"      
+    _inherit = ["hc.value.set.contains"]
+

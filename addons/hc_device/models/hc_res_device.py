@@ -85,11 +85,11 @@ class DeviceIdentifier(models.Model):
 class DeviceTelecom(models.Model):    
     _name = "hc.device.telecom"    
     _description = "Device Telecom"        
-    _inherit = ["hc.basic.association"]    
-    _inherits = {"hc.telecom.contact.point": "telecom_id"}
+    _inherit = ["hc.telecom.contact.point"]    
+    _inherits = {"hc.telecom": "telecom_id"}
 
     telecom_id = fields.Many2one(
-        comodel_name="hc.telecom.contact.point", 
+        comodel_name="hc.telecom", 
         string="Telecom", 
         required="True", 
         ondelete="restrict", 
