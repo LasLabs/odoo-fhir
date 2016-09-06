@@ -30,7 +30,9 @@ class ContributorContact(models.Model):
 
     contact_detail_id = fields.Many2one(
         comodel_name="hc.contact.detail", 
-        string="Contact Detail", 
+        string="Contact Detail",
+        required="True",
+        ondelete="restrict",
         help="Contact Detail associated with this contributor contact.")
     contributor_id = fields.Many2one(
         comodel_name="hc.contributor", 

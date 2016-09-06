@@ -9,6 +9,7 @@ import hc_attachment
 import hc_available_time
 import hc_contact_detail
 import hc_contributor
+import hc_data_requirement
 import hc_human_name
 import hc_identifier
 import hc_language

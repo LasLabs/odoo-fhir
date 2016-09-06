@@ -94,6 +94,11 @@ access_hc_base_hc_contributor_user,hc.base.hc.contributor.user,model_hc_contribu
 access_hc_base_hc_contributor_contact_user,hc.base.hc.contributor.contact.user,model_hc_contributor_contact,hc_base.group_hc_base_user,1,0,0,0
 access_hc_base_hc_contact_detail_user,hc.base.hc.contact.detail.user,model_hc_contact_detail,hc_base.group_hc_base_user,1,0,0,0
 access_hc_base_hc_contact_detail_telecom_user,hc.base.hc.contact.detail.telecom.user,model_hc_contact_detail_telecom,hc_base.group_hc_base_user,1,0,0,0
-
-
-
+access_hc_base_hc_data_requirement_user,hc.base.hc.data.requirement.user,model_hc_data_requirement,hc_base.group_hc_base_user,1,0,0,0
+access_hc_base_hc_data_reqt_code_filter_user,hc.base.hc.data.reqt.code.filter.user,model_hc_data_reqt_code_filter,hc_base.group_hc_base_user,1,0,0,0
+access_hc_base_hc_data_reqt_data_filter_user,hc.base.hc.data.reqt.data.filter.user,model_hc_data_reqt_data_filter,hc_base.group_hc_base_user,1,0,0,0
+access_hc_base_hc_data_reqt_profile_user,hc.base.hc.data.reqt.profile.user,model_hc_data_reqt_profile,hc_base.group_hc_base_user,1,0,0,0
+access_hc_base_hc_data_reqt_must_support_user,hc.base.hc.data.reqt.must.support.user,model_hc_data_reqt_must_support,hc_base.group_hc_base_user,1,0,0,0
+access_hc_base_hc_vs_value_code_manager,hc.base.hc.vs.value.code.manager,model_hc_vs_value_code,hc_base.group_hc_base_manager,1,1,1,1
+access_hc_base_hc_vs_value_code_concept_manager,hc.base.hc.vs.value.code.concept.manager,model_hc_vs_value_code_concept,hc_base.group_hc_base_manager,1,1,1,1
+access_hc_base_hc_vs_value_coding_manager,hc.base.hc.vs.value.coding.manager,model_hc_vs_value_coding,hc_base.group_hc_base_manager,1,1,1,1
