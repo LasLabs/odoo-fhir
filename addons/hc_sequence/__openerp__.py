@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "hc_sequence",
+    'name': "Sequence",
 
     'summary': """
         Biological sequence

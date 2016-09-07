@@ -27,8 +27,7 @@
 
     # any module necessary for this one to work correctly
     # 'depends': ['hc_provenance'],
-    # 'depends': ['hc_group', 'hc_encounter'],
-    'depends': ['hc_group', 'hc_episode_of_care'],
+    'depends': ['hc_group', 'hc_encounter'],
 
     # always loaded
     'data': [

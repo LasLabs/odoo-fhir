@@ -117,7 +117,7 @@ class Procedure(models.Model):
         string="Procedure Request Type", 
         selection=[
             ("care plan", "Care Plan"), 
-            ("diagnostic order", "Diagnostic Order"),
+            ("diagnostic request", "Diagnostic Request"),
             ("procedure request", "Procedure Request"),
             ("referral request", "Referral Request")], 
         help="Type of request for this procedure.")                  
@@ -129,18 +129,18 @@ class Procedure(models.Model):
     #     comodel_name="hc.res.care.plan", 
     #     string="Request Care Plan", 
     #     help="Care Plan request for this procedure.")                   
-    # request_diagnostic_order_id = fields.Many2one(
-    #     comodel_name="hc.res.diagnostic.order", 
-    #     string="Request Diagnostic Order", 
-    #     help="Diagnostic Order request for this procedure.")                   
+    # request_diagnostic_request_id = fields.Many2one(
+    #     comodel_name="hc.res.diagnostic.request", 
+    #     string="Request Diagnostic Request", 
+    #     help="Diagnostic Request for this procedure.")                   
     # request_procedure_request_id = fields.Many2one(
     #     comodel_name="hc.res.procedure.request", 
     #     string="Request Procedure Request", 
-    #     help="Procedure Request request for this procedure.")                   
+    #     help="Procedure Request for this procedure.")                   
     # request_referral_request_id = fields.Many2one(
     #     comodel_name="hc.res.referral.request", 
     #     string="Request Referral Request", 
-    #     help="Referral Request referral request request for this procedure.")                  
+    #     help="Referral Request for this procedure.")                  
     note_ids = fields.One2many(
         comodel_name="hc.procedure.note", 
         inverse_name="procedure_id", 
