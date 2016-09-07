@@ -541,3 +541,21 @@ class ReferenceRangeMeaning(models.Model):
     _name = "hc.vs.reference.range.meaning"    
     _description = "Reference Range Meaning"        
     _inherit = ["hc.value.set.contains"]    
+
+# External Reference
+
+class ConditionStageAssessment(models.Model):    
+    _inherit = "hc.condition.stage.assessment"
+
+    assessment_observation_id = fields.Many2one(
+        comodel_name="hc.res.observation", 
+        string="Assessment Observations", 
+        help="Observation formal record of assessment.")  
+
+class ConditionEvidenceDetail(models.Model):    
+    _inherit = "hc.condition.evidence.detail" 
+
+    detail_observation_id = fields.Many2one(
+        comodel_name="hc.res.observation", 
+        string="Detail Observation", 
+        help="Observation supporting information found elsewhere.")

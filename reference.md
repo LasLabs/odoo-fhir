@@ -1,13 +1,15 @@
 ###Study
-* Views: [odoo/openerp/addons/base/res/res_partner_view.xml] (https://github.com/odoo/odoo/blob/9.0/openerp/addons/base/res/res_partner_view.xml)
+* [New API Guidelines](http://odoo-new-api-guide-line.readthedocs.io/en/latest/index.html)
 
-* Fonts [Source] (http://stackoverflow.com/questions/29701948/path-for-icon-used-in-smart-button)
+* Views: [odoo/openerp/addons/base/res/res_partner_view.xml](https://github.com/odoo/odoo/blob/9.0/openerp/addons/base/res/res_partner_view.xml)
+
+* Fonts [Source](http://stackoverflow.com/questions/29701948/path-for-icon-used-in-smart-button)
 
   Odoo smart button uses http://fortawesome.github.io/Font-Awesome/
 
   It is a font icon more than a image defined inside a css class. But you can change whatever as you did in css image class.
 
-  For simple idea about font awesome go through [this page] (http://fortawesome.github.io/Font-Awesome/get-started/)
+  For simple idea about font awesome go through [this page](http://fortawesome.github.io/Font-Awesome/get-started/)
 
   For more information regarding odoo smart button look http://www.slideshare.net/openobject/odoo-smart-buttons
 

@@ -10,7 +10,7 @@ class Organization(models.Model):
     partner_id = fields.Many2one(
         comodel_name="res.partner", 
         string="Partner", 
-        required=True, 
+        required="True", 
         ondelete="restrict", 
         help="Partner associated with this organization.")
     identifier_ids = fields.One2many(
@@ -88,7 +88,7 @@ class OrganizationTelecom(models.Model):
     telecom_id = fields.Many2one(
         comodel_name="hc.telecom",
         string="Telecom",
-        required=True,
+        required="True",
         ondelete="restrict",
         help="Telecom contact point associated with this organization.")
     organization_id = fields.Many2one(
@@ -109,7 +109,7 @@ class OrganizationAddress(models.Model):
     address_id = fields.Many2one(
         comodel_name="hc.address", 
         string="Address", 
-        required=True,
+        required="True",
         ondelete="restrict", 
         help="Address associated with this organization.") 
     use = fields.Selection(string="Use",
@@ -167,7 +167,7 @@ class OrganizationContact(models.Model):
     person_id = fields.Many2one(
         comodel_name="hc.res.person", 
         string="Person",
-        required=True,
+        required="True",
         ondelete="restrict", 
         help="Person associated with this organization contact.") 
     organization_id = fields.Many2one(
@@ -182,16 +182,16 @@ class OrganizationContact(models.Model):
         comodel_name="hc.human.name", 
         string="Name", 
         help="A name associated with the organization contact.")              
-    # telecom_ids = fields.One2many(
-    #     comodel_name="hc.organization.contact.telecom", 
-    #     inverse_name="organization_contact_id", 
-    #     string="Telecom Contacts", 
-    #     help="Contact details (telephone, email, etc.) for a contact.")             
-    # address_ids = fields.One2many(
-    #     comodel_name="hc.organization.contact.address",
-    #     inverse_name="organization_contact_id",  
-    #     string="Addresses", 
-    #     help="Visiting or postal addresses for the organization contact.")             
+    telecom_ids = fields.One2many(
+        comodel_name="hc.organization.contact.telecom", 
+        inverse_name="organization_contact_id", 
+        string="Telecom Contacts", 
+        help="Contact details (telephone, email, etc.) for the organization contact.")             
+    address_ids = fields.One2many(
+        comodel_name="hc.organization.contact.address",
+        inverse_name="organization_contact_id",  
+        string="Addresses", 
+        help="Visiting or postal addresses for the organization contact.")             
 
 class OrganizationContactPurpose(models.Model): 
     _name = "hc.vs.contact.entity.type"    
@@ -204,16 +204,16 @@ class OrganizationContactAddress(models.Model):
     _inherit = ["hc.basic.association"]
     _inherits = {"hc.address": "address_id"}
 
+    address_id = fields.Many2one(
+        comodel_name="hc.address", 
+        string="Address", 
+        required="True",
+        ondelete="restrict", 
+        help="Address associated with this organization contact.") 
     organization_contact_id = fields.Many2one(
         comodel_name="hc.organization.contact", 
         string="Organization Contact", 
         help="Organization contact associated with this address.")
-    address_id = fields.Many2one(
-        comodel_name="hc.address", 
-        string="Address", 
-        required=True,
-        ondelete="restrict", 
-        help="Address associated with this organization contact.") 
     use = fields.Selection(string="Use",
         selection=[
             ("home", "Home"), 
@@ -239,7 +239,7 @@ class OrganizationContactName(models.Model):
     human_name_id = fields.Many2one(
         comodel_name="hc.human.name",
         string="Human Name",
-        required=True,
+        required="True",
         ondelete="restrict", 
         help="Human name associated with this organization contact.")
     organization_contact_id = fields.Many2one(
@@ -256,7 +256,7 @@ class OrganizationContactTelecom(models.Model):
     telecom_id = fields.Many2one(
         comodel_name="hc.telecom",
         string="Telecom",
-        required=True,
+        required="True",
         ondelete="restrict",
         help="Telecom contact point associated with this organization contact.")
     organization_contact_id = fields.Many2one(

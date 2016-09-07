@@ -93,7 +93,7 @@ class DeviceTelecom(models.Model):
         string="Telecom", 
         required="True", 
         ondelete="restrict", 
-        help="Telecom associated with this endpoint telecom.")                    
+        help="Telecom associated with this device telecom.")                    
     device_id = fields.Many2one(
         comodel_name="hc.res.device", 
         string="Device", 

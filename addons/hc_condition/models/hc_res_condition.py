@@ -372,9 +372,17 @@ class ConditionStage(models.Model):
 # External Reference
 
 class EpisodeOfCareCondition(models.Model):    
-    _inherit = ["hc.episode.of.care.condition"]    
+    _inherit = "hc.episode.of.care.condition"  
               
     condition_id = fields.Many2one(
         comodel_name="hc.res.condition", 
         string="Condition", 
         help="Condition associated with this episode of care condition.")
+
+class ProcedureReasonReference(models.Model):   
+    _inherit = "hc.procedure.reason.reference"
+                       
+    condition_id = fields.Many2one(
+        comodel_name="hc.res.condition", 
+        string="Condition", 
+        help="Condition associated with this Procedure.")

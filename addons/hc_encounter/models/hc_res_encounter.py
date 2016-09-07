@@ -437,7 +437,15 @@ class V2ReadmissionIndicator(models.Model):
 class Procedure(models.Model):  
     _inherit = "hc.res.procedure"  
 
+    encounter_id = fields.Many2one(
+        comodel_name="hc.res.encounter", 
+        string="Encounter", 
+        help="The encounter associated with the procedure.")
+
+class Condition(models.Model):    
+    _inherit = "hc.res.condition"
+
     context_encounter_id = fields.Many2one(
         comodel_name="hc.res.encounter", 
         string="Context Encounter", 
-        help="Encounter when condition first asserted.") 
+        help="Encounter when condition first asserted.")

@@ -262,10 +262,10 @@ class ProcedureComponent(models.Model):
         comodel_name="hc.res.procedure", 
         string="Component Procedure", 
         help="Procedure event related to the procedure .")                  
-    component_observation_id = fields.Many2one(
-        comodel_name="hc.res.observation", 
-        string="Component Observation", 
-        help="Observation event related to the procedure .")                  
+    # component_observation_id = fields.Many2one(
+    #     comodel_name="hc.res.observation", 
+    #     string="Component Observation", 
+    #     help="Observation event related to the procedure .")                  
 
     # @api.multi          
     # def compute_component_name(self):           
