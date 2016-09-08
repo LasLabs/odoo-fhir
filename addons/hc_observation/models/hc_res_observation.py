@@ -544,6 +544,14 @@ class ReferenceRangeMeaning(models.Model):
 
 # External Reference
 
+class ProcedureComponent(models.Model): 
+    _inherit = "hc.procedure.component"
+
+    component_observation_id = fields.Many2one(
+        comodel_name="hc.res.observation", 
+        string="Component Observation", 
+        help="Observation event related to the procedure .") 
+
 class ConditionStageAssessment(models.Model):    
     _inherit = "hc.condition.stage.assessment"
 

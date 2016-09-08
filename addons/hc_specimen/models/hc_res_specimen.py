@@ -295,10 +295,10 @@ class SpecimenRequest(models.Model):
         string="Request", 
         compute="compute_request_name", 
         help="Why the specimen was collected")					
-    request_diagnostic_request_id = fields.Many2one(
-        comodel_name="hc.res.diagnostic.request", 
-        string="Request Diagnostic Request", 
-        help="Diagnostic Request why the specimen was collected.")					
+    # request_diagnostic_request_id = fields.Many2one(
+    #     comodel_name="hc.res.diagnostic.request", 
+    #     string="Request Diagnostic Request", 
+    #     help="Diagnostic Request why the specimen was collected.")					
     # request_procedure_request_id = fields.Many2one(
     #     comodel_name="hc.res.procedure.request", 
     #     string="Request Procedure Request", 
@@ -342,3 +342,5 @@ class V2SpecimenType(models.Model):
     _name = "hc.vs.v2.specimen.type"	
     _description = "V2 Specimen Type"		
     _inherit = ["hc.value.set.contains"]	
+
+# External Reference
