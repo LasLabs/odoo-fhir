@@ -144,3 +144,16 @@ class EventTiming(models.Model):
     _name = "hc.vs.event.timing"    
     _description = "Event Timing"        
     _inherit = ["hc.value.set.contains"]
+
+
+# Constraints
+
+# On Timing.repeat: if there's a duration, there needs to be duration units (expression  on Timing.repeat: duration.empty() or durationUnit.exists())
+# On Timing.repeat: if there's a period, there needs to be period units (expression  on Timing.repeat: period.empty() or periodUnit.exists())
+# On Timing.repeat: Either frequency or when can exist, not both (expression  on Timing.repeat: ((period or frequency) and when).not())
+# On Timing.repeat: duration SHALL be a non-negative value (expression  on Timing.repeat: duration.exists() implies duration >= 0)
+# On Timing.repeat: period SHALL be a non-negative value (expression  on Timing.repeat: period.exists() implies period >= 0)
+# On Timing.repeat: If there's a periodMax, there must be a period (expression  on Timing.repeat: periodMax.empty() or period.exists())
+# On Timing.repeat: If there's a durationMax, there must be a duration (expression  on Timing.repeat: durationMax.empty() or duration.exists())
+# On Timing.repeat: If there's a countMax, there must be a count (expression  on Timing.repeat: countMax.empty() or count.exists())
+# On Timing.repeat: If there's an offset, there must be a when (expression  on Timing.repeat: offset.empty() or when.exists())

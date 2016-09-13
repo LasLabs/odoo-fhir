@@ -143,3 +143,13 @@ class ClinicalFinding(models.Model):
     _name = "hc.vs.clinical.finding"    
     _description = "Clinical Finding"        
     _inherit = ["hc.value.set.contains"]
+
+External Reference
+
+class ConditionStageAssessment(models.Model):    
+    _name = "hc.condition.stage.assessment"
+
+    assessment_diagnostic_report_id = fields.Many2one(
+        comodel_name="hc.res.diagnostic.report", 
+        string="Assessment Diagnostic Reports", 
+        help="Diagnostic Report formal record of assessment.")

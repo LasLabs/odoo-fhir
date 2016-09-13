@@ -43,9 +43,11 @@ class SampledData(models.AbstractModel):
         help="Type of Who is responsible for the observation.")
     data_name = fields.Char(
         string="Data", 
-        compute="compute_data_name", 
-        help='Decimal values with spaces, or "E" | "U" | "L".')        
-    data_code = fields.Selection(string="Data Code", 
+        compute="_compute_data_name", 
+        store="True", 
+        help="Decimal values with spaces.")  
+    data_code = fields.Selection(
+        string="Data Code", 
         selection=[
             ("E", "E (Error)"), 
             ("L","L (Below Detected Limit)"), 
@@ -54,3 +56,12 @@ class SampledData(models.AbstractModel):
     data_series = fields.Char(
         string="Data Series", 
         help="A series of data points which are decimal values separated by a single space (character u20).")        
+
+    @api.multi          
+    def _compute_data_name(self):           
+        for hc_sampled_data in self:        
+            if hc_sampled_data.data_type == 'Code': 
+                hc_sampled_data.data_name = hc_sampled_data.data_code_id.name
+            elif hc_sampled_data.data_type == 'Series': 
+                hc_sampled_data.data_name = hc_sampled_data.data_series_id.name
+

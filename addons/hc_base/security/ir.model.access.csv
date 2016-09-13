@@ -102,3 +102,10 @@ access_hc_base_hc_data_reqt_must_support_user,hc.base.hc.data.reqt.must.support.
 access_hc_base_hc_vs_value_code_manager,hc.base.hc.vs.value.code.manager,model_hc_vs_value_code,hc_base.group_hc_base_manager,1,1,1,1
 access_hc_base_hc_vs_value_code_concept_manager,hc.base.hc.vs.value.code.concept.manager,model_hc_vs_value_code_concept,hc_base.group_hc_base_manager,1,1,1,1
 access_hc_base_hc_vs_value_coding_manager,hc.base.hc.vs.value.coding.manager,model_hc_vs_value_coding,hc_base.group_hc_base_manager,1,1,1,1
+access_hc_base_hc_quantity_user,hc.base.hc.quantity.user,model_hc_quantity,hc_base.group_hc_base_user,1,0,0,0
+access_hc_base_hc_range_user,hc.base.hc.range.user,model_hc_range,hc_base.group_hc_base_user,1,0,0,0
+access_hc_base_hc_ratio_user,hc.base.hc.ratio.user,model_hc_ratio,hc_base.group_hc_base_user,1,0,0,0
+access_hc_base_hc_period_user,hc.base.hc.period.user,model_hc_period,hc_base.group_hc_base_user,1,0,0,0
+access_hc_base_hc_signature_user,hc.base.hc.signature.user,model_hc_signature,hc_base.group_hc_base_user,1,0,0,0
+access_hc_base_hc_vs_commitment_type_indication_manager,hc.base.hc.vs.commitment.type.indication.manager,model_hc_vs_commitment_type_indication,hc_base.group_hc_base_manager,1,1,1,1
+

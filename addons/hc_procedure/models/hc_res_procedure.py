@@ -19,13 +19,14 @@ class Procedure(models.Model):
         string="Procedure Subject Type",
         required="True",  
         selection=[
-            ("patient", "Patient"), 
-            ("group", "Group")], 
+            ("Patient", "Patient"), 
+            ("Group", "Group")], 
         help="Type of subject the procedure was performed on.")                    
     subject_name = fields.Char(
         string="Subject",
         required="True", 
-        compute="compute_subject_name",  
+        compute="_compute_subject_name",
+        store="True",  
         help="Who the procedure was performed on.")
     subject_patient_id = fields.Many2one(
         comodel_name="hc.res.patient", 
@@ -88,10 +89,10 @@ class Procedure(models.Model):
     performed_end_date = fields.Datetime(
         string="Performed End Date", 
         help="End of the period when the procedure was performed.")                  
-    # encounter_id = fields.Many2one(
-    #     comodel_name="hc.res.encounter", 
-    #     string="Encounter", 
-    #     help="The encounter associated with the procedure.")                    
+    encounter_id = fields.Many2one(
+        comodel_name="hc.res.encounter", 
+        string="Encounter", 
+        help="The encounter associated with the procedure.")                    
     location_id = fields.Many2one(
         comodel_name="hc.res.location", 
         string="Location", 
@@ -116,14 +117,15 @@ class Procedure(models.Model):
     request_type = fields.Selection(
         string="Procedure Request Type", 
         selection=[
-            ("care plan", "Care Plan"), 
-            ("diagnostic request", "Diagnostic Request"),
-            ("procedure request", "Procedure Request"),
-            ("referral request", "Referral Request")], 
+            ("Care Plan", "Care Plan"), 
+            ("Diagnostic Request", "Diagnostic Request"),
+            ("Procedure Request", "Procedure Request"),
+            ("Referral Request", "Referral Request")], 
         help="Type of request for this procedure.")                  
     request_name = fields.Char(
         string="Request", 
-        compute="compute_request_name",
+        compute="_compute_request_name",
+        store="True",  
         help="Request reference for this procedure.")                    
     # request_care_plan_id = fields.Many2one(
     #     comodel_name="hc.res.care.plan", 
@@ -172,23 +174,23 @@ class Procedure(models.Model):
         help="Device changed in procedure.")
 
     @api.multi          
-    def compute_subject_name(self):         
+    def _compute_subject_name(self):         
         for hc_res_procedure in self:       
-            if hc_res_procedure.subject_type == 'patient':  
+            if hc_res_procedure.subject_type == 'Patient':  
                 hc_res_procedure.subject_name = hc_res_procedure.subject_patient_id.name
-            elif hc_res_procedure.subject_type == 'group':  
+            elif hc_res_procedure.subject_type == 'Group':  
                 hc_res_procedure.subject_name = hc_res_procedure.subject_group_id.name
 
     # @api.multi
-    # def compute_request_name(self):
+    # def _compute_request_name(self):
     #     for hc_res_procedure in self:
-    #         if hc_res_procedure.request_type == 'care plan':
+    #         if hc_res_procedure.request_type == 'Care Plan':
     #             hc_res_procedure.request_name = hc_res_procedure.request_care_plan_id.name
-    #         elif hc_res_procedure.request_type == 'diagnostic order':
-    #             hc_res_procedure.request_name = hc_res_procedure.request_diagnostic_order_id.name
-    #         elif hc_res_procedure.request_type == 'procedure request':
+    #         elif hc_res_procedure.request_type == 'Diagnostic Request':
+    #             hc_res_procedure.request_name = hc_res_procedure.request_diagnostic_request_id.name
+    #         elif hc_res_procedure.request_type == 'Procedure Request':
     #             hc_res_procedure.request_name = hc_res_procedure.request_procedure_request_id.name
-    #         elif hc_res_procedure.request_type == 'referral request':
+    #         elif hc_res_procedure.request_type == 'Referral Request':
     #             hc_res_procedure.request_name = hc_res_procedure.request_referral_request_id.name
 
 class ProcedureUsedReference(models.Model): 
@@ -209,7 +211,8 @@ class ProcedureUsedReference(models.Model):
         help="Type of item used during the procedure")                 
     used_reference_name = fields.Char(
         string="Used Reference", 
-        compute="compute_used_reference_name",
+        compute="_compute_used_reference_name",
+        store="True",  
         help="The name of the item used during the procedure.")                   
     used_reference_device_id = fields.Many2one(
         comodel_name="hc.res.device", 
@@ -224,59 +227,60 @@ class ProcedureUsedReference(models.Model):
         string="Used Reference Substance", 
         help="Substance item used during procedure.")
 
-    # @api.multi          
-    # def compute_used_reference_name(self):          
-    #     for hc_procedure_used_reference in self:        
-    #         if hc_procedure_used_reference.used_reference_type == 'Device': 
-    #             hc_procedure_used_reference.used_reference_name = hc_procedure_used_reference.used_reference_device_id.name
-    #         elif hc_procedure_used_reference.used_reference_type == 'Medication':   
-    #             hc_procedure_used_reference.used_reference_name = hc_procedure_used_reference.used_reference_medication_id.name
-    #         elif hc_procedure_used_reference.used_reference_type == 'Substance':    
-    #             hc_procedure_used_reference.used_reference_name = hc_procedure_used_reference.used_reference_substance_id.name           
+    @api.multi          
+    def _compute_used_reference_name(self):          
+        for hc_procedure_used_reference in self:        
+            if hc_procedure_used_reference.used_reference_type == 'Device': 
+                hc_procedure_used_reference.used_reference_name = hc_procedure_used_reference.used_reference_device_id.name
+            elif hc_procedure_used_reference.used_reference_type == 'Medication':   
+                hc_procedure_used_reference.used_reference_name = hc_procedure_used_reference.used_reference_medication_id.name
+            elif hc_procedure_used_reference.used_reference_type == 'Substance':    
+                hc_procedure_used_reference.used_reference_name = hc_procedure_used_reference.used_reference_substance_id.name           
 
 class ProcedureComponent(models.Model): 
     _name = "hc.procedure.component"    
     _description = "Procedure Component"        
-    _inherit = ["hc.basic.association"] 
-    
+    _inherit = ["hc.basic.association"]
+
     procedure_id = fields.Many2one(
         comodel_name="hc.res.procedure", 
         string="Procedure", 
-        help="Procedure associated with this procedure component.")                    
+        help="Procedure associated with this procedure component.")             
     component_type = fields.Selection(
         string="Component Type", 
         selection=[
             ("Medication Administration", "Medication Administration"), 
             ("Procedure", "Procedure"), 
             ("Observation", "Observation")], 
-        help="Type of item used during the procedure")                   
+        help="Type of events related to the procedure.")             
     component_name = fields.Char(
         string="Component", 
-        compute="compute_component_name",
-        help="The name of the event related to the procedure.")                  
+        compute="_compute_component_name", 
+        store="True", 
+        help="Event related to the procedure.")               
     # component_medication_administration_id = fields.Many2one(
     #     comodel_name="hc.res.medication.administration", 
     #     string="Component Medication Administration", 
-    #     help="Medication Administration event related to the procedure .")                  
+    #     help="Medication Administration event related to the procedure.")              
     component_procedure_id = fields.Many2one(
         comodel_name="hc.res.procedure", 
         string="Component Procedure", 
-        help="Procedure event related to the procedure .")                  
-    # component_observation_id = fields.Many2one(
-    #     comodel_name="hc.res.observation", 
-    #     string="Component Observation", 
-    #     help="Observation event related to the procedure .")                  
+        help="Procedure event related to the procedure.")              
+    component_observation_id = fields.Many2one(
+        comodel_name="hc.res.observation", 
+        string="Component Observation", 
+        help="Observation event related to the procedure.")              
 
-    # @api.multi          
-    # def compute_component_name(self):           
-    #     for hc_procedure_component in self:     
-    #         if hc_procedure_component.component_type == 'Medication Administration':    
-    #             hc_procedure_component.component_name = hc_procedure_component.component_medication_administration_id.name
-    #         elif hc_procedure_component.component_type == 'Procedure':  
-    #             hc_procedure_component.component_name = hc_procedure_component.component_procedure_id.name
-    #         elif hc_procedure_component.component_type == 'Observation':    
-    #             hc_procedure_component.component_name = hc_procedure_component.component_observation_id.name
-
+    @api.multi          
+    def _compute_component_name(self):           
+        for hc_procedure_component in self:     
+            if hc_procedure_component.component_type == 'Procedure':  
+                hc_procedure_component.component_name = hc_procedure_component.component_procedure_id.name
+            elif hc_procedure_component.component_type == 'Observation':    
+                hc_procedure_component.component_name = hc_procedure_component.component_observation_id.name
+            # elif hc_procedure_component.component_type == 'Medication Administration':    
+            #     hc_procedure_component.component_name = hc_procedure_component.component_medication_administration_id.name
+            
 class ProcedurePerformer(models.Model): 
     _name = "hc.procedure.performer"    
     _description = "Procedure Performer"            
@@ -288,14 +292,14 @@ class ProcedurePerformer(models.Model):
     actor_type = fields.Selection(
         string="Performer Actor Type", 
         selection=[
-            ("practitioner", "Practitioner"), 
-            ("organization", "Organization"),
-            ("patient", "Patient"),
-            ("related person", "Related Person")], 
+            ("Practitioner", "Practitioner"), 
+            ("Organization", "Organization"),
+            ("Patient", "Patient"),
+            ("Related Person", "Related Person")], 
         help="Type of practitioner who was involved in the procedure.") 
     actor_name = fields.Char(
         string="Actor", 
-        compute="compute_actor_name",
+        compute="_compute_actor_name",
         help="The name of the entity who performs the procedure.")                                   
     actor_practitioner_id = fields.Many2one(
         comodel_name="hc.res.practitioner", 
@@ -319,15 +323,15 @@ class ProcedurePerformer(models.Model):
         help="The practitioner who was involved in the procedure.")                   
 
     @api.multi          
-    def compute_actor_name(self):           
+    def _compute_actor_name(self):           
         for hc_procedure_performer in self:     
-            if hc_procedure_performer.actor_type == 'practitioner': 
+            if hc_procedure_performer.actor_type == 'Practitioner': 
                 hc_procedure_performer.actor_name = hc_procedure_performer.actor_practitioner_id.name
-            elif hc_procedure_performer.actor_type == 'organization':   
+            elif hc_procedure_performer.actor_type == 'Organization':   
                 hc_procedure_performer.actor_name = hc_procedure_performer.actor_organization_id.name
-            elif hc_procedure_performer.actor_type == 'patient':    
+            elif hc_procedure_performer.actor_type == 'Patient':    
                 hc_procedure_performer.actor_name = hc_procedure_performer.actor_patient_id.name
-            elif hc_procedure_performer.actor_type == 'related person': 
+            elif hc_procedure_performer.actor_type == 'Related Person': 
                 hc_procedure_performer.actor_name = hc_procedure_performer.actor_related_person_id.name
 
 class ProcedureFocalDevice(models.Model):   
@@ -371,10 +375,10 @@ class ProcedureDiagnosticReport(models.Model):
         comodel_name="hc.res.procedure", 
         string="Procedure", 
         help="Procedure associated with this Diagnostic Report.")                   
-    # diagnostic_report_id = fields.Many2one(
-    #     comodel_name="hc.res.diagnostic.report", 
-    #     string="Diagnostic Report", 
-    #     help="Diagnostic Report associated with this Procedure.")                   
+    diagnostic_report_id = fields.Many2one(
+        comodel_name="hc.res.diagnostic.report", 
+        string="Diagnostic Report", 
+        help="Diagnostic Report associated with this Procedure.")                   
 
 class ProcedureIdentifier(models.Model):    
     _name = "hc.procedure.identifier"   
@@ -506,3 +510,13 @@ class DeviceAction(models.Model):
     _name = "hc.vs.device.action"   
     _description = "Device Action"      
     _inherit = ["hc.value.set.contains"]    
+
+# External Reference
+
+class EncounterIndication(models.Model):    
+    _name = "hc.encounter.indication"
+    
+    indication_procedure_id = fields.Many2one(
+        comodel_name="hc.res.procedure", 
+        string="Indication Procedure", 
+        help="Procedure reason the encounter takes place (resource).")

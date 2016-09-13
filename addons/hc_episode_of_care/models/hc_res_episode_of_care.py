@@ -114,3 +114,14 @@ class EpisodeOfCareType(models.Model):
     _name = "hc.vs.episode.of.care.type"    
     _description = "Episode Of Care Type"        
     _inherit = ["hc.value.set.contains"]
+
+
+# External Reference
+
+class Condition(models.Model):    
+    _inherit = "hc.res.condition"
+
+    context_episode_of_care_id = fields.Many2one(
+        comodel_name="hc.res.episode.of.care", 
+        string="Context Episode Of Care", 
+        help="Episode Of Care when condition first asserted.")

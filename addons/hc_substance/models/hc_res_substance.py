@@ -50,17 +50,22 @@ class SubstanceIngredient(models.Model):
     substance_id = fields.Many2one(
         comodel_name="hc.res.substance", 
         string="Substance", 
-        help="Substance associated with this Ingredient.")              
-    quantity_ratio = fields.Float(
-        string="Quantity Ratio", 
-        compute="compute_quantity_ratio", 
-        help="Ratio of optional amount (concentration) .")             
+        help="Substance associated with this Ingredient.")                         
     quantity_numerator = fields.Float(
         string="Quantity Numerator", 
         help="Numerator value of optional amount (concentration).")              
     quantity_denominator = fields.Float(
         string="Quantity Denominator", 
         help="Denominator value of optional amount (concentration).")                
+    quantity_ratio = fields.Float(
+        string="Quantity Ratio", 
+        compute="_compute_quantity_ratio",
+        store="True", 
+        help="Optional amount (concentration).")
+    quantity_ratio_uom_id = fields.Many2one(
+        comodel_name="product.uom", 
+        string="Quantity Ratio UOM", 
+        help="Optional amount (concentration) unit of measure.")
     substance_type = fields.Selection(
         string="Substance Type", 
         required="True", 
@@ -70,8 +75,9 @@ class SubstanceIngredient(models.Model):
         help="Type of component of the substance.")               
     substance_name = fields.Char(
         string="Substance", 
-        compute="compute_substance_name", 
-        required="True", 
+        compute="_compute_substance_name", 
+        required="True",
+        store="True", 
         help="A component of the substance.")              
     substance_code_id = fields.Many2one(
         comodel_name="hc.vs.substance.code", 
@@ -83,6 +89,14 @@ class SubstanceIngredient(models.Model):
         string="Substance Component", 
         required="True", 
         help="Substance component of the substance.")              
+
+    @api.multi          
+    def _compute_substance_name(self):          
+        for hc_res_substance in self:       
+            if hc_res_substance.substance_type == 'Codeable Concept':   
+                hc_res_substance.substance_name = hc_res_substance.substance_codeable_concept_id.name
+            elif hc_res_substance.substance_type == 'Substance':    
+                hc_res_substance.substance_name = hc_res_substance.substance_substance_id.name
 
 class SubstanceIdentifier(models.Model):    
     _name = "hc.substance.identifier"    

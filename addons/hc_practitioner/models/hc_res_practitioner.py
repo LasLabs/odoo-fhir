@@ -285,7 +285,7 @@ class Annotation(models.Model):
         help="Practitioner responsible for the annotation.")
 
     @api.multi
-    def compute_author_name(self):
+    def _compute_author_name(self):
         for hc_annotation in self:
             if hc_annotation.author_type == 'string':
                 hc_annotation.author_name = hc_annotation.author_string

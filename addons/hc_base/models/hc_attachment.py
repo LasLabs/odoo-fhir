@@ -29,9 +29,16 @@ class Attachment(models.Model):
         comodel_name="res.lang", 
         string="Language", 
         help="Human language of the content (BCP-47).")
+    datas = fields.Binary(
+        string="Data", 
+        help="Data inline, base64ed.")
     hash_attachment = fields.Binary(
         string="Hash", 
         help="Hash of the data (sha-1, base64ed ).")
     creation_date = fields.Datetime(
         string="Creation Date", 
         help="Date attachment was first created.")
+
+# Constraints
+
+# If the Attachment has datas, it SHALL have a mimetype

@@ -75,19 +75,19 @@ class HumanName(models.Model):
     _description = "Human Name"
     
     name = fields.Char(
-        compute='compute_full_name',
-        store=True,
+        compute='_compute_full_name',
+        store="True",
         string="Full Name",
         help="A full text representation of the human name.")
     given = fields.Char(
-        store=True,
+        store="True",
         string="Given Name", 
-        readonly=True,
+        readonly="True",
         help="Given names (not always 'first'). Includes middle names.")
     family = fields.Char(
-        store=True,
+        store="True",
         string="Family Name", 
-        readonly=True,
+        readonly="True",
         help="The terms of a name that links to the genealogy. (e.g., surname, birth last name).")
     prefix_ids = fields.Many2many(
         comodel_name="res.partner.title", 
@@ -170,7 +170,7 @@ class HumanName(models.Model):
 
 #     name = fields.Char(
 #         compute='compute_full', 
-#         store=True,
+#         store="True",
 #         string="Full Name",
 #         help="A full text representation of the human name.")
 
@@ -188,7 +188,7 @@ class HumanName(models.Model):
 
 #     family = fields.Char(
 #         compute="compute_family",
-#         store=True,
+#         store="True",
 #         string="Family Name", 
 #         help="Family name (often called 'Surname').")
 
@@ -258,7 +258,7 @@ class HumanName(models.Model):
 #     _inherit = 'hc.human.name'
 
     @api.depends('display_order', 'prefix_ids', 'first_id', 'middle_ids', 'initial_ids', 'nickname_ids', 'mother_maiden_name_id', 'surname_id', 'suffix_ids', 'previous_last_id', 'birth_last_name_id')
-    def compute_full_name(self):
+    def _compute_full_name(self):
         first_name = self.first_id.name if self.first_id else ''
         middle_name = " ".join([middle.name for middle in self.middle_ids]) if self.middle_ids else ''
         initials = " ".join([initial.name for initial in self.initial_ids]) if self.initial_ids else ''
@@ -289,7 +289,7 @@ class HumanName(models.Model):
             self.name = full_family_reverse
 
     # name = fields.Char(compute='compute_full_name',
-    #     store=True,
+    #     store="True",
     #     string="Full Name",
     #     help="A full text representation of the human name.")
 

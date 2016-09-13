@@ -13,7 +13,7 @@ class Annotation(models.AbstractModel):
     # 	help="The name of the annotation.")
     annotation = fields.Text(
         string="Annotation",
-        required=True, 
+        required="True", 
         help="The text content.")
     recorded_date = fields.Datetime(
         string="Recorded Date", 
@@ -27,8 +27,9 @@ class Annotation(models.AbstractModel):
             ("related person", "Related Person")],
         help="Type of individual responsible for the annotation.")
     author_name = fields.Char(
-        string="Author",
-        compute="compute_author_name",
+        string="Author", 
+        compute="_compute_author_name", 
+        store="True",
         help="Individual responsible for the annotation.")
     author_string = fields.Char(
         string="Author String",
@@ -38,13 +39,13 @@ class Annotation(models.AbstractModel):
     # author_related_person_id = fields.Many2one(comodel_name="hc.res.related.person", string="Author Related Person", help="Related person responsible for the annotation.")
 
     @api.multi
-    def compute_author_name(self):
+    def _compute_author_name(self):
         for hc_annotation in self:
             if hc_annotation.author_type == 'string':
                 hc_annotation.author_name = hc_annotation.author_string
 
     # @api.multi
-    # def compute_author_name(self):
+    # def _compute_author_name(self):
     #     for hc_annot in self:
     #         if hc_annotation.author_type == 'string':
     #             hc_annotation.author_name = hc_annotation.author_string

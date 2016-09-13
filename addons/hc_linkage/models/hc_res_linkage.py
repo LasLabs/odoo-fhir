@@ -5,18 +5,18 @@ from openerp import models, fields, api
 class Linkage(models.Model):    
     _name = "hc.res.linkage"    
     _description = "Linkage"
-    
+         
     author_type = fields.Selection(
         string="Author Type", 
-        required="True", 
         selection=[
-            ("practitioner", "Practitioner"), 
-            ("organization", "Organization")], 
-        help="Type of who is responsible for linkages.")        
+            ("Practitioner", "Practitioner"), 
+            ("Organization", "Organization")], 
+        help="Type of who is responsible for linkages.")
     author_name = fields.Char(
         string="Author", 
-        compute="compute_author_name", 
-        help="Who is responsible for linkage.")        
+        compute="_compute_author_name", 
+        store="True", 
+        help="Who is responsible for linkage.")       
     author_practitioner_id = fields.Many2one(
         comodel_name="hc.res.practitioner", 
         string="Author Practitioner", 
@@ -25,6 +25,14 @@ class Linkage(models.Model):
         comodel_name="hc.res.organization", 
         string="Author Organization", 
         help="Organization who is responsible for linkages.")        
+
+    @api.multi          
+    def _compute_author_name(self):         
+        for hc_res_linkage in self:     
+            if hc_res_linkage.author_type == 'Practitioner':    
+                hc_res_linkage.author_name = hc_res_linkage.author_practitioner_id.name
+            elif hc_res_linkage.author_type == 'Organization':  
+                hc_res_linkage.author_name = hc_res_linkage.author_organization_id.name
 
 class LinkageItem(models.Model):    
     _name = "hc.linkage.item"    

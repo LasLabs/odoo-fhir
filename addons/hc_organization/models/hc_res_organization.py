@@ -20,7 +20,7 @@ class Organization(models.Model):
         help="Identifies this organization across multiple systems.")             
     is_active_organization = fields.Boolean(
         string="Active",
-        default=True, 
+        default="True", 
         help="Whether the organization's record is still in active use.") 
     type_id = fields.Many2one(
         comodel_name="hc.vs.organization.type", 

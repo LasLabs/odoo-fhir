@@ -31,7 +31,7 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['hc_base'],
+    'depends': ['hc_specimen'],
 
     # always loaded
     'data': [

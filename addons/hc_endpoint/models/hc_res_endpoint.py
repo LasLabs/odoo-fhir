@@ -138,3 +138,16 @@ class EndpointPayloadType(models.Model):
     _name = "hc.vs.endpoint.payload.type"   
     _description = "Endpoint Payload Type"      
     _inherit = ["hc.value.set.contains"]    
+
+# External Reference
+
+class OrganizationEndpoint(models.Model):
+    _inherits = {"hc.res.endpoint": "endpoint_id"}
+
+    endpoint_id = fields.Many2one(
+        comodel_name="hc.res.endpoint", 
+        string="Endpoint",
+        required="True",
+        ondelete="restrict", 
+        help="Endpoint associated with this organization.")
+

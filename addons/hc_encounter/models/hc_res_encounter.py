@@ -322,14 +322,14 @@ class EncounterIndication(models.Model):
         compute="compute_indication_name", 
         required="True", 
         help="Reason the encounter takes place (resource).")                
-    indication_condition_id = fields.Many2one(
-        comodel_name="hc.res.condition", 
-        string="Indication Condition", 
-        help="Condition reason the encounter takes place (resource).")                
-    indication_procedure_id = fields.Many2one(
-        comodel_name="hc.res.procedure", 
-        string="Indication Procedure", 
-        help="Procedure reason the encounter takes place (resource).")                
+    # indication_condition_id = fields.Many2one(
+    #     comodel_name="hc.res.condition", 
+    #     string="Indication Condition", 
+    #     help="Condition reason the encounter takes place (resource).")                
+    # indication_procedure_id = fields.Many2one(
+    #     comodel_name="hc.res.procedure", 
+    #     string="Indication Procedure", 
+    #     help="Procedure reason the encounter takes place (resource).")                
 
 class PreAdmissionIdentifier(models.Model): 
     _name = "hc.pre.admission.identifier"   
@@ -350,10 +350,10 @@ class AdmittingDiagnosis(models.Model):
         comodel_name="hc.encounter.hospitalization", 
         string="Encounter Hospitalization", 
         help="Hospitalization associated with this encounter hospitalization admitting diagnosis.")             
-    condition_id = fields.Many2one(
-        comodel_name="hc.res.condition", 
-        string="Condition", 
-        help="Condition associated with this encounter hospitalization admitting diagnosis.")                
+    # condition_id = fields.Many2one(
+    #     comodel_name="hc.res.condition", 
+    #     string="Condition", 
+    #     help="Condition associated with this encounter hospitalization admitting diagnosis.")                
 
 class DischargeDiagnosis(models.Model): 
     _name = "hc.discharge.diagnosis"  
@@ -364,10 +364,10 @@ class DischargeDiagnosis(models.Model):
         comodel_name="hc.encounter.hospitalization", 
         string="Encounter Hospitalization", 
         help="Hospitalization associated with this encounter hospitalization discharge diagnosis.")             
-    condition_id = fields.Many2one(
-        comodel_name="hc.res.condition", 
-        string="Condition", 
-        help="Condition associated with this encounter hospitalization discharge diagnosis.")                
+    # condition_id = fields.Many2one(
+    #     comodel_name="hc.res.condition", 
+    #     string="Condition", 
+    #     help="Condition associated with this encounter hospitalization discharge diagnosis.")                
 
 class EncounterParticipantType(models.Model):   
     _name = "hc.encounter.participant.type" 
@@ -434,13 +434,13 @@ class V2ReadmissionIndicator(models.Model):
 
 # External Reference
 
-class Procedure(models.Model):  
-    _inherit = "hc.res.procedure"  
+# class Procedure(models.Model):  
+#     _inherit = "hc.res.procedure"  
 
-    encounter_id = fields.Many2one(
-        comodel_name="hc.res.encounter", 
-        string="Encounter", 
-        help="The encounter associated with the procedure.")
+#     encounter_id = fields.Many2one(
+#         comodel_name="hc.res.encounter", 
+#         string="Encounter", 
+#         help="The encounter associated with the procedure.")
 
 class Condition(models.Model):    
     _inherit = "hc.res.condition"
@@ -449,3 +449,9 @@ class Condition(models.Model):
         comodel_name="hc.res.encounter", 
         string="Context Encounter", 
         help="Encounter when condition first asserted.")
+
+    @api.multi          
+    def _compute_context_name(self):            
+        for hc_res_condition in self:       
+            if hc_res_condition.context_type == 'Encounter':  
+                hc_res_condition.context_name = hc_res_condition.context_encounter_id.name
