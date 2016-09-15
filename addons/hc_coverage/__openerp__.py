@@ -26,7 +26,7 @@
 
     # any module necessary for this one to work correctly
     # 'depends': ['hc_contract'],
-    'depends': ['hc_patient','hc_organization'],
+    'depends': ['hc_patient'],
 
     # always loaded
     'data': [
