@@ -88,8 +88,14 @@ class ImagingStudyBasedOn(models.Model):
     imaging_study_id = fields.Many2one(comodel_name="hc.res.imaging.study", string="Imaging Study", help="Imaging study associated with this imaging study based on.")                
     based_on_type = fields.Selection(string="Based On Type", selection=[("Encounter", "Encounter"), ("Episode Of Care", "Episode Of Care")], help="Type of originating context.")                
     based_on_name = fields.Char(string="Based On", compute="_compute_based_on_name", store="True", help="Request fulfilled.")                
-    based_on_referral_request_id = fields.Many2one(comodel_name="hc.res.referral request", string="Based On Referral Request", help="ReferralRequest request fulfilled.")                
-    based_on_care_plan_id = fields.Many2one(comodel_name="hc.res.care.plan", string="Based On Care Plan", help="Care Plan request fulfilled.")                
+    # based_on_referral_request_id = fields.Many2one(
+    #     comodel_name="hc.res.referral request", 
+    #     string="Based On Referral Request", 
+    #     help="ReferralRequest request fulfilled.")                
+    # based_on_care_plan_id = fields.Many2one(
+    #     comodel_name="hc.res.care.plan", 
+    #     string="Based On Care Plan", 
+    #     help="Care Plan request fulfilled.")                
     based_on_diagnostic_request_id = fields.Many2one(comodel_name="hc.res.diagnostic.request", string="Based On Diagnostic Request", help="Diagnostic Request request fulfilled.")                
     based_on_procedure_request_id = fields.Many2one(comodel_name="hc.res.procedure.request", string="Based On Procedure Request", help="Procedure Request request fulfilled.")                
 
@@ -114,7 +120,7 @@ class ImagingStudyProcedure(models.Model):
     _inherit = ["hc.basic.association"]
 
     imaging_study_id = fields.Many2one(comodel_name="hc.res.imaging.study", string="Imaging Study", help="Imaging study associated with this imaging study procedure.")                
-    procedure_id = fields.Many2one(comodel_name="hc.res.procedure", string="Procedure", help="Procedure associated with this imaging study procedure.")                
+    # procedure_id = fields.Many2one(comodel_name="hc.res.procedure", string="Procedure", help="Procedure associated with this imaging study procedure.")                
 
 class BodySiteLaterality(models.Model):    
     _name = "hc.vs.body.site.laterality"    

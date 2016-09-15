@@ -271,13 +271,13 @@ class ProcedureComponent(models.Model):
         string="Component Observation", 
         help="Observation event related to the procedure.")              
 
-    @api.multi          
-    def _compute_component_name(self):           
-        for hc_procedure_component in self:     
-            if hc_procedure_component.component_type == 'Procedure':  
-                hc_procedure_component.component_name = hc_procedure_component.component_procedure_id.name
-            elif hc_procedure_component.component_type == 'Observation':    
-                hc_procedure_component.component_name = hc_procedure_component.component_observation_id.name
+    # @api.multi          
+    # def _compute_component_name(self):           
+    #     for hc_procedure_component in self:     
+    #         if hc_procedure_component.component_type == 'Procedure':  
+    #             hc_procedure_component.component_name = hc_procedure_component.component_procedure_id.name
+    #         elif hc_procedure_component.component_type == 'Observation':    
+    #             hc_procedure_component.component_name = hc_procedure_component.component_observation_id.name
             # elif hc_procedure_component.component_type == 'Medication Administration':    
             #     hc_procedure_component.component_name = hc_procedure_component.component_medication_administration_id.name
             
@@ -375,10 +375,10 @@ class ProcedureDiagnosticReport(models.Model):
         comodel_name="hc.res.procedure", 
         string="Procedure", 
         help="Procedure associated with this Diagnostic Report.")                   
-    diagnostic_report_id = fields.Many2one(
-        comodel_name="hc.res.diagnostic.report", 
-        string="Diagnostic Report", 
-        help="Diagnostic Report associated with this Procedure.")                   
+    # diagnostic_report_id = fields.Many2one(
+    #     comodel_name="hc.res.diagnostic.report", 
+    #     string="Diagnostic Report", 
+    #     help="Diagnostic Report associated with this Procedure.")                   
 
 class ProcedureIdentifier(models.Model):    
     _name = "hc.procedure.identifier"   

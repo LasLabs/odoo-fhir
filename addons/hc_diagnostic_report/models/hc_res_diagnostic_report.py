@@ -123,11 +123,14 @@ class DiagnosticReportSpecimen(models.Model):
     _name = "hc.diagnostic.report.specimen"    
     _description = "Diagnostic Report Specimen"        
 
-    diagnostic_report_id = fields.Many2one(comodel_name="hc.res.diagnostic.report", string="Diagnostic Report", help="Diagnostic Report associated with this diagnostic report specimen.")                
-    # specimen_id = fields.Many2one(
-    #     comodel_name="hc.res.specimen", 
-    #     string="Specimen", 
-    #     help="Specimen associated with this diagnostic report specimen.")                
+    diagnostic_report_id = fields.Many2one(
+        comodel_name="hc.res.diagnostic.report", 
+        string="Diagnostic Report", 
+        help="Diagnostic Report associated with this diagnostic report specimen.")                
+    specimen_id = fields.Many2one(
+        comodel_name="hc.res.specimen", 
+        string="Specimen", 
+        help="Specimen associated with this diagnostic report specimen.")                
 
 class DiagnosticReportCategory(models.Model):    
     _name = "hc.vs.diagnostic.report.category"    
@@ -144,12 +147,20 @@ class ClinicalFinding(models.Model):
     _description = "Clinical Finding"        
     _inherit = ["hc.value.set.contains"]
 
-External Reference
+# External Reference
 
 class ConditionStageAssessment(models.Model):    
-    _name = "hc.condition.stage.assessment"
+    _inherit = "hc.condition.stage.assessment"
 
     assessment_diagnostic_report_id = fields.Many2one(
         comodel_name="hc.res.diagnostic.report", 
         string="Assessment Diagnostic Reports", 
         help="Diagnostic Report formal record of assessment.")
+
+class ProcedureDiagnosticReport(models.Model):  
+    _inherit = "hc.procedure.diagnostic.report"
+
+    diagnostic_report_id = fields.Many2one(
+        comodel_name="hc.res.diagnostic.report", 
+        string="Diagnostic Report", 
+        help="Diagnostic Report associated with this Procedure.")

@@ -11,7 +11,7 @@ class Person(models.Model):
     partner_id = fields.Many2one(
         comodel_name="res.partner", 
         string="Partner", 
-        required=True, 
+        required="True", 
         ondelete="restrict", 
         help="Partner associated with this person.")
     name_id = fields.Many2one(
@@ -26,7 +26,7 @@ class Person(models.Model):
     name_ids = fields.One2many(
         comodel_name="hc.person.name", 
         inverse_name="person_id", 
-        string="Names", 
+        string="Names",
         help="A name associated with this person.")
     address_ids = fields.One2many(
         comodel_name="hc.person.address", 
@@ -93,7 +93,7 @@ class PersonLink(models.Model):
         comodel_name="hc.res.person", 
         string="Target Person", 
         help="Person who is the resource to which this actual person is associated.")
-#    target_patient_id = fields.Many2one(comodel_name="hc.res.patient", string="Target Patient", required=True, help="Patient who is the resource to which this actual person is associated.")
+#    target_patient_id = fields.Many2one(comodel_name="hc.res.patient", string="Target Patient", required="True", help="Patient who is the resource to which this actual person is associated.")
 #    target_practitioner_id = fields.Many2one(comodel_name="hc.res.practitioner", string="Target Practitioner", help="Practitioner who is the resource to which this actual person is associated.")
 #    target_related_person_id = fields.Many2one(comodel_name="hc.res.related.person", string="Target Related Person", help="Related Person who is the resource to which this actual person is associated.")
     assurance_level = fields.Selection(
@@ -111,11 +111,10 @@ class PersonAddress(models.Model):
     _inherit = ["hc.basic.association"]
     _inherits = {"hc.address": "address_id"}
 
-
     address_id = fields.Many2one(
         comodel_name="hc.address", 
         string="Address", 
-        required=True,
+        required="True",
         ondelete="restrict", 
         help="Address associated with this entity.") 
     person_id = fields.Many2one(
@@ -157,7 +156,7 @@ class PersonName(models.Model):
     human_name_id = fields.Many2one(
         comodel_name="hc.human.name",
         string="Human Name",
-        required=True,
+        required="True",
         ondelete="restrict", 
         help="Human name associated with this person name.")
     person_id = fields.Many2one(
@@ -174,7 +173,7 @@ class PersonTelecom(models.Model):
     telecom_id = fields.Many2one(
         comodel_name="hc.telecom",
         string="Telecom",
-        required=True,
+        required="True",
         ondelete="restrict",
         help="Telecom contact point associated with this person.")
     person_id = fields.Many2one(

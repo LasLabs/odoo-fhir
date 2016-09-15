@@ -58,16 +58,15 @@ class DiagnosticRequest(models.Model):
         string="Subject Type", 
         required="True", 
         selection=[
-            ("Patient", "Patient"), 
-            ("Group", "Group"), 
-            ("Location", "Location"), 
-            ("Device", "Device")],
+            ("patient", "Patient"), 
+            ("group", "Group"), 
+            ("location", "Location"), 
+            ("device", "Device")], 
         help="Type of who and/or what test is about.")                    
     subject_name = fields.Char(
         string="Subject", 
-        compute="_compute_subject_name", 
-        store="True", 
-        help="Who and/or what test is about.")                 
+        compute="compute_subject_name", 
+        help="Who and/or what test is about.")                    
     subject_patient_id = fields.Many2one(
         comodel_name="hc.res.patient", 
         string="Subject Patient", 
@@ -92,8 +91,7 @@ class DiagnosticRequest(models.Model):
         help="Encounter or Episode during which request was created.")                    
     context_name = fields.Char(
         string="Context", 
-        compute="_compute_context_name", 
-        store="True", 
+        compute="compute_context_name", 
         help="Encounter or Episode during which request was created.")
     context_encounter_id = fields.Many2one(
         comodel_name="hc.res.encounter", 
@@ -109,12 +107,11 @@ class DiagnosticRequest(models.Model):
             ("datetime", "Datetime"), 
             ("period", "Period"), 
             ("timing", "Timing")], 
-        help="Type of when testing should occur.")                     
+        help="Type of when testing should occur.")                    
     occurrence_name = fields.Char(
         string="Occurrence", 
-        compute="_compute_occurrence_name", 
-        store="True", 
-        help="When testing should occur.")
+        compute="compute_occurrence_name", 
+        help="When testing should occur.")             
     occurrence_datetime = fields.Datetime(
         string="Occurrence Datetime", 
         help="dateTime when testing should occur.")                    
@@ -129,19 +126,18 @@ class DiagnosticRequest(models.Model):
         string="Occurrence Timing", 
         help="Timing when testing should occur.")             
     authored = fields.Datetime(string="Authored Date", 
-        help="Request signed.")                            
+        help="Request signed.")                    
     requester_type = fields.Selection(
         string="Requester Type", 
         selection=[
-            ("Device", "Device"), 
-            ("Practitioner", "Practitioner"), 
-            ("Organization", "Organization")],
+            ("device", "Device"), 
+            ("practitioner", "Practitioner"), 
+            ("organization", "Organization")], 
         help="Type of who/what is requesting diagnostics.")                    
     requester_name = fields.Char(
         string="Requester", 
-        compute="_compute_requester_name", 
-        store="True",
-        help="Who/what is requesting diagnostics.")
+        compute="compute_requester_name", 
+        help="Who/what is requesting diagnostics.")                    
     requester_device_id = fields.Many2one(
         comodel_name="hc.res.device", 
         string="Requester Device", 
@@ -158,8 +154,8 @@ class DiagnosticRequest(models.Model):
         comodel_name="hc.vs.participant.role", 
         string="Performer Type", 
         help="Performer role.")                    
-    requested_performer_type = fields.Selection(
-        string="Requested Performer Type", 
+    requested_type = fields.Selection(
+        string="Requested Type", 
         selection=[
             ("Practitioner", "Practitioner"), 
             ("Organization", "Organization"), 
@@ -167,10 +163,9 @@ class DiagnosticRequest(models.Model):
             ("Device", "Device"), 
             ("Related Person", "Related Person")], 
         help="Type of requested perfomer.")
-    requested_performer_name = fields.Char(
-        string="Requested Performer", 
-        compute="_compute_requested_performer_name", 
-        store="True", 
+    requested_name = fields.Char(
+        string="Requested", 
+        compute="compute_requested_name", 
         help="Requested perfomer.")
     requested_practitioner_id = fields.Many2one(
         comodel_name="hc.res.practitioner", 
@@ -211,61 +206,7 @@ class DiagnosticRequest(models.Model):
         comodel_name="hc.diagnostic.request.relevant.history", 
         inverse_name="diagnostic_request_id", 
         string="Relevant Histories", 
-        help="Request provenance.")
-
-    @api.multi          
-    def _compute_subject_name(self):            
-        for hc_res_diagnostic_request in self:      
-            if hc_res_diagnostic_request.subject_type == 'Practitioner':    
-                hc_res_diagnostic_request.subject_name = hc_res_diagnostic_request.subject_practitioner_id.name
-            elif hc_res_diagnostic_request.subject_type == 'Patient':   
-                hc_res_diagnostic_request.subject_name = hc_res_diagnostic_request.subject_patient_id.name
-            elif hc_res_diagnostic_request.subject_type == 'Related Person':    
-                hc_res_diagnostic_request.subject_name = hc_res_diagnostic_request.subject_related_person_id.name
-            elif hc_res_diagnostic_request.subject_type == 'Device':    
-                hc_res_diagnostic_request.subject_name = hc_res_diagnostic_request.subject_device_id.name
-
-    @api.multi          
-    def _compute_context_name(self):            
-        for hc_res_diagnostic_request in self:      
-            if hc_res_diagnostic_request.context_type == 'Encounter':   
-                hc_res_diagnostic_request.context_name = hc_res_diagnostic_request.context_encounter_id.name
-            elif hc_res_diagnostic_request.context_type == 'Episode Of Care':   
-                hc_res_diagnostic_request.context_name = hc_res_diagnostic_request.context_episode_of_care_id.name
-    
-    @api.multi          
-    def _compute_occurence_name(self):          
-        for hc_res_diagnostic_request in self:      
-            if hc_res_diagnostic_request.occurence_type == 'datetime':  
-                hc_res_diagnostic_request.occurence_name = hc_res_diagnostic_request.occurence_datetime_id.name
-            elif hc_res_diagnostic_request.occurence_type == 'period':  
-                hc_res_diagnostic_request.occurence_name = hc_res_diagnostic_request.occurence_period_id.name
-            elif hc_res_diagnostic_request.occurence_type == 'timing':  
-                hc_res_diagnostic_request.occurence_name = hc_res_diagnostic_request.occurence_timing_id.name
-    
-    @api.multi          
-    def _compute_requester_name(self):          
-        for hc_res_diagnostic_request in self:      
-            if hc_res_diagnostic_request.requester_type == 'Device':    
-                hc_res_diagnostic_request.requester_name = hc_res_diagnostic_request.requester_device_id.name
-            elif hc_res_diagnostic_request.requester_type == 'Practitioner':    
-                hc_res_diagnostic_request.requester_name = hc_res_diagnostic_request.requester_practitioner_id.name
-            elif hc_res_diagnostic_request.requester_type == 'Organization':    
-                hc_res_diagnostic_request.requester_name = hc_res_diagnostic_request.requester_organization_id.name
- 
-    @api.multi          
-    def _compute_requested_performer_name(self):            
-        for hc_res_diagnostic_request in self:      
-            if hc_res_diagnostic_request.requested_performer_type == 'Practitioner':    
-                hc_res_diagnostic_request.requested_performer_name = hc_res_diagnostic_request.requested_performer_practitioner_id.name
-            elif hc_res_diagnostic_request.requested_performer_type == 'Organization':  
-                hc_res_diagnostic_request.requested_performer_name = hc_res_diagnostic_request.requested_performer_organization_id.name
-            elif hc_res_diagnostic_request.requested_performer_type == 'Patient':   
-                hc_res_diagnostic_request.requested_performer_name = hc_res_diagnostic_request.requested_performer_patient_id.name
-            elif hc_res_diagnostic_request.requested_performer_type == 'Device':    
-                hc_res_diagnostic_request.requested_performer_name = hc_res_diagnostic_request.requested_performer_device_id.name
-            elif hc_res_diagnostic_request.requested_performer_type == 'Related Person': 
-                hc_res_diagnostic_request.requested_performer_name = hc_res_diagnostic_request.requested_performer_related_person_id.name
+        help="Request provenance.")                    
 
 class DiagnosticRequestIdentifier(models.Model):    
     _name = "hc.diagnostic.request.identifier"    
@@ -300,13 +241,12 @@ class DiagnosticRequestBasedOn(models.Model):
         string="Based On Type", 
         selection=[
             ("string", "String"), 
-            ("Diagnostic Request", "Diagnostic Request")], 
-        help="Type of what request fulfills.")                  
+            ("code", "Code")], 
+        help="Type of what request fulfills.")                    
     based_on_name = fields.Char(
         string="Based On", 
-        compute="_compute_based_on_name", 
-        store="True", 
-        help="What request fulfills.")                  
+        compute="compute_based_on_name", 
+        help="What request fulfills.")                    
     based_on_string = fields.Char(
         string="Based On String", 
         help="String what request fulfills.")                    
@@ -314,14 +254,6 @@ class DiagnosticRequestBasedOn(models.Model):
         comodel_name="hc.res.diagnostic.request", 
         string="Based On Diagnostic Request", 
         help="Diagnostic Request what request fulfills.")                    
-
-    @api.multi          
-    def _compute_based_on_name(self):           
-        for hc_res_diagnostic_request in self:      
-            if hc_res_diagnostic_request.based_on_type == 'string': 
-                hc_res_diagnostic_request.based_on_name = hc_res_diagnostic_request.based_on_string_id.name
-            elif hc_res_diagnostic_request.based_on_type == 'Diagnostic Request':   
-                hc_res_diagnostic_request.based_on_name = hc_res_diagnostic_request.based_on_diagnostic_request_id.name
 
 class DiagnosticRequestDefinition(models.Model):    
     _name = "hc.diagnostic.request.definition"    
@@ -340,9 +272,8 @@ class DiagnosticRequestDefinition(models.Model):
         help="Type of protocol or definition.")                    
     definition_name = fields.Char(
         string="Definition", 
-        compute="_compute_definition_name", 
-        store="True", 
-        help="Protocol or definition.")               
+        compute="compute_definition_name", 
+        help="Protocol or definition.")                    
     definition_string = fields.Char(
         string="Definition String", 
         help="String protocol or definition.")                    
@@ -350,14 +281,6 @@ class DiagnosticRequestDefinition(models.Model):
         comodel_name="hc.res.diagnostic.request", 
         string="Definition Diagnostic Request", 
         help="Diagnostic Request protocol or definition.")     
-
-    @api.multi          
-    def _compute_definition_name(self):         
-        for hc_res_diagnostic_request in self:      
-            if hc_res_diagnostic_request.definition_type == 'string':   
-                hc_res_diagnostic_request.definition_name = hc_res_diagnostic_request.definition_string_id.name
-            elif hc_res_diagnostic_request.definition_type == 'Diagnostic Request': 
-                hc_res_diagnostic_request.definition_name = hc_res_diagnostic_request.definition_diagnostic_request_id.name
 
 class DiagnosticRequestNote(models.Model):    
     _name = "hc.diagnostic.request.note"    
@@ -400,24 +323,15 @@ class DiagnosticRequestReplaces(models.Model):
         help="Type of what request replaces.")                    
     replaces_name = fields.Char(
         string="Replaces", 
-        compute="_compute_replaces_name", 
-        store="True", 
-        help="What request replaces.")
+        compute="compute_replaces_name", 
+        help="What request replaces.")                    
     replaces_string = fields.Char(
         string="Replaces String", 
-        help="String what request replaces.")
+        help="String what request replaces.")                    
     replaces_diagnostic_request_id = fields.Many2one(
         comodel_name="hc.res.diagnostic.request", 
         string="Replaces Diagnostic Request", 
-        help="Diagnostic Request what request replaces.")
-                   
-    @api.multi          
-    def _compute_replaces_name(self):           
-        for hc_res_diagnostic_request in self:      
-            if hc_res_diagnostic_request.replaces_type == 'string': 
-                hc_res_diagnostic_request.replaces_name = hc_res_diagnostic_request.replaces_string_id.name
-            elif hc_res_diagnostic_request.replaces_type == 'Diagnostic Request':   
-                hc_res_diagnostic_request.replaces_name = hc_res_diagnostic_request.replaces_diagnostic_request_id.name
+        help="Diagnostic Request what request replaces.")                    
 
 class DiagnosticRequestSupportingInfo(models.Model):    
     _name = "hc.diagnostic.request.supporting.info"    
@@ -436,25 +350,16 @@ class DiagnosticRequestSupportingInfo(models.Model):
         help="Type of additional clinical information.")                    
     supporting_info_name = fields.Char(
         string="Supporting Info", 
-        compute="_compute_supporting_info_name", 
-        store="True", 
-        help="Additional clinical information.")
+        compute="compute_supporting_info_name", 
+        help="Additional clinical information.")                    
     supporting_info_string = fields.Char(
         string="Supporting Info String", 
-        help="String additional clinical information.")
+        help="String additional clinical information.")                    
     supporting_info_diagnostic_request_id = fields.Many2one(
         comodel_name="hc.res.diagnostic.request", 
         string="Supporting Info Diagnostic Request", 
-        help="Diagnostic Request additional clinical information.")
+        help="Diagnostic Request additional clinical information.")                    
 
-    @api.multi          
-    def _compute_supporting_info_name(self):            
-        for hc_res_diagnostic_request in self:      
-            if hc_res_diagnostic_request.supporting_info_type == 'string':  
-                hc_res_diagnostic_request.supporting_info_name = hc_res_diagnostic_request.supporting_info_string_id.name
-            elif hc_res_diagnostic_request.supporting_info_type == 'Diagnostic Request':    
-                hc_res_diagnostic_request.supporting_info_name = hc_res_diagnostic_request.supporting_info_diagnostic_request_id.name
-            
 class DiagnosticRequestReason(models.Model): 
     _name = "hc.diagnostic.request.reason"  
     _description = "Diagnostic Request Reason"      
@@ -484,3 +389,20 @@ class DiagnosticRequestStage(models.Model):
     _description = "Diagnostic Request Stage"       
     _inherit = ["hc.value.set.contains"]
 
+# External Reference
+
+class Procedure(models.Model):  
+    _inherit = "hc.res.procedure"
+
+    request_diagnostic_request_id = fields.Many2one(
+        comodel_name="hc.res.diagnostic.request", 
+        string="Request Diagnostic Request", 
+        help="Diagnostic Request for this procedure.")
+
+class SpecimenRequest(models.Model):    
+    _inherit = "hc.specimen.request"
+    
+    request_diagnostic_request_id = fields.Many2one(
+        comodel_name="hc.res.diagnostic.request", 
+        string="Request Diagnostic Request", 
+        help="Diagnostic Request why the specimen was collected.")
