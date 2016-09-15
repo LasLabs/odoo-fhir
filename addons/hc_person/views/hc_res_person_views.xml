@@ -236,7 +236,7 @@
         <!-- Person Action and Menu --> 
     
         <act_window id="hc_res_person_action"   
-                    name="HC Person"
+                    name="HC Persons"
                     res_model="hc.res.person"
                     view_mode="tree,form"
                     domain=""

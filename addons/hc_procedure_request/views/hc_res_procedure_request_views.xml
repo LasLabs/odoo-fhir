@@ -1,0 +1,22 @@
+<openerp>
+    <data>
+        
+        <!-- Procedure Request Action and Menu -->  
+  
+        <act_window id="hc_res_procedure_request_action"  
+                    name="HC Procedure Requests"
+                    res_model="hc.res.procedure.request"
+                    view_mode="tree,form"
+                    domain=""
+                    context=""
+                    limit=""/>
+
+        <menuitem id="hc_procedure_request.menu_proc_req" 
+                  name="Procedure Requests" 
+                  parent="hc_base.menu_clinic_care" 
+                  action="hc_res_procedure_request_action" 
+                  groups="hc_base.group_hc_base_manager" 
+                  sequence="50"/>
+
+    </data>
+</openerp>

@@ -30,28 +30,38 @@ class ImagingStudy(models.Model):
     reason_id = fields.Many2one(comodel_name="hc.vs.imaging.study.reason", string="Reason", help="Reason for study.")                
     description = fields.Char(string="Description", help="Institution-generated description (0008,1030).")                
     base_location_ids = fields.One2many(comodel_name="hc.imaging.study.base.location", inverse_name="imaging_study_id", string="Base Locations", help="Study access service endpoint.")                
-    series_ids = fields.One2many(comodel_name="hc.imaging.study.series", inverse_name="imaging_study_id", string="Series", help="Each study has one or more series of instances.")                
+    series_ids = fields.One2many(
+        comodel_name="hc.imaging.study.series", 
+        inverse_name="imaging_study_id", 
+        string="Series", 
+        help="Each study has one or more series of instances.")                
 
 class ImagingStudyBaseLocation(models.Model):
     _name = "hc.imaging.study.base.location"    
     _description = "Imaging Study Base Location"
 
     imaging_study_id = fields.Many2one(comodel_name="hc.res.imaging.study", string="Imaging Study", help="Imaging study associated with this base location.")                
-    type_id = fields.Many2one(comodel_name="hc.vs.d.web.type", string="Type", required="True", help="WADO-RS | WADO-URI | IID.")                
+    type_id = fields.Many2one(comodel_name="hc.vs.d.web.type", string="Type", required="True", help="The service type for accessing (e.g., retrieving, viewing) the DICOM instances.")                
     url = fields.Char(string="URL", required="True", help="Study access URL.")                
 
 class ImagingStudySeries(models.Model):    
     _name = "hc.imaging.study.series"    
     _description = "Imaging Study Series"        
 
-    imaging_study_id = fields.Many2one(comodel_name="hc.res.imaging.study", string="Imaging Study", help="Imaging study associated with this series.")                
+    imaging_study_id = fields.Many2one(
+        comodel_name="hc.res.imaging.study", 
+        string="Imaging Study", 
+        help="Imaging study associated with this series.")                
     uid = fields.Char(string="UID", required="True", help="Formal identifier for this series (0020,000E).")                
     number = fields.Integer(string="Number", help="Numeric identifier of this series (0020,0011).")                
     modality_id = fields.Many2one(comodel_name="hc.vs.dicom.cid.29", string="Modality", required="True", help="The modality of the instances in the series (0008,0060).")                
     description = fields.Char(string="Description", help="A description of the series (0008,103E).")                
     number_of_instances = fields.Integer(string="Number Of Instances", required="True", help="Number of Series Related Instances (0020,1209).")                
     availability = fields.Selection(string="Series Availability", selection=[("online", "Online"), ("offline", "Offline"), ("nearline", "Nearline"), ("unavailable (0008,0056)", "Unavailable (0008,0056)")], help="Availability of study (online, offline or nearline).")                
-    body site_id = fields.Many2one(comodel_name="hc.vs.body.site", string="Body Site", help="Body part examined (Map from 0018,0015).")                
+    body_site_id = fields.Many2one(
+        comodel_name="hc.vs.body.site", 
+        string="Body Site", 
+        help="Body part examined (Map from 0018,0015).")                
     laterality_id = fields.Many2one(comodel_name="hc.vs.body.site.laterality", string="Laterality", help="Body part laterality.")                
     date_time = fields.Datetime(string="Date Time", help="When the series started.")                
     base_location_ids = fields.One2many(comodel_name="hc.imaging.study.series.base.location", inverse_name="imaging_study_series_id", string="Base Locations", help="Series access endpoint.")                
@@ -61,15 +71,15 @@ class ImagingStudySeriesBaseLocation(models.Model):
     _name = "hc.imaging.study.series.base.location" 
     _description = "Imaging Study Series Base Location"
 
-    series_id = fields.Many2one(comodel_name="hc.imaging.study.series", string="Series", help="Imaging study series associated with this base location.")                
-    type_id = fields.Many2one(comodel_name="hc.vs.dweb.type", string="Type", required="True", help="WADO-RS | WADO-URI | IID.")                
+    imaging_study_series_id = fields.Many2one(comodel_name="hc.imaging.study.series", string="Imaging Study Series", help="Imaging study series associated with this base location.")                
+    type_id = fields.Many2one(comodel_name="hc.vs.d.web.type", string="Type", required="True", help="The service type for accessing (e.g., retrieving, viewing) the DICOM instances.")                
     url = fields.Char(string="URL", required="True", help="Series access URL.")                
 
 class ImagingStudySeriesInstance(models.Model):    
     _name = "hc.imaging.study.series.instance"    
     _description = "Imaging Study Series Instance"
 
-    series_id = fields.Many2one(comodel_name="hc.imaging.study.series", string="Series", help="Imaging study series associated with this instance.")                
+    imaging_study_series_id = fields.Many2one(comodel_name="hc.imaging.study.series", string="Imaging Study Series", help="Imaging study series associated with this instance.")                
     uid = fields.Char(string="UID", required="True", help="Formal identifier for this instance (0008,0018).")                
     number = fields.Integer(string="Number", help="The number of this instance in the series (0020,0013).")                
     sop_class = fields.Char(string="SOP Class", required="True", help="DICOM class type.")                
@@ -120,7 +130,7 @@ class ImagingStudyProcedure(models.Model):
     _inherit = ["hc.basic.association"]
 
     imaging_study_id = fields.Many2one(comodel_name="hc.res.imaging.study", string="Imaging Study", help="Imaging study associated with this imaging study procedure.")                
-    # procedure_id = fields.Many2one(comodel_name="hc.res.procedure", string="Procedure", help="Procedure associated with this imaging study procedure.")                
+    procedure_id = fields.Many2one(comodel_name="hc.res.procedure", string="Procedure", help="Procedure associated with this imaging study procedure.")                
 
 class BodySiteLaterality(models.Model):    
     _name = "hc.vs.body.site.laterality"    
@@ -134,7 +144,7 @@ class DICOMCID29(models.Model):
 
 class dWebType(models.Model):    
     _name = "hc.vs.d.web.type"    
-    _description = "d Web Type"        
+    _description = "dWeb Type"        
     _inherit = ["hc.value.set.contains"]
 
 class ImagingStudyReason(models.Model):    

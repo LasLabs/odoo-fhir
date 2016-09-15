@@ -295,7 +295,18 @@ class ProcedureRequestScheduledTiming(models.Model):
     _description = "Procedure Request Scheduled Timing"        
     _inherit = ["hc.basic.association", "hc.timing"]    
 
+class ProcedureCode(models.Model):  
+    _name = "hc.vs.procedure.code"  
+    _description = "Procedure Code"     
+    _inherit = ["hc.value.set.contains"]
+
+class ProcedureReasonCode(models.Model):    
+    _name = "hc.vs.procedure.reason"   
+    _description = "Procedure Reason"      
+    _inherit = ["hc.value.set.contains"] 
+
 class ProcedureRequestAsNeeded(models.Model):    
     _name = "hc.vs.procedure.request.as.needed"    
     _description = "Procedure Request As Needed"        
     _inherit = ["hc.value.set.contains"]    
+    

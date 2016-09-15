@@ -431,10 +431,10 @@ class ClinicalImpressionInvestigation(models.Model):
         comodel_name="hc.res.family.member.history", 
         string="Item Family Member History", 
         help="Family Member History record of a specific investigation.")
-    item_diagnostic_report_id = fields.Many2one(
-        comodel_name="hc.res.diagnostic.report", 
-        string="Item Diagnostic Report", 
-        elp="Diagnostic Report record of a specific investigation.")
+    # item_diagnostic_report_id = fields.Many2one(
+    #     comodel_name="hc.res.diagnostic.report", 
+    #     string="Item Diagnostic Report", 
+    #     elp="Diagnostic Report record of a specific investigation.")
     # item_risk_assessment_id = fields.Many2one(
     #     comodel_name="hc.res.risk.assessment", 
     #     string="Item Risk Assessment", 

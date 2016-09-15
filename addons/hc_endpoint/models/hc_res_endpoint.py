@@ -37,7 +37,7 @@ class Endpoint(models.Model):
         comodel_name="hc.vs.subscription.channel.type", 
         string="Connection Type", 
         required="True", 
-        help="rest-hook | websocket | email | sms | message.")                 
+        help="The type of channel to send notifications on.")                 
     method_ids = fields.Many2many(
         comodel_name="hc.vs.http.verb", 
         string="Methods", 
@@ -141,7 +141,19 @@ class EndpointPayloadType(models.Model):
 
 # External Reference
 
+class Organization(models.Model):   
+    _inherit = "hc.res.organization"
+
+    endpoint_ids = fields.One2many(
+        comodel_name="hc.organization.endpoint", 
+        inverse_name="organization_id", 
+        string="Endpoints", 
+        help="Technical endpoints providing access to services operated for the organization.")
+
 class OrganizationEndpoint(models.Model):
+    _name = "hc.organization.endpoint" 
+    _description = "Organization Endpoint"
+    _inherit = ["hc.basic.association"]
     _inherits = {"hc.res.endpoint": "endpoint_id"}
 
     endpoint_id = fields.Many2one(
@@ -150,4 +162,10 @@ class OrganizationEndpoint(models.Model):
         required="True",
         ondelete="restrict", 
         help="Endpoint associated with this organization.")
+    organization_id = fields.Many2one(
+        comodel_name="hc.res.organization", 
+        string="Organization", 
+        help="Organization associated with this endpoint.")
+
+
 

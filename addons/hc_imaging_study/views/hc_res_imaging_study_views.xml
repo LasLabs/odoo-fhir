@@ -1,59 +1,22 @@
 <openerp>
-  <data>
-    <!-- explicit list view definition -->
-    <!--
-    <record model="ir.ui.view" id="hc_imaging_study.list">
-      <field name="name">hc_imaging_study list</field>
-      <field name="model">hc_imaging_study.hc_imaging_study</field>
-      <field name="arch" type="xml">
-        <tree>
-          <field name="name"/>
-          <field name="value"/>
-          <field name="value2"/>
-        </tree>
-      </field>
-    </record>
-    -->
+    <data>
+    
+        <!-- Imaging Study Action and Menu -->  
+    
+        <act_window id="hc_res_imaging_study_action"    
+                    name="HC Imaging Studies"
+                    res_model="hc.res.imaging.study"
+                    view_mode="tree,form"
+                    domain=""
+                    context=""
+                    limit=""/>
 
-    <!-- actions opening views on models -->
-    <!--
-    <record model="ir.actions.act_window" id="hc_imaging_study.action_window">
-      <field name="name">hc_imaging_study window</field>
-      <field name="res_model">hc_imaging_study.hc_imaging_study</field>
-      <field name="view_mode">tree,form</field>
-    </record>
-    -->
+        <menuitem id="hc_imaging_study.menu_image_study" 
+                  name="Imaging Studies" 
+                  parent="hc_base.menu_clinic_diag" 
+                  action="hc_res_imaging_study_action" 
+                  groups="hc_base.group_hc_base_manager" 
+                  sequence="70"/>
 
-    <!-- server action to the one above -->
-    <!--
-    <record model="ir.actions.server" id="hc_imaging_study.action_server">
-      <field name="name">hc_imaging_study server</field>
-      <field name="model_id" ref="model_hc_imaging_study_hc_imaging_study"/>
-      <field name="code">
-        action = {
-          "type": "ir.actions.act_window",
-          "view_mode": "tree,form",
-          "res_model": self._name,
-        }
-      </field>
-    </record>
-    -->
-
-    <!-- Top menu item -->
-    <!--
-    <menuitem name="hc_imaging_study" id="hc_imaging_study.menu_root"/>
-    -->
-    <!-- menu categories -->
-    <!--
-    <menuitem name="Menu 1" id="hc_imaging_study.menu_1" parent="hc_imaging_study.menu_root"/>
-    <menuitem name="Menu 2" id="hc_imaging_study.menu_2" parent="hc_imaging_study.menu_root"/>
-    -->
-    <!-- actions -->
-    <!--
-    <menuitem name="List" id="hc_imaging_study.menu_1_list" parent="hc_imaging_study.menu_1"
-              action="hc_imaging_study.action_window"/>
-    <menuitem name="Server to list" id="hc_imaging_study" parent="hc_imaging_study.menu_2"
-              action="hc_imaging_study.action_server"/>
-    -->
-  </data>
+    </data>
 </openerp>

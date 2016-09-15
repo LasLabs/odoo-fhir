@@ -454,12 +454,7 @@ class ProcedureNote(models.Model):
     procedure_id = fields.Many2one(
         comodel_name="hc.res.procedure", 
         string="Procedure", 
-        help="Procedure associated with this annotation.")                  
-
-class ProcedureCode(models.Model):  
-    _name = "hc.vs.procedure.code"  
-    _description = "Procedure Code"     
-    _inherit = ["hc.value.set.contains"]    
+        help="Procedure associated with this annotation.")                    
 
 class ProcedureNotPerformedReason(models.Model):    
     _name = "hc.vs.procedure.not.performed.reason"  
@@ -474,12 +469,7 @@ class ProcedureNotPerformed(models.Model):
 class ProcedureCategory(models.Model):  
     _name = "hc.vs.procedure.category"  
     _description = "Procedure Category"     
-    _inherit = ["hc.value.set.contains"]    
-
-class ProcedureReasonCode(models.Model):    
-    _name = "hc.vs.procedure.reason"   
-    _description = "Procedure Reason"      
-    _inherit = ["hc.value.set.contains"]    
+    _inherit = ["hc.value.set.contains"]     
 
 class ProcedureOutcome(models.Model):   
     _name = "hc.vs.procedure.outcome"   
@@ -514,7 +504,7 @@ class DeviceAction(models.Model):
 # External Reference
 
 class EncounterIndication(models.Model):    
-    _name = "hc.encounter.indication"
+    _inherit = "hc.encounter.indication"
     
     indication_procedure_id = fields.Many2one(
         comodel_name="hc.res.procedure", 

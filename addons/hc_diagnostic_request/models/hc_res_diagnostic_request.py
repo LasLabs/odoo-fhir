@@ -391,18 +391,18 @@ class DiagnosticRequestStage(models.Model):
 
 # External Reference
 
-class Procedure(models.Model):  
-    _inherit = "hc.res.procedure"
+# class Procedure(models.Model):  
+#     _inherit = "hc.res.procedure"
 
-    request_diagnostic_request_id = fields.Many2one(
-        comodel_name="hc.res.diagnostic.request", 
-        string="Request Diagnostic Request", 
-        help="Diagnostic Request for this procedure.")
+#     request_diagnostic_request_id = fields.Many2one(
+#         comodel_name="hc.res.diagnostic.request", 
+#         string="Request Diagnostic Request", 
+#         help="Diagnostic Request for this procedure.")
 
-class SpecimenRequest(models.Model):    
-    _inherit = "hc.specimen.request"
+# class SpecimenRequest(models.Model):    
+#     _inherit = "hc.specimen.request"
     
-    request_diagnostic_request_id = fields.Many2one(
-        comodel_name="hc.res.diagnostic.request", 
-        string="Request Diagnostic Request", 
-        help="Diagnostic Request why the specimen was collected.")
+#     request_diagnostic_request_id = fields.Many2one(
+#         comodel_name="hc.res.diagnostic.request", 
+#         string="Request Diagnostic Request", 
+#         help="Diagnostic Request why the specimen was collected.")
