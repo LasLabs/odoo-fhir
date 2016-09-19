@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_hc_bundle_hc_bundle,hc_bundle.hc_bundle,model_hc_bundle_hc_bundle,,1,0,0,0

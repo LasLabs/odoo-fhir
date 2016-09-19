@@ -2,8 +2,8 @@
 
 from openerp import models, fields, api
 
-# class hc_immunization(models.Model):
-#     _name = 'hc_immunization.hc_immunization'
+# class hc_document_reference(models.Model):
+#     _name = 'hc_document_reference.hc_document_reference'
 
 #     name = fields.Char()
 #     value = fields.Integer()

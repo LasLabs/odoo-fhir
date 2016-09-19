@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_hc_document_manifest_hc_document_manifest,hc_document_manifest.hc_document_manifest,model_hc_document_manifest_hc_document_manifest,,1,0,0,0

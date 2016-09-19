@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_hc_operation_outcome_hc_operation_outcome,hc_operation_outcome.hc_operation_outcome,model_hc_operation_outcome_hc_operation_outcome,,1,0,0,0

@@ -2,8 +2,8 @@
 
 from openerp import models, fields, api
 
-# class hc_immunization_recommendation(models.Model):
-#     _name = 'hc_immunization_recommendation.hc_immunization_recommendation'
+# class hc_document_manifest(models.Model):
+#     _name = 'hc_document_manifest.hc_document_manifest'
 
 #     name = fields.Char()
 #     value = fields.Integer()

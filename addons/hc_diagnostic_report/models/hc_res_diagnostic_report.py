@@ -75,7 +75,7 @@ class DiagnosticReportRequest(models.Model):
     # referral_request_id = fields.Many2one(
     #     comodel_name="hc.res.referral.request", 
     #     string="Referral Request", 
-    #     help="ReferralRequest request associated with this diagnostic report diagnostic request.")                
+    #     help="Referral Request associated with this diagnostic report diagnostic request.")                
 
 class DiagnosticReportIdentifier(models.Model):    
     _name = "hc.diagnostic.report.identifier"    
@@ -103,7 +103,7 @@ class DiagnosticReportImagingStudy(models.Model):
     # imaging_manifest_id = fields.Many2one(
     #     comodel_name="hc.res.imaging.manifest", 
     #     string="Imaging Manifest", 
-    #     help="ImagingManifest study associated with this diagnostic report imaging study.")                
+    #     help="Imaging Manifest study associated with this diagnostic report imaging study.")                
 
 class DiagnosticReportResult(models.Model):    
     _name = "hc.diagnostic.report.result"    

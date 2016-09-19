@@ -30,11 +30,11 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['hc_allergy_intolerance', 'hc_observation'],
+    'depends': ['hc_allergy_intolerance', 'hc_immunization'],
 
     # always loaded
     'data': [
-        # 'security/ir.model.access.csv',
+        'security/ir.model.access.csv',
         'views/hc_res_immunization_recommendation_views.xml',
         'views/hc_res_immunization_recommendation_templates.xml',
     ],

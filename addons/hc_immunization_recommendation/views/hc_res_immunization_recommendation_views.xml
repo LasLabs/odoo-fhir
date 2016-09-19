@@ -1,0 +1,23 @@
+<openerp>
+    <data>
+    
+
+        <!-- Immunization Recommendation Action and Menu -->    
+        
+        <act_window id="hc_res_immunization_recommendation_action"  
+                    name="HC Immunization Recommendations"
+                    res_model="hc.res.immunization.recommendation"
+                    view_mode="tree,form"
+                    domain=""
+                    context=""
+                    limit=""/>
+
+        <menuitem id="hc_immunization_recommendation.menu_immun_rec" 
+                  name="Immunization Recommendations" 
+                  parent="hc_base.menu_med" 
+                  action="hc_res_immunization_recommendation_action" 
+                  groups="hc_base.group_hc_base_manager" 
+                  sequence="70"/>
+
+    </data>
+</openerp>
