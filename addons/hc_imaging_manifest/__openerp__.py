@@ -17,6 +17,7 @@
         and so on.
 
         **Scope and Usage**
+        
         This resource provides information on a selected set of imaging objects, along with information on how to 
         retrieve those instances (either in native DICOM format, or in a rendered format, such as JPEG), or launch 
         an image viewer. The ImagingManifest is used to make available information concerning images etc. that are 
@@ -37,7 +38,7 @@
 
     # always loaded
     'data': [
-        # 'security/ir.model.access.csv',
+        'security/ir.model.access.csv',
         'views/hc_res_imaging_manifest_views.xml',
         'views/hc_res_imaging_manifest_templates.xml',
     ],

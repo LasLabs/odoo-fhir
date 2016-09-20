@@ -33,7 +33,7 @@
 
     # always loaded
     'data': [
-        # 'security/ir.model.access.csv',
+        'security/ir.model.access.csv',
         'views/hc_res_media_views.xml',
         'views/hc_res_media_templates.xml',
     ],

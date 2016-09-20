@@ -1,2 +1,8 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_hc_imaging_manifest_hc_imaging_manifest,hc_imaging_manifest.hc_imaging_manifest,model_hc_imaging_manifest_hc_imaging_manifest,,1,0,0,0
+access_hc_imaging_manifest_hc_res_imaging_manifest_user,hc.imaging.manifest.hc.res.imaging.manifest.user,model_hc_res_imaging_manifest,hc_base.group_hc_base_user,1,0,0,0
+access_hc_imaging_manifest_hc_img_manif_study_user,hc.imaging.manifest.hc.img.manif.study.user,model_hc_img_manif_study,hc_base.group_hc_base_user,1,0,0,0
+access_hc_imaging_manifest_hc_img_manif_study_base_locn_user,hc.imaging.manifest.hc.img.manif.study.base.locn.user,model_hc_img_manif_study_base_locn,hc_base.group_hc_base_user,1,0,0,0
+access_hc_imaging_manifest_hc_img_manif_study_series_user,hc.imaging.manifest.hc.img.manif.study.series.user,model_hc_img_manif_study_series,hc_base.group_hc_base_user,1,0,0,0
+access_hc_imaging_manifest_hc_img_manif_study_series_base_locn_user,hc.imaging.manifest.hc.img.manif.study.series.base.locn.user,model_hc_img_manif_study_series_base_locn,hc_base.group_hc_base_user,1,0,0,0
+access_hc_imaging_manifest_hc_img_manif_study_series_instance_user,hc.imaging.manifest.hc.img.manif.study.series.instance.user,model_hc_img_manif_study_series_instance,hc_base.group_hc_base_user,1,0,0,0
+access_hc_imaging_manifest_hc_vs_kos_title_manager,hc.imaging.manifest.hc.vs.kos.title.manager,model_hc_vs_kos_title,hc_base.group_hc_base_manager,1,1,1,1
