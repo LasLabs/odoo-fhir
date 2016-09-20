@@ -1,2 +1,15 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_hc_sequence_hc_sequence,hc_sequence.hc_sequence,model_hc_sequence_hc_sequence,,1,0,0,0
+access_hc_sequence_hc_res_sequence_user,hc.sequence.hc.res.sequence.user,model_hc_res_sequence,hc_base.group_hc_base_user,1,0,0,0
+access_hc_sequence_hc_sequence_reference_seq_user,hc.sequence.hc.sequence.reference.seq.user,model_hc_sequence_reference_seq,hc_base.group_hc_base_user,1,0,0,0
+access_hc_sequence_hc_sequence_variant_user,hc.sequence.hc.sequence.variant.user,model_hc_sequence_variant,hc_base.group_hc_base_user,1,0,0,0
+access_hc_sequence_hc_sequence_quality_user,hc.sequence.hc.sequence.quality.user,model_hc_sequence_quality,hc_base.group_hc_base_user,1,0,0,0
+access_hc_sequence_hc_sequence_repository_user,hc.sequence.hc.sequence.repository.user,model_hc_sequence_repository,hc_base.group_hc_base_user,1,0,0,0
+access_hc_sequence_hc_sequence_structure_variant_user,hc.sequence.hc.sequence.structure.variant.user,model_hc_sequence_structure_variant,hc_base.group_hc_base_user,1,0,0,0
+access_hc_sequence_hc_sequence_structure_variant_outer_user,hc.sequence.hc.sequence.structure.variant.outer.user,model_hc_sequence_structure_variant_outer,hc_base.group_hc_base_user,1,0,0,0
+access_hc_sequence_hc_sequence_structure_variant_inner_user,hc.sequence.hc.sequence.structure.variant.inner.user,model_hc_sequence_structure_variant_inner,hc_base.group_hc_base_user,1,0,0,0
+access_hc_sequence_hc_sequence_identifier_user,hc.sequence.hc.sequence.identifier.user,model_hc_sequence_identifier,hc_base.group_hc_base_user,1,0,0,0
+access_hc_sequence_hc_sequence_pointer_user,hc.sequence.hc.sequence.pointer.user,model_hc_sequence_pointer,hc_base.group_hc_base_user,1,0,0,0
+access_hc_sequence_hc_vs_chromosome_human_manager,hc.sequence.hc.vs.chromosome.human.manager,model_hc_vs_chromosome_human,hc_base.group_hc_base_manager,1,1,1,1
+access_hc_sequence_hc_vs_sequence_reference_seq_manager,hc.sequence.hc.vs.sequence.reference.seq.manager,model_hc_vs_sequence_reference_seq,hc_base.group_hc_base_manager,1,1,1,1
+access_hc_sequence_hc_vs_sequence_standard_sequence_manager,hc.sequence.hc.vs.sequence.standard.sequence.manager,model_hc_vs_sequence_standard_sequence,hc_base.group_hc_base_manager,1,1,1,1
+access_hc_sequence_hc_vs_sequence_quality_method_manager,hc.sequence.hc.vs.sequence.quality.method.manager,model_hc_vs_sequence_quality_method,hc_base.group_hc_base_manager,1,1,1,1

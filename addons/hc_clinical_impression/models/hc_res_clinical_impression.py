@@ -280,39 +280,6 @@ class ClinicalImpressionPlan(models.Model):
     #         elif hc_res_clinical_impression.plan_type == 'Vision Prescription': 
     #             hc_res_clinical_impression.plan_name = hc_res_clinical_impression.plan_vision_prescription_id.name
 
-
-
-
-    # @api.multi          
-    # def _compute_plan_name(self):           
-    #     for hc_res_clinical_impression in self:     
-    #         if hc_res_clinical_impression.plan_type == 'care plan': 
-    #             hc_res_clinical_impression.plan_name = hc_res_clinical_impression.plan_care_plan_id.name
-    #         elif hc_res_clinical_impression.plan_type == 'appointment': 
-    #             hc_res_clinical_impression.plan_name = hc_res_clinical_impression.plan_appointment_id.name
-    #         elif hc_res_clinical_impression.plan_type == 'communication request':   
-    #             hc_res_clinical_impression.plan_name = hc_res_clinical_impression.plan_communication_request_id.name
-    #         elif hc_res_clinical_impression.plan_type == 'device use request':  
-    #             hc_res_clinical_impression.plan_name = hc_res_clinical_impression.plan_device_use_request_id.name
-    #         elif hc_res_clinical_impression.plan_type == 'diagnostic request':  
-    #             hc_res_clinical_impression.plan_name = hc_res_clinical_impression.plan_diagnostic_request_id.name
-    #         elif hc_res_clinical_impression.plan_type == 'medication order':    
-    #             hc_res_clinical_impression.plan_name = hc_res_clinical_impression.plan_medication_order_id.name
-    #         elif hc_res_clinical_impression.plan_type == 'nutrition request': 
-    #             hc_res_clinical_impression.plan_name = hc_res_clinical_impression.plan_nutrition_request_id.name
-    #         elif hc_res_clinical_impression.plan_type == 'procedure request':   
-    #             hc_res_clinical_impression.plan_name = hc_res_clinical_impression.plan_procedure_request_id.name
-    #         elif hc_res_clinical_impression.plan_type == 'process request': 
-    #             hc_res_clinical_impression.plan_name = hc_res_clinical_impression.plan_process_request_id.name
-    #         elif hc_res_clinical_impression.plan_type == 'referral request':    
-    #             hc_res_clinical_impression.plan_name = hc_res_clinical_impression.plan_referral_request_id.name
-    #         elif hc_res_clinical_impression.plan_type == 'supply request':  
-    #             hc_res_clinical_impression.plan_name = hc_res_clinical_impression.plan_supply_request_id.name
-    #         elif hc_res_clinical_impression.plan_type == 'vision prescription': 
-    #             hc_res_clinical_impression.plan_name = hc_res_clinical_impression.plan_vision_prescription_id.name
-
-
-
 class ClinicalImpressionAction(models.Model):    
     _name = "hc.clinical.impression.action"    
     _description = "Clinical Impression Action"        
@@ -636,6 +603,22 @@ class ClinicalImpressionCode(models.Model):
 
 # External Reference
 
+class ConditionStageAssessment(models.Model):    
+    _inherit = ["hc.condition.stage.assessment"]
+    
+    assessment_clinical_impression_id = fields.Many2one(
+        comodel_name="hc.res.clinical.impression", 
+        string="Assessment Clinical Impressions", 
+        help="Clinical Impression formal record of assessment.")
+
+    @api.multi          
+    def _compute_assessment_name(self):         
+        for hc_res_condition in self:       
+            if hc_res_condition.assessment_type == 'Observation': 
+                hc_res_condition.assessment_name = hc_res_condition.assessment_observation_id.name
+            elif hc_res_condition.assessment_type == 'Clinical Impression':   
+                hc_res_condition.assessment_name = hc_res_condition.assessment_clinical_impression_id.name
+
 class ConditionEvidenceDetail(models.Model):    
     _inherit = ["hc.condition.evidence.detail"]
 
@@ -644,10 +627,14 @@ class ConditionEvidenceDetail(models.Model):
         string="Detail Clinical Impression", 
         help="Clinical Impression supporting information found elsewhere.")
 
-class ConditionStageAssessment(models.Model):    
-    _inherit = ["hc.condition.stage.assessment"]
-    
-    assessment_clinical_impression_id = fields.Many2one(
-        comodel_name="hc.res.clinical.impression", 
-        string="Assessment Clinical Impressions", 
-        help="Clinical Impression formal record of assessment.")
+    @api.multi          
+    def _compute_detail_name(self):         
+        for hc_res_condition in self:       
+            if hc_res_condition.detail_type == 'string':    
+                hc_res_condition.detail_name = hc_res_condition.detail_string_id.name
+            elif hc_res_condition.detail_type == 'Condition':   
+                hc_res_condition.detail_name = hc_res_condition.detail_condition_id.name
+            elif hc_res_condition.detail_type == 'Observation': 
+                hc_res_condition.detail_name = hc_res_condition.detail_observation_id.name
+            elif hc_res_condition.detail_type == 'Clinical Impression': 
+                hc_res_condition.detail_name = hc_res_condition.detail_clinical_impression_id.name

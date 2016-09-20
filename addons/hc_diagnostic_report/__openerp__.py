@@ -28,8 +28,7 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    # 'depends': ['hc_media', 'hc_imaging_manifest'],
-    'depends': ['hc_imaging_study'],
+    'depends': ['hc_media', 'hc_imaging_manifest', 'hc_clinical_impression'],
 
     # always loaded
     'data': [

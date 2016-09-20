@@ -190,3 +190,4 @@ class NoImmunizationReason(models.Model):
     _name = "hc.vs.no.immunization.reason"    
     _description = "No Immunization Reason"        
     _inherit = ["hc.value.set.contains"]
+

@@ -560,6 +560,12 @@ class ConditionStageAssessment(models.Model):
         string="Assessment Observations", 
         help="Observation formal record of assessment.")  
 
+    @api.multi          
+    def _compute_assessment_name(self):         
+        for hc_res_condition in self:       
+            if hc_res_condition.assessment_type == 'Observation': 
+                hc_res_condition.assessment_name = hc_res_condition.assessment_observation_id.name
+
 class ConditionEvidenceDetail(models.Model):    
     _inherit = "hc.condition.evidence.detail" 
 
@@ -567,3 +573,21 @@ class ConditionEvidenceDetail(models.Model):
         comodel_name="hc.res.observation", 
         string="Detail Observation", 
         help="Observation supporting information found elsewhere.")
+
+    @api.multi          
+    def _compute_detail_name(self):         
+        for hc_res_condition in self:       
+            if hc_res_condition.detail_type == 'string':    
+                hc_res_condition.detail_name = hc_res_condition.detail_string_id.name
+            elif hc_res_condition.detail_type == 'Condition':   
+                hc_res_condition.detail_name = hc_res_condition.detail_condition_id.name
+            elif hc_res_condition.detail_type == 'Observation': 
+                hc_res_condition.detail_name = hc_res_condition.detail_observation_id.name
+
+class SequenceVariant(models.Model):    
+    _inherit = "hc.sequence.variant"
+
+    variant_pointer_id = fields.Many2one(
+        comodel_name="hc.res.observation", 
+        string="Variant Pointer", 
+        help="A pointer to an Observation containing variant information.")

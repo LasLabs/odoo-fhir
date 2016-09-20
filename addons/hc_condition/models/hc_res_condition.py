@@ -343,9 +343,9 @@ class ConditionStageAssessment(models.Model):
     assessment_type = fields.Selection(
         string="Condition Stage Assessment Assessment Type", 
         selection=[
-            ("clinical impression", "Clinical Impression"), 
-            ("diagnostic report", "Diagnostic Report"), 
-            ("observation", "Observation")], 
+            ("Clinical Impression", "Clinical Impression"), 
+            ("Diagnostic Report", "Diagnostic Report"), 
+            ("Observation", "Observation")], 
         help="Type of assessment.")                    
     assessment_name = fields.Char(
         string="Assessment", 
@@ -368,11 +368,11 @@ class ConditionStageAssessment(models.Model):
     # @api.multi          
     # def _compute_assessment_name(self):         
     #     for hc_res_condition in self:       
-    #         if hc_res_condition.assessment_type == 'clinical impression':   
+    #         if hc_res_condition.assessment_type == 'Clinical Impression':   
     #             hc_res_condition.assessment_name = hc_res_condition.assessment_clinical_impression_id.name
-    #         elif hc_res_condition.assessment_type == 'observation': 
+    #         elif hc_res_condition.assessment_type == 'Observation': 
     #             hc_res_condition.assessment_name = hc_res_condition.assessment_observation_id.name
-            # elif hc_res_condition.assessment_type == 'diagnostic report':   
+            # elif hc_res_condition.assessment_type == 'Diagnostic Report':   
             #     hc_res_condition.assessment_name = hc_res_condition.assessment_diagnostic_report_id.name
             
 class ConditionEvidenceDetail(models.Model):    
