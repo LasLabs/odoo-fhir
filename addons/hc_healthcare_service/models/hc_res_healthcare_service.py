@@ -100,14 +100,14 @@ class ServiceType(models.Model):
     _description = "Service Type"       
     _inherit = ["hc.value.set.contains"]    
 
-class C80PracticeCodes(models.Model):   
-    _name = "hc.vs.c80.practice.codes"  
-    _description = "C80 Practice Codes"     
+class C80PracticeCode(models.Model):   
+    _name = "hc.vs.c80.practice.code"  
+    _description = "C80 Practice Code"     
     _inherit = ["hc.value.set.contains"]    
 
-class ServiceProvisionConditions(models.Model): 
-    _name = "hc.vs.service.provision.conditions"    
-    _description = "Service Provision Conditions"       
+class ServiceProvisionCondition(models.Model): 
+    _name = "hc.vs.service.provision.condition"    
+    _description = "Service Provision Condition"       
     _inherit = ["hc.value.set.contains"]    
 
 class ServiceCategory(models.Model):    
@@ -184,7 +184,7 @@ class HealthcareServiceSpecialty(models.Model):
         string="Healthcare Service", 
         help="Healthcare service which is associated with this specialty.")                  
     specialty_id = fields.Many2one(
-        comodel_name="hc.vs.c80.practice.codes", 
+        comodel_name="hc.vs.c80.practice.code", 
         string="Specialty", 
         help="Specialty which is associated with this healthcare service.")                 
 
@@ -268,7 +268,7 @@ class HealthcareServiceProvisionCode(models.Model):
         string="Healthcare Service", 
         help="Healthcare service which is associated with this service provision condition.")                 
     service_provision_condition_id = fields.Many2one(
-        comodel_name="hc.vs.service.provision.conditions", 
+        comodel_name="hc.vs.service.provision.condition", 
         string="Service Provision Condition", 
         help="Service provision condition which is associated with this healthcare service.")             
 

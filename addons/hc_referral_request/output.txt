@@ -1,0 +1,64 @@
+Script started on Wed 21 Sep 2016 08:25:36 AM PDT
+]0;odoo@odoo-VirtualBox: /odoo/odoo-fhir/addons/hc_referral_requestodoo@odoo-VirtualBox:/odoo/odoo-fhir/addons/hc_referral_request$ exit./odoo.py -d FHIIR-DEV --addons-path /odoo/odoo-fhir/addons,/odoo/odoo-server/addons -i hc_referrral_request
+bash: ./odoo.py: No such file or directory
+]0;odoo@odoo-VirtualBox: /odoo/odoo-fhir/addons/hc_referral_requestodoo@odoo-VirtualBox:/odoo/odoo-fhir/addons/hc_referral_request$ ./odoo.py -d FHIIR-DEV --addons-path /odoo/odoo-fhir/addons,/odoo/odoo-server/addons -i hc_referrral_request[A[A]0;odoo@odoo-VirtualBox: /odoo/odoo-fhir/addons/hc_referral_requestodoo@odoo-VirtualBox:/odoo/odoo-fhir/addons/hc_referral_request$ exit[K
+[K
+[K[A[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C./odoo.py -d FHIIR-DEV --addons-path /odoo/odoo-fhir/addons,/odoo/odoo-server/addons -i hc_referrral_request[A[A]0;odoo@odoo-VirtualBox: /odoo/odoo-fhir/addons/hc_referral_requestodoo@odoo-VirtualBox:/odoo/odoo-fhir/addons/hc_referral_request$ exit[K
+[K
+[K[A[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[K./odoo.py -d FHIIR-DEV --addons-path /odoo/odoo-fhir/addons,/odoo/odoo-server/addons -i hc_referrral_request
+bash: ./odoo.py: No such file or directory
+]0;odoo@odoo-VirtualBox: /odoo/odoo-fhir/addons/hc_referral_requestodoo@odoo-VirtualBox:/odoo/odoo-fhir/addons/hc_referral_request$ cd /odoo/odoo-s erer[K[Kver
+]0;odoo@odoo-VirtualBox: /odoo/odoo-serverodoo@odoo-VirtualBox:/odoo/odoo-server$ cd /odoo/odoo-server./odoo.py -d FHIR-DEV --addons-path /odooo/odoo-fhir/addons,/odoo/odoo-server/addons -i hc_referral_request
+2016-09-21 15:26:13,614 3991 [1;32m[1;49mINFO[0m ? openerp: OpenERP version 9.0c
+2016-09-21 15:26:13,615 3991 [1;32m[1;49mINFO[0m ? openerp: addons paths: ['/home/odoo/.local/share/Odoo/addons/9.0', u'/odoo/odoo-fhir/addons', u'/odoo/odoo-server/addons', '/odoo/odoo-server/openerp/addons']
+2016-09-21 15:26:13,615 3991 [1;32m[1;49mINFO[0m ? openerp: database: default@default:default
+2016-09-21 15:26:13,999 3991 [1;32m[1;49mINFO[0m ? openerp.service.server: HTTP service (werkzeug) running on 0.0.0.0:8069
+Exception in thread openerp.service.httpd:
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/threading.py", line 810, in __bootstrap_inner
+    self.run()
+  File "/usr/lib/python2.7/threading.py", line 763, in run
+    self.__target(*self.__args, **self.__kwargs)
+  File "/odoo/odoo-server/openerp/service/server.py", line 247, in http_thread
+    self.httpd = ThreadedWSGIServerReloadable(self.interface, self.port, app)
+  File "/odoo/odoo-server/openerp/service/server.py", line 106, in __init__
+    handler=RequestHandler)
+  File "/usr/lib/python2.7/dist-packages/werkzeug/serving.py", line 410, in __init__
+    HTTPServer.__init__(self, (host, int(port)), handler)
+  File "/usr/lib/python2.7/SocketServer.py", line 419, in __init__
+    self.server_bind()
+  File "/odoo/odoo-server/openerp/service/server.py", line 116, in server_bind
+    super(ThreadedWSGIServerReloadable, self).server_bind()
+  File "/usr/lib/python2.7/BaseHTTPServer.py", line 108, in server_bind
+    SocketServer.TCPServer.server_bind(self)
+  File "/usr/lib/python2.7/SocketServer.py", line 430, in server_bind
+    self.socket.bind(self.server_address)
+  File "/usr/lib/python2.7/socket.py", line 224, in meth
+    return getattr(self._sock,name)(*args)
+error: [Errno 98] Address already in use
+
+2016-09-21 15:26:14,034 3991 [1;32m[1;49mINFO[0m FHIR-DEV openerp.modules.loading: loading 1 modules...
+2016-09-21 15:26:14,096 3991 [1;32m[1;49mINFO[0m FHIR-DEV openerp.modules.loading: 1 modules loaded in 0.06s, 0 queries
+2016-09-21 15:26:14,582 3991 [1;32m[1;49mINFO[0m FHIR-DEV openerp.modules.loading: loading 67 modules...
+2016-09-21 15:26:14,604 3991 [1;32m[1;49mINFO[0m FHIR-DEV passlib.registry: registered crypt handler 'pbkdf2_sha512': <class 'passlib.handlers.pbkdf2.pbkdf2_sha512'>
+2016-09-21 15:26:14,605 3991 [1;32m[1;49mINFO[0m FHIR-DEV passlib.registry: registered crypt handler 'md5_crypt': <class 'passlib.handlers.md5_crypt.md5_crypt'>
+2016-09-21 15:26:14,703 3991 [1;32m[1;49mINFO[0m ? openerp.addons.bus.models.bus: Bus.loop listen imbus on db postgres
+Warn: Can't find .pfb for face 'Times-Roman'
+2016-09-21 15:26:14,826 3991 [1;32m[1;49mINFO[0m FHIR-DEV openerp.addons.report.models.report: Will use the Wkhtmltopdf binary at /usr/local/bin/wkhtmltopdf
+2016-09-21 15:26:15,596 3991 [1;32m[1;49mINFO[0m FHIR-DEV openerp.modules.loading: 67 modules loaded in 1.01s, 0 queries
+2016-09-21 15:26:15,601 3991 [1;32m[1;49mINFO[0m FHIR-DEV openerp.modules.loading: loading 68 modules...
+2016-09-21 15:26:19,064 3991 [1;32m[1;49mINFO[0m FHIR-DEV openerp.modules.module: module hc_referral_request: creating or updating database tables
+2016-09-21 15:26:19,854 3991 [1;32m[1;49mINFO[0m FHIR-DEV openerp.modules.loading: loading hc_referral_request/views/hc_res_referral_request_views.xml
+2016-09-21 15:26:19,918 3991 [1;32m[1;49mINFO[0m FHIR-DEV openerp.modules.loading: loading hc_referral_request/views/hc_res_referral_request_templates.xml
+2016-09-21 15:26:19,921 3991 [1;32m[1;49mINFO[0m FHIR-DEV openerp.modules.loading: loading hc_referral_request/demo/demo.xml
+2016-09-21 15:26:20,139 3991 [1;32m[1;49mINFO[0m FHIR-DEV openerp.modules.loading: 68 modules loaded in 4.54s, 0 queries
+2016-09-21 15:26:21,398 3991 [1;33m[1;49mWARNING[0m FHIR-DEV openerp.modules.loading: The model hc.res.referral.request has no access rules, consider adding one. E.g. access_hc_res_referral_request,access_hc_res_referral_request,model_hc_res_referral_request,,1,0,0,0
+2016-09-21 15:26:21,861 3991 [1;33m[1;49mWARNING[0m FHIR-DEV openerp.modules.loading: Model hc.vs.c80.practice.codes is declared but cannot be loaded! (Perhaps a module was partially removed or renamed)
+2016-09-21 15:26:21,861 3991 [1;33m[1;49mWARNING[0m FHIR-DEV openerp.modules.loading: Model hc.vs.service.provision.conditions is declared but cannot be loaded! (Perhaps a module was partially removed or renamed)
+2016-09-21 15:26:22,445 3991 [1;33m[1;49mWARNING[0m FHIR-DEV openerp.modules.loading: Model hc.vs.chormosome.human is declared but cannot be loaded! (Perhaps a module was partially removed or renamed)
+2016-09-21 15:26:23,608 3991 [1;32m[1;49mINFO[0m FHIR-DEV openerp.modules.loading: Modules loaded.
+^C2016-09-21 15:26:26,416 3991 [1;32m[1;49mINFO[0m FHIR-DEV openerp.service.server: Initiating shutdown
+2016-09-21 15:26:26,416 3991 [1;32m[1;49mINFO[0m FHIR-DEV openerp.service.server: Hit CTRL-C again or send a second signal to force the shutdown.
+^C
+]0;odoo@odoo-VirtualBox: /odoo/odoo-serverodoo@odoo-VirtualBox:/odoo/odoo-server$ exit
+Script done on Wed 21 Sep 2016 08:31:51 AM PDT
