@@ -30,14 +30,14 @@ class Observation(models.Model):
     subject_type = fields.Selection(
         string="Observation Subject Type", 
         selection=[
-            ("patient", "Patient"), 
-            ("group", "Group"), 
-            ("device", "Device"), 
-            ("location", "Location")], 
+            ("Patient", "Patient"), 
+            ("Group", "Group"), 
+            ("Device", "Device"), 
+            ("Location", "Location")], 
         help="Type of who and/or what this is about.")                    
     subject_name = fields.Char(
         string="Subject", 
-        compute="compute_subject_name", 
+        compute="_compute_subject_name", 
         help="Who and/or what this is about.")                    
     subject_patient_id = fields.Many2one(
         comodel_name="hc.res.patient", 
@@ -67,7 +67,7 @@ class Observation(models.Model):
         help="Type of Clinically relevant time/time-period for observation.")                    
     effective_name = fields.Char(
         string="Effective", 
-        compute="compute_effective_name", 
+        compute="_compute_effective_name", 
         help="Clinically relevant time/time.")                    
     effective_datetime = fields.Datetime(
         string="Effective Datetime", 
@@ -89,21 +89,21 @@ class Observation(models.Model):
     value_type = fields.Selection(
         string="Observation Value Type", 
         selection=[
-            ("missing", "Missing"), 
-            ("quantity", "Quantity"), 
-            ("codeable concept", "Codeable Concept"), 
+            ("Missing", "Missing"), 
+            ("Quantity", "Quantity"), 
+            ("Codeable Concept", "Codeable Concept"), 
             ("string", "String"), 
-            ("range", "Range"), 
-            ("ratio", "Ratio"), 
-            ("sampled data", "Sampled Data"), 
-            ("attachment", "Attachment"),
+            ("Range", "Range"), 
+            ("Ratio", "Ratio"), 
+            ("Sampled Data", "Sampled Data"), 
+            ("Attachment", "Attachment"),
             ("time", "Time"),
-            ("datetime", "Datetime"),
-            ("period", "Period")], 
+            ("dateTime", "Datetime"),
+            ("Period", "Period")],
         help="Type of result.")                    
     value_name = fields.Char(
         string="Value", 
-        compute="compute_value_name", 
+        compute="_compute_value_name", 
         help="Actual result.")                    
     value_missing = fields.Char(
         string="Value",
@@ -185,7 +185,7 @@ class Observation(models.Model):
         help="Type of device.")                    
     device_name = fields.Char(
         string="Device", 
-        compute="compute_device_name", 
+        compute="_compute_device_name", 
         help="(Measurement) Device.")                    
     device_id = fields.Many2one(
         comodel_name="hc.res.device", 
@@ -200,6 +200,60 @@ class Observation(models.Model):
         inverse_name="observation_id", 
         string="Reference Ranges", 
         help="Provides guide for interpretation.")                    
+
+    @api.multi            
+    def _compute_subject_name(self):            
+        for hc_res_observation in self:        
+            if hc_res_observation.subject_type == 'Patient':    
+                hc_res_observation.subject_name = hc_res_observation.subject_patient_id.name
+            elif hc_res_observation.subject_type == 'Group':    
+                hc_res_observation.subject_name = hc_res_observation.subject_group_id.name
+            elif hc_res_observation.subject_type == 'Device':    
+                hc_res_observation.subject_name = hc_res_observation.subject_device_id.name
+            elif hc_res_observation.subject_type == 'Location':    
+                hc_res_observation.subject_name = hc_res_observation.subject_location_id.name
+
+    @api.multi            
+    def _compute_effective_name(self):            
+        for hc_res_observation in self:        
+            if hc_res_observation.effective_type == 'dateTime':    
+                hc_res_observation.effective_name = hc_res_observation.effective_datetime_id.name
+            elif hc_res_observation.effective_type == 'Period':    
+                hc_res_observation.effective_name = hc_res_observation.effective_period_id.name
+
+    @api.multi            
+    def _compute_value_name(self):            
+        for hc_res_observation in self:        
+            if hc_res_observation.value_type == 'Missing':    
+                hc_res_observation.value_name = hc_res_observation.value_missing_id.name
+            elif hc_res_observation.value_type == 'Quantity':    
+                hc_res_observation.value_name = hc_res_observation.value_quantity_id.name
+            elif hc_res_observation.value_type == 'Codeable Concept':    
+                hc_res_observation.value_name = hc_res_observation.value_codeable_concept_id.name
+            elif hc_res_observation.value_type == 'string':    
+                hc_res_observation.value_name = hc_res_observation.value_string_id.name
+            elif hc_res_observation.value_type == 'Range':    
+                hc_res_observation.value_name = hc_res_observation.value_range_id.name
+            elif hc_res_observation.value_type == 'Ratio':    
+                hc_res_observation.value_name = hc_res_observation.value_ratio_id.name
+            elif hc_res_observation.value_type == 'Sampled Data':   
+                hc_res_observation.value_name = hc_res_observation.value_sampled_data_id.name
+            elif hc_res_observation.value_type == 'Attachment': 
+                hc_res_observation.value_name = hc_res_observation.value_attachment_id.name
+            elif hc_res_observation.value_type == 'time':   
+                hc_res_observation.value_name = hc_res_observation.value_time_id.name
+            elif hc_res_observation.value_type == 'dateTime':   
+                hc_res_observation.value_name = hc_res_observation.value_datetime_id.name
+            elif hc_res_observation.value_type == 'Period': 
+                hc_res_observation.value_name = hc_res_observation.value_period_id.name
+
+    @api.multi          
+    def _compute_device_name(self):         
+        for hc_res_observation in self:     
+            if hc_res_observation.device_type == 'Device':  
+                hc_res_observation.device_name = hc_res_observation.device_device_id.name
+            elif hc_res_observation.device_type == 'Device Metric': 
+                hc_res_observation.device_name = hc_res_observation.device_device_metric_id.name
 
 class ObservationReferenceRange(models.Model):    
     _name = "hc.observation.reference.range"    
@@ -262,13 +316,13 @@ class ObservationRelated(models.Model):
         string="Related Target Type",
         required="True", 
         selection=[
-            ("observation", "Observation"), 
-            ("questionnaire response", "Questionnaire Response"), 
-            ("sequence", "Sequence")], 
+            ("Observation", "Observation"), 
+            ("Questionnaire Response", "Questionnaire Response"), 
+            ("Sequence", "Sequence")], 
         help="Type of resource that is related to this target.")                    
     target_name = fields.Char(
         string="Target", 
-        compute="compute_target_name", 
+        compute="_compute_target_name", 
         required="True", 
         help="Resource that is related to this target.")                    
     target_observation_id = fields.Many2one(
@@ -279,10 +333,21 @@ class ObservationRelated(models.Model):
     #     comodel_name="hc.res.questionnaire.response", 
     #     string="Target Questionnaire Response", 
     #     help="Questionnaire Response resource that is related to this target.")                    
-    # target_sequence_id = fields.Many2one(
-    #     comodel_name="hc.res.sequence", 
-    #     string="Target Sequence", 
-    #     help="Sequence resource that is related to this target.")                    
+    target_sequence_id = fields.Many2one(
+        comodel_name="hc.res.sequence", 
+        string="Target Sequence", 
+        help="Sequence resource that is related to this target.")                    
+
+    @api.multi          
+    def _compute_target_name(self):         
+        for hc_res_observation in self:     
+            if hc_res_observation.target_type == 'Observation': 
+                hc_res_observation.target_name = hc_res_observation.target_observation_id.name
+            elif hc_res_observation.target_type == 'Questionnaire Response':    
+                hc_res_observation.target_name = hc_res_observation.target_questionnaire_response_id.name
+            elif hc_res_observation.target_type == 'Sequence':  
+                hc_res_observation.target_name = hc_res_observation.target_sequence_id.name
+
 
 class ObservationComponent(models.Model):    
     _name = "hc.observation.component"    
@@ -300,20 +365,21 @@ class ObservationComponent(models.Model):
     value_type = fields.Selection(
         string="Component Value Type", 
         selection=[
-            ("missing", "Missing"), 
-            ("quantity", "Quantity"), 
-            ("codeable concept", "Codeable Concept"), 
-            ("string", "String"), ("range", "Range"), 
-            ("ratio", "Ratio"), 
-            ("sampled data", "Sampled Data"), 
-            ("attachment", "Attachment"),
+            ("Missing", "Missing"), 
+            ("Quantity", "Quantity"), 
+            ("Codeable Concept", "Codeable Concept"), 
+            ("string", "String"), 
+            ("Range", "Range"), 
+            ("Ratio", "Ratio"), 
+            ("Sampled Data", "Sampled Data"), 
+            ("Attachment", "Attachment"),
             ("time", "Time"),
-            ("datetime", "Datetime"),
-            ("period", "Period")], 
+            ("dateTime", "Datetime"),
+            ("Period", "Period")],
         help="Type of result.")                    
     value_name = fields.Char(
         string="Value", 
-        compute="compute_value_name", 
+        compute="_compute_value_name", 
         help="Actual result.")                    
     value_missing = fields.Char(
         string="Value",
@@ -376,6 +442,32 @@ class ObservationComponent(models.Model):
         string="Reference Ranges", 
         help="Provides guide for interpretation.")                    
 
+    @api.multi            
+    def _compute_value_name(self):            
+        for hc_res_observation in self:        
+            if hc_res_observation.value_type == 'Missing':    
+                hc_res_observation.value_name = hc_res_observation.value_missing_id.name
+            elif hc_res_observation.value_type == 'Quantity':    
+                hc_res_observation.value_name = hc_res_observation.value_quantity_id.name
+            elif hc_res_observation.value_type == 'Codeable Concept':    
+                hc_res_observation.value_name = hc_res_observation.value_codeable_concept_id.name
+            elif hc_res_observation.value_type == 'string':    
+                hc_res_observation.value_name = hc_res_observation.value_string_id.name
+            elif hc_res_observation.value_type == 'Range':    
+                hc_res_observation.value_name = hc_res_observation.value_range_id.name
+            elif hc_res_observation.value_type == 'Ratio':    
+                hc_res_observation.value_name = hc_res_observation.value_ratio_id.name
+            elif hc_res_observation.value_type == 'Sampled Data':   
+                hc_res_observation.value_name = hc_res_observation.value_sampled_data_id.name
+            elif hc_res_observation.value_type == 'Attachment': 
+                hc_res_observation.value_name = hc_res_observation.value_attachment_id.name
+            elif hc_res_observation.value_type == 'time':   
+                hc_res_observation.value_name = hc_res_observation.value_time_id.name
+            elif hc_res_observation.value_type == 'dateTime':   
+                hc_res_observation.value_name = hc_res_observation.value_datetime_id.name
+            elif hc_res_observation.value_type == 'Period': 
+                hc_res_observation.value_name = hc_res_observation.value_period_id.name
+
 class ObservationComponentReferenceRange(models.Model):    
     _name = "hc.observation.component.reference.range"    
     _description = "Observation Component Reference Range"            
@@ -426,14 +518,14 @@ class ObservationPerformer(models.Model):
     performer_type = fields.Selection(
         string="Observation Performer Type", 
         selection=[
-            ("practitioner", "Practitioner"), 
-            ("organization", "Organization"), 
-            ("patient", "Patient"), 
-            ("related person", "Related Person")], 
+            ("Practitioner", "Practitioner"), 
+            ("Organization", "Organization"), 
+            ("Patient", "Patient"), 
+            ("Related Person", "Related Person")], 
         help="Type of Who is responsible for the observation.")                    
     performer_name = fields.Char(
         string="Performer", 
-        compute="compute_performer_name", 
+        compute="_compute_performer_name", 
         help="Who is responsible for the observation.")                    
     performer_practitioner_id = fields.Many2one(
         comodel_name="hc.res.practitioner", 
@@ -451,6 +543,18 @@ class ObservationPerformer(models.Model):
         comodel_name="hc.res.related.person", 
         string="Performer Related Person", 
         help="Related Person who is responsible for the observation.")                    
+
+    @api.multi          
+    def _compute_performer_name(self):          
+        for hc_res_observation in self:     
+            if hc_res_observation.performer_type == 'Practitioner': 
+                hc_res_observation.performer_name = hc_res_observation.performer_practitioner_id.name
+            elif hc_res_observation.performer_type == 'Organization':   
+                hc_res_observation.performer_name = hc_res_observation.performer_organization_id.name
+            elif hc_res_observation.performer_type == 'Patient':    
+                hc_res_observation.performer_name = hc_res_observation.performer_patient_id.name
+            elif hc_res_observation.performer_type == 'Related Person': 
+                hc_res_observation.performer_name = hc_res_observation.performer_related_person_id.name
 
 class ObservationComponentValueAttachment(models.Model):    
     _name = "hc.observation.component.value.attachment"    
@@ -543,14 +647,6 @@ class ReferenceRangeMeaning(models.Model):
     _inherit = ["hc.value.set.contains"]    
 
 # External Reference
-
-# class ProcedureComponent(models.Model): 
-#     _inherit = "hc.procedure.component"
-
-#     component_observation_id = fields.Many2one(
-#         comodel_name="hc.res.observation", 
-#         string="Component Observation", 
-#         help="Observation event related to the procedure .") 
 
 class ConditionStageAssessment(models.Model):    
     _inherit = "hc.condition.stage.assessment"
