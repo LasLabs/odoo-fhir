@@ -1,2 +1,13 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_hc_goal_hc_goal,hc_goal.hc_goal,model_hc_goal_hc_goal,,1,0,0,0
+access_hc_goal_hc_res_goal_user,hc.goal.hc.res.goal.user,model_hc_res_goal,hc_base.group_hc_base_user,1,0,0,0
+access_hc_goal_hc_goal_outcome_user,hc.goal.hc.goal.outcome.user,model_hc_goal_outcome,hc_base.group_hc_base_user,1,0,0,0
+access_hc_goal_hc_goal_addresses_user,hc.goal.hc.goal.addresses.user,model_hc_goal_addresses,hc_base.group_hc_base_user,1,0,0,0
+access_hc_goal_hc_goal_category_user,hc.goal.hc.goal.category.user,model_hc_goal_category,hc_base.group_hc_base_user,1,0,0,0
+access_hc_goal_hc_goal_identifier_user,hc.goal.hc.goal.identifier.user,model_hc_goal_identifier,hc_base.group_hc_base_user,1,0,0,0
+access_hc_goal_hc_goal_note_user,hc.goal.hc.goal.note.user,model_hc_goal_note,hc_base.group_hc_base_user,1,0,0,0
+access_hc_goal_hc_goal_status_reason_user,hc.goal.hc.goal.status.reason.user,model_hc_goal_status_reason,hc_base.group_hc_base_user,1,0,0,0
+access_hc_goal_hc_vs_goal_description_manager,hc.goal.hc.vs.goal.description.manager,model_hc_vs_goal_description,hc_base.group_hc_base_manager,1,1,1,1
+access_hc_goal_hc_vs_goal_outcome_result_manager,hc.goal.hc.vs.goal.outcome.result.manager,model_hc_vs_goal_outcome_result,hc_base.group_hc_base_manager,1,1,1,1
+access_hc_goal_hc_vs_goal_start_event_manager,hc.goal.hc.vs.goal.start.event.manager,model_hc_vs_goal_start_event,hc_base.group_hc_base_manager,1,1,1,1
+access_hc_goal_hc_vs_goal_category_manager,hc.goal.hc.vs.goal.category.manager,model_hc_vs_goal_category,hc_base.group_hc_base_manager,1,1,1,1
+access_hc_goal_hc_vs_goal_status_reason_manager,hc.goal.hc.vs.goal.status.reason.manager,model_hc_vs_goal_status_reason,hc_base.group_hc_base_manager,1,1,1,1

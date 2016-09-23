@@ -13,7 +13,9 @@
         **Scope and Usage** 
         
         This resource is used to share relevant information required to support a referral request or a 
-        transfer of care request from one practitioner or organization to another. It is intended for use when a patient is required to be referred to another provider for a consultation/second opinion and/or for short term or longer term management of one or more health issues or problems.
+        transfer of care request from one practitioner or organization to another. It is intended for use when a patient 
+        is required to be referred to another provider for a consultation/second opinion and/or for short term or longer term 
+        management of one or more health issues or problems.
 
         Examples include:
 

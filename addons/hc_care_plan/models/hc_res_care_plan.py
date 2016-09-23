@@ -72,7 +72,7 @@ class CarePlanActivityDetail(models.Model):
     reason_reference_ids = fields.One2many(comodel_name="hc.care.plan.activity.detail.reason.reference", inverse_name="detail_id", string="Reason References", help="Condition why activity should be done.")                
     goal_ids = fields.One2many(comodel_name="hc.care.plan.activity.detail.goal", inverse_name="detail_id", string="Goals", help="Goals this activity relates to.")                
     status = fields.Selection(string="Detail Status", selection=[("not-started", "Not-Started"), ("scheduled", "Scheduled"), ("in-progress", "In-Progress"), ("on-hold", "On-Hold"), ("completed", "Completed"), ("cancelled", "Cancelled")], help="Identifies what progress is being made for the specific activity.")                
-    # status_reason_id = fields.Many2one(comodel_name="hc.vs.goal.status.reason", string="Status Reason", help="Reason for current status.")                
+    status_reason_id = fields.Many2one(comodel_name="hc.vs.goal.status.reason", string="Status Reason", help="Reason for current status.")                
     is_prohibited = fields.Boolean(string="Prohibited", required="True", help="Do NOT do.")                
     scheduled_type = fields.Selection(string="Scheduled Type", selection=[("Timing", "Timing"), ("Period", "Period"), ("string", "String")], help="Type of entity assessed.")                
     scheduled_name = fields.Char(string="Scheduled", compute="_compute_scheduled_name", store="True", help="When activity is to occur.")                
@@ -86,7 +86,7 @@ class CarePlanActivityDetail(models.Model):
     product_substance_id = fields.Many2one(comodel_name="hc.res.medication", string="Product Substance", help="Medication what is to be administered/supplied.")                
     product_substance_id = fields.Many2one(comodel_name="hc.res.substance", string="Product Substance", help="Substance what is to be administered/supplied.")                
     daily_amount = fields.Float(string="Daily Amount", help="How to consume/day?.")                
-    daily_amount_uom_id = fields.Many2one(comodel_name="product.uom", string="Daily Amount UOM", help="Dailyamount unit of measure.")                
+    daily_amount_uom_id = fields.Many2one(comodel_name="product.uom", string="Daily Amount UOM", help="Daily amount unit of measure.")                
     quantity = fields.Float(string="Quantity", help="How much to administer/supply/consume.")                
     quantity_uom_id = fields.Many2one(comodel_name="product.uom", string="Quantity UOM", help="Quantity unit of measure.")                
     description = fields.Text(string="Description", help="Extra info describing activity to perform.")                
@@ -117,7 +117,7 @@ class CarePlanActivityDetailGoal(models.Model):
     _inherit = ["hc.basic.association"]
 
     detail_id = fields.Many2one(comodel_name="hc.care.plan.activity.detail", string="Detail", help="In-line definition of activity.")                
-    # goal_id = fields.Many2one(comodel_name="hc.res.goal", string="Goal", help="Goals this activity relates to.")                
+    goal_id = fields.Many2one(comodel_name="hc.res.goal", string="Goal", help="Goals this activity relates to.")                
 
 class CarePlanActivityDetailPerformer(models.Model):    
     _name = "hc.care.plan.activity.detail.performer"    
@@ -203,7 +203,7 @@ class CarePlanGoal(models.Model):
     _inherit = ["hc.basic.association"]
 
     care_plan_id = fields.Many2one(comodel_name="hc.res.care.plan", string="Care Plan", help="Care Plan associated with this care plan goal.")                
-    # goal_id = fields.Many2one(comodel_name="hc.res.goal", string="Goal", help="Goals this activity relates to.")                
+    goal_id = fields.Many2one(comodel_name="hc.res.goal", string="Goal", help="Goals this activity relates to.")                
 
 class CarePlanIdentifier(models.Model):    
     _name = "hc.care.plan.identifier"    

@@ -33,7 +33,7 @@
 
     # always loaded
     'data': [
-        # 'security/ir.model.access.csv',
+        'security/ir.model.access.csv',
         'views/hc_res_care_team_views.xml',
         'views/hc_res_care_team_templates.xml',
     ],
@@ -41,4 +41,6 @@
     'demo': [
         'demo/demo.xml',
     ],
+    'installable': 'True',
+    'auto-install': 'True',
 }
