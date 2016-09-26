@@ -1,0 +1,22 @@
+<openerp>
+    <data>
+
+        <!-- Vision Prescription Action and Menu -->    
+    
+        <act_window id="hc_res_vision_prescription_action"  
+                    name="HC Vision Prescriptions"
+                    res_model="hc.res.vision.prescription"
+                    view_mode="tree,form"
+                    domain=""
+                    context=""
+                    limit=""/>
+
+        <menuitem id="hc_vision_prescription.menu_vision_rx" 
+                  name="Vision Prescriptions"
+                  parent="hc_base.menu_clinic_care"
+                  action="hc_res_vision_prescription_action" 
+                  groups="hc_base.group_hc_base_manager" 
+                  sequence="70"/>
+
+    </data>
+</openerp>

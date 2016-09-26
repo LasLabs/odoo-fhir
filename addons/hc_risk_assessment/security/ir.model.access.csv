@@ -1,2 +1,12 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_hc_risk_assessment_hc_risk_assessment,hc_risk_assessment.hc_risk_assessment,model_hc_risk_assessment_hc_risk_assessment,,1,0,0,0
+access_hc_risk_assessment_hc_res_risk_assessment_user,hc.risk.assessment.hc.res.risk.assessment.user,model_hc_res_risk_assessment,hc_base.group_hc_base_user,1,0,0,0
+access_hc_risk_assessment_hc_risk_assessment_prediction_user,hc.risk.assessment.hc.risk.assessment.prediction.user,model_hc_risk_assessment_prediction,hc_base.group_hc_base_user,1,0,0,0
+access_hc_risk_assessment_hc_risk_assessment_basis_user,hc.risk.assessment.hc.risk.assessment.basis.user,model_hc_risk_assessment_basis,hc_base.group_hc_base_user,1,0,0,0
+access_hc_risk_assessment_hc_risk_assessment_identifier_user,hc.risk.assessment.hc.risk.assessment.identifier.user,model_hc_risk_assessment_identifier,hc_base.group_hc_base_user,1,0,0,0
+access_hc_risk_assessment_hc_risk_assessment_note_user,hc.risk.assessment.hc.risk.assessment.note.user,model_hc_risk_assessment_note,hc_base.group_hc_base_user,1,0,0,0
+access_hc_risk_assessment_hc_vs_risk_assessment_method_manager,hc.risk.assessment.hc.vs.risk.assessment.method.manager,model_hc_vs_risk_assessment_method,hc_base.group_hc_base_manager,1,1,1,1
+access_hc_risk_assessment_hc_vs_risk_assessment_outcome_manager,hc.risk.assessment.hc.vs.risk.assessment.outcome.manager,model_hc_vs_risk_assessment_outcome,hc_base.group_hc_base_manager,1,1,1,1
+access_hc_risk_assessment_hc_vs_risk_assessment_reason_manager,hc.risk.assessment.hc.vs.risk.assessment.reason.manager,model_hc_vs_risk_assessment_reason,hc_base.group_hc_base_manager,1,1,1,1
+access_hc_risk_assessment_hc_vs_risk_assessment_type_manager,hc.risk.assessment.hc.vs.risk.assessment.type.manager,model_hc_vs_risk_assessment_type,hc_base.group_hc_base_manager,1,1,1,1
+access_hc_risk_assessment_hc_vs_risk_assessment_basis_manager,hc.risk.assessment.hc.vs.risk.assessment.basis.manager,model_hc_vs_risk_assessment_basis,hc_base.group_hc_base_manager,1,1,1,1
+access_hc_risk_assessment_hc_vs_risk_probability_manager,hc.risk.assessment.hc.vs.risk.probability.manager,model_hc_vs_risk_probability,hc_base.group_hc_base_manager,1,1,1,1
