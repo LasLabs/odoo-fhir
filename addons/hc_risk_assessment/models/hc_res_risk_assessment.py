@@ -9,7 +9,8 @@ class RiskAssessment(models.Model):
     identifier_id = fields.Many2one(comodel_name="hc.risk.assessment.identifier", string="Identifier", help="Unique identifier for the assessment.")                
     based_on_string = fields.Char(string="Based On String", help="Request fulfilled by this assessment.")                
     parent = fields.Char(string="Parent", help="Part of this occurrence.")                
-    status = fields.Selection(string="Status", required="True", selection=[("registered", "Registered"), ("preliminary", "Preliminary"), ("final", "Final"), ("amended +", "Amended +")], help="The status of the result value.")                
+    status = fields.Selection(string="Status", required="True", 
+        selection=[("registered", "Registered"), ("preliminary", "Preliminary"), ("final", "Final"), ("amended +", "Amended +")], help="The status of the result value.")                
     code_id = fields.Many2one(comodel_name="hc.vs.risk.assessment.type", string="Code", help="Type of assessment.")                
     subject_type = fields.Selection(string="Subject Type", selection=[("Patient", "Patient"), ("Group", "Group")], help="Type of who/what does assessment apply to.")                
     subject_name = fields.Char(string="Subject", compute="_compute_subject_name", store="True", help="Who/what does assessment apply to?")                
@@ -45,9 +46,11 @@ class RiskAssessmentPrediction(models.Model):
 
     risk_assessment_id = fields.Many2one(comodel_name="hc.res.risk.assessment", string="Risk Assessment", help="Risk Assessment associated with this prediction.")                
     outcome_id = fields.Many2one(comodel_name="hc.vs.risk.assessment.outcome", string="Outcome", required="True", help="Possible outcome for the subject.")                
-    probability_type = fields.Selection(string="Probability Type", selection=[("decimal", "Decimal"), ("Range|Code", "Range|Code")], help="Type of likelihood of specified outcome.")                
+    probability_type = fields.Selection(string="Probability Type",
+        selection=[("decimal", "Decimal"), ("Range", "Range"), ("Code", "Code")],
+        help="Type of likelihood of specified outcome.")                
     probability_name = fields.Char(string="Probability", compute="_compute_probability_name", store="True", help="Likelihood of specified outcome")                
-    probability_decimal_decimal = fields.Float(string="Probability Decimal", help="Decimal likelihood of specified outcome.")                
+    probability_decimal = fields.Float(string="Probability Decimal", help="Decimal likelihood of specified outcome.")                
     probability_range_low = fields.Float(string="Probability Range Low", help="Low limit of likelihood of specified outcome.")                
     probability_range_high = fields.Float(string="Probability Range High", help="High limit of likelihood of specified outcome.")                
     probability_code_id = fields.Many2one(comodel_name="hc.vs.risk.probability", string="Probability Code", help="Likelihood of specified outcome.")                

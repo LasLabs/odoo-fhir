@@ -20,7 +20,9 @@ class ImmunizationRecRec(models.Model):
     dose_number = fields.Integer(string="Dose Number", help="Recommended dose number.")                
     forecast_status_id = fields.Many2one(comodel_name="hc.vs.immunization.rec.status", string="Forecast Status", required="True", help="Vaccine administration status.")                
     identifier_ids = fields.One2many(comodel_name="hc.immunization.rec.rec.identifier", inverse_name="immunization_rec_rec_id", string="Identifiers", help="Past immunizations supporting recommendation.")                
-    supporting_patient_info_type = fields.Selection(string="Supporting Patient Info Type", selection=[("Imaging Study", "Imaging Study"), ("Imaging Manifest", "Imaging Manifest")], help="Type of patient observations supporting recommendation.")                
+    supporting_patient_info_type = fields.Selection(string="Supporting Patient Info Type",
+        selection=[("Observation", "Observation"), ("Allergy Intolerance", "Allergy Intolerance")],
+        help="Type of patient observations supporting recommendation.")                
     supporting_patient_info_name = fields.Text(string="Supporting Patient Info", compute="_compute_supporting_patient_info_name", store="True", help="Patient observations supporting recommendation.")                
     supporting_patient_info_observation_id = fields.Many2one(comodel_name="hc.res.observation", string="Supporting Patient Info Observation", help="Observation associated with this recommendation.")                
     supporting_patient_info_allergy_intolerance_id = fields.Many2one(comodel_name="hc.res.allergy.intolerance", string="Supporting Patient Info Allergy Intolerance", help="Allergy Intolerance associated with this recommendation.")                
