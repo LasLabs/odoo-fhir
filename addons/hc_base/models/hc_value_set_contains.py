@@ -111,6 +111,11 @@ class Jurisdiction(models.Model):
     _description = "Jurisdiction"       
     _inherit = ["hc.value.set.contains"]
 
+class ManifestationCode(models.Model): 
+    _name = "hc.vs.manifestation.code" 
+    _description = "Manifestation Code"        
+    _inherit = ["hc.value.set.contains"]  
+
 class MaritalStatus(models.Model):  
     _name = "hc.vs.marital.status"  
     _description = "Marital Status" 
@@ -145,7 +150,17 @@ class ParticipationType(models.Model):
 class Race(models.Model):  
     _name = "hc.vs.race"  
     _description = "Race" 
-    _inherit = ["hc.value.set.contains"]
+    _inherit = ["hc.value.set.contains"]  
+
+class RouteCode(models.Model): 
+    _name = "hc.vs.route.code" 
+    _description = "Route Code"        
+    _inherit = ["hc.value.set.contains"]  
+
+class SubstanceCode(models.Model):  
+    _name = "hc.vs.substance.code"  
+    _description = "Substance Code"     
+    _inherit = ["hc.value.set.contains"]    
 
 class UOM(models.Model):
     _name = "hc.vs.uom"

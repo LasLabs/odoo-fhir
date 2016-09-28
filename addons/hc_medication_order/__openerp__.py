@@ -9,7 +9,8 @@
     'description': """
         An order for both supply of the medication and the instructions for administration of the medication to a patient. The resource is called "MedicationOrder" rather than "MedicationPrescription" to generalize the use across inpatient and outpatient settings as well as for care plans, etc.
 
-        **Scope and Usage** 
+        **Scope and Usage**
+         
         This resource covers all orders for medications for a patient. This includes in-patient medication orders as well as community orders 
         (whether filled by the prescriber or by a pharmacy). It also includes orders for over-the-counter medications (e.g. Aspirin), 
         total parenteral nutrition and diet/ vitamin supplements. It may be used to support the order of medication-related devices. 
@@ -30,7 +31,7 @@
 
     # always loaded
     'data': [
-        # 'security/ir.model.access.csv',
+        'security/ir.model.access.csv',
         'views/hc_res_medication_order_views.xml',
         'views/hc_res_medication_order_templates.xml',
     ],

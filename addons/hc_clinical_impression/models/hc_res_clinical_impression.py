@@ -203,10 +203,10 @@ class ClinicalImpressionPlan(models.Model):
         compute="_compute_plan_name",
         store="True", 
         help="Plan of action after assessment.")                
-    # plan_care_plan_id = fields.Many2one(
-    #     comodel_name="hc.res.care.plan", 
-    #     string="Plan Care Plan", 
-    #     help="Care Plan plan of action after assessment.")                
+    plan_care_plan_id = fields.Many2one(
+        comodel_name="hc.res.care.plan", 
+        string="Plan Care Plan", 
+        help="Care Plan plan of action after assessment.")                
     # plan_appointment_id = fields.Many2one(
     #     comodel_name="hc.res.appointment", 
     #     string="Plan Appointment", 
@@ -219,18 +219,18 @@ class ClinicalImpressionPlan(models.Model):
     #     comodel_name="hc.res.device.use.request", 
     #     string="Plan Device Use Request", 
     #     help="Device Use Request plan of action after assessment.")                
-    # plan_diagnostic_request_id = fields.Many2one(
-    #     comodel_name="hc.res.diagnostic.request", 
-    #     string="Plan Diagnostic Request", 
-    #     help="Diagnostic Request plan of action after assessment.")                
+    plan_diagnostic_request_id = fields.Many2one(
+        comodel_name="hc.res.diagnostic.request", 
+        string="Plan Diagnostic Request", 
+        help="Diagnostic Request plan of action after assessment.")                
     # plan_medication_order_id = fields.Many2one(
     #     comodel_name="hc.res.medication.order", 
     #     string="Plan Medication Order", 
     #     help="Medication Order plan of action after assessment.")                
-    # plan_nutrition_request_id = fields.Many2one(
-    #     comodel_name="hc.res.nutrition.request", 
-    #     string="Plan Nutrition Request", 
-    #     help="Nutrition Request plan of action after assessment.")                
+    plan_nutrition_request_id = fields.Many2one(
+        comodel_name="hc.res.nutrition.request", 
+        string="Plan Nutrition Request", 
+        help="Nutrition Request plan of action after assessment.")                
     # plan_procedure_request_id = fields.Many2one(
     #     comodel_name="hc.res.procedure.request", 
     #     string="Plan Procedure Request", 
@@ -239,18 +239,18 @@ class ClinicalImpressionPlan(models.Model):
     #     comodel_name="hc.res.process.request", 
     #     string="Plan Process Request", 
     #     help="Process Request plan of action after assessment.")                
-    # plan_referral_request_id = fields.Many2one(
-    #     comodel_name="hc.res.referral.request", 
-    #     string="Plan Referral Request", 
-    #     help="Referral Request plan of action after assessment.")                
+    plan_referral_request_id = fields.Many2one(
+        comodel_name="hc.res.referral.request", 
+        string="Plan Referral Request", 
+        help="Referral Request plan of action after assessment.")                
     # plan_supply_request_id = fields.Many2one(
     #     comodel_name="hc.res.supply.request", 
     #     string="Plan Supply Request", 
     #     help="Supply Request plan of action after assessment.")                
-    # plan_vision_prescription_id = fields.Many2one(
-    #     comodel_name="hc.res.vision.prescription", 
-    #     string="Plan Vision Prescription", 
-    #     help="Vision Prescription plan of action after assessment.")                
+    plan_vision_prescription_id = fields.Many2one(
+        comodel_name="hc.res.vision.prescription", 
+        string="Plan Vision Prescription", 
+        help="Vision Prescription plan of action after assessment.")                
 
     # @api.multi          
     # def _compute_plan_name(self):           
@@ -321,14 +321,14 @@ class ClinicalImpressionAction(models.Model):
     #     comodel_name="hc.res.medication.order", 
     #     string="Action Medication Order", 
     #     help="Medication Order actions taken during assessment.")
-    # action_diagnostic_request_id = fields.Many2one(
-    #     comodel_name="hc.res.diagnostic.request", 
-    #     string="Action Diagnostic Request", 
-    #     help="Diagnostic Request actions taken during assessment.")
-    # action_nutrition_request_id = fields.Many2one(
-    #     comodel_name="hc.res.nutrition.request", 
-    #     string="Action Nutrition Request", 
-    #     help="Nutrition Request actions taken during assessment.")
+    action_diagnostic_request_id = fields.Many2one(
+        comodel_name="hc.res.diagnostic.request", 
+        string="Action Diagnostic Request", 
+        help="Diagnostic Request actions taken during assessment.")
+    action_nutrition_request_id = fields.Many2one(
+        comodel_name="hc.res.nutrition.request", 
+        string="Action Nutrition Request", 
+        help="Nutrition Request actions taken during assessment.")
     # action_supply_request_id = fields.Many2one(
     #     comodel_name="hc.res.supply.request", 
     #     string="Action Supply Request", 
@@ -402,10 +402,10 @@ class ClinicalImpressionInvestigation(models.Model):
     #     comodel_name="hc.res.diagnostic.report", 
     #     string="Item Diagnostic Report", 
     #     elp="Diagnostic Report record of a specific investigation.")
-    # item_risk_assessment_id = fields.Many2one(
-    #     comodel_name="hc.res.risk.assessment", 
-    #     string="Item Risk Assessment", 
-    #     help="Risk Assessment record of a specific investigation.")
+    item_risk_assessment_id = fields.Many2one(
+        comodel_name="hc.res.risk.assessment", 
+        string="Item Risk Assessment", 
+        help="Risk Assessment record of a specific investigation.")
     # item_imaging_study_id = fields.Many2one(
     #     comodel_name="hc.res.imaging.study", 
     #     string="Item Imaging Study", 
@@ -422,8 +422,8 @@ class ClinicalImpressionInvestigation(models.Model):
             #     hc_res_clinical_impression.item_name = hc_res_clinical_impression.item_questionnaire_response_id.name 
             # elif hc_res_clinical_impression.item_type == 'Diagnostic Report':   
             #     hc_res_clinical_impression.item_name = hc_res_clinical_impression.item_diagnostic_report_id.name
-            # elif hc_res_clinical_impression.item_type == 'Risk Assessment': 
-            #     hc_res_clinical_impression.item_name = hc_res_clinical_impression.item_risk_assessment_id.name
+            elif hc_res_clinical_impression.item_type == 'Risk Assessment': 
+                hc_res_clinical_impression.item_name = hc_res_clinical_impression.item_risk_assessment_id.name
             # elif hc_res_clinical_impression.item_type == 'Imaging Study':   
             #     hc_res_clinical_impression.item_name = hc_res_clinical_impression.item_imaging_study_id.name
 
@@ -510,10 +510,10 @@ class ClinicalImpressionPrognosisReference(models.Model):
         comodel_name="hc.res.clinical.impression", 
         string="Clinical Impression", 
         help="Clinical impression associated with this clinical impression prognosis reference.")                
-    # risk_assessment_id = fields.Many2one(
-    #     comodel_name="hc.res.risk.assessment", 
-    #     string="Risk Assessment", 
-    #     help="Risk assessment associated with this clinical impression prognosis reference.")                
+    risk_assessment_id = fields.Many2one(
+        comodel_name="hc.res.risk.assessment", 
+        string="Risk Assessment", 
+        help="Risk assessment associated with this clinical impression prognosis reference.")                
 
 class ClinicalImpressionNote(models.Model):    
     _name = "hc.clinical.impression.note"    

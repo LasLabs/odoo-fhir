@@ -6,8 +6,7 @@ class AllergyIntolerance(models.Model):
     _name = "hc.res.allergy.intolerance"    
     _description = "Allergy Intolerance"
     _inherit = ["hc.basic.association"]
-
-    
+ 
     name = fields.Char(
         string="Allergy/Intolerance", 
         # compute='compute_allergy', 
@@ -68,12 +67,11 @@ class AllergyIntolerance(models.Model):
     recorded_date = fields.Datetime(
         string="Recorded Date", 
         help="When recorded.")                  
-    
     recorder_type = fields.Selection(
         string="Recorder Type", 
         selection=[
-            ("practitioner", "Practitioner"),
-            ("patient", "Patient")],
+            ("Practitioner", "Practitioner"),
+            ("Patient", "Patient")],
         help="Type of individual who recorded the sensitivity.")
     recorder_name = fields.Char(
         string="Recorder",
@@ -91,9 +89,9 @@ class AllergyIntolerance(models.Model):
     reporter_type = fields.Selection(
         string="Reporter Type", 
         selection=[
-            ("practitioner", "Practitioner"),
-            ("patient", "Patient"),
-            ("related person", "Related Person")],
+            ("Practitioner", "Practitioner"),
+            ("Patient", "Patient"),
+            ("Related Person", "Related Person")],
         help="Type of source of the information about the allergy.")
     reporter_name = fields.Char(
         string="Reporter",
@@ -134,19 +132,19 @@ class AllergyIntolerance(models.Model):
     def compute_recorder_name(self):
         for hc_annotation in self:
 
-            if hc_annotation.recorder_type == 'practitioner':
+            if hc_annotation.recorder_type == 'Practitioner':
                 hc_annotation.recorder_name = hc_annotation.recorder_practitioner_id.name
-            elif hc_annotation.recorder_type == 'patient':
+            elif hc_annotation.recorder_type == 'Patient':
                 hc_annotation.recorder_name = hc_annotation.recorder_patient_id.name
             
     @api.multi
     def compute_reporter_name(self):
         for hc_annotation in self:
-            if hc_annotation.reporter_type == 'practitioner':
+            if hc_annotation.reporter_type == 'Practitioner':
                 hc_annotation.reporter_name = hc_annotation.reporter_practitioner_id.name
-            elif hc_annotation.reporter_type == 'patient':
+            elif hc_annotation.reporter_type == 'Patient':
                 hc_annotation.reporter_name = hc_annotation.reporter_patient_id.name
-            elif hc_annotation.reporter_type == 'related person':
+            elif hc_annotation.reporter_type == 'Related Person':
                 hc_annotation.reporter_name = hc_annotation.reporter_related_person_id.name
 
     # @api.depends('patient','substance','patient_id','substance_id')
@@ -237,11 +235,11 @@ class AllergyIntoleranceAnnotation(models.Model):
         for hc_allergy_intolerance_annotation in self:
             if hc_allergy_intolerance_annotation.author_type == 'string':
                 hc_allergy_intolerance_annotation.author_name = hc_allergy_intolerance_annotation.author_string
-            elif hc_allergy_intolerance_annotation.author_type == 'practitioner':
+            elif hc_allergy_intolerance_annotation.author_type == 'Practitioner':
                 hc_allergy_intolerance_annotation.author_name = hc_allergy_intolerance_annotation.author_practitioner_id.name
-            elif hc_allergy_intolerance_annotation.author_type == 'patient':
+            elif hc_allergy_intolerance_annotation.author_type == 'Patient':
                 hc_allergy_intolerance_annotation.author_name = hc_allergy_intolerance_annotation.author_patient_id.name
-            elif hc_allergy_intolerance_annotation.author_type == 'related person':
+            elif hc_allergy_intolerance_annotation.author_type == 'Related Person':
                 hc_allergy_intolerance_annotation.author_name = hc_allergy_intolerance_annotation.author_related_person_id.name                    
 
 class AllergyIntoleranceReactionAnnotation(models.Model):   
@@ -259,32 +257,17 @@ class AllergyIntoleranceReactionAnnotation(models.Model):
         for hc_allergy_intolerance_reaction_annotation in self:
             if hc_allergy_intolerance_reaction_annotation.author_type == 'string':
                 hc_allergy_intolerance_reaction_annotation.author_name = hc_allergy_intolerance_reaction_annotation.author_string
-            elif hc_allergy_intolerance_reaction_annotation.author_type == 'practitioner':
+            elif hc_allergy_intolerance_reaction_annotation.author_type == 'Practitioner':
                 hc_allergy_intolerance_reaction_annotation.author_name = hc_allergy_intolerance_reaction_annotation.author_practitioner_id.name
-            elif hc_allergy_intolerance_reaction_annotation.author_type == 'patient':
+            elif hc_allergy_intolerance_reaction_annotation.author_type == 'Patient':
                 hc_allergy_intolerance_reaction_annotation.author_name = hc_allergy_intolerance_reaction_annotation.author_patient_id.name
-            elif hc_allergy_intolerance_reaction_annotation.author_type == 'related person':
+            elif hc_allergy_intolerance_reaction_annotation.author_type == 'Related Person':
                 hc_allergy_intolerance_reaction_annotation.author_name = hc_allergy_intolerance_reaction_annotation.author_related_person_id.name                  
               
 class AllergyIntoleranceSubstanceCode(models.Model):    
     _name = "hc.vs.allergy.intolerance.substance.code"  
     _description = "Allergy Intolerance Substance Code"     
-    _inherit = ["hc.value.set.contains"]    
-
-class SubstanceCode(models.Model):  
-    _name = "hc.vs.substance.code"  
-    _description = "Substance Code"     
-    _inherit = ["hc.value.set.contains"]    
-
-class ManifestationCode(models.Model): 
-    _name = "hc.vs.manifestation.code" 
-    _description = "Manifestation Code"        
-    _inherit = ["hc.value.set.contains"]    
-
-class RouteCode(models.Model): 
-    _name = "hc.vs.route.code" 
-    _description = "Route Code"        
-    _inherit = ["hc.value.set.contains"]    
+    _inherit = ["hc.value.set.contains"]     
 
 # External Reference
 

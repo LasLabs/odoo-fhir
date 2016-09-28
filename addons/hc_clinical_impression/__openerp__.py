@@ -34,7 +34,7 @@
 
     # any module necessary for this one to work correctly
     # 'depends': ['hc_communication_request','hc_vision_prescription','hc_nutrition_request']
-    'depends': ['hc_allergy_intolerance', 'hc_procedure', 'hc_family_member_history'],
+    'depends': ['hc_family_member_history','hc_procedure','hc_vision_prescription','hc_nutrition_request'],
 
     # always loaded
     'data': [
@@ -46,4 +46,5 @@
     'demo': [
         'demo/demo.xml',
     ],
+
 }
