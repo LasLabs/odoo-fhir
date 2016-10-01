@@ -107,7 +107,7 @@ class MedicationOrderDosageInstruction(models.Model):
         comodel_name="hc.res.medication.order", 
         string="Medication Order", 
         required="True", 
-        help="Medication order associated with this dosage instruction.")                
+        help="Medication Order associated with this Medication Order Dosage Instruction.")                
     text = fields.Text(
         string="Text", 
         help="Dosage instructions expressed as text.")                
@@ -272,7 +272,7 @@ class MedicationOrderDispenseRequest(models.Model):
         comodel_name="hc.res.medication.order", 
         string="Medication Order", 
         required="True", 
-        help="Medication order associated with this dispense request.")                
+        help="Medication Order associated with this Medication Order Dispense Request.")                
     start_date = fields.Datetime(
         string="Start Date", 
         help="Start of the time period supply is authorized for.")                
@@ -304,7 +304,7 @@ class MedicationOrderSubstitution(models.Model):
     medication_order_id = fields.Many2one(
         comodel_name="hc.res.medication.order", 
         string="Medication Order", 
-        help="Medication order associated with this substitution.")                
+        help="Medication Order associated with this Medication Order Substitution.")                
     allowed = fields.Boolean(
         string="Substitution Allowed", 
         required="True", 
@@ -322,7 +322,7 @@ class MedicationOrderEventHistory(models.Model):
         comodel_name="hc.res.medication.order", 
         string="Medication Order", 
         required="True", 
-        help="Medication order associated with this event history.")                
+        help="Medication Order associated with this Medication Order Event History.")                
     status = fields.Selection(
         string="Event History Status", 
         required="True", selection=[
@@ -343,7 +343,7 @@ class MedicationOrderEventHistory(models.Model):
         help="The date at which the event happened.")                
     actor_id = fields.Many2one(
         comodel_name="hc.res.practitioner", 
-        string="Actors", 
+        string="Actor", 
         help="Who took the action.")                
     reason_id = fields.Many2one(
         comodel_name="hc.vs.medication.event.history.reason", 
@@ -358,7 +358,7 @@ class MedicationOrderIdentifier(models.Model):
     medication_order_id = fields.Many2one(
         comodel_name="hc.res.medication.order", 
         string="Medication Order", 
-        help="Medication order associated with this medication order identifier.")                
+        help="Medication Order associated with this Medication Order Identifier.")                
 
 class MedicationOrderReasonCode(models.Model):    
     _name = "hc.medication.order.reason.code"    
@@ -368,11 +368,11 @@ class MedicationOrderReasonCode(models.Model):
     medication_order_id = fields.Many2one(
         comodel_name="hc.res.medication.order", 
         string="Medication Order", 
-        help="Medication order associated with this medication order reason code.")                
+        help="Medication Order associated with this Medication Order Reason Code.")                
     reason_code_id = fields.Many2one(
         comodel_name="hc.vs.condition.code", 
         string="Reason Code", 
-        help="Reason Code associated with this medication order reason code.")                
+        help="Reason Code associated with this Medication Order Reason Code.")
 
 class MedicationOrderReasonReference(models.Model):    
     _name = "hc.medication.order.reason.reference"    
@@ -382,11 +382,11 @@ class MedicationOrderReasonReference(models.Model):
     medication_order_id = fields.Many2one(
         comodel_name="hc.res.medication.order", 
         string="Medication Order", 
-        help="Medication order associated with this medication order reason reference.")                
+        help="Medication Order associated with this Medication Order Reason Reference.")                
     reason_reference_id = fields.Many2one(
         comodel_name="hc.res.condition", 
         string="Reason Reference", 
-        help="Reason Reference associated with this medication order reason reference.")                
+        help="Reason Reference associated with this Medication Order Reason Reference.")                
 
 class MedicationOrderNote(models.Model):    
     _name = "hc.medication.order.note"    
@@ -396,7 +396,7 @@ class MedicationOrderNote(models.Model):
     medication_order_id = fields.Many2one(
         comodel_name="hc.res.medication.order", 
         string="Medication Order", 
-        help="Medication order associated with this medication order note.")                
+        help="Medication Order associated with this Medication Order Note.")                
 
 class MedOrderDosageInstrAddlInstr(models.Model):    
     _name = "hc.med.order.dosage.instr.addl.instr"    
@@ -406,7 +406,7 @@ class MedOrderDosageInstrAddlInstr(models.Model):
     dosage_instruction_id = fields.Many2one(
         comodel_name="hc.medication.order.dosage.instruction", 
         string="Dosage Instruction", 
-        help="Dosage Instruction associated with this medication order dosage instruction additional instruction.")                
+        help="Dosage Instruction associated with this Medication Order Dosage Instruction Additional Instruction.")                
     additional_instruction_type = fields.Selection(
         string="Dose Type", 
         selection=[
@@ -414,27 +414,27 @@ class MedOrderDosageInstrAddlInstr(models.Model):
             ("Code", "Code")], 
         help="Type of supplemental instructions.")          
     additional_instruction_name = fields.Char(
-        string="Additional Instruction", 
+        string="Additional Instructions", 
         compute="_compute_additional_instruction_name", 
         store="True", 
         help='Supplemental instructions - e.g. "with meals".')         
-    additional_instruction_text = fields.Char(
-        string="Additional Instructions Text", 
+    additional_instruction = fields.Char(
+        string="Additional Instructions", 
         help="Text of supplemental instructions.")           
     additional_instruction_code_id = fields.Many2one(
         comodel_name="hc.vs.additional.instruction.code", 
-        string="Additional Instruction Code", 
+        string="Additional Instructions Code", 
         help="Code of supplemental instructions.")
 
-class MedOrderDosageInstrTiming(models.Model):  
-    _name = "hc.med.order.dosage.instr.timing"  
-    _description = "Medication Order Dosage Instruction Timing"      
+class MedOrderDosageInstrTiming(models.Model):    
+    _name = "hc.med.order.dosage.instr.timing"    
+    _description = "Medication Order Dosage Instruction Timing"       
     _inherit = ["hc.basic.association", "hc.timing"]
 
     dosage_instruction_id = fields.Many2one(
         comodel_name="hc.medication.order.dosage.instruction", 
         string="Dosage Instruction", 
-        help="Dosage Instruction associated with this medication order dosage instruction timing.")                
+        help="Dosage Instruction associated with this Medication Order Dosage Instruction Timing.")                
 
 class AdministrativeMethodCode(models.Model):    
     _name = "hc.vs.administration.method.code"    
