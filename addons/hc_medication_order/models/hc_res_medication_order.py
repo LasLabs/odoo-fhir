@@ -8,9 +8,12 @@ class MedicationOrder(models.Model):
 
     identifier_ids = fields.One2many(comodel_name="hc.medication.order.identifier", inverse_name="medication_order_id", string="Identifiers", help="External identifier.")                
     status = fields.Selection(string="Medication Order Status", selection=[("active", "Active"), ("on-hold", "On-Hold"), ("completed", "Completed"), ("entered-in-error", "Entered-In-Error"), ("stopped", "Stopped"), ("superceded", "Superceded"), ("draft", "Draft")], help="A code specifying the state of the order. Generally this will be active or completed state.")                
-    medication_type = fields.Selection(string="Medication Type", selection=[("Codeable Concept", "Codeable Concept"), ("Medication", "Medication")], help="Type of product to be supplied.")                
-    medication_name = fields.Char(string="Medication", compute="_compute_medication_name", store="True", help="Product to be supplied .")                
-    medication_code_id = fields.Many2one(comodel_name="hc.vs.medication.code", string="Medication Code", help="CodeableConcept product to be supplied.")                
+    medication_type = fields.Selection(string="Medication Type", selection=[("Code", "Code"), ("Medication", "Medication")], help="Type of product to be supplied.")                
+    medication_name = fields.Char(string="Medication", compute="_compute_medication_name", store="True", help="Product to be supplied.")                
+    medication_code_id = fields.Many2one(
+        comodel_name="hc.vs.medication.code", 
+        string="Medication Code", 
+        help="Code of product to be supplied.")                
     medication_id = fields.Many2one(comodel_name="hc.res.medication", string="Medication", help="Medication product to be supplied.")                
     patient_id = fields.Many2one(comodel_name="hc.res.patient", string="Patient", help="Who prescription is for.")                
     encounter_id = fields.Many2one(comodel_name="hc.res.encounter", string="Encounter", help="Created during encounter / admission / stay.")                
@@ -20,8 +23,10 @@ class MedicationOrder(models.Model):
     reason_reference_ids = fields.One2many(comodel_name="hc.medication.order.reason.reference", inverse_name="medication_order_id", string="Reason References", help="Condition that supports why the prescription is being written.")                
     note_ids = fields.One2many(comodel_name="hc.medication.order.note", inverse_name="medication_order_id", string="Notes", help="Information about the prescription.")                
     category_id = fields.Many2one(comodel_name="hc.vs.medication.order.category", string="Medication Order Category", help="Type of medication usage.")                
-    prior_prescription_id = fields.Many2one(comodel_name="hc.res.medication.order", string="Prior Prescription", help="An order/prescription that this supersedes.")                
-    dosage_instruction_ids = fields.One2many(comodel_name="hc.medication.order.dosage.instruction", inverse_name="medication_order_id", string="Dosage Instructions", help="How medication should be taken.")                
+    prior_prescription_id = fields.Many2one(comodel_name="hc.res.medication.order", string="Prior Prescription", 
+        help="An order/prescription that this supersedes.")                
+    dosage_instruction_ids = fields.One2many(comodel_name="hc.medication.order.dosage.instruction", 
+        inverse_name="medication_order_id", string="Dosage Instructions", help="How medication should be taken.")                
     dispense_request_ids = fields.One2many(comodel_name="hc.medication.order.dispense.request", inverse_name="medication_order_id", string="Dispense Requests", help="Medication supply authorization.")                
     substitution_ids = fields.One2many(comodel_name="hc.medication.order.substitution", inverse_name="medication_order_id", string="Substitutions", help="Any restrictions on medication substitution?.")                
     event_history_ids = fields.One2many(comodel_name="hc.medication.order.event.history", inverse_name="medication_order_id", string="Event Histories", help="A list of events of interest in the lifecycle.")                
@@ -32,20 +37,24 @@ class MedicationOrderDosageInstruction(models.Model):
 
     medication_order_id = fields.Many2one(comodel_name="hc.res.medication.order", string="Medication Order", required="True", help="Medication order associated with this dosage instruction.")                
     text = fields.Text(string="Text", help="Dosage instructions expressed as text.")                
-    additional_instruction_ids = fields.One2many(comodel_name="hc.med.order.dosage.instr.addl.instr", inverse_name="dosage_instruction_id", string="Additional Instructions", help='Supplemental instructions - e.g. "with meals".')                
+    additional_instruction_ids = fields.One2many(
+        comodel_name="hc.med.order.dosage.instr.addl.instr", 
+        inverse_name="dosage_instruction_id", 
+        string="Additional Instructions", 
+        help='Supplemental instructions - e.g. "with meals".')                
     timing_ids = fields.One2many(comodel_name="hc.med.order.dosage.instr.timing", inverse_name="dosage_instruction_id", string="Timings", help="When medication should be administered.")                
-    as_needed_type = fields.Selection(string="As Needed Type", selection=[("boolean", "Boolean"), ("Codeable Concept", "Codeable Concept")], help="Type of take as needed.")                
-    as_needed_name = fields.Char(string="As Needed", compute="_compute_as_needed_name", store="True", help="Take as needed .")                
+    as_needed_type = fields.Selection(string="As Needed Type", selection=[("boolean", "Boolean"), ("Code", "Code")], help="Type of take as needed.")                
+    as_needed_name = fields.Char(string="As Needed", compute="_compute_as_needed_name", store="True", help="Take as needed.")                
     is_as_needed = fields.Boolean(string="As Needed", help="Take as needed.")                
     as_needed_code_id = fields.Many2one(comodel_name="hc.vs.medication.as.needed.reason", string="As Needed Code", help="SNOMED CT Medication As Needed Reason Codes.")                
-    site_type = fields.Selection(string="Site Type", selection=[("Codeable Concept", "Codeable Concept"), ("Body Site", "Body Site")], help="Type of body site to administer to.")                
-    site_name = fields.Char(string="Site", compute="_compute_site_name", store="True", help="Body site to administer to .")                
-    site_code_id = fields.Many2one(comodel_name="hc.vs.approach.site.code", string="Site Code", help="CodeableConcept body site to administer to.")                
-    body_site_id = fields.Many2one(comodel_name="hc.res.body.site", string="Body Site", help="Body site to administer to.")                
+    site_type = fields.Selection(string="Site Type", selection=[("Code", "Code"), ("Body Site", "Body Site")], help="Type of body site to administer to.")
+    site_name = fields.Char(string="Site", compute="_compute_site_name", store="True", help="Body site to administer to.")
+    site_code_id = fields.Many2one(comodel_name="hc.vs.approach.site.code", string="Site Code", help="Code of body site to administer to.")
+    body_site_id = fields.Many2one(comodel_name="hc.res.body.site", string="Body Site", help="Body site to administer to.")
     route_id = fields.Many2one(comodel_name="hc.vs.route.code", string="Route", help="How drug should enter body.")                
     method_id = fields.Many2one(comodel_name="hc.vs.administration.method.code", string="Method", help="Technique for administering medication.")                
     dose_type = fields.Selection(string="Dose Type", selection=[("Range", "Range"), ("Quantity", "Quantity")], help="Type of amount of medication per dose.")                
-    dose_name = fields.Char(string="Dose", compute="_compute_dose_name", store="True", help="Amount of medication per dose .")                
+    dose_name = fields.Char(string="Dose", compute="_compute_dose_name", store="True", help="Amount of medication per dose.")                
     dose_range_low = fields.Float(string="Dose Range Low", help="Low limit of amount of medication per dose.")                
     dose_range_high = fields.Float(string="Dose Range High", help="High limit of amount of medication per dose.")                
     dose = fields.Float(string="Dose", help="Amount of medication per dose.")                
@@ -58,8 +67,11 @@ class MedicationOrderDosageInstruction(models.Model):
     max_dose_per_administration_uom_id = fields.Many2one(comodel_name="product.uom", string="Max Dose Per Administration UOM", help="Maximum dose per administration unit of measure.")                
     max_dose_per_lifetime = fields.Float( help="Upper limit on medication per unit of time.")                
     max_dose_per_lifetime_uom_id = fields.Many2one(comodel_name="product.uom", string="Max Dose Per Lifetime UOM", help="Maximum dose per lifetime unit of measure.")                
-    rate_type = fields.Selection(string="Rate Type", selection=[("Ratio", "Ratio"), ("Range|Quantity", "Range|Quantity")], help="Type of amount of medication per unit of time.")                
-    rate_name = fields.Char(string="Rate", compute="_compute_rate_name", store="True", help="Amount of medication per unit of time .")                
+    rate_type = fields.Selection(
+        string="Rate Type", 
+        selection=[("Ratio", "Ratio"), ("Range", "Range"), ("Quantity", "Quantity")],
+        help="Type of amount of medication per unit of time.")                
+    rate_name = fields.Char(string="Rate", compute="_compute_rate_name", store="True", help="Amount of medication per unit of time.")                
     dose_quantity = fields.Float(string="Dose Quantity", help="Numerator value of amount of medication per unit of time.")                
     dose_period = fields.Float(string="Dose Period", help="Denominator value of amount of medication per unit of time.")                
     dose_rate = fields.Float(string="Dose Rate", compute="_compute_dose_rate", store="True", help="Amount of medication per unit of time.")                
@@ -95,10 +107,10 @@ class MedicationOrderEventHistory(models.Model):
     _description = "Medication Order Event History"        
 
     medication_order_id = fields.Many2one(comodel_name="hc.res.medication.order", string="Medication Order", required="True", help="Medication order associated with this event history.")                
-    status = fields.Selection(string="Event History Status", required="True", selection=[("active", "Active"), ("on-hold", "On-Hold"), ("completed", "Completed"), ("entered-in-error", "Entered-In-Error"), ("stopped | draft", "Stopped | Draft")], help="The status for the event.")                
+    status = fields.Selection(string="Event History Status", required="True", selection=[("active", "Active"), ("on-hold", "On-Hold"), ("completed", "Completed"), ("entered-in-error", "Entered-In-Error"), ("stopped", "Stopped"), ("draft", "Draft")], help="The status for the event.")
     action_id = fields.Many2one(comodel_name="hc.vs.medication.event.history.action", string="Action", help="Action taken (e.g. verify, discontinue).")                
-    recorded_date = fields.Datetime(string="Recorded Date", required="True", help="The date at which the event happened.")                
-    actor_id = fields.Many2one(comodel_name="hc.res.practitioner", inverse_name="", string="Actors", help="Who took the action.")                
+    occurrence_date = fields.Datetime(string="Occurrence Date", required="True", help="The date at which the event happened.")                
+    actor_id = fields.Many2one(comodel_name="hc.res.practitioner", string="Actors", help="Who took the action.")                
     reason_id = fields.Many2one(comodel_name="hc.vs.medication.event.history.reason", string="Reason", help="Reason the action was taken.")                
 
 class MedicationOrderIdentifier(models.Model):    
@@ -136,15 +148,37 @@ class MedOrderDosageInstrAddlInstr(models.Model):
     _description = "Medication Order Dosage Instruction Additional Instruction"        
     _inherit = ["hc.basic.association"]
 
-    dosage_instruction_id = fields.Many2one(comodel_name="hc.medication.order.dosage.instruction", string="Dosage Instruction", help="Dosage Instruction associated with this medication order dosage instruction additional instruction.")                
-    additional_instruction_id = fields.Many2one(comodel_name="hc.vs.additional.instruction.code", string="Additional Instruction", help="Additional Instruction associated with this medication order additional instruction.")                
+    dosage_instruction_id = fields.Many2one(
+        comodel_name="hc.medication.order.dosage.instruction", 
+        string="Dosage Instruction", 
+        help="Dosage Instruction associated with this medication order dosage instruction additional instruction.")                
+    additional_instruction_type = fields.Selection(
+        string="Dose Type", 
+        selection=[
+            ("string", "String"), 
+            ("Code", "Code")], 
+        help="Type of supplemental instructions.")          
+    additional_instruction_name = fields.Char(
+        string="Additional Instruction", 
+        compute="_compute_additional_instruction_name", 
+        store="True", 
+        help='Supplemental instructions - e.g. "with meals".')         
+    additional_instruction_text = fields.Char(
+        string="Additional Instructions Text", 
+        help="Text of supplemental instructions.")           
+    additional_instruction_code_id = fields.Many2one(
+        comodel_name="hc.vs.additional.instruction.code", 
+        string="Additional Instruction Code", 
+        help="Code of supplemental instructions.")
 
 class MedOrderDosageInstrTiming(models.Model):  
     _name = "hc.med.order.dosage.instr.timing"  
     _description = "Medication Order Dosage Instruction Timing"      
     _inherit = ["hc.basic.association", "hc.timing"]
 
-    dosage_instruction_id = fields.Many2one(comodel_name="hc.medication.order.dosage.instruction", string="Dosage Instruction", help="Dosage Instruction associated with this medication order dosage instruction timing.")                
+    dosage_instruction_id = fields.Many2one(comodel_name="hc.medication.order.dosage.instruction", 
+        string="Dosage Instruction", 
+        help="Dosage Instruction associated with this medication order dosage instruction timing.")                
 
 class AdministrativeMethodCode(models.Model):    
     _name = "hc.vs.administration.method.code"    

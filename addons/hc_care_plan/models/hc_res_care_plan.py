@@ -52,13 +52,13 @@ class CarePlanActivity(models.Model):
     # reference_communication_request_id = fields.Many2one(comodel_name="hc.res.communication.request", string="Reference Communication Request", help="Communication Request activity details defined in specific resource.")                
     # reference_device_use_request_id = fields.Many2one(comodel_name="hc.res.device.use.request", string="Reference Device Use Request", help="Device Use Request activity details defined in specific resource.")                
     reference_diagnostic_request_id = fields.Many2one(comodel_name="hc.res.diagnostic.request", string="Reference Diagnostic Request", help="Diagnostic Request activity details defined in specific resource.")                
-    # reference_medication_order_id = fields.Many2one(comodel_name="hc.res.medication.order", string="Reference Medication Order", help="Medication Order activity details defined in specific resource.")                
-    # reference_nutrition_request_id = fields.Many2one(comodel_name="hc.res.nutrition.request", string="Reference Nutrition Request", help="Nutrition Request activity details defined in specific resource.")                
+    reference_medication_order_id = fields.Many2one(comodel_name="hc.res.medication.order", string="Reference Medication Order", help="Medication Order activity details defined in specific resource.")                
+    reference_nutrition_request_id = fields.Many2one(comodel_name="hc.res.nutrition.request", string="Reference Nutrition Request", help="Nutrition Request activity details defined in specific resource.")                
     reference_procedure_request_id = fields.Many2one(comodel_name="hc.res.procedure.request", string="Reference Procedure Request", help="Procedure Request activity details defined in specific resource.")                
     # reference_process_request_id = fields.Many2one(comodel_name="hc.res.process.request", string="Reference Process Request", help="Process Request activity details defined in specific resource.")                
     reference_referral_request_id = fields.Many2one(comodel_name="hc.res.referral.request", string="Reference Referral Request", help="Referral Request activity details defined in specific resource.")                
     # reference_supply_request_id = fields.Many2one(comodel_name="hc.res.supply.request", string="Reference Supply Request", help="Supply Request activity details defined in specific resource.")                
-    # reference_vision_prescription_id = fields.Many2one(comodel_name="hc.res.vision.prescription", string="Reference Vision Prescription", help="Vision Prescription activity details defined in specific resource.")                
+    reference_vision_prescription_id = fields.Many2one(comodel_name="hc.res.vision.prescription", string="Reference Vision Prescription", help="Vision Prescription activity details defined in specific resource.")                
     detail_ids = fields.One2many(comodel_name="hc.care.plan.activity.detail", inverse_name="activity_id", string="Details", help="In-line definition of activity.")                
 
 class CarePlanActivityDetail(models.Model):    
@@ -103,13 +103,13 @@ class CarePlanActivityActionResulting(models.Model):
     # action_resulting_communication_request_id = fields.Many2one(comodel_name="hc.res.communication.request", string="Action Resulting Communication Request", help="Communication Request resource that describes follow-on actions resulting from the plan.")
     # action_resulting_device_use_request_id = fields.Many2one(comodel_name="hc.res.device.use.request", string="Action Resulting Device Use Request", help="Device Use Request resource that describes follow-on actions resulting from the plan.")
     action_resulting_diagnostic_request_id = fields.Many2one(comodel_name="hc.res.diagnostic.request", string="Action Resulting Diagnostic Request", help="Diagnostic Request resource that describes follow-on actions resulting from the plan.")
-    # action_resulting_medication_order_id = fields.Many2one(comodel_name="hc.res.medication.order", string="Action Resulting Medication Order", help="Medication Order resource that describes follow-on actions resulting from the plan.")
-    # action_resulting_nutrition_request_id = fields.Many2one(comodel_name="hc.res.nutrition.request", string="Action Resulting Nutrition Request", help="Nutrition Request resource that describes follow-on actions resulting from the plan.")
+    action_resulting_medication_order_id = fields.Many2one(comodel_name="hc.res.medication.order", string="Action Resulting Medication Order", help="Medication Order resource that describes follow-on actions resulting from the plan.")
+    action_resulting_nutrition_request_id = fields.Many2one(comodel_name="hc.res.nutrition.request", string="Action Resulting Nutrition Request", help="Nutrition Request resource that describes follow-on actions resulting from the plan.")
     action_resulting_procedure_request_id = fields.Many2one(comodel_name="hc.res.procedure.request", string="Action Resulting Procedure Request", help="Procedure Request resource that describes follow-on actions resulting from the plan.")
     # action_resulting_process_request_id = fields.Many2one(comodel_name="hc.res.process.request", string="Action Resulting Process Request", help="Process Request resource that describes follow-on actions resulting from the plan.")
     action_resulting_referral_request_id = fields.Many2one(comodel_name="hc.res.referral.request", string="Action Resulting Referral Request", help="Referral Request resource that describes follow-on actions resulting from the plan.")
     # action_resulting_supply_request_id = fields.Many2one(comodel_name="hc.res.supply.request", string="Action Resulting Supply Request", help="Supply Request resource that describes follow-on actions resulting from the plan.")
-    # action_resulting_vision_prescription_id = fields.Many2one(comodel_name="hc.res.vision.prescription", string="Action Resulting Vision Prescription", help="Vision Prescription resource that describes follow-on actions resulting from the plan.")
+    action_resulting_vision_prescription_id = fields.Many2one(comodel_name="hc.res.vision.prescription", string="Action Resulting Vision Prescription", help="Vision Prescription resource that describes follow-on actions resulting from the plan.")
 
 class CarePlanActivityDetailGoal(models.Model):    
     _name = "hc.care.plan.activity.detail.goal"    

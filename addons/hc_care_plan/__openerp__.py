@@ -29,7 +29,7 @@
 
     # any module necessary for this one to work correctly
     # 'depends': ['hc_device_use_request'],
-    'depends': ['hc_goal'],
+    'depends': ['hc_goal','hc_medication_order','hc_vision_prescription'],
 
     # always loaded
     'data': [

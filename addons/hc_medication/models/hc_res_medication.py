@@ -66,9 +66,9 @@ class MedicationProductIngredient(models.Model):
         string="Item Type",
         required="True",
         selection=[
-            ("codeable concept", "Codeable Concept"), 
-            ("substance", "Substance"), 
-            ("medication", "Medication")], 
+            ("Code", "Code"), 
+            ("Substance", "Substance"), 
+            ("Medication", "Medication")], 
         help="Type of the product contained.")                    
     item_name = fields.Char(
         string="Item", 
@@ -77,8 +77,8 @@ class MedicationProductIngredient(models.Model):
         help="The product contained.")                    
     item_id = fields.Many2one(
         comodel_name="hc.vs.medication.ingredient.code", 
-        string="Item", 
-        help="Codeable Concept product contained.")                    
+        string="Item Code", 
+        help="Code of product contained.")                    
     item_substance_id = fields.Many2one(
         comodel_name="hc.res.substance", 
         string="Item Substance", 

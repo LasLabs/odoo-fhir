@@ -1,0 +1,20 @@
+<openerp>
+    <data>
+
+        <act_window id="hc_res_medication_dispense_action"  
+                    name="HC Medication Dispenses"
+                    res_model="hc.res.medication.dispense"
+                    view_mode="tree,form"
+                    domain=""
+                    context=""
+                    limit=""/>
+
+        <menuitem id="hc_medication_dispense.menu_med_disp" 
+                  name="Medication Dispense" 
+                  parent="hc_base.menu_med" 
+                  action="hc_res_medication_dispense_action" 
+                  groups="hc_base.group_hc_base_manager" 
+                  sequence="30"/>
+
+    </data>
+</openerp>
