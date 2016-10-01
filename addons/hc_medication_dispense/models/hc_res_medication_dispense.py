@@ -6,11 +6,20 @@ class MedicationDispense(models.Model):
     _name = "hc.res.medication.dispense"    
     _description = "Medication Dispense"        
 
-    identifier_ids = fields.One2many(comodel_name="hc.medication.dispense.identifier", inverse_name="medication_dispense_id", string="Identifiers", help="External identifier.")                
+    identifier_ids = fields.One2many(
+        comodel_name="hc.medication.dispense.identifier", 
+        inverse_name="medication_dispense_id", 
+        string="Identifiers", 
+        help="External identifier.")                
     status = fields.Selection(string="Medication Dispense Status", 
-        selection=[("in-progress", "In-Progress"), ("on-hold", "On-Hold"), ("completed", "Completed"), ("entered-in-error", "Entered-In-Error"), ("stopped", "Stopped")], 
+        selection=[
+            ("in-progress", "In-Progress"), ("on-hold", "On-Hold"), ("completed", "Completed"), ("entered-in-error", "Entered-In-Error"), ("stopped", "Stopped")], 
         help="A code specifying the state of the set of dispense events.")                
-    medication_type = fields.Selection(string="Medication Type", required="True", selection=[("Code", "Code"), ("Medication", "Medication")], help="Type of what medication was supplied.")                
+    medication_type = fields.Selection(string="Medication Type", required="True", 
+        selection=[
+            ("Code", "Code"), 
+            ("Medication", "Medication")], 
+        help="Type of what medication was supplied.")                
     medication_name = fields.Char(string="Medication", compute="_compute_medication_name", store="True", required="True", help="What medication was supplied.")                
     medication_code_id = fields.Many2one(comodel_name="hc.vs.medication.code", string="Medication Code", help="Code of what medication was supplied.")                
     medication_id = fields.Many2one(comodel_name="hc.res.medication", string="Medication", help="What medication was supplied.")                
@@ -53,7 +62,9 @@ class MedicationDispenseDosageInstruction(models.Model):
     scheduled_start_date = fields.Datetime(string="Scheduled Start Date", help="Start of the when medication should be administered.")                
     scheduled_end_date = fields.Datetime(string="Scheduled End Date", help="End of the when medication should be administered.")                
     schedule_timing_id = fields.Many2one(comodel_name="hc.med.disp.dosage.instr.schedule", string="Schedule Timing", help="Timing when medication should be administered.")                
-    as_needed_type = fields.Selection(string="As Needed Type", selection=[("boolean", "Boolean"), ("Code", "Code")], help="Type of take as needed.")                
+    as_needed_type = fields.Selection(string="As Needed Type", 
+        selection=[("boolean", "Boolean"), ("Code", "Code")], 
+        help="Type of take as needed.")                
     as_needed_name = fields.Char(string="As Needed", compute="_compute_as_needed_name", store="True", help="Take as needed.")                
     is_as_needed = fields.Boolean(string="As Needed", help="Boolean take as needed.")                
     as_needed_code_id = fields.Many2one(comodel_name="hc.vs.medication.as.needed.reason", string="As Needed Code", help="SNOMED CT Medication As Needed Reason Codes.")                
@@ -63,26 +74,74 @@ class MedicationDispenseDosageInstruction(models.Model):
     body_site_id = fields.Many2one(comodel_name="hc.res.body.site", string="Body Site", help="Body site to administer to.")                
     route_id = fields.Many2one(comodel_name="hc.vs.route.code", string="Route", help="How drug should enter body.")                
     method_id = fields.Many2one(comodel_name="hc.vs.administration.method.code", string="Method", help="Technique for administering medication.")                
-    dose_type = fields.Selection(string="Dose Type", selection=[("Range", "Range"), ("Quantity", "Quantity")], help="Type of amount of medication per dose.")                
+    
+    dose_type = fields.Selection(string="Dose Type", selection=[("Range", "Range"), ("Quantity", "Quantity")], 
+        help="Type of amount of medication per dose.")                
     dose_name = fields.Char(string="Dose", compute="_compute_dose_name", store="True", help="Amount of medication per dose.")                
     dose_range_low = fields.Float(string="Dose Range Low", help="Low limit of amount of medication per dose.")                
     dose_range_high = fields.Float(string="Dose Range High", help="High limit of amount of medication per dose.")                
     dose = fields.Float(string="Dose", help="Amount of medication per dose.")                
     dose_uom_id = fields.Many2one(comodel_name="product.uom", string="Dose UOM", help="Amount of medication per dose unit of measure.")                
-    dose_type = fields.Selection(string="Dose Type", selection=[("Ratio", "Ratio"), ("Range|Quantity", "Range|Quantity")], help="Type of amount of medication per dose.")                
-    rate_name = fields.Char(string="Rate", compute="_compute_rate_name", store="True", help="Amount of medication per unit of time.")                
-    medication_quantity = fields.Float(string="Medication Quantity", help="Numerator value of amount of medication per unit of time.")                
-    medication_period = fields.Float(string="Medication Period", help="Denominator value of amount of medication per unit of time.")                
-    medication_rate = fields.Float(string="Medication Rate", compute="_compute_medication_rate", store="True", help="Amount of medication per unit of time.")                
-    medication_rate_uom_id = fields.Many2one(comodel_name="product.uom", string="Medication Rate UOM", help="Amount of medication per unit of time unit of measure.")                
-    rate_range_low = fields.Float(string="Rate Range Low", help="Low limit of amount of medication per unit of time.")                
-    rate_range_high = fields.Float(string="Rate Range High", help="High limit of amount of medication per unit of time.")                
-    rate = fields.Float( help="Amount of medication per unit of time.")                
-    rate_uom_id = fields.Many2one(comodel_name="product.uom", string="Rate UOM", help="Rate unit of measure.")                
-    max_dose_quantity_numerator = fields.Float(string="Maximum Dose Quantity", help="Numerator value of upper limit on medication per unit of time.")                
-    max_dose_period_numerator = fields.Float(string="Maximum Dose Period", help="Denominator value of upper limit on medication per unit of time.")                
-    max_dose_per_period = fields.Float(string="Maximum Dose per Period", compute="_compute_max_dose_per_period", store="True", help="Upper limit on medication per unit of time.")                
-    max_dose_per_period_uom_id = fields.Many2one(comodel_name="product.uom", string="Maximum Dose per Period UOM", help="Upper limit on medication per unit of time unit of measure.")                
+    
+    rate_type = fields.Selection(
+        string="Rate Type", 
+        selection=[
+            ("Ratio", "Ratio"),
+            ("Range", "Range"), 
+            ("Quantity", "Quantity")], 
+        help="Type of amount of medication per dose.")                
+    rate_name = fields.Char(
+        string="Rate", 
+        compute="_compute_rate_name", 
+        store="True", 
+        help="Amount of medication per unit of time.")                
+    medication_quantity = fields.Float(
+        string="Medication Quantity", 
+        help="Numerator value of amount of medication per unit of time.")                
+    medication_period = fields.Float(
+        string="Medication Period", 
+        help="Denominator value of amount of medication per unit of time.")
+    medication_period_uom_id = fields.Many2one(
+        comodel_name="product.uom", 
+        string="Medication Period UOM", 
+        help="Medication Period unit of measure.")                
+    medication_rate = fields.Float(
+        string="Medication Rate", 
+        compute="_compute_medication_rate", 
+        store="True", 
+        help="Amount of medication per unit of time.")                
+    medication_rate_uom_id = fields.Many2one(
+        comodel_name="product.uom", 
+        string="Medication Rate UOM", 
+        help="Medication Rate unit of measure.")                
+    rate_range_low = fields.Float(
+        string="Rate Range Low", 
+        help="Low limit of amount of medication per unit of time.")                
+    rate_range_high = fields.Float(
+        string="Rate Range High", 
+        help="High limit of amount of medication per unit of time.")                
+    rate = fields.Float(
+        string="Rate",
+        help="Amount of medication per unit of time.")                
+    rate_uom_id = fields.Many2one(
+        comodel_name="product.uom", 
+        string="Rate UOM", 
+        help="Rate unit of measure.")                
+    max_dose_quantity_numerator = fields.Float(
+        string="Maximum Dose Quantity", 
+        help="Numerator value of upper limit on medication per unit of time.")                
+    max_dose_period_numerator = fields.Float(
+        string="Maximum Dose Period", 
+        help="Denominator value of upper limit on medication per unit of time.")                
+    max_dose_per_period = fields.Float(
+        string="Maximum Dose per Period", 
+        compute="_compute_max_dose_per_period", 
+        store="True", 
+        help="Upper limit on medication per unit of time.")                
+    max_dose_per_period_uom_id = fields.Many2one(
+        comodel_name="product.uom", 
+        string="Maximum Dose per Period UOM", 
+        help="Upper limit on medication per unit of time unit of measure.")                
 
 class MedicationDispenseSubstitution(models.Model):    
     _name = "hc.medication.dispense.substitution"    
