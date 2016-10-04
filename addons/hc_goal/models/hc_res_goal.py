@@ -163,7 +163,7 @@ class GoalOutcome(models.Model):
     goal_id = fields.Many2one(
         comodel_name="hc.res.goal", 
         string="Goal", 
-        help="Goal associated with this outcome.")                
+        help="Goal associated with this Goal Outcome.")                
     result_type = fields.Selection(
         string="Result Type", 
         selection=[
@@ -191,7 +191,7 @@ class GoalAddresses(models.Model):
     goal_id = fields.Many2one(
         comodel_name="hc.res.goal", 
         string="Goal", 
-        help="Goal associated with this goal addresses.")                
+        help="Goal associated with this Goal Addresses.")                
     addresses_type = fields.Selection(
         string="Addresses Type", 
         selection=[
@@ -215,22 +215,22 @@ class GoalAddresses(models.Model):
         comodel_name="hc.res.observation", 
         string="Addresses Observations", 
         help="Observation issues addressed by this goal.")                
-    # addresses_medication_statement_ids = fields.Many2one(
-    #     comodel_name="hc.res.medication.statement", 
-    #     string="Addresses Medication Statements", 
-    #     help="Medication Statement issues addressed by this goal.")                
-    # addresses_nutrition_request_ids = fields.Many2one(
-    #     comodel_name="hc.res.nutrition.request", 
-    #     string="Addresses Nutrition Requests", 
-    #     help="Nutrition Request issues addressed by this goal.")                
+    addresses_medication_statement_ids = fields.Many2one(
+        comodel_name="hc.res.medication.statement", 
+        string="Addresses Medication Statements", 
+        help="Medication Statement issues addressed by this goal.")                
+    addresses_nutrition_request_ids = fields.Many2one(
+        comodel_name="hc.res.nutrition.request", 
+        string="Addresses Nutrition Requests", 
+        help="Nutrition Request issues addressed by this goal.")                
     addresses_procedure_request_ids = fields.Many2one(
         comodel_name="hc.res.procedure.request", 
         string="Addresses Procedure Requests", 
         help="Procedure Request issues addressed by this goal.")                
-    # addresses_risk_assessment_ids = fields.Many2one(
-    #     comodel_name="hc.res.risk.assessment", 
-    #     string="Addresses Risk Assessments", 
-    #     help="Risk Assessment issues addressed by this goal.")                
+    addresses_risk_assessment_ids = fields.Many2one(
+        comodel_name="hc.res.risk.assessment", 
+        string="Addresses Risk Assessments", 
+        help="Risk Assessment issues addressed by this goal.")                
 
 class GoalCategory(models.Model):    
     _name = "hc.goal.category"    
@@ -240,7 +240,7 @@ class GoalCategory(models.Model):
     goal_id = fields.Many2one(
         comodel_name="hc.res.goal", 
         string="Goal", 
-        help="Goal associated with this goal category.")                
+        help="Goal associated with this Goal Category.")                
     category_id = fields.Many2one(
         comodel_name="hc.vs.goal.category", 
         string="Category", 
@@ -254,7 +254,7 @@ class GoalIdentifier(models.Model):
     goal_id = fields.Many2one(
         comodel_name="hc.res.goal", 
         string="Goal", 
-        help="Goal associated with this goal identifier.")                
+        help="Goal associated with this Goal Identifier.")                
 
 class GoalNote(models.Model):    
     _name = "hc.goal.note"    
@@ -264,7 +264,7 @@ class GoalNote(models.Model):
     goal_id = fields.Many2one(
         comodel_name="hc.res.goal", 
         string="Goal", 
-        help="Goal associated with this goal note.")                
+        help="Goal associated with this Goal Note.")                
 
 class GoalStatusReason(models.Model):    
     _name = "hc.goal.status.reason"    
@@ -274,11 +274,11 @@ class GoalStatusReason(models.Model):
     goal_id = fields.Many2one(
         comodel_name="hc.res.goal", 
         string="Goal", 
-        help="Goal associated with this goal status reason.")                
+        help="Goal associated with this Goal Status Reason.")                
     status_reason_id = fields.Many2one(
         comodel_name="hc.vs.goal.status.reason", 
         string="Status Reason", 
-        help="Risk Assessment issues addressed by this goal.")                
+        help="Status Reason associated with this Goal Status Reason.")                
 
 class GoalDescription(models.Model):    
     _name = "hc.vs.goal.description"    

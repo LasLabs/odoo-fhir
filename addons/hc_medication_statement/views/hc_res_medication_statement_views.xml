@@ -1,0 +1,22 @@
+<openerp>
+    <data>
+
+        <!-- Medication Statement Action and Menu -->   
+    
+        <act_window id="hc_res_medication_statement_action" 
+                    name="HC Medication Statements"
+                    res_model="hc.res.medication.statement"
+                    view_mode="tree,form"
+                    domain=""
+                    context=""
+                    limit=""/>
+
+        <menuitem id="hc_medication_statement.menu_med_stmt" 
+                  name="Medication Statements" 
+                  parent="hc_base.menu_med" 
+                  action="hc_res_medication_statement_action" 
+                  groups="hc_base.group_hc_base_manager" 
+                  sequence="50"/>
+  
+    </data>
+</openerp>

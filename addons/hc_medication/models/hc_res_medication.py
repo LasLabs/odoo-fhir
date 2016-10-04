@@ -73,7 +73,6 @@ class MedicationProductIngredient(models.Model):
     item_name = fields.Char(
         string="Item", 
         compute="compute_item_name", 
-        required="True", 
         help="The product contained.")                    
     item_id = fields.Many2one(
         comodel_name="hc.vs.medication.ingredient.code", 

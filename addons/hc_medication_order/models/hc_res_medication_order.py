@@ -106,7 +106,6 @@ class MedicationOrderDosageInstruction(models.Model):
     medication_order_id = fields.Many2one(
         comodel_name="hc.res.medication.order", 
         string="Medication Order", 
-        required="True", 
         help="Medication Order associated with this Medication Order Dosage Instruction.")                
     text = fields.Text(
         string="Text", 
@@ -271,7 +270,6 @@ class MedicationOrderDispenseRequest(models.Model):
     medication_order_id = fields.Many2one(
         comodel_name="hc.res.medication.order", 
         string="Medication Order", 
-        required="True", 
         help="Medication Order associated with this Medication Order Dispense Request.")                
     start_date = fields.Datetime(
         string="Start Date", 
@@ -320,12 +318,12 @@ class MedicationOrderEventHistory(models.Model):
 
     medication_order_id = fields.Many2one(
         comodel_name="hc.res.medication.order", 
-        string="Medication Order", 
-        required="True", 
+        string="Medication Order",  
         help="Medication Order associated with this Medication Order Event History.")                
     status = fields.Selection(
         string="Event History Status", 
-        required="True", selection=[
+        required="True", 
+        selection=[
             ("active", "Active"), 
             ("on-hold", "On-Hold"), 
             ("completed", "Completed"), 

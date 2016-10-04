@@ -7,7 +7,7 @@ class MedicationDispense(models.Model):
     _description = "Medication Dispense"        
 
     identifier_ids = fields.One2many(
-        comodel_name="hc.medication.dispense.identifier", 
+        comodel_name="hc.med.disp.identifier", 
         inverse_name="medication_dispense_id", 
         string="Identifiers", 
         help="External identifier.")                
@@ -30,7 +30,6 @@ class MedicationDispense(models.Model):
         string="Medication", 
         compute="_compute_medication_name", 
         store="True", 
-        required="True", 
         help="What medication was supplied.")                
     medication_code_id = fields.Many2one(
         comodel_name="hc.vs.medication.code", 
@@ -82,33 +81,33 @@ class MedicationDispense(models.Model):
         string="Destination", 
         help="Where the medication was sent.")                
     receiver_ids = fields.One2many(
-        comodel_name="hc.medication.dispense.receiver", 
+        comodel_name="hc.med.disp.receiver", 
         inverse_name="medication_dispense_id", 
         string="Receivers", 
         help="Patient who collected the medication.")                
     note_ids = fields.One2many(
-        comodel_name="hc.medication.dispense.note", 
+        comodel_name="hc.med.disp.note", 
         inverse_name="medication_dispense_id", 
         string="Notes", 
         help="Information about the dispense.")                
     dosage_instruction_ids = fields.One2many(
-        comodel_name="hc.medication.dispense.dosage.instruction", 
+        comodel_name="hc.med.disp.dosage.instr", 
         inverse_name="medication_dispense_id", 
         string="Dosage Instructions", 
         help="Medicine administration instructions to the patient/carer.")                
     substitution_ids = fields.One2many(
-        comodel_name="hc.medication.dispense.substitution", 
+        comodel_name="hc.med.disp.substitution", 
         inverse_name="medication_dispense_id", 
         string="Substitutions", 
         help="Deals with substitution of one medicine for another.")                
     event_history_ids = fields.One2many(
-        comodel_name="hc.medication.dispense.event.history", 
+        comodel_name="hc.med.disp.event.history", 
         inverse_name="medication_dispense_id", 
         string="Event Histories", 
         help="A list of events of interest in the lifecycle.")                
 
-class MedicationDispenseDosageInstruction(models.Model):    
-    _name = "hc.medication.dispense.dosage.instruction"    
+class MedDispDosageInstr(models.Model):    
+    _name = "hc.med.disp.dosage.instr"    
     _description = "Medication Dispense Dosage Instruction"        
 
     medication_dispense_id = fields.Many2one(
@@ -258,8 +257,8 @@ class MedicationDispenseDosageInstruction(models.Model):
         string="Maximum Dose per Period UOM", 
         help="Upper limit on medication per unit of time unit of measure.")                
 
-class MedicationDispenseSubstitution(models.Model):    
-    _name = "hc.medication.dispense.substitution"    
+class MedDispSubstitution(models.Model):    
+    _name = "hc.med.disp.substitution"    
     _description = "Medication Dispense Substitution"        
 
     medication_dispense_id = fields.Many2one(
@@ -282,14 +281,13 @@ class MedicationDispenseSubstitution(models.Model):
         string="Responsible Parties", 
         help="Who is responsible for the substitution.")                
 
-class MedicationDispenseEventHistory(models.Model):    
-    _name = "hc.medication.dispense.event.history"    
+class MedDispEventHistory(models.Model):    
+    _name = "hc.med.disp.event.history"    
     _description = "Medication Dispense Event History"        
 
     medication_dispense_id = fields.Many2one(
         comodel_name="hc.res.medication.dispense", 
         string="Medication Dispense", 
-        required="True", 
         help="Medication Dispense associated with this Medication Dispense Event History.")                
     status = fields.Selection(
         string="Event History Status", 
@@ -324,7 +322,7 @@ class MedDispDosageInstrAddlInstr(models.Model):
     _inherit = ["hc.basic.association"]
 
     dosage_instruction_id = fields.Many2one(
-        comodel_name="hc.medication.dispense.dosage.instruction", 
+        comodel_name="hc.med.disp.dosage.instr", 
         string="Dosage Instruction", 
         help="Dosage Instruction associated with this Medication Dispense Dosage Instruction Additional Instructions.")           
     additional_instruction_type = fields.Selection(
@@ -352,12 +350,12 @@ class MedDispDosageInstrTiming(models.Model):
     _inherit = ["hc.basic.association", "hc.timing"]
 
     dosage_instruction_id = fields.Many2one(
-        comodel_name="hc.medication.dispense.dosage.instruction", 
+        comodel_name="hc.med.disp.dosage.instr", 
         string="Dosage Instruction", 
         help="Dosage Instruction associated with this Medication Dispense Dosage Instruction Timing.")                
 
-class MedicationDispenseIdentifier(models.Model):    
-    _name = "hc.medication.dispense.identifier"    
+class MedDispIdentifier(models.Model):    
+    _name = "hc.med.disp.identifier"    
     _description = "Medication Dispense Identifier"        
     _inherit = ["hc.basic.association", "hc.identifier"]
 
@@ -380,8 +378,8 @@ class MedDispAuthorizingPrescription(models.Model):
         string="Authorizing Prescription", 
         help="Authorizing Prescription associated with this Medication Dispense Authorizing Prescription.")                
 
-class MedicationDispenseNote(models.Model):    
-    _name = "hc.medication.dispense.note"    
+class MedDispNote(models.Model):    
+    _name = "hc.med.disp.note"    
     _description = "Medication Dispense Note"        
     _inherit = ["hc.basic.association", "hc.annotation"]
 
@@ -390,8 +388,8 @@ class MedicationDispenseNote(models.Model):
         string="Medication Dispense", 
         help="Medication Dispense associated with this Medication Dispense Note.")                
 
-class MedicationDispenseReceiver(models.Model):    
-    _name = "hc.medication.dispense.receiver"    
+class MedDispReceiver(models.Model):    
+    _name = "hc.med.disp.receiver"    
     _description = "Medication Dispense Receiver"        
     _inherit = ["hc.basic.association"]
 
@@ -425,7 +423,7 @@ class MedDispSubsReason(models.Model):
     _inherit = ["hc.basic.association"]
 
     substitution_id = fields.Many2one(
-        comodel_name="hc.medication.dispense.substitution", 
+        comodel_name="hc.med.disp.substitution", 
         string="Substitution", 
         help="Substitution associated with this Medication Dispense Substitution Reason.")                
     reason_id = fields.Many2one(
@@ -438,7 +436,8 @@ class MedDispSubsResponsibleParty(models.Model):
     _description = "Medication Dispense Substitution Responsible Party"        
     _inherit = ["hc.basic.association"]
 
-    substitution_id = fields.Many2one(comodel_name="hc.medication.dispense.substitution", 
+    substitution_id = fields.Many2one(
+        comodel_name="hc.med.disp.substitution", 
         string="Substitution", 
         help="Substitution associated with this Medication Dispense Substitution Responsible Party.")                
     responsible_party_id = fields.Many2one(

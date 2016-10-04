@@ -271,11 +271,22 @@ class ConditionStage(models.Model):
     _description = "Condition Stage"
     _inherit = ["hc.basic.association"]            
 
+    stage_type = fields.Selection(
+        string="Condition Abatement Type",
+        required="True", 
+        selection=[
+            ("summary", "Summary"), 
+            ("assessment", "Assessment")], 
+        help="Summary or assessment.")
+    stage_name = fields.Char(
+        string="Stage", 
+        compute="_compute_stage_name",
+        store="True",  
+        help="Summary or assessment.")
     condition_id = fields.Many2one(
         comodel_name="hc.res.condition", 
         string="Condition", 
-        required="True", 
-        help="Condition associated with this stage.")                    
+        help="Condition associated with this Condition Stage.")                    
     assessment_ids = fields.One2many(
         comodel_name="hc.condition.stage.assessment", 
         inverse_name="condition_stage_id", 

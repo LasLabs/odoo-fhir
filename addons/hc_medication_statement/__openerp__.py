@@ -10,6 +10,7 @@
         A record of a medication that is being consumed by a patient.
 
         **Scope and Usage**
+
         A MedicationStatement may indicate that the patient may be taking the medication now, 
         or has taken the medication in the past or will be taking the medication in the future. 
         The source of this information can be the patient, significant other (such as a family 
@@ -30,11 +31,11 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['hc_condition'],
+    'depends': ['hc_medication_order'],
 
     # always loaded
     'data': [
-        # 'security/ir.model.access.csv',
+        'security/ir.model.access.csv',
         'views/hc_res_medication_statement_views.xml',
         'views/hc_res_medication_statement_templates.xml',
     ],
