@@ -1,0 +1,59 @@
+<openerp>
+  <data>
+    <!-- explicit list view definition -->
+    <!--
+    <record model="ir.ui.view" id="hc_communication.list">
+      <field name="name">hc_communication list</field>
+      <field name="model">hc_communication.hc_communication</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="value"/>
+          <field name="value2"/>
+        </tree>
+      </field>
+    </record>
+    -->
+
+    <!-- actions opening views on models -->
+    <!--
+    <record model="ir.actions.act_window" id="hc_communication.action_window">
+      <field name="name">hc_communication window</field>
+      <field name="res_model">hc_communication.hc_communication</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+    -->
+
+    <!-- server action to the one above -->
+    <!--
+    <record model="ir.actions.server" id="hc_communication.action_server">
+      <field name="name">hc_communication server</field>
+      <field name="model_id" ref="model_hc_communication_hc_communication"/>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": self._name,
+        }
+      </field>
+    </record>
+    -->
+
+    <!-- Top menu item -->
+    <!--
+    <menuitem name="hc_communication" id="hc_communication.menu_root"/>
+    -->
+    <!-- menu categories -->
+    <!--
+    <menuitem name="Menu 1" id="hc_communication.menu_1" parent="hc_communication.menu_root"/>
+    <menuitem name="Menu 2" id="hc_communication.menu_2" parent="hc_communication.menu_root"/>
+    -->
+    <!-- actions -->
+    <!--
+    <menuitem name="List" id="hc_communication.menu_1_list" parent="hc_communication.menu_1"
+              action="hc_communication.action_window"/>
+    <menuitem name="Server to list" id="hc_communication" parent="hc_communication.menu_2"
+              action="hc_communication.action_server"/>
+    -->
+  </data>
+</openerp>

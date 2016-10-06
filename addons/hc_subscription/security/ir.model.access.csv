@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_hc_subscription_hc_subscription,hc_subscription.hc_subscription,model_hc_subscription_hc_subscription,,1,0,0,0

@@ -33,18 +33,18 @@ class Flag(models.Model):
         string="Subject Type",
         required="True", 
         selection=[
-            ("patient", "Patient"), 
-            ("location", "Location"), 
-            ("group", "Group"), 
-            ("organization", "Organization"), 
-            ("practitioner", "Practitioner"), 
-            ("plan definition", "Plan Definition"), 
-            ("medication", "Medication"), 
-            ("procedure", "Procedure")], 
+            ("Patient", "Patient"), 
+            ("Location", "Location"), 
+            ("Group", "Group"), 
+            ("Organization", "Organization"), 
+            ("Practitioner", "Practitioner"), 
+            ("Plan Definition", "Plan Definition"), 
+            ("Medication", "Medication"), 
+            ("Procedure", "Procedure")], 
         help="Type of Who/What is flag about.")
     subject_name = fields.Char(
         string="Subject", 
-        compute="compute_subject_name", 
+        compute="_compute_subject_name", 
         help="Who/What is flag about.")
     subject_patient_id = fields.Many2one(
         comodel_name="hc.res.patient", 
@@ -85,14 +85,14 @@ class Flag(models.Model):
     author_type = fields.Selection(
         string="Author Type", 
         selection=[
-            ("device", "Device"), 
-            ("organization", "Organization"), 
-            ("patient", "Patient"), 
-            ("practitioner", "Practitioner")], 
+            ("Device", "Device"), 
+            ("Organization", "Organization"), 
+            ("Patient", "Patient"), 
+            ("Practitioner", "Practitioner")], 
         help="Type of flag creator.")					
     author_name = fields.Char(
         string="Author", 
-        compute="compute_author_name", 
+        compute="_compute_author_name", 
         help="Flag creator.")					
     author_device_id = fields.Many2one(
         comodel_name="hc.res.device", 
@@ -116,6 +116,38 @@ class Flag(models.Model):
         required="True", 
         help="Partially deaf, Requires easy open caps, No permanent address, etc.")					
 
+    @api.multi          
+    def _compute_subject_name(self):            
+        for hc_res_flag in self:        
+            if hc_res_flag.subject_type == 'Patient':   
+                hc_res_flag.subject_name = hc_res_flag.subject_patient_id.name
+            elif hc_res_flag.subject_type == 'Location':    
+                hc_res_flag.subject_name = hc_res_flag.subject_location_id.name
+            elif hc_res_flag.subject_type == 'Group':   
+                hc_res_flag.subject_name = hc_res_flag.subject_group_id.name
+            elif hc_res_flag.subject_type == 'Organization':    
+                hc_res_flag.subject_name = hc_res_flag.subject_organization_id.name
+            elif hc_res_flag.subject_type == 'Practitioner':    
+                hc_res_flag.subject_name = hc_res_flag.subject_practitioner_id.name
+            # elif hc_res_flag.subject_type == 'Plan Definition': 
+            #     hc_res_flag.subject_name = hc_res_flag.subject_plan_definition_id.name
+            elif hc_res_flag.subject_type == 'Medication':  
+                hc_res_flag.subject_name = hc_res_flag.subject_medication_id.name
+            elif hc_res_flag.subject_type == 'Procedure':   
+                hc_res_flag.subject_name = hc_res_flag.subject_procedure_id.name
+
+    @api.multi          
+    def _compute_author_name(self):         
+        for hc_res_flag in self:        
+            if hc_res_flag.author_type == 'Device': 
+                hc_res_flag.author_name = hc_res_flag.author_device_id.name
+            elif hc_res_flag.author_type == 'Organization': 
+                hc_res_flag.author_name = hc_res_flag.author_organization_id.name
+            elif hc_res_flag.author_type == 'Patient':  
+                hc_res_flag.author_name = hc_res_flag.author_patient_id.name
+            elif hc_res_flag.author_type == 'Practitioner': 
+                hc_res_flag.author_name = hc_res_flag.author_practitioner_id.name
+
 class FlagIdentifier(models.Model): 
     _name = "hc.flag.identifier"    
     _description = "Flag Identifier"        
@@ -124,7 +156,7 @@ class FlagIdentifier(models.Model):
     flag_id = fields.Many2one(
         comodel_name="hc.res.flag", 
         string="Flag", 
-        help="Flag associated with this flag identifier.")                 
+        help="Flag associated with this Flag Identifier.")                 
 
 class FlagCategory(models.Model):	
     _name = "hc.vs.flag.category"	

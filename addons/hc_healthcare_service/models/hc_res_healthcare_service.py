@@ -95,6 +95,180 @@ class HealthcareService(models.Model):
         string="Availability Exceptions", 
         help="A description of Site availability exceptions, e.g., public holiday availability. Succinctly describing all possible exceptions to normal Site availability as details in the Available Times and Not Available Times.")      
 
+class HealthcareServiceAvailableTime(models.Model): 
+    _name = "hc.healthcare.service.available.time"  
+    _description = "Healthcare Service Available Time"      
+    _inherit = ["hc.available.time"]    
+
+    healthcare_service_id = fields.Many2one(
+        comodel_name="hc.res.healthcare.service", 
+        string="Healthcare Service", 
+        help="Healthcare Service available during this period of time.")                 
+
+class HealthcareServiceNotAvailableTime(models.Model):  
+    _name = "hc.healthcare.service.not.available.time"  
+    _description = "Healthcare Service Not Available Time"      
+    _inherit = ["hc.not.available.time"]
+
+    healthcare_service_id = fields.Many2one(
+        comodel_name="hc.res.healthcare.service", 
+        string="Healthcare Service", 
+        help="Healthcare Service not available during this period of time.")                 
+
+class HealthcareServiceIdentifier(models.Model):    
+    _name = "hc.healthcare.service.identifier"  
+    _description = "Healthcare Service Identifier"      
+    _inherit = ["hc.basic.association", "hc.identifier"]
+
+    healthcare_service_id = fields.Many2one(
+        comodel_name="hc.res.healthcare.service", 
+        string="Healthcare Service", 
+        help="Healthcare service associated with this Healthcare Service Identifier.")                 
+
+class HealthcareServiceType(models.Model):  
+    _name = "hc.healthcare.service.type"    
+    _description = "Healthcare Service Type"        
+    _inherit = ["hc.basic.association"]
+
+    service_type_id = fields.Many2one(
+        comodel_name="hc.vs.service.type", 
+        string="Service Type", 
+        help="Service Type associated with this Healthcare Service Type.")                  
+    healthcare_service_id = fields.Many2one(
+        comodel_name="hc.res.healthcare.service", 
+        string="Healthcare Service", 
+        help="Healthcare Service associated with this Healthcare Service Type.")                   
+
+class HealthcareServiceSpecialty(models.Model): 
+    _name = "hc.healthcare.service.specialty"   
+    _description = "Healthcare Service Specialty"       
+    _inherit = ["hc.basic.association"] 
+    
+    healthcare_service_id = fields.Many2one(
+        comodel_name="hc.res.healthcare.service", 
+        string="Healthcare Service", 
+        help="Healthcare Service associated with this Healthcare Service Specialty.")                  
+    specialty_id = fields.Many2one(
+        comodel_name="hc.vs.c80.practice.code", 
+        string="Specialty", 
+        help="Specialty associated with this Healthcare Service Specialty.")                 
+
+class HealthcareServicePhoto(models.Model): 
+    _name = "hc.healthcare.service.photo"   
+    _description = "Healthcare Service Photo"       
+    _inherit = ["hc.basic.association", "hc.attachment"]    
+
+    healthcare_service_id = fields.Many2one(
+        comodel_name="hc.res.healthcare.service", 
+        string="Healthcare Service", 
+        help="Healthcare service associated with this Healthcare Service Photo.")                  
+
+class HealthcareServiceTelecom(models.Model):   
+    _name = "hc.healthcare.service.telecom" 
+    _description = "Healthcare Service Telecom"     
+    _inherit = ["hc.telecom.contact.point"] 
+    _inherits = {"hc.telecom": "telecom_id"}
+
+    telecom_id = fields.Many2one(
+        comodel_name="hc.telecom", 
+        string="Telecom",
+        required="True", 
+        ondelete="restrict", 
+        help="Telecom Contact Point associated with this Healthcare Service Telecom.")                    
+    healthcare_service_id = fields.Many2one(
+        comodel_name="hc.res.healthcare.service", 
+        string="Healthcare Service", 
+        help="Healthcare Service associated with this Healthcare Service Telecom.")                  
+
+class HealthcareServiceProgramName(models.Model):
+    _name = "hc.healthcare.service.program.name"    
+    _description = "Healthcare Service Program Name"
+    _inherit = ["hc.basic.association"]            
+
+    healthcare_service_id = fields.Many2one(
+        comodel_name="hc.res.healthcare.service", 
+        string="Healthcare Service", 
+        help="Healthcare Service associated with this Healthcare Service Program Name.")                   
+    program_name = fields.Char(
+        string="Program Name", 
+        help="Program Name associated with this Healthcare Service Program Name.")                 
+
+class HealthcareServiceCharacteristic(models.Model):    
+    _name = "hc.healthcare.service.characteristic"  
+    _description = "Healthcare Service Characteristic"      
+    _inherit = ["hc.basic.association"]
+
+    healthcare_service_id = fields.Many2one(
+        comodel_name="hc.res.healthcare.service", 
+        string="Healthcare Service", 
+        help="Healthcare Service associated with this Healthcare Service Characteristic.")                 
+    service_characteristic_id = fields.Many2one(
+        comodel_name="hc.vs.service.characteristic", 
+        string="Service Characteristic", 
+        help="Service Characteristic associated with this Healthcare Service Characteristic.")
+
+class HealthcareServiceLocation(models.Model):  
+    _name = "hc.healthcare.service.location"    
+    _description = "Healthcare Service Location"        
+    _inherit = ["hc.basic.association"] 
+    _inherits = {"hc.res.location": "location_id"}
+
+    location_id = fields.Many2one(
+        comodel_name="hc.res.location", 
+        string="Location",
+        required="True", 
+        ondelete="restrict", 
+        help="Location associated with this Healthcare Service Location.")                    
+    healthcare_service_id = fields.Many2one(
+        comodel_name="hc.res.healthcare.service", 
+        string="Healthcare Service", 
+        help="Healthcare Service associated with this Healthcare Service Location.")                   
+
+class HealthcareServiceProvisionCode(models.Model):
+    _name = "hc.healthcare.service.provision.code"  
+    _description = "Healthcare Service Provision Code"      
+    _inherit = ["hc.basic.association"] 
+    
+    healthcare_service_id = fields.Many2one(
+        comodel_name="hc.res.healthcare.service", 
+        string="Healthcare Service", 
+        help="Healthcare Service associated with this Healthcare Service Provision Code.")                 
+    service_provision_condition_id = fields.Many2one(
+        comodel_name="hc.vs.service.provision.condition", 
+        string="Service Provision Condition", 
+        help="Service Provision Condition associated with this Healthcare Service Provision Code.")             
+
+class HealthcareServiceCoverageArea(models.Model):   
+    _name = "hc.healthcare.service.coverage.area"    
+    _description = "Healthcare Service Coverage Area"        
+    _inherit = ["hc.basic.association"] 
+    _inherits = {"hc.res.location": "location_id"}
+
+    location_id = fields.Many2one(
+        comodel_name="hc.res.location", 
+        string="Location",
+        required="True", 
+        ondelete="restrict", 
+        help="Coverage Area associated with this Healthcare Service Coverage Area.") 
+    healthcare_service_id = fields.Many2one(
+        comodel_name="hc.res.healthcare.service", 
+        string="Healthcare Service", 
+        help="Healthcare Service associated with this Healthcare Service Coverage Area.")                   
+
+class HealthcareServiceReferralMethod(models.Model):    
+    _name = "hc.healthcare.service.referral.method" 
+    _description = "Healthcare Service Referral Method"     
+    _inherit = ["hc.basic.association"]
+
+    healthcare_service_id = fields.Many2one(
+        comodel_name="hc.res.healthcare.service", 
+        string="Healthcare Service", 
+        help="Healthcare Service associated with this Healthcare Service Referral Method.")                     
+    service_referral_method_id = fields.Many2one(
+        comodel_name="hc.vs.service.referral.method", 
+        string="Service Referral Method", 
+        help="Service Referral Method associated with this Healthcare Service Referral Method.")
+
 class ServiceType(models.Model):    
     _name = "hc.vs.service.type"    
     _description = "Service Type"       
@@ -129,176 +303,4 @@ class ServiceCharacteristic(models.Model):
     _name = "hc.vs.service.characteristic"  
     _description = "Service Characteristic"     
     _inherit = ["hc.value.set.contains"]    
-
-class HealthcareServiceAvailableTime(models.Model): 
-    _name = "hc.healthcare.service.available.time"  
-    _description = "Healthcare Service Available Time"      
-    _inherit = ["hc.available.time"]    
-
-    healthcare_service_id = fields.Many2one(
-        comodel_name="hc.res.healthcare.service", 
-        string="Healthcare Service", 
-        help="Healthcare service available during this period of time.")                 
-
-class HealthcareServiceNotAvailableTime(models.Model):  
-    _name = "hc.healthcare.service.not.available.time"  
-    _description = "Healthcare Service Not Available Time"      
-    _inherit = ["hc.not.available.time"]
-
-    healthcare_service_id = fields.Many2one(
-        comodel_name="hc.res.healthcare.service", 
-        string="Healthcare Service", 
-        help="Healthcare service not available during this period of time.")                 
-
-class HealthcareServiceIdentifier(models.Model):    
-    _name = "hc.healthcare.service.identifier"  
-    _description = "Healthcare Service Identifier"      
-    _inherit = ["hc.basic.association", "hc.identifier"]
-
-    healthcare_service_id = fields.Many2one(
-        comodel_name="hc.res.healthcare.service", 
-        string="Healthcare Service", 
-        help="Healthcare service which is associated with this identifier.")                 
-
-class HealthcareServiceType(models.Model):  
-    _name = "hc.healthcare.service.type"    
-    _description = "Healthcare Service Type"        
-    _inherit = ["hc.basic.association"]
-
-    service_type_id = fields.Many2one(
-        comodel_name="hc.vs.service.type", 
-        string="Service Type", 
-        help="Service type which is associated with this healthcare service.")                  
-    healthcare_service_id = fields.Many2one(
-        comodel_name="hc.res.healthcare.service", 
-        string="Healthcare Service", 
-        help="Healthcare service which is associated with this service type.")                   
-
-class HealthcareServiceSpecialty(models.Model): 
-    _name = "hc.healthcare.service.specialty"   
-    _description = "Healthcare Service Specialty"       
-    _inherit = ["hc.basic.association"] 
-    
-    healthcare_service_id = fields.Many2one(
-        comodel_name="hc.res.healthcare.service", 
-        string="Healthcare Service", 
-        help="Healthcare service which is associated with this specialty.")                  
-    specialty_id = fields.Many2one(
-        comodel_name="hc.vs.c80.practice.code", 
-        string="Specialty", 
-        help="Specialty which is associated with this healthcare service.")                 
-
-class HealthcareServicePhoto(models.Model): 
-    _name = "hc.healthcare.service.photo"   
-    _description = "Healthcare Service Photo"       
-    _inherit = ["hc.basic.association", "hc.attachment"]    
-
-    healthcare_service_id = fields.Many2one(
-        comodel_name="hc.res.healthcare.service", 
-        string="Healthcare Service", 
-        help="Healthcare service which is associated with this photo.")                  
-
-class HealthcareServiceTelecom(models.Model):   
-    _name = "hc.healthcare.service.telecom" 
-    _description = "Healthcare Service Telecom"     
-    _inherit = ["hc.telecom.contact.point"] 
-    _inherits = {"hc.telecom": "telecom_id"}
-
-    telecom_id = fields.Many2one(
-        comodel_name="hc.telecom", 
-        string="Telecom",
-        required="True", 
-        ondelete="restrict", 
-        help="Telecom contact point associated with this healthcare service.")                    
-    healthcare_service_id = fields.Many2one(
-        comodel_name="hc.res.healthcare.service", 
-        string="Healthcare Service", 
-        help="Healthcare service which is associated with this telecom contact point.")                  
-
-class HealthcareServiceProgramName(models.Model):  
-    _name = "hc.healthcare.service.program.name"    
-    _description = "Healthcare Service Program Name"            
-
-    healthcare_service_id = fields.Many2one(
-        comodel_name="hc.res.healthcare.service", 
-        string="Healthcare Service", 
-        help="Healthcare service which is associated with this name.")                   
-    name = fields.Char(
-        string="Program Name", 
-        help="Name of this healthcare service program.")                 
-
-class HealthcareServiceCharacteristic(models.Model):    
-    _name = "hc.healthcare.service.characteristic"  
-    _description = "Healthcare Service Characteristic"      
-    _inherit = ["hc.basic.association"]
-
-    healthcare_service_id = fields.Many2one(
-        comodel_name="hc.res.healthcare.service", 
-        string="Healthcare Service", 
-        help="Healthcare service which is associated with this service characteristic.")                 
-    service_characteristic_id = fields.Many2one(
-        comodel_name="hc.vs.service.characteristic", 
-        string="Service Characteristic", 
-        help="Service characteristic which is associated with this healthcare service.")
-
-class HealthcareServiceLocation(models.Model):  
-    _name = "hc.healthcare.service.location"    
-    _description = "Healthcare Service Location"        
-    _inherit = ["hc.basic.association"] 
-    _inherits = {"hc.res.location": "location_id"}
-
-    location_id = fields.Many2one(
-        comodel_name="hc.res.location", 
-        string="Location",
-        required="True", 
-        ondelete="restrict", 
-        help="Location which is associated with this location.")                    
-    healthcare_service_id = fields.Many2one(
-        comodel_name="hc.res.healthcare.service", 
-        string="Healthcare Service", 
-        help="Healthcare service which is associated with this location.")                   
-
-class HealthcareServiceProvisionCode(models.Model):
-    _name = "hc.healthcare.service.provision.code"  
-    _description = "Healthcare Service Provision Code"      
-    _inherit = ["hc.basic.association"] 
-    
-    healthcare_service_id = fields.Many2one(
-        comodel_name="hc.res.healthcare.service", 
-        string="Healthcare Service", 
-        help="Healthcare service which is associated with this service provision condition.")                 
-    service_provision_condition_id = fields.Many2one(
-        comodel_name="hc.vs.service.provision.condition", 
-        string="Service Provision Condition", 
-        help="Service provision condition which is associated with this healthcare service.")             
-
-class HealthcareServiceCoverageArea(models.Model):   
-    _name = "hc.healthcare.service.coverage.area"    
-    _description = "Healthcare Service Coverage Area"        
-    _inherit = ["hc.basic.association"] 
-    _inherits = {"hc.res.location": "location_id"}
-
-    location_id = fields.Many2one(
-        comodel_name="hc.res.location", 
-        string="Location",
-        required="True", 
-        ondelete="restrict", 
-        help="Coverage area which is associated with this healthcare service.") 
-    healthcare_service_id = fields.Many2one(
-        comodel_name="hc.res.healthcare.service", 
-        string="Healthcare Service", 
-        help="Healthcare service which is associated with this coverage area.")                   
-
-class HealthcareServiceReferralMethod(models.Model):    
-    _name = "hc.healthcare.service.referral.method" 
-    _description = "Healthcare Service Referral Method"     
-    _inherit = ["hc.basic.association"]
-
-    healthcare_service_id = fields.Many2one(
-        comodel_name="hc.res.healthcare.service", 
-        string="Healthcare Service", 
-        help="Healthcare service which is associated with this service referral method.")                     
-    service_referral_method_id = fields.Many2one(
-        comodel_name="hc.vs.service.referral.method", 
-        string="Service Referral Method", 
-        help="Service referral method which is associated with this healthcare service.")                  
+                  

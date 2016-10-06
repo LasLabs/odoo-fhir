@@ -44,7 +44,7 @@ class ImmunizationRecRecProtocol(models.Model):
     immunization_rec_rec_id = fields.Many2one(comodel_name="hc.immunization.rec.rec", string="Immunization Recommendation Recommendation", help="Recommendation associated with this protocol.")                
     dose_sequence = fields.Integer(string="Dose Sequence", help="Dose number within sequence.")                
     description = fields.Text(string="Description", help="Protocol details.")                
-    authority_organization_id = fields.Many2one(comodel_name="hc.res.organization", string="Authority Organization", help="Who is responsible for protocol.")                
+    authority_id = fields.Many2one(comodel_name="hc.res.organization", string="Authority", help="Who is responsible for protocol.")                
     series = fields.Char(string="Series", help="Name of vaccination series.")                
 
 class ImmunizationRecIdentifier(models.Model):    

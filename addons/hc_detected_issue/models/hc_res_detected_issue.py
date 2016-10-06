@@ -40,7 +40,7 @@ class DetectedIssue(models.Model):
         help="Type of provider or device that identified the issue.")
     author_name = fields.Char(
         string="Author", 
-        compute="compute_author_name", 
+        compute="_compute_author_name", 
         help="The provider or device that identified the issue.")
     author_practitioner_id = fields.Many2one(
         comodel_name="hc.res.practitioner", 
@@ -71,7 +71,7 @@ class DetectedIssueMitigation(models.Model):
     detected_issue_id = fields.Many2one(
         comodel_name="hc.res.detected.issue", 
         string="Detected Issue", 
-        help="Detected Issue associated with this mitigation.")
+        help="Detected Issue associated with this Detected Issue Mitigation.")
     action_id = fields.Many2one(
         comodel_name="hc.vs.detected.issue.mitigation.action", 
         string="Action", 
@@ -92,25 +92,25 @@ class DetectedIssueImplicated(models.Model):
     detected_issue_id = fields.Many2one(
         comodel_name="hc.res.detected.issue", 
         string="Detected Issue", 
-        help="Detected Issue associated with this detected issue implicated.")
+        help="Detected Issue associated with this Detected Issue Implicated.")
     impicated_type = fields.Selection(
         string="Impicated Type", 
         required="True", 
         selection=[
             ("string", "String"), 
-            ("codeable concept", "Codeable concept")], 
+            ("Code", "Code")], 
         help="Type of resource representing the current activity or proposed activity that is potentially problematic.")
     implicated_name = fields.Char(
         string="Implicated", 
-        compute="compute_implicated_name", 
+        compute="_compute_implicated_name", 
         help="Indicates the resource representing the current activity or proposed activity that is potentially problematic.")
     implicated_string = fields.Char(
         string="Implicated String", 
         help="String problem resource.")
-    implicated_codeable_concept_id = fields.Many2one(
+    implicated_code_id = fields.Many2one(
         comodel_name="hc.vs.detected.issue.implicated", 
         string="Implicated Codeable Concept", 
-        help="Codeable Concept problem resource.")
+        help="Code of problem resource.")
 
 class DetectedIssueIdentifier(models.Model):
     _name = "hc.detected.issue.identifier"
@@ -120,7 +120,7 @@ class DetectedIssueIdentifier(models.Model):
     detected_issue_id = fields.Many2one(
         comodel_name="hc.res.detected.issue", 
         string="Detected Issue", 
-        help="Detected Issue associated with this detected issue identifier.")
+        help="Detected Issue associated with this Detected Issue Identifier.")
 
 class DetectedIssueCategory(models.Model):
     _name = "hc.vs.detected.issue.category"

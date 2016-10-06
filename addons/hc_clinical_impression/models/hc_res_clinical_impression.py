@@ -571,7 +571,7 @@ class ClinicalImpressionPrognosis(models.Model):
         comodel_name="hc.res.clinical.impression", 
         string="Clinical Impression", 
         help="Clinical impression associated with this clinical impression prognosis.")                
-    clinical_impression_prognosis_id = fields.Many2one(
+    prognosis_id = fields.Many2one(
         comodel_name="hc.vs.clinical.impression.prognosis", 
         string="Clinical Impression Prognosis", 
         help="Clinical impression prognosis associated with this clinical impression.")                

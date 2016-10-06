@@ -108,8 +108,7 @@ class AllergyIntolerance(models.Model):
     reporter_practitioner_id = fields.Many2one(
         comodel_name="hc.res.practitioner", 
         string="Reporter Practitioner", 
-        help="Practitioner source of the information about the allergy.")                    
-    
+        help="Practitioner source of the information about the allergy.")                        
     onset = fields.Datetime(
         string="Onset Date", 
         help="Date(/time) when manifestations showed.")                    
@@ -125,7 +124,6 @@ class AllergyIntolerance(models.Model):
         comodel_name="hc.allergy.intolerance.reaction", 
         inverse_name="allergy_intolerance_id", 
         string="Reactions", 
-  
         help="Adverse Reaction Events linked to exposure to substance.")
 
     @api.multi
@@ -206,7 +204,7 @@ class AllergyIntoleranceReaction(models.Model):
         help="The route or physiological path of administration of a therapeutic agent into or onto the body of a subject.")                 
     note_ids = fields.One2many(
         comodel_name="hc.allergy.intolerance.reaction.annotation", 
-        inverse_name="allergy_intolerance_reaction_id", 
+        inverse_name="reaction_id", 
         string="Notes", 
         help="Text about event not captured in other fields.")                    
 
@@ -218,7 +216,7 @@ class AllergyIntoleranceIdentifier(models.Model):
     allergy_intolerance_id = fields.Many2one(
         comodel_name="hc.res.allergy.intolerance", 
         string="Allergy Intolerance", 
-        help="Allergy Intolerance with this identifier.")                 
+        help="Allergy Intolerance with this Allergy Intolerance Identifier.")                 
 
 class AllergyIntoleranceAnnotation(models.Model):   
     _name = "hc.allergy.intolerance.annotation" 
@@ -228,7 +226,7 @@ class AllergyIntoleranceAnnotation(models.Model):
     allergy_intolerance_id = fields.Many2one(
         comodel_name="hc.res.allergy.intolerance", 
         string="Allergy Intolerance", 
-        help="Allergy Intolerance with this annotation.")
+        help="Allergy Intolerance with this Allergy Intolerance Annotation.")
 
     @api.multi
     def compute_author_name(self):
@@ -247,10 +245,10 @@ class AllergyIntoleranceReactionAnnotation(models.Model):
     _description = "Allergy Intolerance Reaction Annotation"        
     _inherit = ["hc.basic.association", "hc.annotation"]
 
-    allergy_intolerance_reaction_id = fields.Many2one(
+    reaction_id = fields.Many2one(
         comodel_name="hc.allergy.intolerance.reaction", 
-        string="Allergy Intolerance Reaction", 
-        help="Allergy Intolerance Reaction with this annotation.")
+        string="Reaction", 
+        help="Reaction associated with this Allergy Intolerance Reaction Annotation.")
 
     @api.multi
     def compute_author_name(self):

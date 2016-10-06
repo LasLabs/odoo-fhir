@@ -32,7 +32,7 @@
 
     # any module necessary for this one to work correctly
     # 'depends': ['hc_plan_definition'],
-    'depends': ['hc_encounter'],
+    'depends': ['hc_procedure'],
 
     # always loaded
     'data': [

@@ -41,7 +41,7 @@ class LinkageItem(models.Model):
     linkage_id = fields.Many2one(
         comodel_name="hc.res.linkage",
         string="Linkage", 
-        help="Linkage associated with this item.")
+        help="Linkage associated with this Linkage Item.")
     type = fields.Selection(
         string="Item Type", 
         required="True", 

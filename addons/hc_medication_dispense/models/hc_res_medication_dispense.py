@@ -6,11 +6,10 @@ class MedicationDispense(models.Model):
     _name = "hc.res.medication.dispense"    
     _description = "Medication Dispense"        
 
-    identifier_ids = fields.One2many(
+    identifier_id = fields.Many2one(
         comodel_name="hc.med.disp.identifier", 
-        inverse_name="medication_dispense_id", 
-        string="Identifiers", 
-        help="External identifier.")                
+        string="Identifier", 
+        help="External identifier.")             
     status = fields.Selection(string="Medication Dispense Status", 
         selection=[
             ("in-progress", "In-Progress"), 
@@ -117,7 +116,7 @@ class MedDispDosageInstr(models.Model):
     text = fields.Text(
         string="Text", 
         help="Dosage Instructions.")                
-    additional_instruction_id = fields.One2many(
+    additional_instruction_ids = fields.One2many(
         comodel_name="hc.med.disp.dosage.instr.addl.instr",
         inverse_name="dosage_instruction_id", 
         string="Additional Instructions", 
@@ -150,12 +149,12 @@ class MedDispDosageInstr(models.Model):
         selection=[
             ("Code", "Code"), 
             ("Body Site", "Body Site")], 
-        help="Type of body site to administer to.")                
+        help="Type of body Site to administer to.")                
     site_name = fields.Char(
         string="Site", 
         compute="_compute_site_name", 
         store="True", 
-        help="Body site to administer to.")                
+        help="Body Site to administer to.")                
     site_code_id = fields.Many2one(
         comodel_name="hc.vs.approach.site.code", 
         string="Site Code", 
@@ -163,7 +162,7 @@ class MedDispDosageInstr(models.Model):
     body_site_id = fields.Many2one(
         comodel_name="hc.res.body.site", 
         string="Body Site", 
-        help="Body site to administer to.")                
+        help="Body Site to administer to.")                
     route_id = fields.Many2one(
         comodel_name="hc.vs.route.code", 
         string="Route", 
@@ -195,8 +194,7 @@ class MedDispDosageInstr(models.Model):
     dose_uom_id = fields.Many2one(
         comodel_name="product.uom", 
         string="Dose UOM", 
-        help="Amount of medication per dose unit of measure.")                
-    
+        help="Amount of medication per dose unit of measure.")                 
     rate_type = fields.Selection(
         string="Rate Type", 
         selection=[
@@ -357,12 +355,7 @@ class MedDispDosageInstrTiming(models.Model):
 class MedDispIdentifier(models.Model):    
     _name = "hc.med.disp.identifier"    
     _description = "Medication Dispense Identifier"        
-    _inherit = ["hc.basic.association", "hc.identifier"]
-
-    medication_dispense_id = fields.Many2one(
-        comodel_name="hc.res.medication.dispense", 
-        string="Medication Dispense", 
-        help="Medication Dispense associated with this Medication Dispense Identifier.")                
+    _inherit = ["hc.identifier"]
 
 class MedDispAuthorizingPrescription(models.Model):    
     _name = "hc.med.disp.authorizing.prescription"    

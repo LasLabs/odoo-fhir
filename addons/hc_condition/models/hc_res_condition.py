@@ -201,12 +201,12 @@ class Condition(models.Model):
     note_ids = fields.One2many(
         comodel_name="hc.condition.note", 
         inverse_name="condition_id", 
-        string="Note", 
+        string="Notes", 
         help="Additional information about the Condition.")                    
     stage_ids = fields.One2many(
         comodel_name="hc.condition.stage", 
         inverse_name="condition_id", 
-        string="Stage", 
+        string="Stages", 
         help="Stage/grade, usually assessed formally.")                    
     evidence_ids = fields.One2many(
         comodel_name="hc.condition.evidence", 
@@ -306,11 +306,11 @@ class ConditionEvidence(models.Model):
         comodel_name="hc.res.condition", 
         string="Condition", 
         required="True", 
-        help="Condition associated with this evidence.")                    
+        help="Condition associated with this Condition Evidence.")                    
     detail_ids = fields.One2many(
         comodel_name="hc.condition.evidence.detail", 
-        inverse_name="condition_evidence_id", 
-        string="Detail", 
+        inverse_name="evidence_id", 
+        string="Details", 
         help="Supporting information found elsewhere.")                    
     code_id = fields.Many2one(
         comodel_name="hc.vs.condition.evidence.code", 
@@ -325,7 +325,7 @@ class ConditionIdentifier(models.Model):
     condition_id = fields.Many2one(
         comodel_name="hc.res.condition", 
         string="Condition", 
-        help="Condition associated with this identifier.")                    
+        help="Condition associated with this Condition Identifier.")                    
 
 class ConditionBodySite(models.Model):  
     _name = "hc.condition.body.site"    
@@ -335,12 +335,12 @@ class ConditionBodySite(models.Model):
     body_site_id = fields.Many2one(
         comodel_name="hc.vs.body.site", 
         string="Body Site", 
-        help="Anatomical location, if relevant.")             
+        help="Body Site associated with this Condition Body Site.")             
     condition_id = fields.Many2one(
         comodel_name="hc.res.condition", 
         string="Condition", 
         required="True", 
-        help="Encounter associated with this condition body site.")                
+        help="Encounter associated with this Condition Body Site.")                
 
 class ConditionStageAssessment(models.Model):    
     _name = "hc.condition.stage.assessment"    
@@ -350,7 +350,7 @@ class ConditionStageAssessment(models.Model):
     condition_stage_id = fields.Many2one(
         comodel_name="hc.condition.stage", 
         string="Stage", 
-        help="Stage associated with this condition stage assessment.")                    
+        help="Stage associated with this Condition Stage Assessment.")                    
     assessment_type = fields.Selection(
         string="Condition Stage Assessment Assessment Type", 
         selection=[
@@ -391,10 +391,10 @@ class ConditionEvidenceDetail(models.Model):
     _description = "Condition Evidence Detail"        
     _inherit = ["hc.basic.association"]    
 
-    condition_evidence_id = fields.Many2one(
+    evidence_id = fields.Many2one(
         comodel_name="hc.condition.evidence", 
         string="Evidence", 
-        help="Evidence associated with this condition evidence detail.")                    
+        help="Evidence associated with this Condition Evidence Detail.")                    
     detail_type = fields.Selection(
         string="Detail Type", 
         selection=[
@@ -454,7 +454,7 @@ class ConditionNote(models.Model):
     condition_id = fields.Many2one(
         comodel_name="hc.res.condition", 
         string="Condition", 
-        help="Condition associated with this identifier.")              
+        help="Condition associated with this Condition Note.")              
 
 class ConditionSeverity(models.Model):    
     _name = "hc.vs.condition.severity"    

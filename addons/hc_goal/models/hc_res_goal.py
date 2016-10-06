@@ -72,7 +72,13 @@ class Goal(models.Model):
     target_duration_uom = fields.Selection(
         string="Target Duration UOM", 
         selection=[
-            ("s", "S"), ("min", "Min"), ("h", "H"), ("d", "D"), ("wk", "Wk"), ("mo", "Mo"), ("a", "A")], 
+            ("s", "S"), 
+            ("min", "Min"), 
+            ("h", "H"), 
+            ("d", "D"), 
+            ("wk", "Wk"), 
+            ("mo", "Mo"), 
+            ("a", "A")], 
         help="Reach goal on or before.")                
     category_ids = fields.One2many(
         comodel_name="hc.goal.category", 
@@ -244,7 +250,7 @@ class GoalCategory(models.Model):
     category_id = fields.Many2one(
         comodel_name="hc.vs.goal.category", 
         string="Category", 
-        help="E.g. Treatment, dietary, behavioral, etc..")                
+        help="Category associated with this Goal Category")                
 
 class GoalIdentifier(models.Model):    
     _name = "hc.goal.identifier"    

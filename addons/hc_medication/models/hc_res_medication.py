@@ -16,9 +16,9 @@ class Medication(models.Model):
     is_brand = fields.Boolean(
         string="Is Brand", 
         help="True if a brand.")                    
-    manufacturer_organization_id = fields.Many2one(
+    manufacturer_id = fields.Many2one(
         comodel_name="hc.res.organization", 
-        string="Manufacturer Organization", 
+        string="Manufacturer", 
         help="Manufacturer of the item.")                    
     product_ids = fields.One2many(
         comodel_name="hc.medication.product", 

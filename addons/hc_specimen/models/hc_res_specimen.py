@@ -14,7 +14,7 @@ class Specimen(models.Model):
     accession_identifier_id = fields.Many2one(
         comodel_name="hc.specimen.accession.identifier", 
         string="Accession Identifier", 
-        help="Identifier assigned by the lab.")					
+        help="Identifier assigned by the lab.")			
     status = fields.Selection(
         string="Status", 
         selection=[
@@ -113,7 +113,7 @@ class SpecimenCollection(models.Model):
     specimen_id = fields.Many2one(
         comodel_name="hc.res.specimen", 
         string="Specimen", 
-        help="Specimen associated with this collection.")					
+        help="Specimen associated with this Specimen Collection.")					
     collector_practitioner_id = fields.Many2one(
         comodel_name="hc.res.practitioner", 
         string="Collector Practitioner", 
@@ -151,7 +151,7 @@ class SpecimenCollection(models.Model):
     body_site_type = fields.Selection(
         string="Body Site Type", 
         selection=[
-            ("Codeable Concept", "Codeable Concept"), 
+            ("Code", "Code"), 
             ("Body Site", "Body Site")], 
         help="Type of anatomical collection site.")					
     body_site_name = fields.Char(
@@ -161,7 +161,7 @@ class SpecimenCollection(models.Model):
     body_site_code_id = fields.Many2one(
         comodel_name="hc.vs.body.site", 
         string="Body Site Code", 
-        help="CodeableConcept anatomical collection site.")					
+        help="Code of anatomical collection site.")					
     body_site_id = fields.Many2one(
         comodel_name="hc.res.body.site", 
         string="Body Site", 
@@ -174,7 +174,7 @@ class SpecimenTreatment(models.Model):
     specimen_id = fields.Many2one(
         comodel_name="hc.res.specimen", 
         string="Specimen", 
-        help="Specimen associated with this treatment.")					
+        help="Specimen associated with this Specimen Treatment.")					
     description = fields.Char(
         string="Description", 
         help="Textual description of procedure.")					
@@ -195,7 +195,7 @@ class SpecimenContainer(models.Model):
     specimen_id = fields.Many2one(
         comodel_name="hc.res.specimen", 
         string="Specimen", 
-        help="Specimen associated with this container.")					
+        help="Specimen associated with this Specimen Container.")					
     identifier_ids = fields.One2many(
         comodel_name="hc.specimen.container.identifier", 
         inverse_name="specimen_container_id", 
@@ -225,7 +225,7 @@ class SpecimenContainer(models.Model):
     additive_type = fields.Selection(
         string="Additive Type", 
         selection=[
-            ("Codeable Concept", "Codeable Concept"), 
+            ("Code", "Code"), 
             ("Substance", "Substance")], 
         help="Type of additive associated with container.")					
     additive_name = fields.Char(
@@ -235,7 +235,7 @@ class SpecimenContainer(models.Model):
     additive_code_id = fields.Many2one(
         comodel_name="hc.vs.v2.additive.preservative", 
         string="Additive Code", 
-        help="CodeableConcept additive associated with container.")					
+        help="Code of additive associated with container.")					
     additive_substance_id = fields.Many2one(
         comodel_name="hc.res.substance", 
         string="Additive Substance", 
@@ -244,7 +244,7 @@ class SpecimenContainer(models.Model):
 class SpecimenAccessionIdentifier(models.Model):	
     _name = "hc.specimen.accession.identifier"	
     _description = "Specimen Accession Identifier"		
-    _inherit = ["hc.basic.association", "hc.identifier"]	
+    _inherit = ["hc.identifier"]	
 
 class SpecimenContainerIdentifier(models.Model):	
     _name = "hc.specimen.container.identifier"	
@@ -254,7 +254,7 @@ class SpecimenContainerIdentifier(models.Model):
     specimen_container_id = fields.Many2one(
         comodel_name="hc.specimen.container", 
         string="Specimen Container", 
-        help="Container associated with this specimen container identifier.")					
+        help="Container associated with this Specimen Container Identifier.")					
 
 class SpecimenIdentifier(models.Model):	
     _name = "hc.specimen.identifier"	
@@ -264,7 +264,7 @@ class SpecimenIdentifier(models.Model):
     specimen_id = fields.Many2one(
         comodel_name="hc.res.specimen", 
         string="Specimen", 
-        help="Specimen associated with this specimen identifier.")					
+        help="Specimen associated with this Specimen Identifier.")					
 
 class SpecimenNote(models.Model):	
     _name = "hc.specimen.note"	
@@ -274,7 +274,7 @@ class SpecimenNote(models.Model):
     specimen_id = fields.Many2one(
         comodel_name="hc.res.specimen", 
         string="Specimen", 
-        help="Specimen associated with this specimen note.")					
+        help="Specimen associated with this Specimen Note.")					
 
 class SpecimenRequest(models.Model):	
     _name = "hc.specimen.request"	
@@ -284,7 +284,7 @@ class SpecimenRequest(models.Model):
     specimen_id = fields.Many2one(
         comodel_name="hc.res.specimen", 
         string="Specimen", 
-        help="Specimen associated with this specimen request.")					
+        help="Specimen associated with this Specimen Request.")					
     request_type = fields.Selection(
         string="Request Type", 
         selection=[
@@ -295,14 +295,14 @@ class SpecimenRequest(models.Model):
         string="Request", 
         compute="compute_request_name", 
         help="Why the specimen was collected")					
-    # request_diagnostic_request_id = fields.Many2one(
-    #     comodel_name="hc.res.diagnostic.request", 
-    #     string="Request Diagnostic Request", 
-    #     help="Diagnostic Request why the specimen was collected.")					
-    # request_procedure_request_id = fields.Many2one(
-    #     comodel_name="hc.res.procedure.request", 
-    #     string="Request Procedure Request", 
-    #     help="Procedure Request why the specimen was collected.")					
+    request_diagnostic_request_id = fields.Many2one(
+        comodel_name="hc.res.diagnostic.request", 
+        string="Request Diagnostic Request", 
+        help="Diagnostic Request why the specimen was collected.")					
+    request_procedure_request_id = fields.Many2one(
+        comodel_name="hc.res.procedure.request", 
+        string="Request Procedure Request", 
+        help="Procedure Request why the specimen was collected.")					
 
 class SpecimenTreatmentSubstance(models.Model):	
     _name = "hc.specimen.treatment.substance"	
@@ -312,11 +312,11 @@ class SpecimenTreatmentSubstance(models.Model):
     specimen_treatment_id = fields.Many2one(
         comodel_name="hc.specimen.treatment", 
         string="Specimen Treatment", 
-        help="Treatment associated with this specimen treatment substance.")					
+        help="Treatment associated with this Specimen Treatment Substance.")					
     additive_id = fields.Many2one(
         comodel_name="hc.res.substance", 
         string="Additive", 
-        help="Additive associated with this specimen treatment substance.")					
+        help="Additive associated with this Specimen Treatment Substance.")					
 
 class SpecimenCollectionMethod(models.Model):	
     _name = "hc.vs.specimen.collection.method"	

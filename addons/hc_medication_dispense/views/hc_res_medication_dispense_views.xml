@@ -14,7 +14,7 @@
                   parent="hc_base.menu_med" 
                   action="hc_res_medication_dispense_action" 
                   groups="hc_base.group_hc_base_manager" 
-                  sequence="30"/>
+                  sequence="40"/>
 
     </data>
 </openerp>

@@ -10,7 +10,7 @@ class Practitioner(models.Model):
     person_id = fields.Many2one(
         comodel_name="hc.res.person",
         string="Person",
-        required=True,
+        required="True",
         ondelete="restrict",
         help="Person who is this practitioner.")
     identifier_ids = fields.One2many(
@@ -56,7 +56,7 @@ class Practitioner(models.Model):
         help="Image of the Practitioner.")
     is_active_practitioner = fields.Boolean(
         string="Active Practitioner", 
-        default=True, 
+        default="True", 
         help="Whether this practitioner's record is in active use.")
     specialty_id = fields.Many2one(
         comodel_name="hc.vs.practitioner.specialty", 
@@ -110,7 +110,7 @@ class PractitionerName(models.Model):
     human_name_id = fields.Many2one(
         comodel_name="hc.human.name",
         string="Human Name",
-        required=True,
+        required="True",
         ondelete="restrict", 
         help="Human name associated with this practitioner name.")
     practitioner_id = fields.Many2one(
@@ -127,7 +127,7 @@ class PractitionerTelecom(models.Model):
     telecom_id = fields.Many2one(
         comodel_name="hc.telecom",
         string="Telecom",
-        required=True,
+        required="True",
         ondelete="restrict",
         help="Telecom contact point associated with this practitioner.")
     practitioner_id = fields.Many2one(
@@ -144,7 +144,7 @@ class PractitionerAddress(models.Model):
     address_id = fields.Many2one(
         comodel_name="hc.address", 
         string="Address", 
-        required=True,
+        required="True",
         ondelete="restrict", 
         help="Address associated with this practitioner.") 
     practitioner_id = fields.Many2one(
@@ -175,7 +175,7 @@ class PractitionerPhoto(models.Model):
     photo_id = fields.Many2one(
         comodel_name="hc.person.photo", 
         string="Photo",
-        required=True,
+        required="True",
         ondelete="restrict",  
         help="Photo associated with this practitioner.")
     practitioner_id = fields.Many2one(
@@ -239,9 +239,9 @@ class PractitionerQualification(models.Model):
         inverse_name="practitioner_qualification_id", 
         string="Identifiers", 
         help="An identifier for this qualification for the practitioner.")                 
-    issuer_organization_id = fields.Many2one(
+    issuer_id = fields.Many2one(
         comodel_name="hc.res.organization", 
-        string="Issuer Organization", 
+        string="Issuer", 
         help="Organization that regulates and issues the qualification.")        
 
 class PractitionerSpecialty(models.Model):  

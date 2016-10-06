@@ -43,11 +43,11 @@ class PractitionerRole(models.Model):
         inverse_name="practitioner_role_id", 
         string="Telecoms", 
         help="Contact details that are specific to the role/location/service.")
-    start_date = fields.Datetime(
-        string="Start Date", 
+    period_start_date = fields.Datetime(
+        string="Period Start Date", 
         help="Start of the the period during which the practitioner is authorized to perform in these role(s).")
-    end_date = fields.Datetime(
-        string="End Date", 
+    period_end_date = fields.Datetime(
+        string="Period End Date", 
         help="End of the the period during which the practitioner is authorized to perform in these role(s).")
     location_ids = fields.Many2many(
         comodel_name="hc.practitioner.role.location", 
