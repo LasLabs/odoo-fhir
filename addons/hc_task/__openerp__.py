@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "hc_task",
+    'name': "Task",
 
     'summary': """
         Activities
@@ -20,8 +20,8 @@
         are only implicit in the order details.
     """,
 
-    'author': "My Company",
-    'website': "http://www.yourcompany.com",
+    'author': "Luigi Sison",
+    'website': "https://hl7-fhir.github.io/task.html",
 
     # Categories can be used to filter modules in modules listing
     # Check https://github.com/odoo/odoo/blob/master/openerp/addons/base/module/module_data.xml
@@ -30,7 +30,7 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base'],
+    'depends': ['hc_encounter'],
 
     # always loaded
     'data': [
@@ -42,4 +42,6 @@
     'demo': [
         'demo/demo.xml',
     ],
+    'installable': 'True',
+    'auto-install': 'True',
 }

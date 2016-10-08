@@ -360,11 +360,11 @@ class ProcedureBodySite(models.Model):
     procedure_id = fields.Many2one(
         comodel_name="hc.res.procedure", 
         string="Procedure", 
-        help="Procedure performed on this Body Site.")                  
+        help="Procedure performed on this Procedure Body Site.")                  
     body_site_id = fields.Many2one(
         comodel_name="hc.res.body.site", 
         string="Body Site", 
-        help="Body Site performed with this Procedure.")                    
+        help="Body Site performed with this Procedure Body Site.")                    
 
 class ProcedureDiagnosticReport(models.Model):  
     _name = "hc.procedure.diagnostic.report"    
@@ -374,11 +374,11 @@ class ProcedureDiagnosticReport(models.Model):
     procedure_id = fields.Many2one(
         comodel_name="hc.res.procedure", 
         string="Procedure", 
-        help="Procedure associated with this Diagnostic Report.")                   
+        help="Procedure associated with this Procedure Diagnostic Report.")                   
     # diagnostic_report_id = fields.Many2one(
     #     comodel_name="hc.res.diagnostic.report", 
     #     string="Diagnostic Report", 
-    #     help="Diagnostic Report associated with this Procedure.")                   
+    #     help="Diagnostic Report associated with this Procedure Diagnostic Report.")                   
 
 class ProcedureIdentifier(models.Model):    
     _name = "hc.procedure.identifier"   
@@ -388,35 +388,7 @@ class ProcedureIdentifier(models.Model):
     procedure_id = fields.Many2one(
         comodel_name="hc.res.procedure", 
         string="Procedure", 
-        help="Procedure associated with this identifier.")                  
-
-class ProcedureMedication(models.Model):    
-    _name = "hc.procedure.medication"   
-    _description = "Procedure Medication"       
-    _inherit = ["hc.basic.association"] 
-
-    procedure_id = fields.Many2one(
-        comodel_name="hc.res.procedure", 
-        string="Procedure", 
-        help="Procedure associated with this Medication.")                  
-    medication_id = fields.Many2one(
-        comodel_name="hc.res.medication", 
-        string="Medication", 
-        help="Medication associated with this Procedure.")                   
-
-class ProcedureSubstance(models.Model): 
-    _name = "hc.procedure.substance"    
-    _description = "Procedure Substance"        
-    _inherit = ["hc.basic.association"] 
-
-    procedure_id = fields.Many2one(
-        comodel_name="hc.res.procedure", 
-        string="Procedure", 
-        help="Procedure associated with this Substance.")                   
-    substance_id = fields.Many2one(
-        comodel_name="hc.res.substance", 
-        string="Substance", 
-        help="Substance associated with this Procedure.")                   
+        help="Procedure associated with this Procedure Identifier.")                                
 
 class ProcedureComplication(models.Model):  
     _name = "hc.procedure.complication" 
@@ -426,11 +398,11 @@ class ProcedureComplication(models.Model):
     procedure_id = fields.Many2one(
         comodel_name="hc.res.procedure", 
         string="Procedure", 
-        help="Procedure associated with this Complication.")                    
+        help="Procedure associated with this Procedure Complication.")                    
     complication_id = fields.Many2one(
         comodel_name="hc.vs.condition.code", 
         string="Complication", 
-        help="Complication associated with this Procedure.")                   
+        help="Complication associated with this Procedure Complication.")                   
 
 class ProcedureReasonReference(models.Model):   
     _name = "hc.procedure.reason.reference" 
@@ -440,11 +412,11 @@ class ProcedureReasonReference(models.Model):
     procedure_id = fields.Many2one(
         comodel_name="hc.res.procedure", 
         string="Procedure", 
-        help="Procedure associated with this Condition.")                   
+        help="Procedure associated with this Procedure Reason Reference.")                   
     # condition_id = fields.Many2one(
     #     comodel_name="hc.res.condition", 
     #     string="Condition", 
-    #     help="Condition associated with this Procedure.")                   
+    #     help="Condition associated with this Procedure Reason Reference.")                   
 
 class ProcedureNote(models.Model): 
     _name = "hc.procedure.note"    
@@ -454,7 +426,7 @@ class ProcedureNote(models.Model):
     procedure_id = fields.Many2one(
         comodel_name="hc.res.procedure", 
         string="Procedure", 
-        help="Procedure associated with this annotation.")                    
+        help="Procedure associated with this Procedure Note.")                    
 
 class ProcedureNotPerformedReason(models.Model):    
     _name = "hc.vs.procedure.not.performed.reason"  

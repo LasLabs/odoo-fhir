@@ -239,13 +239,14 @@ from . import hc_res_location
 'name': "Location"
 'summary': """
 'description': """
-**Scope and Usage**
-* Bullet
+        **Scope and Usage**
+        
+        * Bullet
 """
 'author': "Luigi Sison",
 'website': "https://hl7-fhir.github.io/location.html",
 'category': 'Health Care',
-'depends': ['hc_organization'],
+'depends': ['hc_base'],
 'data': [
         'security/ir.model.access.csv',
         'views/hc_res_location_views.xml',
@@ -255,8 +256,8 @@ from . import hc_res_location
 'demo': [
     'demo/demo.xml',
 ],
-'installable': 'True',
-'auto-install': 'True',
+    'installable': 'True',
+    'auto-install': 'True',
 }
 ```
 ##Create demo data
