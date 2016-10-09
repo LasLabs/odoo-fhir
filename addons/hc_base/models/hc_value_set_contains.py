@@ -152,6 +152,11 @@ class Race(models.Model):
     _description = "Race" 
     _inherit = ["hc.value.set.contains"]  
 
+class RequestPriority(models.Model):    
+    _name = "hc.vs.request.priority"    
+    _description = "Request Priority"        
+    _inherit = ["hc.value.set.contains"]
+    
 class RouteCode(models.Model): 
     _name = "hc.vs.route.code" 
     _description = "Route Code"        

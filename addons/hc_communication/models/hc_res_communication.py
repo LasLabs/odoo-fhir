@@ -68,7 +68,7 @@ class CommunicationMedium(models.Model):
     _inherit = ["hc.basic.association"]
 
     communication_id = fields.Many2one(comodel_name="hc.res.communication", string="Communication", help="Communication associated with this Communication Medium.")                
-    medium_id = fields.Many2one(comodel_name="hc.vs.participation.mode", string="Medium", help="Communication medium associated with this communication.")                
+    medium_id = fields.Many2one(comodel_name="hc.vs.participation.mode", string="Medium", help="Medium associated with this Communication Medium.")                
 
 class CommunicationNote(models.Model):    
     _name = "hc.communication.note"    
@@ -110,7 +110,7 @@ class CommunicationReason(models.Model):
     _inherit = ["hc.basic.association"]
 
     communication_id = fields.Many2one(comodel_name="hc.res.communication", string="Communication", help="Communication associated with this Communication Reason.")                
-    reason_id = fields.Many2one(comodel_name="hc.vs.act.reason", string="Reason", help="Communication reason associated with this communication.")                
+    reason_id = fields.Many2one(comodel_name="hc.vs.act.reason", string="Reason", help="Reason associated with this Communication Reason.")                
 
 class CommunicationRecipient(models.Model):    
     _name = "hc.communication.recipient"    
@@ -132,19 +132,9 @@ class CommunicationCategory(models.Model):
     _description = "Communication Category"        
     _inherit = ["hc.value.set.contains"]
 
-class CommunicationContentCode(models.Model):    
-    _name = "hc.vs.communication.content.code"    
-    _description = "Communication Content Code"        
-    _inherit = ["hc.value.set.contains"]
-
 class CommunicationBasedOn(models.Model):    
     _name = "hc.vs.communication.based.on"    
     _description = "Communication Based On"        
-    _inherit = ["hc.value.set.contains"]
-
-class ParticipationMode(models.Model):    
-    _name = "hc.vs.participation.mode"    
-    _description = "Participation Mode"        
     _inherit = ["hc.value.set.contains"]
 
 class CommunicationParent(models.Model):    
@@ -157,7 +147,4 @@ class CommunicationTopic(models.Model):
     _description = "Communication Topic"        
     _inherit = ["hc.value.set.contains"]
 
-class ActReason(models.Model):    
-    _name = "hc.vs.act.reason"    
-    _description = "Act Reason"        
-    _inherit = ["hc.value.set.contains"]
+

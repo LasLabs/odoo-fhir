@@ -640,3 +640,13 @@ class CarePlanOutcome(models.Model):
     _name = "hc.vs.care.plan.outcome"    
     _description = "Care Plan Outcome"        
     _inherit = ["hc.value.set.contains"]
+
+# External Reference
+
+class ReferralRequestBasedOn(models.Model):    
+    _inherit = "hc.referral.request.based.on"  
+
+    based_on_care_plan_id = fields.Many2one(
+        comodel_name="hc.res.care.plan", 
+        string="Based On Care Plan", 
+        help="Care Plan request fulfilled by this request.") 

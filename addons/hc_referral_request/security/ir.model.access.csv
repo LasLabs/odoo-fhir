@@ -8,4 +8,3 @@ access_hc_referral_request_hc_referral_request_supporting_information_user,hc.re
 access_hc_referral_request_hc_referral_request_parent_user,hc.referral.request.hc.referral.request.parent.user,model_hc_referral_request_parent,hc_base.group_hc_base_user,1,0,0,0
 access_hc_referral_request_hc_vs_referral_reason_manager,hc.referral.request.hc.vs.referral.reason.manager,model_hc_vs_referral_reason,hc_base.group_hc_base_manager,1,1,1,1
 access_hc_referral_request_hc_vs_referral_type_manager,hc.referral.request.hc.vs.referral.type.manager,model_hc_vs_referral_type,hc_base.group_hc_base_manager,1,1,1,1
-access_hc_referral_request_hc_vs_request_priority_manager,hc.referral.request.hc.vs.request.priority.manager,model_hc_vs_request_priority,hc_base.group_hc_base_manager,1,1,1,1

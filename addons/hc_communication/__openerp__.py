@@ -35,7 +35,7 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['hc_device', 'hc_encounter'],
+    'depends': ['hc_communication_request'],
 
     # always loaded
     'data': [
