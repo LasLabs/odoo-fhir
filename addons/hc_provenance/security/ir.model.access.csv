@@ -1,2 +1,13 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_hc_provenance_hc_provenance,hc_provenance.hc_provenance,model_hc_provenance_hc_provenance,,1,0,0,0
+access_hc_provenance_hc_res_provenance_user,hc.provenance.hc.res.provenance.user,model_hc_res_provenance,hc_base.group_hc_base_user,1,0,0,0
+access_hc_provenance_hc_provenance_entity_user,hc.provenance.hc.provenance.entity.user,model_hc_provenance_entity,hc_base.group_hc_base_user,1,0,0,0
+access_hc_provenance_hc_provenance_agent_user,hc.provenance.hc.provenance.agent.user,model_hc_provenance_agent,hc_base.group_hc_base_user,1,0,0,0
+access_hc_provenance_hc_provenance_related_agent_user,hc.provenance.hc.provenance.related.agent.user,model_hc_provenance_related_agent,hc_base.group_hc_base_user,1,0,0,0
+access_hc_provenance_hc_provenance_agent_user_user,hc.provenance.hc.provenance.agent.user.user,model_hc_provenance_agent_user,hc_base.group_hc_base_user,1,0,0,0
+access_hc_provenance_hc_provenance_policy_user,hc.provenance.hc.provenance.policy.user,model_hc_provenance_policy,hc_base.group_hc_base_user,1,0,0,0
+access_hc_provenance_hc_provenance_signature_user,hc.provenance.hc.provenance.signature.user,model_hc_provenance_signature,hc_base.group_hc_base_user,1,0,0,0
+access_hc_provenance_hc_provenance_target_user,hc.provenance.hc.provenance.target.user,model_hc_provenance_target,hc_base.group_hc_base_user,1,0,0,0
+access_hc_provenance_hc_vs_provenance_activity_manager,hc.provenance.hc.vs.provenance.activity.manager,model_hc_vs_provenance_activity,hc_base.group_hc_base_manager,1,1,1,1
+access_hc_provenance_hc_vs_provenance_agent_role_manager,hc.provenance.hc.vs.provenance.agent.role.manager,model_hc_vs_provenance_agent_role,hc_base.group_hc_base_manager,1,1,1,1
+access_hc_provenance_hc_vs_provenance_reason_manager,hc.provenance.hc.vs.provenance.reason.manager,model_hc_vs_provenance_reason,hc_base.group_hc_base_manager,1,1,1,1
+access_hc_provenance_hc_vs_role_link_type_manager,hc.provenance.hc.vs.role.link.type.manager,model_hc_vs_role_link_type,hc_base.group_hc_base_manager,1,1,1,1

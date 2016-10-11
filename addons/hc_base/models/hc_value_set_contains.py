@@ -147,6 +147,11 @@ class ParticipationType(models.Model):
         string="Parent",
         help="Parent concept.")
 
+class PurposeOfUse(models.Model):    
+    _name = "hc.vs.purpose.of.use"    
+    _description = "Purpose Of Use"        
+    _inherit = ["hc.value.set.contains"]
+
 class Race(models.Model):  
     _name = "hc.vs.race"  
     _description = "Race" 
@@ -156,11 +161,21 @@ class RequestPriority(models.Model):
     _name = "hc.vs.request.priority"    
     _description = "Request Priority"        
     _inherit = ["hc.value.set.contains"]
-    
+
+class ResourceType(models.Model):   
+    _name = "hc.vs.resource.type"   
+    _description = "Resource Type"      
+    _inherit = ["hc.value.set.contains"]   
+
 class RouteCode(models.Model): 
     _name = "hc.vs.route.code" 
     _description = "Route Code"        
     _inherit = ["hc.value.set.contains"]  
+
+class SecurityLabel(models.Model):  
+    _name = "hc.vs.security.label"  
+    _description = "Security Label"     
+    _inherit = ["hc.value.set.contains"]
 
 class SubstanceCode(models.Model):  
     _name = "hc.vs.substance.code"  
