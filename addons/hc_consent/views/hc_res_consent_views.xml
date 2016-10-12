@@ -1,59 +1,22 @@
 <openerp>
-  <data>
-    <!-- explicit list view definition -->
-    <!--
-    <record model="ir.ui.view" id="hc_consent.list">
-      <field name="name">hc_consent list</field>
-      <field name="model">hc_consent.hc_consent</field>
-      <field name="arch" type="xml">
-        <tree>
-          <field name="name"/>
-          <field name="value"/>
-          <field name="value2"/>
-        </tree>
-      </field>
-    </record>
-    -->
+    <data>
 
-    <!-- actions opening views on models -->
-    <!--
-    <record model="ir.actions.act_window" id="hc_consent.action_window">
-      <field name="name">hc_consent window</field>
-      <field name="res_model">hc_consent.hc_consent</field>
-      <field name="view_mode">tree,form</field>
-    </record>
-    -->
+        <!-- Consent Action and Menu -->    
+    
+        <act_window id="hc_res_consent_action"  
+                    name="HC Consents"
+                    res_model="hc.res.consent"
+                    view_mode="tree,form"
+                    domain=""
+                    context=""
+                    limit=""/>
 
-    <!-- server action to the one above -->
-    <!--
-    <record model="ir.actions.server" id="hc_consent.action_server">
-      <field name="name">hc_consent server</field>
-      <field name="model_id" ref="model_hc_consent_hc_consent"/>
-      <field name="code">
-        action = {
-          "type": "ir.actions.act_window",
-          "view_mode": "tree,form",
-          "res_model": self._name,
-        }
-      </field>
-    </record>
-    -->
+        <menuitem id="hc_consent.menu_consent" 
+                  name="Consents" 
+                  parent="hc_base.menu_secur" 
+                  action="hc_res_consent_action" 
+                  groups="hc_base.group_hc_base_manager" 
+                  sequence="30"/>
 
-    <!-- Top menu item -->
-    <!--
-    <menuitem name="hc_consent" id="hc_consent.menu_root"/>
-    -->
-    <!-- menu categories -->
-    <!--
-    <menuitem name="Menu 1" id="hc_consent.menu_1" parent="hc_consent.menu_root"/>
-    <menuitem name="Menu 2" id="hc_consent.menu_2" parent="hc_consent.menu_root"/>
-    -->
-    <!-- actions -->
-    <!--
-    <menuitem name="List" id="hc_consent.menu_1_list" parent="hc_consent.menu_1"
-              action="hc_consent.action_window"/>
-    <menuitem name="Server to list" id="hc_consent" parent="hc_consent.menu_2"
-              action="hc_consent.action_server"/>
-    -->
-  </data>
+    </data>
 </openerp>

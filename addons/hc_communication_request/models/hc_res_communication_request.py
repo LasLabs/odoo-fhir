@@ -8,7 +8,14 @@ class CommunicationRequest(models.Model):
 
     identifier_ids = fields.One2many(comodel_name="hc.communication.request.identifier", inverse_name="communication_request_id", string="Identifiers", help="Unique identifier.")                
     category_id = fields.Many2one(comodel_name="hc.vs.communication.request.category", string="Category", help="Message category.")                
-    sender_type = fields.Selection(string="Sender Type", selection=[("Device", "Device"), ("Organization", "Organization"), ("Patient", "Patient"), ("Practitioner", "Practitioner"), ("Related Person", "Related Person")], help="Type of message sender.")                
+    sender_type = fields.Selection(string="Sender Type", 
+        selection=[
+            ("Device", "Device"), 
+            ("Organization", "Organization"), 
+            ("Patient", "Patient"), 
+            ("Practitioner", "Practitioner"), 
+            ("Related Person", "Related Person")], 
+        help="Type of message sender.")                
     sender_name = fields.Char(string="Sender", compute="_compute_sender_name", store="True", help="Message sender.")                
     sender_device_id = fields.Many2one(comodel_name="hc.res.device", string="Sender Device", help="Device message sender.")                
     sender_organization_id = fields.Many2one(comodel_name="hc.res.organization", string="Sender Organization", help="Organization message sender.")                
@@ -17,14 +24,25 @@ class CommunicationRequest(models.Model):
     sender_related_person_id = fields.Many2one(comodel_name="hc.res.related.person", string="Sender Related Person", help="Related Person message sender.")                
     recipient_ids = fields.One2many(comodel_name="hc.communication.request.recipient", inverse_name="communication_request_id", string="Recipients", help="Message recipient.")                
     medium_ids = fields.One2many(comodel_name="hc.communication.request.medium", inverse_name="communication_request_id", string="Mediums", help="Communication medium.")                
-    requester_type = fields.Selection(string="Requester Type", selection=[("Practitioner", "Practitioner"), ("Patient", "Patient"), ("Related Person", "Related Person")], help="Type of message recipient.")                
+    requester_type = fields.Selection(
+        string="Requester Type", 
+        selection=[
+            ("Practitioner", "Practitioner"), 
+            ("Patient", "Patient"), 
+            ("Related Person", "Related Person")], 
+        help="Type of message recipient.")                
     requester_name = fields.Char(string="Requester", compute="_compute_requester_name", store="True", help="An individual who requested a communication.")                
     requester_practitioner_id = fields.Many2one(comodel_name="hc.res.practitioner", string="Requester Practitioner", help="Practitioner who requested a communication.")                
     requester_patient_id = fields.Many2one(comodel_name="hc.res.patient", string="Requester Patient", help="Patient who requested a communication.")                
     requester_related_person_id = fields.Many2one(comodel_name="hc.res.related.person", string="Requester Related Person", help="Related Person who requested a communication.")                
     status = fields.Selection(string="Communication Request Status", selection=[("proposed", "Proposed"), ("planned", "Planned"), ("requested", "Requested"), ("received", "Received"), ("accepted", "Accepted"), ("in-progress", "In-Progress"), ("completed", "Completed"), ("suspended", "Suspended"), ("rejected", "Rejected") ], help="The status of the proposal or order.")                
     encounter_id = fields.Many2one(comodel_name="hc.res.encounter", string="Encounter", help="Encounter leading to message.")                
-    scheduled_type = fields.Selection(string="Scheduled Type", selection=[("dateTime", "Datetime"), ("Period", "Period")], help="Type of when scheduled.")                
+    scheduled_type = fields.Selection(
+        string="Scheduled Type", 
+        selection=[
+            ("dateTime", "Datetime"), 
+            ("Period", "Period")], 
+        help="Type of when scheduled.")                
     scheduled_name = fields.Char(string="Scheduled", compute="_compute_scheduled_name", store="True", help="When scheduled.")                
     scheduled_datetime = fields.Datetime( string="Scheduled Datetime", help="dateTime when scheduled.")                
     scheduled_start_date = fields.Datetime(string="Scheduled Start Date", help="Start of the when scheduled.")                
@@ -40,7 +58,13 @@ class CommunicationRequestPayload(models.Model):
     _description = "Communication Request Payload"        
 
     communication_request_id = fields.Many2one(comodel_name="hc.res.communication.request", string="Communication Request", help="Communication Request associated with this Communication Request Payload.")                
-    content_type = fields.Selection(string="Content Type", required="True", selection=[("string", "String"), ("attachment", "Attachment"), ("code", "Code"), ("communication request", "Communication Request")], help="Type of message part content.")                
+    content_type = fields.Selection(string="Content Type", required="True", 
+        selection=[
+            ("string", "String"), 
+            ("attachment", "Attachment"), 
+            ("code", "Code"), 
+            ("Communication Request", "Communication Request")], 
+        help="Type of message part content.")                
     content_name = fields.Char(string="Content", compute="_compute_content_name", store="True", help="Message part content.")                
     content_string = fields.Char(string="Content String", help="String message part content.")                
     content_attachment_id = fields.Many2one(
@@ -66,7 +90,17 @@ class CommunicationRequestRecipient(models.Model):
     _inherit = ["hc.basic.association"]    
 
     communication_request_id = fields.Many2one(comodel_name="hc.res.communication.request", string="Communication Request", help="Communication Request associated with this Communication Request Recipient.")                
-    recipient_type = fields.Selection(string="Recipient Type", selection=[("Device", "Device"), ("Organization", "Organization"), ("Patient", "Patient"), ("Practitioner", "Practitioner"), ("Related Person", "Related Person"), ("Group", "Group"), ("Care Team", "Care Team")], help="Type of message recipient.")                
+    recipient_type = fields.Selection(
+        string="Recipient Type", 
+        selection=[
+            ("Device", "Device"), 
+            ("Organization", "Organization"), 
+            ("Patient", "Patient"), 
+            ("Practitioner", "Practitioner"), 
+            ("Related Person", "Related Person"), 
+            ("Group", "Group"), 
+            ("Care Team", "Care Team")], 
+        help="Type of message recipient.")                
     recipient_name = fields.Char(string="Recipient", compute="_compute_recipient_name", store="True", help="Message recipient.")                
     recipient_device_id = fields.Many2one(comodel_name="hc.res.device", string="Recipient Device", help="Device message recipient.")                
     recipient_organization_id = fields.Many2one(comodel_name="hc.res.organization", string="Recipient Organization", help="Organization message recipient.")                

@@ -33,7 +33,7 @@ class AuditEventAgent(models.Model):
     name = fields.Char(string="Name", help="Human-meaningful name for the user.")                
     is_requestor = fields.Boolean(string="Requestor", required="True", help="Whether user is initiator.")                
     location_id = fields.Many2one(comodel_name="hc.res.location", string="Location", help="Where.")                
-    policy_ids = fields.One2many(comodel_name="hc.audit.event.agent.policy", inverse_name="agent_id", string="Policies", help="Policy that authorized event.")                
+    policy_ids = fields.One2many(comodel_name="hc.audit.event.agent.policy", inverse_name="agent_id", string="Policy URLs", help="URL of policy that authorized event.")                
     media_id = fields.Many2one(comodel_name="hc.vs.dicm.405.mediatype", string="Media", help="Type of media.")                
     network_ids = fields.One2many(comodel_name="hc.audit.event.agent.network", inverse_name="agent_id", string="Networks", help="Logical network location for application activity.")                
 
@@ -114,7 +114,7 @@ class AuditEventAgentPolicy(models.Model):
     _inherit = ["hc.basic.association"]
 
     agent_id = fields.Many2one(comodel_name="hc.audit.event.agent", string="Agent", help="Agent associated with this Audit Event Agent Policy.")                
-    policy_url = fields.Char(string="Policy URL", help="Policy URL associated with this Audit Event Agent Policy.")                
+    policy = fields.Char(string="Policy URL", help="URL of policy associated with this Audit Event Agent Policy.")                
 
 class AuditEventAgentNetworkPurposeOfUse(models.Model):    
     _name = "hc.audit.event.agent.network.purpose.of.use"    

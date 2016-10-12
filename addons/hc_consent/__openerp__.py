@@ -29,11 +29,12 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['hc_contract','hc_care_team'],
+    # 'depends': ['hc_contract','hc_care_team'],
+    'depends': ['hc_care_team'],
 
     # always loaded
     'data': [
-        # 'security/ir.model.access.csv',
+        'security/ir.model.access.csv',
         'views/hc_res_consent_views.xml',
         'views/hc_res_consent_templates.xml',
     ],
