@@ -13,7 +13,7 @@ class Provenance(models.Model):
     reason_id = fields.Many2one(comodel_name="hc.vs.purpose.of.use", string="Reason", help="Reason the activity is occurring.")                
     activity_id = fields.Many2one(comodel_name="hc.vs.provenance.activity", string="Activity", help="Activity that occurred.")                
     location_id = fields.Many2one(comodel_name="hc.res.location", string="Location", help="Where the activity occurred, if relevant.")                
-    policy_ids = fields.One2many(comodel_name="hc.provenance.policy", inverse_name="provenance_id", string="Policies", help="Policy or plan the activity was defined by.")                
+    policy_ids = fields.One2many(comodel_name="hc.provenance.policy", inverse_name="provenance_id", string="Policies", help="URL of policy or plan the activity was defined by.")                
     signature_ids = fields.One2many(comodel_name="hc.provenance.signature", inverse_name="provenance_id", string="Signatures", help="Signature on target.")                
     entity_ids = fields.One2many(comodel_name="hc.provenance.entity", inverse_name="provenance_id", string="Entities", help="An entity used in this activity.")                
     agent_ids = fields.One2many(comodel_name="hc.provenance.agent", inverse_name="provenance_id", string="Agents", help="Agents involved in creating resource.")                

@@ -103,9 +103,11 @@ class ClinicalImpression(models.Model):
         inverse_name="clinical_impression_id", 
         string="Problems", 
         help="General assessment of patient state.")                
-    protocol = fields.Text(
-        string="Protocol", 
-        help="Clinical Protocol followed.")                
+    protocol_ids = fields.One2many(
+        comodel_name="hc.clinical.impression.protocol", 
+        inverse_name="clinical_impression_id", 
+        string="Protocols", 
+        help="URL of clinical protocol followed.")             
     summary = fields.Text(
         string="Summary", 
         help="Summary of the assessment.")                
@@ -144,11 +146,11 @@ class ClinicalImpression(models.Model):
         inverse_name="clinical_impression_id", 
         string="Findings", 
         help="Possible or likely findings and diagnoses.")                
-    ruled_out_ids = fields.One2many(
-        comodel_name="hc.clinical.impression.ruled.out", 
-        inverse_name="clinical_impression_id", 
-        string="Ruled Outs", 
-        help="Diagnosis considered not possible.")                
+    # ruled_out_ids = fields.One2many(
+    #     comodel_name="hc.clinical.impression.ruled.out", 
+    #     inverse_name="clinical_impression_id", 
+    #     string="Ruled Outs", 
+    #     help="Diagnosis considered not possible.")                
 
     @api.multi          
     def _compute_subject_name(self):            
@@ -474,22 +476,23 @@ class ClinicalImpressionFinding(models.Model):
             elif hc_res_clinical_impression.item_type == 'Observation': 
                 hc_res_clinical_impression.item_name = hc_res_clinical_impression.item_observation_id.name
 
-class ClinicalImpressionRuledOut(models.Model): 
-    _name = "hc.clinical.impression.ruled.out"  
-    _description = "Clinical Impression Ruled Out"       
+# class ClinicalImpressionRuledOut(models.Model): 
+#     _name = "hc.clinical.impression.ruled.out"  
+#     _description = "Clinical Impression Ruled Out"
+#     _inherit = ["hc.basic.association"]       
 
-    clinical_impression_id = fields.Many2one(
-        comodel_name="hc.res.clinical.impression", 
-        string="Clinical Impression", 
-        help="Clinical impression associated with this ruled out.")                
-    item_id = fields.Many2one(
-        comodel_name="hc.vs.condition.code", 
-        string="Item", 
-        required="True", 
-        help="Specific text of code for diagnosis.")                
-    reason = fields.Text(
-        string="Reason", 
-        help="Grounds for elimination.")                
+#     clinical_impression_id = fields.Many2one(
+#         comodel_name="hc.res.clinical.impression", 
+#         string="Clinical Impression", 
+#         help="Clinical Impression associated with this Clinical Impression Ruled Out.")                
+#     item_id = fields.Many2one(
+#         comodel_name="hc.vs.condition.code", 
+#         string="Item", 
+#         required="True", 
+#         help="Specific text of code for diagnosis.")                
+#     reason = fields.Text(
+#         string="Reason", 
+#         help="Grounds for elimination.")                
 
 class ClinicalImpressionIdentifier(models.Model):    
     _name = "hc.clinical.impression.identifier"    
@@ -499,7 +502,7 @@ class ClinicalImpressionIdentifier(models.Model):
     clinical_impression_id = fields.Many2one(
         comodel_name="hc.res.clinical.impression", 
         string="Clinical Impression", 
-        help="Clinical impression associated with this clinical impression identifier.")                
+        help="Clinical Impression associated with this Clinical Impression Identifier.")                
 
 class ClinicalImpressionPrognosisReference(models.Model):    
     _name = "hc.clinical.impression.prognosis.reference"    
@@ -509,11 +512,11 @@ class ClinicalImpressionPrognosisReference(models.Model):
     clinical_impression_id = fields.Many2one(
         comodel_name="hc.res.clinical.impression", 
         string="Clinical Impression", 
-        help="Clinical impression associated with this clinical impression prognosis reference.")                
+        help="Clinical Impression associated with this Clinical Impression Prognosis Reference.")                
     risk_assessment_id = fields.Many2one(
         comodel_name="hc.res.risk.assessment", 
         string="Risk Assessment", 
-        help="Risk assessment associated with this clinical impression prognosis reference.")                
+        help="Risk Assessment associated with this Clinical Impression Prognosis Reference.")                
 
 class ClinicalImpressionNote(models.Model):    
     _name = "hc.clinical.impression.note"    
@@ -523,7 +526,7 @@ class ClinicalImpressionNote(models.Model):
     clinical_impression_id = fields.Many2one(
         comodel_name="hc.res.clinical.impression", 
         string="Clinical Impression", 
-        help="Clinical impression associated with this clinical impression note.")                
+        help="Clinical Impression associated with this Clinical Impression Note.")                
 
 class ClinicalImpressionProblem(models.Model):    
     _name = "hc.clinical.impression.problem"    
@@ -533,7 +536,7 @@ class ClinicalImpressionProblem(models.Model):
     clinical_impression_id = fields.Many2one(
         comodel_name="hc.res.clinical.impression", 
         string="Clinical Impression", 
-        help="Clinical impression associated with this clinical impression problem.")                
+        help="Clinical Impression associated with this Clinical Impression Problem.")                
     problem_type = fields.Selection(
         string="Problem Type", 
         selection=[
@@ -570,11 +573,24 @@ class ClinicalImpressionPrognosis(models.Model):
     clinical_impression_id = fields.Many2one(
         comodel_name="hc.res.clinical.impression", 
         string="Clinical Impression", 
-        help="Clinical impression associated with this clinical impression prognosis.")                
+        help="Clinical Impression associated with this Clinical Impression Prognosis.")                
     prognosis_id = fields.Many2one(
         comodel_name="hc.vs.clinical.impression.prognosis", 
         string="Clinical Impression Prognosis", 
-        help="Clinical impression prognosis associated with this clinical impression.")                
+        help="Clinical Impression Prognosis associated with this Clinical Impression Prognosis.")                
+
+class ClinicalImpressionProtocol(models.Model): 
+    _name = "hc.clinical.impression.protocol"   
+    _description = "Clinical Impression Protocol"       
+    _inherit = ["hc.basic.association"]
+
+    clinical_impression_id = fields.Many2one(
+        comodel_name="hc.res.clinical.impression", 
+        string="Clinical Impression", 
+        help="Clinical Impression associated with this Clinical Impression Protocol.")                
+    protocol = fields.Char(
+        string="Protocol", 
+        help="Protocol associated with this Clinical Impression Protocol.")                
 
 class ClinicalImpressionKind(models.Model):    
     _name = "hc.vs.clinical.impression.kind"    
