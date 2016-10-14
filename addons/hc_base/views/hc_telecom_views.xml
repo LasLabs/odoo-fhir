@@ -5,20 +5,20 @@
             
     <record id="hc_telecom_view_search" model="ir.ui.view">           
       <field name="name">Telecom Search</field>         
-      <field name="model">hc.telecom</field>          
+      <field name="model">hc.contact.point</field>          
       <field name="arch" type="xml">          
         <search string="Telecoms">        
-          <field name="name"/>      
+          <field name="value"/>      
         </search>       
       </field>          
     </record>           
                 
     <record id="hc_telecom_view_tree" model="ir.ui.view">           
       <field name="name">Telecom Tree</field>         
-      <field name="model">hc.telecom</field>          
+      <field name="model">hc.contact.point</field>          
       <field name="arch" type="xml">          
         <tree string="Telecoms">        
-          <field name="name"/>      
+          <field name="value"/>      
           <field name="system"/>      
         </tree>       
       </field>          
@@ -26,13 +26,13 @@
                 
     <record id="hc_telecom_view_form" model="ir.ui.view">           
       <field name="name">Telecom Form</field>         
-      <field name="model">hc.telecom</field>          
+      <field name="model">hc.contact.point</field>          
       <field name="arch" type="xml">          
         <form string="Telecom">       
           <sheet>     
             <div class="oe_title oe_left">    
               <h1>  
-                <field name="name" default_focus="1" placeholder="Tel: +22 607 123 4567, E-mail: jd@isp.com, Web: www.isp.com"/>
+                <field name="value" default_focus="1" placeholder="Tel: +22 607 123 4567, E-mail: jd@isp.com, Web: www.isp.com"/>
               </h1> 
             </div>    
             <group>   
@@ -52,7 +52,7 @@
     <record id="hc_telecom_action" model="ir.actions.act_window">           
       <field name="name">HC Telecoms</field>          
       <field name="type">ir.actions.act_window</field>          
-      <field name="res_model">hc.telecom</field>          
+      <field name="res_model">hc.contact.point</field>          
       <field name="view_type">form</field>          
       <field name="view_mode">tree,form</field>         
     </record>           

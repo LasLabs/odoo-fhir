@@ -167,19 +167,19 @@ class PersonName(models.Model):
 class PersonTelecom(models.Model):  
     _name = "hc.person.telecom" 
     _description = "Person Telecom"
-    _inherit = ["hc.telecom.contact.point"]
-    _inherits = {"hc.telecom": "telecom_id"}
+    _inherit = ["hc.contact.point.use"] 
+    _inherits = {"hc.contact.point": "telecom_id"}
  
     telecom_id = fields.Many2one(
-        comodel_name="hc.telecom",
-        string="Telecom",
-        required="True",
-        ondelete="restrict",
-        help="Telecom contact point associated with this person.")
+        comodel_name="hc.contact.point", 
+        string="Telecom", 
+        ondelete="restrict", 
+        required="True", 
+        help="Telecom associated with this Person Telecom.")
     person_id = fields.Many2one(
         comodel_name="hc.res.person", 
         string="Person", 
-        help="Person associated with this telecom contact point.")
+        help="Person associated with this Person Telecom.")
 
 class PersonPhoto(models.Model):   
     _name = "hc.person.photo"  

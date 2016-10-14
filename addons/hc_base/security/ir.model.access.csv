@@ -14,8 +14,9 @@ access_hc_base_hc_human_name_term_manager,hc.base.hc.human.name.term.manager,mod
 access_hc_base_hc_human_name_term_user,hc.base.hc.human.name.term.user,model_hc_human_name_term,group_hc_base_user,1,0,0,0
 access_hc_base_hc_identifier_manager,hc.base.hc.identifier.manager,model_hc_identifier,group_hc_base_manager,1,1,1,1
 access_hc_base_hc_identifier_user,hc.base.hc.identifier.user,model_hc_identifier,group_hc_base_user,1,0,0,0
-access_hc_base_hc_telecom_manager,hc.base.hc.telecom.manager,model_hc_telecom,group_hc_base_manager,1,1,1,1
-access_hc_base_hc_telecom_user,hc.base.hc.telecom.user,model_hc_telecom,group_hc_base_user,1,0,0,0
+access_hc_base_hc_contact_point_manager,hc.base.hc.contact.point.manager,model_hc_contact_point,group_hc_base_manager,1,1,1,1
+access_hc_base_hc_contact_point_user,hc.base.hc.contact.point.user,model_hc_contact_point,group_hc_base_user,1,0,0,0
+access_hc_base_hc_contact_point_use_user,hc.base.hc.contact.point.use.user,model_hc_contact_point_use,hc_base.group_hc_base_user,1,0,0,0
 access_hc_base_hc_value_set_contains_manager,hc.base.hc.value.set.contains.manager,model_hc_value_set_contains,group_hc_base_manager,1,1,1,1
 access_hc_base_hc_value_set_contains_user,hc.base.hc.value.set.contains.user,model_hc_value_set_contains,group_hc_base_user,1,0,0,0
 access_hc_base_hc_vs_attachment_type_manager,hc.base.hc.vs.attachment.type.manager,model_hc_vs_attachment_type,group_hc_base_manager,1,1,1,1
@@ -115,4 +116,7 @@ access_hc_base_hc_vs_request_priority_manager,hc.base.hc.vs.request.priority.man
 access_hc_base_hc_vs_resource_type_manager,hc.base.hc.vs.resource.type.manager,model_hc_vs_resource_type,hc_base.group_hc_base_manager,1,1,1,1
 access_hc_base_hc_vs_purpose_of_use_manager,hc.base.hc.vs.purpose.of.use.manager,model_hc_vs_purpose_of_use,hc_base.group_hc_base_manager,1,1,1,1
 access_hc_base_hc_vs_security_label_manager,hc.base.hc.vs.security.label.manager,model_hc_vs_security_label,hc_base.group_hc_base_manager,1,1,1,1
+access_hc_base_hc_vs_c80_practice_code_manager,hc.base.hc.vs.c80.practice.code.manager,model_hc_vs_c80_practice_code,hc_base.group_hc_base_manager,1,1,1,1
+
+
 

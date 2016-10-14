@@ -41,7 +41,9 @@ class CountryDivisionType(models.Model):
         string="Division Type",
         help="Type of grouping of principal subdivisions (e.g., Division in the US).")
     country_id = fields.Many2one(
-        comodel_name="res.country", string="Country", help="Country that maintains the division type.")
+        comodel_name="res.country", 
+        string="Country", 
+        help="Country that maintains the division type.")
 
 class CountryDivision(models.Model):  
     _name = "hc.vs.country.division"  
@@ -51,9 +53,18 @@ class CountryDivision(models.Model):
     name = fields.Char(
        string="Division",
        help="A grouping of principal subdivisions (e.g., England in the UK, West in the US).")
-    type_id = fields.Many2one(comodel_name="hc.vs.country.division.type", string="Division Type", help="Type of grouping of principal subdivisions (e.g., Division in the US).")
-    region_id = fields.Many2one(comodel_name="hc.vs.country.region", string="Region", help="A grouping of divisions or states (e.g. West, Midwest).")
-    country_id = fields.Many2one(comodel_name="res.country", string="Country", help="Country (can be ISO-3166 3-letter code).")
+    type_id = fields.Many2one(
+        comodel_name="hc.vs.country.division.type", 
+        string="Division Type", 
+        help="Type of grouping of principal subdivisions (e.g., Division in the US).")
+    region_id = fields.Many2one(
+        comodel_name="hc.vs.country.region", 
+        string="Region", 
+        help="A grouping of divisions or states (e.g. West, Midwest).")
+    country_id = fields.Many2one(
+        comodel_name="res.country", 
+        string="Country", 
+        help="Country (can be ISO-3166 3-letter code).")
 
 class CountryStateType(models.Model):    
     _name = "hc.vs.country.state.type"    
@@ -106,10 +117,10 @@ class CountryState(models.Model):
         string="Source URL", 
         help="Web address of the source of the code.")
 
-class HcExtensionState(models.Model):
-    _inherit = 'res.country.state'
+# class HcExtensionState(models.Model):
+#     _inherit = 'res.country.state'
 
-    division_id = fields.Many2one(comodel_name="hc.vs.country.division", string="Division", help="Group of primary subdivisions (e.g., Pacific and Mountain in the US).")
+#     division_id = fields.Many2one(comodel_name="hc.vs.country.division", string="Division", help="Group of primary subdivisions (e.g., Pacific and Mountain in the US).")
     
 
 class CountryDistrictType(models.Model):    
@@ -120,7 +131,10 @@ class CountryDistrictType(models.Model):
     name = fields.Char(
        string="District/County Type",
        help="Type of administrative area (e.g., In US, county).")
-    country_id = fields.Many2one(comodel_name="res.country", string="Country", help="Country that maintains the district type.")
+    country_id = fields.Many2one(
+        comodel_name="res.country", 
+        string="Country", 
+        help="Country that maintains the district type.")
 
 class CountryDistrict(models.Model):    
     _name = "hc.vs.country.district"    
@@ -130,8 +144,14 @@ class CountryDistrict(models.Model):
     name = fields.Char(
         string="District/County",
         help="Top-level administrative area of a principal subdivision (e.g., County in US State).")
-    type_id = fields.Many2one(comodel_name="hc.vs.country.district.type", string="District Type", help="Type of administrative area (e.g., In US, county or parish).")
-    city_ids = fields.Many2many(comodel_name="hc.vs.country.city", string="Cities/Places", help="The name of the city, town, village or other community or delivery center.")
+    type_id = fields.Many2one(
+        comodel_name="hc.vs.country.district.type", 
+        string="District Type", 
+        help="Type of administrative area (e.g., In US, county or parish).")
+    city_ids = fields.Many2many(
+        comodel_name="hc.vs.country.city", 
+        string="Cities/Places", 
+        help="The name of the city, town, village or other community or delivery center.")
     state_id = fields.Many2one(
         comodel_name="res.country.state", 
         string="State", 
@@ -162,7 +182,10 @@ class CountryCityType(models.Model):
     name = fields.Char(
        string="City/Place Type", 
        help="Type of place or district/county subdivision (e.g., city, town).")
-    country_id = fields.Many2one(comodel_name="res.country", string="Country", help="Country that maintains the city/place type.")
+    country_id = fields.Many2one(
+        comodel_name="res.country", 
+        string="Country", 
+        help="Country that maintains the city/place type.")
 
 class CountryCityCategory(models.Model):    
     _name = "hc.vs.country.city.category"    
@@ -172,7 +195,10 @@ class CountryCityCategory(models.Model):
     name = fields.Char(
        string="City/Place Category",
        help="Category of place or district/county subdivision (e.g., census designated place, incorporated place).")
-    country_id = fields.Many2one(comodel_name="res.country", string="Country", help="Country that maintains the city/place category.")
+    country_id = fields.Many2one(
+        comodel_name="res.country", 
+        string="Country", 
+        help="Country that maintains the city/place category.")
 
 class CountryCityStatus(models.Model):    
     _name = "hc.vs.country.city.status"    
@@ -182,7 +208,10 @@ class CountryCityStatus(models.Model):
     name = fields.Char(
        string="City/Place Functional Status",
        help="Status of a place from a legal and/or statistical perspective.")
-    country_id = fields.Many2one(comodel_name="res.country", string="Country", help="Country that maintains the city/place functional status.")
+    country_id = fields.Many2one(
+        comodel_name="res.country", 
+        string="Country", 
+        help="Country that maintains the city/place functional status.")
 
 class CountryCity(models.Model):    
     _name = "hc.vs.country.city"    
@@ -256,15 +285,38 @@ class CountryPostalCode(models.Model):
     name = fields.Char(
         string="Postal/ZIP Code", 
         help="A group of numbers or letters and numbers that are added to a postal address to assist the sorting of mail.")
-    postal_place = fields.Char(string="Place", help="A geographic point of interest associated with a postal code.")
-    type_id = fields.Many2one(comodel_name="hc.vs.country.postal.code.type", string="Postal Code Type", help="Type of postal code (e.g., standard, PO Box).")
-    is_decommissioned = fields.Boolean(string="Decommission", help="Indicates if the postal code is not in active use.")
-    latitude = fields.Float(string="Latitude", help="Average geographic latitude of the postal code.")
-    longitude = fields.Float(string="Longitude", help="Average geographic longitude of the postal code.")
-    postal_code_owner_country_id = fields.Many2one(comodel_name="res.country", string="Postal Code Country Owner", help="Country that maintains the postal code.")
-    city_ids = fields.Many2many(comodel_name="hc.vs.country.city", string="Cities/Places", help="The name of the city, town, village or other community or delivery center.")
-    district_ids = fields.Many2many(comodel_name="hc.vs.country.district", string="Districts/Counties", help="The name of the administrative area (e.g., county).")
-    state_ids = fields.Many2many(comodel_name="res.country.state", string="State", help="Sub-unit (i.e., primary subdivision) of a country (abreviations ok).")
+    postal_place = fields.Char(
+        string="Place", 
+        help="A geographic point of interest associated with a postal code.")
+    type_id = fields.Many2one(
+        comodel_name="hc.vs.country.postal.code.type", 
+        string="Postal Code Type", 
+        help="Type of postal code (e.g., standard, PO Box).")
+    is_decommissioned = fields.Boolean(
+        string="Decommission", 
+        help="Indicates if the postal code is not in active use.")
+    latitude = fields.Float(
+        string="Latitude", 
+        help="Average geographic latitude of the postal code.")
+    longitude = fields.Float(
+        string="Longitude", 
+        help="Average geographic longitude of the postal code.")
+    postal_code_owner_country_id = fields.Many2one(
+        comodel_name="res.country", 
+        string="Postal Code Country Owner", 
+        help="Country that maintains the postal code.")
+    city_ids = fields.Many2many(
+        comodel_name="hc.vs.country.city", 
+        string="Cities/Places", 
+        help="The name of the city, town, village or other community or delivery center.")
+    district_ids = fields.Many2many(
+        comodel_name="hc.vs.country.district", 
+        string="Districts/Counties", 
+        help="The name of the administrative area (e.g., county).")
+    state_ids = fields.Many2many(
+        comodel_name="res.country.state", 
+        string="State", 
+        help="Sub-unit (i.e., primary subdivision) of a country (abreviations ok).")
     division_id = fields.Many2one(
         comodel_name="hc.vs.country.division", 
         string="Division", 
@@ -284,19 +336,46 @@ class Address(models.Model):
 
     name = fields.Char(
         string="Full Address", 
-        compute='compute_address', 
-        store=True, 
+        compute="_compute_address", 
+        store="True", 
         help="A full text representation of the address.")
-    line1 = fields.Char(string="Address Line 1", help="Street name, number, direction & P.O. Box etc.")
-    line2 = fields.Char(string="Address Line 2", help="Street name, number, direction & P.O. Box etc.")
-    line3 = fields.Char(string="Address Line 3", help="Street name, number, direction & P.O. Box etc.")
-    city_id = fields.Many2one(comodel_name="hc.vs.country.city", string="City/Place", help="The name of the city, town, village or other community or delivery center.")
-    district_id = fields.Many2one(comodel_name="hc.vs.country.district", string="District/County", help="The name of the administrative area (e.g., county).")
-    state_id = fields.Many2one(comodel_name="res.country.state", string="State/Province", help="Sub-unit (i.e., primary subdivision) of a country (abreviations ok).")
-    postal_code_id = fields.Many2one(comodel_name="hc.vs.country.postal.code", string="Postal/ZIP Code", help="Postal code for area.")
-    division_id = fields.Many2one(related='postal_code_id.division_id', string="Division", help="Group of states (e.g., Pacific, Mountain).")
-    region_id = fields.Many2one(related='postal_code_id.region_id', string="Region", help="First level subdivision of a country (e.g. West, Midwest).")
-    country_id = fields.Many2one(related='postal_code_id.country_id', string="Country", help="Country (can be ISO 3166 3 letter code).")
+    line1 = fields.Char(
+        string="Address Line 1", 
+        help="Street name, number, direction & P.O. Box etc.")
+    line2 = fields.Char(
+        string="Address Line 2", 
+        help="Street name, number, direction & P.O. Box etc.")
+    line3 = fields.Char(
+        string="Address Line 3", 
+        help="Street name, number, direction & P.O. Box etc.")
+    city_id = fields.Many2one(
+        comodel_name="hc.vs.country.city", 
+        string="City/Place", 
+        help="The name of the city, town, village or other community or delivery center.")
+    district_id = fields.Many2one(
+        comodel_name="hc.vs.country.district", 
+        string="District/County", 
+        help="The name of the administrative area (e.g., county).")
+    state_id = fields.Many2one(
+        comodel_name="res.country.state", 
+        string="State/Province", 
+        help="Sub-unit (i.e., primary subdivision) of a country (abreviations ok).")
+    postal_code_id = fields.Many2one(
+        comodel_name="hc.vs.country.postal.code", 
+        string="Postal/ZIP Code", 
+        help="Postal code for area.")
+    division_id = fields.Many2one(
+        related='postal_code_id.division_id', 
+        string="Division", 
+        help="Group of states (e.g., Pacific, Mountain).")
+    region_id = fields.Many2one(
+        related='postal_code_id.region_id', 
+        string="Region", 
+        help="First level subdivision of a country (e.g. West, Midwest).")
+    country_id = fields.Many2one(
+        related='postal_code_id.country_id', 
+        string="Country", 
+        help="Country (can be ISO 3166 3 letter code).")
 
 # class HcExtensionAddress(models.Model):
 #     _inherit = 'hc.address'
@@ -319,7 +398,7 @@ class Address(models.Model):
     # any changes ni listed fields and change the value of our name fields accordingly
     
     @api.depends('line1','line2','line3','city_id','postal_code_id', 'district_id', 'state_id', 'division_id', 'region_id', 'country_id')
-    def compute_address(self):
+    def _compute_address(self):
         address = ''
         lines = ''
         line1 = self.line1 and self.line1 or ''

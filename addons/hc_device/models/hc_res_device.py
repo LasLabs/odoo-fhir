@@ -80,24 +80,24 @@ class DeviceIdentifier(models.Model):
     device_id = fields.Many2one(
         comodel_name="hc.res.device", 
         string="Device", 
-        help="Device associated with this device identifier.")                    
+        help="Device associated with this Device Identifier.")                    
 
-class DeviceTelecom(models.Model):    
-    _name = "hc.device.telecom"    
-    _description = "Device Telecom"        
-    _inherit = ["hc.telecom.contact.point"]    
-    _inherits = {"hc.telecom": "telecom_id"}
+class DeviceTelecom(models.Model):  
+    _name = "hc.device.telecom" 
+    _description = "Device Telecom"     
+    _inherit = ["hc.contact.point.use"] 
+    _inherits = {"hc.contact.point": "contact_id"}
 
-    telecom_id = fields.Many2one(
-        comodel_name="hc.telecom", 
-        string="Telecom", 
-        required="True", 
+    contact_id = fields.Many2one(
+        comodel_name="hc.contact.point", 
+        string="Contact", 
         ondelete="restrict", 
-        help="Telecom associated with this device telecom.")                    
+        required="True", 
+        help="Telecom associated with this Device Telecom.")                  
     device_id = fields.Many2one(
         comodel_name="hc.res.device", 
         string="Device", 
-        help="Device associated with this device telecom.")                    
+        help="Device associated with this Device Telecom.")                       
 
 class DeviceNote(models.Model):    
     _name = "hc.device.note"    

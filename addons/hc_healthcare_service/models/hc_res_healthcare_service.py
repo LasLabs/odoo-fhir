@@ -166,19 +166,19 @@ class HealthcareServicePhoto(models.Model):
 class HealthcareServiceTelecom(models.Model):   
     _name = "hc.healthcare.service.telecom" 
     _description = "Healthcare Service Telecom"     
-    _inherit = ["hc.telecom.contact.point"] 
-    _inherits = {"hc.telecom": "telecom_id"}
+    _inherit = ["hc.contact.point.use"] 
+    _inherits = {"hc.contact.point": "telecom_id"}  
 
     telecom_id = fields.Many2one(
-        comodel_name="hc.telecom", 
-        string="Telecom",
-        required="True", 
+        comodel_name="hc.contact.point", 
+        string="Telecom", 
         ondelete="restrict", 
-        help="Telecom Contact Point associated with this Healthcare Service Telecom.")                    
+        required="True", 
+        help="Telecom associated with this Healthcare Service Telecom.")                      
     healthcare_service_id = fields.Many2one(
         comodel_name="hc.res.healthcare.service", 
         string="Healthcare Service", 
-        help="Healthcare Service associated with this Healthcare Service Telecom.")                  
+        help="Healthcare Service associated with this Healthcare Service Telecom.")                                  
 
 class HealthcareServiceProgramName(models.Model):
     _name = "hc.healthcare.service.program.name"    
@@ -272,12 +272,7 @@ class HealthcareServiceReferralMethod(models.Model):
 class ServiceType(models.Model):    
     _name = "hc.vs.service.type"    
     _description = "Service Type"       
-    _inherit = ["hc.value.set.contains"]    
-
-class C80PracticeCode(models.Model):   
-    _name = "hc.vs.c80.practice.code"  
-    _description = "C80 Practice Code"     
-    _inherit = ["hc.value.set.contains"]    
+    _inherit = ["hc.value.set.contains"]        
 
 class ServiceProvisionCondition(models.Model): 
     _name = "hc.vs.service.provision.condition"    

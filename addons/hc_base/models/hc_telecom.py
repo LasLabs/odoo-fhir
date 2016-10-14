@@ -2,31 +2,30 @@
 
 from openerp import models, fields, api
 
-class Telecom(models.Model):    
-    _name = "hc.telecom"    
-    _description = "Telecom"
+class ContactPoint(models.Model):   
+    _name = "hc.contact.point"   
+    _description = "Contact Point"
+    _rec_name = "value"
 
-    name = fields.Char(
-        string="Value",
-        size=50, 
-        help="The actual telecom contact point details (e.g., Phone: +22 607 123 4567, Email: jdoe@isp.com, Url: www.doecorp.com).")
-    natl_number = fields.Char(
-        string="National Value",
-        size=14, 
-        help="The domestic format for a phone number (e.g., (607) 123 4567).")
     system = fields.Selection(
-        string="Type", 
+        string="Contact Point System", 
         selection=[
             ("phone", "Phone"), 
             ("fax", "Fax"), 
             ("email", "Email"), 
-            ("url", "Url")], 
-        default="phone",
-        help="Telecommunications form for contact point - what communications system is required to make use of the contact.")   
-
-class TelecomContactPoint(models.AbstractModel):    
-    _name = "hc.telecom.contact.point"    
-    _description = "Telecom Contact Point"
+            ("pager", "Pager"), 
+            ("other", "Other")], 
+        help="Telecommunications form for contact point - what communications system is required to make use of the contact.")     
+    value = fields.Char(
+        string="Value", 
+        help="The actual contact point details.")
+    natl_number = fields.Char(
+        string="National Number", 
+        help="The domestic format for a phone number (e.g., (607) 123 4567).")
+      
+class ContactPointUse(models.Model):    
+    _name = "hc.contact.point.use"  
+    _description = "Contact Point Use"
     _inherit = ["hc.basic.association"]
 
     use = fields.Selection(
@@ -37,11 +36,60 @@ class TelecomContactPoint(models.AbstractModel):
             ("temp", "Temp"), 
             ("old", "Old"), 
             ("mobile", "Mobile")], 
-        help="Purpose of this contact point.")
+        help="Purpose of this contact point.")     
     rank = fields.Integer(
-        string="Rank",
+        string="Rank", 
         default="1", 
-        help="Specify preferred order of use (1 = highest).")
+        help="Specify preferred order of use (1 = highest).")     
+    period_start_date = fields.Datetime(
+        string="Period Start Date", 
+        help="Start of the time period when the contact point was/is in use.")      
+    period_end_date = fields.Datetime(
+        string="Period End Date", 
+        help="End of the time period when the contact point was/is in use.")        
+
+
+
+# class Telecom(models.Model):    
+#     _name = "hc.telecom"    
+#     _description = "Telecom"
+
+#     name = fields.Char(
+#         string="Value",
+#         size=50, 
+#         help="The actual telecom contact point details (e.g., Phone: +22 607 123 4567, Email: jdoe@isp.com, Url: www.doecorp.com).")
+#     natl_number = fields.Char(
+#         string="National Value",
+#         size=14, 
+#         help="The domestic format for a phone number (e.g., (607) 123 4567).")
+#     system = fields.Selection(
+#         string="Type", 
+#         selection=[
+#             ("phone", "Phone"), 
+#             ("fax", "Fax"), 
+#             ("email", "Email"), 
+#             ("url", "Url")], 
+#         default="phone",
+#         help="Telecommunications form for contact point - what communications system is required to make use of the contact.")   
+
+# class TelecomContactPoint(models.AbstractModel):    
+#     _name = "hc.telecom.contact.point"    
+#     _description = "Telecom Contact Point"
+#     _inherit = ["hc.basic.association"]
+
+#     use = fields.Selection(
+#         string="Use", 
+#         selection=[
+#             ("home", "Home"), 
+#             ("work", "Work"), 
+#             ("temp", "Temp"), 
+#             ("old", "Old"), 
+#             ("mobile", "Mobile")], 
+#         help="Purpose of this contact point.")
+#     rank = fields.Integer(
+#         string="Rank",
+#         default="1", 
+#         help="Specify preferred order of use (1 = highest).")
 
 
 # class ObjectTelecom(models.Model):  

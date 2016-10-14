@@ -118,22 +118,22 @@ class PractitionerName(models.Model):
         string="Practitioner", 
         help="Practitioner associated with this human name.")
 
-class PractitionerTelecom(models.Model):  
-    _name = "hc.practitioner.telecom" 
-    _description = "Practitioner Telecom"
-    _inherit = ["hc.telecom.contact.point"]
-    _inherits = {"hc.telecom": "telecom_id"}
- 
+class PractitionerTelecom(models.Model):    
+    _name = "hc.practitioner.telecom"   
+    _description = "Practitioner Telecom"       
+    _inherit = ["hc.contact.point.use"] 
+    _inherits = {"hc.contact.point": "telecom_id"}
+
     telecom_id = fields.Many2one(
-        comodel_name="hc.telecom",
-        string="Telecom",
-        required="True",
-        ondelete="restrict",
-        help="Telecom contact point associated with this practitioner.")
+        comodel_name="hc.contact.point", 
+        string="Telecom", 
+        ondelete="restrict", 
+        required="True", 
+        help="Telecom associated with this Practitioner Telecom.")                    
     practitioner_id = fields.Many2one(
         comodel_name="hc.res.practitioner", 
         string="Practitioner", 
-        help="Practitioner associated with this telecom contact point.")
+        help="Practitioner associated with this Practitioner Telecom.")                    
         
 class PractitionerAddress(models.Model):
     _name = "hc.practitioner.address" 

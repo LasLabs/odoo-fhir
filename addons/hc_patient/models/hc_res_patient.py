@@ -184,20 +184,20 @@ class PatientAddress(models.Model):
 
 class PatientTelecom(models.Model): 
     _name = "hc.patient.telecom"    
-    _description = "Patient Telecom"
-    _inherit = ["hc.telecom.contact.point"]               
-    _inherits = {"hc.telecom": "telecom_id"}
+    _description = "Patient Telecom"        
+    _inherit = ["hc.contact.point.use"] 
+    _inherits = {"hc.contact.point": "telecom_id"}
 
     telecom_id = fields.Many2one(
-        comodel_name="hc.telecom", 
+        comodel_name="hc.contact.point", 
         string="Telecom", 
-        required="True", 
         ondelete="restrict", 
-        help="Telecom contact point associated with this patient.")
+        required="True", 
+        help="Telecom associated with this Patient Telecom.")                 
     patient_id = fields.Many2one(
         comodel_name="hc.res.patient", 
         string="Patient", 
-        help="Patient associated with this telecom contact point.")                               
+        help="Patient associated with this Patient Telecom.")                                               
 
 class PatientMaritalStatus(models.Model):   
     _name = "hc.patient.marital.status"  

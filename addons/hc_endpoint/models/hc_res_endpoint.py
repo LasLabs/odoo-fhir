@@ -83,19 +83,19 @@ class EndpointIdentifier(models.Model):
 class EndpointTelecom(models.Model):    
     _name = "hc.endpoint.telecom"   
     _description = "Endpoint Telecom"       
-    _inherit = ["hc.telecom.contact.point"] 
-    _inherits = {"hc.telecom": "telecom_id"}
+    _inherit = ["hc.contact.point.use"] 
+    _inherits = {"hc.contact.point": "contact_id"}
 
-    telecom_id = fields.Many2one(
-        comodel_name="hc.telecom",
-        string="Telecom",
-        required="True",
-        ondelete="restrict",
-        help="Telecom contact point associated with this endpoint telecom.")
+    contact_id = fields.Many2one(
+        comodel_name="hc.contact.point", 
+        string="Contact", 
+        ondelete="restrict", 
+        required="True", 
+        help="Contact associated with this Endpoint Telecom.")                    
     endpoint_id = fields.Many2one(
         comodel_name="hc.res.endpoint", 
         string="Endpoint", 
-        help="Endpoint associated with with this endpoint telecom.")                   
+        help="Endpoint associated with this Endpoint Telecom.")                                     
 
 class EndpointHeader(models.Model): 
     _name = "hc.endpoint.header"    

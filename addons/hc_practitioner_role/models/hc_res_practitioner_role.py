@@ -111,19 +111,19 @@ class PractitionerRoleIdentifier(models.Model):
 class PractitionerRoleTelecom(models.Model):    
     _name = "hc.practitioner.role.telecom"  
     _description = "Practitioner Role Telecom"      
-    _inherit = ["hc.telecom.contact.point"]
-    _inherits = {"hc.telecom": "telecom_id"}
+    _inherit = ["hc.contact.point.use"] 
+    _inherits = {"hc.contact.point": "telecom_id"}
 
     telecom_id = fields.Many2one(
-        comodel_name="hc.telecom", 
+        comodel_name="hc.contact.point", 
         string="Telecom", 
-        required="True", 
         ondelete="restrict", 
-        help="Identifies telecom contact point associated with this practitioner role.") 
+        required="True", 
+        help="Telecom associated with this Practitioner Role Telecom.")                   
     practitioner_role_id = fields.Many2one(
-        comodel_name="hc.res.practitioner.role",  
+        comodel_name="hc.res.practitioner.role", 
         string="Practitioner Role", 
-        help="Practitioner role associated with this telecom contact point.")               
+        help="Practitioner Role associated with this Practitioner Role Telecom.")                                 
 
 class PractitionerRoleLocation(models.Model):   
     _name = "hc.practitioner.role.location" 

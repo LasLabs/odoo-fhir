@@ -11,14 +11,26 @@ class Location(models.Model):
         inverse_name="location_id", 
         string="Identifiers", 
         help="Unique code or number identifying the location to its users.")
+    status = fields.Selection(
+        string="Status", 
+        selection=[
+            ("active", "Active"), 
+            ("suspended", "Suspended"), 
+            ("inactive", "Inactive")], 
+        help="Indicates whether the location is still in use.")
     name = fields.Char(
         string="Name", 
         help="Name of the location as used by humans.")
-    description = fields.Char(
+    alias_ids = fields.One2many(
+        comodel_name="hc.location.alias", 
+        inverse_name="location_id", 
+        string="Aliases", 
+        help="A list of alternate names that the location is known as, or was known as in the past.")
+    description = fields.Text(
         string="Description", 
         help="Description of the Location, which helps in finding or referencing the place.")
     mode = fields.Selection(
-        string="Location Mode", 
+        string="Mode", 
         selection=[
             ("instance", "Instance"), 
             ("kind", "Kind")], 
@@ -57,61 +69,75 @@ class Location(models.Model):
         comodel_name="hc.res.location", 
         string="Part Of", 
         help="Another Location which this Location is physically part of.")
-    status = fields.Selection(
-        string="Location Status", 
-        selection=[
-            ("active", "Active"), 
-            ("suspended", "Suspended"), 
-            ("inactive", "Inactive")], 
-        help="Indicates whether the location is still in use.")
-    # endpoint_id = fields.Many2one(
-    #     comodel_name="hc.res.endpoint", 
-    #     string="Endpoint", 
-    #     help="Technical endpoints providing access to services operated for the location.")
+    endpoint_ids = fields.One2many(
+        comodel_name="hc.location.endpoint", 
+        inverse_name="location_id", 
+        string="Endpoints", 
+        help="Technical endpoints providing access to services operated for the location.")
 
-    class LocationType(models.Model):  
-        _name = "hc.vs.location.type"  
-        _description = "Location Type" 
-        _inherit = ["hc.value.set.contains"]
+class LocationIdentifier(models.Model):   
+    _name = "hc.location.identifier"  
+    _description = "Location Identifier"
+    _inherit = ["hc.basic.association", "hc.identifier"]
 
-    class LocationPhysicalType(models.Model):  
-        _name = "hc.vs.location.physical.type"  
-        _description = "Location Physical Type" 
-        _inherit = ["hc.value.set.contains"]
-
-    class locationIdentifier(models.Model):   
-        _name = "hc.location.identifier"  
-        _description = "Location Identifier"
-        _inherit = ["hc.basic.association"]
-        _inherits = {"hc.identifier": "identifier_id"}
-
-        identifier_id = fields.Many2one(
-            comodel_name="hc.identifier",
-            string="Identifier",
-            required=True,
-            ondelete="restrict", 
-            help="Identifier associated with this location identifier.")
-        location_id = fields.Many2one(
-            comodel_name="hc.res.location", 
-            string="Location", 
-            help="Location associated with this identifier.")
+    location_id = fields.Many2one(
+        comodel_name="hc.res.location", 
+        string="Location", 
+        help="Location associated with this Location Identifier.")
     
-    class locationTelecom(models.Model):  
-        _name = "hc.location.telecom" 
-        _description = "location Telecom"
-        _inherit = ["hc.telecom.contact.point"]
-        _inherits = {"hc.telecom": "telecom_id"}
-     
-        telecom_id = fields.Many2one(
-            comodel_name="hc.telecom",
-            string="Telecom",
-            required=True,
-            ondelete="restrict",
-            help="Telecom contact point associated with this location.")
-        location_id = fields.Many2one(
-            comodel_name="hc.res.location", 
-            string="Location", 
-            help="location associated with this telecom contact point.")
+class LocationTelecom(models.Model):    
+    _name = "hc.location.telecom"   
+    _description = "Location Telecom"       
+    _inherit = ["hc.contact.point.use"] 
+    _inherits = {"hc.contact.point": "telecom_id"}
+
+    telecom_id = fields.Many2one(
+        comodel_name="hc.contact.point", 
+        string="Telecom", 
+        ondelete="restrict", 
+        required="True", 
+        help="Telecom associated with this Location Telecom.")                    
+    location_id = fields.Many2one(
+        comodel_name="hc.res.location", 
+        string="Location", 
+        help="Location associated with this Location Telecom.")                    
+
+class LocationAlias(models.Model):  
+    _name = "hc.location.alias" 
+    _description = "Location Alias"     
+    _inherit = ["hc.basic.association"]
+
+    location_id = fields.Many2one(
+        comodel_name="hc.res.location", 
+        string="Location", 
+        help="Location associated with this Location Alias.")
+    alias = fields.Char(
+        string="Alias", 
+        help="Alias associated with this Location Alias.")
+
+class LocationEndpoint(models.Model):   
+    _name = "hc.location.endpoint"  
+    _description = "Location Endpoint"      
+    _inherit = ["hc.basic.association"]
+
+    location_id = fields.Many2one(
+        comodel_name="hc.res.location", 
+        string="Location", 
+        help="Location associated with this Location Endpoint.")
+    endpoint_id = fields.Many2one(
+        comodel_name="hc.res.endpoint", 
+        string="Endpoint", 
+        help="Endpoint associated with this Location Endpoint.")
+
+class LocationType(models.Model):  
+    _name = "hc.vs.location.type"  
+    _description = "Location Type" 
+    _inherit = ["hc.value.set.contains"]
+
+class LocationPhysicalType(models.Model):  
+    _name = "hc.vs.location.physical.type"  
+    _description = "Location Physical Type" 
+    _inherit = ["hc.value.set.contains"]
 
 # External Reference
 

@@ -74,6 +74,11 @@ class AnimalSpecies(models.Model):
 class BodySite(models.Model):   
     _name = "hc.vs.body.site"   
     _description = "Body Site"      
+    _inherit = ["hc.value.set.contains"]
+
+class C80PracticeCode(models.Model):   
+    _name = "hc.vs.c80.practice.code"  
+    _description = "C80 Practice Code"     
     _inherit = ["hc.value.set.contains"]  
 
 class ClinicalConcept(models.Model):    

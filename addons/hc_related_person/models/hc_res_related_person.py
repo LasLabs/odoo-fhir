@@ -23,8 +23,8 @@ class RelatedPerson(models.Model):
         string="Name", 
         help="A name associated with this related person.")
     telecom_ids = fields.One2many(
-        comodel_name="hc.person.telecom", 
-        inverse_name="person_id", 
+        comodel_name="hc.related.person.telecom", 
+        inverse_name="related_person_id", 
         string="Telecom Contact Points", 
         help="A contact detail for this related person.")
     gender = fields.Selection(
@@ -89,22 +89,22 @@ class RelatedPersonName(models.Model):
         string="Related Person", 
         help="Related Person associated with this human name.")
 
-class RelatedPersonTelecom(models.Model):  
+class RelatedPersonTelecom(models.Model):   
     _name = "hc.related.person.telecom" 
-    _description = "Related Person Telecom"
-    _inherit = ["hc.telecom.contact.point"]
-    _inherits = {"hc.telecom": "telecom_id"}
+    _description = "Related Person Telecom"     
+    _inherit = ["hc.contact.point.use"] 
+    _inherits = {"hc.contact.point": "telecom_id"}
 
     telecom_id = fields.Many2one(
-        comodel_name="hc.telecom",
-        string="Telecom",
-        required="True",
-        ondelete="restrict",
-        help="Telecom contact point associated with this related person.")
+        comodel_name="hc.contact.point", 
+        string="Telecom", 
+        ondelete="restrict", 
+        required="True", 
+        help="Telecom associated with this Related Person Telecom.")                  
     related_person_id = fields.Many2one(
         comodel_name="hc.res.related.person", 
         string="Related Person", 
-        help="Related person associated with this telecom contact point.")
+        help="Related Person associated with this Related Person Telecom.")                  
         
 class RelatedPersonAddress(models.Model):
     _name = "hc.related.person.address" 
