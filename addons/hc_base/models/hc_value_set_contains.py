@@ -51,6 +51,13 @@ class ValueSetContains(models.AbstractModel):
     #     if self.name == self.description:
     #         raise ValidationError("Concept name and description must be different")
 
+
+
+class ActCode(models.Model):   
+    _name = "hc.vs.act.code"
+    _description = "Act Code"  
+    _inherit = ["hc.value.set.contains"]
+
 class AdministrativeGender(models.Model):   
     _name = "hc.vs.administrative.gender"   
     _description = "Administrative Gender"      
@@ -74,6 +81,21 @@ class AnimalSpecies(models.Model):
 class BodySite(models.Model):   
     _name = "hc.vs.body.site"   
     _description = "Body Site"      
+    _inherit = ["hc.value.set.contains"]
+
+class C80DocClassCode(models.Model):    
+    _name = "hc.vs.c80.doc.class.code"    
+    _description = "C80 Doc Class Code"        
+    _inherit = ["hc.value.set.contains"]
+
+class C80DocTypeCode(models.Model):    
+    _name = "hc.vs.c80.doc.type.code"    
+    _description = "C80 Doc Type Code"        
+    _inherit = ["hc.value.set.contains"]
+
+class C80FacilityCode(models.Model):    
+    _name = "hc.vs.c80.facility.code"    
+    _description = "C80 Facility Code"        
     _inherit = ["hc.value.set.contains"]
 
 class C80PracticeCode(models.Model):   
@@ -109,6 +131,11 @@ class DemographicAgeGroup(models.Model):
 class Ethnicity(models.Model):  
     _name = "hc.vs.ethnicity"  
     _description = "Ethnicity" 
+    _inherit = ["hc.value.set.contains"]
+
+class FormatCode(models.Model): 
+    _name = "hc.vs.format.code" 
+    _description = "Format Code"        
     _inherit = ["hc.value.set.contains"]
 
 class Jurisdiction(models.Model):   

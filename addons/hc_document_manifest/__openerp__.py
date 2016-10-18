@@ -26,11 +26,11 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['hc_group'],
+    'depends': ['hc_document_reference', 'hc_media'],
 
     # always loaded
     'data': [
-        # 'security/ir.model.access.csv',
+        'security/ir.model.access.csv',
         'views/hc_res_document_manifest_views.xml',
         'views/hc_res_document_manifest_templates.xml',
     ],

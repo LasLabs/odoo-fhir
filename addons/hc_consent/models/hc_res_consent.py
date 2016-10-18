@@ -32,7 +32,7 @@ class Consent(models.Model):
     #     comodel_name="hc.res.questionnaire.response", 
     #     string="Source Questionnaire Response", 
     #     help="QuestionnaireResponse source from which this consent is taken.")             
-    policy = fields.Char(string="Policy URL", required="True", help="URL of policy that this consents to.")             
+    policy_uri = fields.Char(string="Policy URL", required="True", help="URL of policy that this consents to.")             
     recipient_ids = fields.One2many(comodel_name="hc.consent.recipient", inverse_name="consent_id", string="Recipients", help="Whose access is controlled by the policy.")              
     purpose_ids = fields.One2many(comodel_name="hc.consent.purpose", inverse_name="consent_id", string="Purposes", help="Context of activities for which the agreement is made.")               
     except_ids = fields.One2many(comodel_name="hc.consent.except", inverse_name="consent_id", string="Excepts", help="Additional rule - addition or removal of permissions.")               

@@ -65,7 +65,7 @@ class ProvenancePolicy(models.Model):
     _inherit = ["hc.basic.association"]
 
     provenance_id = fields.Many2one(comodel_name="hc.res.provenance", string="Provenance", help="Provenance associated with this Provenance Policy.")                
-    policy_url = fields.Char(string="Policy URL", help="Policy URL associated with this Provenance Policy.")                
+    policy_url = fields.Char(string="Policy URL", help="URL of Policy associated with this Provenance Policy.")                
 
 class ProvenanceSignature(models.Model):    
     _name = "hc.provenance.signature"    

@@ -114,7 +114,7 @@ class AuditEventAgentPolicy(models.Model):
     _inherit = ["hc.basic.association"]
 
     agent_id = fields.Many2one(comodel_name="hc.audit.event.agent", string="Agent", help="Agent associated with this Audit Event Agent Policy.")                
-    policy = fields.Char(string="Policy URL", help="URL of policy associated with this Audit Event Agent Policy.")                
+    policy_url = fields.Char(string="Policy URL", help="URL of Policy associated with this Audit Event Agent Policy.")                
 
 class AuditEventAgentNetworkPurposeOfUse(models.Model):    
     _name = "hc.audit.event.agent.network.purpose.of.use"    

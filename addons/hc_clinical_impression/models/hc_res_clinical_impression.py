@@ -588,9 +588,9 @@ class ClinicalImpressionProtocol(models.Model):
         comodel_name="hc.res.clinical.impression", 
         string="Clinical Impression", 
         help="Clinical Impression associated with this Clinical Impression Protocol.")                
-    protocol = fields.Char(
-        string="Protocol", 
-        help="Protocol associated with this Clinical Impression Protocol.")                
+    protocol_url = fields.Char(
+        string="Protocol URL", 
+        help="URL of Protocol associated with this Clinical Impression Protocol.")                
 
 class ClinicalImpressionKind(models.Model):    
     _name = "hc.vs.clinical.impression.kind"    

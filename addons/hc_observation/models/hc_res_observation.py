@@ -111,7 +111,7 @@ class Observation(models.Model):
     value_quantity = fields.Float(
         string="Value Quantity", 
         help="Quantity actual result.")                    
-    value_quantity_uom = fields.Many2one(
+    value_quantity_uom_id = fields.Many2one(
         comodel_name="product.uom", 
         string="Value Quantity UOM", 
         help="Value quantity unit of measure.")                    
@@ -387,7 +387,7 @@ class ObservationComponent(models.Model):
     value_quantity = fields.Float(
         string="Value Quantity", 
         help="Quantity actual result.")                    
-    value_quantity_uom = fields.Many2one(
+    value_quantity_uom_id = fields.Many2one(
         comodel_name="product.uom", 
         string="Value Quantity UOM", 
         help="Value quantity unit of measure.")                    

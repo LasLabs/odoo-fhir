@@ -1,4 +1,9 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_hc_audit_event_hc_res_audit_event_user,hc.audit.event.hc.res.audit.event.user,model_hc_res_audit_event,hc_base.group_hc_base_user,1,0,0,0
+access_hc_audit_event_hc_audit_event_agent_user,hc.audit.event.hc.audit.event.agent.user,model_hc_audit_event_agent,hc_base.group_hc_base_user,1,0,0,0
+access_hc_audit_event_hc_audit_event_agent_network_user,hc.audit.event.hc.audit.event.agent.network.user,model_hc_audit_event_agent_network,hc_base.group_hc_base_user,1,0,0,0
+access_hc_audit_event_hc_audit_event_source_user,hc.audit.event.hc.audit.event.source.user,model_hc_audit_event_source,hc_base.group_hc_base_user,1,0,0,0
+access_hc_audit_event_hc_audit_event_entity_user,hc.audit.event.hc.audit.event.entity.user,model_hc_audit_event_entity,hc_base.group_hc_base_user,1,0,0,0
 access_hc_audit_event_hc_audit_event_entity_detail_user,hc.audit.event.hc.audit.event.entity.detail.user,model_hc_audit_event_entity_detail,hc_base.group_hc_base_user,1,0,0,0
 access_hc_audit_event_hc_audit_event_agent_user_user,hc.audit.event.hc.audit.event.agent.user.user,model_hc_audit_event_agent_user,hc_base.group_hc_base_user,1,0,0,0
 access_hc_audit_event_hc_audit_event_entity_identifier_user,hc.audit.event.hc.audit.event.entity.identifier.user,model_hc_audit_event_entity_identifier,hc_base.group_hc_base_user,1,0,0,0
@@ -21,3 +26,4 @@ access_hc_audit_event_hc_vs_object_lifecycle_manager,hc.audit.event.hc.vs.object
 access_hc_audit_event_hc_vs_audit_event_sub_type_manager,hc.audit.event.hc.vs.audit.event.sub.type.manager,model_hc_vs_audit_event_sub_type,hc_base.group_hc_base_manager,1,1,1,1
 access_hc_audit_event_hc_vs_dicm_402_roleid_manager,hc.audit.event.hc.vs.dicm.402.roleid.manager,model_hc_vs_dicm_402_roleid,hc_base.group_hc_base_manager,1,1,1,1
 access_hc_audit_event_hc_vs_audit_event_type_manager,hc.audit.event.hc.vs.audit.event.type.manager,model_hc_vs_audit_event_type,hc_base.group_hc_base_manager,1,1,1,1
+

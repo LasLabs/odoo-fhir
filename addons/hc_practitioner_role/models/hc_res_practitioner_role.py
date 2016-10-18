@@ -79,7 +79,7 @@ class PractitionerRoleSpecialty(models.Model):
         string="Practitioner Role", 
         help="Practitioner role associated with a specialty.")              
     practitioner_specialty_id = fields.Many2one(
-        comodel_name="hc.vs.practitioner.specialty", 
+        comodel_name="hc.vs.c80.practice.code", 
         string="Specialty", 
         help="Specialty associated with a practitioner role.")             
     is_active = fields.Boolean(
