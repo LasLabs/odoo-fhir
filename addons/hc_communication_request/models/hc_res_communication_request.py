@@ -23,7 +23,7 @@ class CommunicationRequest(models.Model):
     sender_practitioner_id = fields.Many2one(comodel_name="hc.res.practitioner", string="Sender Practitioner", help="Practitioner message sender.")                
     sender_related_person_id = fields.Many2one(comodel_name="hc.res.related.person", string="Sender Related Person", help="Related Person message sender.")                
     recipient_ids = fields.One2many(comodel_name="hc.communication.request.recipient", inverse_name="communication_request_id", string="Recipients", help="Message recipient.")                
-    medium_ids = fields.One2many(comodel_name="hc.communication.request.medium", inverse_name="communication_request_id", string="Mediums", help="Communication medium.")                
+    medium_ids = fields.Many2many(comodel_name="hc.vs.participation.mode", string="Mediums", help="Communication medium.")               
     requester_type = fields.Selection(
         string="Requester Type", 
         selection=[
@@ -47,7 +47,7 @@ class CommunicationRequest(models.Model):
     scheduled_datetime = fields.Datetime( string="Scheduled Datetime", help="dateTime when scheduled.")                
     scheduled_start_date = fields.Datetime(string="Scheduled Start Date", help="Start of the when scheduled.")                
     scheduled_end_date = fields.Datetime(string="Scheduled End Date", help="End of the when scheduled.")                
-    reason_ids = fields.One2many(comodel_name="hc.communication.request.reason", inverse_name="communication_request_id", string="Reasons", help="Indication for message.")                
+    reason_ids = fields.Many2many(comodel_name="hc.vs.act.reason", string="Reasons", help="Indication for message.")               
     ordered_on = fields.Datetime(string="Ordered On Date", help="When ordered or proposed.")                
     subject_id = fields.Many2one(comodel_name="hc.res.patient", string="Subject", help="Focus of message.")                
     priority_id = fields.Many2one(comodel_name="hc.vs.request.priority", string="Priority", help="Message urgency.")                
@@ -108,23 +108,7 @@ class CommunicationRequestRecipient(models.Model):
     recipient_practitioner_id = fields.Many2one(comodel_name="hc.res.practitioner", string="Recipient Practitioner", help="Practitioner message recipient.")                
     recipient_related_person_id = fields.Many2one(comodel_name="hc.res.related.person", string="Recipient Related Person", help="Related Person message recipient.")                
     recipient_group_id = fields.Many2one(comodel_name="hc.res.group", string="Recipient Group", help="Group message recipient.")                
-    recipient_care_team_id = fields.Many2one(comodel_name="hc.res.care.team", string="Recipient Care Team", help="Care Team message recipient.")                
-
-class CommunicationRequestMedium(models.Model):
-    _name = "hc.communication.request.medium"   
-    _description = "Communication Request Medium"
-    _inherit = ["hc.basic.association"]   
-
-    communication_request_id = fields.Many2one(comodel_name="hc.res.communication.request", string="Communication Request", help="Communication Request associated with this Communication Request Medium.")                
-    medium_id = fields.Many2one(comodel_name="hc.vs.participation.mode", string="Medium", help="Medium associated with this Communication Request Medium.")                
-
-class CommunicationRequestReason(models.Model):    
-    _name = "hc.communication.request.reason"    
-    _description = "Communication Request Reason"        
-    _inherit = ["hc.basic.association"]
-    
-    communication_request_id = fields.Many2one(comodel_name="hc.res.communication.request", string="Communication Request", help="Communication Request associated with this Communication Request Reason.")                
-    reason_id = fields.Many2one(comodel_name="hc.vs.act.reason", string="Reason", help="Reason associated with this Communication Request Reason.")                
+    recipient_care_team_id = fields.Many2one(comodel_name="hc.res.care.team", string="Recipient Care Team", help="Care Team message recipient.")                              
 
 class CommunicationRequestPayloadContentAttachment(models.Model):    
     _name = "hc.communication.request.payload.content.attachment"    

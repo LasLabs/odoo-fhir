@@ -1,6 +1,5 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_hc_procedure_hc_procedure_body_site_user,hc.procedure.hc.procedure.body.site.user,model_hc_procedure_body_site,hc_base.group_hc_base_user,1,0,0,0
-access_hc_procedure_hc_procedure_complication_user,hc.procedure.hc.procedure.complication.user,model_hc_procedure_complication,hc_base.group_hc_base_user,1,0,0,0
 access_hc_procedure_hc_procedure_component_user,hc.procedure.hc.procedure.component.user,model_hc_procedure_component,hc_base.group_hc_base_user,1,0,0,0
 access_hc_procedure_hc_procedure_diagnostic_report_user,hc.procedure.hc.procedure.diagnostic.report.user,model_hc_procedure_diagnostic_report,hc_base.group_hc_base_user,1,0,0,0
 access_hc_procedure_hc_procedure_focal_device_user,hc.procedure.hc.procedure.focal.device.user,model_hc_procedure_focal_device,hc_base.group_hc_base_user,1,0,0,0

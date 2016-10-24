@@ -7,7 +7,7 @@ class AuditEvent(models.Model):
     _description = "Audit Event"        
 
     type_id = fields.Many2one(comodel_name="hc.vs.audit.event.type", string="Type", required="True", help="Type/identifier of event.")                
-    subtype_ids = fields.One2many(comodel_name="hc.audit.event.sub.type", inverse_name="audit_event_id", string="Sub Types", help="More specific type/id for the event.")                
+    subtype_ids = fields.Many2many(comodel_name="hc.vs.audit.event.sub.type", string="Subtypes", help="More specific type/id for the event.")                
     action_id = fields.Many2one(comodel_name="hc.vs.audit.event.action", string="Action", help="Type of action performed during the event.")                
     date_time = fields.Datetime(string="Date Time", required="True", help="Time when the event occurred on source.")                
     outcome_id = fields.Many2one(comodel_name="hc.vs.audit.event.outcome", string="Outcome", help="Whether the event succeeded or failed.")                
@@ -22,7 +22,7 @@ class AuditEventAgent(models.Model):
     _description = "Audit Event Agent"        
 
     audit_event_id = fields.Many2one(comodel_name="hc.res.audit.event", string="Audit Event", help="Audit Event associated with this Audit Event Agent.")                
-    role_ids = fields.One2many(comodel_name="hc.audit.event.agent.role", inverse_name="agent_id", string="Roles", help="User roles (e.g. local RBAC codes).")                
+    role_ids = fields.Many2many(comodel_name="hc.vs.dicm.402.roleid", string="Roles", help="User roles (e.g. local RBAC codes).")              
     reference_practitioner_id = fields.Many2one(comodel_name="hc.res.practitioner", string="Reference Practitioner", help="Practitioner direct reference to resource.")                
     reference_organization_id = fields.Many2one(comodel_name="hc.res.organization", string="Reference Organization", help="Organization direct reference to resource.")                
     reference_device_id = fields.Many2one(comodel_name="hc.res.device", string="Reference Device", help="Device direct reference to resource.")                
@@ -78,14 +78,6 @@ class AuditEventEntityDetail(models.Model):
     entity_id = fields.Many2one(comodel_name="hc.audit.event.entity", string="Entity", help="Entity associated with this Audit Event Entity Detail.")                
     type = fields.Char(string="Type", required="True", help="Name of the property.")                
     value = fields.Binary(string="Value", required="True", help="Property value.")                
-
-class AuditEventSubType(models.Model):    
-    _name = "hc.audit.event.sub.type"    
-    _description = "Audit Event Sub Type"        
-    _inherit = ["hc.basic.association"]
-
-    audit_event_id = fields.Many2one(comodel_name="hc.res.audit.event", string="Audit Event", help="Audit Event associated with this Audit Event Sub Type.")                
-    subtype_id = fields.Many2one(comodel_name="hc.vs.audit.event.sub.type", string="Subtype", help="More specific type/id for the event.")                
 
 class AuditEventPurposeOfEvent(models.Model):    
     _name = "hc.audit.event.purpose.of.event"    

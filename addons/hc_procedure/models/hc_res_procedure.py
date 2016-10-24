@@ -107,7 +107,7 @@ class Procedure(models.Model):
         string="Report Diagnostic Reports", 
         help="Any report resulting from the procedure.")                 
     complication_ids = fields.Many2many(
-        comodel_name="hc.procedure.complication", 
+        comodel_name="hc.vs.condition.code", 
         string="Complications", 
         help="Complication following the procedure.")                  
     follow_up_ids = fields.Many2many(
@@ -388,21 +388,7 @@ class ProcedureIdentifier(models.Model):
     procedure_id = fields.Many2one(
         comodel_name="hc.res.procedure", 
         string="Procedure", 
-        help="Procedure associated with this Procedure Identifier.")                                
-
-class ProcedureComplication(models.Model):  
-    _name = "hc.procedure.complication" 
-    _description = "Procedure Complication"     
-    inherit = ["hc.basic.association"]
-
-    procedure_id = fields.Many2one(
-        comodel_name="hc.res.procedure", 
-        string="Procedure", 
-        help="Procedure associated with this Procedure Complication.")                    
-    complication_id = fields.Many2one(
-        comodel_name="hc.vs.condition.code", 
-        string="Complication", 
-        help="Complication associated with this Procedure Complication.")                   
+        help="Procedure associated with this Procedure Identifier.")                                                  
 
 class ProcedureReasonReference(models.Model):   
     _name = "hc.procedure.reason.reference" 
