@@ -36,13 +36,13 @@
 
     # any module necessary for this one to work correctly
     # 'depends': ['hc_any'],
-    'depends': ['hc_patient'],
+    'depends': ['hc_device'],
 
     # always loaded
     'data': [
-        # 'security/ir.model.access.csv',
-        'views/views.xml',
-        'views/templates.xml',
+        'security/ir.model.access.csv',
+        'views/hc_res_basic_views.xml',
+        'views/hc_res_basic_templates.xml',
     ],
     # only loaded in demonstration mode
     'demo': [

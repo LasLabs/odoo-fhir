@@ -12,7 +12,7 @@ class Account(models.Model):
         string="Account", 
         required="True", 
         ondelete="cascade", 
-        help="Account associated with this account.")                    
+        help="Account associated with this Account.")                    
     identifier_ids = fields.One2many(
         comodel_name="hc.account.identifier", 
         inverse_name="account_id", 
@@ -111,7 +111,7 @@ class AccountIdentifier(models.Model):
     account_id = fields.Many2one(
         comodel_name="hc.res.account", 
         string="Account", 
-        help="Account associated with this account identifier.")
+        help="Account associated with this Account Identifier.")
 
 class AccountCoverage(models.Model):    
     _name = "hc.account.coverage"   
@@ -121,8 +121,8 @@ class AccountCoverage(models.Model):
     account_id = fields.Many2one(
         comodel_name="hc.res.account", 
         string="Account", 
-        help="Account associated with this account coverage.")             
+        help="Account associated with this Account Coverage.")             
     coverage_id = fields.Many2one(
         comodel_name="hc.res.coverage", 
         string="Coverage", 
-        help="Coverage associated with this account coverage.")             
+        help="Coverage associated with this Account Coverage.")             
