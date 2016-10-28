@@ -1,2 +1,9 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_hc_list_hc_list,hc_list.hc_list,model_hc_list_hc_list,,1,0,0,0
+access_hc_list_hc_res_list_user,hc.list.hc.res.list.user,model_hc_res_list,hc_base.group_hc_base_user,1,0,0,0
+access_hc_list_hc_list_entry_user,hc.list.hc.list.entry.user,model_hc_list_entry,hc_base.group_hc_base_user,1,0,0,0
+access_hc_list_hc_list_identifier_user,hc.list.hc.list.identifier.user,model_hc_list_identifier,hc_base.group_hc_base_user,1,0,0,0
+access_hc_list_hc_list_note_user,hc.list.hc.list.note.user,model_hc_list_note,hc_base.group_hc_base_user,1,0,0,0
+access_hc_list_hc_vs_list_code_manager,hc.list.hc.vs.list.code.manager,model_hc_vs_list_code,hc_base.group_hc_base_manager,1,1,1,1
+access_hc_list_hc_vs_list_ordered_by_manager,hc.list.hc.vs.list.ordered.by.manager,model_hc_vs_list_ordered_by,hc_base.group_hc_base_manager,1,1,1,1
+access_hc_list_hc_vs_list_empty_reason_manager,hc.list.hc.vs.list.empty.reason.manager,model_hc_vs_list_empty_reason,hc_base.group_hc_base_manager,1,1,1,1
+access_hc_list_hc_vs_list_entry_flag_manager,hc.list.hc.vs.list.entry.flag.manager,model_hc_vs_list_entry_flag,hc_base.group_hc_base_manager,1,1,1,1

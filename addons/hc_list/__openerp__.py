@@ -14,8 +14,7 @@
         The List resource is a flat, possibly ordered, collection of records. List resources are used in many places, including allergies, medications, alerts, 
         family history, medical history, etc. List resources can be used to support patient-specific clinical lists as well as lists that manage workflows 
         such as tracking patients, managing teaching cases, etc. Resources supported by the List resource can be homogenous – consisting of only one type of resource 
-        (e.g., allergy list); as well as heterogeneous – containing a variety of resources (e.g., a problem list including Conditions, 
-        AllergyIntolerances, recent Procedures, etc.).
+        (e.g., allergy list); as well as heterogeneous – containing a variety of resources (e.g., a problem list including Conditions, AllergyIntolerances, recent Procedures, etc.).
 
         Lists will typically include references to the resources that make up the list, however in some cases the details of the content of the list might be expressed 
         in narrative only; e.g., a text record of a family history. The List resource is only needed if there is a need to filter the set of resources by a mechanism that 
@@ -34,11 +33,11 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['hc_encounter'],
+    'depends': ['hc_allergy_intolerance', 'hc_family_member_history', 'hc_procedure'],
 
     # always loaded
     'data': [
-        # 'security/ir.model.access.csv',
+        'security/ir.model.access.csv',
         'views/hc_res_list_views.xml',
         'views/hc_res_list_templates.xml',
     ],
