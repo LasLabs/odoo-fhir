@@ -1,59 +1,22 @@
 <openerp>
-  <data>
-    <!-- explicit list view definition -->
-    <!--
-    <record model="ir.ui.view" id="hc_questionnaire.list">
-      <field name="name">hc_questionnaire list</field>
-      <field name="model">hc_questionnaire.hc_questionnaire</field>
-      <field name="arch" type="xml">
-        <tree>
-          <field name="name"/>
-          <field name="value"/>
-          <field name="value2"/>
-        </tree>
-      </field>
-    </record>
-    -->
+    <data>
 
-    <!-- actions opening views on models -->
-    <!--
-    <record model="ir.actions.act_window" id="hc_questionnaire.action_window">
-      <field name="name">hc_questionnaire window</field>
-      <field name="res_model">hc_questionnaire.hc_questionnaire</field>
-      <field name="view_mode">tree,form</field>
-    </record>
-    -->
+        <!-- Questionnaire Action and Menu -->  
+    
+        <act_window id="hc_res_questionnaire_action"    
+            name="HC Questionnaires"
+            res_model="hc.res.questionnaire"
+            view_mode="tree,form"
+            domain=""
+            context=""
+            limit=""/>
 
-    <!-- server action to the one above -->
-    <!--
-    <record model="ir.actions.server" id="hc_questionnaire.action_server">
-      <field name="name">hc_questionnaire server</field>
-      <field name="model_id" ref="model_hc_questionnaire_hc_questionnaire"/>
-      <field name="code">
-        action = {
-          "type": "ir.actions.act_window",
-          "view_mode": "tree,form",
-          "res_model": self._name,
-        }
-      </field>
-    </record>
-    -->
+            <menuitem id="hc_questionnaire.menu_quest" 
+                      name="Questionnaires" 
+                      parent="hc_base.menu_doc_quest" 
+                      action="hc_res_questionnaire_action" 
+                      groups="hc_base.group_hc_base_manager" 
+                      sequence="10"/>
 
-    <!-- Top menu item -->
-    <!--
-    <menuitem name="hc_questionnaire" id="hc_questionnaire.menu_root"/>
-    -->
-    <!-- menu categories -->
-    <!--
-    <menuitem name="Menu 1" id="hc_questionnaire.menu_1" parent="hc_questionnaire.menu_root"/>
-    <menuitem name="Menu 2" id="hc_questionnaire.menu_2" parent="hc_questionnaire.menu_root"/>
-    -->
-    <!-- actions -->
-    <!--
-    <menuitem name="List" id="hc_questionnaire.menu_1_list" parent="hc_questionnaire.menu_1"
-              action="hc_questionnaire.action_window"/>
-    <menuitem name="Server to list" id="hc_questionnaire" parent="hc_questionnaire.menu_2"
-              action="hc_questionnaire.action_server"/>
-    -->
-  </data>
+    </data>
 </openerp>

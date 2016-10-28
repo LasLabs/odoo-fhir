@@ -1,2 +1,6 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_hc_device_use_statement_hc_device_use_statement,hc_device_use_statement.hc_device_use_statement,model_hc_device_use_statement_hc_device_use_statement,,1,0,0,0
+access_hc_device_use_statement_hc_res_device_use_statement_user,hc.device.use.statement.hc.res.device.use.statement.user,model_hc_res_device_use_statement,hc_base.group_hc_base_user,1,0,0,0
+access_hc_device_use_statement_hc_device_use_statement_identifier_user,hc.device.use.statement.hc.device.use.statement.identifier.user,model_hc_device_use_statement_identifier,hc_base.group_hc_base_user,1,0,0,0
+access_hc_device_use_statement_hc_device_use_statement_note_user,hc.device.use.statement.hc.device.use.statement.note.user,model_hc_device_use_statement_note,hc_base.group_hc_base_user,1,0,0,0
+access_hc_device_use_statement_hc_device_use_statement_timing_user,hc.device.use.statement.hc.device.use.statement.timing.user,model_hc_device_use_statement_timing,hc_base.group_hc_base_user,1,0,0,0
+

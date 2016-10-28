@@ -82,8 +82,8 @@ class GroupCharacteristic(models.Model):
         comodel_name="hc.vs.group.characteristic.value.code", 
         string="Value Code", 
         help="Codeble Concept value held by characteristic.")                               
-    value_boolean = fields.Boolean(
-        string="Value Boolean", 
+    is_value = fields.Boolean(
+        string="Value", 
         help="Boolean value held by characteristic.")                
     value_quantity = fields.Float(
         string="Value Quantity", 

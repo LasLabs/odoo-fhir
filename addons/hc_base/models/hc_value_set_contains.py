@@ -58,6 +58,11 @@ class ActCode(models.Model):
     _description = "Act Code"  
     _inherit = ["hc.value.set.contains"]
 
+class ActReason(models.Model):    
+    _name = "hc.vs.act.reason"    
+    _description = "Act Reason"        
+    _inherit = ["hc.value.set.contains"]
+    
 class AdministrativeGender(models.Model):   
     _name = "hc.vs.administrative.gender"   
     _description = "Administrative Gender"      

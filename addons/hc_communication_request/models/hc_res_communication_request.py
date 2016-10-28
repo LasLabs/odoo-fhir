@@ -66,7 +66,7 @@ class CommunicationRequestPayload(models.Model):
             ("Communication Request", "Communication Request")], 
         help="Type of message part content.")                
     content_name = fields.Char(string="Content", compute="_compute_content_name", store="True", help="Message part content.")                
-    content_string = fields.Char(string="Content String", help="String message part content.")                
+    content_string = fields.Char(string="Content", help="String of message part content.")                
     content_attachment_id = fields.Many2one(
         comodel_name="hc.communication.request.payload.content.attachment", 
         string="Content Attachment", 
@@ -114,11 +114,6 @@ class CommunicationRequestPayloadContentAttachment(models.Model):
     _name = "hc.communication.request.payload.content.attachment"    
     _description = "Communication Request Payload Content Attachment"        
     _inherit = ["hc.basic.association", "hc.attachment"]
-
-class ActReason(models.Model):    
-    _name = "hc.vs.act.reason"    
-    _description = "Act Reason"        
-    _inherit = ["hc.value.set.contains"]
 
 class CommunicationContentCode(models.Model):    
     _name = "hc.vs.communication.content.code"    

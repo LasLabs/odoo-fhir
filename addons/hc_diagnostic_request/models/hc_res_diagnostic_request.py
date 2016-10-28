@@ -126,7 +126,7 @@ class DiagnosticRequest(models.Model):
         string="Occurrence Timing", 
         help="Timing when testing should occur.")             
     authored = fields.Datetime(string="Authored Date", 
-        help="Request signed.")                    
+        help="Date request signed.")                   
     requester_type = fields.Selection(
         string="Requester Type", 
         selection=[
@@ -154,8 +154,8 @@ class DiagnosticRequest(models.Model):
         comodel_name="hc.vs.participant.role", 
         string="Performer Type", 
         help="Performer role.")                    
-    requested_type = fields.Selection(
-        string="Requested Type", 
+    requested_performer_type = fields.Selection(
+        string="Requested Performer Type", 
         selection=[
             ("Practitioner", "Practitioner"), 
             ("Organization", "Organization"), 
@@ -163,29 +163,30 @@ class DiagnosticRequest(models.Model):
             ("Device", "Device"), 
             ("Related Person", "Related Person")], 
         help="Type of requested perfomer.")
-    requested_name = fields.Char(
-        string="Requested", 
-        compute="compute_requested_name", 
+    requested_performer_name = fields.Char(
+        string="Requested Performer", 
+        compute="_compute_requested_performer_name", 
+        store="True", 
         help="Requested perfomer.")
-    requested_practitioner_id = fields.Many2one(
+    requested_performer_practitioner_id = fields.Many2one(
         comodel_name="hc.res.practitioner", 
-        string="Requested Practitioner", 
+        string="Requested Performer Practitioner", 
         help="Practitioner requested perfomer.")
-    requested_organization_id = fields.Many2one(
+    requested_performer_organization_id = fields.Many2one(
         comodel_name="hc.res.organization", 
-        string="Requested Organization", 
+        string="Requested Performer Organization", 
         help="Organization requested perfomer.")
-    requested_patient_id = fields.Many2one(
+    requested_performer_patient_id = fields.Many2one(
         comodel_name="hc.res.patient", 
-        string="Requested Patient", 
+        string="Requested Performer Patient", 
         help="Patient requested perfomer.")
-    requested_device_id = fields.Many2one(
+    requested_performer_device_id = fields.Many2one(
         comodel_name="hc.res.device", 
-        string="Requested Device", 
+        string="Requested Performer Device", 
         help="Device requested perfomer.")
-    requested_related_person_id = fields.Many2one(
+    requested_performer_related_person_id = fields.Many2one(
         comodel_name="hc.res.related.person", 
-        string="Requested Related Person", 
+        string="Requested Performer Related Person", 
         help="Related Person requested perfomer.")
     reason_ids = fields.One2many(
         comodel_name="hc.diagnostic.request.reason", 

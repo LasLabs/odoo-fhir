@@ -286,9 +286,9 @@ class CarePlanActivityDetail(models.Model):
     scheduled_end_date = fields.Datetime(
         string="Scheduled End Date", 
         help="End of the when activity is to occur.")                
-    scheduled = fields.Char(
+    scheduled_string = fields.Char(
         string="Scheduled", 
-        help="string when activity is to occur.")                
+        help="String of when activity is to occur.")                
     location_id = fields.Many2one(
         comodel_name="hc.res.location", 
         string="Location", 
@@ -298,14 +298,26 @@ class CarePlanActivityDetail(models.Model):
         inverse_name="detail_id", 
         string="Performers", 
         help="Who will be responsible?")                
-    product_medication_id = fields.Many2one(
+    product_type = fields.Selection(
+        string="Product Type", 
+        selection=[
+            ("Code", "Code"), 
+            ("Medication", "Medication"), 
+            ("Substance", "Substance")], 
+        help="Type of what is to be administered/supplied.")
+    product_name = fields.Char(
+        string="Product", 
+        compute="_compute_product_name", 
+        store="True", 
+        help="What is to be administered/supplied.")
+    product_code_id = fields.Many2one(
         comodel_name="hc.vs.medication.code", 
-        string="Product Medication", 
-        help="What is to be administered/supplied.")                
-    product_substance_id = fields.Many2one(
+        string="Product Code", 
+        help="What is to be administered/supplied.")
+    product_medication_id = fields.Many2one(
         comodel_name="hc.res.medication", 
-        string="Product Substance", 
-        help="Medication what is to be administered/supplied.")                
+        string="Product Medication", 
+        help="Medication what is to be administered/supplied.")           
     product_substance_id = fields.Many2one(
         comodel_name="hc.res.substance", 
         string="Product Substance", 

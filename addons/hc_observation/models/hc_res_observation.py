@@ -120,8 +120,8 @@ class Observation(models.Model):
         string="Value Codeable Concept", 
         help="Codeable Concept actual result.")                    
     value_string = fields.Char(
-        string="Value String", 
-        help="string actual result.")                    
+        string="Value", 
+        help="String of actual result.")                    
     value_range_low = fields.Float(
         string="Value Range Low", 
         help="Low limit of actual result.")                    
@@ -396,8 +396,8 @@ class ObservationComponent(models.Model):
         string="Value Codeable Concept", 
         help="Codeable Concept actual result.")                    
     value_string = fields.Char(
-        string="Value String", 
-        help="string actual result.")                    
+        string="Value", 
+        help="String of actual result.")                    
     value_range_low = fields.Float(
         string="Value Range Low", 
         help="Low limit of actual result.")                    
@@ -412,7 +412,8 @@ class ObservationComponent(models.Model):
         help="Denominator value of actual result.")                    
     value_sampled_data_id = fields.Many2one(
         comodel_name="hc.observation.component.value.sampled.data", 
-        string="Value Sampled Data", help="Sampled Data actual result.")                    
+        string="Value Sampled Data", 
+        help="Sampled Data actual result.")                    
     value_attachment_id = fields.Many2one(
         comodel_name="hc.observation.component.value.attachment", 
         string="Value Attachment", 

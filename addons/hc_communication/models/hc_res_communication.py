@@ -152,8 +152,8 @@ class CommunicationPayload(models.Model):
         store="True", 
         help="Message part content.")                
     content_string = fields.Char(
-        string="Content String",
-        help="String message part content.")                
+        string="Content",
+        help="String of message part content.")                
     content_attachment_id = fields.Many2one(
         comodel_name="hc.communication.payload.content.attachment", 
         string="Content Attachment", 
