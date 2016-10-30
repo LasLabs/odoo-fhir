@@ -32,7 +32,7 @@ class Organization(models.Model):
     telecom_ids = fields.One2many(
         comodel_name="hc.organization.telecom", 
         inverse_name="organization_id", 
-        string="Telecom", 
+        string="Telecoms", 
         help="A contact detail for the organization.")             
     address_ids = fields.One2many(
         comodel_name="hc.organization.address", 
@@ -185,7 +185,7 @@ class OrganizationContact(models.Model):
     telecom_ids = fields.One2many(
         comodel_name="hc.organization.contact.telecom", 
         inverse_name="contact_id", 
-        string="Telecom Contacts", 
+        string="Telecoms", 
         help="Contact details (telephone, email, etc.) for the organization contact.")             
     address_ids = fields.One2many(
         comodel_name="hc.organization.contact.address",

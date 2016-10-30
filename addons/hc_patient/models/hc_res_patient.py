@@ -31,7 +31,7 @@ class Patient(models.Model):
     telecom_ids = fields.One2many(
         comodel_name="hc.patient.telecom", 
         inverse_name="patient_id", 
-        string="Telecom Contacts", 
+        string="Telecoms", 
         help="A contact detail for the patient.")
     birth_time = fields.Char(
         string="Birth Time", 

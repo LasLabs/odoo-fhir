@@ -7,7 +7,7 @@ class AttachmentType(models.Model):
     _description = "Attachment Type"
     _inherit = ["hc.value.set.contains"]
 
-class AttachmentMimeType(models.Model): 
+class MimeType(models.Model): 
     _name = "hc.vs.mime.type"    
     _description = "MIME Type"
     _inherit = ["hc.value.set.contains"]

@@ -1,2 +1,5 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_hc_subscription_hc_subscription,hc_subscription.hc_subscription,model_hc_subscription_hc_subscription,,1,0,0,0
+access_hc_subscription_hc_res_subscription_user,hc.subscription.hc.res.subscription.user,model_hc_res_subscription,hc_base.group_hc_base_user,1,0,0,0
+access_hc_subscription_hc_subscription_channel_user,hc.subscription.hc.subscription.channel.user,model_hc_subscription_channel,hc_base.group_hc_base_user,1,0,0,0
+access_hc_subscription_hc_subscription_contact_user,hc.subscription.hc.subscription.contact.user,model_hc_subscription_contact,hc_base.group_hc_base_user,1,0,0,0
+access_hc_subscription_hc_vs_subscription_tag_manager,hc.subscription.hc.vs.subscription.tag.manager,model_hc_vs_subscription_tag,hc_base.group_hc_base_manager,1,1,1,1

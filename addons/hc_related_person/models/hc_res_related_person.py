@@ -25,7 +25,7 @@ class RelatedPerson(models.Model):
     telecom_ids = fields.One2many(
         comodel_name="hc.related.person.telecom", 
         inverse_name="related_person_id", 
-        string="Telecom Contact Points", 
+        string="Telecoms", 
         help="A contact detail for this related person.")
     gender = fields.Selection(
         string="Gender", 

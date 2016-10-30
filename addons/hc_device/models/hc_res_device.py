@@ -53,11 +53,11 @@ class Device(models.Model):
     owner_organization_id = fields.Many2one(
         comodel_name="hc.res.organization", 
         string="Owner Organization", 
-        help="Organization responsible for device.")       
-    contact_contact_point_ids = fields.One2many(
+        help="Organization responsible for device.")      
+    contact_ids = fields.One2many(
         comodel_name="hc.device.telecom", 
         inverse_name="device_id", 
-        string="Contact Contact Points", 
+        string="Telecoms", 
         help="Details for human/organization for support.")        
     location_id = fields.Many2one(
         comodel_name="hc.res.location", 

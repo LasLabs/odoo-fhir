@@ -26,7 +26,7 @@ class Practitioner(models.Model):
     telecom_ids = fields.One2many(
         comodel_name="hc.practitioner.telecom", 
         inverse_name="practitioner_id", 
-        string="Telecom Contacts", 
+        string="Telecoms", 
         help="A contact detail for this practitioner.")
     address_ids = fields.One2many(
         comodel_name="hc.practitioner.address", 

@@ -52,10 +52,11 @@ class Endpoint(models.Model):
         string="Address URL", 
         required="True", 
         help="Where the channel points to.")                   
-    payload_format = fields.Char(
+    payload_format_id = fields.Many2one(
+        comodel_name="hc.vs.mime.type", 
         string="Payload Format", 
         required="True", 
-        help="MIME type to send, or blank for no payload.")                   
+        help="Mimetype to send, or blank for no payload.")                  
     payload_type_ids = fields.One2many(
         comodel_name="hc.endpoint.payload.type", 
         inverse_name="endpoint_id", 
