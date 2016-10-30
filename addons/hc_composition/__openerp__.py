@@ -32,11 +32,11 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['hc_list'],
+    'depends': ['hc_list',"hc_diagnostic_report"],
 
     # always loaded
     'data': [
-        # 'security/ir.model.access.csv',
+        'security/ir.model.access.csv',
         'views/hc_res_composition_views.xml',
         'views/hc_res_composition_templates.xml',
     ],

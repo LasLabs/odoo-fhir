@@ -118,7 +118,8 @@ class DiagnosticReport(models.Model):
     request_ids = fields.One2many(
         comodel_name="hc.diagnostic.report.request", 
         inverse_name="diagnostic_report_id", 
-        string="Requests", help="What was requested.")                
+        string="Requests", 
+        help="What was requested.")                
     specimen_ids = fields.One2many(
         comodel_name="hc.diagnostic.report.specimen", 
         inverse_name="diagnostic_report_id", 
@@ -137,11 +138,10 @@ class DiagnosticReport(models.Model):
     conclusion = fields.Text(
         string="Conclusion", 
         help="Clinical Interpretation of test results.")                
-    coded_diagnosis_ids = fields.One2many(
-        comodel_name="hc.diagnostic.report.coded.diagnosis", 
-        inverse_name="diagnostic_report_id", 
+    coded_diagnosis_ids = fields.Many2many(
+        comodel_name="hc.vs.clinical.finding", 
         string="Coded Diagnosis", 
-        help="Codes for the conclusion.")                
+        help="Codes for the conclusion.")          
     presented_form_ids = fields.One2many(
         comodel_name="hc.diagnostic.report.presented.form", 
         inverse_name="diagnostic_report_id", 
@@ -168,30 +168,17 @@ class DiagnosticReportImage(models.Model):
         comodel_name="hc.res.media", 
         string="Link", 
         required="True", 
-        help="Reference to the image source.")                
-
-class DiagnosticReportCodedDiagnosis(models.Model):    
-    _name = "hc.diagnostic.report.coded.diagnosis"    
-    _description = "Diagnostic Report Coded Diagnosis"        
-    _inherit = ["hc.basic.association"]
-
-    diagnostic_report_id = fields.Many2one(
-        comodel_name="hc.res.diagnostic.report", 
-        string="Diagnostic Report", 
-        help="Diagnostic Report associated with this diagnostic report coded diagnosis.")                
-    coded_diagnosis_id = fields.Many2one(
-        comodel_name="hc.vs.clinical.finding", 
-        string="Coded Diagnosis", 
-        help="Codes for the conclusion.")                
+        help="Reference to the image source.")                           
 
 class DiagnosticReportRequest(models.Model):    
     _name = "hc.diagnostic.report.request"    
-    _description = "Diagnostic Report Request"        
+    _description = "Diagnostic Report Request"
+    _inherit = ["hc.basic.association"]        
 
     diagnostic_report_id = fields.Many2one(
         comodel_name="hc.res.diagnostic.report", 
         string="Diagnostic Report", 
-        help="Diagnostic Report associated with this diagnostic report diagnostic request.")                
+        help="Diagnostic Report associated with this Diagnostic Report Request.")                
     request_type = fields.Selection(
         string="Request Type", 
         selection=[
@@ -206,15 +193,15 @@ class DiagnosticReportRequest(models.Model):
     diagnostic_request_id = fields.Many2one(
         comodel_name="hc.res.diagnostic.request", 
         string="Diagnostic Report", 
-        help="Diagnostic Request associated with this diagnostic report diagnostic request.")                
+        help="Diagnostic Request what was requested.")                
     procedure_request_id = fields.Many2one(
         comodel_name="hc.res.procedure.request", 
         string="Procedure Request", 
-        help="ProcedureRequest request associated with this diagnostic report diagnostic request.")                
-    # referral_request_id = fields.Many2one(
-    #     comodel_name="hc.res.referral.request", 
-    #     string="Referral Request", 
-    #     help="Referral Request associated with this diagnostic report diagnostic request.")                
+        help="Procedure Request what was requested.")                
+    referral_request_id = fields.Many2one(
+        comodel_name="hc.res.referral.request", 
+        string="Referral Request", 
+        help="Referral Request what was requested.")                
 
 class DiagnosticReportIdentifier(models.Model):    
     _name = "hc.diagnostic.report.identifier"    
@@ -224,16 +211,17 @@ class DiagnosticReportIdentifier(models.Model):
     diagnostic_report_id = fields.Many2one(
         comodel_name="hc.res.diagnostic.report", 
         string="Diagnostic Report", 
-        help="Diagnostic Report associated with this diagnostic report identifier.")                
+        help="Diagnostic Report associated with this Diagnostic Report Identifier.")                
 
 class DiagnosticReportImagingStudy(models.Model):    
     _name = "hc.diagnostic.report.imaging.study"    
-    _description = "Diagnostic Report Imaging Study"        
+    _description = "Diagnostic Report Imaging Study"
+    _inherit = ["hc.basic.association"]        
 
     diagnostic_report_id = fields.Many2one(
         comodel_name="hc.res.diagnostic.report",  
         string="Diagnostic Report", 
-        help="Diagnostic Report associated with this diagnostic report imaging study.")                
+        help="Diagnostic Report associated with this Diagnostic Report Imaging Study.")                
     imaging_study_type = fields.Selection(
         string="Imaging Study Type", 
         selection=[
@@ -247,24 +235,25 @@ class DiagnosticReportImagingStudy(models.Model):
     imaging_study_id = fields.Many2one(
         comodel_name="hc.res.imaging.study", 
         string="Imaging Study", 
-        help="Imaging Study associated with this diagnostic report imaging study.")                
+        help="Imaging Study reference to full details of imaging associated with the diagnostic report.")                
     imaging_manifest_id = fields.Many2one(
         comodel_name="hc.res.imaging.manifest", 
         string="Imaging Manifest", 
-        help="Imaging Manifest study associated with this diagnostic report imaging study.")                
+        help="Imaging Manifest reference to full details of imaging associated with the diagnostic report.")                
 
 class DiagnosticReportResult(models.Model):    
     _name = "hc.diagnostic.report.result"    
-    _description = "Diagnostic Report Result"        
+    _description = "Diagnostic Report Result"
+    _inherit = ["hc.basic.association"]        
 
     diagnostic_report_id = fields.Many2one(
         comodel_name="hc.res.diagnostic.report", 
         string="Diagnostic Report", 
-        help="Diagnostic Report associated with this diagnostic report observation.")                
+        help="Diagnostic Report associated with this Diagnostic Report Result.")                
     result_id = fields.Many2one(
         comodel_name="hc.res.observation", 
         string="Result", 
-        help="Observation associated with this diagnostic report observation.")                
+        help="Observation associated with this Diagnostic Report Result.")                
 
 class DiagnosticReportPresentedForm(models.Model):    
     _name = "hc.diagnostic.report.presented.form"    
@@ -274,20 +263,21 @@ class DiagnosticReportPresentedForm(models.Model):
     diagnostic_report_id = fields.Many2one(
         comodel_name="hc.res.diagnostic.report", 
         string="Diagnostic Report", 
-        help="Diagnostic Report associated with this diagnostic report presented form.")                
+        help="Diagnostic Report associated with this Diagnostic Report Presented Form.")                
 
 class DiagnosticReportSpecimen(models.Model):    
     _name = "hc.diagnostic.report.specimen"    
-    _description = "Diagnostic Report Specimen"        
+    _description = "Diagnostic Report Specimen"
+    _inherit = ["hc.basic.association"]        
 
     diagnostic_report_id = fields.Many2one(
         comodel_name="hc.res.diagnostic.report", 
         string="Diagnostic Report", 
-        help="Diagnostic Report associated with this diagnostic report specimen.")                
+        help="Diagnostic Report associated with this Diagnostic Report Specimen.")                
     specimen_id = fields.Many2one(
         comodel_name="hc.res.specimen", 
         string="Specimen", 
-        help="Specimen associated with this diagnostic report specimen.")                
+        help="Specimen associated with this Diagnostic Report Specimen.")                
 
 class DiagnosticReportCategory(models.Model):    
     _name = "hc.vs.diagnostic.report.category"    

@@ -33,8 +33,7 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    # 'depends': ['hc_communication_request','hc_vision_prescription','hc_nutrition_request']
-    'depends': ['hc_family_member_history','hc_procedure','hc_vision_prescription','hc_nutrition_request'],
+    'depends': ['hc_family_member_history','hc_questionnaire_response', 'hc_diagnostic_report'],
 
     # always loaded
     'data': [

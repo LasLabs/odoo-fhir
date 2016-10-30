@@ -30,11 +30,11 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['hc_encounter'],
+    'depends': ['hc_diagnostic_request'],
 
     # always loaded
     'data': [
-        # 'security/ir.model.access.csv',
+        'security/ir.model.access.csv',
         'views/hc_res_task_views.xml',
         'views/hc_res_task_templates.xml',
     ],

@@ -28,7 +28,7 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['hc_goal','hc_medication_order','hc_vision_prescription', 'hc_care_team', 'hc_device_use_request'],
+    'depends': ['hc_goal','hc_medication_order','hc_vision_prescription', 'hc_care_team', 'hc_device_use_request', 'hc_communication_request'],
 
     # always loaded
     'data': [

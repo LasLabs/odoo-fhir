@@ -180,8 +180,14 @@ class CarePlanActivity(models.Model):
         store="True", 
         help="Activity details defined in specific resource.")                
     # reference_appointment_id = fields.Many2one(comodel_name="hc.res.appointment", string="Reference Appointment", help="Appointment activity details defined in specific resource.")                
-    # reference_communication_request_id = fields.Many2one(comodel_name="hc.res.communication.request", string="Reference Communication Request", help="Communication Request activity details defined in specific resource.")                
-    # reference_device_use_request_id = fields.Many2one(comodel_name="hc.res.device.use.request", string="Reference Device Use Request", help="Device Use Request activity details defined in specific resource.")                
+    reference_communication_request_id = fields.Many2one(
+        comodel_name="hc.res.communication.request", 
+        string="Reference Communication Request", 
+        help="Communication Request activity details defined in specific resource.")                
+    reference_device_use_request_id = fields.Many2one(
+        comodel_name="hc.res.device.use.request", 
+        string="Reference Device Use Request", 
+        help="Device Use Request activity details defined in specific resource.")                
     reference_diagnostic_request_id = fields.Many2one(
         comodel_name="hc.res.diagnostic.request", 
         string="Reference Diagnostic Request", 
@@ -370,8 +376,14 @@ class CarePlanActivityActionResulting(models.Model):
         store="True", 
         help="Resource that describes follow-on actions resulting from the plan.")                
     # action_resulting_appointment_id = fields.Many2one(comodel_name="hc.res.appointment", string="Action Resulting Appointment", help="Resource that describes follow-on actions resulting from the plan.")
-    # action_resulting_communication_request_id = fields.Many2one(comodel_name="hc.res.communication.request", string="Action Resulting Communication Request", help="Communication Request resource that describes follow-on actions resulting from the plan.")
-    # action_resulting_device_use_request_id = fields.Many2one(comodel_name="hc.res.device.use.request", string="Action Resulting Device Use Request", help="Device Use Request resource that describes follow-on actions resulting from the plan.")
+    action_resulting_communication_request_id = fields.Many2one(
+        comodel_name="hc.res.communication.request", 
+        string="Action Resulting Communication Request", 
+        help="Communication Request resource that describes follow-on actions resulting from the plan.")
+    action_resulting_device_use_request_id = fields.Many2one(
+        comodel_name="hc.res.device.use.request", 
+        string="Action Resulting Device Use Request", 
+        help="Device Use Request resource that describes follow-on actions resulting from the plan.")
     action_resulting_diagnostic_request_id = fields.Many2one(
         comodel_name="hc.res.diagnostic.request", 
         string="Action Resulting Diagnostic Request", 

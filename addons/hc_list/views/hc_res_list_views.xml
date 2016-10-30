@@ -15,7 +15,8 @@
                   name="Lists" 
                   parent="hc_base.menu_doc_quest" 
                   action="hc_res_list_action" 
-                  groups="hc_base.group_hc_base_manager" sequence="60"/>
+                  groups="hc_base.group_hc_base_manager" 
+                  sequence="60"/>
 
     </data>
 </openerp>

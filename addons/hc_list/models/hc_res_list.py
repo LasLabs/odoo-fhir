@@ -24,7 +24,7 @@ class List(models.Model):
     source_practitioner_id = fields.Many2one(comodel_name="hc.res.practitioner", string="Source Practitioner", help="Practitioner who and/or what defined the list contents.")                
     source_patient_id = fields.Many2one(comodel_name="hc.res.patient", string="Source Patient", help="Patient who and/or what defined the list contents.")                
     source_device_id = fields.Many2one(comodel_name="hc.res.device", string="Source Device", help="Device who and/or what defined the list contents.")                
-    ordered_by_id = fields.Many2one(comodel_name="hc.vs.list.ordered.by", string="Ordered By", help="What order the list has.")                
+    ordered_by_id = fields.Many2one(comodel_name="hc.vs.list.order", string="Ordered By", help="What order the list has.")                
     note_ids = fields.One2many(comodel_name="hc.list.note", inverse_name="list_id", string="Notes", help="Comments about the list.")                
     empty_reason_id = fields.Many2one(comodel_name="hc.vs.list.empty.reason", string="Empty Reason", help="Why list is empty.")                
     entry_ids = fields.One2many(comodel_name="hc.list.entry", inverse_name="list_id", string="Entries", help="Entries in the list.")                
@@ -64,9 +64,9 @@ class ListCode(models.Model):
     _description = "List Code"        
     _inherit = ["hc.value.set.contains"]
 
-class ListOrderedBy(models.Model):    
-    _name = "hc.vs.list.ordered.by"    
-    _description = "List Ordered By"        
+class ListOrder(models.Model):    
+    _name = "hc.vs.list.order"    
+    _description = "List Order"        
     _inherit = ["hc.value.set.contains"]
 
 class ListEmptyReason(models.Model):    

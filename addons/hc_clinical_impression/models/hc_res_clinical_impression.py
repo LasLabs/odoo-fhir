@@ -213,30 +213,30 @@ class ClinicalImpressionPlan(models.Model):
     #     comodel_name="hc.res.appointment", 
     #     string="Plan Appointment", 
     #     help="Appointment plan of action after assessment.")                
-    # plan_communication_request_id = fields.Many2one(
-    #     comodel_name="hc.res.communication.request", 
-    #     string="Plan Communication Request", 
-    #     help="Communication Request plan of action after assessment.")                
-    # plan_device_use_request_id = fields.Many2one(
-    #     comodel_name="hc.res.device.use.request", 
-    #     string="Plan Device Use Request", 
-    #     help="Device Use Request plan of action after assessment.")                
+    plan_communication_request_id = fields.Many2one(
+        comodel_name="hc.res.communication.request", 
+        string="Plan Communication Request", 
+        help="Communication Request plan of action after assessment.")                
+    plan_device_use_request_id = fields.Many2one(
+        comodel_name="hc.res.device.use.request", 
+        string="Plan Device Use Request", 
+        help="Device Use Request plan of action after assessment.")                
     plan_diagnostic_request_id = fields.Many2one(
         comodel_name="hc.res.diagnostic.request", 
         string="Plan Diagnostic Request", 
         help="Diagnostic Request plan of action after assessment.")                
-    # plan_medication_order_id = fields.Many2one(
-    #     comodel_name="hc.res.medication.order", 
-    #     string="Plan Medication Order", 
-    #     help="Medication Order plan of action after assessment.")                
+    plan_medication_order_id = fields.Many2one(
+        comodel_name="hc.res.medication.order", 
+        string="Plan Medication Order", 
+        help="Medication Order plan of action after assessment.")                
     plan_nutrition_request_id = fields.Many2one(
         comodel_name="hc.res.nutrition.request", 
         string="Plan Nutrition Request", 
         help="Nutrition Request plan of action after assessment.")                
-    # plan_procedure_request_id = fields.Many2one(
-    #     comodel_name="hc.res.procedure.request", 
-    #     string="Plan Procedure Request", 
-    #     help="Procedure Request plan of action after assessment.")                
+    plan_procedure_request_id = fields.Many2one(
+        comodel_name="hc.res.procedure.request", 
+        string="Plan Procedure Request", 
+        help="Procedure Request plan of action after assessment.")                
     # plan_process_request_id = fields.Many2one(
     #     comodel_name="hc.res.process.request", 
     #     string="Plan Process Request", 
@@ -254,33 +254,33 @@ class ClinicalImpressionPlan(models.Model):
         string="Plan Vision Prescription", 
         help="Vision Prescription plan of action after assessment.")                
 
-    # @api.multi          
-    # def _compute_plan_name(self):           
-    #     for hc_res_clinical_impression in self:     
-    #         if hc_res_clinical_impression.plan_type == 'Care Plan': 
-    #             hc_res_clinical_impression.plan_name = hc_res_clinical_impression.plan_care_plan_id.name
+    @api.multi          
+    def _compute_plan_name(self):           
+        for hc_res_clinical_impression in self:     
+            if hc_res_clinical_impression.plan_type == 'Care Plan': 
+                hc_res_clinical_impression.plan_name = hc_res_clinical_impression.plan_care_plan_id.name
     #         elif hc_res_clinical_impression.plan_type == 'Appointment': 
     #             hc_res_clinical_impression.plan_name = hc_res_clinical_impression.plan_appointment_id.name
-    #         elif hc_res_clinical_impression.plan_type == 'Communication Request':   
-    #             hc_res_clinical_impression.plan_name = hc_res_clinical_impression.plan_communication_request_id.name
-    #         elif hc_res_clinical_impression.plan_type == 'Device Use Request':  
-    #             hc_res_clinical_impression.plan_name = hc_res_clinical_impression.plan_device_use_request_id.name
-    #         elif hc_res_clinical_impression.plan_type == 'Diagnostic Request':  
-    #             hc_res_clinical_impression.plan_name = hc_res_clinical_impression.plan_diagnostic_request_id.name
-    #         elif hc_res_clinical_impression.plan_type == 'Medication Order':    
-    #             hc_res_clinical_impression.plan_name = hc_res_clinical_impression.plan_medication_order_id.name
-    #         elif hc_res_clinical_impression.plan_type == 'Nutrition Request': 
-    #             hc_res_clinical_impression.plan_name = hc_res_clinical_impression.plan_nutrition_request_id.name
-    #         elif hc_res_clinical_impression.plan_type == 'Procedure Request':   
-    #             hc_res_clinical_impression.plan_name = hc_res_clinical_impression.plan_procedure_request_id.name
+            elif hc_res_clinical_impression.plan_type == 'Communication Request':   
+                hc_res_clinical_impression.plan_name = hc_res_clinical_impression.plan_communication_request_id.name
+            elif hc_res_clinical_impression.plan_type == 'Device Use Request':  
+                hc_res_clinical_impression.plan_name = hc_res_clinical_impression.plan_device_use_request_id.name
+            elif hc_res_clinical_impression.plan_type == 'Diagnostic Request':  
+                hc_res_clinical_impression.plan_name = hc_res_clinical_impression.plan_diagnostic_request_id.name
+            elif hc_res_clinical_impression.plan_type == 'Medication Order':    
+                hc_res_clinical_impression.plan_name = hc_res_clinical_impression.plan_medication_order_id.name
+            elif hc_res_clinical_impression.plan_type == 'Nutrition Request': 
+                hc_res_clinical_impression.plan_name = hc_res_clinical_impression.plan_nutrition_request_id.name
+            elif hc_res_clinical_impression.plan_type == 'Procedure Request':   
+                hc_res_clinical_impression.plan_name = hc_res_clinical_impression.plan_procedure_request_id.name
     #         elif hc_res_clinical_impression.plan_type == 'Process Request': 
     #             hc_res_clinical_impression.plan_name = hc_res_clinical_impression.plan_process_request_id.name
-    #         elif hc_res_clinical_impression.plan_type == 'Referral Request':    
-    #             hc_res_clinical_impression.plan_name = hc_res_clinical_impression.plan_referral_request_id.name
+            elif hc_res_clinical_impression.plan_type == 'Referral Request':    
+                hc_res_clinical_impression.plan_name = hc_res_clinical_impression.plan_referral_request_id.name
     #         elif hc_res_clinical_impression.plan_type == 'Supply Request':  
     #             hc_res_clinical_impression.plan_name = hc_res_clinical_impression.plan_supply_request_id.name
-    #         elif hc_res_clinical_impression.plan_type == 'Vision Prescription': 
-    #             hc_res_clinical_impression.plan_name = hc_res_clinical_impression.plan_vision_prescription_id.name
+            elif hc_res_clinical_impression.plan_type == 'Vision Prescription': 
+                hc_res_clinical_impression.plan_name = hc_res_clinical_impression.plan_vision_prescription_id.name
 
 class ClinicalImpressionAction(models.Model):    
     _name = "hc.clinical.impression.action"    
@@ -319,10 +319,10 @@ class ClinicalImpressionAction(models.Model):
         comodel_name="hc.res.procedure", 
         string="Action Procedure", 
         help="Procedure actions taken during assessment.")
-    # action_medication_order_id = fields.Many2one(
-    #     comodel_name="hc.res.medication.order", 
-    #     string="Action Medication Order", 
-    #     help="Medication Order actions taken during assessment.")
+    action_medication_order_id = fields.Many2one(
+        comodel_name="hc.res.medication.order", 
+        string="Action Medication Order", 
+        help="Medication Order actions taken during assessment.")
     action_diagnostic_request_id = fields.Many2one(
         comodel_name="hc.res.diagnostic.request", 
         string="Action Diagnostic Request", 
@@ -349,12 +349,12 @@ class ClinicalImpressionAction(models.Model):
             #     hc_res_clinical_impression.action_name = hc_res_clinical_impression.action_referral_request_id.name
             # elif hc_res_clinical_impression.action_type == 'Procedure Request': 
             #     hc_res_clinical_impression.action_name = hc_res_clinical_impression.action_procedure_request_id.name
-            # elif hc_res_clinical_impression.action_type == 'Medication Order':  
-            #     hc_res_clinical_impression.action_name = hc_res_clinical_impression.action_medication_order_id.name
-            # elif hc_res_clinical_impression.action_type == 'Diagnostic Request':    
-            #     hc_res_clinical_impression.action_name = hc_res_clinical_impression.action_diagnostic_request_id.name
-            # elif hc_res_clinical_impression.action_type == 'Nutrition Request': 
-            #     hc_res_clinical_impression.action_name = hc_res_clinical_impression.action_nutrition_request_id.name
+            elif hc_res_clinical_impression.action_type == 'Medication Order':  
+                hc_res_clinical_impression.action_name = hc_res_clinical_impression.action_medication_order_id.name
+            elif hc_res_clinical_impression.action_type == 'Diagnostic Request':    
+                hc_res_clinical_impression.action_name = hc_res_clinical_impression.action_diagnostic_request_id.name
+            elif hc_res_clinical_impression.action_type == 'Nutrition Request': 
+                hc_res_clinical_impression.action_name = hc_res_clinical_impression.action_nutrition_request_id.name
             # elif hc_res_clinical_impression.action_type == 'Supply Request':    
             #     hc_res_clinical_impression.action_name = hc_res_clinical_impression.action_supply_request_id.name
             # elif hc_res_clinical_impression.action_type == 'Appointment':   
@@ -392,26 +392,26 @@ class ClinicalImpressionInvestigation(models.Model):
         comodel_name="hc.res.observation", 
         string="Item Observation", 
         help="Observation record of a specific investigation.")
-    # item_questionnaire_response_id = fields.Many2one(
-    #     comodel_name="hc.res.questionnaire.response", 
-    #     string="Item Questionnaire Response", 
-    #     help="Questionnaire Response record of a specific investigation.")
+    item_questionnaire_response_id = fields.Many2one(
+        comodel_name="hc.res.questionnaire.response", 
+        string="Item Questionnaire Response", 
+        help="Questionnaire Response record of a specific investigation.")
     item_family_member_history_id = fields.Many2one(
         comodel_name="hc.res.family.member.history", 
         string="Item Family Member History", 
         help="Family Member History record of a specific investigation.")
-    # item_diagnostic_report_id = fields.Many2one(
-    #     comodel_name="hc.res.diagnostic.report", 
-    #     string="Item Diagnostic Report", 
-    #     elp="Diagnostic Report record of a specific investigation.")
+    item_diagnostic_report_id = fields.Many2one(
+        comodel_name="hc.res.diagnostic.report", 
+        string="Item Diagnostic Report", 
+        help="Diagnostic Report record of a specific investigation.")
     item_risk_assessment_id = fields.Many2one(
         comodel_name="hc.res.risk.assessment", 
         string="Item Risk Assessment", 
         help="Risk Assessment record of a specific investigation.")
-    # item_imaging_study_id = fields.Many2one(
-    #     comodel_name="hc.res.imaging.study", 
-    #     string="Item Imaging Study", 
-    #     help="Imaging Study record of a specific investigation.")
+    item_imaging_study_id = fields.Many2one(
+        comodel_name="hc.res.imaging.study", 
+        string="Item Imaging Study", 
+        help="Imaging Study record of a specific investigation.")
 
     @api.multi          
     def _compute_item_name(self):           
@@ -420,14 +420,14 @@ class ClinicalImpressionInvestigation(models.Model):
                 hc_res_clinical_impression.item_name = hc_res_clinical_impression.item_observation_id.name
             elif hc_res_clinical_impression.item_type == 'Family Member History':   
                 hc_res_clinical_impression.item_name = hc_res_clinical_impression.item_family_member_history_id.name
-            # elif hc_res_clinical_impression.item_type == 'Questionnaire Response':  
-            #     hc_res_clinical_impression.item_name = hc_res_clinical_impression.item_questionnaire_response_id.name 
-            # elif hc_res_clinical_impression.item_type == 'Diagnostic Report':   
-            #     hc_res_clinical_impression.item_name = hc_res_clinical_impression.item_diagnostic_report_id.name
+            elif hc_res_clinical_impression.item_type == 'Questionnaire Response':  
+                hc_res_clinical_impression.item_name = hc_res_clinical_impression.item_questionnaire_response_id.name 
+            elif hc_res_clinical_impression.item_type == 'Diagnostic Report':   
+                hc_res_clinical_impression.item_name = hc_res_clinical_impression.item_diagnostic_report_id.name
             elif hc_res_clinical_impression.item_type == 'Risk Assessment': 
                 hc_res_clinical_impression.item_name = hc_res_clinical_impression.item_risk_assessment_id.name
-            # elif hc_res_clinical_impression.item_type == 'Imaging Study':   
-            #     hc_res_clinical_impression.item_name = hc_res_clinical_impression.item_imaging_study_id.name
+            elif hc_res_clinical_impression.item_type == 'Imaging Study':   
+                hc_res_clinical_impression.item_name = hc_res_clinical_impression.item_imaging_study_id.name
 
 class ClinicalImpressionFinding(models.Model):    
     _name = "hc.clinical.impression.finding"    
