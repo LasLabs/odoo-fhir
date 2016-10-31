@@ -376,7 +376,8 @@ class EncounterParticipantType(models.Model):
 
     encounter_hospitalization_id = fields.Many2one(
         comodel_name="hc.encounter.hospitalization", 
-        string="Encounter Hospitalization", help="Participant with this participant type.")             
+        string="Encounter Hospitalization", 
+        help="Participant with this participant type.")             
     participant_type_id = fields.Many2one(
         comodel_name="hc.vs.encounter.participant.type", 
         string="Participant Type", 
@@ -390,16 +391,6 @@ class EncounterType(models.Model):
 class ActPriority(models.Model):    
     _name = "hc.vs.act.priority"    
     _description = "Act Priority"       
-    _inherit = ["hc.value.set.contains"]
-
-class EncounterReason(models.Model):    
-    _name = "hc.vs.encounter.reason"    
-    _description = "Encounter Reason"       
-    _inherit = ["hc.value.set.contains"]
-
-class EncounterParticipantType(models.Model):   
-    _name = "hc.vs.encounter.participant.type"  
-    _description = "Encounter Participant Type"     
     _inherit = ["hc.value.set.contains"]
 
 class EncounterAdmitSource(models.Model):   

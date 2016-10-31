@@ -35,7 +35,7 @@ class PractitionerRole(models.Model):
         inverse_name="practitioner_role_id", 
         string="Identifiers", 
         help="Business Identifiers that are specific to a role/location.")
-    is_active_practitioner_role = fields.Boolean(
+    is_active = fields.Boolean(
         string="Active", 
         help="Whether this practitioner role record is in active use.")
     telecom_ids = fields.One2many(
@@ -77,20 +77,11 @@ class PractitionerRoleSpecialty(models.Model):
     practitioner_role_id = fields.Many2one(
         comodel_name="hc.res.practitioner.role",  
         string="Practitioner Role", 
-        help="Practitioner role associated with a specialty.")              
+        help="Practitioner Role associated with this Specialty.")              
     practitioner_specialty_id = fields.Many2one(
         comodel_name="hc.vs.c80.practice.code", 
         string="Specialty", 
-        help="Specialty associated with a practitioner role.")             
-    is_active = fields.Boolean(
-        string="Active", 
-        help="Whether this practitioner role specialty record is in active use.")               
-    start_date = fields.Datetime(
-        string="Start Date", 
-        help="Start of the period when the practitioner role specialty is/was valid.")                
-    end_date = fields.Datetime(
-        string="End Date", 
-        help="End of the period when the practitioner role specialty is/was valid.")              
+        help="Specialty associated with this Practitioner Role.")                         
 
 class PractitionerRoleIdentifier(models.Model): 
     _name = "hc.practitioner.role.identifier"   

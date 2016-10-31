@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_hc_supply_request_hc_supply_request,hc_supply_request.hc_supply_request,model_hc_supply_request_hc_supply_request,,1,0,0,0

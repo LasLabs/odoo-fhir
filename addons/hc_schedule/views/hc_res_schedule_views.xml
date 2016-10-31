@@ -1,0 +1,22 @@
+<openerp>
+    <data>
+
+        <!-- Schedule Action and Menu -->   
+    
+        <act_window id="hc_res_schedule_action" 
+                    name="HC Schedules"
+                    res_model="hc.res.schedule"
+                    view_mode="tree,form"
+                    domain=""
+                    context=""
+                    limit=""/>
+
+        <menuitem id="hc_schedule.menu_sched" 
+                  name="Schedules" 
+                  parent="hc_base.menu_work_sched" 
+                  action="hc_res_schedule_action" 
+                  groups="hc_base.group_hc_base_manager" 
+                  sequence="50"/>
+
+    </data>
+</openerp>

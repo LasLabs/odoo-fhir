@@ -15,8 +15,6 @@ access_hc_encounter_hc_discharge_diagnosis_user,hc.encounter.hc.discharge.diagno
 access_hc_encounter_hc_encounter_participant_type_user,hc.encounter.hc.encounter.participant.type.user,model_hc_encounter_participant_type,hc_base.group_hc_base_user,1,0,0,0
 access_hc_encounter_hc_vs_encounter_type_manager,hc.encounter.hc.vs.encounter.type.manager,model_hc_vs_encounter_type,hc_base.group_hc_base_manager,1,1,1,1
 access_hc_encounter_hc_vs_act_priority_manager,hc.encounter.hc.vs.act.priority.manager,model_hc_vs_act_priority,hc_base.group_hc_base_manager,1,1,1,1
-access_hc_encounter_hc_vs_encounter_reason_manager,hc.encounter.hc.vs.encounter.reason.manager,model_hc_vs_encounter_reason,hc_base.group_hc_base_manager,1,1,1,1
-access_hc_encounter_hc_vs_encounter_participant_type_manager,hc.encounter.hc.vs.encounter.participant.type.manager,model_hc_vs_encounter_participant_type,hc_base.group_hc_base_manager,1,1,1,1
 access_hc_encounter_hc_vs_encounter_admit_source_manager,hc.encounter.hc.vs.encounter.admit.source.manager,model_hc_vs_encounter_admit_source,hc_base.group_hc_base_manager,1,1,1,1
 access_hc_encounter_hc_vs_encounter_diet_manager,hc.encounter.hc.vs.encounter.diet.manager,model_hc_vs_encounter_diet,hc_base.group_hc_base_manager,1,1,1,1
 access_hc_encounter_hc_vs_special_courtesy_manager,hc.encounter.hc.vs.special.courtesy.manager,model_hc_vs_special_courtesy,hc_base.group_hc_base_manager,1,1,1,1
