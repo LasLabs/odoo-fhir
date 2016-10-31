@@ -1,2 +1,4 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_hc_slot_hc_slot,hc_slot.hc_slot,model_hc_slot_hc_slot,,1,0,0,0
+access_hc_slot_hc_res_slot_user,hc.slot.hc.res.slot.user,model_hc_res_slot,hc_base.group_hc_base_user,1,0,0,0
+access_hc_slot_hc_slot_identifier_user,hc.slot.hc.slot.identifier.user,model_hc_slot_identifier,hc_base.group_hc_base_user,1,0,0,0
+access_hc_slot_hc_vs_v2_appointment_reason_code_manager,hc.slot.hc.vs.v2.appointment.reason.code.manager,model_hc_vs_v2_appointment_reason_code,hc_base.group_hc_base_manager,1,1,1,1
