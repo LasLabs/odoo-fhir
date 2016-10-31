@@ -10,7 +10,8 @@
         
         A binary resource can contain any content, whether text, image, pdf, zip archive, etc.
 
-        2.34.1 Scope and Usage 
+        **Scope and Usage**
+         
         There are situations where it is useful or required to handle pure binary content using the same framework as other resources. 
         Typically, this is when the binary content is referred to from other FHIR Resources. Using the same framework means that the existing servers, 
         security arrangements, code libraries etc. can handle additional related content. Typically, Binary resources are used for handling content such as:
@@ -38,7 +39,7 @@
 
     # always loaded
     'data': [
-        # 'security/ir.model.access.csv',
+        'security/ir.model.access.csv',
         'views/hc_res_binary_views.xml',
         'views/hc_res_binary_templates.xml',
     ],

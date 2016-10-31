@@ -2,14 +2,17 @@
 
 from openerp import models, fields, api
 
-# class hc_binary(models.Model):
-#     _name = 'hc_binary.hc_binary'
+class Binary(models.Model):    
+    _name = "hc.res.binary"    
+    _description = "Binary"
 
-#     name = fields.Char()
-#     value = fields.Integer()
-#     value2 = fields.Float(compute="_value_pc", store=True)
-#     description = fields.Text()
-#
-#     @api.depends('value')
-#     def _value_pc(self):
-#         self.value2 = float(self.value) / 100
+    content_type_id = fields.Many2one(
+        comodel_name="hc.vs.mime.type", 
+        string="Content Type", 
+        required="True", 
+        help="MimeType of the binary content.")        
+    content = fields.Binary(
+        string="Content", 
+        required="True", 
+        help="The actual content.")
+    
