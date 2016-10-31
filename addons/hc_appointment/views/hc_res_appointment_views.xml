@@ -1,59 +1,22 @@
 <openerp>
-  <data>
-    <!-- explicit list view definition -->
-    <!--
-    <record model="ir.ui.view" id="hc_appointment.list">
-      <field name="name">hc_appointment list</field>
-      <field name="model">hc_appointment.hc_appointment</field>
-      <field name="arch" type="xml">
-        <tree>
-          <field name="name"/>
-          <field name="value"/>
-          <field name="value2"/>
-        </tree>
-      </field>
-    </record>
-    -->
+    <data>
 
-    <!-- actions opening views on models -->
-    <!--
-    <record model="ir.actions.act_window" id="hc_appointment.action_window">
-      <field name="name">hc_appointment window</field>
-      <field name="res_model">hc_appointment.hc_appointment</field>
-      <field name="view_mode">tree,form</field>
-    </record>
-    -->
+        <!-- Appointment Action and Menu -->    
+    
+        <act_window id="hc_res_appointment_action"  
+                    name="HC Appointments"
+                    res_model="hc.res.appointment"
+                    view_mode="tree,form"
+                    domain=""
+                    context=""
+                    limit=""/>
 
-    <!-- server action to the one above -->
-    <!--
-    <record model="ir.actions.server" id="hc_appointment.action_server">
-      <field name="name">hc_appointment server</field>
-      <field name="model_id" ref="model_hc_appointment_hc_appointment"/>
-      <field name="code">
-        action = {
-          "type": "ir.actions.act_window",
-          "view_mode": "tree,form",
-          "res_model": self._name,
-        }
-      </field>
-    </record>
-    -->
+        <menuitem id="hc_appointment.menu_appt" 
+                  name="Appointments" 
+                  parent="hc_base.menu_work_sched" 
+                  action="hc_res_appointment_action" 
+                  groups="hc_base.group_hc_base_manager" 
+                  sequence="30"/>
 
-    <!-- Top menu item -->
-    <!--
-    <menuitem name="hc_appointment" id="hc_appointment.menu_root"/>
-    -->
-    <!-- menu categories -->
-    <!--
-    <menuitem name="Menu 1" id="hc_appointment.menu_1" parent="hc_appointment.menu_root"/>
-    <menuitem name="Menu 2" id="hc_appointment.menu_2" parent="hc_appointment.menu_root"/>
-    -->
-    <!-- actions -->
-    <!--
-    <menuitem name="List" id="hc_appointment.menu_1_list" parent="hc_appointment.menu_1"
-              action="hc_appointment.action_window"/>
-    <menuitem name="Server to list" id="hc_appointment" parent="hc_appointment.menu_2"
-              action="hc_appointment.action_server"/>
-    -->
-  </data>
+    </data>
 </openerp>
