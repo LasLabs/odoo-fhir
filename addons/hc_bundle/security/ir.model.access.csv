@@ -1,2 +1,9 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_hc_bundle_hc_bundle,hc_bundle.hc_bundle,model_hc_bundle_hc_bundle,,1,0,0,0
+access_hc_bundle_hc_res_bundle_user,hc.bundle.hc.res.bundle.user,model_hc_res_bundle,hc_base.group_hc_base_user,1,0,0,0
+access_hc_bundle_hc_bundle_link_user,hc.bundle.hc.bundle.link.user,model_hc_bundle_link,hc_base.group_hc_base_user,1,0,0,0
+access_hc_bundle_hc_bundle_entry_user,hc.bundle.hc.bundle.entry.user,model_hc_bundle_entry,hc_base.group_hc_base_user,1,0,0,0
+access_hc_bundle_hc_bundle_entry_search_user,hc.bundle.hc.bundle.entry.search.user,model_hc_bundle_entry_search,hc_base.group_hc_base_user,1,0,0,0
+access_hc_bundle_hc_bundle_entry_request_user,hc.bundle.hc.bundle.entry.request.user,model_hc_bundle_entry_request,hc_base.group_hc_base_user,1,0,0,0
+access_hc_bundle_hc_bundle_entry_response_user,hc.bundle.hc.bundle.entry.response.user,model_hc_bundle_entry_response,hc_base.group_hc_base_user,1,0,0,0
+access_hc_bundle_hc_bundle_signature_user,hc.bundle.hc.bundle.signature.user,model_hc_bundle_signature,hc_base.group_hc_base_user,1,0,0,0
+access_hc_bundle_hc_bundle_entry_resource_user,hc.bundle.hc.bundle.entry.resource.user,model_hc_bundle_entry_resource,hc_base.group_hc_base_user,1,0,0,0

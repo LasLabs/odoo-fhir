@@ -8,13 +8,7 @@ access_hc_audit_event_hc_audit_event_entity_detail_user,hc.audit.event.hc.audit.
 access_hc_audit_event_hc_audit_event_agent_user_user,hc.audit.event.hc.audit.event.agent.user.user,model_hc_audit_event_agent_user,hc_base.group_hc_base_user,1,0,0,0
 access_hc_audit_event_hc_audit_event_entity_identifier_user,hc.audit.event.hc.audit.event.entity.identifier.user,model_hc_audit_event_entity_identifier,hc_base.group_hc_base_user,1,0,0,0
 access_hc_audit_event_hc_audit_event_entity_reference_user,hc.audit.event.hc.audit.event.entity.reference.user,model_hc_audit_event_entity_reference,hc_base.group_hc_base_user,1,0,0,0
-access_hc_audit_event_hc_audit_event_sub_type_user,hc.audit.event.hc.audit.event.sub.type.user,model_hc_audit_event_sub_type,hc_base.group_hc_base_user,1,0,0,0
-access_hc_audit_event_hc_audit_event_purpose_of_event_user,hc.audit.event.hc.audit.event.purpose.of.event.user,model_hc_audit_event_purpose_of_event,hc_base.group_hc_base_user,1,0,0,0
-access_hc_audit_event_hc_audit_event_agent_role_user,hc.audit.event.hc.audit.event.agent.role.user,model_hc_audit_event_agent_role,hc_base.group_hc_base_user,1,0,0,0
 access_hc_audit_event_hc_audit_event_agent_policy_user,hc.audit.event.hc.audit.event.agent.policy.user,model_hc_audit_event_agent_policy,hc_base.group_hc_base_user,1,0,0,0
-access_hc_audit_event_hc_audit_event_agent_network_purpose_of_use_user,hc.audit.event.hc.audit.event.agent.network.purpose.of.use.user,model_hc_audit_event_agent_network_purpose_of_use,hc_base.group_hc_base_user,1,0,0,0
-access_hc_audit_event_hc_audit_event_source_type_user,hc.audit.event.hc.audit.event.source.type.user,model_hc_audit_event_source_type,hc_base.group_hc_base_user,1,0,0,0
-access_hc_audit_event_hc_audit_event_entity_security_label_user,hc.audit.event.hc.audit.event.entity.security.label.user,model_hc_audit_event_entity_security_label,hc_base.group_hc_base_user,1,0,0,0
 access_hc_audit_event_hc_vs_audit_event_type_manager,hc.audit.event.hc.vs.audit.event.type.manager,model_hc_vs_audit_event_type,hc_base.group_hc_base_manager,1,1,1,1
 access_hc_audit_event_hc_vs_audit_event_action_manager,hc.audit.event.hc.vs.audit.event.action.manager,model_hc_vs_audit_event_action,hc_base.group_hc_base_manager,1,1,1,1
 access_hc_audit_event_hc_vs_audit_event_outcome_manager,hc.audit.event.hc.vs.audit.event.outcome.manager,model_hc_vs_audit_event_outcome,hc_base.group_hc_base_manager,1,1,1,1

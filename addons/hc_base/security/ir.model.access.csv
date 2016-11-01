@@ -125,5 +125,10 @@ access_hc_base_hc_vs_c80_facility_code_manager,hc.base.hc.vs.c80.facility.code.m
 access_hc_base_hc_vs_act_reason_manager,hc.base.hc.vs.act.reason.manager,model_hc_vs_act_reason,hc_base.group_hc_base_manager,1,1,1,1
 access_hc_base_hc_vs_encounter_participant_type_manager,hc.base.hc.vs.encounter.participant.type.manager,model_hc_vs_encounter_participant_type,hc_base.group_hc_base_manager,1,1,1,1
 access_hc_base_hc_vs_encounter_reason_manager,hc.base.hc.vs.encounter.reason.manager,model_hc_vs_encounter_reason,hc_base.group_hc_base_manager,1,1,1,1
+access_hc_base_hc_resource_user,hc.base.hc.resource.user,model_hc_resource,hc_base.group_hc_base_user,1,0,0,0
+access_hc_base_hc_resource_meta_user,hc.base.hc.resource.meta.user,model_hc_resource_meta,hc_base.group_hc_base_user,1,0,0,0
+access_hc_base_hc_meta_user,hc.base.hc.meta.user,model_hc_meta,hc_base.group_hc_base_user,1,0,0,0
+access_hc_base_hc_vs_common_tag_manager,hc.base.hc.vs.common.tag.manager,model_hc_vs_common_tag,hc_base.group_hc_base_manager,1,1,1,1
+
 
 
