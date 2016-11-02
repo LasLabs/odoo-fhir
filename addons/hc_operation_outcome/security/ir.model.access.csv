@@ -1,2 +1,7 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_hc_operation_outcome_hc_operation_outcome,hc_operation_outcome.hc_operation_outcome,model_hc_operation_outcome_hc_operation_outcome,,1,0,0,0
+access_hc_operation_outcome_hc_res_operation_outcome_user,hc.operation.outcome.hc.res.operation.outcome.user,model_hc_res_operation_outcome,hc_base.group_hc_base_user,1,0,0,0
+access_hc_operation_outcome_hc_operation_outcome_issue_user,hc.operation.outcome.hc.operation.outcome.issue.user,model_hc_operation_outcome_issue,hc_base.group_hc_base_user,1,0,0,0
+access_hc_operation_outcome_hc_operation_outcome_issue_location_user,hc.operation.outcome.hc.operation.outcome.issue.location.user,model_hc_operation_outcome_issue_location,hc_base.group_hc_base_user,1,0,0,0
+access_hc_operation_outcome_hc_operation_outcome_issue_expression_user,hc.operation.outcome.hc.operation.outcome.issue.expression.user,model_hc_operation_outcome_issue_expression,hc_base.group_hc_base_user,1,0,0,0
+access_hc_operation_outcome_hc_vs_issue_type_manager,hc.operation.outcome.hc.vs.issue.type.manager,model_hc_vs_issue_type,hc_base.group_hc_base_manager,1,1,1,1
+access_hc_operation_outcome_hc_vs_operation_outcome_manager,hc.operation.outcome.hc.vs.operation.outcome.manager,model_hc_vs_operation_outcome,hc_base.group_hc_base_manager,1,1,1,1

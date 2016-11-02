@@ -40,15 +40,7 @@ class ContactPointUse(models.Model):
     rank = fields.Integer(
         string="Rank", 
         default="1", 
-        help="Specify preferred order of use (1 = highest).")     
-    period_start_date = fields.Datetime(
-        string="Period Start Date", 
-        help="Start of the time period when the contact point was/is in use.")      
-    period_end_date = fields.Datetime(
-        string="Period End Date", 
-        help="End of the time period when the contact point was/is in use.")        
-
-
+        help="Specify preferred order of use (1 = highest).")       
 
 # class Telecom(models.Model):    
 #     _name = "hc.telecom"    
