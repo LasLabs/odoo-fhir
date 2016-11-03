@@ -150,11 +150,11 @@ class RelatedPersonPhoto(models.Model):
         string="Photo",
         required="True",
         ondelete="restrict",  
-        help="Photo associated with this related person.")
+        help="Photo associated with this Related Person Photo.")
     related_person_id = fields.Many2one(
         comodel_name="hc.res.person", 
         string="Related Person", 
-        help="Related person associated with this photo.")      
+        help="Related person associated with this Related Person Photo.")      
 
 class RelatedPersonRelationshipType(models.Model):  
     _name = "hc.vs.related.person.relationship.type"    
@@ -169,11 +169,11 @@ class RelatedPersonPatient(models.Model):
     related_person_id = fields.Many2one(
         comodel_name="hc.res.related.person", 
         string="Related Person", 
-        help="Related Person associated with this patient.")
+        help="Related Person associated with this Related Person Patient.")
     # patient_id = fields.Many2one(
     #     comodel_name="hc.res.patient",
     #     string="Patient",
-    #     help="Patient associated with this related person.")
+    #     help="Patient associated with this Related Person Patient.")
     relationship_id = fields.Many2one(
         comodel_name="hc.vs.related.person.relationship.type", 
         string="Relationship", 

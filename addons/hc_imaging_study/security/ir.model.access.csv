@@ -7,7 +7,6 @@ access_hc_imaging_study_hc_imaging_study_series_instance_user,hc.imaging.study.h
 access_hc_imaging_study_hc_imaging_study_accession_user,hc.imaging.study.hc.imaging.study.accession.user,model_hc_imaging_study_accession,hc_base.group_hc_base_user,1,0,0,0
 access_hc_imaging_study_hc_imaging_study_based_on_user,hc.imaging.study.hc.imaging.study.based.on.user,model_hc_imaging_study_based_on,hc_base.group_hc_base_user,1,0,0,0
 access_hc_imaging_study_hc_imaging_study_identifier_user,hc.imaging.study.hc.imaging.study.identifier.user,model_hc_imaging_study_identifier,hc_base.group_hc_base_user,1,0,0,0
-access_hc_imaging_study_hc_imaging_study_modality_list_user,hc.imaging.study.hc.imaging.study.modality.list.user,model_hc_imaging_study_modality_list,hc_base.group_hc_base_user,1,0,0,0
 access_hc_imaging_study_hc_imaging_study_procedure_user,hc.imaging.study.hc.imaging.study.procedure.user,model_hc_imaging_study_procedure,hc_base.group_hc_base_user,1,0,0,0
 access_hc_imaging_study_hc_vs_body_site_laterality_manager,hc.imaging.study.hc.vs.body.site.laterality.manager,model_hc_vs_body_site_laterality,hc_base.group_hc_base_manager,1,1,1,1
 access_hc_imaging_study_hc_vs_dicom_cid_29_manager,hc.imaging.study.hc.vs.dicom.cid.29.manager,model_hc_vs_dicom_cid_29,hc_base.group_hc_base_manager,1,1,1,1

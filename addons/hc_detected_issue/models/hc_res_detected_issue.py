@@ -106,11 +106,11 @@ class DetectedIssueImplicated(models.Model):
         help="Indicates the resource representing the current activity or proposed activity that is potentially problematic.")
     implicated_string = fields.Char(
         string="Implicated String", 
-        help="String problem resource.")
+        help="String of problem resource.")
     implicated_code_id = fields.Many2one(
-        comodel_name="hc.vs.detected.issue.implicated", 
-        string="Implicated Codeable Concept", 
-        help="Code of problem resource.")
+        comodel_name="hc.vs.resource.type", 
+        string="Implicated Code", 
+        help="Resource type of problem resource.")
 
 class DetectedIssueIdentifier(models.Model):
     _name = "hc.detected.issue.identifier"

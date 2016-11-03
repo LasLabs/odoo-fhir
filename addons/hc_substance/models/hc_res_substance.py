@@ -33,7 +33,7 @@ class SubstanceInstance(models.Model):
         string="Substance", 
         help="Substance associated with this Instance.")                
     identifier_id = fields.Many2one(
-        comodel_name="hc.substance.package.identifier", 
+        comodel_name="hc.substance.instance.identifier", 
         string="Identifier", 
         help="Identifier of the package/container.")
     expiry = fields.Datetime(
@@ -108,8 +108,8 @@ class SubstanceIdentifier(models.Model):
         string="Substance", 
         help="Substance associated with this identifier.")                
 
-class SubstancePackageIdentifier(models.Model):    
-    _name = "hc.substance.package.identifier"    
+class SubstanceInstanceIdentifier(models.Model):    
+    _name = "hc.substance.instance.identifier"    
     _description = "Substance Package Identifier"        
     _inherit = ["hc.identifier"]
 

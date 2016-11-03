@@ -1,2 +1,6 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_hc_parameter_hc_parameter,hc_parameter.hc_parameter,model_hc_parameter_hc_parameter,,1,0,0,0
+access_hc_parameters_hc_res_parameters_user,hc.parameters.hc.res.parameters.user,model_hc_res_parameters,hc_base.group_hc_base_user,1,0,0,0
+access_hc_parameters_hc_parameters_parameter_user,hc.parameters.hc.parameters.parameter.user,model_hc_parameters_parameter,hc_base.group_hc_base_user,1,0,0,0
+access_hc_parameters_hc_parameters_parameter_value_user,hc.parameters.hc.parameters.parameter.value.user,model_hc_parameters_parameter_value,hc_base.group_hc_base_user,1,0,0,0
+access_hc_parameters_hc_parameters_parameter_resource_user,hc.parameters.hc.parameters.parameter.resource.user,model_hc_parameters_parameter_resource,hc_base.group_hc_base_user,1,0,0,0
+access_hc_parameters_hc_parameters_parameter_part_user,hc.parameters.hc.parameters.parameter.part.user,model_hc_parameters_parameter_part,hc_base.group_hc_base_user,1,0,0,0

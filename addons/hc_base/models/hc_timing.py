@@ -34,7 +34,7 @@ class TimingRepeat(models.Model):
         comodel_name="hc.timing", 
         string="Timing", 
         required="True", 
-        help="Timing associated with this repeat." )        
+        help="Timing associated with this repeat.")        
     bounds_type = fields.Selection(
         string="Bounds Type", 
         required="True", 

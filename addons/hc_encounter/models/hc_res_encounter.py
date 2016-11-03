@@ -174,11 +174,10 @@ class EncounterHospitalization(models.Model):
     encounter_id = fields.Many2one(
         comodel_name="hc.res.encounter", 
         string="Encounter", 
-        help="Encounter associated with this hospitalization.")             
-    pre_admission_identifier_id = fields.One2many(
-        comodel_name="hc.pre.admission.identifier",
-        inverse_name="encounter_hospitalization_id", 
-        string="Pre-admission Identifier", 
+        help="Encounter associated with this Encounter Hospitalization.")             
+    pre_admission_identifier_id = fields.Many2one(
+        comodel_name="hc.encounter.hospitalization.pre.admission.identifier", 
+        string="Encounter Hospitalization Pre-Admission Identifier", 
         help="Pre-admission identifier.")              
     origin_location_id = fields.Many2one(
         comodel_name="hc.res.location", 
@@ -189,9 +188,9 @@ class EncounterHospitalization(models.Model):
         string="Admit Source", 
         help="From where patient was admitted (physician referral, transfer).")               
     admitting_diagnosis_ids = fields.One2many(
-        comodel_name="hc.admitting.diagnosis", 
+        comodel_name="hc.encounter.hospitalization.admitting.diagnosis", 
         inverse_name="encounter_hospitalization_id", 
-        string="Admitting Diagnosis", 
+        string="Encounter Hospitalization Admitting Diagnosis", 
         help="The admitting diagnosis as reported by admitting practitioner.")               
     re_admission_id = fields.Many2one(
         comodel_name="hc.vs.v2.readmission.indicator", 
@@ -218,9 +217,9 @@ class EncounterHospitalization(models.Model):
         string="Discharge Disposition", 
         help="Category or kind of location after discharge.")              
     discharge_diagnosis_ids = fields.One2many(
-        comodel_name="hc.discharge.diagnosis", 
+        comodel_name="hc.encounter.hospitalization.discharge.diagnosis", 
         inverse_name="encounter_hospitalization_id", 
-        string="Discharge Diagnosis", 
+        string="Encounter Hospitalization Discharge Diagnosis", 
         help="The final diagnosis given a patient before release from the hospital after all testing, surgery, and workup are complete.")                
                 
 class EncounterLocation(models.Model):  
@@ -230,7 +229,7 @@ class EncounterLocation(models.Model):
     encounter_id = fields.Many2one(
         comodel_name="hc.res.encounter", 
         string="Encounter", 
-        help="Encounter associated with this location.")                
+        help="Encounter associated with this Encounter Location.")                
     location_id = fields.Many2one(
         comodel_name="hc.res.location", 
         string="Location", 
@@ -258,7 +257,7 @@ class EncounterIdentifier(models.Model):
     encounter_id = fields.Many2one(
         comodel_name="hc.res.encounter", 
         string="Encounter", 
-        help="Encounter associated with this encounter identifier.")                
+        help="Encounter associated with this Encounter Identifier.")                
 
 class EncounterEpisodeOfCare(models.Model): 
     _name = "hc.encounter.episode.of.care"  
@@ -268,11 +267,11 @@ class EncounterEpisodeOfCare(models.Model):
     encounter_id = fields.Many2one(
         comodel_name="hc.res.encounter", 
         string="Encounter", 
-        help="Encounter associated with this Episode Of Care.")             
+        help="Encounter associated with this Encounter Episode Of Care.")             
     episode_of_care_id = fields.Many2one(
         comodel_name="hc.res.episode.of.care", 
         string="Episode Of Care", 
-        help="Episode Of Care associated with this Encounter.")               
+        help="Episode Of Care associated with this Encounter Episode Of Care.")               
 
 class EncounterReferralRequest(models.Model):   
     _name = "hc.encounter.referral.request" 
@@ -331,18 +330,13 @@ class EncounterIndication(models.Model):
     #     string="Indication Procedure", 
     #     help="Procedure reason the encounter takes place (resource).")                
 
-class PreAdmissionIdentifier(models.Model): 
-    _name = "hc.pre.admission.identifier"   
-    _description = "Pre Admission Identifier"       
-    _inherit = ["hc.basic.association", "hc.identifier"]
+class EncounterHospitalizationPreAdmissionIdentifier(models.Model): 
+    _name = "hc.encounter.hospitalization.pre.admission.identifier"   
+    _description = "Encounter Hospitalization Pre-Admission Identifier"       
+    _inherit = ["hc.basic.association", "hc.identifier"]            
 
-    encounter_hospitalization_id = fields.Many2one(
-        comodel_name="hc.encounter.hospitalization", 
-        string="Encounter Hospitalization", 
-        help="Hospitalization associated with this pre admission identifier.")              
-
-class AdmittingDiagnosis(models.Model): 
-    _name = "hc.admitting.diagnosis"  
+class EncounterHospitalizationAdmittingDiagnosis(models.Model): 
+    _name = "hc.encounter.hospitalization.admitting.diagnosis"  
     _description = "Encounter Hospitalization Admitting Diagnosis"      
     _inherit = ["hc.basic.association"]
 
@@ -355,8 +349,8 @@ class AdmittingDiagnosis(models.Model):
     #     string="Condition", 
     #     help="Condition associated with this encounter hospitalization admitting diagnosis.")                
 
-class DischargeDiagnosis(models.Model): 
-    _name = "hc.discharge.diagnosis"  
+class EncounterHospitalizationDischargeDiagnosis(models.Model): 
+    _name = "hc.encounter.hospitalization.discharge.diagnosis"  
     _description = "Encounter Hospitalization Discharge Diagnosis"      
     _inherit = ["hc.basic.association"]
 

@@ -20,7 +20,7 @@ class OperationOutcomeIssue(models.Model):
     operation_outcome_id = fields.Many2one(
         comodel_name="hc.res.operation.outcome", 
         string="Operation Outcome", 
-        help="Operation Outcome associated with this Operation Outcome Issue." )                
+        help="Operation Outcome associated with this Operation Outcome Issue.")                
     severity = fields.Selection(
         tring="Issue Severity", 
         required="True", 

@@ -191,9 +191,9 @@ class CommunicationBasedOn(models.Model):
         string="Based On String", 
         help="String request fulfilled by this communication.")                
     based_on_code_id = fields.Many2one(
-        comodel_name="hc.vs.communication.based.on", 
+        comodel_name="hc.vs.resource.type", 
         string="Based On Code", 
-        help="code of request fulfilled by this communication.")                
+        help="Resource type of request fulfilled by this communication.")                
 
 class CommunicationIdentifier(models.Model):    
     _name = "hc.communication.identifier"    
@@ -237,11 +237,11 @@ class CommunicationParent(models.Model):
         help="Part of this action.")                
     parent_string = fields.Char(
         string="Parent Strings", 
-        help="String part of this action.")                
+        help="String of part of this action.")                
     parent_code_id = fields.Many2one(
-        comodel_name="hc.vs.communication.parent", 
+        comodel_name="hc.vs.resource.type", 
         string="Parent Code", 
-        help="code of part of this action.")                
+        help="Resource type of part of this action.")                
 
 class CommunicationTopic(models.Model):    
     _name = "hc.communication.topic"    
@@ -264,11 +264,11 @@ class CommunicationTopic(models.Model):
         store="True", help="Focal resources.")                
     topic_string = fields.Char(
         string="Topic Strings", 
-        help="String focal resources.")                
+        help="String of focal resources.")                
     topic_code_id = fields.Many2one(
-        comodel_name="hc.vs.communication.topic", 
+        comodel_name="hc.vs.resource.type", 
         string="Topic Code", 
-        help="code of focal resources.")                
+        help="Resource type of focal resources.")                
 
 class CommunicationPayloadContentAttachment(models.Model):    
     _name = "hc.communication.payload.content.attachment"    
@@ -328,20 +328,3 @@ class CommunicationCategory(models.Model):
     _name = "hc.vs.communication.category"    
     _description = "Communication Category"        
     _inherit = ["hc.value.set.contains"]
-
-class CommunicationBasedOn(models.Model):    
-    _name = "hc.vs.communication.based.on"    
-    _description = "Communication Based On"        
-    _inherit = ["hc.value.set.contains"]
-
-class CommunicationParent(models.Model):    
-    _name = "hc.vs.communication.parent"    
-    _description = "Communication Parent"        
-    _inherit = ["hc.value.set.contains"]
-
-class CommunicationTopic(models.Model):    
-    _name = "hc.vs.communication.topic"    
-    _description = "Communication Topic"        
-    _inherit = ["hc.value.set.contains"]
-
-

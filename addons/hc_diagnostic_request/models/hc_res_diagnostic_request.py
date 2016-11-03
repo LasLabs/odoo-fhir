@@ -26,9 +26,9 @@ class DiagnosticRequest(models.Model):
         inverse_name="diagnostic_request_id", 
         string="Replaces", 
         help="What request replaces.")                    
-    requisition_identifier_id = fields.Many2one(
-        comodel_name="hc.diagnostic.request.requisition.identifier", 
-        string="Diagnostic Request Requisition Identifier", 
+    requisition_id = fields.Many2one(
+        comodel_name="hc.diagnostic.request.requisition", 
+        string="Requisition Identifier", 
         help="Identifier of composite request.")                    
     status = fields.Selection(
         string="Diagnostic Request Status", 
@@ -217,17 +217,17 @@ class DiagnosticRequestIdentifier(models.Model):
     diagnostic_request_id = fields.Many2one(
         comodel_name="hc.res.diagnostic.request", 
         string="Diagnostic Request", 
-        help="Diagnostic Request associated with this diagnostic request identifier.")                    
+        help="Diagnostic Request associated with this Diagnostic Request Identifier.")                    
 
-class DiagnosticRequestRequisitionIdentifier(models.Model): 
-    _name = "hc.diagnostic.request.requisition.identifier"  
-    _description = "Diagnostic Request Requisition Identifier"      
+class DiagnosticRequestRequisition(models.Model): 
+    _name = "hc.diagnostic.request.requisition"  
+    _description = "Diagnostic Request Requisition"      
     _inherit = ["hc.basic.association", "hc.identifier"]
 
     diagnostic_request_id = fields.Many2one(
         comodel_name="hc.res.diagnostic.request", 
         string="Diagnostic Request", 
-        help="Diagnostic Request associated with this diagnostic request requisition identifier." )              
+        help="Diagnostic Request associated with this Diagnostic Request Requisition." )              
 
 class DiagnosticRequestBasedOn(models.Model):    
     _name = "hc.diagnostic.request.based.on"    
@@ -237,7 +237,7 @@ class DiagnosticRequestBasedOn(models.Model):
     diagnostic_request_id = fields.Many2one(
         comodel_name="hc.res.diagnostic.request", 
         string="Diagnostic Request", 
-        help="Diagnostic Request associated with this diagnostic request based on.")                    
+        help="Diagnostic Request associated with this Diagnostic Request Based On.")                    
     based_on_type = fields.Selection(
         string="Based On Type", 
         selection=[
@@ -250,11 +250,11 @@ class DiagnosticRequestBasedOn(models.Model):
         help="What request fulfills.")                    
     based_on_string = fields.Char(
         string="Based On String", 
-        help="String what request fulfills.")                    
-    based_on_diagnostic_request_id = fields.Many2one(
-        comodel_name="hc.res.diagnostic.request", 
-        string="Based On Diagnostic Request", 
-        help="Diagnostic Request what request fulfills.")                    
+        help="String of what request fulfills.")
+    based_on_code_id = fields.Many2one(
+        comodel_name="hc.vs.resource.type", 
+        string="Based On Code", 
+        help="Resource type of what request fulfills.")
 
 class DiagnosticRequestDefinition(models.Model):    
     _name = "hc.diagnostic.request.definition"    
@@ -264,12 +264,12 @@ class DiagnosticRequestDefinition(models.Model):
     diagnostic_request_id = fields.Many2one(
         comodel_name="hc.res.diagnostic.request", 
         string="Diagnostic Request", 
-        help="Diagnostic Request associated with this diagnostic request definition.")                    
+        help="Diagnostic Request associated with this Diagnostic Request Definition.")                    
     definition_type = fields.Selection(
         string="Definition Type", 
         selection=[
             ("string", "String"), 
-            ("Diagnostic Request", "Diagnostic Request")], 
+            ("code", "Code")], 
         help="Type of protocol or definition.")                    
     definition_name = fields.Char(
         string="Definition", 
@@ -277,11 +277,11 @@ class DiagnosticRequestDefinition(models.Model):
         help="Protocol or definition.")                    
     definition_string = fields.Char(
         string="Definition String", 
-        help="String protocol or definition.")                    
-    definition_diagnostic_request_id = fields.Many2one(
-        comodel_name="hc.res.diagnostic.request", 
-        string="Definition Diagnostic Request", 
-        help="Diagnostic Request protocol or definition.")     
+        help="String of protocol or definition.")
+    definition_code_id = fields.Many2one(
+        comodel_name="hc.vs.resource.type", 
+        string="Definition Code", 
+        help="Resource type of protocol or definition.")
 
 class DiagnosticRequestNote(models.Model):    
     _name = "hc.diagnostic.request.note"    
@@ -291,7 +291,7 @@ class DiagnosticRequestNote(models.Model):
     diagnostic_request_id = fields.Many2one(
         comodel_name="hc.res.diagnostic.request", 
         string="Diagnostic Request", 
-        help="Diagnostic Request associated with this diagnostic request note.")                    
+        help="Diagnostic Request associated with this Diagnostic Request Note.")                    
 
 class DiagnosticRequestRelevantHistory(models.Model):    
     _name = "hc.diagnostic.request.relevant.history"   
@@ -301,11 +301,11 @@ class DiagnosticRequestRelevantHistory(models.Model):
     diagnostic_request_id = fields.Many2one(
         comodel_name="hc.res.diagnostic.request", 
         string="Diagnostic Request", 
-        help="Diagnostic Request associated with this diagnostic request relevant history.")                    
-    # relevant_history_id = fields.Many2one(
-    #     comodel_name="hc.res.provenance", 
-    #     string="Relevant History", 
-    #     help="Provenance associated with this diagnostic request relevant history.")                    
+        help="Diagnostic Request associated with this Diagnostic Request Relevant History.")                    
+    relevant_history_id = fields.Many2one(
+        comodel_name="hc.res.provenance", 
+        string="Relevant History", 
+        help="Provenance associated with this Diagnostic Request Relevant History.")                    
 
 class DiagnosticRequestReplaces(models.Model):    
     _name = "hc.diagnostic.request.replaces"    
@@ -315,12 +315,12 @@ class DiagnosticRequestReplaces(models.Model):
     diagnostic_request_id = fields.Many2one(
         comodel_name="hc.res.diagnostic.request", 
         string="Diagnostic Request", 
-        help="Diagnostic Request associated with this diagnostic request replaces.")                    
+        help="Diagnostic Request associated with this Diagnostic Request Replaces.")                    
     replaces_type = fields.Selection(
         string="Replaces Type", 
         selection=[
             ("string", "String"), 
-            ("Diagnostic Request", "Diagnostic Request")], 
+            ("code", "Code")], 
         help="Type of what request replaces.")                    
     replaces_name = fields.Char(
         string="Replaces", 
@@ -328,12 +328,12 @@ class DiagnosticRequestReplaces(models.Model):
         help="What request replaces.")                    
     replaces_string = fields.Char(
         string="Replaces String", 
-        help="String what request replaces.")                    
-    replaces_diagnostic_request_id = fields.Many2one(
-        comodel_name="hc.res.diagnostic.request", 
-        string="Replaces Diagnostic Request", 
-        help="Diagnostic Request what request replaces.")                    
-
+        help="String of what request replaces.")
+    replaces_code_id = fields.Many2one(
+        comodel_name="hc.vs.resource.type", 
+        string="Replaces Code", 
+        help="Resource type of what request replaces.")
+                   
 class DiagnosticRequestSupportingInfo(models.Model):    
     _name = "hc.diagnostic.request.supporting.info"    
     _description = "Diagnostic Request Supporting Information"        
@@ -342,12 +342,12 @@ class DiagnosticRequestSupportingInfo(models.Model):
     diagnostic_request_id = fields.Many2one(
         comodel_name="hc.res.diagnostic.request", 
         string="Diagnostic Request", 
-        help="Diagnostic Request associated with this diagnostic request supporting information.")                    
+        help="Diagnostic Request associated with this Diagnostic Request Supporting Information.")                    
     supporting_info_type = fields.Selection(
         string="Supporting Info Type", 
         selection=[
             ("string", "String"), 
-            ("Diagnostic Request", "Diagnostic Request")], 
+            ("code", "Code")], 
         help="Type of additional clinical information.")                    
     supporting_info_name = fields.Char(
         string="Supporting Info", 
@@ -355,11 +355,11 @@ class DiagnosticRequestSupportingInfo(models.Model):
         help="Additional clinical information.")                    
     supporting_info_string = fields.Char(
         string="Supporting Info String", 
-        help="String additional clinical information.")                    
-    supporting_info_diagnostic_request_id = fields.Many2one(
-        comodel_name="hc.res.diagnostic.request", 
-        string="Supporting Info Diagnostic Request", 
-        help="Diagnostic Request additional clinical information.")                    
+        help="String of additional clinical information.")
+    supporting_info_code_id = fields.Many2one(
+        comodel_name="hc.vs.resource.type", 
+        string="Supporting Info Code", 
+        help="Resource type of additional clinical information.")
 
 class DiagnosticRequestReason(models.Model): 
     _name = "hc.diagnostic.request.reason"  
@@ -369,7 +369,7 @@ class DiagnosticRequestReason(models.Model):
     diagnostic_request_id = fields.Many2one(
         comodel_name="hc.res.diagnostic.request", 
         string="Diagnostic Request", 
-        help="Diagnostic Request associated with this diagnostic request reason.")                    
+        help="Diagnostic Request associated with this Diagnostic Request Reason.")                    
     reason_id = fields.Many2one(
         comodel_name="hc.vs.condition.code", 
         string="Reason", 

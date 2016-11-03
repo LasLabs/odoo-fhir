@@ -18,8 +18,8 @@ class ReferralRequest(models.Model):
         help="Request fulfilled by this request.")                   
     parent_id = fields.Many2one(
         comodel_name="hc.referral.request.parent", 
-        string="Parent", 
-        help="Composite request this is part of.")              
+        string="Parent Identifier", 
+        help="Identifier of composite request this is part of.")            
     status = fields.Selection(
         string="Referral Request Status", 
         required="True", 
@@ -65,9 +65,9 @@ class ReferralRequest(models.Model):
         comodel_name="hc.res.encounter", 
         string="Context Encounter", 
         help="Encounter urgency of referral / transfer of care request.")                
-    context_encounter_id = fields.Many2one(
+    context_episode_of_care_id = fields.Many2one(
         comodel_name="hc.res.episode.of.care", 
-        string="Context Encounter", 
+        string="Context Episode of Care", 
         help="Episode Of Care patient referred to care or transfer.")                
     fulfillment_start_time = fields.Datetime(
         string="Fulfillment Start Time", 
@@ -115,7 +115,7 @@ class ReferralRequest(models.Model):
         comodel_name="hc.vs.referral.reason", 
         string="Reason", 
         help="Reason for referral / Transfer of care request.")                
-    description = fields.Char(
+    description = fields.Text(
         string="Description", 
         help="A textual description of the referral.")                  
     service_requested_ids = fields.One2many(
@@ -263,3 +263,13 @@ class ReferralType(models.Model):
     _name = "hc.vs.referral.type"    
     _description = "Referral Type"        
     _inherit = ["hc.value.set.contains"]
+
+# External Reference
+
+class EncounterReferralRequest(models.Model):   
+    _inherit = "hc.encounter.referral.request" 
+              
+    referral_request_id = fields.Many2one(
+        comodel_name="hc.res.referral.request", 
+        string="Referral Request", 
+        help="Referral Request associated with this Encounter.")

@@ -85,25 +85,9 @@ class Coverage(models.Model):
         comodel_name="hc.res.organization", 
         string="Planholder Organization", 
         help="Organization plan holder.")
-    beneficiary_type = fields.Selection(
-        string="Beneficiary Type", 
-        required="True", 
-        selection=[
-            ("identifier", "Identifier"), 
-            ("patient", "Patient")], 
-        help="Type of plan beneficiary.")
-    beneficiary_name = fields.Char(
-        string="Beneficiary", 
-        compute="compute_beneficiary_name", 
-        required="True", 
-        help="Plan Beneficiary.")
-    beneficiary_identifier_id = fields.Many2one(
-        comodel_name="hc.beneficiary.identifier", 
-        string="Beneficiary Identifier", 
-        help="Identifier plan holder.")
-    beneficiary_patient_id = fields.Many2one(
+    beneficiary_id = fields.Many2one(
         comodel_name="hc.res.patient", 
-        string="Beneficiary Patient", 
+        string="Beneficiary", 
         help="Patient plan holder.")
     relationship_id = fields.Many2one(
         comodel_name="hc.vs.policyholder.relationship", 

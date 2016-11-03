@@ -13,7 +13,7 @@ class Person(models.Model):
         string="Partner", 
         required="True", 
         ondelete="restrict", 
-        help="Partner associated with this person.")
+        help="Partner associated with this Person.")
     name_id = fields.Many2one(
         comodel_name="hc.human.name",
         string="Full Name",
@@ -27,7 +27,7 @@ class Person(models.Model):
         comodel_name="hc.person.name", 
         inverse_name="person_id", 
         string="Names",
-        help="A name associated with this person.")
+        help="A name associated with the person.")
     address_ids = fields.One2many(
         comodel_name="hc.person.address", 
         inverse_name="person_id", 
@@ -88,7 +88,21 @@ class PersonLink(models.Model):
     person_id = fields.Many2one(
         comodel_name="hc.res.person", 
         string="Person", 
-        help="Person associated with this person link.")
+        help="Person associated with this Person Link.")
+    target_type = fields.Selection(
+        string="Target Type", 
+        required="True", 
+        selection=[
+            ("Patient", "Patient"),
+            ("Practitioner", "Practitioner"), 
+            ("Related Person", "Related Person"), 
+            ("Person", "Person")], 
+        help="Type of resource to which this actual person is associated.")                
+    target_name = fields.Char(
+        string="Target", 
+        compute="_compute_target_name", 
+        store="True", 
+        help="The resource to which this actual person is associated.")
     target_person_id = fields.Many2one(
         comodel_name="hc.res.person", 
         string="Target Person", 
@@ -99,10 +113,10 @@ class PersonLink(models.Model):
     assurance_level = fields.Selection(
         string="Link Assurance Level", 
         selection=[
-            ("level1", "Level1"), 
-            ("level2", "Level2"), 
-            ("level3", "Level3"), 
-            ("level4", "Level4")], 
+            ("level1", "Level 1"), 
+            ("level2", "Level 2"), 
+            ("level3", "Level 3"), 
+            ("level4", "Level 4")], 
         help="Level of assurance that this link is actually associated with the target resource.")
 
 class PersonAddress(models.Model):
@@ -116,11 +130,11 @@ class PersonAddress(models.Model):
         string="Address", 
         required="True",
         ondelete="restrict", 
-        help="Address associated with this entity.") 
+        help="Address associated with this Person Address.") 
     person_id = fields.Many2one(
         comodel_name="hc.res.person", 
         string="Person", 
-        help="Entity associated with this address.")
+        help="Entity associated with this Person Address.")
     use = fields.Selection(string="Use",
         selection=[
             ("home", "Home"), 
@@ -129,7 +143,8 @@ class PersonAddress(models.Model):
             ("old", "Old")],
         default="home",  
         help="The purpose of this address.")
-    type = fields.Selection(string="Type", 
+    type = fields.Selection(
+        string="Type", 
         selection=[
             ("postal", "Postal"), 
             ("physical", "Physical"), 
@@ -145,7 +160,7 @@ class PersonIdentifier(models.Model):
     person_id = fields.Many2one(
         comodel_name="hc.res.person", 
         string="Person", 
-        help="Person associated with this identifier.")
+        help="Person associated with this Person Identifier.")
 
 class PersonName(models.Model): 
     _name = "hc.person.name"    
@@ -158,11 +173,11 @@ class PersonName(models.Model):
         string="Human Name",
         required="True",
         ondelete="restrict", 
-        help="Human name associated with this person name.")
+        help="Human Name associated with this Person Name.")
     person_id = fields.Many2one(
         comodel_name="hc.res.person", 
         string="Person", 
-        help="Person associated with this person name.")
+        help="Person associated with this Person Name.")
 
 class PersonTelecom(models.Model):  
     _name = "hc.person.telecom" 
@@ -189,7 +204,7 @@ class PersonPhoto(models.Model):
     person_id = fields.Many2one(
         comodel_name="hc.res.person", 
         string="Person", 
-        help="Entity associated with this photo.")      
+        help="Entity associated with this Person Photo.")      
 
 # External Reference
 
