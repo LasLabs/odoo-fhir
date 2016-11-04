@@ -327,7 +327,7 @@ class MedDispDosageInstrAddlInstr(models.Model):
         string="Dose Type", 
         selection=[
             ("string", "String"), 
-            ("Code", "Code")], 
+            ("code", "Code")], 
         help="Type of supplemental instructions.")          
     additional_instruction_name = fields.Char(
         string="Additional Instructions", 

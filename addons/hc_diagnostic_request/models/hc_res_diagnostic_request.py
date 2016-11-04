@@ -48,7 +48,11 @@ class DiagnosticRequest(models.Model):
         string="Diagnostic Request Stage", 
         required="True", 
         help="Whether the request is a proposal, plan, an original order or a reflex order.")
-    # stage = fields.Selection(string="Diagnostic Request Stage", required="True", selection=[("proposal", "Proposal"), ("plan", "Plan"), ("original-order", "Original-Order"), ("reflex-order", "Reflex-Order")], help="proposal | plan | original-order | reflex-order.")                    
+    # stage = fields.Selection(
+    #     string="Diagnostic Request Stage", 
+    #     required="True", 
+    #     selection=[("proposal", "Proposal"), ("plan", "Plan"), ("original-order", "Original-Order"), ("reflex-order", "Reflex-Order")], 
+    #     help="proposal | plan | original-order | reflex-order.")                    
     code_id = fields.Many2one(
         comodel_name="hc.vs.diagnostic.request", 
         string="Code", 

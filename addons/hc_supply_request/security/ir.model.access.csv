@@ -1,2 +1,10 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_hc_supply_request_hc_supply_request,hc_supply_request.hc_supply_request,model_hc_supply_request_hc_supply_request,,1,0,0,0
+access_hc_supply_request_hc_res_supply_request_user,hc.supply.request.hc.res.supply.request.user,model_hc_res_supply_request,hc_base.group_hc_base_user,1,0,0,0
+access_hc_supply_request_hc_supply_request_when_user,hc.supply.request.hc.supply.request.when.user,model_hc_supply_request_when,hc_base.group_hc_base_user,1,0,0,0
+access_hc_supply_request_hc_supply_request_identifier_user,hc.supply.request.hc.supply.request.identifier.user,model_hc_supply_request_identifier,hc_base.group_hc_base_user,1,0,0,0
+access_hc_supply_request_hc_supply_request_when_schedule_user,hc.supply.request.hc.supply.request.when.schedule.user,model_hc_supply_request_when_schedule,hc_base.group_hc_base_user,1,0,0,0
+access_hc_supply_request_hc_supply_request_supplier_user,hc.supply.request.hc.supply.request.supplier.user,model_hc_supply_request_supplier,hc_base.group_hc_base_user,1,0,0,0
+access_hc_supply_request_hc_vs_supply_request_kind_manager,hc.supply.request.hc.vs.supply.request.kind.manager,model_hc_vs_supply_request_kind,hc_base.group_hc_base_manager,1,1,1,1
+access_hc_supply_request_hc_vs_supply_item_manager,hc.supply.request.hc.vs.supply.item.manager,model_hc_vs_supply_item,hc_base.group_hc_base_manager,1,1,1,1
+access_hc_supply_request_hc_vs_supply_request_reason_manager,hc.supply.request.hc.vs.supply.request.reason.manager,model_hc_vs_supply_request_reason,hc_base.group_hc_base_manager,1,1,1,1
+access_hc_supply_request_hc_vs_supply_request_when_manager,hc.supply.request.hc.vs.supply.request.when.manager,model_hc_vs_supply_request_when,hc_base.group_hc_base_manager,1,1,1,1

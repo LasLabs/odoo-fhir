@@ -118,31 +118,116 @@ class DeviceUseRequest(models.Model):
         string="Episode Of Care", 
         help="Episode Of Care motivating request.")                
     occurence_type = fields.Selection(
-        string="Occurence Type", selection=[("dateTime", "Datetime"), ("Period", "Period"), ("Timing", "Timing")], help="Type of desired time or schedule for use.")                
-    occurrence_name = fields.Char(string="Occurrence", compute="_compute_occurrence_name", store="True", help="Desired time or schedule for use.")                
-    occurrence_datetime = fields.Datetime( string="Occurrence Datetime", help="dateTime desired time or schedule for use.")                
-    occurrence_start_date = fields.Datetime(string="Occurrence Start Date", help="Start of the desired time or schedule for use.")                
-    occurrence_end_date = fields.Datetime(string="Occurrence End Date", help="End of the desired time or schedule for use.")                
-    occurrence_timing_id = fields.Many2one(comodel_name="hc.device.use.request.occurrence.timing", string="Occurrence Timing", help="Timing desired time or schedule for use.")                
-    authored = fields.Datetime(string="Authored Date", help="When recorded.")                
-    requester_type = fields.Selection(string="Requester Type", selection=[("Device", "Device"), ("Practitioner", "Practitioner"), ("Organization", "Organization")], help="Type of who/what is requesting device.")                
-    requester_name = fields.Char(string="Requester", compute="_compute_requester_name", store="True", help="Who/what is requesting device.")                
-    requester_device_id = fields.Many2one(comodel_name="hc.res.device", string="Requester Device", help="Who/what is requesting device.")                
-    requester_practitioner_id = fields.Many2one(comodel_name="hc.res.practitioner", string="Requester Practitioner", help="Practitioner who/what is requesting device.")                
-    requester_organization_id = fields.Many2one(comodel_name="hc.res.organization", string="Requester Organization", help="Organization who/what is requesting device.")                
-    performer_type_id = fields.Many2one(comodel_name="hc.vs.participant.role", string="Performer Type", help="Fille role.")                
-    performer_type = fields.Selection(string="Performer Type", selection=[("Practitioner", "Practitioner"), ("Organization", "Organization"), ("Patient", "Patient"), ("Device", "Device"), ("Related Person", "Related Person")], help="Type of requested filler.")                
-    performer_name = fields.Char(string="Performer", compute="_compute_performer_name", store="True", help="Requested Filler.")                
-    requested_performer_practitioner_id = fields.Many2one(comodel_name="hc.res.practitioner", string="Requested Performer Practitioner", help="Practitioner requested filler.")                
-    requested_performer_organization_id = fields.Many2one(comodel_name="hc.res.organization", string="Requested Performer Organization", help="Organization requested filler.")                
-    requested_performer_patient_id = fields.Many2one(comodel_name="hc.res.patient", string="Requested Performer Patient", help="Patient requested filler.")                
-    requested_performer_device_id = fields.Many2one(comodel_name="hc.res.device", string="Requested Performer Device", help="Device requested filler.")                
-    requested_performer_related_person_id = fields.Many2one(comodel_name="hc.res.related.person", string="Requested Performer Related Person", help="Related Person requested filler.")                
-    reason_code_ids = fields.Many2many(comodel_name="hc.vs.condition.code", string="Reason Codes", help="Coded Reason for request.")                
-    reason_reference_ids = fields.One2many(comodel_name="hc.device.use.request.reason.reference", inverse_name="device_use_request_id", string="Reason References", help="Linked Reason for request.")                
-    supporting_info_ids = fields.One2many(comodel_name="hc.device.use.request.supporting.info", inverse_name="device_use_request_id", string="Supporting Info", help="Additional clinical information.")                
-    note_ids = fields.One2many(comodel_name="hc.device.use.request.note", inverse_name="device_use_request_id", string="Notes", help="Notes or comments.")                
-    relevant_history_ids = fields.One2many(comodel_name="hc.device.use.request.relevant.history", inverse_name="device_use_request_id", string="Relevant Histories", help="Request provenance.")                
+        string="Occurence Type", 
+        selection=[
+            ("dateTime", "Datetime"), ("Period", "Period"), ("Timing", "Timing")], 
+        help="Type of desired time or schedule for use.")                
+    occurrence_name = fields.Char(
+        string="Occurrence", 
+        compute="_compute_occurrence_name", 
+        store="True", 
+        help="Desired time or schedule for use.")
+    occurrence_datetime = fields.Datetime(
+        string="Occurrence Datetime", 
+        help="dateTime desired time or schedule for use.")              
+    occurrence_start_date = fields.Datetime(
+        string="Occurrence Start Date", 
+        help="Start of the desired time or schedule for use.")                
+    occurrence_end_date = fields.Datetime(
+        string="Occurrence End Date", 
+        help="End of the desired time or schedule for use.")                
+    occurrence_timing_id = fields.Many2one(
+        comodel_name="hc.device.use.request.occurrence.timing", 
+        string="Occurrence Timing", 
+        help="Timing desired time or schedule for use.")                
+    authored = fields.Datetime(
+        string="Authored Date", 
+        help="When recorded.")                
+    requester_type = fields.Selection(
+        string="Requester Type", 
+        selection=[
+            ("Device", "Device"), 
+            ("Practitioner", "Practitioner"), 
+            ("Organization", "Organization")], 
+        help="Type of who/what is requesting device.")                
+    requester_name = fields.Char(
+        string="Requester", 
+        compute="_compute_requester_name", 
+        store="True", 
+        help="Who/what is requesting device.")                
+    requester_device_id = fields.Many2one(
+        comodel_name="hc.res.device", 
+        string="Requester Device", 
+        help="Who/what is requesting device.")                
+    requester_practitioner_id = fields.Many2one(
+        comodel_name="hc.res.practitioner", 
+        string="Requester Practitioner", 
+        help="Practitioner who/what is requesting device.")                
+    requester_organization_id = fields.Many2one(
+        comodel_name="hc.res.organization", 
+        string="Requester Organization", 
+        help="Organization who/what is requesting device.")                
+    performer_type_id = fields.Many2one(
+        comodel_name="hc.vs.participant.role", 
+        string="Performer Type", help="Fille role.")                
+    performer_type = fields.Selection(
+        string="Performer Type", 
+        selection=[
+            ("Practitioner", "Practitioner"), 
+            ("Organization", "Organization"), 
+            ("Patient", "Patient"), 
+            ("Device", "Device"), 
+            ("Related Person", "Related Person")], 
+        help="Type of requested filler.")                
+    performer_name = fields.Char(
+        string="Performer", 
+        compute="_compute_performer_name", 
+        store="True", 
+        help="Requested Filler.")                
+    requested_performer_practitioner_id = fields.Many2one(
+        comodel_name="hc.res.practitioner", 
+        string="Requested Performer Practitioner", 
+        help="Practitioner requested filler.")                
+    requested_performer_organization_id = fields.Many2one(
+        comodel_name="hc.res.organization", 
+        string="Requested Performer Organization", 
+        help="Organization requested filler.")                
+    requested_performer_patient_id = fields.Many2one(
+        comodel_name="hc.res.patient", 
+        string="Requested Performer Patient", 
+        help="Patient requested filler.")                
+    requested_performer_device_id = fields.Many2one(
+        comodel_name="hc.res.device", 
+        string="Requested Performer Device", 
+        help="Device requested filler.")                
+    requested_performer_related_person_id = fields.Many2one(
+        comodel_name="hc.res.related.person", 
+        string="Requested Performer Related Person", 
+        help="Related Person requested filler.")                
+    reason_code_ids = fields.Many2many(
+        comodel_name="hc.vs.condition.code", 
+        string="Reason Codes", 
+        help="Coded Reason for request.")                
+    reason_reference_ids = fields.One2many(
+        comodel_name="hc.device.use.request.reason.reference", 
+        inverse_name="device_use_request_id", 
+        string="Reason References", 
+        help="Linked Reason for request.")                
+    supporting_info_ids = fields.One2many(
+        comodel_name="hc.device.use.request.supporting.info", 
+        inverse_name="device_use_request_id", 
+        string="Supporting Info", 
+        help="Additional clinical information.")                
+    note_ids = fields.One2many(
+        comodel_name="hc.device.use.request.note", 
+        inverse_name="device_use_request_id", 
+        string="Notes", 
+        help="Notes or comments.")                
+    relevant_history_ids = fields.One2many(
+        comodel_name="hc.device.use.request.relevant.history", 
+        inverse_name="device_use_request_id", 
+        string="Relevant Histories", 
+        help="Request provenance.")                
 
 class DeviceUseRequestIdentifier(models.Model):    
     _name = "hc.device.use.request.identifier"    
@@ -227,7 +312,9 @@ class DeviceUseRequestReplaces(models.Model):
         help="Type of what request replaces.")                
     replaces_name = fields.Char(
         string="Replaces", 
-        compute="_compute_replaces_name", store="True", help="What request replaces.")                
+        compute="_compute_replaces_name", 
+        store="True", 
+        help="What request replaces.")                
     replaces_string = fields.Char(
         string="Replaces String", 
         help="String of what request replaces.")                
@@ -314,7 +401,7 @@ class DeviceUseRequestRelevantHistory(models.Model):
     relevant_history_id = fields.Many2one(
         comodel_name="hc.res.provenance", 
         string="Relevant History", 
-        help="Request provenance.")                
+        help="Provenance associated with this Device Use Request Relevant History.")                
 
 class DeviceUseRequestRequisition(models.Model):    
     _name = "hc.device.use.request.requisition"    

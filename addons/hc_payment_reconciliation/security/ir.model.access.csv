@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_hc_payment_reconciliation_hc_payment_reconciliation,hc_payment_reconciliation.hc_payment_reconciliation,model_hc_payment_reconciliation_hc_payment_reconciliation,,1,0,0,0

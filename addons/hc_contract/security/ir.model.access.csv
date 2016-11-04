@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_hc_contract_hc_contract,hc_contract.hc_contract,model_hc_contract_hc_contract,,1,0,0,0

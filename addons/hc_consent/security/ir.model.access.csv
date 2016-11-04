@@ -6,13 +6,6 @@ access_hc_consent_hc_consent_except_data_user,hc.consent.hc.consent.except.data.
 access_hc_consent_hc_consent_consentor_user,hc.consent.hc.consent.consentor.user,model_hc_consent_consentor,hc_base.group_hc_base_user,1,0,0,0
 access_hc_consent_hc_consent_recipient_user,hc.consent.hc.consent.recipient.user,model_hc_consent_recipient,hc_base.group_hc_base_user,1,0,0,0
 access_hc_consent_hc_consent_identifier_user,hc.consent.hc.consent.identifier.user,model_hc_consent_identifier,hc_base.group_hc_base_user,1,0,0,0
-access_hc_consent_hc_consent_category_user,hc.consent.hc.consent.category.user,model_hc_consent_category,hc_base.group_hc_base_user,1,0,0,0
-access_hc_consent_hc_consent_purpose_user,hc.consent.hc.consent.purpose.user,model_hc_consent_purpose,hc_base.group_hc_base_user,1,0,0,0
-access_hc_consent_hc_consent_except_action_user,hc.consent.hc.consent.except.action.user,model_hc_consent_except_action,hc_base.group_hc_base_user,1,0,0,0
-access_hc_consent_hc_consent_except_security_label_user,hc.consent.hc.consent.except.security.label.user,model_hc_consent_except_security_label,hc_base.group_hc_base_user,1,0,0,0
-access_hc_consent_hc_consent_except_purpose_user,hc.consent.hc.consent.except.purpose.user,model_hc_consent_except_purpose,hc_base.group_hc_base_user,1,0,0,0
-access_hc_consent_hc_consent_except_class_user,hc.consent.hc.consent.except.class.user,model_hc_consent_except_class,hc_base.group_hc_base_user,1,0,0,0
-access_hc_consent_hc_consent_except_code_user,hc.consent.hc.consent.except.code.user,model_hc_consent_except_code,hc_base.group_hc_base_user,1,0,0,0
 access_hc_consent_hc_consent_source_attachment_user,hc.consent.hc.consent.source.attachment.user,model_hc_consent_source_attachment,hc_base.group_hc_base_user,1,0,0,0
 access_hc_consent_hc_consent_source_identifier_user,hc.consent.hc.consent.source.identifier.user,model_hc_consent_source_identifier,hc_base.group_hc_base_user,1,0,0,0
 access_hc_consent_hc_vs_consent_action_manager,hc.consent.hc.vs.consent.action.manager,model_hc_vs_consent_action,hc_base.group_hc_base_manager,1,1,1,1
