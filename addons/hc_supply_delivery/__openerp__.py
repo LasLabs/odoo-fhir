@@ -1,35 +1,44 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "hc_supply_delivery",
+    'name': "Supply Delivery",
 
     'summary': """
-        Short (1 phrase/line) summary of the module's purpose, used as
-        subtitle on modules listing or apps.openerp.com""",
+        Supply movement
+        """,
 
     'description': """
-        Long description of module's purpose
+        Record of delivery of what is supplied.
+
+        **Scope and Usage** 
+    
+        The scope of the supply resource is for supplies used in the healthcare process. 
+        This includes supplies specifically used in the treatment of patients as well as supply movement within an institution 
+        (transport a set of supplies from materials management to a service unit (nurse station). 
+        This resource does not include the provisioning of transportation services.
     """,
 
-    'author': "My Company",
-    'website': "http://www.yourcompany.com",
+    'author': "Luigi Sison",
+    'website': "https://hl7-fhir.github.io/supplydelivery.html",
 
     # Categories can be used to filter modules in modules listing
     # Check https://github.com/odoo/odoo/blob/master/openerp/addons/base/module/module_data.xml
     # for the full list
-    'category': 'Uncategorized',
+    'category': 'Health Care',
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base'],
+    'depends': ['hc_supply_request'],
 
     # always loaded
     'data': [
-        # 'security/ir.model.access.csv',
-        'views/views.xml',
-        'views/templates.xml',
+        'security/ir.model.access.csv',
+        'views/hc_res_supply_delivery_views.xml',
+        'views/hc_res_supply_delivery_templates.xml',  
     ],
     # only loaded in demonstration mode
     'demo': [
         'demo/demo.xml',
     ],
+    'installable': 'True',
+    'auto-install': 'True',
 }

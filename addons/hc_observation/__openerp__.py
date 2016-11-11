@@ -40,7 +40,7 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['hc_sequence'],
+    'depends': ['hc_sequence', 'hc_device_metric', 'hc_encounter'],
 
     # always loaded
     'data': [

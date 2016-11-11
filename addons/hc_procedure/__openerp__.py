@@ -26,7 +26,7 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['hc_observation'],
+    'depends': ['hc_care_plan', 'hc_medication_administration'],
 
     # always loaded
     'data': [

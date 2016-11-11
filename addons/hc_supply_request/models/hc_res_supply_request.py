@@ -53,8 +53,8 @@ class SupplyRequest(models.Model):
         comodel_name="hc.vs.supply.request.kind", 
         string="Kind", 
         help="The kind of supply (central, non-stock, etc).")                
-    ordered_type = fields.Selection(
-        string="Ordered Type", 
+    ordered_item_type = fields.Selection(
+        string="Ordered Item Type", 
         selection=[
             ("code", "Code"), 
             ("Medication", "Medication"), 

@@ -51,8 +51,6 @@ class ValueSetContains(models.AbstractModel):
     #     if self.name == self.description:
     #         raise ValidationError("Concept name and description must be different")
 
-
-
 class ActCode(models.Model):   
     _name = "hc.vs.act.code"
     _description = "Act Code"  
@@ -62,12 +60,22 @@ class ActReason(models.Model):
     _name = "hc.vs.act.reason"    
     _description = "Act Reason"        
     _inherit = ["hc.value.set.contains"]
-    
+
+# class AdditionalInstructionsCode(models.Model):    
+#     _name = "hc.vs.additional.instructions.code"    
+#     _description = "Additional Instructions Code"        
+#     _inherit = ["hc.value.set.contains"]    
+
 class AdministrativeGender(models.Model):   
     _name = "hc.vs.administrative.gender"   
     _description = "Administrative Gender"      
     _inherit = ["hc.value.set.contains"]
 
+class AdministrativeMethodCode(models.Model):    
+    _name = "hc.vs.administration.method.code"    
+    _description = "Administration Method Code"        
+    _inherit = ["hc.value.set.contains"]
+    
 class AnimalBreed(models.Model):    
     _name = "hc.vs.animal.breed"    
     _description = "Animal Breed"   
@@ -81,6 +89,11 @@ class AnimalGenderStatus(models.Model):
 class AnimalSpecies(models.Model):  
     _name = "hc.vs.animal.species"  
     _description = "Animal Species" 
+    _inherit = ["hc.value.set.contains"]
+
+class ApproachSiteCode(models.Model):    
+    _name = "hc.vs.approach.site.code"    
+    _description = "Approach Site Code"        
     _inherit = ["hc.value.set.contains"]
 
 class BodySite(models.Model):   
@@ -166,6 +179,11 @@ class ManifestationCode(models.Model):
 class MaritalStatus(models.Model):  
     _name = "hc.vs.marital.status"  
     _description = "Marital Status" 
+    _inherit = ["hc.value.set.contains"]
+
+class MedicationAsNeededReason(models.Model):    
+    _name = "hc.vs.medication.as.needed.reason"    
+    _description = "Medication As Needed Reason"        
     _inherit = ["hc.value.set.contains"]
 
 class OccupationCode(models.Model):  

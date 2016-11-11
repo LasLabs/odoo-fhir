@@ -11,6 +11,7 @@ import hc_available_time
 import hc_contact_detail
 import hc_contributor
 import hc_data_requirement
+import hc_dosage_instruction
 import hc_human_name
 import hc_identifier
 import hc_language
@@ -19,8 +20,10 @@ import hc_parameter_definition
 import hc_quantity
 import hc_range
 import hc_ratio
+import hc_related_artifact
 import hc_related_resource
 import hc_resource
 import hc_sampled_data
 import hc_signature
 import hc_timing
+import hc_usage_context

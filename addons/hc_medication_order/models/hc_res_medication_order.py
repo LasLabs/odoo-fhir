@@ -55,9 +55,8 @@ class MedicationOrder(models.Model):
         comodel_name="hc.res.practitioner", 
         string="Prescriber", 
         help="Who ordered the medication(s).")                
-    reason_code_ids = fields.One2many(
-        comodel_name="hc.medication.order.reason.code", 
-        inverse_name="medication_order_id", 
+    reason_code_ids = fields.Many2many(
+        comodel_name="hc.vs.condition.code", 
         string="Reason Codes", 
         help="Reason or indication for writing the prescription.")                
     reason_reference_ids = fields.One2many(
@@ -358,20 +357,6 @@ class MedicationOrderIdentifier(models.Model):
         string="Medication Order", 
         help="Medication Order associated with this Medication Order Identifier.")                
 
-class MedicationOrderReasonCode(models.Model):    
-    _name = "hc.medication.order.reason.code"    
-    _description = "Medication Order Reason Code"        
-    _inherit = ["hc.basic.association"]
-
-    medication_order_id = fields.Many2one(
-        comodel_name="hc.res.medication.order", 
-        string="Medication Order", 
-        help="Medication Order associated with this Medication Order Reason Code.")                
-    reason_code_id = fields.Many2one(
-        comodel_name="hc.vs.condition.code", 
-        string="Reason Code", 
-        help="Reason Code associated with this Medication Order Reason Code.")
-
 class MedicationOrderReasonReference(models.Model):    
     _name = "hc.medication.order.reason.reference"    
     _description = "Medication Order Reason Reference"        
@@ -420,7 +405,7 @@ class MedOrderDosageInstrAddlInstr(models.Model):
         string="Additional Instructions", 
         help="Text of supplemental instructions.")           
     additional_instruction_code_id = fields.Many2one(
-        comodel_name="hc.vs.additional.instruction.code", 
+        comodel_name="hc.vs.additional.instructions.code", 
         string="Additional Instructions Code", 
         help="Code of supplemental instructions.")
 
@@ -434,21 +419,6 @@ class MedOrderDosageInstrTiming(models.Model):
         string="Dosage Instruction", 
         help="Dosage Instruction associated with this Medication Order Dosage Instruction Timing.")                
 
-class AdministrativeMethodCode(models.Model):    
-    _name = "hc.vs.administration.method.code"    
-    _description = "Administration Method Code"        
-    _inherit = ["hc.value.set.contains"]
-
-class AdditionalInstructionCode(models.Model):    
-    _name = "hc.vs.additional.instruction.code"    
-    _description = "Additional Instruction Code"        
-    _inherit = ["hc.value.set.contains"]
-
-class ApproachSiteCode(models.Model):    
-    _name = "hc.vs.approach.site.code"    
-    _description = "Approach Site Code"        
-    _inherit = ["hc.value.set.contains"]
-
 class MedicationEventHistoryReason(models.Model):    
     _name = "hc.vs.medication.event.history.reason"    
     _description = "Medication Event History Reason"        
@@ -457,11 +427,6 @@ class MedicationEventHistoryReason(models.Model):
 class MedicationEventHistoryAction(models.Model):    
     _name = "hc.vs.medication.event.history.action"    
     _description = "Medication Event History Action"        
-    _inherit = ["hc.value.set.contains"]
-
-class MedicationAsNeededReason(models.Model):    
-    _name = "hc.vs.medication.as.needed.reason"    
-    _description = "Medication As Needed Reason"        
     _inherit = ["hc.value.set.contains"]
 
 class MedicationOrderCategory(models.Model):    

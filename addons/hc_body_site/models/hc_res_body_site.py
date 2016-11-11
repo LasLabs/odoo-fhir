@@ -62,3 +62,13 @@ class BodySiteCode(models.Model):
     _name = "hc.vs.body.site.code"
     _description = "Body Site Code"
     _inherit = ["hc.value.set.contains"]
+
+# External Reference
+
+class DosageInstruction(models.Model):    
+    _inherit = "hc.dosage.instruction"    
+
+    site_body_site_id = fields.Many2one(
+        comodel_name="hc.res.body.site", 
+        string="Site Body Site", 
+        help="Body Site content of this set of documents.")

@@ -133,36 +133,37 @@ class CoverageIdentifier(models.Model):
     coverage_id = fields.Many2one(
         comodel_name="hc.res.coverage", 
         string="Coverage", 
-        help="Coverage associated with this coverage identifier.")
+        help="Coverage associated with this Coverage Identifier.")
 
 class CoverageContract(models.Model):
     _name = "hc.coverage.contract"
     _description = "Coverage Contract"
     _inherit = ["hc.basic.association"]
 
-    # contract_id = fields.Many2one(
-    #     comodel_name="hc.res.contract", 
-    #     string="Contract", 
-    #     help="Contract associated with this coverage contract.")
     coverage_id = fields.Many2one(
         comodel_name="hc.res.coverage", 
         string="Coverage", 
-        help="Coverage associated with this coverage contract.")
+        help="Coverage associated with this Coverage Contract.")
+
+    # contract_id = fields.Many2one(
+    #     comodel_name="hc.res.contract", 
+    #     string="Contract", 
+    #     help="Contract associated with this Coverage Contract.")
 
 class CoverageNetwork(models.Model):    
     _name = "hc.coverage.network"   
     _description = "Coverage Network"       
     _inherit = ["hc.basic.association"]
 
+    coverage_id = fields.Many2one(
+        comodel_name="hc.res.coverage", 
+        string="Coverage",
+        help="Coverage associated with this Coverage Network.")
+
     organization_id = fields.Many2one(
         comodel_name="hc.res.organization", 
         string="Organization", 
-        help="Organization associated with this coverage network.")             
-    coverage_id = fields.Many2one(
-        comodel_name="hc.res.coverage", 
-        string="Coverage", 
-        # required="True", 
-        help="Coverage associated with this coverage network.")
+        help="Organization associated with this Coverage Network.")             
 
 class IssuerIdentifier(models.Model):
     _name = "hc.issuer.identifier"

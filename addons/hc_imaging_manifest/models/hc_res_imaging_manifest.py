@@ -119,7 +119,8 @@ class ImgManifStudyBaseLocn(models.Model):
         help="Imaging Manifest Study associated with this Study Base Location.")                
     type_id = fields.Many2one(
         comodel_name="hc.vs.d.web.type", 
-        string="Type", 
+        string="Type",
+        required="True", 
         help="The service type for accessing (e.g., retrieving, viewing) the DICOM instances.")                
     uid = fields.Char(
         string="UID", 
@@ -159,7 +160,8 @@ class ImgManifStudySeriesBaseLocn(models.Model):
         help="Imaging Manifest Study Series associated with this Study Series Base Location.")                
     type_id = fields.Many2one(
         comodel_name="hc.vs.d.web.type", 
-        string="Type", 
+        string="Type",
+        required="True",
         help="The service type for accessing (e.g., retrieving, viewing) the DICOM instances.")                
     url = fields.Char(
         string="URL", 

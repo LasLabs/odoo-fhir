@@ -1,0 +1,22 @@
+<openerp>
+    <data>
+
+        <!-- Medication Request Action and Menu --> 
+    
+        <act_window id="hc_res_medication_request_action"   
+                    name="HC Medication Requests"
+                    res_model="hc.res.medication.request"
+                    view_mode="tree,form"
+                    domain=""
+                    context=""
+                    limit=""/>
+
+        <menuitem id="hc_medication_request.menu_med_req" 
+                  name="Medication Requests" 
+                  parent="hc_base.menu_med" 
+                  action="hc_res_medication_request_action" 
+                  groups="hc_base.group_hc_base_manager" 
+                  sequence="20"/>
+
+    </data>
+</openerp>

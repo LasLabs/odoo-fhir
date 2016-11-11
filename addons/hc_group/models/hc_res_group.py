@@ -9,7 +9,7 @@ class Group(models.Model):
     identifier_ids = fields.One2many(
         comodel_name="hc.group.identifier", 
         inverse_name="group_id", 
-        string="Identifier", 
+        string="Identifiers", 
         help="Unique id.")                
     type = fields.Selection(
         string="Type", 
@@ -70,7 +70,7 @@ class GroupCharacteristic(models.Model):
         required="True", 
         widget="selection", 
         selection=[
-            ("Codeable Concept", "Codeable Concept"), 
+            ("code", "Code"), 
             ("boolean", "Boolean"),
             ("Quantity", "Quantity"),
             ("Range", "Range")], 
@@ -79,9 +79,9 @@ class GroupCharacteristic(models.Model):
         string="Value", 
         help="Value held by characteristic.")                
     value_code_id = fields.Many2one(
-        comodel_name="hc.vs.group.characteristic.value.code", 
+        comodel_name="hc.vs.group.characteristic.value", 
         string="Value Code", 
-        help="Codeble Concept value held by characteristic.")                               
+        help="Code of value held by characteristic.")                               
     is_value = fields.Boolean(
         string="Value", 
         help="Boolean value held by characteristic.")                
@@ -156,7 +156,17 @@ class GroupMember(models.Model):
     is_member = fields.Boolean(
         string="Member", 
         default="True", 
-        help="Uncheck if member is no longer in group.")                
+        help="Uncheck if member is no longer in group.")               
+
+class GroupIdentifier(models.Model):    
+    _name = "hc.group.identifier"    
+    _description = "Group Identifier"        
+    _inherit = ["hc.basic.association", "hc.identifier"]
+
+    group_id = fields.Many2one(
+        comodel_name="hc.res.group", 
+        string="Group", 
+        help="Group associated with this Group Identifier.")
 
 class GroupCode(models.Model):    
     _name = "hc.vs.group.code"    
@@ -169,16 +179,6 @@ class GroupCharacteristicCode(models.Model):
     _inherit = ["hc.value.set.contains"]
 
 class GroupCharacteristicValueCode(models.Model):    
-    _name = "hc.vs.group.characteristic.value.code"    
-    _description = "Group Characteristic Value Code"        
+    _name = "hc.vs.group.characteristic.value"    
+    _description = "Group Characteristic Value"        
     _inherit = ["hc.value.set.contains"]
-
-class GroupIdentifier(models.Model):    
-    _name = "hc.group.identifier"    
-    _description = "Group Identifier"        
-    _inherit = ["hc.basic.association", "hc.identifier"]
-
-    group_id = fields.Many2one(
-        comodel_name="hc.res.group", 
-        string="Group", 
-        help="Group associated with this identifier.")

@@ -4,5 +4,5 @@ access_hc_group_hc_group_characteristic_user,hc.group.hc.group.characteristic.us
 access_hc_group_hc_group_member_user,hc.group.hc.group.member.user,model_hc_group_member,hc_base.group_hc_base_user,1,0,0,0
 access_hc_group_hc_vs_group_code_manager,hc.group.hc.vs.group.code.manager,model_hc_vs_group_code,hc_base.group_hc_base_manager,1,1,1,1
 access_hc_group_hc_vs_group_characteristic_code_manager,hc.group.hc.vs.group.characteristic.code.manager,model_hc_vs_group_characteristic_code,hc_base.group_hc_base_manager,1,1,1,1
-access_hc_group_hc_vs_group_characteristic_value_code_manager,hc.group.hc.vs.group.characteristic.value.code.manager,model_hc_vs_group_characteristic_value_code,hc_base.group_hc_base_manager,1,1,1,1
+access_hc_group_hc_vs_group_characteristic_value_manager,hc.group.hc.vs.group.characteristic.value.manager,model_hc_vs_group_characteristic_value,hc_base.group_hc_base_manager,1,1,1,1
 access_hc_group_hc_group_identifier_user,hc.group.hc.group.identifier.user,model_hc_group_identifier,hc_base.group_hc_base_user,1,0,0,0

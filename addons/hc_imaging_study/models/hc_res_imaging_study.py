@@ -187,7 +187,7 @@ class ImagingStudySeriesBaseLocation(models.Model):
         comodel_name="hc.vs.d.web.type", 
         string="Type", 
         required="True", 
-        help="The service type for accessing (e.g., retrieving, viewing) the DICOM instances.")                
+        help="The service type for accessing (e.g., retrieving, viewing) the DICOM instances.")           
     url = fields.Char(
         string="URL", 
         required="True", 
@@ -294,9 +294,9 @@ class DICOMCID29(models.Model):
     _description = "DICOM CID 29"        
     _inherit = ["hc.value.set.contains"]
 
-class dWebType(models.Model):    
-    _name = "hc.vs.d.web.type"    
-    _description = "dWeb Type"        
+class dWebType(models.Model):   
+    _name = "hc.vs.d.web.type"  
+    _description = "dWeb Type"     
     _inherit = ["hc.value.set.contains"]
 
 class ImagingStudyReason(models.Model):    

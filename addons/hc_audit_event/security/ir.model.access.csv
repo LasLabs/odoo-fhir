@@ -19,5 +19,4 @@ access_hc_audit_event_hc_vs_object_type_manager,hc.audit.event.hc.vs.object.type
 access_hc_audit_event_hc_vs_object_lifecycle_manager,hc.audit.event.hc.vs.object.lifecycle.manager,model_hc_vs_object_lifecycle,hc_base.group_hc_base_manager,1,1,1,1
 access_hc_audit_event_hc_vs_audit_event_sub_type_manager,hc.audit.event.hc.vs.audit.event.sub.type.manager,model_hc_vs_audit_event_sub_type,hc_base.group_hc_base_manager,1,1,1,1
 access_hc_audit_event_hc_vs_dicm_402_roleid_manager,hc.audit.event.hc.vs.dicm.402.roleid.manager,model_hc_vs_dicm_402_roleid,hc_base.group_hc_base_manager,1,1,1,1
-access_hc_audit_event_hc_vs_audit_event_type_manager,hc.audit.event.hc.vs.audit.event.type.manager,model_hc_vs_audit_event_type,hc_base.group_hc_base_manager,1,1,1,1
 

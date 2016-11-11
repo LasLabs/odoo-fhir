@@ -166,12 +166,12 @@ class CarePlanActivity(models.Model):
             ("Communication Request", "Communication Request"), 
             ("Device Use Request", "Device Use Request"), 
             ("Diagnostic Request", "Diagnostic Request"), 
-            ("Medication Order", "Medication Order"), 
+            ("Medication Request", "Medication Request"), 
             ("Nutrition Request", "Nutrition Request"), 
             ("Procedure Request", "Procedure Request"), 
-            ("Process Request", "Process Request"),
+            # ("Process Request", "Process Request"),
             ("Referral Request", "Referral Request"),
-            ("Supply Request", "Supply Request"),
+            # ("Supply Request", "Supply Request"),
             ("Vision Prescription", "Vision Prescription")], 
         help="Type of entity assessed.")                
     reference_name = fields.Char(
@@ -179,7 +179,10 @@ class CarePlanActivity(models.Model):
         compute="_compute_reference_name", 
         store="True", 
         help="Activity details defined in specific resource.")                
-    # reference_appointment_id = fields.Many2one(comodel_name="hc.res.appointment", string="Reference Appointment", help="Appointment activity details defined in specific resource.")                
+    reference_appointment_id = fields.Many2one(
+        comodel_name="hc.res.appointment", 
+        string="Reference Appointment", 
+        help="Appointment activity details defined in specific resource.")                
     reference_communication_request_id = fields.Many2one(
         comodel_name="hc.res.communication.request", 
         string="Reference Communication Request", 
@@ -192,10 +195,10 @@ class CarePlanActivity(models.Model):
         comodel_name="hc.res.diagnostic.request", 
         string="Reference Diagnostic Request", 
         help="Diagnostic Request activity details defined in specific resource.")                
-    reference_medication_order_id = fields.Many2one(
-        comodel_name="hc.res.medication.order", 
-        string="Reference Medication Order", 
-        help="Medication Order activity details defined in specific resource.")                
+    reference_medication_request_id = fields.Many2one(
+        comodel_name="hc.res.medication.request", 
+        string="Reference Medication Request", 
+        help="Medication Request activity details defined in specific resource.")                
     reference_nutrition_request_id = fields.Many2one(
         comodel_name="hc.res.nutrition.request", 
         string="Reference Nutrition Request", 
@@ -358,24 +361,27 @@ class CarePlanActivityActionResulting(models.Model):
     action_resulting_type = fields.Selection(
         string="Action Resulting Type", 
         selection=[
-        ("Appointment", "Appointment"), 
-        ("Communication Request", "Communication Request"), 
-        ("Device Use Request", "Device Use Request"), 
-        ("Diagnostic Request", "Diagnostic Request"), 
-        ("Medication Order", "Medication Order"), 
-        ("Nutrition Request", "Nutrition Request"), 
-        ("Procedure Request", "Procedure Request"), 
-        ("Process Request", "Process Request"),
-        ("Referral Request", "Referral Request"),
-        ("Supply Request", "Supply Request"),
-        ("Vision Prescription", "Vision Prescription")], 
+            ("Appointment", "Appointment"), 
+            ("Communication Request", "Communication Request"), 
+            ("Device Use Request", "Device Use Request"), 
+            ("Diagnostic Request", "Diagnostic Request"), 
+            ("Medication Request", "Medication Request"), 
+            ("Nutrition Request", "Nutrition Request"), 
+            ("Procedure Request", "Procedure Request"), 
+            # ("Process Request", "Process Request"),
+            ("Referral Request", "Referral Request"),
+            # ("Supply Request", "Supply Request"),
+            ("Vision Prescription", "Vision Prescription")], 
         help="Type of resource that describes follow-on actions resulting from the plan.")                
     action_resulting_name = fields.Char(
         string="Action Resulting", 
         compute="_compute_action_resulting_name", 
         store="True", 
         help="Resource that describes follow-on actions resulting from the plan.")                
-    # action_resulting_appointment_id = fields.Many2one(comodel_name="hc.res.appointment", string="Action Resulting Appointment", help="Resource that describes follow-on actions resulting from the plan.")
+    action_resulting_appointment_id = fields.Many2one(
+        comodel_name="hc.res.appointment", 
+        string="Action Resulting Appointment", 
+        help="Resource that describes follow-on actions resulting from the plan.")
     action_resulting_communication_request_id = fields.Many2one(
         comodel_name="hc.res.communication.request", 
         string="Action Resulting Communication Request", 
@@ -388,10 +394,10 @@ class CarePlanActivityActionResulting(models.Model):
         comodel_name="hc.res.diagnostic.request", 
         string="Action Resulting Diagnostic Request", 
         help="Diagnostic Request resource that describes follow-on actions resulting from the plan.")
-    action_resulting_medication_order_id = fields.Many2one(
-        comodel_name="hc.res.medication.order", 
-        string="Action Resulting Medication Order", 
-        help="Medication Order resource that describes follow-on actions resulting from the plan.")
+    action_resulting_medication_request_id = fields.Many2one(
+        comodel_name="hc.res.medication.request", 
+        string="Action Resulting Medication Request", 
+        help="Medication Request resource that describes follow-on actions resulting from the plan.")
     action_resulting_nutrition_request_id = fields.Many2one(
         comodel_name="hc.res.nutrition.request", 
         string="Action Resulting Nutrition Request", 
@@ -670,7 +676,32 @@ class CarePlanOutcome(models.Model):
 class ReferralRequestBasedOn(models.Model):    
     _inherit = "hc.referral.request.based.on"  
 
+    based_on_type = fields.Selection(
+        string="Based On Type", 
+        selection=[
+            ("Referral Request", "Referral Request"), 
+            ("Care Plan", "Care Plan"), 
+            ("Diagnostic Order", "Diagnostic Order"), 
+            ("Procedure Request", "Procedure Request")], 
+        help="Type of request fulfilled by this request.")
     based_on_care_plan_id = fields.Many2one(
         comodel_name="hc.res.care.plan", 
         string="Based On Care Plan", 
         help="Care Plan request fulfilled by this request.") 
+
+class MedicationRequestBasedOn(models.Model):   
+    _inherit= "hc.medication.request.based.on"
+
+    based_on_type = fields.Selection(
+        string="Based On Type", 
+        selection=[
+            ("Care Plan", "Care Plan"), 
+            ("Diagnostic Request", "Diagnostic Request"), 
+            ("Medication Request", "Medication Request"), 
+            ("Procedure Request", "Procedure Request"), 
+            ("Referral Request", "Referral Request")], 
+        help="Type of what request fulfills.")                   
+    based_on_care_plan_id = fields.Many2one(
+        comodel_name="hc.res.care.plan", 
+        string="Based On Care Plan", 
+        help="Care Plan request fulfills.")

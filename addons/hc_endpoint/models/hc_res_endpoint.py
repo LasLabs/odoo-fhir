@@ -57,9 +57,8 @@ class Endpoint(models.Model):
         string="Payload Format", 
         required="True", 
         help="Mimetype to send, or blank for no payload.")                  
-    payload_type_ids = fields.One2many(
-        comodel_name="hc.endpoint.payload.type", 
-        inverse_name="endpoint_id", 
+    payload_type_ids = fields.Many2many(
+        comodel_name="hc.vs.endpoint.payload.type", 
         string="Payload Types", 
         help="The type of content that may be used at this endpoint (e.g. XDS Discharge summaries).")                  
     header_ids = fields.One2many(
@@ -106,24 +105,10 @@ class EndpointHeader(models.Model):
     endpoint_id = fields.Many2one(
         comodel_name="hc.res.endpoint", 
         string="Endpoint", 
-        help="Endpoint associated with this endpoint header.")                    
+        help="Endpoint associated with this Endpoint Header.")                    
     header = fields.Char(
         string="Header", 
-        help="Usage depends on the channel type.")                    
-
-class EndpointPayloadType(models.Model):    
-    _name = "hc.endpoint.payload.type"  
-    _description = "Endpoint Payload Type"      
-    _inherit = ["hc.basic.association"] 
-    
-    endpoint_id = fields.Many2one(
-        comodel_name="hc.res.endpoint", 
-        string="Endpoint", 
-        help="Endpoint associated with this endpoint payload type.")                  
-    payload_type_id = fields.Many2one(
-        comodel_name="hc.vs.endpoint.payload.type", 
-        string="Payload Type", 
-        help="Payload type associated with this endpoint payload type.")                   
+        help="Usage depends on the channel type.")                                    
 
 class HttpVerb(models.Model):   
     _name = "hc.vs.http.verb"   

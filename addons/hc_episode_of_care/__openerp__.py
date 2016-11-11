@@ -35,7 +35,7 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['hc_condition'],
+    'depends': ['hc_condition', 'hc_account', 'hc_care_team'],
 
     # always loaded
     'data': [

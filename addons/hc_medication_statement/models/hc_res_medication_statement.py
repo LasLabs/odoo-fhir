@@ -75,16 +75,16 @@ class MedicationStatement(models.Model):
     is_was_not_taken = fields.Boolean(
         string="Was Not Taken", 
         help="True if medication is/was not being taken.")                
-    reason_not_taken_ids = fields.One2many(
-        comodel_name="hc.med.stmt.reason.not.taken", 
-        inverse_name="medication_statement_id", 
+    reason_not_taken_ids = fields.Many2many(
+        comodel_name="hc.vs.medication.reason.not.taken", 
+        relation="medication_statement_reason_not_taken_rel", 
         string="Reasons Not Taken", 
-        help="True if asserting medication was not given.")                
-    reason_for_use_ids = fields.One2many(
-        comodel_name="hc.med.stmt.reason.for.use", 
-        inverse_name="medication_statement_id", 
+        help="True if asserting medication was not given.")               
+    reason_for_use_ids = fields.Many2many(
+        comodel_name="hc.vs.condition.code", 
+        relation="medication_statement_reason_for_use_rel",
         string="Reasons For Use", 
-        help="Reason for why the medication is being/was taken.")                
+        help="Reason for why the medication is being/was taken.")               
     reason_for_use_reference_ids = fields.One2many(
         comodel_name="hc.med.stmt.reason.for.use.reference", 
         inverse_name="medication_statement_id", 
@@ -116,21 +116,21 @@ class MedStmtDosage(models.Model):
     text = fields.Text(
         string="Text", 
         help="Dosage Instructions.")                
-    additional_instructions_ids = fields.One2many(
-        comodel_name="hc.med.stmt.dosage.addl.instr", 
-        inverse_name="dosage_id", 
+    additional_instructions_ids = fields.Many2many(
+        comodel_name="hc.vs.additional.instructions.code",
+        relation="med_stmt_dosage_additional_instructions_rel",  
         string="Additional Instructions", 
         help='Supplemental instructions - e.g. "with meals".')                
     timing_ids = fields.One2many(
         comodel_name="hc.med.stmt.dosage.timing", 
-        inverse_name="dosage_id", 
+        inverse_name="med_stmt_dosage_id", 
         string="Timings", 
         help="When/how often was medication taken.")                
     medication_type = fields.Selection(
         string="Medication Type", 
         selection=[
             ("boolean", "Boolean"), 
-            ("Code", "Code")], 
+            ("code", "Code")], 
         help="Type of product to be supplied.")                
     as_needed_name = fields.Char(
         string="As Needed", 
@@ -147,7 +147,7 @@ class MedStmtDosage(models.Model):
     medication_type = fields.Selection(
         string="Medication Type", 
         selection=[
-            ("Code", "Code"), 
+            ("code", "Code"), 
             ("Body Site", "Body Site")], 
         help="Type of product to be supplied.")                
     site_name = fields.Char(
@@ -210,9 +210,17 @@ class MedStmtDosage(models.Model):
     dose_quantity_numerator = fields.Float(
         string="Dose Quantity Numerator", 
         help="Numerator value of dose quantity per unit of time.")                
+    dose_quantity_uom_id = fields.Many2one(
+        comodel_name="product.uom", 
+        string="Dose Quantity UOM", 
+        help="Dose Quantity unit of measure.")
     dose_period_denominator = fields.Float(
         string="Dose Period Denominator", 
-        help="Denominator value of dose quantity per unit of time.")                
+        help="Denominator value of dose quantity per unit of time.")
+    dose_period_uom_id = fields.Many2one(
+        comodel_name="product.uom", 
+        string="Dose Period UOM", 
+        help="Dose Period unit of measure.")
     rate_ratio = fields.Float(
         string="Rate Ratio", 
         compute="_compute_rate_ratio", 
@@ -241,10 +249,10 @@ class MedStmtDosage(models.Model):
     max_dose_period = fields.Integer(
         string="Maximum Dose Period", 
         help="Unit of time when maximum dose was consumed.")
-    # max_dose_period_uom_id = fields.Many2one(
-    #     comodel_name="product.uom", 
-    #     string="Maximum Dose Period UOM", 
-    #     help="Period unit of measure.")
+    max_dose_period_uom_id = fields.Many2one(
+        comodel_name="product.uom", 
+        string="Maximum Dose Period UOM", 
+        help="Period unit of measure.")
     max_dose_per_period = fields.Integer(
         string="Maximum Dose per Period", 
         compute="_compute_max_dose_per_period", 
@@ -267,28 +275,14 @@ class MedStmtReasonForUseReference(models.Model):
     reason_for_use_reference_id = fields.Many2one(
         comodel_name="hc.res.condition", 
         string="Reason For Use Reference", 
-        help="Reason For Use Reference associated with this Medication Statement Reason For Use Reference.")                
-
-class MedStmtDosageAddlInstr(models.Model):    
-    _name = "hc.med.stmt.dosage.addl.instr"    
-    _description = "Medication Statement Dosage Additional Instruction"        
-    _inherit = ["hc.basic.association"]
-
-    dosage_id = fields.Many2one(
-        comodel_name="hc.med.stmt.dosage", 
-        string="Dosage", 
-        help="Dosage associated with this Medication Statement Dosage Additional Instruction.")                
-    additional_instructions_id = fields.Many2one(
-        comodel_name="hc.vs.additional.instruction.code", 
-        string="Additional Instructions", 
-        help="Additional Instructions associated with this Medication Statement Dosage Additional Instruction.")                
+        help="Reason For Use Reference associated with this Medication Statement Reason For Use Reference.")                             
 
 class MedStmtDosageTiming(models.Model):    
     _name = "hc.med.stmt.dosage.timing"    
     _description = "Medication Statement Dosage Timing"        
     _inherit = ["hc.basic.association", "hc.timing"]
 
-    dosage_id = fields.Many2one(
+    med_stmt_dosage_id = fields.Many2one(
         comodel_name="hc.med.stmt.dosage", 
         string="Dosage", 
         help="Dosage associated with this Medication Statement Dosage Timing.")                
@@ -326,7 +320,7 @@ class MedStmtSupportingInformation(models.Model):
         string="Supporting Information Type", 
         selection=[
             ("string", "String"), 
-            ("Medication Order", "Medication Order")], 
+            ("Medication Request", "Medication Request")], 
         help="Type of amount of medication per dose.")                
     supporting_information_name = fields.Char(
         string="Supporting Information", 
@@ -336,38 +330,10 @@ class MedStmtSupportingInformation(models.Model):
     supporting_information_string = fields.Char(
         string="Supporting Information String", 
         help="Supporting Information String associated with this Medication Statement Supporting Information.")                
-    supporting_information_medication_order_id = fields.Many2one(
-        comodel_name="hc.res.medication.order", 
-        string="Supporting Information Medication Order", 
-        help="Supporting Information Medication Order associated with this Medication Statement Supporting Information.")                
-
-class MedStmtReasonNotTaken(models.Model):    
-    _name = "hc.med.stmt.reason.not.taken"    
-    _description = "Medication Statement Reason Not Taken"        
-    _inherit = ["hc.basic.association"]
-
-    medication_statement_id = fields.Many2one(
-        comodel_name="hc.res.medication.statement", 
-        string="Medication Statement", 
-        help="Medication Statement associated with this Medication Statement Reason Not Taken.")                
-    reason_not_taken_id = fields.Many2one(
-        comodel_name="hc.vs.medication.reason.not.taken", 
-        string="Reason Not Taken", 
-        help="Reason Not Taken associated with this Medication Statement Reason Not Taken.")                
-
-class MedStmtReasonForUse(models.Model):    
-    _name = "hc.med.stmt.reason.for.use"    
-    _description = "Medication Statement Reason For Use"        
-    _inherit = ["hc.basic.association"]
-
-    medication_statement_id = fields.Many2one(
-        comodel_name="hc.res.medication.statement", 
-        string="Medication Statement", 
-        help="Medication Statement associated with this Medication Statement Reason For Use.")                
-    reason_for_use_id = fields.Many2one(
-        comodel_name="hc.vs.condition.code", 
-        string="Reason For Use", 
-        help="Reason For Use associated with this Medication Statement Reason For Use.")                
+    supporting_information_medication_Request_id = fields.Many2one(
+        comodel_name="hc.res.medication.request", 
+        string="Supporting Information Medication Request", 
+        help="Supporting Information Medication Request associated with this Medication Statement Supporting Information.")                                           
 
 class MedicationStatementCategory(models.Model):    
     _name = "hc.vs.medication.statement.category"    

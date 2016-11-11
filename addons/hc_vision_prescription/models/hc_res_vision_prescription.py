@@ -16,7 +16,8 @@ class VisionPrescription(models.Model):
         help="When prescription was authorized.")                
     patient_id = fields.Many2one(
         comodel_name="hc.res.patient", 
-        string="Patient", help="Who prescription is for.")                
+        string="Patient", 
+        help="Who prescription is for.")                
     prescriber_id = fields.Many2one(
         comodel_name="hc.res.practitioner", 
         string="Prescriber", 
@@ -25,10 +26,10 @@ class VisionPrescription(models.Model):
         comodel_name="hc.res.encounter", 
         string="Encounter", 
         help="Created during encounter / admission / stay.")                
-    context_type = fields.Selection(
-        string="Context Type", 
+    reason_type = fields.Selection(
+        string="Reason Type", 
         selection=[
-            ("Code", "Code"), 
+            ("code", "Code"), 
             ("Condition", "Condition")], 
         help="Type of reason or indication for writing the prescription.")                
     reason_name = fields.Char(
@@ -126,7 +127,7 @@ class VisionPrescriptionIdentifier(models.Model):
     vision_prescription_id = fields.Many2one(
         comodel_name="hc.res.vision.prescription", 
         string="Vision Prescription", 
-        help="Vision prescription associated with this Vision Prescription Identifier.")                
+        help="Vision Prescription associated with this Vision Prescription Identifier.")                
 
 class VisionPrescriptionReason(models.Model):    
     _name = "hc.vs.vision.prescription.reason"    

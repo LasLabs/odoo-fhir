@@ -10,11 +10,7 @@ access_hc_nutrition_request_hc_nutr_req_allergy_intolerance_user,hc.nutrition.re
 access_hc_nutrition_request_hc_nutr_req_ent_for_admin_sched_user,hc.nutrition.request.hc.nutr.req.ent.for.admin.sched.user,model_hc_nutr_req_ent_for_admin_sched,hc_base.group_hc_base_user,1,0,0,0
 access_hc_nutrition_request_hc_nutr_req_identifier_user,hc.nutrition.request.hc.nutr.req.identifier.user,model_hc_nutr_req_identifier,hc_base.group_hc_base_user,1,0,0,0
 access_hc_nutrition_request_hc_nutr_req_oral_diet_sched_user,hc.nutrition.request.hc.nutr.req.oral.diet.sched.user,model_hc_nutr_req_oral_diet_sched,hc_base.group_hc_base_user,1,0,0,0
-access_hc_nutrition_request_hc_nutr_req_oral_diet_type_user,hc.nutrition.request.hc.nutr.req.oral.diet.type.user,model_hc_nutr_req_oral_diet_type,hc_base.group_hc_base_user,1,0,0,0
-access_hc_nutrition_request_hc_nutr_req_oral_diet_fluid_consistency_user,hc.nutrition.request.hc.nutr.req.oral.diet.fluid.consistency.user,model_hc_nutr_req_oral_diet_fluid_consistency,hc_base.group_hc_base_user,1,0,0,0
 access_hc_nutrition_request_hc_nutr_req_suppl_sched_user,hc.nutrition.request.hc.nutr.req.suppl.sched.user,model_hc_nutr_req_suppl_sched,hc_base.group_hc_base_user,1,0,0,0
-access_hc_nutrition_request_hc_nutr_req_food_pref_mod_user,hc.nutrition.request.hc.nutr.req.food.pref.mod.user,model_hc_nutr_req_food_pref_mod,hc_base.group_hc_base_user,1,0,0,0
-access_hc_nutrition_request_hc_nutr_req_excl_food_mod_user,hc.nutrition.request.hc.nutr.req.excl.food.mod.user,model_hc_nutr_req_excl_food_mod,hc_base.group_hc_base_user,1,0,0,0
 access_hc_nutrition_request_hc_vs_consistency_type_manager,hc.nutrition.request.hc.vs.consistency.type.manager,model_hc_vs_consistency_type,hc_base.group_hc_base_manager,1,1,1,1
 access_hc_nutrition_request_hc_vs_diet_type_manager,hc.nutrition.request.hc.vs.diet.type.manager,model_hc_vs_diet_type,hc_base.group_hc_base_manager,1,1,1,1
 access_hc_nutrition_request_hc_vs_encounter_diet_manager,hc.nutrition.request.hc.vs.encounter.diet.manager,model_hc_vs_encounter_diet,hc_base.group_hc_base_manager,1,1,1,1

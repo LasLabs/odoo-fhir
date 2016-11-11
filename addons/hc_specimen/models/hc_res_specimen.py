@@ -184,7 +184,7 @@ class SpecimenTreatment(models.Model):
         help="Indicates the treatment or processing step applied to the specimen.")					
     additive_substance_ids = fields.One2many(
         comodel_name="hc.specimen.treatment.substance", 
-        inverse_name="specimen_treatment_id", 
+        inverse_name="treatment_id", 
         string="Additive Substances", 
         help="Material used in the processing step.")					
 
@@ -198,7 +198,7 @@ class SpecimenContainer(models.Model):
         help="Specimen associated with this Specimen Container.")					
     identifier_ids = fields.One2many(
         comodel_name="hc.specimen.container.identifier", 
-        inverse_name="specimen_container_id", 
+        inverse_name="container_id", 
         string="Identifiers", 
         help="Id for the container.")					
     description = fields.Char(
@@ -251,7 +251,7 @@ class SpecimenContainerIdentifier(models.Model):
     _description = "Specimen Container Identifier"		
     _inherit = ["hc.basic.association", "hc.identifier"]	
 
-    specimen_container_id = fields.Many2one(
+    container_id = fields.Many2one(
         comodel_name="hc.specimen.container", 
         string="Specimen Container", 
         help="Container associated with this Specimen Container Identifier.")					
@@ -309,7 +309,7 @@ class SpecimenTreatmentSubstance(models.Model):
     _description = "Specimen Treatment Substance"		
     _inherit = ["hc.basic.association"]	
     
-    specimen_treatment_id = fields.Many2one(
+    treatment_id = fields.Many2one(
         comodel_name="hc.specimen.treatment", 
         string="Specimen Treatment", 
         help="Treatment associated with this Specimen Treatment Substance.")					

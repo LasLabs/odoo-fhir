@@ -1,2 +1,5 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_hc_supply_delivery_hc_supply_delivery,hc_supply_delivery.hc_supply_delivery,model_hc_supply_delivery_hc_supply_delivery,,1,0,0,0
+access_hc_supply_delivery_hc_res_supply_delivery_user,hc.supply.delivery.hc.res.supply.delivery.user,model_hc_res_supply_delivery,hc_base.group_hc_base_user,1,0,0,0
+access_hc_supply_delivery_hc_supply_delivery_identifier_user,hc.supply.delivery.hc.supply.delivery.identifier.user,model_hc_supply_delivery_identifier,hc_base.group_hc_base_user,1,0,0,0
+access_hc_supply_delivery_hc_supply_delivery_receiver_user,hc.supply.delivery.hc.supply.delivery.receiver.user,model_hc_supply_delivery_receiver,hc_base.group_hc_base_user,1,0,0,0
+access_hc_supply_delivery_hc_vs_supply_delivery_type_manager,hc.supply.delivery.hc.vs.supply.delivery.type.manager,model_hc_vs_supply_delivery_type,hc_base.group_hc_base_manager,1,1,1,1

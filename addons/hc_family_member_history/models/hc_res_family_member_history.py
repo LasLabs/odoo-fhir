@@ -219,7 +219,6 @@ class FamilyMemberIdentifier(models.Model):
         required="True",
         ondelete="restrict", 
         help="Person identifier associated with this family member.")   
-
     family_member_id = fields.Many2one(
         comodel_name="hc.res.family.member.history", 
         string="Family Member", 

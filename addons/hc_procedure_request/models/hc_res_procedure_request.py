@@ -38,15 +38,14 @@ class ProcedureRequest(models.Model):
         string="Type", 
         required="True", 
         help="What procedure to perform.")                    
-    body_site_ids = fields.One2many(
-        comodel_name="hc.procedure.request.body.site", 
-        inverse_name="procedure_request_id", 
+    body_site_ids = fields.Many2many(
+        comodel_name="hc.vs.body.site", 
         string="Body Sites", 
         help="What part of body to perform on.")                    
     reason_type = fields.Selection(
         string="Reason Type", 
         selection=[
-            ("Codeable Concept", "Codeable Concept"), 
+            ("code", "Code"), 
             ("Condition", "Condition")], 
         help="Type of why procedure should occur.")
     reason_name = fields.Char(
@@ -54,10 +53,10 @@ class ProcedureRequest(models.Model):
         compute="_compute_reason_name", 
         store="True", 
         help="Why procedure should occur.")
-    reason_codeable_concept_id = fields.Many2one(
+    reason_code_id = fields.Many2one(
         comodel_name="hc.vs.procedure.reason", 
-        string="Reason Codeable Concept", 
-        help="Codeable Concept why procedure should occur.")
+        string="Reason Code", 
+        help="Code of why procedure should occur.")
     reason_condition_id = fields.Many2one(
         comodel_name="hc.res.condition", 
         string="Reason Condition", 
@@ -83,9 +82,9 @@ class ProcedureRequest(models.Model):
     scheduled_end_date = fields.Datetime(
         string="Scheduled End Date", 
         help="End of the when procedure should occur.")
-    scheduled_timing_id = fields.Many2one(
-        comodel_name="hc.procedure.request.scheduled.timing", 
-        string="Scheduled Timing", 
+    scheduled_id = fields.Many2one(
+        comodel_name="hc.procedure.request.scheduled", 
+        string="Scheduled", 
         help="Timing when procedure should occur.")                    
     encounter_id = fields.Many2one(
         comodel_name="hc.res.encounter", 
@@ -134,16 +133,21 @@ class ProcedureRequest(models.Model):
             ("rejected", "Rejected"), 
             ("aborted", "Aborted")], 
         help="The status of the order.")                    
-    note_ids = fields.One2many(
-        comodel_name="hc.procedure.request.note", 
+    supporting_info_ids = fields.One2many(
+        comodel_name="hc.procedure.request.supporting.info",
         inverse_name="procedure_request_id", 
-        string="Note", 
+        string="Supporting Infos", 
+        help="Extra information to use in performing request.")
+    notes_ids = fields.One2many(
+        comodel_name="hc.procedure.request.notes", 
+        inverse_name="procedure_request_id", 
+        string="Notes", 
         help="Additional information about desired procedure.")                    
     as_needed_type = fields.Selection(
         string="As Needed Type", 
         selection=[
             ("boolean", "Boolean"), 
-            ("Codeable Concept", "Codeable Concept")], 
+            ("code", "Code")], 
         help="Type of preconditions for procedure.")
     as_needed_name = fields.Char(
         string="As Needed", 
@@ -152,21 +156,21 @@ class ProcedureRequest(models.Model):
         help="Preconditions for procedure.")  
     is_as_needed = fields.Boolean(
         string="As Needed", 
-        help="boolean preconditions for procedure.")                    
-    as_needed_codeable_concept_id = fields.Many2one(
+        help="Boolean preconditions for procedure.")                    
+    as_needed_code_id = fields.Many2one(
         comodel_name="hc.vs.procedure.request.as.needed", 
-        string="As Needed Codeable Concept", 
-        help="The reference to the codeable concept.")                    
+        string="As Needed Code", 
+        help="The reference to the code.")                    
     ordered_on = fields.Datetime(
         string="Ordered On Date", 
         help="When Requested.")                    
     orderer_type = fields.Selection(
         string="Orderer Type", 
         selection=[
-            ("practitioner", "Practitioner"), 
-            ("patient", "Patient"), 
-            ("related person", "Related Person"), 
-            ("device", "Device")], 
+            ("Practitioner", "Practitioner"), 
+            ("Patient", "Patient"), 
+            ("Related Person", "Related Person"), 
+            ("Device", "Device")], 
         help="Type of Ordering Party.")
     orderer_name = fields.Char(
         string="Orderer", 
@@ -209,8 +213,8 @@ class ProcedureRequest(models.Model):
     @api.multi          
     def _compute_reason_name(self):         
         for hc_res_procedure in self:       
-            if hc_res_procedure.reason_type == 'Codeable Concept':  
-                hc_res_procedure.reason_name = hc_res_procedure.reason_codeable_concept_id.name
+            if hc_res_procedure.reason_type == 'Code':  
+                hc_res_procedure.reason_name = hc_res_procedure.reason_code_id.name
             elif hc_res_procedure.reason_type == 'Condition':   
                 hc_res_procedure.reason_name = hc_res_procedure.reason_condition_id.name
 
@@ -241,8 +245,8 @@ class ProcedureRequest(models.Model):
         for hc_res_procedure in self:       
             if hc_res_procedure.as_needed_type == 'boolean':    
                 hc_res_procedure.as_needed_name = hc_res_procedure.as_needed_boolean_id.name
-            elif hc_res_procedure.as_needed_type == 'Codeable Concept': 
-                hc_res_procedure.as_needed_name = hc_res_procedure.as_needed_codeable_concept_id.name
+            elif hc_res_procedure.as_needed_type == 'Code': 
+                hc_res_procedure.as_needed_name = hc_res_procedure.as_needed_code_id.name
 
     @api.multi          
     def _compute_orderer_name(self):            
@@ -254,21 +258,7 @@ class ProcedureRequest(models.Model):
             elif hc_res_procedure.orderer_type == 'related person': 
                 hc_res_procedure.orderer_name = hc_res_procedure.orderer_related_person_id.name
             elif hc_res_procedure.orderer_type == 'device': 
-                hc_res_procedure.orderer_name = hc_res_procedure.orderer_device_id.name
-
-class ProcedureRequestBodySite(models.Model):    
-    _name = "hc.procedure.request.body.site"    
-    _description = "Procedure Request Body Site"        
-    _inherit = ["hc.basic.association"]    
-
-    procedure_request_id = fields.Many2one(
-        comodel_name="hc.res.procedure.request", 
-        string="Procedure Request", 
-        help="Procedure request associated with this procedure request body site.")                    
-    body_site_id = fields.Many2one(
-        comodel_name="hc.vs.body.site", 
-        string="Body Site", 
-        help="What part of body to perform on.")                    
+                hc_res_procedure.orderer_name = hc_res_procedure.orderer_device_id.name                    
 
 class ProcedureRequestIdentifier(models.Model):    
     _name = "hc.procedure.request.identifier"    
@@ -278,21 +268,49 @@ class ProcedureRequestIdentifier(models.Model):
     procedure_request_id = fields.Many2one(
         comodel_name="hc.res.procedure.request", 
         string="Procedure Request", 
-        help="Procedure request associated with this procedure request identifier.")                    
+        help="Procedure Request associated with this Procedure Request Identifier.")                    
 
-class ProcedureRequestNote(models.Model):    
-    _name = "hc.procedure.request.note"    
-    _description = "Procedure Request Note"        
+class ProcedureRequestSupportingInfo(models.Model):
+    _name = "hc.procedure.request.supporting.info"  
+    _description = "Procedure Request Supporting Info"     
+    _inherit = ["hc.basic.association"]
+
+    procedure_request_id = fields.Many2one(
+        comodel_name="hc.res.procedure.request", 
+        string="Procedure Request", 
+        help="Procedure Request associated with this Procedure Request Supporting Info.")
+    supporting_info_type = fields.Selection(
+        string="Supporting Info Type", 
+        selection=[
+            ("string", "String"), 
+            ("code", "Code")], 
+        help="Type of extra information to use in performing request.")
+    supporting_info_name = fields.Char(
+        string="Supporting Info", 
+        compute="_compute_supporting_info_name", 
+        store="True", 
+        help="Extra information to use in performing request.")
+    supporting_info_string = fields.Char(
+        string="Supporting Info String", 
+        help="Extra information to use in performing request.")
+    supporting_info_code_id = fields.Many2one(
+        comodel_name="hc.vs.resource.type", 
+        string="Supporting Info Code", 
+        help="Type of extra information to use in performing request.")
+
+class ProcedureRequestNotes(models.Model):    
+    _name = "hc.procedure.request.notes"    
+    _description = "Procedure Request Notes"        
     _inherit = ["hc.basic.association", "hc.annotation"]    
 
     procedure_request_id = fields.Many2one(
         comodel_name="hc.res.procedure.request", 
         string="Procedure Request", 
-        help="Procedure request associated with this procedure request note.")                    
+        help="Procedure Request associated with this Procedure Request Note.")                    
 
-class ProcedureRequestScheduledTiming(models.Model):    
-    _name = "hc.procedure.request.scheduled.timing"    
-    _description = "Procedure Request Scheduled Timing"        
+class ProcedureRequestScheduled(models.Model):    
+    _name = "hc.procedure.request.scheduled"    
+    _description = "Procedure Request Scheduled"        
     _inherit = ["hc.basic.association", "hc.timing"]    
 
 class ProcedureCode(models.Model):  

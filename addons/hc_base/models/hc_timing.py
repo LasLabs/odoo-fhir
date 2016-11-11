@@ -145,6 +145,21 @@ class EventTiming(models.Model):
     _description = "Event Timing"        
     _inherit = ["hc.value.set.contains"]
 
+# External References
+
+class DosageInstruction(models.Model):    
+    _inherit = "hc.dosage.instruction"    
+
+    timing_id = fields.Many2one(
+        comodel_name="hc.dosage.instruction.timing", 
+        string="Timing", 
+        help="When medication should be administered.")
+
+class DosageInstructionTiming(models.Model):    
+    _name = "hc.dosage.instruction.timing"    
+    _description = "Dosage Instruction Timing"        
+    _inherit = ["hc.basic.association", "hc.timing"]
+
 
 # Constraints
 

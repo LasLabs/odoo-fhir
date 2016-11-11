@@ -31,7 +31,7 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['hc_procedure_request', 'hc_observation', 'hc_risk_assessment', 'hc_medication_statement', 'hc_nutrition_request'],
+    'depends': ['hc_risk_assessment', 'hc_medication_statement', 'hc_nutrition_request'],
 
     # always loaded
     'data': [

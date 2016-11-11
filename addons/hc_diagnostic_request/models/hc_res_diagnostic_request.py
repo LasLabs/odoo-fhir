@@ -192,11 +192,10 @@ class DiagnosticRequest(models.Model):
         comodel_name="hc.res.related.person", 
         string="Requested Performer Related Person", 
         help="Related Person requested perfomer.")
-    reason_ids = fields.One2many(
-        comodel_name="hc.diagnostic.request.reason", 
-        inverse_name="diagnostic_request_id", 
+    reason_ids = fields.Many2many(
+        comodel_name="hc.vs.condition.code", 
         string="Reasons", 
-        help="Explanation/Justification for test.")                    
+        help="Explanation/Justification for test.")
     supporting_info_ids = fields.One2many(
         comodel_name="hc.diagnostic.request.supporting.info", 
         inverse_name="diagnostic_request_id", 
@@ -363,21 +362,7 @@ class DiagnosticRequestSupportingInfo(models.Model):
     supporting_info_code_id = fields.Many2one(
         comodel_name="hc.vs.resource.type", 
         string="Supporting Info Code", 
-        help="Resource type of additional clinical information.")
-
-class DiagnosticRequestReason(models.Model): 
-    _name = "hc.diagnostic.request.reason"  
-    _description = "Diagnostic Request Reason"      
-    _inherit = ["hc.basic.association"]
-
-    diagnostic_request_id = fields.Many2one(
-        comodel_name="hc.res.diagnostic.request", 
-        string="Diagnostic Request", 
-        help="Diagnostic Request associated with this Diagnostic Request Reason.")                    
-    reason_id = fields.Many2one(
-        comodel_name="hc.vs.condition.code", 
-        string="Reason", 
-        help="Explanation/Justification for test.")                    
+        help="Resource type of additional clinical information.")                    
 
 class DiagnosticRequestOccurrenceTiming(models.Model):  
     _name = "hc.diagnostic.request.occurrence.timing"    

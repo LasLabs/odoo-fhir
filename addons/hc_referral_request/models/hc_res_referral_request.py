@@ -157,7 +157,7 @@ class ReferralRequestBasedOn(models.Model):
         string="Based On Type", 
         selection=[
             ("Referral Request", "Referral Request"), 
-            ("Care Plan", "Care Plan"), 
+            # ("Care Plan", "Care Plan"), 
             ("Diagnostic Order", "Diagnostic Order"), 
             ("Procedure Request", "Procedure Request")], 
         help="Type of request fulfilled by this request.")                
@@ -272,4 +272,12 @@ class EncounterReferralRequest(models.Model):
     referral_request_id = fields.Many2one(
         comodel_name="hc.res.referral.request", 
         string="Referral Request", 
-        help="Referral Request associated with this Encounter.")
+        help="Referral Request associated with this Encounter Referral Request.")
+
+class EpisodeOfCareReferralRequest(models.Model):   
+    _inherit = "hc.episode.of.care.referral.request"   
+             
+    referral_request_id = fields.Many2one(
+        comodel_name="hc.res.referral.request", 
+        string="Referral Request", 
+        help="Referral Request associated with this Episode Of Care Referral Request.")

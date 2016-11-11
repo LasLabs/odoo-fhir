@@ -9,7 +9,7 @@ class Substance(models.Model):
     identifier_ids = fields.One2many(
         comodel_name="hc.substance.identifier", 
         inverse_name="substance_id", 
-        string="Identifier", 
+        string="Identifiers", 
         help="Unique identifier.")                
     category_ids = fields.Many2many(
         comodel_name="hc.vs.substance.category", 
@@ -70,7 +70,7 @@ class SubstanceIngredient(models.Model):
         string="Substance Type", 
         required="True", 
         selection=[
-            ("Codeable Concept", "Codeable Concept"), 
+            ("Code", "Code"), 
             ("Substance", "Substance")], 
         help="Type of component of the substance.")               
     substance_name = fields.Char(
@@ -83,7 +83,7 @@ class SubstanceIngredient(models.Model):
         comodel_name="hc.vs.substance.code", 
         string="Substance Code", 
         required="True", 
-        help="Code of the component of the substance.")              
+        help="Code of a component of the substance.")              
     substance_component_id = fields.Many2one(
         comodel_name="hc.res.substance", 
         string="Substance Component", 
@@ -111,11 +111,7 @@ class SubstanceIdentifier(models.Model):
 class SubstanceInstanceIdentifier(models.Model):    
     _name = "hc.substance.instance.identifier"    
     _description = "Substance Package Identifier"        
-    _inherit = ["hc.identifier"]
-
-class SubstanceCode(models.Model):    
-    _name = "hc.vs.substance.code"    
-    _description = "Substance Code"        
+    _inherit = ["hc.identifier"]     
 
 class SubstanceCategory(models.Model):    
     _name = "hc.vs.substance.category"    

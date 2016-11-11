@@ -40,14 +40,4 @@ class lang(models.Model):
         help="Country that the ISO language belongs to.")
     language = fields.Char(
         string="Language",
-        help="A language.")
-
-class LanguageProficiency(models.Model): 
-    _name = "hc.vs.language.proficiency"   
-    _description = "Language Proficiency"
-    _inherit = ["hc.value.set.contains"]
-
-class LanguageSkill(models.Model): 
-    _name = "hc.vs.language.skill"   
-    _description = "Language Skill"
-    _inherit = ["hc.value.set.contains"]
+        help="A human language.")
