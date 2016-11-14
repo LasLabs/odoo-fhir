@@ -3,7 +3,6 @@
 from openerp import models, fields, api
 
 class Person(models.Model): 
-
     _name = "hc.res.person" 
     _description = "Person"
     _inherits = {"res.partner": "partner_id"}
@@ -68,9 +67,9 @@ class Person(models.Model):
     def create(self, vals):
         name = self.env['hc.human.name'].browse(vals['name_id'])
         vals['name'] = name.first_id.name+' '+name.surname_id.name
-        vals['is_patient'] = self.env.context.get('is_patient', False)
-        vals['is_practitioner'] = self.env.context.get('is_practitioner', False)
-        vals['is_related_person'] = self.env.context.get('is_related_person', False)
+        # vals['is_patient'] = self.env.context.get('is_patient', False)
+        # vals['is_practitioner'] = self.env.context.get('is_practitioner', False)
+        # vals['is_related_person'] = self.env.context.get('is_related_person', False)
         return super(Person, self).create(vals)
 
     _defaults = {
@@ -81,7 +80,6 @@ class Person(models.Model):
         }
 
 class PersonLink(models.Model): 
-
     _name = "hc.person.link"    
     _description = "Person Link"
 
@@ -107,9 +105,18 @@ class PersonLink(models.Model):
         comodel_name="hc.res.person", 
         string="Target Person", 
         help="Person who is the resource to which this actual person is associated.")
-#    target_patient_id = fields.Many2one(comodel_name="hc.res.patient", string="Target Patient", required="True", help="Patient who is the resource to which this actual person is associated.")
-#    target_practitioner_id = fields.Many2one(comodel_name="hc.res.practitioner", string="Target Practitioner", help="Practitioner who is the resource to which this actual person is associated.")
-#    target_related_person_id = fields.Many2one(comodel_name="hc.res.related.person", string="Target Related Person", help="Related Person who is the resource to which this actual person is associated.")
+    target_patient_id = fields.Many2one(
+        comodel_name="hc.res.patient", 
+        string="Target Patient", 
+        help="Patient who is the resource to which this actual person is associated.")
+    target_practitioner_id = fields.Many2one(
+        comodel_name="hc.res.practitioner", 
+        string="Target Practitioner", 
+        help="Practitioner who is the resource to which this actual person is associated.")
+    target_related_person_id = fields.Many2one(
+        comodel_name="hc.res.related.person", 
+        string="Target Related Person", 
+        help="Related Person who is the resource to which this actual person is associated.")
     assurance_level = fields.Selection(
         string="Link Assurance Level", 
         selection=[
@@ -118,6 +125,19 @@ class PersonLink(models.Model):
             ("level3", "Level 3"), 
             ("level4", "Level 4")], 
         help="Level of assurance that this link is actually associated with the target resource.")
+
+    @api.multi          
+    def _compute_target_name(self):         
+        for hc_res_person in self:      
+            if hc_res_person.target_type == 'Patient':  
+                hc_res_person.target_name = hc_res_person.target_patient_id.name
+            elif hc_res_person.target_type == 'Practitioner':   
+                hc_res_person.target_name = hc_res_person.target_practitioner_id.name
+            elif hc_res_person.target_type == 'Related Person': 
+                hc_res_person.target_name = hc_res_person.target_related_person_id.name
+            elif hc_res_person.target_type == 'Person': 
+                hc_res_person.target_name = hc_res_person.target_person_id.name
+
 
 class PersonAddress(models.Model):
     _name = "hc.person.address" 
@@ -135,7 +155,8 @@ class PersonAddress(models.Model):
         comodel_name="hc.res.person", 
         string="Person", 
         help="Entity associated with this Person Address.")
-    use = fields.Selection(string="Use",
+    use = fields.Selection(
+        string="Use",
         selection=[
             ("home", "Home"), 
             ("work", "Work"), 

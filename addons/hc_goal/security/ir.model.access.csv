@@ -2,7 +2,6 @@ id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_hc_goal_hc_res_goal_user,hc.goal.hc.res.goal.user,model_hc_res_goal,hc_base.group_hc_base_user,1,0,0,0
 access_hc_goal_hc_goal_outcome_user,hc.goal.hc.goal.outcome.user,model_hc_goal_outcome,hc_base.group_hc_base_user,1,0,0,0
 access_hc_goal_hc_goal_addresses_user,hc.goal.hc.goal.addresses.user,model_hc_goal_addresses,hc_base.group_hc_base_user,1,0,0,0
-access_hc_goal_hc_goal_category_user,hc.goal.hc.goal.category.user,model_hc_goal_category,hc_base.group_hc_base_user,1,0,0,0
 access_hc_goal_hc_goal_identifier_user,hc.goal.hc.goal.identifier.user,model_hc_goal_identifier,hc_base.group_hc_base_user,1,0,0,0
 access_hc_goal_hc_goal_note_user,hc.goal.hc.goal.note.user,model_hc_goal_note,hc_base.group_hc_base_user,1,0,0,0
 access_hc_goal_hc_goal_status_reason_user,hc.goal.hc.goal.status.reason.user,model_hc_goal_status_reason,hc_base.group_hc_base_user,1,0,0,0

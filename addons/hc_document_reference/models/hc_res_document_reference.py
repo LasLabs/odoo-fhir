@@ -30,7 +30,8 @@ class DocumentReference(models.Model):
         help="Who/what is the subject of the document.")
     subject_patient_id = fields.Many2one(
         comodel_name="hc.res.patient", 
-        string="Subject Patient", help="Patient who/what is the subject of the document.")                
+        string="Subject Patient", 
+        help="Patient who/what is the subject of the document.")                
     subject_practitioner_id = fields.Many2one(
         comodel_name="hc.res.practitioner", 
         string="Subject Practitioner", 
@@ -114,6 +115,7 @@ class DocumentReference(models.Model):
         help="Human-readable description (title).")                
     security_label_ids = fields.Many2many(
         comodel_name="hc.vs.security.label", 
+        relation="document_reference_security_label_rel", 
         string="Confidentialities", 
         help="Document security-tags.")                
     relates_to_ids = fields.One2many(
@@ -168,11 +170,12 @@ class DocumentReferenceContent(models.Model):
         comodel_name="hc.document.reference.content.attachment", 
         string="Attachment", 
         required="True", 
-        help="Where to access the document.")                
+        help="Where to access the document.")
     format_ids = fields.Many2many(
         comodel_name="hc.vs.format.code", 
+        relation="document_reference_content_format_rel", 
         string="Formats", 
-        help="Format/content rules for the document.")                
+        help="Format/content rules for the document.")              
 
 class DocumentReferenceContext(models.Model):    
     _name = "hc.document.reference.context"    
@@ -187,9 +190,10 @@ class DocumentReferenceContext(models.Model):
         string="Encounter", 
         help="Context of the document content.")                
     event_ids = fields.Many2many(
-        comodel_name="hc.vs.act.code",  
+        comodel_name="hc.vs.act.code", 
+        relation="document_reference_context_event_rel", 
         string="Events", 
-        help="Main Clinical Acts Documented.")                
+        help="Main Clinical Acts Documented.")               
     period = fields.Datetime(
         string="Period", 
         help="Start of the time of service that is being documented.")                
@@ -297,30 +301,6 @@ class DocumentReferenceAuthor(models.Model):
         comodel_name="hc.res.related.person", 
         string="Author Related Person", 
         help="Related Person who and/or what authored the document.")                
-
-# class DocumentReferenceSecurityLabel(models.Model):    
-#     _name = "hc.document.reference.security.label"    
-#     _description = "Document Reference Security Label"        
-#     _inherit = ["hc.basic.association"]
-
-#     document_reference_id = fields.Many2one(comodel_name="hc.res.document.reference", string="Document Reference", help="Document Reference associated with this Document Reference Security Label.")                
-#     security_label_id = fields.Many2one(comodel_name="hc.vs.security.label", string="Security Label", help="Security Label associated with this Document Reference Security Label.")                
-
-# class DocumentReferenceContentFormat(models.Model):    
-#     _name = "hc.document.reference.content.format"    
-#     _description = "Document Reference Content Format"        
-#     _inherit = ["hc.basic.association"]
-
-#     content_id = fields.Many2one(comodel_name="hc.document.reference.content", string="Content", help="Content associated with this Document Reference Content Format.")                
-#     format_id = fields.Many2one(comodel_name="hc.vs.format.code", string="Format", help="Format associated with this Document Reference Content Format.")                
-
-# class DocumentReferenceContextEvent(models.Model):    
-#     _name = "hc.document.reference.context.event"    
-#     _description = "Document Reference Context Event"        
-#     _inherit = ["hc.basic.association"]
-
-#     context_id = fields.Many2one(comodel_name="hc.document.reference.context", string="Context", help="Context associated with this Document Reference Context Event.")                
-#     event_id = fields.Many2one(comodel_name="hc.vs.act.code", string="Event", help="Event associated with this Document Reference Context Event.")                
 
 class DocumentReferenceMasterIdentifier(models.Model):    
     _name = "hc.document.reference.master.identifier"    
