@@ -24,11 +24,11 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['hc_base'],
+    'depends': ['hc_enrollment_request'],
 
     # always loaded
     'data': [
-        # 'security/ir.model.access.csv',
+        'security/ir.model.access.csv',
         'views/hc_res_enrollment_response_views.xml',
         'views/hc_res_enrollment_response_templates.xml',  
     ],
