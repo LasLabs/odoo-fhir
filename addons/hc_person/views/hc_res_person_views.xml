@@ -187,17 +187,21 @@
                                     </form>
                                 </field>
                             </page>
-                            <page string="Person Links"/>
+                            <page string="Person Links">
                                 <field name="link_ids" mode="tree">
                                     <tree>
-                                        <field name="person_id"/>
+                                        <field name="target_name"/>
                                         <field name="assurance_level"/>
                                     </tree>
                                     <form>
                                         <sheet>
                                             <group>
                                                 <group>
-                                                    <field name="person_id"/>
+                                                    <field name="target_type"/>
+                                                    <field name="target_person_id" attrs="{'invisible': [('target_type','!=','Person')]}"/>
+                                                    <field name="target_patient_id" attrs="{'invisible': [('target_type','!=','Patient')]}"/>
+                                                    <field name="target_practitioner_id" attrs="{'invisible': [('target_type','!=','Practitioner')]}"/>
+                                                    <field name="target_related_person_id" attrs="{'invisible': [('target_type','!=','Related Person')]}"/>
                                                 </group>
                                                 <group>
                                                     <field name="assurance_level"/>
@@ -205,7 +209,8 @@
                                             </group>
                                         </sheet>
                                     </form>
-                                </field>         
+                                </field>
+                            </page>         
                         </notebook>           
                     </sheet>              
                 </form>               

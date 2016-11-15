@@ -5,7 +5,6 @@ access_hc_condition_hc_condition_evidence_user,hc.condition.hc.condition.evidenc
 access_hc_condition_hc_condition_identifier_user,hc.condition.hc.condition.identifier.user,model_hc_condition_identifier,hc_base.group_hc_base_user,1,0,0,0
 access_hc_condition_hc_condition_stage_assessment_user,hc.condition.hc.condition.stage.assessment.user,model_hc_condition_stage_assessment,hc_base.group_hc_base_user,1,0,0,0
 access_hc_condition_hc_condition_evidence_detail_user,hc.condition.hc.condition.evidence.detail.user,model_hc_condition_evidence_detail,hc_base.group_hc_base_user,1,0,0,0
-access_hc_condition_hc_condition_body_site_user,hc.condition.hc.condition.body.site.user,model_hc_condition_body_site,hc_base.group_hc_base_user,1,0,0,0
 access_hc_condition_hc_condition_note_user,hc.condition.hc.condition.note.user,model_hc_condition_note,hc_base.group_hc_base_user,1,0,0,0
 access_hc_condition_hc_vs_condition_severity_manager,hc.condition.hc.vs.condition.severity.manager,model_hc_vs_condition_severity,hc_base.group_hc_base_manager,1,1,1,1
 access_hc_condition_hc_vs_condition_evidence_code_manager,hc.condition.hc.vs.condition.evidence.code.manager,model_hc_vs_condition_evidence_code,hc_base.group_hc_base_manager,1,1,1,1

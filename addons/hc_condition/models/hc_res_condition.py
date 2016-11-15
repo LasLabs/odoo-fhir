@@ -47,11 +47,11 @@ class Condition(models.Model):
         string="Code", 
         required="True", 
         help="Identification of the condition, problem or diagnosis.")                       
-    body_site_ids = fields.One2many(
-        comodel_name="hc.condition.body.site", 
-        inverse_name="condition_id", 
+    body_site_ids = fields.Many2many(
+        comodel_name="hc.vs.body.site", 
+        relation="condition_body_site_rel", 
         string="Body Sites", 
-        help="Anatomical location, if relevant.")               
+        help="Anatomical location, if relevant.")              
     subject_type = fields.Selection(
         string="Condition Subject Type",
         required="True", 
@@ -271,6 +271,10 @@ class ConditionStage(models.Model):
     _description = "Condition Stage"
     _inherit = ["hc.basic.association"]            
 
+    condition_id = fields.Many2one(
+        comodel_name="hc.res.condition", 
+        string="Condition", 
+        help="Condition associated with this Condition Stage.") 
     stage_type = fields.Selection(
         string="Condition Abatement Type",
         required="True", 
@@ -282,11 +286,7 @@ class ConditionStage(models.Model):
         string="Stage", 
         compute="_compute_stage_name",
         store="True",  
-        help="Summary or assessment.")
-    condition_id = fields.Many2one(
-        comodel_name="hc.res.condition", 
-        string="Condition", 
-        help="Condition associated with this Condition Stage.")                    
+        help="Summary or assessment.")                   
     assessment_ids = fields.One2many(
         comodel_name="hc.condition.stage.assessment", 
         inverse_name="condition_stage_id", 
@@ -325,22 +325,7 @@ class ConditionIdentifier(models.Model):
     condition_id = fields.Many2one(
         comodel_name="hc.res.condition", 
         string="Condition", 
-        help="Condition associated with this Condition Identifier.")                    
-
-class ConditionBodySite(models.Model):  
-    _name = "hc.condition.body.site"    
-    _description = "Condition Body Site"        
-    _inherit = ["hc.basic.association"]
-    
-    body_site_id = fields.Many2one(
-        comodel_name="hc.vs.body.site", 
-        string="Body Site", 
-        help="Body Site associated with this Condition Body Site.")             
-    condition_id = fields.Many2one(
-        comodel_name="hc.res.condition", 
-        string="Condition", 
-        required="True", 
-        help="Encounter associated with this Condition Body Site.")                
+        help="Condition associated with this Condition Identifier.")                                  
 
 class ConditionStageAssessment(models.Model):    
     _name = "hc.condition.stage.assessment"    

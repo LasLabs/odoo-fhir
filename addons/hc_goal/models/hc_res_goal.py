@@ -46,7 +46,8 @@ class Goal(models.Model):
         compute="_compute_start_name", 
         store="True", 
         help="When goal pursuit begins.")                
-    start_date = fields.Date(string="Start Date", 
+    start_date = fields.Date(
+        string="Start Date", 
         help="When goal pursuit begins.")                
     start_code_id = fields.Many2one(
         comodel_name="hc.vs.goal.start.event", 
@@ -80,11 +81,11 @@ class Goal(models.Model):
             ("mo", "Mo"), 
             ("a", "A")], 
         help="Reach goal on or before.")                
-    category_ids = fields.One2many(
-        comodel_name="hc.goal.category", 
-        inverse_name="goal_id", 
+    category_ids = fields.Many2many(
+        comodel_name="hc.vs.goal.category", 
+        relation="goal_category_rel", 
         string="Categories", 
-        help="E.g. Treatment, dietary, behavioral, etc.")                
+        help="E.g. Treatment, dietary, behavioral, etc.")               
     description_id = fields.Many2one(
         comodel_name="hc.vs.goal.description", 
         string="Description", 
@@ -173,11 +174,12 @@ class GoalOutcome(models.Model):
     result_type = fields.Selection(
         string="Result Type", 
         selection=[
-            ("Code", "Code"), 
+            ("code", "Code"), 
             ("Observation", "Observation")], 
         help="Type of reach goal on or before.")                
     result_name = fields.Char(
-        string="Result", compute="_compute_result_name", 
+        string="Result", 
+        compute="_compute_result_name", 
         store="True", 
         help="Code or observation that resulted from goal.")                
     result_code_id = fields.Many2one(
@@ -236,21 +238,7 @@ class GoalAddresses(models.Model):
     addresses_risk_assessment_ids = fields.Many2one(
         comodel_name="hc.res.risk.assessment", 
         string="Addresses Risk Assessments", 
-        help="Risk Assessment issues addressed by this goal.")                
-
-class GoalCategory(models.Model):    
-    _name = "hc.goal.category"    
-    _description = "Goal Category"        
-    _inherit = ["hc.basic.association"]
-
-    goal_id = fields.Many2one(
-        comodel_name="hc.res.goal", 
-        string="Goal", 
-        help="Goal associated with this Goal Category.")                
-    category_id = fields.Many2one(
-        comodel_name="hc.vs.goal.category", 
-        string="Category", 
-        help="Category associated with this Goal Category")                
+        help="Risk Assessment issues addressed by this goal.")                            
 
 class GoalIdentifier(models.Model):    
     _name = "hc.goal.identifier"    

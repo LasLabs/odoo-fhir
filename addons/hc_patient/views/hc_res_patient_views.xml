@@ -125,8 +125,8 @@
                                 </field>
                             </page>                    
                             <page string="Photos"/>
-                            <page string="Marital Statuses">
-                                <field name="marital_status_ids" mode="tree">
+                            <page string="Marital History">
+                                <field name="marital_history_ids" mode="tree">
                                     <tree>
                                         <field name="marital_status_id"/>
                                         <field name="start_date"/>
@@ -141,6 +141,7 @@
                                                     <field name="end_date" placeholder="Valid To"/>
                                                 </group>
                                                 <group>
+                                                    <field name="partner_id"/>
                                                 </group>
                                             </group>
                                         </sheet>
