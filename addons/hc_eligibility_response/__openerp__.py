@@ -10,6 +10,7 @@
         This resource provides eligibility and plan details from the processing of an Eligibility resource.
 
         **Scope and Usage** 
+        
         The EligibilityResponse resource provides eligibility and plan details from the processing of an EligibilityRequest resource. 
         It combines key information from a payor as to whether a Coverage is in-force, and optionally the nature of the Policy details.
     """,
@@ -24,11 +25,12 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['hc_base'],
+    # 'hc_contract'
+    'depends': ['hc_eligibility_request'],
 
     # always loaded
     'data': [
-        # 'security/ir.model.access.csv',
+        'security/ir.model.access.csv',
         'views/hc_res_eligibility_response_views.xml',
         'views/hc_res_eligibility_response_templates.xml', 
     ],
