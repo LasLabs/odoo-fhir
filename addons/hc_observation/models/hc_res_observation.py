@@ -91,7 +91,7 @@ class Observation(models.Model):
         selection=[
             ("Missing", "Missing"), 
             ("Quantity", "Quantity"), 
-            ("Codeable Concept", "Codeable Concept"), 
+            ("code", "Code"), 
             ("string", "String"), 
             ("Range", "Range"), 
             ("Ratio", "Ratio"), 
@@ -115,10 +115,10 @@ class Observation(models.Model):
         comodel_name="product.uom", 
         string="Value Quantity UOM", 
         help="Value quantity unit of measure.")                    
-    value_codeable_concept_id = fields.Many2one(
+    value_code_id = fields.Many2one(
         comodel_name="hc.vs.observation.value.code", 
-        string="Value Codeable Concept", 
-        help="Codeable Concept actual result.")                    
+        string="Value Code", 
+        help="Code of actual result.")                    
     value_string = fields.Char(
         string="Value", 
         help="String of actual result.")                    
@@ -367,7 +367,7 @@ class ObservationComponent(models.Model):
         selection=[
             ("Missing", "Missing"), 
             ("Quantity", "Quantity"), 
-            ("Codeable Concept", "Codeable Concept"), 
+            ("code", "Code"), 
             ("string", "String"), 
             ("Range", "Range"), 
             ("Ratio", "Ratio"), 
@@ -391,10 +391,10 @@ class ObservationComponent(models.Model):
         comodel_name="product.uom", 
         string="Value Quantity UOM", 
         help="Value quantity unit of measure.")                    
-    value_codeable_concept_id = fields.Many2one(
+    value_code_id = fields.Many2one(
         comodel_name="hc.vs.observation.value.code", 
-        string="Value Codeable Concept", 
-        help="Codeable Concept actual result.")                    
+        string="Value Code", 
+        help="Code of actual result.")                    
     value_string = fields.Char(
         string="Value", 
         help="String of actual result.")                    
@@ -434,9 +434,10 @@ class ObservationComponent(models.Model):
         comodel_name="hc.vs.observation.value.absent.reason", 
         string="Data Absent Reason", 
         help="Why the result is missing.")                    
-    interpretation = fields.Float(
+    interpretation_id = fields.Many2one(
+        comodel_name="hc.vs.observation.interpretation", 
         string="Interpretation", 
-        help="High, low, normal, etc..")
+        help="High, low, normal, etc.")
     reference_range_ids = fields.One2many(
         comodel_name="hc.observation.component.reference.range", 
         inverse_name="observation_component_id", 

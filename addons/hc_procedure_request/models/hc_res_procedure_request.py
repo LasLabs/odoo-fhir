@@ -155,12 +155,12 @@ class ProcedureRequest(models.Model):
         store="True", 
         help="Preconditions for procedure.")  
     is_as_needed = fields.Boolean(
-        string="As Needed", 
-        help="Boolean preconditions for procedure.")                    
+        string="As Needed Boolean", 
+        help="Boolean of preconditions for procedure.")                    
     as_needed_code_id = fields.Many2one(
         comodel_name="hc.vs.procedure.request.as.needed", 
         string="As Needed Code", 
-        help="The reference to the code.")                    
+        help="Code of preconditions for procedure.")                    
     ordered_on = fields.Datetime(
         string="Ordered On Date", 
         help="When Requested.")                    

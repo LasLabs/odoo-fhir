@@ -39,7 +39,7 @@ class Goal(models.Model):
         string="Start Type", 
         selection=[
             ("date", "Date"), 
-            ("Code", "Code")], 
+            ("code", "Code")], 
         help="Type of when goal pursuit begins.")                
     start_name = fields.Char(
         string="Start", 
@@ -52,7 +52,7 @@ class Goal(models.Model):
     start_code_id = fields.Many2one(
         comodel_name="hc.vs.goal.start.event", 
         string="Start Code", 
-        help="Code when goal pursuit begins.")                
+        help="Code of when goal pursuit begins.")                
     target_type = fields.Selection(
         string="Target Type", 
         selection=[

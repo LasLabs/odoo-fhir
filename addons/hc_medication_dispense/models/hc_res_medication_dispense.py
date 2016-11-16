@@ -223,16 +223,12 @@ class MedicationDispenseNote(models.Model):
 class MedicationDispenseDosageInstruction(models.Model):    
     _name = "hc.medication.dispense.dosage.instruction" 
     _description = "Medication Dispense Dosage Instruction"     
-    _inherit = ["hc.basic.association"]
+    _inherit = ["hc.basic.association", "hc.dosage.instruction"]
 
     medication_dispense_id = fields.Many2one(
         comodel_name="hc.res.medication.dispense", 
         string="Medication Dispense", 
-        help="Medication Dispense associated with this Medication Dispense Dosage Instruction.")              
-    dosage_instruction_id = fields.Many2one(
-        comodel_name="hc.dosage.instruction", 
-        string="Dosage Instruction", 
-        help="Medicine administration instructions to the patient/caregiver.")               
+        help="Medication Dispense associated with this Medication Dispense Dosage Instruction.")             
 
 class MedicationDispenseEventHistory(models.Model): 
     _name = "hc.medication.dispense.event.history"  
