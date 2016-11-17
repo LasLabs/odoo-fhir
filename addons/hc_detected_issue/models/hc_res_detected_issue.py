@@ -93,8 +93,8 @@ class DetectedIssueImplicated(models.Model):
         comodel_name="hc.res.detected.issue", 
         string="Detected Issue", 
         help="Detected Issue associated with this Detected Issue Implicated.")
-    impicated_type = fields.Selection(
-        string="Impicated Type", 
+    implicated_type = fields.Selection(
+        string="Implicated Type", 
         required="True", 
         selection=[
             ("string", "String"), 
