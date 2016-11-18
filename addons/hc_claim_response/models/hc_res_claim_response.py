@@ -157,8 +157,8 @@ class ClaimResponseItemAdjudication(models.Model):
         help="Added Item associated with this Claim Response Item Adjudication.")                
     added_item_detail_id = fields.Many2one(
         comodel_name="hc.claim.response.added.items.detail", 
-        string="Add Item Detail", 
-        help="Add Item Detail associated with this Claim Response Item Adjudication.")               
+        string="Added Item Detail", 
+        help="Added Item Detail associated with this Claim Response Item Adjudication.")               
     category_id = fields.Many2one(
         comodel_name="hc.vs.benefit.sub.category", 
         string="Category", 
@@ -440,9 +440,10 @@ class ClaimResponseItemNoteNumber(models.Model):
     _description = "Claim Response Item Note Number"        
     _inherit = ["hc.basic.association"]
 
-    item_id = fields.Many2one(comodel_name="hc.claim.response.item", 
+    item_id = fields.Many2one(
+        comodel_name="hc.claim.response.item", 
         string="Item", 
-        help="Item associated with this Claim Response Added Items Detail.")                
+        help="Item associated with this Claim Response Items Note Number.")                
     note_number = fields.Integer(
         string="Note Number", 
         help="Note Number associated with this Claim Response Item Note Number.")                
@@ -452,9 +453,12 @@ class ClaimResponseItemDetailNoteNumber(models.Model):
     _description = "Claim Response Item Detail Note Number"        
     _inherit = ["hc.basic.association"]
 
-    detail_id = fields.Many2one(comodel_name="hc.claim.response.item.detail", 
-        string="Detail", help="Detail associated with this Claim Response Added Items Detail.")                
-    note_number = fields.Integer(string="Note Number", 
+    detail_id = fields.Many2one(
+        comodel_name="hc.claim.response.item.detail", 
+        string="Detail", 
+        help="Detail associated with this Claim Response Item Detail Note Number.")                
+    note_number = fields.Integer(
+        string="Note Number", 
         help="Note Number associated with this Claim Response Item Detail Note Number.")                
 
 class ClaimResponseItemDetailSubDetailNoteNumber(models.Model):    
@@ -462,10 +466,12 @@ class ClaimResponseItemDetailSubDetailNoteNumber(models.Model):
     _description = "Claim Response Item Detail Sub Detail Note Number"        
     _inherit = ["hc.basic.association"]
 
-    sub_detail_id = fields.Many2one(comodel_name="hc.claim.response.item.detail.sub.detail", 
+    sub_detail_id = fields.Many2one(
+        comodel_name="hc.claim.response.item.detail.sub.detail", 
         string="Sub Detail", 
-        help="Sub Detail associated with this Claim Response Added Items Detail.")                
-    note_number = fields.Integer(string="Note Number", 
+        help="Sub Detail associated with this Claim Response Item Detail Sub Detail Note Number.")                
+    note_number = fields.Integer(
+        string="Note Number", 
         help="Note Number associated with this Claim Response Item Detail Sub Detail Note Number.")                
 
 class ClaimResponseAddedItemSequenceLinkId(models.Model):    
@@ -473,8 +479,10 @@ class ClaimResponseAddedItemSequenceLinkId(models.Model):
     _description = "Claim Response Added Item Sequence Link Id"        
     _inherit = ["hc.basic.association"]
 
-    added_item_id = fields.Many2one(comodel_name="hc.claim.response.added.item", 
-        string="Added Item", help="Added Item associated with this Claim Response Added Items Detail.")                
+    added_item_id = fields.Many2one(
+        comodel_name="hc.claim.response.added.item", 
+        string="Added Item", 
+        help="Added Item associated with this Claim Response Added Item Sequence Link Id.")                
     sequence_link_id = fields.Integer(
         string="Sequence Link Id", 
         help="Sequence Link Id associated with this Claim Response Added Item Sequence Link Id.")                
@@ -487,8 +495,9 @@ class ClaimResponseAddedItemNoteNumber(models.Model):
     added_item_id = fields.Many2one(
         comodel_name="hc.claim.response.added.item", 
         string="Added Item", 
-        help="Added Item associated with this Claim Response Added Items Detail.")                
-    note_number = fields.Integer(string="Note Number", 
+        help="Added Item associated with this Claim Response Added Item Note Number.")                
+    note_number = fields.Integer(
+        string="Note Number", 
         help="Note Number associated with this Claim Response Added Item Note Number.")                
 
 class ClaimResponseAddedItemsDetailNoteNumber(models.Model):    
@@ -498,8 +507,8 @@ class ClaimResponseAddedItemsDetailNoteNumber(models.Model):
 
     added_item_detail_id = fields.Many2one(
         comodel_name="hc.claim.response.added.items.detail", 
-        string="Add Item Detail", 
-        help="Add Item Detail associated with this Claim Response Added Items Detail.")                
+        string="Added Item Detail", 
+        help="Added Item Detail associated with this Claim Response Added Items Detail.")                
     note_number = fields.Integer(
         string="Note Number", 
         help="Note Number associated with this Claim Response Added Items Detail Note Number.")                
