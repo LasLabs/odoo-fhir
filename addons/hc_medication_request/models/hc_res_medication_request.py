@@ -91,7 +91,9 @@ class MedicationRequest(models.Model):
         help="Episode Of Care during encounter/admission/stay.")                  
     supporting_information_type = fields.Selection(
         string="Supporting Information Type", 
-        selection=[("string", "String"), ("code", "Code")], 
+        selection=[
+            ("string", "String"), 
+            ("code", "Code")], 
         help="Type of what is account tied to.")                   
     supporting_information_name = fields.Char(
         string="Supporting Information", 
@@ -100,7 +102,7 @@ class MedicationRequest(models.Model):
         help="Information to support ordering of the medication.")                 
     supporting_information_string = fields.Char(
         string="Supporting Information String", 
-        help="Information to support ordering of the medication.")                  
+        help="String of information to support ordering of the medication.")                  
     supporting_information_code_id = fields.Many2one(
         comodel_name="hc.vs.resource.type", 
         string="Supporting Information Code", 

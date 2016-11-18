@@ -181,9 +181,9 @@ class ConsentExceptActor(models.Model):
             ("Practitioner", "Practitioner"), 
             ("Related Person", "Related Person")], 
         help="Type of resource for the actor (or group, by role).")             
-    value_name = fields.Char(
+    reference_name = fields.Char(
         string="Value", 
-        compute="_compute_value_name", 
+        compute="_compute_reference_name", 
         store="True", 
         help="Resource for the actor (or group, by role).")               
     reference_device = fields.Many2one(
@@ -238,14 +238,14 @@ class ConsentExceptData(models.Model):
             ("string", "String"), 
             ("Consent", "Consent")], 
         help="Type of the actual data reference.")                
-    value_name = fields.Char(
+    reference_name = fields.Char(
         string="Value", 
         compute="_compute_value_name", 
         store="True", 
         help="The actual data reference.")                
     reference_string = fields.Char(
         string="Reference String", 
-        help="string the actual data reference.")             
+        help="String of the actual data reference.")             
     reference_consent_id = fields.Many2one(
         comodel_name="hc.res.consent", 
         string="Reference Consent", 

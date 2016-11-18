@@ -88,11 +88,6 @@ class EligibilityRequestIdentifier(models.Model):
         string="Eligibility Request", 
         help="Eligibility Request associated with this Eligibility Request Eligibility Request Identifier.")                
 
-class Ruleset(models.Model):    
-    _name = "hc.vs.ruleset"    
-    _description = "Ruleset"        
-    _inherit = ["hc.value.set.contains"]
-
 class ProcessPriority(models.Model):    
     _name = "hc.vs.process.priority"    
     _description = "Process Priority"        

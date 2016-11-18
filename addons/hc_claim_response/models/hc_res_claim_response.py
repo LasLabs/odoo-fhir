@@ -550,3 +550,14 @@ class ExPaymentType(models.Model):
     _name = "hc.vs.ex.payment.type" 
     _description = "Ex Payment Type"        
     _inherit = ["hc.value.set.contains"]
+
+
+# External Reference
+
+class ClaimCoverage(models.Model):    
+    _inherit = "hc.claim.coverage"
+
+    claim_response_id = fields.Many2one(
+        comodel_name="hc.res.claim.response", 
+        string="Claim Response", 
+        help="Adjudication results.") 

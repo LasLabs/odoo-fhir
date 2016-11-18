@@ -237,6 +237,11 @@ class RouteCode(models.Model):
     _description = "Route Code"        
     _inherit = ["hc.value.set.contains"]  
 
+class Ruleset(models.Model):    
+    _name = "hc.vs.ruleset"    
+    _description = "Ruleset"        
+    _inherit = ["hc.value.set.contains"]
+    
 class SecurityLabel(models.Model):  
     _name = "hc.vs.security.label"  
     _description = "Security Label"     
