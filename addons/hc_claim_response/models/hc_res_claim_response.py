@@ -443,7 +443,7 @@ class ClaimResponseItemNoteNumber(models.Model):
     item_id = fields.Many2one(
         comodel_name="hc.claim.response.item", 
         string="Item", 
-        help="Item associated with this Claim Response Items Note Number.")                
+        help="Item associated with this Claim Response Item Note Number.")                
     note_number = fields.Integer(
         string="Note Number", 
         help="Note Number associated with this Claim Response Item Note Number.")                
@@ -508,7 +508,7 @@ class ClaimResponseAddedItemsDetailNoteNumber(models.Model):
     added_item_detail_id = fields.Many2one(
         comodel_name="hc.claim.response.added.items.detail", 
         string="Added Item Detail", 
-        help="Added Item Detail associated with this Claim Response Added Items Detail.")                
+        help="Added Item Detail associated with this Claim Response Added Items Detail Note Number.")                
     note_number = fields.Integer(
         string="Note Number", 
         help="Note Number associated with this Claim Response Added Items Detail Note Number.")                
@@ -521,7 +521,7 @@ class ClaimResponseCoveragePreAuthRef(models.Model):
     coverage_id = fields.Many2one(
         comodel_name="hc.claim.response.coverage", 
         string="Coverage", 
-        help="Coverage associated with this Claim Response Added Items Detail.")                
+        help="Coverage associated with this Claim Response Coverage Pre Auth Ref.")                
     pre_auth_ref = fields.Char(
         string="Pre Auth Ref", 
         help="Pre Auth Ref associated with this Claim Response Coverage Pre Auth Ref.")                
