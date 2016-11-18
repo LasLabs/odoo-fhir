@@ -166,6 +166,11 @@ class FormatCode(models.Model):
     _description = "Format Code"        
     _inherit = ["hc.value.set.contains"]
 
+class Forms(models.Model):    
+    _name = "hc.vs.forms"    
+    _description = "Forms"        
+    _inherit = ["hc.value.set.contains"]
+
 class Jurisdiction(models.Model):   
     _name = "hc.vs.jurisdiction"    
     _description = "Jurisdiction"       
