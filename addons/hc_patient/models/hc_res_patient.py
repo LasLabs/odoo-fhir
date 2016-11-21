@@ -437,14 +437,14 @@ class PersonLink(models.Model):
     @api.multi          
     def _compute_target_name(self):         
         for hc_res_person in self:      
-            if hc_res_person.target_type == 'Patient':  
-                hc_res_person.target_name = hc_res_person.target_patient_id.name
+            if hc_res_person.target_type == 'Person': 
+                hc_res_person.target_name = hc_res_person.target_person_id.name
             elif hc_res_person.target_type == 'Practitioner':   
                 hc_res_person.target_name = hc_res_person.target_practitioner_id.name
             elif hc_res_person.target_type == 'Related Person': 
                 hc_res_person.target_name = hc_res_person.target_related_person_id.name
-            elif hc_res_person.target_type == 'Person': 
-                hc_res_person.target_name = hc_res_person.target_person_id.name
+            elif hc_res_person.target_type == 'Patient':  
+                hc_res_person.target_name = hc_res_person.target_patient_id.name
 
 class RelatedPersonPatient(models.Model): 
     _inherit = ["hc.related.person.patient"]
@@ -467,9 +467,22 @@ class Annotation(models.Model):
         for hc_annotation in self:
             if hc_annotation.author_type == 'string':
                 hc_annotation.author_name = hc_annotation.author_string
-            elif hc_annotation.author_type == 'practitioner':
+            elif hc_annotation.author_type == 'Practitioner':
                 hc_annotation.author_name = hc_annotation.author_practitioner_id.name
-            elif hc_annotation.author_type == 'related person':
+            elif hc_annotation.author_type == 'Related Person':
                 hc_annotation.author_name = hc_annotation.author_related_person_id.name
-            elif hc_annotation.author_type == 'patient':
+            elif hc_annotation.author_type == 'Patient':
                 hc_annotation.author_name = hc_annotation.author_patient_id.name
+
+class Signature(models.AbstractModel):    
+    _inherit = "hc.signature"
+   
+    who_patient_id = fields.Many2one(
+        comodel_name="hc.res.patient", 
+        string="Who Patient", 
+        help="Patient who signed.")
+
+    on_behalf_of_patient_id = fields.Many2one(
+        comodel_name="hc.res.patient", 
+        string="On Behalf Of Patient", 
+        help="Patient the party represented.")

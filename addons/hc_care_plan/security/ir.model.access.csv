@@ -6,13 +6,11 @@ access_hc_care_plan_hc_care_plan_activity_detail_user,hc.care.plan.hc.care.plan.
 access_hc_care_plan_hc_care_plan_activity_action_resulting_user,hc.care.plan.hc.care.plan.activity.action.resulting.user,model_hc_care_plan_activity_action_resulting,hc_base.group_hc_base_user,1,0,0,0
 access_hc_care_plan_hc_care_plan_activity_detail_goal_user,hc.care.plan.hc.care.plan.activity.detail.goal.user,model_hc_care_plan_activity_detail_goal,hc_base.group_hc_base_user,1,0,0,0
 access_hc_care_plan_hc_care_plan_activity_detail_performer_user,hc.care.plan.hc.care.plan.activity.detail.performer.user,model_hc_care_plan_activity_detail_performer,hc_base.group_hc_base_user,1,0,0,0
-access_hc_care_plan_hc_care_plan_activity_detail_reason_code_user,hc.care.plan.hc.care.plan.activity.detail.reason.code.user,model_hc_care_plan_activity_detail_reason_code,hc_base.group_hc_base_user,1,0,0,0
 access_hc_care_plan_hc_care_plan_activity_detail_reason_reference_user,hc.care.plan.hc.care.plan.activity.detail.reason.reference.user,model_hc_care_plan_activity_detail_reason_reference,hc_base.group_hc_base_user,1,0,0,0
 access_hc_care_plan_hc_care_plan_activity_detail_scheduled_timing_user,hc.care.plan.hc.care.plan.activity.detail.scheduled.timing.user,model_hc_care_plan_activity_detail_scheduled_timing,hc_base.group_hc_base_user,1,0,0,0
 access_hc_care_plan_hc_care_plan_activity_progress_user,hc.care.plan.hc.care.plan.activity.progress.user,model_hc_care_plan_activity_progress,hc_base.group_hc_base_user,1,0,0,0
 access_hc_care_plan_hc_care_plan_addresses_user,hc.care.plan.hc.care.plan.addresses.user,model_hc_care_plan_addresses,hc_base.group_hc_base_user,1,0,0,0
 access_hc_care_plan_hc_care_plan_author_user,hc.care.plan.hc.care.plan.author.user,model_hc_care_plan_author,hc_base.group_hc_base_user,1,0,0,0
-access_hc_care_plan_hc_care_plan_category_user,hc.care.plan.hc.care.plan.category.user,model_hc_care_plan_category,hc_base.group_hc_base_user,1,0,0,0
 access_hc_care_plan_hc_care_plan_care_team_user,hc.care.plan.hc.care.plan.care.team.user,model_hc_care_plan_care_team,hc_base.group_hc_base_user,1,0,0,0
 access_hc_care_plan_hc_care_plan_goal_user,hc.care.plan.hc.care.plan.goal.user,model_hc_care_plan_goal,hc_base.group_hc_base_user,1,0,0,0
 access_hc_care_plan_hc_care_plan_identifier_user,hc.care.plan.hc.care.plan.identifier.user,model_hc_care_plan_identifier,hc_base.group_hc_base_user,1,0,0,0

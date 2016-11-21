@@ -113,3 +113,18 @@ class DeviceType(models.Model):
     _name = "hc.vs.device.type" 
     _description = "Device Type"        
     _inherit = ["hc.value.set.contains"]
+
+# External Reference
+
+class Signature(models.AbstractModel):    
+    _inherit = "hc.signature"
+
+    who_device_id = fields.Many2one(
+            comodel_name="hc.res.device", 
+            string="Who Device", 
+            help="Device who signed.")
+
+    on_behalf_of_device_id = fields.Many2one(
+        comodel_name="hc.res.device", 
+        string="On Behalf Of Device", 
+        help="Device the party represented.")

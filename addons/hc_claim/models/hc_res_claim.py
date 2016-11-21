@@ -838,11 +838,6 @@ class ActIncidentCode(models.Model):
     _description = "Act Incident Code"        
     _inherit = ["hc.value.set.contains"]
 
-class BenefitSubCategory(models.Model):    
-    _name = "hc.vs.benefit.sub.category"    
-    _description = "Benefit Sub Category"        
-    _inherit = ["hc.value.set.contains"]
-
 class ClaimCareTeamRole(models.Model):    
     _name = "hc.vs.claim.care.team.role"    
     _description = "Claim Care Team Role"        

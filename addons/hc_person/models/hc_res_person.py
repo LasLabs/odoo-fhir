@@ -91,10 +91,10 @@ class PersonLink(models.Model):
         string="Target Type", 
         required="True", 
         selection=[
-            ("Patient", "Patient"),
+            ("Person", "Person"),
             ("Practitioner", "Practitioner"), 
             ("Related Person", "Related Person"), 
-            ("Person", "Person")], 
+            ("Patient", "Patient")], 
         help="Type of resource to which this actual person is associated.")                
     target_name = fields.Char(
         string="Target", 
@@ -105,18 +105,18 @@ class PersonLink(models.Model):
         comodel_name="hc.res.person", 
         string="Target Person", 
         help="Person who is the resource to which this actual person is associated.")
-    target_patient_id = fields.Many2one(
-        comodel_name="hc.res.patient", 
-        string="Target Patient", 
-        help="Patient who is the resource to which this actual person is associated.")
-    target_practitioner_id = fields.Many2one(
-        comodel_name="hc.res.practitioner", 
-        string="Target Practitioner", 
-        help="Practitioner who is the resource to which this actual person is associated.")
-    target_related_person_id = fields.Many2one(
-        comodel_name="hc.res.related.person", 
-        string="Target Related Person", 
-        help="Related Person who is the resource to which this actual person is associated.")
+    # target_patient_id = fields.Many2one(
+    #     comodel_name="hc.res.patient", 
+    #     string="Target Patient", 
+    #     help="Patient who is the resource to which this actual person is associated.")
+    # target_practitioner_id = fields.Many2one(
+    #     comodel_name="hc.res.practitioner", 
+    #     string="Target Practitioner", 
+    #     help="Practitioner who is the resource to which this actual person is associated.")
+    # target_related_person_id = fields.Many2one(
+    #     comodel_name="hc.res.related.person", 
+    #     string="Target Related Person", 
+    #     help="Related Person who is the resource to which this actual person is associated.")
     assurance_level = fields.Selection(
         string="Link Assurance Level", 
         selection=[
@@ -129,16 +129,15 @@ class PersonLink(models.Model):
     @api.multi          
     def _compute_target_name(self):         
         for hc_res_person in self:      
-            if hc_res_person.target_type == 'Patient':  
-                hc_res_person.target_name = hc_res_person.target_patient_id.name
-            elif hc_res_person.target_type == 'Practitioner':   
-                hc_res_person.target_name = hc_res_person.target_practitioner_id.name
-            elif hc_res_person.target_type == 'Related Person': 
-                hc_res_person.target_name = hc_res_person.target_related_person_id.name
-            elif hc_res_person.target_type == 'Person': 
+            if hc_res_person.target_type == 'Person': 
                 hc_res_person.target_name = hc_res_person.target_person_id.name
-
-
+            # elif hc_res_person.target_type == 'Practitioner':   
+            #     hc_res_person.target_name = hc_res_person.target_practitioner_id.name
+            # elif hc_res_person.target_type == 'Related Person': 
+            #     hc_res_person.target_name = hc_res_person.target_related_person_id.name
+            # elif hc_res_person.target_type == 'Patient':  
+            #     hc_res_person.target_name = hc_res_person.target_patient_id.name
+            
 class PersonAddress(models.Model):
     _name = "hc.person.address" 
     _description = "Person Address"

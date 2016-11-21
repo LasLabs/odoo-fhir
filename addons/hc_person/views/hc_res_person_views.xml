@@ -199,9 +199,9 @@
                                                 <group>
                                                     <field name="target_type"/>
                                                     <field name="target_person_id" attrs="{'invisible': [('target_type','!=','Person')]}"/>
-                                                    <field name="target_patient_id" attrs="{'invisible': [('target_type','!=','Patient')]}"/>
+                                                    <!-- <field name="target_patient_id" attrs="{'invisible': [('target_type','!=','Patient')]}"/>
                                                     <field name="target_practitioner_id" attrs="{'invisible': [('target_type','!=','Practitioner')]}"/>
-                                                    <field name="target_related_person_id" attrs="{'invisible': [('target_type','!=','Related Person')]}"/>
+                                                    <field name="target_related_person_id" attrs="{'invisible': [('target_type','!=','Related Person')]}"/> -->
                                                 </group>
                                                 <group>
                                                     <field name="assurance_level"/>

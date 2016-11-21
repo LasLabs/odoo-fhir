@@ -142,6 +142,8 @@ access_hc_base_hc_vs_usage_context_type_manager,hc.base.hc.vs.usage.context.type
 access_hc_base_hc_vs_usage_context_value_manager,hc.base.hc.vs.usage.context.value.manager,model_hc_vs_usage_context_value,hc_base.group_hc_base_manager,1,1,1,1
 access_hc_base_hc_vs_ruleset_manager,hc.base.hc.vs.ruleset.manager,model_hc_vs_ruleset,hc_base.group_hc_base_manager,1,1,1,1
 access_hc_base_hc_vs_forms_manager,hc.base.hc.vs.forms.manager,model_hc_vs_forms,hc_base.group_hc_base_manager,1,1,1,1
+access_hc_base_hc_vs_form_code_manager,hc.base.hc.vs.form.code.manager,model_hc_vs_form_code,hc_base.group_hc_base_manager,1,1,1,1
+
 
 
 

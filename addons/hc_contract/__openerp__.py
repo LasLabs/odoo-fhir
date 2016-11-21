@@ -25,11 +25,11 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['hc_document_reference', 'hc_questionnaire_response', 'hc_composition' ],
+    'depends': ['hc_document_reference', 'hc_questionnaire_response', 'hc_composition'],
 
     # always loaded
     'data': [
-        # 'security/ir.model.access.csv',
+        'security/ir.model.access.csv',
         'views/hc_res_contract_views.xml',
         'views/hc_res_contract_templates.xml',  
     ],

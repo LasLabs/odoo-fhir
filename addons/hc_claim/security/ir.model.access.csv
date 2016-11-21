@@ -20,7 +20,6 @@ access_hc_claim_hc_claim_related_claim_reference_user,hc.claim.hc.claim.related.
 access_hc_claim_hc_claim_accident_location_address_user,hc.claim.hc.claim.accident.location.address.user,model_hc_claim_accident_location_address,hc_base.group_hc_base_user,1,0,0,0
 access_hc_claim_hc_claim_item_location_address_user,hc.claim.hc.claim.item.location.address.user,model_hc_claim_item_location_address,hc_base.group_hc_base_user,1,0,0,0
 access_hc_claim_hc_vs_act_incident_code_manager,hc.claim.hc.vs.act.incident.code.manager,model_hc_vs_act_incident_code,hc_base.group_hc_base_manager,1,1,1,1
-access_hc_claim_hc_vs_benefit_sub_category_manager,hc.claim.hc.vs.benefit.sub.category.manager,model_hc_vs_benefit_sub_category,hc_base.group_hc_base_manager,1,1,1,1
 access_hc_claim_hc_vs_claim_care_team_role_manager,hc.claim.hc.vs.claim.care.team.role.manager,model_hc_vs_claim_care_team_role,hc_base.group_hc_base_manager,1,1,1,1
 access_hc_claim_hc_vs_claim_exception_manager,hc.claim.hc.vs.claim.exception.manager,model_hc_vs_claim_exception,hc_base.group_hc_base_manager,1,1,1,1
 access_hc_claim_hc_vs_claim_information_category_manager,hc.claim.hc.vs.claim.information.category.manager,model_hc_vs_claim_information_category,hc_base.group_hc_base_manager,1,1,1,1

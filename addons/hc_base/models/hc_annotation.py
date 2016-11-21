@@ -49,11 +49,11 @@ class Annotation(models.AbstractModel):
     #     for hc_annot in self:
     #         if hc_annotation.author_type == 'string':
     #             hc_annotation.author_name = hc_annotation.author_string
-    #         elif hc_annotation.author_type == 'practitioner':
+    #         elif hc_annotation.author_type == 'Practitioner':
     #             hc_annotation.author_name = hc_annotation.author_practitioner_id.name
-    #         elif hc_annotation.author_type == 'patient':
+    #         elif hc_annotation.author_type == 'Patient':
     #             hc_annotation.author_name = hc_annotation.author_patient_id.name
-    #         elif hc_annotation.author_type == 'related person':
+    #         elif hc_annotation.author_type == 'Related Person':
     #             hc_annotation.author_name = hc_annotation.author_related_person_id.name
 
 

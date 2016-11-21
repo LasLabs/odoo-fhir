@@ -73,11 +73,11 @@ class CarePlan(models.Model):
     modified = fields.Datetime(
         string="Modified Date", 
         help="When last updated.")                
-    category_ids = fields.One2many(
-        comodel_name="hc.care.plan.category", 
-        inverse_name="care_plan_id", 
+    category_ids = fields.Many2many(
+        comodel_name="hc.vs.care.plan.category", 
+        relation="care_plan_category_rel", 
         string="Categories", 
-        help="Type of plan.")                
+        help="Type of plan.")               
     description = fields.Text(
         string="Description", 
         help="Summary of nature of plan.")                
@@ -240,11 +240,11 @@ class CarePlanActivityDetail(models.Model):
         comodel_name="hc.vs.care.plan.activity", 
         string="Code", 
         help="Detail type of activity.")                
-    reason_code_ids = fields.One2many(
-        comodel_name="hc.care.plan.activity.detail.reason.code", 
-        inverse_name="detail_id", 
+    reason_code_ids = fields.Many2many(
+        comodel_name="hc.vs.care.plan.activity", 
+        relation="care_plan_activity_detail_reason_code_rel", 
         string="Reason Codes", 
-        help="Why activity should be done.")                
+        help="Why activity should be done.")               
     reason_reference_ids = fields.One2many(
         comodel_name="hc.care.plan.activity.detail.reason.reference", 
         inverse_name="detail_id", 
@@ -468,21 +468,7 @@ class CarePlanActivityDetailPerformer(models.Model):
     performer_patient_id = fields.Many2one(
         comodel_name="hc.res.patient", 
         string="Performer Patient", 
-        help="Patient who will be responsible?")                
-
-class CarePlanActivityDetailReasonCode(models.Model):    
-    _name = "hc.care.plan.activity.detail.reason.code"    
-    _description = "Care Plan Activity Detail Reason Code"        
-    _inherit = ["hc.basic.association"]
-
-    detail_id = fields.Many2one(
-        comodel_name="hc.care.plan.activity.detail", 
-        string="Detail", 
-        help="Care Plan Activity Detail associated with this Care Plan Activity Detail Reason Code.")                
-    reason_code_id = fields.Many2one(
-        comodel_name="hc.vs.care.plan.activity", 
-        string="Reason Code",
-        help="Reason Code associated with this Care Plan Activity Detail Reason Code.")           
+        help="Patient who will be responsible?")                           
 
 class CarePlanActivityDetailReasonReference(models.Model):    
     _name = "hc.care.plan.activity.detail.reason.reference"    
@@ -564,21 +550,7 @@ class CarePlanAuthor(models.Model):
     author_organization_id = fields.Many2one(
         comodel_name="hc.res.organization", 
         string="Author Organization", 
-        help="Organization who is responsible for plan.")                
-
-class CarePlanCategory(models.Model):    
-    _name = "hc.care.plan.category"    
-    _description = "Care Plan Category"        
-    _inherit = ["hc.basic.association"]
-
-    care_plan_id = fields.Many2one(
-        comodel_name="hc.res.care.plan", 
-        string="Care Plan", 
-        help="Care Plan associated with this Care Plan Category.")                
-    category_id = fields.Many2one(
-        comodel_name="hc.vs.care.plan.category", 
-        string="Category", 
-        help="Category associated with this Care Plan Category.")            
+        help="Organization who is responsible for plan.")                          
 
 class CarePlanCareTeam(models.Model):    
     _name = "hc.care.plan.care.team"    

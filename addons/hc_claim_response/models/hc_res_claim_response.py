@@ -155,7 +155,7 @@ class ClaimResponseItemAdjudication(models.Model):
         comodel_name="hc.claim.response.added.item", 
         string="Added Item", 
         help="Added Item associated with this Claim Response Item Adjudication.")                
-    added_item_detail_id = fields.Many2one(
+    added_items_detail_id = fields.Many2one(
         comodel_name="hc.claim.response.added.items.detail", 
         string="Added Item Detail", 
         help="Added Item Detail associated with this Claim Response Item Adjudication.")               
@@ -224,7 +224,7 @@ class ClaimResponseItemDetailSubDetail(models.Model):
         comodel_name="hc.claim.response.item.adjudication", 
         inverse_name="sub_detail_id", 
         string="Adjudication", 
-        help="Detail adjudication.")                
+        help="Subdetail adjudication.")                
 
 class ClaimResponseAddedItem(models.Model):    
     _name = "hc.claim.response.added.item"    
@@ -269,7 +269,7 @@ class ClaimResponseAddedItem(models.Model):
         comodel_name="hc.claim.response.item.adjudication", 
         inverse_name="added_item_id", 
         string="Adjudication", 
-        help="Detail adjudication.")        
+        help="Added items adjudication.")        
     detail_ids = fields.One2many(
         comodel_name="hc.claim.response.added.items.detail", 
         inverse_name="added_item_id", 
@@ -307,12 +307,12 @@ class ClaimResponseAddedItemsDetail(models.Model):
         help="Professional fee or Product charge.")                
     note_number_ids = fields.One2many(
         comodel_name="hc.claim.response.added.items.detail.note.number", 
-        inverse_name="added_item_detail_id", 
+        inverse_name="added_items_detail_id", 
         string="Note Numbers", 
         help="List of note numbers which apply.")                
     adjudication_ids = fields.One2many(
         comodel_name="hc.claim.response.item.adjudication", 
-        inverse_name="added_item_detail_id", 
+        inverse_name="added_items_detail_id", 
         string="Adjudication", 
         help=" Added items detail adjudication.")                
 
@@ -505,7 +505,7 @@ class ClaimResponseAddedItemsDetailNoteNumber(models.Model):
     _description = "Claim Response Added Items Detail Note Number"        
     _inherit = ["hc.basic.association"]
 
-    added_item_detail_id = fields.Many2one(
+    added_items_detail_id = fields.Many2one(
         comodel_name="hc.claim.response.added.items.detail", 
         string="Added Item Detail", 
         help="Added Item Detail associated with this Claim Response Added Items Detail Note Number.")                
@@ -550,7 +550,6 @@ class ExPaymentType(models.Model):
     _name = "hc.vs.ex.payment.type" 
     _description = "Ex Payment Type"        
     _inherit = ["hc.value.set.contains"]
-
 
 # External Reference
 

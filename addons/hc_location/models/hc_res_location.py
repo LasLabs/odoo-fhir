@@ -141,18 +141,10 @@ class LocationPhysicalType(models.Model):
 
 # External Reference
 
-# class PractitionerRoleLocation(models.Model):   
-#     _inherit = ["hc.practitioner.role.location"]
-                 
-#     location_id = fields.Many2one(
-#         comodel_name="hc.res.location", 
-#         string="Location", 
-#         help="Location associated with this practitioner role.")
+class OrganizationLocation(models.Model):
+    _inherit = ["hc.organization.location"] 
 
-# class OrganizationLocation(models.Model):
-#     _inherit = ["hc.organization.location"] 
-
-#     location_id = fields.Many2one(
-#         comodel_name="hc.res.location", 
-#         string="Location",
-#         help="Location associated with this organization.")
+    location_id = fields.Many2one(
+        comodel_name="hc.res.location", 
+        string="Location",
+        help="Location associated with this Organization Location.")

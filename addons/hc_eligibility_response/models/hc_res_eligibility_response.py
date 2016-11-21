@@ -190,11 +190,6 @@ class EligibilityResponseIdentifier(models.Model):
         string="Eligibility Response", 
         help="Eligibility Response associated with this Eligibility Response Identifier.")                
 
-class Forms(models.Model):    
-    _name = "hc.vs.forms"    
-    _description = "Forms"        
-    _inherit = ["hc.value.set.contains"]
-
 class BenefitNetwork(models.Model):    
     _name = "hc.vs.benefit.network"    
     _description = "Benefit Network"        

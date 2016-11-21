@@ -150,14 +150,14 @@ class OrganizationLocation(models.Model):
     _description = "Organization Location"
     _inherit = ["hc.basic.association"]
 
-    # location_id = fields.Many2one(
-    #     comodel_name="hc.res.location", 
-    #     string="Location",
-    #     help="Location associated with this organization.")
     organization_id = fields.Many2one(
         comodel_name="hc.res.organization", 
         string="Organization", 
-        help="Organization associated with this location.")
+        help="Organization associated with this Organization Location.")
+    # location_id = fields.Many2one(
+    #     comodel_name="hc.res.location", 
+    #     string="Location",
+    #     help="Location associated with this Organization Location.")
     
 class OrganizationContact(models.Model):    
     _name = "hc.organization.contact"   
@@ -169,11 +169,11 @@ class OrganizationContact(models.Model):
         string="Person",
         required="True",
         ondelete="restrict", 
-        help="Person associated with this organization contact.") 
+        help="Person associated with this Organization Contact.") 
     organization_id = fields.Many2one(
         comodel_name="hc.res.organization", 
         string="Organization", 
-        help="Organization associated with this identifier.")
+        help="Organization associated with this Organization Contact.")
     purpose_id = fields.Many2one(
         comodel_name="hc.vs.contact.entity.type", 
         string="Purpose", 
@@ -209,11 +209,11 @@ class OrganizationContactAddress(models.Model):
         string="Address", 
         required="True",
         ondelete="restrict", 
-        help="Address associated with this organization contact.") 
+        help="Address associated with this Organization Contact Address.") 
     contact_id = fields.Many2one(
         comodel_name="hc.organization.contact", 
         string="Organization Contact", 
-        help="Organization contact associated with this address.")
+        help="Organization Contact associated with this Organization Contact Address.")
     use = fields.Selection(string="Use",
         selection=[
             ("home", "Home"), 
@@ -241,11 +241,11 @@ class OrganizationContactName(models.Model):
         string="Human Name",
         required="True",
         ondelete="restrict", 
-        help="Human name associated with this organization contact.")
-    # contact_id = fields.Many2one(
-    #     comodel_name="hc.organization.contact", 
-    #     string="Organization Contact", 
-    #     help="Organization contact associated with this human name.")
+        help="Human Name associated with this Organization Contact Name.")
+    contact_id = fields.Many2one(
+        comodel_name="hc.organization.contact", 
+        string="Organization Contact", 
+        help="Organization contact associated with this Organization Contact Name.")
 
 class OrganizationContactTelecom(models.Model):    
     _name = "hc.organization.contact.telecom"    
@@ -292,42 +292,15 @@ class Person(models.Model):
         string="Managing Organization", 
         help="Organization that is the custodian of the person record.")
 
-# class Patient(models.Model):
-#     _inherit = ["hc.res.patient"]
+class Signature(models.AbstractModel):    
+    _inherit = "hc.signature"
 
-#     patient_managing_organization_id = fields.Many2one(
-#         comodel_name="hc.res.organization", 
-#         string="Patient Managing Organization", 
-#         help="Organization that is the custodian of the patient record.")
+    who_organization_id = fields.Many2one(
+        comodel_name="hc.res.organization", 
+        string="Who Organization", 
+        help="Organization who signed.") 
 
-# class PatientCareProviderOrganization(models.Model):
-#     _inherit = ["hc.patient.care.provider.organization"]
-
-#     organization_id = fields.Many2one(
-#         comodel_name="hc.res.organization", 
-#         string="Organization", 
-#         help="Organization associated with this care provider.")
-
-# class PatientContact(models.Model):
-#     _inherit = ["hc.patient.contact"]
-
-#     patient_contact_organization_id = fields.Many2one(
-#         comodel_name="hc.res.organization", 
-#         string="Patient Contact Organization", 
-#         help="Organization that is associated with the contact.")
-
-# class PractitionerQualification(models.Model):
-#     _inherit = ["hc.practitioner.qualification"]
-    
-#     qualification_issuer_organization_id = fields.Many2one(
-#         comodel_name="hc.res.organization", 
-#         string="Qualification Issuer Organization", 
-#         help="Organization that regulates and issues the qualification.")        
-
-# class PractitionerRole(models.Model):
-#     _inherit = ["hc.res.practitioner.role"]
-    
-#     practitioner_role_organization_id = fields.Many2one(
-#         comodel_name="hc.res.organization", 
-#         string="Practitioner Role Organization", 
-#         help="Organization where the roles are performed.")
+    on_behalf_of_organization_id = fields.Many2one(
+        comodel_name="hc.res.organization", 
+        string="On Behalf Of Organization", 
+        help="Organization the party represented.") 
