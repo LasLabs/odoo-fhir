@@ -41,7 +41,7 @@ class BodySiteIdentifier(models.Model):
     body_site_id = fields.Many2one(
         comodel_name="hc.res.body.site", 
         string="Body Site", 
-        help="Body Site associated with this body site identifier." )
+        help="Body Site associated with this Body Site Identifier." )
 
 class BodySiteImage(models.Model):
     _name = "hc.body.site.image"
@@ -51,7 +51,7 @@ class BodySiteImage(models.Model):
     body_site_id = fields.Many2one(
         comodel_name="hc.res.body.site", 
         string="Body Site", 
-        help="Body Site associated with this body site image." )
+        help="Body Site associated with this Body Site Image." )
 
 class BodySiteRelativeLocation(models.Model):
     _name = "hc.vs.body.site.relative.location"
@@ -71,4 +71,4 @@ class DosageInstruction(models.Model):
     site_body_site_id = fields.Many2one(
         comodel_name="hc.res.body.site", 
         string="Site Body Site", 
-        help="Body Site content of this set of documents.")
+        help="Body Site to administer to.")

@@ -11,14 +11,14 @@ class UsageContext(models.Model):
         string="Code", 
         required="True", 
         help="Type of context being specified.")                
-    action_type = fields.Selection(
-        string="Action Type", 
+    value_type = fields.Selection(
+        string="Value Type", 
         required="True", 
         selection=[
             ("code", "Code"), 
             ("Quantity", "Quantity"), 
             ("Range", "Range")], 
-        help="Type of actions taken during assessment.")                
+        help="Type of value that defines the context.")                
     value_name = fields.Char(
         string="Value", 
         compute="_compute_value_name", 

@@ -39,12 +39,12 @@ class DosageInstruction(models.Model):
         comodel_name="hc.vs.medication.as.needed.reason", 
         string="As Needed Code", 
         help='Code of take "as needed" (for x).')                
-    action_type = fields.Selection(
-        string="Action Type", 
+    site_type = fields.Selection(
+        string="Site Type", 
         selection=[
             ("code", "Code"), 
             ("Body Site", "Body Site")], 
-        help="Type of actions taken during assessment.")                
+        help="Type of body site to administer to.")                
     site_name = fields.Char(
         string="Site", 
         compute="_compute_site_name", 
@@ -53,11 +53,11 @@ class DosageInstruction(models.Model):
     site_code_id = fields.Many2one(
         comodel_name="hc.vs.approach.site.code", 
         string="Site Code", 
-        help="Body site to administer to.")                
+        help="Code of body site to administer to.")                
     # site_body_site_id = fields.Many2one(
     #     comodel_name="hc.res.body.site", 
     #     string="Site Body Site", 
-    #     help="Body Site content of this set of documents.")                
+    #     help="Body Site to administer to.")               
     route_id = fields.Many2one(
         comodel_name="hc.vs.route.code", 
         string="Route", 
@@ -66,12 +66,12 @@ class DosageInstruction(models.Model):
         comodel_name="hc.vs.administration.method.code", 
         string="Method", 
         help="Technique for administering medication.")                
-    action_type = fields.Selection(
-        string="Action Type", 
+    dose_type = fields.Selection(
+        string="Dose Type", 
         selection=[
             ("Range", "Range"), 
             ("Quantity", "Quantity")], 
-        help="Type of actions taken during assessment.")                
+        help="Type of amount of medication per dose.")                
     dose_name = fields.Char(
         string="Dose", 
         compute="_compute_dose_name", 
@@ -131,13 +131,13 @@ class DosageInstruction(models.Model):
         comodel_name="product.uom", 
         string="Max Dose Per Lifetime UOM", 
         help="Max Dose Per Lifetime unit of measure.")                
-    action_type = fields.Selection(
-        string="Action Type", 
+    rate_type = fields.Selection(
+        string="Rate Type", 
         selection=[
             ("Ratio", "Ratio"), 
             ("Range", "Range"), 
             ("Quantity", "Quantity")], 
-        help="Type of actions taken during assessment.")                
+        help="Type of amount of medication per unit of time.")                
     rate_name = fields.Char(
         string="Rate", 
         compute="_compute_rate_name", 
