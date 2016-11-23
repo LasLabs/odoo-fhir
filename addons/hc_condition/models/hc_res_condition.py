@@ -108,7 +108,7 @@ class Condition(models.Model):
         store="True", 
         help="Estimated or actual date, date-time, or age.")             
     onset_datetime = fields.Datetime(
-        string="Onset", 
+        string="Onset Datetime", 
         help="Estimated or actual date, date-time, or age.")                    
     onset_age = fields.Integer(
         string="Onset Age", 

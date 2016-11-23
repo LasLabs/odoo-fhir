@@ -49,10 +49,10 @@ class ActivityDefinition(models.Model):
         help="Last review date for the activity definition.")                    
     effective_period_start_date = fields.Datetime(
         string="Effective Period Start Date", 
-        help="Start of the the effective date range for the asset.")                    
+        help="Start of the effective date range for the asset.")                    
     effective_period_end_date = fields.Datetime(
         string="Effective Period End Date", 
-        help="End of the the effective date range for the asset.")                    
+        help="End of the effective date range for the asset.")                    
     use_context_ids = fields.One2many(
         comodel_name="hc.activity.definition.use.context", 
         inverse_name="activity_definition_id", 
@@ -60,8 +60,9 @@ class ActivityDefinition(models.Model):
         help="Content intends to support these contexts.")                    
     jurisdiction_ids = fields.Many2many(
         comodel_name="hc.vs.jurisdiction", 
+        relation="activity_definition_jurisdiction_rel", 
         string="Jurisdictions", 
-        help="Intended jurisdiction for activity definition (if applicable).")                    
+        help="Intended jurisdiction for activity definition (if applicable).")                  
     topic_ids = fields.Many2many(
         comodel_name="hc.vs.activity.definition.topic", 
         string="Topics", 

@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_hc_guidance_response_hc_guidance_response,hc_guidance_response.hc_guidance_response,model_hc_guidance_response_hc_guidance_response,,1,0,0,0
