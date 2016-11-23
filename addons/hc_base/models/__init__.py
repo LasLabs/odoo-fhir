@@ -26,4 +26,5 @@ import hc_resource
 import hc_sampled_data
 import hc_signature
 import hc_timing
+import hc_trigger_definition
 import hc_usage_context
