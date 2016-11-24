@@ -1,2 +1,11 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_hc_library_hc_library,hc_library.hc_library,model_hc_library_hc_library,,1,0,0,0
+access_hc_library_hc_res_library_user,hc.library.hc.res.library.user,model_hc_res_library,hc_base.group_hc_base_user,1,0,0,0
+access_hc_library_hc_library_use_context_user,hc.library.hc.library.use.context.user,model_hc_library_use_context,hc_base.group_hc_base_user,1,0,0,0
+access_hc_library_hc_library_contributor_user,hc.library.hc.library.contributor.user,model_hc_library_contributor,hc_base.group_hc_base_user,1,0,0,0
+access_hc_library_hc_library_contact_user,hc.library.hc.library.contact.user,model_hc_library_contact,hc_base.group_hc_base_user,1,0,0,0
+access_hc_library_hc_library_related_artifact_user,hc.library.hc.library.related.artifact.user,model_hc_library_related_artifact,hc_base.group_hc_base_user,1,0,0,0
+access_hc_library_hc_library_parameter_user,hc.library.hc.library.parameter.user,model_hc_library_parameter,hc_base.group_hc_base_user,1,0,0,0
+access_hc_library_hc_library_data_requirement_user,hc.library.hc.library.data.requirement.user,model_hc_library_data_requirement,hc_base.group_hc_base_user,1,0,0,0
+access_hc_library_hc_library_content_user,hc.library.hc.library.content.user,model_hc_library_content,hc_base.group_hc_base_user,1,0,0,0
+access_hc_library_hc_library_identifier_user,hc.library.hc.library.identifier.user,model_hc_library_identifier,hc_base.group_hc_base_user,1,0,0,0
+access_hc_library_hc_vs_library_topic_manager,hc.library.hc.vs.library.topic.manager,model_hc_vs_library_topic,hc_base.group_hc_base_manager,1,1,1,1
