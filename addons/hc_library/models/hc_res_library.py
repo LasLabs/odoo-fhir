@@ -149,7 +149,7 @@ class LibraryContributor(models.Model):
         string="Contributor", 
         ondelete="restrict", 
         required="True", 
-        help="Contributor associated with this library contributor.")                    
+        help="Contributor associated with this Library Contributor.")                    
     library_id = fields.Many2one(
         comodel_name="hc.res.library", 
         string="Library", 
@@ -166,7 +166,7 @@ class LibraryContact(models.Model):
         string="Contact Detail", 
         ondelete="restrict", 
         required="True", 
-        help="Contact Detail associated with this library contact.")                    
+        help="Contact Detail associated with this Library Contact.")                    
     library_id = fields.Many2one(
         comodel_name="hc.res.library", 
         string="Library", 
