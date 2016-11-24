@@ -75,7 +75,7 @@ class RequestGroup(models.Model):
         selection=[
             ("code", "Code"), 
             ("string", "String"),
-            ("Resource", "Resource")], 
+            ("Resource Type", "Resource Type")], 
         help="Type of reason for the request group.")                
     reason_name = fields.Char(
         string="Reason", 

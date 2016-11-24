@@ -1,59 +1,22 @@
 <openerp>
-  <data>
-    <!-- explicit list view definition -->
-    <!--
-    <record model="ir.ui.view" id="hc_guidance_response.list">
-      <field name="name">hc_guidance_response list</field>
-      <field name="model">hc_guidance_response.hc_guidance_response</field>
-      <field name="arch" type="xml">
-        <tree>
-          <field name="name"/>
-          <field name="value"/>
-          <field name="value2"/>
-        </tree>
-      </field>
-    </record>
-    -->
+    <data>
 
-    <!-- actions opening views on models -->
-    <!--
-    <record model="ir.actions.act_window" id="hc_guidance_response.action_window">
-      <field name="name">hc_guidance_response window</field>
-      <field name="res_model">hc_guidance_response.hc_guidance_response</field>
-      <field name="view_mode">tree,form</field>
-    </record>
-    -->
+        <!-- Guidance Response Action and Menu -->  
+    
+        <act_window id="hc_res_guidance_response_action"    
+                    name="HC Guidance Responses"
+                    res_model="hc.res.guidance.response"
+                    view_mode="tree,form"
+                    domain=""
+                    context=""
+                    limit=""/>
 
-    <!-- server action to the one above -->
-    <!--
-    <record model="ir.actions.server" id="hc_guidance_response.action_server">
-      <field name="name">hc_guidance_response server</field>
-      <field name="model_id" ref="model_hc_guidance_response_hc_guidance_response"/>
-      <field name="code">
-        action = {
-          "type": "ir.actions.act_window",
-          "view_mode": "tree,form",
-          "res_model": self._name,
-        }
-      </field>
-    </record>
-    -->
+        <menuitem id="hc_guidance_response.menu_guide_resp" 
+                  name="Guidance Responses" 
+                  parent="hc_base.menu_clin_rsn" 
+                  action="hc_res_guidance_response_action" 
+                  groups="hc_base.group_hc_base_manager" 
+                  sequence="40"/>
 
-    <!-- Top menu item -->
-    <!--
-    <menuitem name="hc_guidance_response" id="hc_guidance_response.menu_root"/>
-    -->
-    <!-- menu categories -->
-    <!--
-    <menuitem name="Menu 1" id="hc_guidance_response.menu_1" parent="hc_guidance_response.menu_root"/>
-    <menuitem name="Menu 2" id="hc_guidance_response.menu_2" parent="hc_guidance_response.menu_root"/>
-    -->
-    <!-- actions -->
-    <!--
-    <menuitem name="List" id="hc_guidance_response.menu_1_list" parent="hc_guidance_response.menu_1"
-              action="hc_guidance_response.action_window"/>
-    <menuitem name="Server to list" id="hc_guidance_response" parent="hc_guidance_response.menu_2"
-              action="hc_guidance_response.action_server"/>
-    -->
-  </data>
+    </data>
 </openerp>
