@@ -53,7 +53,7 @@ class ServiceDefinition(models.Model):
         help="Last review date for the service definition.")                    
     effective_period_start_date = fields.Datetime(
         string="Effective Period Start Date", 
-        help="Period The effective date range for the service definition.")                    
+        help="Start of the effective date range for the service definition.")                    
     effective_period_end_date = fields.Datetime(
         string="Effective Period End Date", 
         help="End of the effective date range for the service definition.")                    

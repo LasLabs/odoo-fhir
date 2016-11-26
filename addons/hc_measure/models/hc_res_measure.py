@@ -43,7 +43,7 @@ class Measure(models.Model):
     purpose = fields.Text(
         string="Purpose", 
         help="Why this measure is defined.")                    
-    usage = fields.Char(
+    usage = fields.Text(
         string="Usage", 
         help="Describes the clinical usage of the measure.")                    
     approval_date = fields.Date(
@@ -204,7 +204,7 @@ class MeasureGroupPopulation(models.Model):
             ("numerator", "Numerator"), 
             ("numerator-exclusion", "Numerator Exclusion"), 
             ("denominator", "Denominator"), ("denominator-exclusion", "Denominator Exclusion"), 
-            ("denominator-exception", "Denominator-Exception"), 
+            ("denominator-exception", "Denominator Exception"), 
             ("measure-population", "Measure Population"), 
             ("measure-population-exclusion", "Measure Population Exclusion"), 
             ("measure-observation", "Measure Observation")], 
@@ -215,7 +215,8 @@ class MeasureGroupPopulation(models.Model):
         required="True", 
         help="Unique identifier.")                    
     name = fields.Char(
-        string="Name", help="Short name.")                    
+        string="Name", 
+        help="Short name.")                    
     description = fields.Text(
         string="Description", 
         help="The human readable description of this population criteria.")                    
@@ -262,7 +263,7 @@ class MeasureSupplementalData(models.Model):
         inverse_name="supplemental_data_id", 
         string="Usages", 
         help="An indicator of the intended usage for the supplemental data element.")                    
-    criteria = fields.Char(
+    criteria = fields.Text(
         string="Criteria", 
         help="Supplemental data criteria.")                    
     path = fields.Char(
@@ -398,8 +399,8 @@ class MeasureSupplementalDataUsage(models.Model):
     usage = fields.Selection(
         string="Usage", 
         selection=[
-            ("supplemental-data", "Supplemental-Data"), 
-            ("risk-adjustment-factor", "Risk-Adjustment-Factor")], 
+            ("supplemental-data", "Supplemental Data"), 
+            ("risk-adjustment-factor", "Risk Adjustment Factor")], 
         help="An indicator of the intended usage for the supplemental data element.")                    
 
 class MeasureTopic(models.Model):    
