@@ -6,7 +6,9 @@ class ActivityDefinition(models.Model):
     _name = "hc.res.activity.definition"    
     _description = "Activity Definition"            
 
-    url = fields.Char(string="URL", help="Logical URL to reference this asset.")                    
+    url = fields.Char(
+        string="URL", 
+        help="Logical URL to reference this asset.")                    
     identifier_ids = fields.One2many(
         comodel_name="hc.activity.definition.identifier", 
         inverse_name="activity_definition_id", 
@@ -124,7 +126,7 @@ class ActivityDefinition(models.Model):
         store="True", 
         help="When activity is to occur.")
     timing_code_id = fields.Many2one(
-        comodel_name="hc.vs.activity.definition.timing", 
+        comodel_name="hc.vs.activity.definition.timing.code", 
         string="Timing Code", 
         help="Code of when activity is to occur.")
     timing_id = fields.Many2one(
@@ -229,8 +231,15 @@ class ActivityDefinitionUseContext(models.Model):
 class ActivityDefinitionContact(models.Model):  
     _name = "hc.activity.definition.contact"    
     _description = "Activity Definition Contact"        
-    _inherit = ["hc.basic.association", "hc.contact.detail"]
+    _inherit = ["hc.basic.association"] 
+    _inherits = {"hc.contact.detail": "contact_id"}
 
+    contact_id = fields.Many2one(
+        comodel_name="hc.contact.detail", 
+        string="Contact", 
+        ondelete="restrict", 
+        required="True", 
+        help="Contact Detail associated with this Activity Definition Contact.")
     activity_definition_id = fields.Many2one(
         comodel_name="hc.res.activity.definition", 
         string="Activity Definition", 
@@ -239,8 +248,15 @@ class ActivityDefinitionContact(models.Model):
 class ActivityDefinitionContributor(models.Model):  
     _name = "hc.activity.definition.contributor"    
     _description = "Activity Definition Contributor"        
-    _inherit = ["hc.basic.association", "hc.contributor"]
+    _inherit = ["hc.basic.association"] 
+    _inherits = {"hc.contributor": "contributor_id"}
 
+    contributor_id = fields.Many2one(
+        comodel_name="hc.contributor", 
+        string="Contributor", 
+        ondelete="restrict", 
+        required="True", 
+        help="Contributor associated with this Activity Definition Contributor.")
     activity_definition_id = fields.Many2one(
         comodel_name="hc.res.activity.definition", 
         string="Activity Definition", 
@@ -256,19 +272,19 @@ class ActivityDefinitionDosageInstruction(models.Model):
         string="Activity Definition", 
         help="Activity Definition associated with this Activity Definition Dosage Instruction.")              
 
-# class ActivityDefinitionLibrary(models.Model):  
-#     _name = "hc.activity.definition.library"    
-#     _description = "Activity Definition Library"        
-#     _inherit = ["hc.basic.association"]
+class ActivityDefinitionLibrary(models.Model):  
+    _name = "hc.activity.definition.library"    
+    _description = "Activity Definition Library"        
+    _inherit = ["hc.basic.association"]
 
-#     activity_definition_id = fields.Many2one(
-#         comodel_name="hc.res.activity.definition", 
-#         string="Activity Definition", 
-#         help="Activity Definition associated with this Activity Definition Library.")             
-#     library_id = fields.Many2one(
-#         comodel_name="hc.res.library", 
-#         string="Library", 
-#         help="Logic used by the asset.")             
+    activity_definition_id = fields.Many2one(
+        comodel_name="hc.res.activity.definition", 
+        string="Activity Definition", 
+        help="Activity Definition associated with this Activity Definition Library.")             
+    library_id = fields.Many2one(
+        comodel_name="hc.res.library", 
+        string="Library", 
+        help="Logic used by the asset.")             
 
 class ActivityDefinitionRelatedArtifact(models.Model):  
     _name = "hc.activity.definition.related.artifact"   
@@ -300,12 +316,12 @@ class ActivityDefinitionProduct(models.Model):
     _description = "Activity Definition Product"        
     _inherit = ["hc.value.set.contains"]
 
-class ActivityDefinitionTiming(models.Model):   
-    _name = "hc.vs.activity.definition.timing"  
-    _description = "Activity Definition Timing"     
-    _inherit = ["hc.value.set.contains"]
-
 class ActivityDefinitionTopic(models.Model):    
     _name = "hc.vs.activity.definition.topic"   
     _description = "Activity Definition Topic"      
+    _inherit = ["hc.value.set.contains"]
+
+class ActivityDefinitionTimingCode(models.Model):   
+    _name = "hc.vs.activity.definition.timing.code" 
+    _description = "Activity Definition Timing Code"        
     _inherit = ["hc.value.set.contains"]

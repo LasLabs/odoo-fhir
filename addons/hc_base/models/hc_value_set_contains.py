@@ -56,6 +56,11 @@ class ActCode(models.Model):
     _description = "Act Code"  
     _inherit = ["hc.value.set.contains"]
 
+class ActionCode(models.Model):    
+    _name = "hc.vs.action.code"    
+    _description = "Action Code"        
+    _inherit = ["hc.value.set.contains"]
+
 class ActReason(models.Model):    
     _name = "hc.vs.act.reason"    
     _description = "Act Reason"        

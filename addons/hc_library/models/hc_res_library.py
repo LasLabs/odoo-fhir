@@ -159,9 +159,9 @@ class LibraryContact(models.Model):
     _name = "hc.library.contact"    
     _description = "Library Contact"        
     _inherit = ["hc.basic.association"]    
-    _inherits = {"hc.contact.detail": "contact_detail_id"}
+    _inherits = {"hc.contact.detail": "contact_id"}
 
-    contact_detail_id = fields.Many2one(
+    contact_id = fields.Many2one(
         comodel_name="hc.contact.detail", 
         string="Contact Detail", 
         ondelete="restrict", 

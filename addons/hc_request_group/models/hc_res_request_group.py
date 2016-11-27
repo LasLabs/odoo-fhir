@@ -406,11 +406,6 @@ class RequestGroupActionRelatedActionActionIdentifier(models.Model):
     _description = "Request Group Action Related Action Action Identifier"        
     _inherit = ["hc.basic.association", "hc.identifier"]
 
-class ActionCode(models.Model):    
-    _name = "hc.vs.action.code"    
-    _description = "Action Code"        
-    _inherit = ["hc.value.set.contains"]
-
 class RequestGroupReason(models.Model):    
     _name = "hc.vs.request.group.reason"    
     _description = "Request Group Reason"        
