@@ -1,0 +1,22 @@
+<openerp>
+    <data>
+
+        <!-- Research Study Action and Menu --> 
+    
+        <act_window id="hc_res_research_study_action"   
+                    name="HC Research Studies"
+                    res_model="hc.res.research.study"
+                    view_mode="tree,form"
+                    domain=""
+                    context=""
+                    limit=""/>
+
+        <menuitem id="hc_research_study.menu_res_study" 
+                  name="Research Studies" 
+                  parent="hc_base.menu_res"
+                  action="hc_res_research_study_action" 
+                  groups="hc_base.group_hc_base_manager" 
+                  sequence="10"/>
+
+    </data>
+</openerp>

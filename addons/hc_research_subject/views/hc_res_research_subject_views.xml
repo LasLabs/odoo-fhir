@@ -1,0 +1,22 @@
+<openerp>
+    <data>
+      
+        <!-- Research Subject Action and Menu -->   
+    
+        <act_window id="hc_res_research_subject_action" 
+                    name="HC Research Subjects"
+                    res_model="hc.res.research.subject"
+                    view_mode="tree,form"
+                    domain=""
+                    context=""
+                    limit=""/>
+
+        <menuitem id="hc_research_subject.menu_res_subj" 
+                  name="Research Subjects" 
+                  parent="hc_base.menu_res" 
+                  action="hc_res_research_subject_action" 
+                  groups="hc_base.group_hc_base_manager" 
+                  sequence="20"/>
+
+    </data>
+</openerp>

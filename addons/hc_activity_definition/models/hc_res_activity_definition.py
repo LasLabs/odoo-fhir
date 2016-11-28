@@ -67,8 +67,9 @@ class ActivityDefinition(models.Model):
         help="Intended jurisdiction for activity definition (if applicable).")                  
     topic_ids = fields.Many2many(
         comodel_name="hc.vs.activity.definition.topic", 
+        relation="activity_definition_topic_rel", 
         string="Topics", 
-        help="Descriptional topics for the asset.")                    
+        help="Descriptional topics for the asset.")                  
     contributor_ids = fields.One2many(
         comodel_name="hc.activity.definition.contributor", 
         inverse_name="activity_definition_id", 

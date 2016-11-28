@@ -21,7 +21,7 @@ class Flag(models.Model):
         selection=[
             ("active", "Active"), 
             ("inactive", "Inactive"), 
-            ("entered-in-error", "Entered-In-Error")], 
+            ("entered-in-error", "Entered In Error")], 
         help="Indicates whether this flag is active and needs to be displayed to a user, or whether it is no longer needed or entered in error.")					
     start_date = fields.Datetime(
         string="Start Date", 
@@ -66,10 +66,10 @@ class Flag(models.Model):
         comodel_name="hc.res.practitioner", 
         string="Subject Practitioner", 
         help="Practitioner who/what is flag about.")
-    # subject_plan_definition_id = fields.Many2one(
-    #     comodel_name="hc.res.plan.definition", 
-    #     string="Subject Plan Definition", 
-    #     help="Plan Definition who/what is flag about.")
+    subject_plan_definition_id = fields.Many2one(
+        comodel_name="hc.res.plan.definition", 
+        string="Subject Plan Definition", 
+        help="Plan Definition who/what is flag about.")
     subject_medication_id = fields.Many2one(
         comodel_name="hc.res.medication", 
         string="Subject Medication", 
@@ -129,8 +129,8 @@ class Flag(models.Model):
                 hc_res_flag.subject_name = hc_res_flag.subject_organization_id.name
             elif hc_res_flag.subject_type == 'Practitioner':    
                 hc_res_flag.subject_name = hc_res_flag.subject_practitioner_id.name
-            # elif hc_res_flag.subject_type == 'Plan Definition': 
-            #     hc_res_flag.subject_name = hc_res_flag.subject_plan_definition_id.name
+            elif hc_res_flag.subject_type == 'Plan Definition': 
+                hc_res_flag.subject_name = hc_res_flag.subject_plan_definition_id.name
             elif hc_res_flag.subject_type == 'Medication':  
                 hc_res_flag.subject_name = hc_res_flag.subject_medication_id.name
             elif hc_res_flag.subject_type == 'Procedure':   
