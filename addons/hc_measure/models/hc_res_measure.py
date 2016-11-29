@@ -252,7 +252,7 @@ class MeasureSupplementalData(models.Model):
     measure_id = fields.Many2one(
         comodel_name="hc.res.measure", 
         string="Measure", 
-        help="Measure associated with this Measure Supplemental Data.")                    
+        help="Supplemental data.")                    
     identifier_id = fields.Many2one(
         comodel_name="hc.measure.supplemental.data.identifier", 
         string="Identifier", 

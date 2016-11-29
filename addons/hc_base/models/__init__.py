@@ -12,6 +12,7 @@ import hc_contact_detail
 import hc_contributor
 import hc_data_requirement
 import hc_dosage_instruction
+import hc_element_definition
 import hc_human_name
 import hc_identifier
 import hc_language

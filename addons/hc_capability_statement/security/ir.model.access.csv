@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_hc_capability_statement_hc_capability_statement,hc_capability_statement.hc_capability_statement,model_hc_capability_statement_hc_capability_statement,,1,0,0,0

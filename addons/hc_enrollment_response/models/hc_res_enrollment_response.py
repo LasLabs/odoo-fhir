@@ -33,7 +33,7 @@ class EnrollmentResponse(models.Model):
         string="Original Ruleset", 
         help="Original version.")                
     created = fields.Datetime(
-        string="Enrollment Response Creation Date", 
+        string="Creation Date", 
         help="Creation date.")                
     organization_id = fields.Many2one(
         comodel_name="hc.res.organization", 

@@ -110,7 +110,7 @@ class PlanDefinition(models.Model):
         comodel_name="hc.plan.definition.action.definition", 
         inverse_name="plan_definition_id", 
         string="Action Definition", 
-        help="Content as for PlanDefinition.actionDefinition A sub-action.")                    
+        help="Action defined by the plan.")                    
 
 class PlanDefinitionActionDefinition(models.Model):    
     _name = "hc.plan.definition.action.definition"    
@@ -119,7 +119,7 @@ class PlanDefinitionActionDefinition(models.Model):
     plan_definition_id = fields.Many2one(
         comodel_name="hc.res.plan.definition", 
         string="Plan Definition", 
-        help="Plan Definition associated with this Plan Definition Action Definition.")                    
+        help="Action defined by the plan.")                    
     action_identifier_id = fields.Many2one(
         comodel_name="hc.plan.definition.action.definition.action.identifier", 
         string="Action Identifier", 
@@ -130,7 +130,7 @@ class PlanDefinitionActionDefinition(models.Model):
     title = fields.Char(
         string="Title", 
         help="User-visible title.")                    
-    description = fields.Char(
+    description = fields.Text(
         string="Description", 
         help="Short description of the action.")                    
     text_equivalent = fields.Text(
@@ -239,7 +239,7 @@ class PlanDefinitionActionDefinitionCondition(models.Model):
     action_definition_id = fields.Many2one(
         comodel_name="hc.plan.definition.action.definition", 
         string="Action Definition", 
-        help="Action Definition associated with this Plan Definition Action Definition Condition.")                    
+        help="Action defined by the plan.")                    
     kind = fields.Selection(
         string="Kind", 
         required="True", 
@@ -254,7 +254,7 @@ class PlanDefinitionActionDefinitionCondition(models.Model):
     language = fields.Char(
         string="Language", 
         help="Language of the expression.")                    
-    expression = fields.Char(
+    expression = fields.Text(
         string="Expression", 
         help="Boolean-valued expression.")                    
 
@@ -265,7 +265,7 @@ class PlanDefinitionActionDefinitionRelatedAction(models.Model):
     action_definition_id = fields.Many2one(
         comodel_name="hc.plan.definition.action.definition", 
         string="Action Definition", 
-        help="Action Definition associated with this Plan Definition Action Definition Related Action.")                    
+        help="Action defined by the plan.")                    
     action_identifier_id = fields.Many2one(
         comodel_name="hc.plan.defn.action.defn.related.action.action.identifier", 
         string="Action Identifier", 
@@ -294,7 +294,7 @@ class PlanDefinitionActionDefinitionDynamicValue(models.Model):
     action_definition_id = fields.Many2one(
         comodel_name="hc.plan.definition.action.definition", 
         string="Action Definition", 
-        help="Action Definition associated with this Plan Definition Action Definition Dynamic Value.")                    
+        help="Action defined by the plan.")                    
     description = fields.Text(
         string="Description", 
         help="Natural language description of the dynamic value.")                    
