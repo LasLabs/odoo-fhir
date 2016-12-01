@@ -16,7 +16,7 @@
                   parent="hc_base.menu_conf" 
                   action="hc_res_operation_definition_action" 
                   groups="hc_base.group_hc_base_manager" 
-                  sequence="50"/>
+                  sequence="60"/>
 
     </data>
 </openerp>
