@@ -201,6 +201,11 @@ class MedicationAsNeededReason(models.Model):
     _description = "Medication As Needed Reason"        
     _inherit = ["hc.value.set.contains"]
 
+class MessageEvent(models.Model):    
+    _name = "hc.vs.message.event"    
+    _description = "Message Event"        
+    _inherit = ["hc.value.set.contains"] 
+    
 class OccupationCode(models.Model):  
     _name = "hc.vs.occupation.code"  
     _description = "Occupation Code" 

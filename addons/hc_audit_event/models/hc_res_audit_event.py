@@ -118,8 +118,8 @@ class AuditEventAgent(models.Model):
     policy_ids = fields.One2many(
         comodel_name="hc.audit.event.agent.policy", 
         inverse_name="agent_id", 
-        string="Policy URLs", 
-        help="URL of policy that authorized event.")                
+        string="Policy URIs", 
+        help="URI of policy that authorized event.")                
     media_id = fields.Many2one(
         comodel_name="hc.vs.dicm.405.mediatype", 
         string="Media", 
@@ -248,9 +248,9 @@ class AuditEventAgentPolicy(models.Model):
         comodel_name="hc.audit.event.agent", 
         string="Agent", 
         help="Agent associated with this Audit Event Agent Policy.")                
-    policy_url = fields.Char(
-        string="Policy URL", 
-        help="URL of Policy associated with this Audit Event Agent Policy.")                                             
+    policy = fields.Char(
+        string="Policy URI", 
+        help="URI of Policy associated with this Audit Event Agent Policy.")                                             
 
 class AuditEventEntityIdentifier(models.Model): 
     _name = "hc.audit.event.entity.identifier"  

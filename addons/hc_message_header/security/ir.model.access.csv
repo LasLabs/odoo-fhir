@@ -5,5 +5,4 @@ access_hc_message_header_hc_message_header_source_user,hc.message.header.hc.mess
 access_hc_message_header_hc_message_header_destination_user,hc.message.header.hc.message.header.destination.user,model_hc_message_header_destination,hc_base.group_hc_base_user,1,0,0,0
 access_hc_message_header_hc_message_header_data_user,hc.message.header.hc.message.header.data.user,model_hc_message_header_data,hc_base.group_hc_base_user,1,0,0,0
 access_hc_message_header_hc_message_header_source_contact_user,hc.message.header.hc.message.header.source.contact.user,model_hc_message_header_source_contact,hc_base.group_hc_base_user,1,0,0,0
-access_hc_message_header_hc_vs_message_event_manager,hc.message.header.hc.vs.message.event.manager,model_hc_vs_message_event,hc_base.group_hc_base_manager,1,1,1,1
 access_hc_message_header_hc_vs_message_header_reason_manager,hc.message.header.hc.vs.message.header.reason.manager,model_hc_vs_message_header_reason,hc_base.group_hc_base_manager,1,1,1,1

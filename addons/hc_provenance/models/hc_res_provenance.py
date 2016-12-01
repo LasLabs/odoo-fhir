@@ -37,8 +37,8 @@ class Provenance(models.Model):
     policy_ids = fields.One2many(
         comodel_name="hc.provenance.policy", 
         inverse_name="provenance_id", 
-        string="Policies", 
-        help="URL of policy or plan the activity was defined by.")                
+        string="Policy URIs", 
+        help="URI of policy or plan the activity was defined by.")              
     signature_ids = fields.One2many(
         comodel_name="hc.provenance.signature", 
         inverse_name="provenance_id", 
@@ -181,8 +181,8 @@ class ProvenancePolicy(models.Model):
         comodel_name="hc.res.provenance", 
         string="Provenance", help="Provenance associated with this Provenance Policy.")                
     policy = fields.Char(
-        string="Policy URL", 
-        help="URL of Policy associated with this Provenance Policy.")                
+        string="Policy URI", 
+        help="URI of Policy associated with this Provenance Policy.")                
 
 class ProvenanceSignature(models.Model):    
     _name = "hc.provenance.signature"    

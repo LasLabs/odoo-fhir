@@ -32,7 +32,7 @@ class Signature(models.AbstractModel):
         help="Who signed.")                
     who_uri = fields.Char(
         string="Who URI", 
-        help="URI who signed.")                
+        help="URI of who signed.")                
     # who_practitioner_id = fields.Many2one(
     #     comodel_name="hc.res.practitioner", 
     #     string="Who Practitioner", 
@@ -69,7 +69,7 @@ class Signature(models.AbstractModel):
         help="The party represented.")                
     on_behalf_of_uri = fields.Char(
         string="On Behalf Of URI", 
-        help="URI the party represented.")                
+        help="URI of the party represented.")                
     # on_behalf_of_practitioner_id = fields.Many2one(
     #     comodel_name="hc.res.practitioner", 
     #     string="On Behalf Of Practitioner", 

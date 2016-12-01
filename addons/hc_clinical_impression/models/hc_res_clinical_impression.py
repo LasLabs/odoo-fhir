@@ -106,8 +106,8 @@ class ClinicalImpression(models.Model):
     protocol_ids = fields.One2many(
         comodel_name="hc.clinical.impression.protocol", 
         inverse_name="clinical_impression_id", 
-        string="Protocols", 
-        help="URL of clinical protocol followed.")             
+        string="Protocol URIs", 
+        help="URI of clinical protocol followed.")             
     summary = fields.Text(
         string="Summary", 
         help="Summary of the assessment.")                
@@ -588,10 +588,10 @@ class ClinicalImpressionProtocol(models.Model):
         comodel_name="hc.res.clinical.impression", 
         string="Clinical Impression", 
         help="Clinical Impression associated with this Clinical Impression Protocol.")                
-    protocol_url = fields.Char(
-        string="Protocol URL", 
-        help="URL of Protocol associated with this Clinical Impression Protocol.")                
-
+    protocol = fields.Char(
+        string="Protocol URI", 
+        help="URI of Protocol associated with this Clinical Impression Protocol.")
+                
 class ClinicalImpressionKind(models.Model):    
     _name = "hc.vs.clinical.impression.kind"    
     _description = "Clinical Impression Kind"        

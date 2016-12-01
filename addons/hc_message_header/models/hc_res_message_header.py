@@ -201,12 +201,7 @@ class MessageHeaderSourceContact(models.Model):
         string="Contact", 
         ondelete="restrict", 
         required="True", 
-        help="Telecom associated with this Message Header Source Contact.")                    
-
-class MessageEvent(models.Model):    
-    _name = "hc.vs.message.event"    
-    _description = "Message Event"        
-    _inherit = ["hc.value.set.contains"]    
+        help="Telecom associated with this Message Header Source Contact.")                     
 
 class MessageHeaderReason(models.Model):    
     _name = "hc.vs.message.header.reason"    

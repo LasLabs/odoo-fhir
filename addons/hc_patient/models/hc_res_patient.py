@@ -363,25 +363,47 @@ class PatientContact(models.Model):
         string="Person", 
         ondelete="restrict", 
         required="True", 
-        help="Person associated with this Contact.")
+        help="Person associated with this Patient Contact.")
     patient_id = fields.Many2one(
         comodel_name="hc.res.patient", 
-        string="Patient",
-        help="Patient associated with this Contact.")
+        string="Patient", 
+        help="Patient associated with this Patient Contact.")
     relationship_ids = fields.Many2many(
         comodel_name="hc.vs.contact.relationship", 
+        relation="patient_contact_relationship_rel", 
         string="Relationships", 
         help="The kind of relationship.")
+    name_id = fields.Many2one(
+        comodel_name="hc.human.name", 
+        string="Name", 
+        help="A name associated with the contact person.")
+    telecom_ids = fields.One2many(
+        comodel_name="hc.patient.contact.telecom", 
+        inverse_name="contact_id", 
+        string="Telecoms", 
+        help="A contact detail for the contact person.")
+    address_id = fields.Many2one(
+        comodel_name="hc.address", 
+        string="Address", 
+        help="Address for the contact person.")
+    gender = fields.Selection(
+        string="Gender", 
+        selection=[
+            ("male", "Male"), 
+            ("female", "Female"), 
+            ("other", "Other"), 
+            ("unknown", "Unknown")], 
+        help="The gender that the patient contact is considered to have for administration and record keeping purposes.")
     organization_id = fields.Many2one(
         comodel_name="hc.res.organization", 
         string="Organization", 
-        help="Organization that is associated with the contact.")
+        help="Organization that is associated with the contact person.")
     start_date = fields.Datetime(
         string="Valid from", 
         help="Start of the the period during which this contact person or organization is valid to be contacted relating to this patient.")
     end_date = fields.Datetime(
         string="Valid to", 
-        help="End of the the period during which this contact person or organization is valid to be contacted relating to this patient.")    
+        help="End of the the period during which this contact person or organization is valid to be contacted relating to this patient.")  
 
 class PatientLink(models.Model):    
     _name = "hc.patient.link"   
@@ -418,6 +440,23 @@ class PatientLink(models.Model):
             ("refer", "Refer"), 
             ("seealso", "See also")], 
         help="The type of link between this patient resource and another patient resource.")
+
+class PatientContactTelecom(models.Model):  
+    _name = "hc.patient.contact.telecom"    
+    _description = "Patient Contact Telecom"            
+    _inherit = ["hc.contact.point.use"] 
+    _inherits = {"hc.contact.point": "telecom_id"}
+
+    telecom_id = fields.Many2one(
+        comodel_name="hc.contact.point", 
+        string="Telecom", 
+        ondelete="restrict", 
+        required="True", 
+        help="Telecom associated with this Patient Contact Telecom.")                     
+    contact_id = fields.Many2one(
+        comodel_name="hc.patient.contact", 
+        string="Contact", 
+        help="Contact associated with this Patient Contact Telecom.")                     
 
 class ContactRelationship(models.Model):    
     _name = "hc.vs.patient.contact.relationship"    

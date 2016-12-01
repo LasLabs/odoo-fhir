@@ -147,6 +147,8 @@ access_hc_base_hc_trigger_definition_user,hc.base.hc.trigger.definition.user,mod
 access_hc_base_hc_trigger_definition_event_timing_user,hc.base.hc.trigger.definition.event.timing.user,model_hc_trigger_definition_event_timing,hc_base.group_hc_base_user,1,0,0,0
 access_hc_base_hc_trigger_definition_event_data_user,hc.base.hc.trigger.definition.event.data.user,model_hc_trigger_definition_event_data,hc_base.group_hc_base_user,1,0,0,0
 access_hc_base_hc_vs_action_code_manager,hc.base.hc.vs.action.code.manager,model_hc_vs_action_code,hc_base.group_hc_base_manager,1,1,1,1
+access_hc_base_hc_vs_message_event_manager,hc.base.hc.vs.message.event.manager,model_hc_vs_message_event,hc_base.group_hc_base_manager,1,1,1,1
+
 
 
 

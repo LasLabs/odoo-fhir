@@ -103,10 +103,10 @@ class ServiceDefinition(models.Model):
         inverse_name="service_definition_id", 
         string="Data Requirements", 
         help="Data requirements for the module." )                    
-    # operation_definition_id = fields.Many2one(
-    #     comodel_name="hc.res.operation.definition", 
-    #     string="Operation Definition", 
-    #     help="Operation to invoke.")                    
+    operation_definition_id = fields.Many2one(
+        comodel_name="hc.res.operation.definition", 
+        string="Operation Definition", 
+        help="Operation to invoke.")                    
 
 class ServiceDefinitionIdentifier(models.Model):    
     _name = "hc.service.definition.identifier"    

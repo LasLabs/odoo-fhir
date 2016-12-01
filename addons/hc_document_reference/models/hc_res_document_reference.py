@@ -56,8 +56,8 @@ class DocumentReference(models.Model):
     format_ids = fields.One2many(
         comodel_name="hc.document.reference.format", 
         inverse_name="document_reference_id", 
-        string="Formats", 
-        help="URL of format/content rules for the document.")                
+        string="Format URIs", 
+        help="URI of format/content rules for the document.")                
     author_ids = fields.One2many(
         comodel_name="hc.document.reference.author", 
         inverse_name="document_reference_id", 
@@ -254,9 +254,9 @@ class DocumentReferenceFormat(models.Model):
         comodel_name="hc.res.document.reference", 
         string="Document Reference", 
         help="Document Reference associated with this Document Reference Format.")                
-    format_uri = fields.Char(
-        string="Format URL", 
-        help="URL of Format associated with this Document Reference Format.")                
+    format = fields.Char(
+        string="Format URI", 
+        help="URI of Format associated with this Document Reference Format.")                
 
 class DocumentReferenceAuthor(models.Model):    
     _name = "hc.document.reference.author"    

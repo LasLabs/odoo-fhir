@@ -85,10 +85,10 @@ class Consent(models.Model):
     #     comodel_name="hc.res.questionnaire.response", 
     #     string="Source Questionnaire Response", 
     #     help="QuestionnaireResponse source from which this consent is taken.")             
-    policy_uri = fields.Char(
-        string="Policy URL", 
+    policy = fields.Char(
+        string="Policy URI", 
         required="True", 
-        help="URL of policy that this consents to.")             
+        help="URI of policy that this consents to.")             
     recipient_ids = fields.One2many(
         comodel_name="hc.consent.recipient", 
         inverse_name="consent_id", 

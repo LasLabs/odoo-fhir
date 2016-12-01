@@ -70,8 +70,8 @@ class StructureMap(models.Model):
     import_ids = fields.One2many(
         comodel_name="hc.structure.map.import", 
         inverse_name="structure_map_id", 
-        string="Imports", 
-        help="URL of other maps used by this map (canonical URLs).")
+        string="Import URIs", 
+        help="URI of other maps used by this map (canonical urls).")
     group_ids = fields.One2many(
         comodel_name="hc.structure.map.group", 
         inverse_name="structure_map_id", 
@@ -385,9 +385,9 @@ class StructureMapImport(models.Model):
         comodel_name="hc.res.structure.map", 
         string="Structure Map", 
         help="Structure Map associated with this Structure Map Import.")                
-    import_url = fields.Char(
-        string="Import URL", 
-        help="URL of other maps used by this map (canonical urls).")                  
+    import_uri = fields.Char(
+        string="Import URI", 
+        help="URI of other maps used by this map (canonical URLs).")                  
 
 class StructureMapUseContext(models.Model):    
     _name = "hc.structure.map.use.context"    

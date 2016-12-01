@@ -188,8 +188,8 @@ class TaskFulfillment(models.Model):
         string="Recipients", 
         help="For whom is fulfillment sought?")              
     definition = fields.Char(
-        string="Definition URL", 
-        help="URL of task definition.")
+        string="Definition URI", 
+        help="URI of task definition.")
 
 class TaskInput(models.Model):  
     _name = "hc.task.input" 
