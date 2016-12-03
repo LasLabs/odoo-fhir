@@ -4,7 +4,8 @@ from openerp import models, fields, api
 
 class CapabilityStatement(models.Model):    
     _name = "hc.res.capability.statement"    
-    _description = "Capability Statement"                
+    _description = "Capability Statement"
+    _rec_name = "title"                  
 
     url = fields.Char(
         string="URL", 
@@ -130,7 +131,7 @@ class CapabilityStatementSoftware(models.Model):
     capability_statement_id = fields.Many2one(
         comodel_name="hc.res.capability.statement", 
         string="Capability Statement", 
-        help="Software that is covered by this capability statement.")                        
+        help="Capability Statement associated with this Capability Statement Software.")                        
     name = fields.Char(
         string="Name", 
         required="True", 
@@ -149,7 +150,7 @@ class CapabilityStatementImplementation(models.Model):
     capability_statement_id = fields.Many2one(
         comodel_name="hc.res.capability.statement", 
         string="Capability Statement", 
-        help="If this describes a specific instance.")                        
+        help="Capability Statement associated with this Capability Statement Implementation.")                        
     description = fields.Text(
         string="Description", 
         required="True", 
@@ -165,7 +166,7 @@ class CapabilityStatementRest(models.Model):
     capability_statement_id = fields.Many2one(
         comodel_name="hc.res.capability.statement", 
         string="Capability Statement", 
-        help="If the endpoint is a RESTful one.")                        
+        help="Capability Statement associated with this Capability Statement REST.")
     mode = fields.Selection(
         string="Mode", 
         required="True", 
@@ -331,7 +332,8 @@ class CapabilityStatementRestResourceInteraction(models.Model):
 
     resource_id = fields.Many2one(
         comodel_name="hc.capability.statement.rest.resource", 
-        string="Resource", help="Resource served on the REST interface.")                        
+        string="Resource", 
+        help="Resource served on the REST interface.")                        
     code = fields.Selection(
         string="Code", 
         required="True", 
@@ -359,8 +361,8 @@ class CapabilityStatementRestSearchParam(models.Model):
         help="If the endpoint is a RESTful one.")                        
     resource_id = fields.Many2one(
         comodel_name="hc.capability.statement.rest.resource", 
-        string="Resource", 
-        help="Resource served on the REST interface.")                        
+        string="Resource served on the REST interface.", 
+        help="")                        
     name = fields.Char(
         string="Name", 
         required="True", 
@@ -426,7 +428,7 @@ class CapabilityStatementRestOperation(models.Model):
     rest_id = fields.Many2one(
         comodel_name="hc.capability.statement.rest", 
         string="REST", 
-        help="If the endpoint is a RESTful one.")                        
+        help="If the endpoint is a RESTful one.")                       
     name = fields.Char(
         string="Name", 
         required="True", 
@@ -444,7 +446,7 @@ class CapabilityStatementMessaging(models.Model):
     capability_statement_id = fields.Many2one(
         comodel_name="hc.res.capability.statement", 
         string="Capability Statement", 
-        help="If messaging is supported.")                        
+        help="Capability Statement associated with this Capability Statement Messaging.")
     reliable_cache = fields.Integer(
         string="Reliable Cache", 
         help="Reliable Message Cache Length (min).")                        
@@ -535,7 +537,7 @@ class CapabilityStatementDocument(models.Model):
     capability_statement_id = fields.Many2one(
         comodel_name="hc.res.capability.statement", 
         string="Capability Statement", 
-        help="Document definition.")                        
+        help="Capability Statement associated with this Capability Statement Document.")                       
     mode = fields.Selection(
         string="Mode", 
         required="True", 
@@ -589,7 +591,7 @@ class CapabilityStatementInstantiates(models.Model):
         string="Capability Statement", 
         help="Capability Statement associated with this Capability Statement Instantiates.")                        
     instantiates = fields.Char(
-        string="Import URL", 
+        string="Instantiates URL", 
         help="Canonical URL of service implemented/used by software.")                        
 
 class CapabilityStatementFormat(models.Model):    
@@ -632,9 +634,9 @@ class CapabilityStatementRestCompartment(models.Model):
     rest_id = fields.Many2one(
         comodel_name="hc.capability.statement.rest", 
         string="REST", 
-        help="Rest associated with this Capability Statement REST Compartment.")                        
+        help="REST associated with this Capability Statement Rest Compartment.")                        
     compartment = fields.Char(
-        string="Import URL", 
+        string="Compartment URL", 
         help="URL of compartments served/used by system.")                        
 
 class CapabilityStatementRestCertificateSecurityService(models.Model):    
@@ -665,7 +667,7 @@ class CapabilityStatementRestResourceReferencePolicy(models.Model):
     resource_id = fields.Many2one(
         comodel_name="hc.capability.statement.rest.resource", 
         string="Resource", 
-        help="Resource associated with this Capability Statement REST Resource Reference Policy.")                        
+        help="Resource served on the REST interface.")                        
     reference_policy = fields.Selection(
         string="Reference Policy", 
         selection=[

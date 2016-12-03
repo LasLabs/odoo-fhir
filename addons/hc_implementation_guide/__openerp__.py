@@ -1,35 +1,45 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "hc_implementation_guide",
+    'name': "Implementation Guide",
 
     'summary': """
-        Short (1 phrase/line) summary of the module's purpose, used as
-        subtitle on modules listing or apps.openerp.com""",
+        FHIR rules
+        """,
 
     'description': """
-        Long description of module's purpose
+        A set of rules or how FHIR is used to solve a particular problem. This resource is used to gather all the parts of an implementation guide 
+        into a logical whole, and to publish a computable definition of all the parts. 
+
+        **Scope and Usage**
+
+        An "implementation guide" defines a particular scope of usage for FHIR, and sets a bounded set of expectations for implementations to comply to. 
+        
+        The significant conformance expectation introduced by the ImplementationGuide resource is the idea of Default Profiles. 
+        Implementations may conform to multiple implementation guides at once, but this requires that the implementation guides are compatible.
     """,
 
-    'author': "My Company",
-    'website': "http://www.yourcompany.com",
+    'author': "Luigi Sison",
+    'website': "https://hl7-fhir.github.io/implementationguide.html",
 
     # Categories can be used to filter modules in modules listing
     # Check https://github.com/odoo/odoo/blob/master/openerp/addons/base/module/module_data.xml
     # for the full list
-    'category': 'Uncategorized',
+    'category': 'Health Care',
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base'],
+    'depends': ['hc_structure_definition'],
 
     # always loaded
     'data': [
-        # 'security/ir.model.access.csv',
-        'views/views.xml',
-        'views/templates.xml',
+        'security/ir.model.access.csv',
+        'views/hc_res_implementation_guide_views.xml',
+        'views/hc_res_implementation_guide_templates.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
         'demo/demo.xml',
     ],
+    'installable': 'True',
+    'auto-install': 'True',
 }

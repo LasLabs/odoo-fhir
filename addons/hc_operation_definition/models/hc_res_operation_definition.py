@@ -17,7 +17,7 @@ class OperationDefinition(models.Model):
         required="True", 
         help="Informal name for this profile.")                      
     status = fields.Selection(
-        string="Operation Definition Status", 
+        string="Status", 
         required="True", 
         selection=[
             ("draft", "Draft"), 
@@ -25,7 +25,7 @@ class OperationDefinition(models.Model):
             ("retired", "Retired")], 
         help="The status of this operation definition. Enables tracking the life-cycle of the content.")                     
     kind = fields.Selection(
-        string="Operation Definition Kind", 
+        string="Kind", 
         required="True", 
         selection=[
             ("operation", "Operation"), 
@@ -119,7 +119,7 @@ class OperationDefinitionParameter(models.Model):
         required="True", 
         help="Name of the parameter.")                        
     use = fields.Selection(
-        string="Parameter Use", 
+        string="Use", 
         required="True", 
         selection=[
             ("in", "In"), 
@@ -163,7 +163,7 @@ class OperationDefinitionParameterBinding(models.Model):
         string="Parameter", 
         help="Parameters for the operation/query.")                        
     strength = fields.Selection(
-        string="Binding Strength", 
+        string="Strength", 
         required="True", 
         selection=[
             ("required", "Required"), 

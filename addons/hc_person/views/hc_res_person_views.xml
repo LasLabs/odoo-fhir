@@ -257,7 +257,7 @@
         
         <!-- External Reference View -->
 
-        <record id="base.view_partner_form_inherited_person" model="ir.ui.view">     
+        <!-- <record id="base.view_partner_form_inherited_person" model="ir.ui.view">     
           <field name="name">res.partner.form</field>   
           <field name="model">res.partner</field>   
           <field name="inherit_id" ref="base.view_partner_form"/>   
@@ -273,7 +273,7 @@
                 <field name="is_related_person"/>
               </field>
           </field>
-        </record>
+        </record> -->
 
     </data>
 </openerp>

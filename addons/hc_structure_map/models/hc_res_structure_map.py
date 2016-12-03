@@ -231,7 +231,8 @@ class StructureMapGroupRule(models.Model):
         help="Documentation for this instance of data.")
     rule_id = fields.Many2one(
         comodel_name="hc.structure.map.group.rule", 
-        string="Rule", help="Rules contained in this rule.")
+        string="Rule", 
+        help="Rules contained in this rule.")
     target_ids = fields.One2many(
         comodel_name="hc.structure.map.group.rule.target", 
         inverse_name="rule_id", 

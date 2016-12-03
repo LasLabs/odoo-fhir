@@ -4,7 +4,8 @@ from openerp import models, fields, api
 
 class StructureDefinition(models.Model):    
     _name = "hc.res.structure.definition"    
-    _description = "Structure Definition"            
+    _description = "Structure Definition"
+    _rec_name = "title"            
 
     url = fields.Char(
         string="URL", 
@@ -26,7 +27,7 @@ class StructureDefinition(models.Model):
         string="Title", 
         help="Name for this structure definition (Human friendly).")                    
     status = fields.Selection(
-        string="Structure Definition Status", 
+        string="Status", 
         required="True", 
         selection=[
             ("draft", "Draft"), 
@@ -74,8 +75,8 @@ class StructureDefinition(models.Model):
     fhir_version = fields.Char(
         string="FHIR Version", 
         help="FHIR Version this Structure Definition targets.")                    
-    context_type = fields.Selection(
-        string="Structure Definition Context Type", 
+    kind = fields.Selection(
+        string="Kind", 
         required="True", 
         selection=[
             ("primitive-type", "Primitive Type"), 
@@ -88,7 +89,7 @@ class StructureDefinition(models.Model):
         required="True", 
         help="Whether the structure is abstract.")                    
     context_type = fields.Selection(
-        string="Structure Definition Context Type", 
+        string="Context Type", 
         selection=[
             ("resource", "Resource"), 
             ("datatype", "Datatype"), 
@@ -106,7 +107,7 @@ class StructureDefinition(models.Model):
         string="Context Invariants", 
         help="FluentPath invariants - when the extension can be used.")                    
     type = fields.Selection(
-        string="Structure Definition Type", 
+        string="Type", 
         required="True", 
         selection=[
             ("type", "Type"), 
@@ -118,7 +119,7 @@ class StructureDefinition(models.Model):
         string="Base Definition URL", 
         help="Definition that this type is constrained/specialized from.")                    
     context_type = fields.Selection(
-        string="Structure Definition Context Type", 
+        string="Context Type", 
         selection=[
             ("specialization", "Specialization"), 
             ("constraint", "Constraint")], 

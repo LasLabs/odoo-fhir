@@ -228,20 +228,20 @@ class PersonPhoto(models.Model):
 
 # External Reference
 
-class Partner(models.Model):
-    _inherit = ["res.partner"]
+# class Partner(models.Model):
+#     _inherit = ["res.partner"]
 
-    name = fields.Char(
-        help="First Name + Last Name")
-    is_person = fields.Boolean(
-        string="Is a person", 
-        help="This partner is a health care person.")
-    is_patient = fields.Boolean(
-        string="Is a patient", 
-        help="This partner is a patient.")
-    is_practitioner = fields.Boolean(
-        string="Is a practitioner", 
-        help="This partner is a health care practitioner.")
-    is_related_person = fields.Boolean(
-        string="Is a related person", 
-        help="This partner is a related person.")
+#     name = fields.Char(
+#         help="First Name + Last Name")
+#     is_person = fields.Boolean(
+#         string="Is a person", 
+#         help="This partner is a health care person.")
+#     is_patient = fields.Boolean(
+#         string="Is a patient", 
+#         help="This partner is a patient.")
+#     is_practitioner = fields.Boolean(
+#         string="Is a practitioner", 
+#         help="This partner is a health care practitioner.")
+#     is_related_person = fields.Boolean(
+#         string="Is a related person", 
+#         help="This partner is a related person.")

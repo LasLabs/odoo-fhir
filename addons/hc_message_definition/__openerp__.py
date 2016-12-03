@@ -1,17 +1,18 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "Search Parameter",
+    'name': "Message Definition",
 
     'summary': """
-        Short (1 phrase/line) summary of the module's purpose, used as
-        subtitle on modules listing or apps.openerp.com""",
+        Messages between systems
+        """,
 
     'description': """
-        Long description of module's purpose
+        Defines the characteristics of a message that can be shared between systems, including the type of event that initiates the message, 
+        the content to be transmitted and what response(s), if any, are permitted. 
     """,
 
-    'author': "My Company",
-    'website': "https://hl7-fhir.github.io/searchparameter.html",
+    'author': "Luigi Sison",
+    'website': "https://hl7-fhir.github.io/messagedefinition.html",
 
     # Categories can be used to filter modules in modules listing
     # Check https://github.com/odoo/odoo/blob/master/openerp/addons/base/module/module_data.xml
@@ -20,13 +21,13 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['hc_base'],
+    'depends': ['hc_plan_definition'],
 
     # always loaded
     'data': [
         'security/ir.model.access.csv',
-        'views/hc_res_search_parameter_views.xml',
-        'views/hc_res_search_parameter_templates.xml',
+        'views/hc_res_message_definition_views.xml',
+        'views/hc_res_message_definition_templates.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
