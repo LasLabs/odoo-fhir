@@ -65,6 +65,7 @@ sudo mkdir mydir --create directory
 sudo rm -rf mydir --delete directory
 clear --clear the terminal screen
 sudo touch /odoo/odoo-fhir/addons/hc_allergy_intolerance/views/hc_route_codes_views.xml --create file
+sudo wget http://url -- download to current location
 ```
 * Update GIT
 ```
@@ -135,6 +136,8 @@ sudo git pull origin master
 ```
 
 ##Create database
+
+* In browser, go to `http://localhost:8069/web/database/manager#action=database_manager`
 ```
 cd /odoo/odoo-server
 createdb FHIR-DEV
