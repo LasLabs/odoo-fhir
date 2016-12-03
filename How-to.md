@@ -1,5 +1,23 @@
 #Odoo
 
+##Ubuntu Desktop
+
+* Set up VirtualBox
+
+```sudo /etc/init.d/vboxadd setup```
+
+* Enable clipboard
+
+```sudo /usr/bin/VBoxClient --clipboard```
+
+* Display the port on which openerp server is in running state.
+
+```sudo ps aux | grep openerp```
+
+* Kill specific process (id)
+
+```sudo kill -9 id```
+
 ##Install Odoo in Ubuntu Desktop
 
 * Go to Ubuntu directory where you want to install the software. For example: ```cd /opt```
@@ -96,7 +114,6 @@ sudo git clone --depth 1 https://github.com/luigisison/odoo-fhir.git
 sudo nano /etc/odoo-server.conf
 addons_path=/odoo/odoo-server/openerp/addons,/odoo/odoo-server/addons,/odoo/odoo-fhir/addons,/odoo/odoo-server/addons/web_kanban
 ```
-
 ##Do every time a change occurs
 
 ###Upload changes
@@ -177,6 +194,7 @@ sudo git checkout master
 sudo git merge upstream/master
 sudo git push origin master
 ```
+
 ##Install Times Roman Font
 
 * create **fonts** folder in `/usr/lib/python2.7/dist-packages/reportlab/`
@@ -209,9 +227,9 @@ sudo mv zy______.pfb /usr/lib/python2.7/dist-packages/reportlab/fonts/zy______.p
 ```
 
 ##Create Data Set
-*Create model file `sudo nano /odoo/odoo-fhir/addons/hc_base/models/hc_participation_type.py`
-*Add model file to `__openerp__.py/data` `'data/hc_vs_participation_type_type.xml',`
-*Create view file `sudo nano /odoo/odoo-fhir/addons/hc_base/views/hc_participation_type_views.xml`
+* Create model file `sudo nano /odoo/odoo-fhir/addons/hc_base/models/hc_participation_type.py`
+* Add model file to `__openerp__.py/data` `'data/hc_vs_participation_type_type.xml',`
+* Create view file `sudo nano /odoo/odoo-fhir/addons/hc_base/views/hc_participation_type_views.xml`
 
 ##Create Module
 
