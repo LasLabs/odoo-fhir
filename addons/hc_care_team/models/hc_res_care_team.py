@@ -19,9 +19,9 @@ class CareTeam(models.Model):
             ("inactive", "Inactive"), 
             ("entered in error", "Entered In Error")], 
         help="Indicates whether the care team is currently active, suspended, inactive, or entered in error.")                
-    type_ids = fields.One2many(
-        comodel_name="hc.care.team.type", 
-        inverse_name="care_team_id", 
+    type_ids = fields.Many2many(
+        comodel_name="hc.vs.participant.type", 
+        relation="care_team_content_type_rel", 
         string="Categories", 
         help="Identifies what kind of team.")                
     name = fields.Char(
@@ -112,21 +112,7 @@ class CareTeamIdentifier(models.Model):
     care_team_id = fields.Many2one(
         comodel_name="hc.res.care.team", 
         string="Care Team", 
-        help="Care Team associated with this Care Team Identifier.")                
-
-class CareTeamType(models.Model):    
-    _name = "hc.care.team.type"    
-    _description = "Care Team Type"        
-    _inherit = ["hc.basic.association"]
-
-    care_team_id = fields.Many2one(
-        comodel_name="hc.res.care.team", 
-        string="Care Team", 
-        help="Care Team associated with this Care Team Type.")                
-    type_id = fields.Many2one(
-        comodel_name="hc.vs.participant.type", 
-        string="Type", 
-        help="Kind of team associated with this Care Team Type.")                
+        help="Care Team associated with this Care Team Identifier.")                           
 
 class ParticipantRole(models.Model):    
     _name = "hc.vs.participant.role"    

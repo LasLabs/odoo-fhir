@@ -9,5 +9,4 @@ access_hc_provenance_hc_provenance_signature_user,hc.provenance.hc.provenance.si
 access_hc_provenance_hc_provenance_target_user,hc.provenance.hc.provenance.target.user,model_hc_provenance_target,hc_base.group_hc_base_user,1,0,0,0
 access_hc_provenance_hc_vs_provenance_activity_manager,hc.provenance.hc.vs.provenance.activity.manager,model_hc_vs_provenance_activity,hc_base.group_hc_base_manager,1,1,1,1
 access_hc_provenance_hc_vs_provenance_agent_role_manager,hc.provenance.hc.vs.provenance.agent.role.manager,model_hc_vs_provenance_agent_role,hc_base.group_hc_base_manager,1,1,1,1
-access_hc_provenance_hc_vs_provenance_reason_manager,hc.provenance.hc.vs.provenance.reason.manager,model_hc_vs_provenance_reason,hc_base.group_hc_base_manager,1,1,1,1
 access_hc_provenance_hc_vs_role_link_type_manager,hc.provenance.hc.vs.role.link.type.manager,model_hc_vs_role_link_type,hc_base.group_hc_base_manager,1,1,1,1

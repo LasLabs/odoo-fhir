@@ -28,8 +28,9 @@ class ImagingStudy(models.Model):
         help="Availability of study (online, offline or nearline).")                
     modality_list_ids = fields.Many2many(
         comodel_name="hc.vs.dicom.cid.29", 
+        relation="imaging_study_modality_list_rel", 
         string="Modality Lists", 
-        help="All series modality if actual acquisition modalities.")                
+        help="All series modality if actual acquisition modalities.")
     patient_id = fields.Many2one(
         comodel_name="hc.res.patient", 
         string="Patient", 

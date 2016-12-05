@@ -45,15 +45,30 @@ class ListEntry(models.Model):
             ("Condition", "Condition"), 
             ("Procedure", "Procedure")], 
         help="Type of actual entry.")                
-    item_name = fields.Char(string="Item", compute="_compute_item_name", store="True", help="Actual entry.")                
-    item_family_member_history_id = fields.Many2one(comodel_name="hc.res.family.member.history", string="Item Family Member History", help="Family Member History actual entry.")                
+    item_name = fields.Char(
+        string="Item", 
+        compute="_compute_item_name", 
+        store="True", 
+        help="Actual entry.")                
+    item_family_member_history_id = fields.Many2one(
+        comodel_name="hc.res.family.member.history", 
+        string="Item Family Member History", help="Family Member History actual entry.")                
     # item_medication_request_id = fields.Many2one(
     #     comodel_name="hc.res.medication.request", 
     #     string="Item Medication Request", 
     #     help="Medication Request actual entry.")                
-    item_allergy_intolerance_id = fields.Many2one(comodel_name="hc.res.allergy.intolerance", string="Item Allergy Intolerance", help="Allergy Intolerance actual entry.")                
-    item_condition_id = fields.Many2one(comodel_name="hc.res.condition", string="Item Condition", help="Condition actual entry.")                
-    item_procedure_id = fields.Many2one(comodel_name="hc.res.procedure", string="Item Procedure", help="Procedure actual entry.")                
+    item_allergy_intolerance_id = fields.Many2one(
+        comodel_name="hc.res.allergy.intolerance", 
+        string="Item Allergy Intolerance", 
+        help="Allergy Intolerance actual entry.")                
+    item_condition_id = fields.Many2one(
+        comodel_name="hc.res.condition", 
+        string="Item Condition", 
+        help="Condition actual entry.")                
+    item_procedure_id = fields.Many2one(
+        comodel_name="hc.res.procedure", 
+        string="Item Procedure", 
+        help="Procedure actual entry.")                
 
 class ListIdentifier(models.Model):    
     _name = "hc.list.identifier"    

@@ -6,11 +6,13 @@ class Signature(models.AbstractModel):
     _name = "hc.signature"    
     _description = "Signature"        
 
+                   
     type_ids = fields.Many2many(
         comodel_name="hc.vs.commitment.type.indication", 
+        relation="signature_type_rel", 
         string="Types", 
         required="True", 
-        help="Indication of the reason the entity signed the object(s).")                
+        help="Indication of the reason the entity signed the object(s).")
     when = fields.Datetime(
         string="When Date", 
         required="True", 

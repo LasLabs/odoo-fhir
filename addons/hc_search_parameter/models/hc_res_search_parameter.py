@@ -225,3 +225,8 @@ class SearchParameterModifier(models.Model):
             ("below", "Below"), 
             ("above", "Above") ], 
         help="A modifier supported for the search parameter.")                        
+
+class SearchParameterCode(models.Model):    
+    _name = "hc.vs.search.parameter.code"   
+    _description = "Search Parameter Code"          
+    _inherit = ["hc.value.set.contains"]

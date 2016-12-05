@@ -6,3 +6,5 @@ access_hc_search_parameter_hc_search_parameter_use_context_manager,hc.search.par
 access_hc_search_parameter_hc_search_parameter_chain_manager,hc.search.parameter.hc.search.parameter.chain.manager,model_hc_search_parameter_chain,hc_base.group_hc_base_manager,1,1,1,1
 access_hc_search_parameter_hc_search_parameter_comparator_manager,hc.search.parameter.hc.search.parameter.comparator.manager,model_hc_search_parameter_comparator,hc_base.group_hc_base_manager,1,1,1,1
 access_hc_search_parameter_hc_search_parameter_modifier_manager,hc.search.parameter.hc.search.parameter.modifier.manager,model_hc_search_parameter_modifier,hc_base.group_hc_base_manager,1,1,1,1
+access_hc_search_parameter_hc_vs_search_parameter_code_user,hc.search.parameter.hc.vs.search.parameter.code.user,model_hc_vs_search_parameter_code,hc_base.group_hc_base_user,1,0,0,0
+

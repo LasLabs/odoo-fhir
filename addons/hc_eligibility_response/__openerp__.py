@@ -3,8 +3,8 @@
     'name': "Eligibility Response",
 
     'summary': """
-        Short (1 phrase/line) summary of the module's purpose, used as
-        subtitle on modules listing or apps.openerp.com""",
+        Eligibility, plan details
+        """,
 
     'description': """
         This resource provides eligibility and plan details from the processing of an Eligibility resource.

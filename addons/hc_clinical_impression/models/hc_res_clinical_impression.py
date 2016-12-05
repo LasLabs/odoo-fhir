@@ -111,11 +111,11 @@ class ClinicalImpression(models.Model):
     summary = fields.Text(
         string="Summary", 
         help="Summary of the assessment.")                
-    prognosis_ids = fields.One2many(
-        comodel_name="hc.clinical.impression.prognosis", 
-        inverse_name="clinical_impression_id", 
+    prognosis_ids = fields.Many2many(
+        comodel_name="hc.vs.clinical.impression.prognosis", 
+        relation="clinical_impression_prognosis_rel", 
         string="Prognosis", 
-        help="Estimate of likely outcome.")                
+        help="Estimate of likely outcome.")
     prognosis_reference_ids = fields.One2many(
         comodel_name="hc.clinical.impression.prognosis.reference", 
         inverse_name="clinical_impression_id", 

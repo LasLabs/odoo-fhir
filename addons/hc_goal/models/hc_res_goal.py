@@ -111,10 +111,10 @@ class Goal(models.Model):
     status_date = fields.Date(
         string="Status Date", 
         help="When goal status took effect.")                
-    status_reason_ids = fields.One2many(
-        comodel_name="hc.goal.status.reason", 
-        inverse_name="goal_id", 
-        string="Status Reasons", 
+    status_reason_ids = fields.Many2many(
+        comodel_name="hc.vs.goal.status.reason", 
+        relation="goal_status_reason_rel", 
+        string="Categories", 
         help="Reason for current status.")                
     expressed_by_type = fields.Selection(
         string="Expressed By Type", 
@@ -258,21 +258,7 @@ class GoalNote(models.Model):
     goal_id = fields.Many2one(
         comodel_name="hc.res.goal", 
         string="Goal", 
-        help="Goal associated with this Goal Note.")                
-
-class GoalStatusReason(models.Model):    
-    _name = "hc.goal.status.reason"    
-    _description = "Goal Status Reason"        
-    _inherit = ["hc.basic.association"]
-
-    goal_id = fields.Many2one(
-        comodel_name="hc.res.goal", 
-        string="Goal", 
-        help="Goal associated with this Goal Status Reason.")                
-    status_reason_id = fields.Many2one(
-        comodel_name="hc.vs.goal.status.reason", 
-        string="Status Reason", 
-        help="Status Reason associated with this Goal Status Reason.")                
+        help="Goal associated with this Goal Note.")                               
 
 class GoalDescription(models.Model):    
     _name = "hc.vs.goal.description"    

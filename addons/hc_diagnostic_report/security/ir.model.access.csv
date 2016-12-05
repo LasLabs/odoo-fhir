@@ -1,7 +1,6 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_hc_diagnostic_report_hc_res_diagnostic_report_user,hc.diagnostic.report.hc.res.diagnostic.report.user,model_hc_res_diagnostic_report,hc_base.group_hc_base_user,1,0,0,0
 access_hc_diagnostic_report_hc_diagnostic_report_image_user,hc.diagnostic.report.hc.diagnostic.report.image.user,model_hc_diagnostic_report_image,hc_base.group_hc_base_user,1,0,0,0
-access_hc_diagnostic_report_hc_diagnostic_report_coded_diagnosis_user,hc.diagnostic.report.hc.diagnostic.report.coded.diagnosis.user,model_hc_diagnostic_report_coded_diagnosis,hc_base.group_hc_base_user,1,0,0,0
 access_hc_diagnostic_report_hc_diagnostic_report_request_user,hc.diagnostic.report.hc.diagnostic.report.request.user,model_hc_diagnostic_report_request,hc_base.group_hc_base_user,1,0,0,0
 access_hc_diagnostic_report_hc_diagnostic_report_identifier_user,hc.diagnostic.report.hc.diagnostic.report.identifier.user,model_hc_diagnostic_report_identifier,hc_base.group_hc_base_user,1,0,0,0
 access_hc_diagnostic_report_hc_diagnostic_report_imaging_study_user,hc.diagnostic.report.hc.diagnostic.report.imaging.study.user,model_hc_diagnostic_report_imaging_study,hc_base.group_hc_base_user,1,0,0,0

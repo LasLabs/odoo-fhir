@@ -236,10 +236,10 @@ class MedicationRequestDefinition(models.Model):
         comodel_name="hc.res.activity.definition", 
         string="Definition Activity Definition", 
         help="Activity Definition protocol or definition.")                 
-    # definition_plan_definition_id = fields.Many2one(
-    #     comodel_name="hc.res.plan.definition", 
-    #     string="Definition Plan Definition", 
-    #     help="Plan Definition or definition.")                  
+    definition_plan_definition_id = fields.Many2one(
+        comodel_name="hc.res.plan.definition", 
+        string="Definition Plan Definition", 
+        help="Plan Definition or definition.")                  
 
 class MedicationRequestBasedOn(models.Model):   
     _name = "hc.medication.request.based.on"    
@@ -263,7 +263,10 @@ class MedicationRequestBasedOn(models.Model):
         string="Based On", 
         compute="_compute_based_on_name", 
         store="True", help="What request fulfill.")                    
-    # based_on_care_plan_id = fields.Many2one(comodel_name="hc.res.care.plan", string="Based On Care Plan", help="Care Plan request fulfills.")                   
+    # based_on_care_plan_id = fields.Many2one(
+    #     comodel_name="hc.res.care.plan", 
+    #     string="Based On Care Plan", 
+    #     help="Care Plan request fulfills.")                   
     based_on_diagnostic_request_id = fields.Many2one(
         comodel_name="hc.res.diagnostic.request", 
         string="Based On Diagnostic Request", 

@@ -118,11 +118,11 @@ class ReferralRequest(models.Model):
     description = fields.Text(
         string="Description", 
         help="A textual description of the referral.")                  
-    service_requested_ids = fields.One2many(
-        comodel_name="hc.referral.request.service.requested", 
-        inverse_name="referral_request_id", 
+    service_requested_ids = fields.Many2many(
+        comodel_name="hc.vs.c80.practice.code", 
+        relation="referral_request_service_requested_rel", 
         string="Services Requested", 
-        help="Service(s) requested.")                
+        help="Service(s) requested.")            
     supporting_information_ids = fields.One2many(
         comodel_name="hc.referral.request.supporting.information", 
         inverse_name="referral_request_id", 
@@ -210,21 +210,7 @@ class ReferralRequestRecipient(models.Model):
     recipient_organization_id = fields.Many2one(
         comodel_name="hc.res.organization", 
         string="Recipient Organization", 
-        help="Organization receiver of referral / transfer of care request.")                
-
-class ReferralRequestServiceRequested(models.Model):    
-    _name = "hc.referral.request.service.requested"    
-    _description = "Referral Request Service Requested"        
-    _inherit = ["hc.basic.association"]
-
-    referral_request_id = fields.Many2one(
-        comodel_name="hc.res.referral.request", 
-        string="Referral Request", 
-        help="Referral request associated with this referral request service requested.")                
-    service_requested_id = fields.Many2one(
-        comodel_name="hc.vs.c80.practice.code", 
-        string="Service Requested", 
-        help="Service(s) requested.")                
+        help="Organization receiver of referral / transfer of care request.")                            
 
 class ReferralRequestSupportingInformation(models.Model):    
     _name = "hc.referral.request.supporting.information"    
