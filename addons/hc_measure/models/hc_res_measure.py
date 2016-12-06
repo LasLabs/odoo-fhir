@@ -7,8 +7,8 @@ class Measure(models.Model):
     _description = "Measure"            
 
     url = fields.Char(
-        string="URL", 
-        help="Logical uri to reference this measure (globally unique).")                    
+        string="URI", 
+        help="Logical URI to reference this measure (globally unique).")                    
     identifier_ids = fields.One2many(
         comodel_name="hc.measure.identifier", 
         inverse_name="measure_id", 

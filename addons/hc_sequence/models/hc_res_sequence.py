@@ -205,7 +205,7 @@ class SequenceRepository(models.Model):
         string="Sequence", 
         help="Sequence associated with this repository.")                
     url = fields.Char(
-        string="URL", 
+        string="URI", 
         help="URI of the repository.")                
     name = fields.Char(
         string="Name", 

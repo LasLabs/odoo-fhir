@@ -29,8 +29,7 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    # 'depends': ['hc_contract','hc_care_team'],
-    'depends': ['hc_care_team'],
+    'depends': ['hc_care_team', 'hc_contract'],
 
     # always loaded
     'data': [

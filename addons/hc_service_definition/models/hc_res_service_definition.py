@@ -6,7 +6,8 @@ class ServiceDefinition(models.Model):
     _name = "hc.res.service.definition"    
     _description = "Service Definition"            
 
-    url = fields.Char(string="URL", 
+    url = fields.Char(
+        string="URI", 
         help="Logical uri to reference this service definition (globally unique).")                    
     identifier_ids = fields.One2many(
         comodel_name="hc.service.definition.identifier", 

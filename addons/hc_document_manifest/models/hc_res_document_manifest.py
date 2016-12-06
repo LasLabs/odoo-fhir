@@ -62,7 +62,7 @@ class DocumentManifest(models.Model):
         string="Created", 
         help="When this document manifest created.")                
     source = fields.Char(
-        string="Source", 
+        string="Source URI", 
         help="The source system/application/software.")                
     status = fields.Selection(
         string="Document Manifest Status", 

@@ -18,7 +18,8 @@ class Consent(models.Model):
             ("proposed", "Proposed"), 
             ("active", "Active"), 
             ("rejected", "Rejected"), 
-            ("inactive", "Inactive"), ("entered-in-error", "Entered-In-Error")], 
+            ("inactive", "Inactive"), 
+            ("entered-in-error", "Entered In Error")], 
         help="Indicates the current state of this consent.")               
     category_ids = fields.Many2many(
         comodel_name="hc.vs.consent.category",  
@@ -73,18 +74,18 @@ class Consent(models.Model):
         comodel_name="hc.res.consent", 
         string="Source Consent", 
         help="Consent source from which this consent is taken.")                
-    # source_document_reference_id = fields.Many2one(
-    #     comodel_name="hc.res.document.reference", 
-    #     string="Source Document Reference", 
-    #     help="DocumentReference source from which this consent is taken.")             
-    # source_contract_id = fields.Many2one(
-    #     comodel_name="hc.res.contract", 
-    #     string="Source Contract", 
-    #     help="Contract source from which this consent is taken.")                
-    # source_questionnaire_response_id = fields.Many2one(
-    #     comodel_name="hc.res.questionnaire.response", 
-    #     string="Source Questionnaire Response", 
-    #     help="QuestionnaireResponse source from which this consent is taken.")             
+    source_document_reference_id = fields.Many2one(
+        comodel_name="hc.res.document.reference", 
+        string="Source Document Reference", 
+        help="DocumentReference source from which this consent is taken.")             
+    source_contract_id = fields.Many2one(
+        comodel_name="hc.res.contract", 
+        string="Source Contract", 
+        help="Contract source from which this consent is taken.")                
+    source_questionnaire_response_id = fields.Many2one(
+        comodel_name="hc.res.questionnaire.response", 
+        string="Source Questionnaire Response", 
+        help="QuestionnaireResponse source from which this consent is taken.")             
     policy = fields.Char(
         string="Policy URI", 
         required="True", 

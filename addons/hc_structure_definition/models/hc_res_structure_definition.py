@@ -8,7 +8,7 @@ class StructureDefinition(models.Model):
     _rec_name = "title"            
 
     url = fields.Char(
-        string="URL", 
+        string="URI", 
         required="True", 
         help="Literal URL used to reference this Structure Definition.")                    
     identifier_ids = fields.One2many(
@@ -116,7 +116,7 @@ class StructureDefinition(models.Model):
             ("extension", "Extension")], 
         help="The type this structure is describes.")                    
     base_definition = fields.Char(
-        string="Base Definition URL", 
+        string="Base Definition URI", 
         help="Definition that this type is constrained/specialized from.")                    
     context_type = fields.Selection(
         string="Context Type", 

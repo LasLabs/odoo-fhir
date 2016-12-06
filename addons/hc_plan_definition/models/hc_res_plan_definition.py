@@ -7,8 +7,8 @@ class PlanDefinition(models.Model):
     _description = "Plan Definition"            
 
     url = fields.Char(
-        string="URL", 
-        help="Logical uri to reference this plan definition (globally unique).")                    
+        string="URI", 
+        help="Logical URI to reference this plan definition (globally unique).")                    
     identifier_ids = fields.One2many(
         comodel_name="hc.plan.definition.identifier", 
         inverse_name="plan_definition_id", 

@@ -25,7 +25,7 @@ class RelatedResource(models.Model):
         string="Citation", 
         help="Bibliographic citation for the resource.")				
     url = fields.Char(
-        string="URL", 
+        string="URI", 
         help="URL for the related resource.")				
     document_id = fields.Many2one(
         comodel_name="hc.related.resource.document", 

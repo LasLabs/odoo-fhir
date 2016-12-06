@@ -8,7 +8,7 @@ class CompartmentDefinition(models.Model):
     _rec_name = "title"                
 
     url = fields.Char(
-        string="URL", 
+        string="URI", 
         required="True", 
         help="Absolute URL used to reference this compartment definition.")
     name = fields.Char(

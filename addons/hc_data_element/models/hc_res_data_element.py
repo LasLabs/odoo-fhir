@@ -8,7 +8,7 @@ class DataElement(models.Model):
     _rec_name = "title"            
 
     url = fields.Char(
-        string="URL", 
+        string="URI", 
         help="Globally unique logical id for data element.")                        
     identifier_id = fields.Many2one(
         comodel_name="hc.data.element.identifier", 

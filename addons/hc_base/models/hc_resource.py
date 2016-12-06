@@ -14,7 +14,7 @@ class Resource(models.Model):
         string="Meta", 
         help="Metadata about the resource.")                
     implicit_rules = fields.Char(
-        string="Implicit Rules URL", 
+        string="Implicit Rules URI", 
         help="URL of a set of rules under which this content was created.")                
     language_id = fields.Many2one(
         comodel_name="hc.vs.language", 

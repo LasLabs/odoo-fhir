@@ -7,7 +7,7 @@ class Questionnaire(models.Model):
     _description = "Questionnaire"            
 
     url = fields.Char(
-        string="URL", 
+        string="URI", 
         help="Globally unique logical identifier for questionnaire.")                    
     identifier_ids = fields.One2many(
         comodel_name="hc.questionnaire.identifier", 

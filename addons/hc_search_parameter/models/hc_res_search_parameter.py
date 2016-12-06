@@ -7,7 +7,7 @@ class SearchParameter(models.Model):
     _description = "Search Parameter"                
 
     url = fields.Char(
-        string="URL", 
+        string="URI", 
         required="True", 
         help="Literal URL used to reference this search parameter.")                        
     version = fields.Char(
@@ -75,7 +75,7 @@ class SearchParameter(models.Model):
             ("uri", "URI")], 
         help="The type of value a search parameter refers to, and how the content is interpreted.")                        
     derived_from = fields.Char(
-        string="URI Derived From", 
+        string="Derived From URI", 
         help="Original Definition for the search parameter.")                        
     description = fields.Text(
         string="Description", 

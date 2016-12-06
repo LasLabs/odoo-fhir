@@ -8,7 +8,7 @@ class MessageDefinition(models.Model):
     _rec_name = "title"
 
     url = fields.Char(
-        string="URL", 
+        string="URI", 
         help="Logical URI to reference this message definition (globally unique).")                        
     version = fields.Char(
         string="Version", 

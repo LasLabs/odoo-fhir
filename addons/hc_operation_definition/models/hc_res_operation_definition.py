@@ -7,8 +7,8 @@ class OperationDefinition(models.Model):
     _description = "Operation Definition"
 
     url = fields.Char(
-        string="URL", 
-        help="Logical URL to reference this operation definition.")                     
+        string="URI", 
+        help="Logical URI to reference this operation definition.")                     
     version = fields.Char(
         string="Version", 
         help="Logical id for this version of the operation definition.")                        
@@ -184,7 +184,7 @@ class OperationDefinitionParameterBinding(models.Model):
         store="True", 
         help="Source of value set.")                        
     value_set_uri = fields.Char(
-        string="Value Set URL", 
+        string="Value Set URI", 
         help="URI source of value set.")                        
     # value_set_id = fields.Many2one(
     #     comodel_name="hc.res.value.set", 

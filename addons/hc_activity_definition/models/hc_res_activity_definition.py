@@ -7,7 +7,7 @@ class ActivityDefinition(models.Model):
     _description = "Activity Definition"            
 
     url = fields.Char(
-        string="URL", 
+        string="URI", 
         help="Logical URL to reference this asset.")                    
     identifier_ids = fields.One2many(
         comodel_name="hc.activity.definition.identifier", 

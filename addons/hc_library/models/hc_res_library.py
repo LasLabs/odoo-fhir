@@ -7,7 +7,7 @@ class Library(models.Model):
     _description = "Library"  
 
     url = fields.Char(
-        string="URL", 
+        string="URI", 
         help="Logical URL to reference this library.")                    
     identifier_ids = fields.One2many(
         comodel_name="hc.library.identifier", 

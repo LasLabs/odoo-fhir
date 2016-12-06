@@ -7,7 +7,7 @@ class ImplementationGuide(models.Model):
     _description = "Implementation Guide"
 
     url = fields.Char(
-        string="URL", 
+        string="URI", 
         required="True", 
         help="Absolute URL used to reference this Implementation Guide.")
     version = fields.Char(
@@ -161,7 +161,7 @@ class ImplementationGuidePackageResource(models.Model):
         compute="_compute_source_name", 
         store="True", help="Location of the resource.")
     source = fields.Char(
-        string="Source URL", 
+        string="Source URI", 
         help="URI that location of the resource.")
     source_string = fields.Char(
         string="Source String", 
@@ -202,7 +202,7 @@ class ImplementationGuidePage(models.Model):
         string="Implementation Guide", 
         help="Implementation Guide associated with this Implementation Guide Page.")                        
     source = fields.Char(
-        string="Source",
+        string="Source URI",
         required="True", 
         help="Where to find that page.")                        
     title = fields.Char(
