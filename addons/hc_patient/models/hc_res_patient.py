@@ -496,12 +496,10 @@ class RelatedPersonPatient(models.Model):
 class Annotation(models.Model):
     _inherit = ["hc.annotation"]
 
-    author_patient_id = fields.Many2one(
-        comodel_name="hc.res.patient", 
-        string="Author Patient", 
-        help="Patient responsible for the annotation.")
-
+    #Here we are defining the author_name computed field because the hc_patient depends on other modules
+    #like practitioner and person. 
     @api.multi
+    @api.depends('author_string', 'author_practitioner_id', 'author_related_person_id', 'author_patient_id')
     def _compute_author_name(self):
         for hc_annotation in self:
             if hc_annotation.author_type == 'string':
@@ -512,6 +510,17 @@ class Annotation(models.Model):
                 hc_annotation.author_name = hc_annotation.author_related_person_id.name
             elif hc_annotation.author_type == 'Patient':
                 hc_annotation.author_name = hc_annotation.author_patient_id.name
+
+    author_patient_id = fields.Many2one(
+        comodel_name="hc.res.patient", 
+        string="Author Patient", 
+        help="Patient responsible for the annotation.")
+    author_name = fields.Char(
+        string="Author", 
+        compute="_compute_author_name", 
+        store="True",
+        help="Individual responsible for the annotation.")
+
 
 class Signature(models.AbstractModel):    
     _inherit = "hc.signature"

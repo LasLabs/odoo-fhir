@@ -9,8 +9,9 @@
               <field name="arch" type="xml">                
                     <search string="Annotations">             
                         <field name="annotation"/>
+<!--                    Now this field is moved to hc_patient module so it should define in that module     
                         <field name="author_name"/>                   
-                        <field name="recorded_date"/>           
+ -->                        <field name="recorded_date"/>           
                     </search>             
               </field>                
         </record>                 
@@ -21,8 +22,9 @@
               <field name="arch" type="xml">                
                     <tree string="Annotations">
                         <field name="annotation"/>    
-                        <field name="author_name"/>
-                        <field name="author_type"/>       
+<!--                         Now this field is moved to hc_patient module so it should define in that module     
+                            <field name="author_name"/>
+ -->                        <field name="author_type"/>       
                         <field name="recorded_date"/>           
                     </tree>             
               </field>                
