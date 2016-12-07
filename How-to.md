@@ -282,9 +282,10 @@ from . import hc_res_location
 }
 ```
 ##Create demo data
-*Create sample data in Odoo
-*Export file to ```/home/odoo/Downloads```
-*Transfer file to demo directory ```/odoo/odoo-fhir/addons/hc_base/demo/```
+
+* Create sample data in Odoo
+* Export file to ```/home/odoo/Downloads```
+* Transfer file to demo directory ```/odoo/odoo-fhir/addons/hc_base/demo/```
 
 ```
 sudo mv /home/odoo/Downloads/hc.human.name.csv /odoo/odoo-fhir/addons/hc_base/demo/hc.human.name.csv
@@ -292,11 +293,12 @@ sudo mv /home/odoo/Downloads/hc.human.name.term.csv /odoo/odoo-fhir/addons/hc_ba
 sudo mv /home/odoo/Downloads/hc.res.person.csv /odoo/odoo-fhir/addons/hc_base/demo/hc.res.person.csv
 ```
 ##Create data
-*Base Module
+
+* Base Module
 ```
 sudo mv /home/odoo/Downloads/hc.human.name.suffix.csv /odoo/odoo-fhir/addons/hc_base/data/hc.human.name.suffix.csv
 ```
 ###Odoo Coding Guidelines
 
 * [Oodoo Guidelines](https://www.odoo.com/documentation/9.0/reference/guidelines.html)
-* [OCA Guidelines](https://github.com/OCA/maintainer-tools/blob/master/CONTRIBUTING.md)
+* [OCA Guidelines](https://github.com/OCA/maintainer-tools/blob/master/CONTRIBUTING.mdo)
