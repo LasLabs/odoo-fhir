@@ -22,11 +22,10 @@ class Annotation(models.AbstractModel):
         string="Author Type", 
         selection=[
             ("string", "String"),
-            ("Practitioner", "Practitioner"),
-            ("Patient", "Patient"),
-            ("Related Person", "Related Person")],
+            ("practitioner", "Practitioner"),
+            ("patient", "Patient"),
+            ("related_person", "Related Person")],
         help="Type of individual responsible for the annotation.")
-    
     author_string = fields.Char(
         string="Author String",
         help="Individual responsible for the annotation.")

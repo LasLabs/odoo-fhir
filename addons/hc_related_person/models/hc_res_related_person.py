@@ -225,9 +225,9 @@ class Annotation(models.Model):
         for hc_annotation in self:
             if hc_annotation.author_type == 'string':
                 hc_annotation.author_name = hc_annotation.author_string
-            elif hc_annotation.author_type == 'Practitioner':
+            elif hc_annotation.author_type == 'practitioner':
                 hc_annotation.author_name = hc_annotation.author_practitioner_id.name
-            elif hc_annotation.author_type == 'Related Person':
+            elif hc_annotation.author_type == 'related_person':
                 hc_annotation.author_name = hc_annotation.author_related_person_id.name
 
 class Signature(models.AbstractModel):    

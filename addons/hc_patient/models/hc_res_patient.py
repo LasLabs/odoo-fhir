@@ -369,7 +369,7 @@ class PatientContact(models.Model):
         string="Patient", 
         help="Patient associated with this Patient Contact.")
     relationship_ids = fields.Many2many(
-        comodel_name="hc.vs.contact.relationship", 
+        comodel_name="hc.vs.patient.contact.relationship", 
         relation="patient_contact_relationship_rel", 
         string="Relationships", 
         help="The kind of relationship.")
@@ -495,32 +495,30 @@ class RelatedPersonPatient(models.Model):
 
 class Annotation(models.Model):
     _inherit = ["hc.annotation"]
+ 
 
-    #Here we are defining the author_name computed field because the hc_patient depends on other modules
-    #like practitioner and person. 
+    author_name = fields.Char(
+        string="Author", 
+        compute="_compute_author_name", 
+        store="True",
+        help="Individual responsible for the annotation.")
+    author_patient_id = fields.Many2one(
+        comodel_name="hc.res.patient", 
+        string="Author Patient", 
+        help="Patient responsible for the annotation.")
+
     @api.multi
     @api.depends('author_string', 'author_practitioner_id', 'author_related_person_id', 'author_patient_id')
     def _compute_author_name(self):
         for hc_annotation in self:
             if hc_annotation.author_type == 'string':
                 hc_annotation.author_name = hc_annotation.author_string
-            elif hc_annotation.author_type == 'Practitioner':
+            elif hc_annotation.author_type == 'practitioner':
                 hc_annotation.author_name = hc_annotation.author_practitioner_id.name
-            elif hc_annotation.author_type == 'Related Person':
+            elif hc_annotation.author_type == 'related_person':
                 hc_annotation.author_name = hc_annotation.author_related_person_id.name
-            elif hc_annotation.author_type == 'Patient':
+            elif hc_annotation.author_type == 'patient':
                 hc_annotation.author_name = hc_annotation.author_patient_id.name
-
-    author_patient_id = fields.Many2one(
-        comodel_name="hc.res.patient", 
-        string="Author Patient", 
-        help="Patient responsible for the annotation.")
-    author_name = fields.Char(
-        string="Author", 
-        compute="_compute_author_name", 
-        store="True",
-        help="Individual responsible for the annotation.")
-
 
 class Signature(models.AbstractModel):    
     _inherit = "hc.signature"

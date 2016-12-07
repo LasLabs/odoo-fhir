@@ -15,9 +15,9 @@ class ClinicalImpression(models.Model):
         string="Clinical Impression Status", 
         required="True", 
         selection=[
-            ("in-progress", "In-Progress"), 
+            ("in-progress", "In Progress"), 
             ("completed", "Completed"), 
-            ("entered-in-error", "Entered-In-Error")], 
+            ("entered-in-error", "Entered In Error")], 
         help="Identifies the workflow status of the assessment.")                
     code_id = fields.Many2one(
         comodel_name="hc.vs.clinical.impression.kind", 
@@ -475,6 +475,8 @@ class ClinicalImpressionFinding(models.Model):
                 hc_res_clinical_impression.item_name = hc_res_clinical_impression.item_condition_id.name
             elif hc_res_clinical_impression.item_type == 'Observation': 
                 hc_res_clinical_impression.item_name = hc_res_clinical_impression.item_observation_id.name
+
+# Deprecated
 
 # class ClinicalImpressionRuledOut(models.Model): 
 #     _name = "hc.clinical.impression.ruled.out"  

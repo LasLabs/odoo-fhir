@@ -45,7 +45,6 @@
                                     <group>
                                         <field name="author_type"/>
                                         <field name="author_string" attrs="{'invisible': [('author_type','!=','string')]}"/>
-                                        <!-- <field name="author_practitioner_id" attrs="{'invisible': [('author_type','!=','Practitioner')]}"/> -->          
                                         <field name="recorded_date"/>
                                     </group>
                                     <group>       

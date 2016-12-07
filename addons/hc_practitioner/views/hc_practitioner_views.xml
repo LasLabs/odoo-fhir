@@ -187,7 +187,7 @@
             <field name="inherit_id" ref="hc_base.hc_annotation_view_form"/>   
             <field name="arch" type="xml">
                 <field name="author_type" position="after">
-                    <field name="author_practitioner_id" attrs="{'invisible': [('author_type', '!=', 'Practitioner')]}"/>  
+                    <field name="author_practitioner_id" attrs="{'invisible': [('author_type', '!=', 'practitioner')]}"/>  
                 </field>
             </field>
         </record>

@@ -296,3 +296,7 @@ sudo mv /home/odoo/Downloads/hc.res.person.csv /odoo/odoo-fhir/addons/hc_base/de
 ```
 sudo mv /home/odoo/Downloads/hc.human.name.suffix.csv /odoo/odoo-fhir/addons/hc_base/data/hc.human.name.suffix.csv
 ```
+###Odoo Coding Guidelines
+
+* [Oodoo Guidelines](https://www.odoo.com/documentation/9.0/reference/guidelines.html)
+* [OCA Guidelines](https://github.com/OCA/maintainer-tools/blob/master/CONTRIBUTING.md)
