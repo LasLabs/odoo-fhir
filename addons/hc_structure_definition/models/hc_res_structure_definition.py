@@ -127,17 +127,17 @@ class StructureDefinition(models.Model):
     mapping_ids = fields.One2many(
         comodel_name="hc.structure.definition.mapping", 
         inverse_name="structure_definition_id", 
-        string="Mapping", 
+        string="Mappings", 
         help="External specification that the content is mapped to.")                    
     snapshot_ids = fields.One2many(
         comodel_name="hc.structure.definition.snapshot", 
         inverse_name="structure_definition_id", 
-        string="Snapshot", 
+        string="Snapshots", 
         help="Snapshot view of the structure.")                    
     differential_ids = fields.One2many(
         comodel_name="hc.structure.definition.differential", 
         inverse_name="structure_definition_id", 
-        string="Differential", 
+        string="Differentials", 
         help="Differential view of the structure.")                    
 
 class StructureDefinitionMapping(models.Model):    
@@ -278,5 +278,15 @@ class ProfileCode(models.Model):
     _name = "hc.vs.profile.code"    
     _description = "Profile Code"       
     _inherit = ["hc.value.set.contains"]
+
+# External reference
+
+class DataRequirementProfile(models.Model):    
+    _inherit = "hc.data.reqt.profile"    
+               
+    profile_id = fields.Many2one(
+        comodel_name="hc.res.structure.definition", 
+        string="Profile", 
+        help="Profile associated with this Data Requirement Profile.")
     
 

@@ -60,7 +60,7 @@ class Person(models.Model):
     link_ids = fields.One2many(
         comodel_name="hc.person.link", 
         inverse_name="person_id", 
-        string="Person Links", 
+        string="Links", 
         help="Link to a resource that concerns the same actual person.")
 
     @api.model

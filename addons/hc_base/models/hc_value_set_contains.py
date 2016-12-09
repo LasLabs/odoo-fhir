@@ -272,10 +272,10 @@ class SubstanceCode(models.Model):
     _description = "Substance Code"     
     _inherit = ["hc.value.set.contains"]    
 
-class UOM(models.Model):
-    _name = "hc.vs.uom"
-    _description = "Unit of Measure"
-    _inherit = ["hc.value.set.contains"]
+class TimeUOM(models.Model): 
+    _name = "hc.vs.time.uom" 
+    _description = "Time Unit of Measure"            
+    _inherit = ["hc.value.set.contains", "product.uom"]
 
 class UserType(models.Model):   
     _name = "hc.vs.user.type"   

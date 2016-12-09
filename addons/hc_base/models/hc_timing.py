@@ -14,11 +14,11 @@ class Timing(models.Model):
     code = fields.Selection(
         string="Timing Code", 
         selection=[
-            ("bid", "Bid"), 
-            ("tid", "Tid"), 
-            ("qid", "Qid"), 
-            ("am", "Am"), 
-            ("pm +", "Pm +")], 
+            ("bid", "BID"), 
+            ("tid", "TID"), 
+            ("qid", "QID"), 
+            ("am", "AM"), 
+            ("pm +", "PM +")], 
         help="A code for the timing pattern.")                
     repeat_ids = fields.One2many(
         comodel_name="hc.timing.repeat", 
@@ -45,22 +45,26 @@ class TimingRepeat(models.Model):
         help="Type of bounds.")       
     bounds_name = fields.Char(
         string="Bounds", 
-        compute="compute_bounds_name", 
+        compute="_compute_bounds_name", 
         help="Length/Range of lengths, or (Start and/or end) limit.")        
     bounds_duration = fields.Float(
         string="Bounds Duration", 
-        help="Bounds length of time.")     
-    bounds_duration_uom = fields.Selection(
+        help="Bounds length of time.")
+    bounds_duration_uom_id = fields.Many2one(
+        comodel_name="hc.vs.time.uom", 
         string="Bounds Duration UOM", 
-        selection=[
-            ("s", "S"), 
-            ("min", "Min"), 
-            ("h", "H"), 
-            ("d", "D"), 
-            ("wk", "Wk"), 
-            ("mo", "Mo"), 
-            ("a", "A")], 
-        help="Unit of time (UCUM)")        
+        help="Bounds Duration unit of measure.")
+    # bounds_duration_uom = fields.Selection(
+    #     string="Bounds Duration UOM", 
+    #     selection=[
+    #         ("s", "S"), 
+    #         ("min", "Min"), 
+    #         ("h", "H"), 
+    #         ("d", "D"), 
+    #         ("wk", "Wk"), 
+    #         ("mo", "Mo"), 
+    #         ("a", "A")], 
+    #     help="Unit of time (UCUM)")        
     bounds_range_low = fields.Float(
         string="Bounds Range Low", 
         help="Low limit of bounds range.")       
@@ -84,18 +88,22 @@ class TimingRepeat(models.Model):
         help="How long when it happens.")     
     duration_max = fields.Float(
         string="Duration Max", 
-        help="How long when it happens (Max).")      
-    duration_units = fields.Selection(
-        string="Repeat Duration Units", 
-        selection=[
-            ("s", "S"), 
-            ("min", "Min"), 
-            ("h", "H"), 
-            ("d", "D"), 
-            ("wk", "Wk"), 
-            ("mo", "Mo"), 
-            ("a", "A")], 
-        help="Unit of time (UCUM)")       
+        help="How long when it happens (Max).")
+    duration_uom_id = fields.Many2one(
+        comodel_name="hc.vs.time.uom", 
+        string="Duration Unit", 
+        help="Unit of time (UCUM).")      
+    # duration_unit = fields.Selection(
+    #     string="Duration Unit", 
+    #     selection=[
+    #         ("s", "S"), 
+    #         ("min", "Min"), 
+    #         ("h", "H"), 
+    #         ("d", "D"), 
+    #         ("wk", "Wk"), 
+    #         ("mo", "Mo"), 
+    #         ("a", "A")], 
+    #     help="Unit of time (UCUM)")       
     frequency = fields.Integer(
         string="Frequency", 
         help="Event occurs frequency times per duration.")       
@@ -107,18 +115,22 @@ class TimingRepeat(models.Model):
         help="Event occurs frequency times per period.")     
     period_max = fields.Float(
         string="Period Max", 
-        help="Upper limit of period (3-4 hours).")       
-    period_units = fields.Selection(
-        string="Repeat Period Units", 
-        selection=[
-            ("s", "S"), 
-            ("min", "Min"), 
-            ("h", "H"), 
-            ("d", "D"), 
-            ("wk", "Wk"), 
-            ("mo", "Mo"), 
-            ("a", "A")], 
-        help="Unit of time (UCUM)")       
+        help="Upper limit of period (3-4 hours).")
+    period_uom_id = fields.Many2one(
+        comodel_name="hc.vs.time.uom", 
+        string="Period Unit", 
+        help="Unit of time (UCUM).")        
+    # period_unit = fields.Selection(
+    #     string="Period Unit", 
+    #     selection=[
+    #         ("s", "S"), 
+    #         ("min", "Min"), 
+    #         ("h", "H"), 
+    #         ("d", "D"), 
+    #         ("wk", "Wk"), 
+    #         ("mo", "Mo"), 
+    #         ("a", "A")], 
+    #     help="Unit of time (UCUM)")       
     when_id = fields.Many2one(
         comodel_name="hc.vs.event.timing", 
         string="When", 

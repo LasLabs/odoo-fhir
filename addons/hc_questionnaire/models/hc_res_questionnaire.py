@@ -49,7 +49,7 @@ class Questionnaire(models.Model):
         help="Concept that represents the overall questionnaire.")                    
     subject_type_ids = fields.Many2many(
         comodel_name="hc.vs.resource.type", 
-        string="Subject Type", 
+        string="Subject Types", 
         help="Resource that can be subject of QuestionnaireResponse.")                    
     item_ids = fields.One2many(
         comodel_name="hc.questionnaire.item", 

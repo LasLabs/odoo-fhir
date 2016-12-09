@@ -13,7 +13,7 @@ class Library(models.Model):
         comodel_name="hc.library.identifier", 
         inverse_name="library_id", 
         string="Identifiers", 
-        help="Logical identifier(s) for the library." )                    
+        help="Logical identifier(s) for the library.")                    
     version = fields.Char(
         string="Version", 
         help="The version of the library, if any.")                    
@@ -85,7 +85,7 @@ class Library(models.Model):
         comodel_name="hc.library.contributor", 
         inverse_name="library_id", 
         string="Contributors", 
-        help="A content contributor." )                    
+        help="A content contributor.")                    
     publisher = fields.Char(
         string="Publisher", 
         help="Name of the publisher (Organization or individual).")                    
@@ -93,7 +93,7 @@ class Library(models.Model):
         comodel_name="hc.library.contact", 
         inverse_name="library_id", 
         string="Contacts", 
-        help="Contact details of the publisher." )                    
+        help="Contact details of the publisher.")                    
     copyright = fields.Char(
         string="Copyright", 
         help="Use and/or publishing restrictions.")                    
@@ -101,22 +101,22 @@ class Library(models.Model):
         comodel_name="hc.library.related.artifact", 
         inverse_name="library_id", 
         string="Related Artifacts", 
-        help="Related artifacts for the library." )                    
+        help="Related artifacts for the library.")                    
     parameter_ids = fields.One2many(
         comodel_name="hc.library.parameter", 
         inverse_name="library_id", 
         string="Parameters", 
-        help="Parameters defined by the library." )                    
+        help="Parameters defined by the library.")                    
     data_requirement_ids = fields.One2many(
         comodel_name="hc.library.data.requirement", 
         inverse_name="library_id", 
         string="Data Requirements", 
-        help="Data requirements of the library." )                    
+        help="Data requirements of the library.")                    
     content_id = fields.Many2one(
         comodel_name="hc.library.content", 
         string="Content", 
         required="True", 
-        help="The content of the library." )                    
+        help="The content of the library.")                    
 
 class LibraryIdentifier(models.Model):    
     _name = "hc.library.identifier"    

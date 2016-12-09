@@ -72,7 +72,7 @@ class Patient(models.Model):
     marital_history_ids = fields.One2many(
         comodel_name="hc.patient.marital.history", 
         inverse_name="patient_id", 
-        string="Marital History", 
+        string="Marital Histories", 
         help="Marital (civil) history of a patient.")
     race_ids = fields.Many2many(
         comodel_name="hc.vs.race", 
@@ -127,12 +127,12 @@ class Patient(models.Model):
     link_ids = fields.One2many(
         comodel_name="hc.patient.link", 
         inverse_name="patient_id", 
-        string="Link", 
+        string="Links", 
         help="Link to another patient resource that concerns the same actual person.")
     contact_ids = fields.One2many(
         comodel_name="hc.patient.contact", 
         inverse_name="patient_id", 
-        string="Contact", 
+        string="Contacts", 
         help="A contact party (e.g. guardian, partner, friend) for the patient.")
     communication_ids = fields.One2many(
         comodel_name="hc.patient.language", 
@@ -332,7 +332,7 @@ class PatientLanguage(models.Model):
     proficiency_ids = fields.One2many(
         comodel_name="hc.patient.language.proficiency", 
         inverse_name="patient_language_id", 
-        string="Proficiency", 
+        string="Proficiencies", 
         help="Patient's proficiency and skill with this Patient Language.")
 
 class PatientLanguageProficiency(models.Model):
@@ -397,7 +397,7 @@ class PatientContact(models.Model):
     organization_id = fields.Many2one(
         comodel_name="hc.res.organization", 
         string="Organization", 
-        help="Organization that is associated with the contact person.")
+        help="Organization that is associated with the contact.")
     start_date = fields.Datetime(
         string="Valid from", 
         help="Start of the the period during which this contact person or organization is valid to be contacted relating to this patient.")

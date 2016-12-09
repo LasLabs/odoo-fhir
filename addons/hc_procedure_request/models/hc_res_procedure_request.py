@@ -82,9 +82,9 @@ class ProcedureRequest(models.Model):
     scheduled_end_date = fields.Datetime(
         string="Scheduled End Date", 
         help="End of the when procedure should occur.")
-    scheduled_id = fields.Many2one(
-        comodel_name="hc.procedure.request.scheduled", 
-        string="Scheduled", 
+    scheduled_timing_id = fields.Many2one(
+        comodel_name="hc.procedure.request.scheduled.timing", 
+        string="Scheduled Timing", 
         help="Timing when procedure should occur.")                    
     encounter_id = fields.Many2one(
         comodel_name="hc.res.encounter", 
@@ -308,9 +308,9 @@ class ProcedureRequestNotes(models.Model):
         string="Procedure Request", 
         help="Procedure Request associated with this Procedure Request Note.")                    
 
-class ProcedureRequestScheduled(models.Model):    
-    _name = "hc.procedure.request.scheduled"    
-    _description = "Procedure Request Scheduled"        
+class ProcedureRequestScheduledTiming(models.Model):    
+    _name = "hc.procedure.request.scheduled.timing"    
+    _description = "Procedure Request Scheduled Timing"        
     _inherit = ["hc.basic.association", "hc.timing"]    
 
 class ProcedureCode(models.Model):  

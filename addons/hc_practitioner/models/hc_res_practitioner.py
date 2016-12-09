@@ -65,12 +65,12 @@ class Practitioner(models.Model):
     # role_ids = fields.One2many(
     #     comodel_name="hc.res.practitioner.role", 
     #     inverse_name="practitioner_id", 
-    #     string="Role", 
+    #     string="Roles", 
     #     help="Roles/organizations the practitioner is associated with.")
     qualification_ids = fields.One2many(
         comodel_name="hc.practitioner.qualification", 
         inverse_name="practitioner_id", 
-        string="Qualification", 
+        string="Qualifications", 
         help="Qualification obtained by training and certification")
 
     # @api.model

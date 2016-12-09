@@ -275,6 +275,7 @@ class DocumentReferenceAuthor(models.Model):
             ("Device", "Device"), 
             ("Patient", "Patient"), 
             ("Related Person", "Related Person")], 
+        required="True",
         help="Type of who and/or what authored the document.")                
     author_name = fields.Char(
         string="Author", 

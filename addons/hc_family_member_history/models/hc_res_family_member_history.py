@@ -94,12 +94,12 @@ class FamilyMemberHistory(models.Model):
     age = fields.Integer(
         string="Age Integer", 
         size=3, 
-        help="approximate age.")                   
+        help="Approximate age.")                   
     age_uom_id = fields.Many2one(
-        comodel_name="hc.vs.uom", 
-        string="Age UOM", 
-        default="year", 
-        help="Age unit of measure. Default = year.")                  
+        comodel_name="hc.vs.time.uom", 
+        string="Time UOM", 
+        default="a", 
+        help="Time unit of measure.")                  
     age_range_low = fields.Float(
         string="Age Range Low", 
         help="Low limit of approximate age.")                    
@@ -131,12 +131,12 @@ class FamilyMemberHistory(models.Model):
     deceased_age = fields.Integer(
         string="Deceased Age", 
         size=3, 
-        help="Dead? How old/when?.")                   
+        help="Dead? How old/when?.")
     deceased_age_uom_id = fields.Many2one(
-        comodel_name="hc.vs.uom", 
-        string="Deceased Age UOM", 
-        default="year", 
-        help="Age unit of measure. Default = year.")                    
+        comodel_name="hc.vs.time.uom", 
+        string="Deceased Time UOM", 
+        default="a", 
+        help="Deceased Time unit of measure.")                  
     deceased_age_range_low = fields.Float(
         string="Deceased Age Range Low", 
         help="Low limit of dead? how old/when?.")                    
@@ -190,10 +190,10 @@ class FamilyMemberHistoryCondition(models.Model):
         size=3, 
         help="When condition first manifested.")                 
     onset_age_uom_id = fields.Many2one(
-        comodel_name="hc.vs.uom", 
-        string="Onset Age UOM", 
-        default="year", 
-        help="Age unit of measure. Default = year.")                  
+        comodel_name="hc.vs.time.uom", 
+        string="Onset Time UOM", 
+        default="a", 
+        help="Onset Time unit of measure.")              
     onset_range_low = fields.Float(
         string="Onset Range Low", 
         help="Low limit of when condition first manifested.")                  

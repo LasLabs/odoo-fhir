@@ -69,18 +69,22 @@ class Goal(models.Model):
         help="Reach goal on or before.")                
     target_duration = fields.Float(
         string="Target Duration", 
-        help="Duration reach goal on or before.")                
-    target_duration_uom = fields.Selection(
+        help="Duration reach goal on or before.")
+    target_duration_uom_id = fields.Many2one(
+        comodel_name="hc.vs.time.uom", 
         string="Target Duration UOM", 
-        selection=[
-            ("s", "S"), 
-            ("min", "Min"), 
-            ("h", "H"), 
-            ("d", "D"), 
-            ("wk", "Wk"), 
-            ("mo", "Mo"), 
-            ("a", "A")], 
-        help="Reach goal on or before.")                
+        help="Target Duration unit of measure." )            
+    # target_duration_uom = fields.Selection(
+    #     string="Target Duration UOM", 
+    #     selection=[
+    #         ("s", "S"), 
+    #         ("min", "Min"), 
+    #         ("h", "H"), 
+    #         ("d", "D"), 
+    #         ("wk", "Wk"), 
+    #         ("mo", "Mo"), 
+    #         ("a", "A")], 
+    #     help="Reach goal on or before unit of measure.")                
     category_ids = fields.Many2many(
         comodel_name="hc.vs.goal.category", 
         relation="goal_category_rel", 

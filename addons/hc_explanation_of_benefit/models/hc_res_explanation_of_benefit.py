@@ -9,7 +9,8 @@ class ExplanationOfBenefit(models.Model):
     identifier_ids = fields.One2many(
         comodel_name="hc.explanation.of.benefit.identifier", 
         inverse_name="explanation_of_benefit_id", 
-        string="Identifiers", help="Business Identifier.")              
+        string="Identifiers", 
+        help="Business Identifier.")              
     status = fields.Selection(
         string="Explanation Of Benefit Status", 
         required="True", 
@@ -157,7 +158,7 @@ class ExplanationOfBenefit(models.Model):
     procedure_ids = fields.One2many(
         comodel_name="hc.explanation.of.benefit.procedure", 
         inverse_name="explanation_of_benefit_id", 
-        string="Procedure", 
+        string="Procedures", 
         help="Procedures performed.")             
     missing_teeth_ids = fields.One2many(
         comodel_name="hc.explanation.of.benefit.missing.teeth", 
@@ -167,12 +168,13 @@ class ExplanationOfBenefit(models.Model):
     note_ids = fields.One2many(
         comodel_name="hc.explanation.of.benefit.note", 
         inverse_name="explanation_of_benefit_id", 
-        string="Note", 
+        string="Notes", 
         help="Processing notes.")                
     item_ids = fields.One2many(
         comodel_name="hc.explanation.of.benefit.item", 
         inverse_name="explanation_of_benefit_id", 
-        string="Item", help="Goods and Services.")              
+        string="Items", 
+        help="Goods and Services.")              
     payment_id = fields.Many2one(
         comodel_name="hc.explanation.of.benefit.payment", 
         string="Payment", 
@@ -180,12 +182,12 @@ class ExplanationOfBenefit(models.Model):
     added_item_ids = fields.One2many(
         comodel_name="hc.explanation.of.benefit.added.item", 
         inverse_name="explanation_of_benefit_id", 
-        string="Added Item", 
+        string="Added Items", 
         help="Insurer added line items.")              
     benefit_balance_ids = fields.One2many(
         comodel_name="hc.explanation.of.benefit.balance", 
         inverse_name="explanation_of_benefit_id", 
-        string="Benefit Balance", 
+        string="Benefit Balances", 
         help="Balance by Benefit Category.")                
     accident_id = fields.Many2one(
         comodel_name="hc.explanation.of.benefit.accident", 
@@ -559,17 +561,17 @@ class ExplanationOfBenefitItem(models.Model):
     care_team_ids = fields.One2many(
         comodel_name="hc.explanation.of.benefit.item.care.team", 
         inverse_name="item_id", 
-        string="Care Team", 
+        string="Care Teams", 
         help="Care Team members.")             
     adjudication_ids = fields.One2many(
         comodel_name="hc.explanation.of.benefit.item.adjudication", 
         inverse_name="item_id", 
-        string="Adjudication", 
+        string="Adjudications", 
         help="Adjudication details.")             
     detail_ids = fields.One2many(
         comodel_name="hc.explanation.of.benefit.item.detail", 
         inverse_name="item_id", 
-        string="Detail", 
+        string="Details", 
         help="Additional items.")               
     prosthesis_id = fields.Many2one(
         comodel_name="hc.explanation.of.benefit.item.prosthesis", 
@@ -723,12 +725,12 @@ class ExplanationOfBenefitItemDetail(models.Model):
     adjudication_ids = fields.One2many(
         comodel_name="hc.explanation.of.benefit.item.adjudication", 
         inverse_name="detail_id", 
-        string="Adjudication", 
+        string="Adjudications", 
         help="Detail adjudication.")                
     sub_detail_ids = fields.One2many(
         comodel_name="hc.explanation.of.benefit.item.sub.detail", 
         inverse_name="detail_id", 
-        string="Sub Detail", 
+        string="Sub Details", 
         help="Additional items.")              
 
 class ExplanationOfBenefitItemSubDetail(models.Model):    
@@ -763,7 +765,8 @@ class ExplanationOfBenefitItemSubDetail(models.Model):
     modifier_ids = fields.Many2many(
         comodel_name="hc.vs.claim.modifier", 
         relation="explanation_of_benefit_item_detail_sub_detail_modifier_rel", 
-        string="Modifiers", help="Service/Product billing modifiers.")              
+        string="Modifiers", 
+        help="Service/Product billing modifiers.")              
     program_code_ids = fields.Many2many(
         comodel_name="hc.vs.ex.program.code", 
         relation="explanation_of_benefit_item_detail_sub_detail_program_code_rel", 
@@ -797,7 +800,7 @@ class ExplanationOfBenefitItemSubDetail(models.Model):
     adjudication_ids = fields.One2many(
         comodel_name="hc.explanation.of.benefit.item.adjudication", 
         inverse_name="sub_detail_id", 
-        string="Adjudication", 
+        string="Adjudications", 
         help="Subdetail adjudication.")             
 
 class ExplanationOfBenefitItemProsthesis(models.Model): 
@@ -856,12 +859,12 @@ class ExplanationOfBenefitAddedItem(models.Model):
     adjudication_ids = fields.One2many(
         comodel_name="hc.explanation.of.benefit.item.adjudication", 
         inverse_name="added_item_id", 
-        string="Adjudication", 
+        string="Adjudications", 
         help="Added items adjudication.")               
     detail_ids = fields.One2many(
         comodel_name="hc.explanation.of.benefit.added.items.detail", 
         inverse_name="added_item_id", 
-        string="Detail", 
+        string="Details", 
         help="Added items details.")                
 
 class ExplanationOfBenefitAddedItemsDetail(models.Model):   
@@ -899,7 +902,7 @@ class ExplanationOfBenefitAddedItemsDetail(models.Model):
     adjudication_ids = fields.One2many(
         comodel_name="hc.explanation.of.benefit.item.adjudication", 
         inverse_name="added_items_detail_id", 
-        string="Adjudication", 
+        string="Adjudications", 
         help="Added items detail adjudication.")                
 
 class ExplanationOfBenefitMissingTeeth(models.Model):   
@@ -1013,7 +1016,7 @@ class ExplanationOfBenefitBalance(models.Model):
     financial_ids = fields.One2many(
         comodel_name="hc.explanation.of.benefit.balance.benefit", 
         inverse_name="benefit_balance_id", 
-        string="Financial", 
+        string="Financials", 
         help="Benefit Summary.")               
 
 class ExplanationOfBenefitBenefit(models.Model):   

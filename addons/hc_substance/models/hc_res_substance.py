@@ -13,7 +13,7 @@ class Substance(models.Model):
         help="Unique identifier.")                
     category_ids = fields.Many2many(
         comodel_name="hc.vs.substance.category", 
-        string="Category", 
+        string="Categories", 
         help="What class/type of substance this is.")                
     code_id = fields.Many2one(
         comodel_name="hc.vs.substance.code", 

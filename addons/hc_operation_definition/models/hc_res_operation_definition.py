@@ -97,12 +97,12 @@ class OperationDefinition(models.Model):
     parameter_ids = fields.One2many(
         comodel_name="hc.operation.definition.parameter", 
         inverse_name="operation_definition_id", 
-        string="Parameter", 
+        string="Parameters", 
         help="Parameters for the operation/query.")                       
     overload_ids = fields.One2many(
         comodel_name="hc.operation.definition.overload", 
         inverse_name="operation_definition_id", 
-        string="Overload", 
+        string="Overloads", 
         help="For generating overloaded methods in code.")                       
 
 class OperationDefinitionParameter(models.Model):    
@@ -151,7 +151,7 @@ class OperationDefinitionParameter(models.Model):
     binding_ids = fields.One2many(
         comodel_name="hc.operation.definition.parameter.binding", 
         inverse_name="parameter_id", 
-        string="Binding", 
+        string="Bindings", 
         help="ValueSet details if this is coded.")                        
 
 class OperationDefinitionParameterBinding(models.Model):    

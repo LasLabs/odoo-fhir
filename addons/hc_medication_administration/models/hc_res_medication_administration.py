@@ -59,21 +59,22 @@ class MedicationAdministration(models.Model):
         string="Effective Time Type", 
         required="True", 
         selection=[
-            ("dateTime", "Datetime"), ("Period", "Period")], 
+            ("date_time", "Date Time"), 
+            ("period", "Period")], 
         help="Type of start and end time of administration.")             
     effective_time_name = fields.Char(
         string="Effective Time", 
         compute="_compute_effective_time_name", 
         store="True", 
         help="Start and end time of administration.")              
-    effective_time = fields.Datetime(
-        string="Effective Time", 
-        help="Time of admistration.")             
-    start_effective_time = fields.Datetime(
-        string="Start Effective Time", 
+    effective_date_time = fields.Datetime(
+        string="Effective Date Time", 
+        help="Date Time of administration.")             
+    effective_time_start_date = fields.Datetime(
+        string="Effective Time Start Date", 
         help="Start time of administration.")             
-    end_effective_time = fields.Datetime(
-        string="End Effective Time", 
+    effective_time_end_date = fields.Datetime(
+        string="End Time End Date", 
         help="End time of administration.")               
     performer_ids = fields.One2many(
         comodel_name="hc.medication.administration.performer", 

@@ -408,7 +408,7 @@ class TaskParent(models.Model):
     parent_id = fields.Many2one(
         comodel_name="hc.res.task", 
         string="Parent", 
-        help="Composite task.")                
+        help="Task associated with this Task Parent.")                
 
 class TaskRequisition(models.Model):    
     _name = "hc.task.requisition"   

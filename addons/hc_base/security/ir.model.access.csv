@@ -59,7 +59,6 @@ access_hc_base_res_country_state_manager,hc.base.res.country.state.manager,model
 access_hc_base_res_country_state_user,hc.base.res.country.state.user,model_res_country_state,group_hc_base_user,1,0,0,0
 access_hc_base_hc_vs_condition_code_manager,hc.base.hc.vs.condition.code.manager,model_hc_vs_condition_code,hc_base.group_hc_base_manager,1,1,1,1
 access_hc_base_hc_vs_condition_outcome_manager,hc.base.hc.vs.condition.outcome.manager,model_hc_vs_condition_outcome,hc_base.group_hc_base_manager,1,1,1,1
-access_hc_base_hc_vs_uom_manager,hc.base.hc.vs.uom.manager,model_hc_vs_uom,hc_base.group_hc_base_manager,1,1,1,1
 access_hc_base_hc_vs_body_site_manager,hc.base.hc.vs.body.site.manager,model_hc_vs_body_site,hc_base.group_hc_base_manager,1,1,1,1
 access_hc_base_hc_vs_days_of_week_manager,hc.base.hc.vs.days.of.week.manager,model_hc_vs_days_of_week,hc_base.group_hc_base_manager,1,1,1,1
 access_hc_base_hc_timing_user,hc.base.hc.timing.user,model_hc_timing,hc_base.group_hc_base_user,1,0,0,0
@@ -149,6 +148,9 @@ access_hc_base_hc_trigger_definition_event_data_user,hc.base.hc.trigger.definiti
 access_hc_base_hc_vs_action_code_manager,hc.base.hc.vs.action.code.manager,model_hc_vs_action_code,hc_base.group_hc_base_manager,1,1,1,1
 access_hc_base_hc_vs_message_event_manager,hc.base.hc.vs.message.event.manager,model_hc_vs_message_event,hc_base.group_hc_base_manager,1,1,1,1
 access_hc_base_hc_element_definition_user,hc.base.hc.element.definition.user,model_hc_element_definition,hc_base.group_hc_base_user,1,0,0,0
+access_hc_base_hc_vs_time_uom_manager,hc.base.hc.vs.time.uom.manager,model_hc_vs_time_uom,hc_base.group_hc_base_manager,1,1,1,1
+
+
 
 
 

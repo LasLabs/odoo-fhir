@@ -80,9 +80,10 @@ class Media(models.Model):
         string="Duration", 
         help="Length in seconds (audio / video).")                
     duration_uom_id = fields.Many2one(
-        comodel_name="product.uom", 
-        string="Duration UOM", 
-        help="Length in seconds (audio / video) unit of measure." )                
+        comodel_name="hc.vs.time.uom", 
+        string="Duration UOM",
+        default="s",
+        help="Duration unit of measure." )                
     content_attachment_id = fields.Many2one(
         comodel_name="hc.media.content.attachment", 
         string="Content Attachment", 

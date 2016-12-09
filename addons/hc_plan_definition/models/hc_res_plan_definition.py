@@ -109,7 +109,7 @@ class PlanDefinition(models.Model):
     action_definition_ids = fields.One2many(
         comodel_name="hc.plan.definition.action.definition", 
         inverse_name="plan_definition_id", 
-        string="Action Definition", 
+        string="Action Definitions", 
         help="Action defined by the plan.")                    
 
 class PlanDefinitionActionDefinition(models.Model):    

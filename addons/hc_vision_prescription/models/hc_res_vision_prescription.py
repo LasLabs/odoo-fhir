@@ -10,22 +10,30 @@ class VisionPrescription(models.Model):
         comodel_name="hc.vision.prescription.identifier", 
         inverse_name="vision_prescription_id", 
         string="Identifiers", 
-        help="Business identifier.")                
-    date_written = fields.Datetime(
-        string="Date Written", 
-        help="When prescription was authorized.")                
+        help="Business identifier.")
+    status = fields.Selection(
+        string="Status", 
+        selection=[
+            ("active", "Active"), 
+            ("suspended", "Suspended"), 
+            ("inactive", "Inactive"), 
+            ("entered_in_error", "Entered In Error")], 
+        help="Indicates whether the care team is currently active, suspended, inactive, or entered in error.")      
     patient_id = fields.Many2one(
         comodel_name="hc.res.patient", 
         string="Patient", 
-        help="Who prescription is for.")                
+        help="Who prescription is for.")  
+    encounter_id = fields.Many2one(
+        comodel_name="hc.res.encounter", 
+        string="Encounter", 
+        help="Created during encounter / admission / stay.")  
+    date_written = fields.Datetime(
+        string="Date Written", 
+        help="When prescription was authorized.")                
     prescriber_id = fields.Many2one(
         comodel_name="hc.res.practitioner", 
         string="Prescriber", 
         help="Who authorizes the Vision product.")                
-    encounter_id = fields.Many2one(
-        comodel_name="hc.res.encounter", 
-        string="Encounter", 
-        help="Created during encounter / admission / stay.")                
     reason_type = fields.Selection(
         string="Reason Type", 
         selection=[
@@ -48,9 +56,9 @@ class VisionPrescription(models.Model):
     dispense_ids = fields.One2many(
         comodel_name="hc.vision.prescription.dispense", 
         inverse_name="vision_prescription_id", 
-        string="Imaging Manifest Studies", 
-        help="Vision supply authorization.")                
-
+        string="Dispenses", 
+        help="Vision supply authorization.")
+                
 class VisionPrescriptionDispense(models.Model):    
     _name = "hc.vision.prescription.dispense"    
     _description = "Vision Prescription Dispense"        

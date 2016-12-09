@@ -73,12 +73,12 @@ class PaymentReconciliation(models.Model):
     detail_ids = fields.One2many(
         comodel_name="hc.payment.reconciliation.detail", 
         inverse_name="payment_reconciliation_id", 
-        string="Detail", 
+        string="Details", 
         help="Details.")                
     note_ids = fields.One2many(
         comodel_name="hc.payment.reconciliation.note", 
         inverse_name="payment_reconciliation_id", 
-        string="Note", 
+        string="Notes", 
         help="Note text.")                
 
 class PaymentReconciliationDetail(models.Model):    

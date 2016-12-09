@@ -283,7 +283,7 @@ class SequenceIdentifier(models.Model):
     sequence_id = fields.Many2one(
         comodel_name="hc.res.sequence", 
         string="Sequence", 
-        help="Sequence associated with this sequence identifier.")                
+        help="Sequence associated with this Sequence Identifier.")                
 
 class SequencePointer(models.Model):    
     _name = "hc.sequence.pointer"    
@@ -293,11 +293,11 @@ class SequencePointer(models.Model):
     sequence_id = fields.Many2one(
         comodel_name="hc.res.sequence", 
         string="Sequence", 
-        help="Sequence associated with this sequence pointer.")                
+        help="Sequence associated with this Sequence Pointer.")                
     pointer_id = fields.Many2one(
         comodel_name="hc.res.sequence", 
         string="Pointer", 
-        help="Pointer associated with this sequence pointer.")                
+        help="Pointer associated with this Sequence Pointer.")                
 
 class ChormosomeHuman(models.Model):    
     _name = "hc.vs.chromosome.human"    

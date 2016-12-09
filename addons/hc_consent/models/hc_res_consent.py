@@ -311,6 +311,7 @@ class ConsentRecipient(models.Model):
             ("Practitioner", "Practitioner"), 
             ("Related Person", "Related Person"), 
             ("Care Team", "Care Team")], 
+        required="True",
         help="Type of whose access is controlled by the policy.")                
     value_name = fields.Char(
         string="Value", 
