@@ -1,2 +1,9 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_hc_concept_map_hc_concept_map,hc_concept_map.hc_concept_map,model_hc_concept_map_hc_concept_map,,1,0,0,0
+access_hc_concept_map_hc_res_concept_map_user,hc.concept.map.hc.res.concept.map.user,model_hc_res_concept_map,hc_base.group_hc_base_user,1,0,0,0
+access_hc_concept_map_hc_concept_map_group_user,hc.concept.map.hc.concept.map.group.user,model_hc_concept_map_group,hc_base.group_hc_base_user,1,0,0,0
+access_hc_concept_map_hc_concept_map_group_element_user,hc.concept.map.hc.concept.map.group.element.user,model_hc_concept_map_group_element,hc_base.group_hc_base_user,1,0,0,0
+access_hc_concept_map_hc_concept_map_group_element_target_user,hc.concept.map.hc.concept.map.group.element.target.user,model_hc_concept_map_group_element_target,hc_base.group_hc_base_user,1,0,0,0
+access_hc_concept_map_hc_concept_map_group_element_target_depends_on_user,hc.concept.map.hc.concept.map.group.element.target.depends.on.user,model_hc_concept_map_group_element_target_depends_on,hc_base.group_hc_base_user,1,0,0,0
+access_hc_concept_map_hc_concept_map_identifier_user,hc.concept.map.hc.concept.map.identifier.user,model_hc_concept_map_identifier,hc_base.group_hc_base_user,1,0,0,0
+access_hc_concept_map_hc_concept_map_contact_user,hc.concept.map.hc.concept.map.contact.user,model_hc_concept_map_contact,hc_base.group_hc_base_user,1,0,0,0
+access_hc_concept_map_hc_concept_map_use_context_user,hc.concept.map.hc.concept.map.use.context.user,model_hc_concept_map_use_context,hc_base.group_hc_base_user,1,0,0,0
