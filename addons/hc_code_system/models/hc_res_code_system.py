@@ -120,7 +120,7 @@ class CodeSystemFilter(models.Model):
         comodel_name="hc.res.code.system", 
         string="Code System", 
         help="Code System associated with this Code System Filter.")                        
-    code = fields.Many2one(
+    code_id = fields.Many2one(
         comodel_name="hc.vs.code.system.filter.code", 
         string="Code", 
         required="True", 
@@ -319,12 +319,7 @@ class CodeSystemFilterCode(models.Model):
 class CodeSystemPropertyCode(models.Model):    
     _name = "hc.vs.code.system.property.code"    
     _description = "Code System Property Code"            
-    _inherit = ["hc.value.set.contains"]    
-
-class DesignationUse(models.Model):    
-    _name = "hc.vs.designation.use"    
-    _description = "Designation Use"            
-    _inherit = ["hc.value.set.contains"]    
+    _inherit = ["hc.value.set.contains"]       
 
 class FilterOperator(models.Model):    
     _name = "hc.vs.filter.operator"    

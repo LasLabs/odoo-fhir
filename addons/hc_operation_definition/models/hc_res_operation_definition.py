@@ -112,7 +112,7 @@ class OperationDefinitionParameter(models.Model):
     operation_definition_id = fields.Many2one(
         comodel_name="hc.res.operation.definition", 
         string="Operation Definition", 
-        help="Parameters for the operation/query.")                        
+        help="Operation Definition associated with this Operation Definition Parameter.")                        
     name_id = fields.Many2one(
         comodel_name="hc.vs.operation.definition.parameter.name", 
         string="Name", 
@@ -199,7 +199,7 @@ class OperationDefinitionOverload(models.Model):
     operation_definition_id = fields.Many2one(
         comodel_name="hc.res.operation.definition", 
         string="Operation Definition", 
-        help="For generating overloaded methods in code.")                        
+        help="Operation Definition associated with this Operation Definition Overload.")                        
     parameter_name_ids = fields.One2many(
         comodel_name="hc.operation.definition.overload.parameter.name", 
         inverse_name="overload_id", 

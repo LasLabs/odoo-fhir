@@ -91,7 +91,7 @@ class StructureMapStructure(models.Model):
     structure_map_id = fields.Many2one(
         comodel_name="hc.res.structure.map", 
         string="Structure Map", 
-        help="Structure Definition used by this map.")                    
+        help="Structure Map associated with this Structure Map Structure.")                    
     url = fields.Char(
         string="URL", 
         required="True", 
@@ -116,7 +116,7 @@ class StructureMapGroup(models.Model):
     structure_map_id = fields.Many2one(
         comodel_name="hc.res.structure.map", 
         string="Structure Map", 
-        help="Named sections for reader convenience.")
+        help="Structure Map associated with this Structure Map Group.")
     name = fields.Char(
         string="Name", 
         required="True", 

@@ -129,7 +129,7 @@ class SearchParameterComponent(models.Model):
     search_parameter_id = fields.Many2one(
         comodel_name="hc.res.search.parameter", 
         string="Search Parameter", 
-        help="For Composite resources to define the parts.")                        
+        help="Search Parameter associated with this Search Parameter Component.")                        
     definition_id = fields.Many2one(
         comodel_name="hc.res.search.parameter", 
         string="Definition", 

@@ -147,7 +147,7 @@ class StructureDefinitionMapping(models.Model):
     structure_definition_id = fields.Many2one(
         comodel_name="hc.res.structure.definition", 
         string="Structure Definition", 
-        help="External specification that the content is mapped to.")                    
+        help="Structure Definition associated with this Structure Definition Mapping.")                    
     identity = fields.Char(
         string="Identity", 
         required="True", 
@@ -169,7 +169,7 @@ class StructureDefinitionSnapshot(models.Model):
     structure_definition_id = fields.Many2one(
         comodel_name="hc.res.structure.definition", 
         string="Structure Definition", 
-        help="Snapshot view of the structure.")                    
+        help="Structure Definition associated with this Structure Definition Snapshot.")                    
     element_ids = fields.One2many(
         comodel_name="hc.structure.definition.snapshot.element", 
         inverse_name="snapshot_id", 
@@ -184,7 +184,7 @@ class StructureDefinitionDifferential(models.Model):
     structure_definition_id = fields.Many2one(
         comodel_name="hc.res.structure.definition", 
         string="Structure Definition", 
-        help="Differential view of the structure.")                    
+        help="Structure Definition associated with this Structure Definition Differential.")                    
     element_ids = fields.One2many(
         comodel_name="hc.structure.definition.differential.element", 
         inverse_name="differential_id", 

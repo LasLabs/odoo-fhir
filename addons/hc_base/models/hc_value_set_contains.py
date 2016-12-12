@@ -151,6 +151,11 @@ class DemographicAgeGroup(models.Model):
     _description = "Demographic Age Group"      
     _inherit = ["hc.value.set.contains"]
 
+class DesignationUse(models.Model):    
+    _name = "hc.vs.designation.use"    
+    _description = "Designation Use"            
+    _inherit = ["hc.value.set.contains"] 
+
 class EncounterParticipantType(models.Model):   
     _name = "hc.vs.encounter.participant.type"  
     _description = "Encounter Participant Type"     

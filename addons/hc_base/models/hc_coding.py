@@ -23,6 +23,7 @@ class BasicAssociation(models.AbstractModel):
 class Coding(models.AbstractModel):    
     _name = "hc.coding"    
     _description = "Coding"
+    _rec_name = "display"
 
     system = fields.Char(
         string="System", 
@@ -34,7 +35,7 @@ class Coding(models.AbstractModel):
         string="Code",
         index="True", 
         help="Symbol in syntax defined by the system.")        
-    name = fields.Char(
+    display = fields.Char(
         string="Display",
         required="True",
         help="Representation defined by the system.")        

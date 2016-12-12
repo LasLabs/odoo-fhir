@@ -515,9 +515,9 @@ class ClinicalImpressionPrognosisReference(models.Model):
         comodel_name="hc.res.clinical.impression", 
         string="Clinical Impression", 
         help="Clinical Impression associated with this Clinical Impression Prognosis Reference.")                
-    risk_assessment_id = fields.Many2one(
+    prognosis_reference_id = fields.Many2one(
         comodel_name="hc.res.risk.assessment", 
-        string="Risk Assessment", 
+        string="Prognosis Reference", 
         help="Risk Assessment associated with this Clinical Impression Prognosis Reference.")                
 
 class ClinicalImpressionNote(models.Model):    
