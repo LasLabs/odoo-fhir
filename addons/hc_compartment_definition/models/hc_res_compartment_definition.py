@@ -65,7 +65,7 @@ class CompartmentDefinition(models.Model):
             ("practitioner", "Practitioner"), 
             ("Device", "Device")], 
         help="Which compartment this definition describes.")                        
-    search = fields.Boolean(
+    is_search = fields.Boolean(
         string="Search", 
         required="True", 
         help="Whether the search syntax is supported.")                        

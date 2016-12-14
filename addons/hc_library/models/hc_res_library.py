@@ -46,13 +46,13 @@ class Library(models.Model):
     date = fields.Datetime(
         string="Date", 
         help="Date this was last changed.")                    
-    description = fields.Char(
+    description = fields.Text(
         string="Description", 
         help="Natural language description of the library.")                    
-    purpose = fields.Char(
+    purpose = fields.Text(
         string="Purpose", 
         help="Describes the purpose of the library.")                    
-    usage = fields.Char(
+    usage = fields.Text(
         string="Usage", 
         help="Describes the clinical usage of the library.")                    
     approval_date = fields.Date(
@@ -94,7 +94,7 @@ class Library(models.Model):
         inverse_name="library_id", 
         string="Contacts", 
         help="Contact details of the publisher.")                    
-    copyright = fields.Char(
+    copyright = fields.Text(
         string="Copyright", 
         help="Use and/or publishing restrictions.")                    
     related_artifact_ids = fields.One2many(

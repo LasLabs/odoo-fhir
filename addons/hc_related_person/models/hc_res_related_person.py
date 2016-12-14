@@ -109,40 +109,22 @@ class RelatedPersonTelecom(models.Model):
 class RelatedPersonAddress(models.Model):
     _name = "hc.related.person.address" 
     _description = "Related Person Address"
-    _inherit = ["hc.basic.association"]
-    _inherits = {"hc.address": "address_id"}
+    _inherits = {"hc.person.address": "address_id"}
 
     address_id = fields.Many2one(
         comodel_name="hc.address", 
         string="Address", 
         required="True",
         ondelete="restrict", 
-        help="Address associated with this entity.") 
+        help="Address associated with this Related Person Address.") 
     related_person_id = fields.Many2one(
         comodel_name="hc.res.related.person", 
         string="Related Person", 
-        help="Related person associated with this address.")
-
-#     use = fields.Selection(string="Use",
-#         selection=[
-#             ("home", "Home"), 
-#             ("work", "Work"), 
-#             ("temp", "Temp"), 
-#             ("old", "Old")],
-#         default="home",  
-#         help="The purpose of this address.")
-#     type = fields.Selection(string="Type", 
-#         selection=[
-#             ("postal", "Postal"), 
-#             ("physical", "Physical"), 
-#             ("both", "Both")], 
-#         default="both", 
-#         help="Distinguishes between physical addresses (those you can visit) and mailing addresses (e.g. PO Boxes and care-of addresses). Most addresses are both.")
+        help="Related Person associated with this Related Person Address.")
 
 class RelatedPersonPhoto(models.Model):   
     _name = "hc.related.person.photo"  
     _description = "Related Person Photo"
-    _inherit = ["hc.basic.association"]
     _inherits = {"hc.person.photo": "photo_id"}
 
     photo_id = fields.Many2one(
@@ -154,12 +136,7 @@ class RelatedPersonPhoto(models.Model):
     related_person_id = fields.Many2one(
         comodel_name="hc.res.person", 
         string="Related Person", 
-        help="Related person associated with this Related Person Photo.")      
-
-class RelatedPersonRelationshipType(models.Model):  
-    _name = "hc.vs.related.person.relationship.type"    
-    _description = "Related Person Relationship Type"
-    _inherit = ["hc.value.set.contains"]
+        help="Related Person associated with this Related Person Photo.")      
 
 class RelatedPersonPatient(models.Model): 
     _name = "hc.related.person.patient"    
@@ -184,7 +161,12 @@ class RelatedPersonPatient(models.Model):
     end_date = fields.Date(
         string="End Date", 
         help="End of the period of time that this relationship is considered valid.")
-    
+
+class RelatedPersonRelationshipType(models.Model):  
+    _name = "hc.vs.related.person.relationship.type"    
+    _description = "Related Person Relationship Type"
+    _inherit = ["hc.value.set.contains"]    
+
 # External Reference
 
 class Partner(models.Model):

@@ -1,2 +1,7 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_hc_naming_system_hc_naming_system,hc_naming_system.hc_naming_system,model_hc_naming_system_hc_naming_system,,1,0,0,0
+access_hc_naming_system_hc_res_naming_system_user,hc.naming.system.hc.res.naming.system.user,model_hc_res_naming_system,hc_base.group_hc_base_user,1,0,0,0
+access_hc_naming_system_hc_naming_system_unique_id_user,hc.naming.system.hc.naming.system.unique.id.user,model_hc_naming_system_unique_id,hc_base.group_hc_base_user,1,0,0,0
+access_hc_naming_system_hc_naming_system_contact_user,hc.naming.system.hc.naming.system.contact.user,model_hc_naming_system_contact,hc_base.group_hc_base_user,1,0,0,0
+access_hc_naming_system_hc_naming_system_use_context_user,hc.naming.system.hc.naming.system.use.context.user,model_hc_naming_system_use_context,hc_base.group_hc_base_user,1,0,0,0
+access_hc_naming_system_hc_vs_naming_system_unique_id_category_manager,hc.naming.system.hc.vs.naming.system.unique.id.category.manager,model_hc_vs_naming_system_unique_id_category,hc_base.group_hc_base_manager,1,1,1,1
+

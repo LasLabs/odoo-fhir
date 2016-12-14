@@ -34,13 +34,13 @@ class ActivityDefinition(models.Model):
     is_experimental = fields.Boolean(
         string="Experimental", 
         help="If for testing purposes, not real usage.")                    
-    description = fields.Char(
+    description = fields.Text(
         string="Description", 
         help="Natural language description of the activity definition.")                    
-    purpose = fields.Char(
+    purpose = fields.Text(
         string="Purpose", 
         help="Why this activity definition is defined.")                    
-    usage = fields.Char(
+    usage = fields.Text(
         string="Usage", 
         help="Describes the clinical usage of the asset.")                    
     approval_date = fields.Date(
@@ -83,7 +83,7 @@ class ActivityDefinition(models.Model):
         inverse_name="activity_definition_id", 
         string="Contacts", 
         help="Contact details of the publisher.")                    
-    copyright = fields.Char(
+    copyright = fields.Text(
         string="Copyright", 
         help="Use and/or publishing restrictions.")                    
     related_artifact_ids = fields.One2many(
@@ -197,7 +197,7 @@ class ActivityDefinitionDynamicValue(models.Model):
         comodel_name="hc.res.activity.definition", 
         string="Activity Definition", 
         help="Activity Definition associated with this Activity Definition Dynamic Value.")
-    description = fields.Char(
+    description = fields.Text(
         string="Description", 
         help="Natural language description of the dynamic value.")                    
     path = fields.Char(

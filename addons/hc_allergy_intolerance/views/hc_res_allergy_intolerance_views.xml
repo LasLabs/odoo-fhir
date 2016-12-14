@@ -82,13 +82,13 @@
                                                 <page string="Notes">
                                                     <field name="note_ids" mode="tree">
                                                         <tree>
-                                                            <field name="annotation"/>
+                                                            <field name="text"/>
                                                             <field name="author_type"/>
                                                             <field name="recorded_date"/>
                                                         </tree>
                                                         <form>
                                                             <sheet>
-                                                                <field name="annotation" placeholder="Annotation"/>
+                                                                <field name="text" placeholder="Annotation"/>
                                                                 <field name="author_type" placeholder="Author Type"/>
                                                                 <field name="recorded_date" placeholder="Recorded Date"/>
                                                             </sheet>
@@ -104,7 +104,7 @@
                             <page string="Annotations">
                                 <field name="note_ids" mode="tree">
                                     <tree>
-                                        <field name="annotation"/>    
+                                        <field name="text"/>    
                                         <field name="author_name"/>
                                         <field name="author_type"/>       
                                         <field name="recorded_date"/> 
@@ -113,7 +113,7 @@
                                         <sheet>
                                             <div class="oe_title oe_left">          
                                                 <h1>        
-                                                    <field name="annotation" default_focus="1" placeholder="Annotation"/>
+                                                    <field name="text" default_focus="1" placeholder="Annotation"/>
                                                 </h1>     
                                             </div>          
                                             <group>         

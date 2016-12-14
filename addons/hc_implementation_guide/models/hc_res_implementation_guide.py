@@ -52,7 +52,7 @@ class ImplementationGuide(models.Model):
         relation="implementation_guide_jurisdiction_rel", 
         string="Jurisdictions", 
         help="Intended jurisdiction for implementation guide (if applicable).")
-    copyright = fields.Char(
+    copyright = fields.Text(
         string="Copyright", 
         help="Use and/or publishing restrictions.")
     fhir_version = fields.Char(

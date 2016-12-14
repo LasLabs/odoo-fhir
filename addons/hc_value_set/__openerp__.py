@@ -3,14 +3,11 @@
     'name': "Value Set",
 
     'summary': """
-        A value set specifies a set of codes drawn from one or more code systems.
+        Set of codes
         """,
 
     'description': """
-        The FHIR terminology specification is based two key concepts, originally defined in HL7 v3 Core Principles :
-
-        * code system - defines a set of codes with meanings (also known as enumeration, terminology, classification, and/or ontology)
-        * value set - selects a set of codes from those defined by one or more code systems
+        A value set specifies a set of codes drawn from one or more code systems.
 
         **Scope and Usage**
 

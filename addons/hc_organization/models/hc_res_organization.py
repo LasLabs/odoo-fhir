@@ -18,7 +18,7 @@ class Organization(models.Model):
         inverse_name="organization_id", 
         string="Identifiers", 
         help="Identifies this organization across multiple systems.")             
-    is_active_organization = fields.Boolean(
+    is_active = fields.Boolean(
         string="Active",
         default="True", 
         help="Whether the organization's record is still in active use.") 
@@ -29,6 +29,11 @@ class Organization(models.Model):
     name = fields.Char(
         string="Name", 
         help="Name used for the organization.")                      
+    alias_ids = fields.One2many(
+        comodel_name="hc.organization.alias", 
+        inverse_name="organization_id", 
+        string="Aliases", 
+        help="A list of alternate names that the organization is known as, or was known as in the past.")
     telecom_ids = fields.One2many(
         comodel_name="hc.organization.telecom", 
         inverse_name="organization_id", 
@@ -43,11 +48,11 @@ class Organization(models.Model):
         comodel_name="hc.res.organization", 
         string="Part Of", 
         help="The organization of which this organization forms a part.")
-    # endpoint_ids = fields.One2many(
-    #     comodel_name="hc.organization.endpoint", 
-    #     inverse_name="organization_id", 
-    #     string="Endpoints", 
-    #     help="Technical endpoints providing access to services operated for the organization.")
+    endpoint_ids = fields.One2many(
+        comodel_name="hc.organization.endpoint", 
+        inverse_name="organization_id", 
+        string="Endpoints", 
+        help="Technical endpoints providing access to services operated for the organization.")
     location_ids = fields.One2many(
         comodel_name="hc.organization.location", 
         inverse_name="organization_id", 
@@ -64,101 +69,6 @@ class Organization(models.Model):
         "company_type": "company",
         }
 
-class OrganizationIdentifier(models.Model):   
-    _name = "hc.organization.identifier"  
-    _description = "Organization Identifier"
-    _inherit = ["hc.basic.association", "hc.identifier"]
-
-    organization_id = fields.Many2one(
-        comodel_name="hc.res.organization", 
-        string="Organization", 
-        help="Organization associated with this identifier.")
-
-class OrganizationType(models.Model):  
-    _name = "hc.vs.organization.type"  
-    _description = "Organization Type" 
-    _inherit = ["hc.value.set.contains"]
-
-class OrganizationTelecom(models.Model):    
-    _name = "hc.organization.telecom"    
-    _description = "Organization Telecom"        
-    _inherit = ["hc.contact.point.use"]    
-    _inherits = {"hc.contact.point": "telecom_id"}
-
-    telecom_id = fields.Many2one(
-        comodel_name="hc.contact.point", 
-        string="Telecom", 
-        ondelete="restrict", 
-        required="True", 
-        help="Telecom associated with this Organization Telecom.")                    
-    organization_id = fields.Many2one(
-        comodel_name="hc.res.organization", 
-        string="Organization", 
-        help="Organization associated with this Organization Telecom.")
-
-class OrganizationAddress(models.Model):
-    _name = "hc.organization.address" 
-    _description = "Organization Address"
-    _inherit = ["hc.basic.association"]
-    _inherits = {"hc.address": "address_id"}
-
-    organization_id = fields.Many2one(
-        comodel_name="hc.res.organization", 
-        string="Organization", 
-        help="Organization associated with this address.")
-    address_id = fields.Many2one(
-        comodel_name="hc.address", 
-        string="Address", 
-        required="True",
-        ondelete="restrict", 
-        help="Address associated with this organization.") 
-    use = fields.Selection(string="Use",
-        selection=[
-            ("home", "Home"), 
-            ("work", "Work"), 
-            ("temp", "Temp"), 
-            ("old", "Old")],
-        default="home",  
-        help="The purpose of this address.")
-    type = fields.Selection(string="Type", 
-        selection=[
-            ("postal", "Postal"), 
-            ("physical", "Physical"), 
-            ("both", "Both")], 
-        default="both", 
-        help="Distinguishes between physical addresses (those you can visit) and mailing addresses (e.g. PO Boxes and care-of addresses). Most addresses are both.")
-
-# class OrganizationEndpoint(models.Model):
-#     _name = "hc.organization.endpoint" 
-#     _description = "Organization Endpoint"
-#     _inherit = ["hc.basic.association"]
-#     _inherits = {"hc.res.endpoint": "endpoint_id"}
-
-#     endpoint_id = fields.Many2one(
-#         comodel_name="hc.res.endpoint", 
-#         string="Endpoint",
-#         required="True",
-#         ondelete="restrict", 
-#         help="Endpoint associated with this organization.")
-#     organization_id = fields.Many2one(
-#         comodel_name="hc.res.organization", 
-#         string="Organization", 
-#         help="Organization associated with this endpoint.")
-
-class OrganizationLocation(models.Model):
-    _name = "hc.organization.location" 
-    _description = "Organization Location"
-    _inherit = ["hc.basic.association"]
-
-    organization_id = fields.Many2one(
-        comodel_name="hc.res.organization", 
-        string="Organization", 
-        help="Organization associated with this Organization Location.")
-    # location_id = fields.Many2one(
-    #     comodel_name="hc.res.location", 
-    #     string="Location",
-    #     help="Location associated with this Organization Location.")
-    
 class OrganizationContact(models.Model):    
     _name = "hc.organization.contact"   
     _description = "Organization Contact"       
@@ -191,17 +101,52 @@ class OrganizationContact(models.Model):
         comodel_name="hc.organization.contact.address",
         inverse_name="contact_id",  
         string="Addresses", 
-        help="Visiting or postal addresses for the organization contact.")             
+        help="Visiting or postal addresses for the organization contact.")
 
-class OrganizationContactPurpose(models.Model): 
-    _name = "hc.vs.contact.entity.type"    
-    _description = "Organization Contact Purpose"
-    _inherit = ["hc.value.set.contains"]
+class OrganizationIdentifier(models.Model):   
+    _name = "hc.organization.identifier"  
+    _description = "Organization Identifier"
+    _inherit = ["hc.basic.association", "hc.identifier"]
 
-class OrganizationContactAddress(models.Model):
-    _name = "hc.organization.contact.address" 
-    _description = "Organization Contact Address"
+    organization_id = fields.Many2one(
+        comodel_name="hc.res.organization", 
+        string="Organization", 
+        help="Organization associated with this identifier.")
+
+class OrganizationAlias(models.Model):  
+    _name = "hc.organization.alias" 
+    _description = "Organization Alias"         
     _inherit = ["hc.basic.association"]
+
+    organization_id = fields.Many2one(
+        comodel_name="hc.res.organization", 
+        string="Organization", 
+        help="Organization associated with this Organization Alias.")                  
+    alias = fields.Char(
+        string="Alias", 
+        help="Alias associated with this Organization Alias.")                  
+
+class OrganizationTelecom(models.Model):    
+    _name = "hc.organization.telecom"    
+    _description = "Organization Telecom"        
+    _inherit = ["hc.contact.point.use"]    
+    _inherits = {"hc.contact.point": "telecom_id"}
+
+    telecom_id = fields.Many2one(
+        comodel_name="hc.contact.point", 
+        string="Telecom", 
+        ondelete="restrict", 
+        required="True", 
+        help="Telecom associated with this Organization Telecom.")                    
+    organization_id = fields.Many2one(
+        comodel_name="hc.res.organization", 
+        string="Organization", 
+        help="Organization associated with this Organization Telecom.")
+
+class OrganizationAddress(models.Model):
+    _name = "hc.organization.address" 
+    _description = "Organization Address"
+    _inherit = ["hc.address.use"]
     _inherits = {"hc.address": "address_id"}
 
     address_id = fields.Many2one(
@@ -209,43 +154,52 @@ class OrganizationContactAddress(models.Model):
         string="Address", 
         required="True",
         ondelete="restrict", 
-        help="Address associated with this Organization Contact Address.") 
-    contact_id = fields.Many2one(
-        comodel_name="hc.organization.contact", 
-        string="Organization Contact", 
-        help="Organization Contact associated with this Organization Contact Address.")
-    use = fields.Selection(string="Use",
-        selection=[
-            ("home", "Home"), 
-            ("work", "Work"), 
-            ("temp", "Temp"), 
-            ("old", "Old")],
-        default="home",  
-        help="The purpose of this address.")
-    type = fields.Selection(string="Type", 
-        selection=[
-            ("postal", "Postal"), 
-            ("physical", "Physical"), 
-            ("both", "Both")], 
-        default="both", 
-        help="Distinguishes between physical addresses (those you can visit) and mailing addresses (e.g. PO Boxes and care-of addresses). Most addresses are both.")
+        help="Address associated with this Organization Address.")
+    organization_id = fields.Many2one(
+        comodel_name="hc.res.organization", 
+        string="Organization", 
+        help="Organization associated with this Organization Address.")
+
+class OrganizationEndpoint(models.Model):   
+    _name = "hc.organization.endpoint"  
+    _description = "Organization Endpoint"          
+    _inherit = ["hc.basic.association"] 
+
+    organization_id = fields.Many2one(
+        comodel_name="hc.res.organization", 
+        string="Organization", 
+        help="Organization associated with this Organization Endpoint.")                       
+    # endpoint_id = fields.Many2one(
+    #     comodel_name="hc.res.endpoint", 
+    #     string="Endpoint", 
+    #     help="Endpoint associated with this Organization Endpoint.")                       
+
+class OrganizationLocation(models.Model):
+    _name = "hc.organization.location" 
+    _description = "Organization Location"
+    _inherit = ["hc.basic.association"]
+
+    organization_id = fields.Many2one(
+        comodel_name="hc.res.organization", 
+        string="Organization", 
+        help="Organization associated with this Organization Location.")
+    # location_id = fields.Many2one(
+    #     comodel_name="hc.res.location", 
+    #     string="Location",
+    #     help="Location associated with this Organization Location.")            
 
 class OrganizationContactName(models.Model): 
     _name = "hc.organization.contact.name"    
     _description = "Organization Contact Name"
     _inherit = ["hc.basic.association"]
-    _inherits = {"hc.human.name": "human_name_id"}
+    _inherits = {"hc.human.name": "name_id"}
 
-    human_name_id = fields.Many2one(
+    name_id = fields.Many2one(
         comodel_name="hc.human.name",
         string="Human Name",
         required="True",
         ondelete="restrict", 
         help="Human Name associated with this Organization Contact Name.")
-    contact_id = fields.Many2one(
-        comodel_name="hc.organization.contact", 
-        string="Organization Contact", 
-        help="Organization contact associated with this Organization Contact Name.")
 
 class OrganizationContactTelecom(models.Model):    
     _name = "hc.organization.contact.telecom"    
@@ -263,6 +217,33 @@ class OrganizationContactTelecom(models.Model):
         comodel_name="hc.organization.contact", 
         string="Contact", 
         help="Contact associated with this Organization Contact Telecom.")                    
+
+class OrganizationContactAddress(models.Model):
+    _name = "hc.organization.contact.address" 
+    _description = "Organization Contact Address"
+    _inherit = ["hc.address.use"]
+    _inherits = {"hc.address": "address_id"}
+
+    address_id = fields.Many2one(
+        comodel_name="hc.address", 
+        string="Address", 
+        required="True",
+        ondelete="restrict", 
+        help="Address associated with this Organization Contact Address.") 
+    contact_id = fields.Many2one(
+        comodel_name="hc.organization.contact", 
+        string="Organization Contact", 
+        help="Organization Contact associated with this Organization Contact Address.")
+    
+class OrganizationType(models.Model):  
+    _name = "hc.vs.organization.type"  
+    _description = "Organization Type" 
+    _inherit = ["hc.value.set.contains"]
+
+class OrganizationContactPurpose(models.Model): 
+    _name = "hc.vs.contact.entity.type"    
+    _description = "Organization Contact Purpose"
+    _inherit = ["hc.value.set.contains"]
 
 # External Reference
 

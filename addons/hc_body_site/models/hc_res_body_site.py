@@ -24,7 +24,7 @@ class BodySite(models.Model):
         comodel_name="hc.vs.body.site.relative.location", 
         string="Modifiers", 
         help="Modification to location code.")
-    description = fields.Char(
+    description = fields.Text(
         string="Description", 
         help="The Description of anatomical location.")
     image_ids = fields.One2many(

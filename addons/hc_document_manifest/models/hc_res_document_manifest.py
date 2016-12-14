@@ -72,7 +72,7 @@ class DocumentManifest(models.Model):
             ("superceded", "Superceded"), 
             ("entered-in-error", "Entered-In-Error")], 
         help="The status of this document manifest.")                
-    description = fields.Char(
+    description = fields.Text(
         string="Description", 
         help="Human-readable description (title).")                
     content_ids = fields.One2many(

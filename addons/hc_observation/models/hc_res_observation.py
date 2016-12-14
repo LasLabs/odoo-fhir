@@ -162,7 +162,7 @@ class Observation(models.Model):
         comodel_name="hc.vs.observation.interpretation", 
         string="Interpretation", 
         help="High, low, normal, etc.")
-    comment = fields.Char(
+    comment = fields.Text(
         string="Comment", 
         help="Comments about result.")
     body_site_id = fields.Many2one(

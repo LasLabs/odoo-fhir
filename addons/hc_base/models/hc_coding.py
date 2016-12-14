@@ -26,7 +26,7 @@ class Coding(models.AbstractModel):
     _rec_name = "display"
 
     system = fields.Char(
-        string="System", 
+        string="System URI", 
         help="Identity of the terminology system.")        
     version = fields.Char(
         string="Version", 
@@ -37,7 +37,6 @@ class Coding(models.AbstractModel):
         help="Symbol in syntax defined by the system.")        
     display = fields.Char(
         string="Display",
-        required="True",
         help="Representation defined by the system.")        
     is_user_selected = fields.Boolean(
         string="User Selected",
@@ -53,7 +52,7 @@ class CodeableConcept(models.AbstractModel):
         inverse_name="codeable_concept_id", 
         string="Coding", 
         help="Code defined by a terminology system.")           
-    text = fields.Char(
+    text = fields.Text(
         string="Text", 
         help="Plain text representation of the concept.")             
 

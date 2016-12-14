@@ -175,7 +175,7 @@ class SpecimenTreatment(models.Model):
         comodel_name="hc.res.specimen", 
         string="Specimen", 
         help="Specimen associated with this Specimen Treatment.")					
-    description = fields.Char(
+    description = fields.Text(
         string="Description", 
         help="Textual description of procedure.")					
     procedure_id = fields.Many2one(
@@ -201,7 +201,7 @@ class SpecimenContainer(models.Model):
         inverse_name="container_id", 
         string="Identifiers", 
         help="Id for the container.")					
-    description = fields.Char(
+    description = fields.Text(
         string="Description", 
         help="Textual description of the container.")					
     type_id = fields.Many2one(

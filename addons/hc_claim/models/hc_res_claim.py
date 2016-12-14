@@ -780,7 +780,7 @@ class ClaimIdentifier(models.Model):
 class ClaimAccidentLocationAddress(models.Model):   
     _name = "hc.claim.accident.location.address"    
     _description = "Claim Accident Location Address"        
-    _inherit = ["hc.basic.association"] 
+    _inherit = ["hc.address.use"] 
     _inherits = {"hc.address": "location_id"}
 
     location_id = fields.Many2one(
@@ -793,7 +793,7 @@ class ClaimAccidentLocationAddress(models.Model):
 class ClaimItemLocationAddress(models.Model):   
     _name = "hc.claim.item.location.address"    
     _description = "Claim Item Location Address"        
-    _inherit = ["hc.basic.association"] 
+    _inherit = ["hc.address.use"] 
     _inherits = {"hc.address": "location_id"}
 
     location_id = fields.Many2one(

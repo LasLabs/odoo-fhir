@@ -83,7 +83,7 @@ class Account(models.Model):
         comodel_name="hc.res.organization", 
         string="Owner", 
         help="Who is responsible?")                    
-    description = fields.Char(
+    description = fields.Text(
         string="Description", 
         help="Explanation of purpose/use.")                    
 

@@ -64,7 +64,7 @@ class StructureMap(models.Model):
     purpose = fields.Text(
         string="Purpose", 
         help="Why this structure map is defined.")
-    copyright = fields.Char(
+    copyright = fields.Text(
         string="Copyright", 
         help="Use and/or publishing restrictions.")
     import_ids = fields.One2many(

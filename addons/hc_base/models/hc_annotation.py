@@ -3,7 +3,6 @@
 from openerp import models, fields, api
 
 class Annotation(models.AbstractModel):
-
     _name = "hc.annotation"
     _description = "Annotation"
  
@@ -11,10 +10,10 @@ class Annotation(models.AbstractModel):
     # 	string="Name",
     #     required="True",
     # 	help="The name of the annotation.")
-    annotation = fields.Text(
-        string="Annotation",
+    text = fields.Text(
+        string="Text", 
         required="True", 
-        help="The text content.")
+        help="The annotation - text content.")
     recorded_date = fields.Datetime(
         string="Recorded Date", 
         help="When the annotation was made.")

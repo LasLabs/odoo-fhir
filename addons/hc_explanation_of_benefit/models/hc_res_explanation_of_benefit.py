@@ -1098,7 +1098,7 @@ class ExplanationOfBenefitPayeePartyIdentifier(models.Model):
 class ExplanationOfBenefitAccidentLocationAddress(models.Model):    
     _name = "hc.explanation.of.benefit.accident.location.address"   
     _description = "Explanation Of Benefit Accident Location Address"       
-    _inherit = ["hc.basic.association"] 
+    _inherit = ["hc.address.use"] 
     _inherits = {"hc.address": "location_id"}
 
     location_id = fields.Many2one(
@@ -1137,7 +1137,7 @@ class ExplanationOfBenefitItemDiagnosisLinkId(models.Model):
 class ExplanationOfBenefitItemLocationAddress(models.Model):    
     _name = "hc.explanation.of.benefit.item.location.address"   
     _description = "Explanation Of Benefit Item Location Address"       
-    _inherit = ["hc.basic.association"] 
+    _inherit = ["hc.address.use"] 
     _inherits = {"hc.address": "location_id"}
 
     location_id = fields.Many2one(

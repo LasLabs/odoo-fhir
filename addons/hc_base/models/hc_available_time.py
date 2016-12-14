@@ -14,12 +14,20 @@ class AvailableTime(models.Model):
     is_all_day = fields.Boolean(
         string="All Day", 
         help="Always available? (e.g. 24 hour service).")       
-    available_start_time = fields.Char(
-        string="Available Start Time", 
-        help="Opening time of day (ignored if all Day = true).")       
-    available_end_time = fields.Char(
-        string="Available End Time", 
-        help="Closing time of day (ignored if all Day = true).") 
+    available_start_time = fields.Float(
+        string="Opening Time", 
+        help="Opening time of day in hours:min (00:00). Ignored if all Day = true.")       
+    available_end_time = fields.Float(
+        string="Closing Time", 
+        help="Closing time of day in hours:min (00:00). Ignored if all Day = true.") 
+
+    _sql_constraints = [
+        ('end_greater_start',
+        'CHECK(available_end_time >= available_start_time)',
+        'Error ! Closing Time cannot be before Opening Time.')
+        ]
+
+
 
 class NotAvailableTime(models.Model):   
     _name = "hc.not.available.time" 

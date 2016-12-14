@@ -381,7 +381,7 @@ class ContractTerm(models.Model):
         relation="contract_term_action_reason_rel", 
         string="Action Reasons", 
         help="Contract Term Action Reason.")                
-    text = fields.Char(
+    text = fields.Text(
         string="Text", 
         help="Human readable Contract term text.")                
     group_id = fields.Many2one(

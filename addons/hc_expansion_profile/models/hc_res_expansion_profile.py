@@ -41,7 +41,7 @@ class ExpansionProfile(models.Model):
     date = fields.Datetime(
         string="Date", 
         help="Date for given status.")                        
-    description = fields.Char(
+    description = fields.Text(
         string="Description", 
         help="Human language description of the expansion profile.")                        
     use_context_ids = fields.One2many(

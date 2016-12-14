@@ -185,7 +185,6 @@ class PatientName(models.Model):
 class PatientAddress(models.Model): 
     _name = "hc.patient.address"    
     _description = "Patient Address"        
-    _inherit = ["hc.basic.association"] 
     _inherits = {"hc.person.address": "address_id"}
 
     address_id = fields.Many2one(
@@ -197,24 +196,7 @@ class PatientAddress(models.Model):
     patient_id = fields.Many2one(
         comodel_name="hc.res.patient", 
         string="Patient", 
-        help="Patient associated with this Patient Address.")                  
-    use = fields.Selection(
-        string="Use", 
-        selection=[
-            ("home", "Home"), 
-            ("work", "Work"), 
-            ("temp", "Temp"), 
-            ("old", "Old")],
-        default="home", 
-        help="The purpose of this address.")                    
-    type = fields.Selection(
-        string="Type", 
-        selection=[
-            ("postal", "Postal"), 
-            ("physical", "Physical"), 
-            ("both", "Both")],
-        default="both", 
-        help="Distinguishes between physical addresses (those you can visit) and mailing addresses (e.g. PO Boxes and care-of addresses). Most addresses are both.")                  
+        help="Patient associated with this Patient Address.")                                  
 
 class PatientTelecom(models.Model): 
     _name = "hc.patient.telecom"    

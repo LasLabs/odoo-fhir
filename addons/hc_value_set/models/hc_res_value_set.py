@@ -44,7 +44,7 @@ class ValueSet(models.Model):
     date = fields.Datetime(
         string="Date", 
         help="Date for given status.")
-    description = fields.Char(
+    description = fields.Text(
         string="Description", 
         help="Human language description of the value set.")
     use_context_ids = fields.One2many(
@@ -63,7 +63,7 @@ class ValueSet(models.Model):
     purpose = fields.Text(
         string="Purpose", 
         help="Why this value set is defined.")
-    copyright = fields.Char(
+    copyright = fields.Text(
         string="Copyright", 
         help="Use and/or Publishing restrictions.")
     is_extensible = fields.Boolean(

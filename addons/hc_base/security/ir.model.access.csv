@@ -74,7 +74,7 @@ access_hc_base_hc_vs_animal_species_manager,hc.base.hc.vs.animal.species.manager
 access_hc_base_hc_vs_race_manager,hc.base.hc.vs.race.manager,model_hc_vs_race,hc_base.group_hc_base_manager,1,1,1,1
 access_hc_base_hc_vs_ethnicity_manager,hc.base.hc.vs.ethnicity.manager,model_hc_vs_ethnicity,hc_base.group_hc_base_manager,1,1,1,1
 access_hc_base_hc_vs_participant_role_manager,hc.base.hc.vs.participant.role.manager,model_hc_vs_participant_role,hc_base.group_hc_base_manager,1,1,1,1
-access_hc_base_hc_sampled_data_manager,hc.base.hc.sampled.data.manager,model_hc_sampled_data,hc_base.group_hc_base_manager,1,1,1,1
+access_hc_base_hc_sampled_data_user,hc.base.hc.sampled.data.user,model_hc_sampled_data,hc_base.group_hc_base_user,1,0,0,0
 access_hc_base_hc_related_resource_user,hc.base.hc.related.resource.user,model_hc_related_resource,hc_base.group_hc_base_user,1,0,0,0
 access_hc_base_hc_related_resource_document_user,hc.base.hc.related.resource.document.user,model_hc_related_resource_document,hc_base.group_hc_base_user,1,0,0,0
 access_hc_base_hc_vs_resource_list_manager,hc.base.hc.vs.resource.list.manager,model_hc_vs_resource_list,hc_base.group_hc_base_manager,1,1,1,1
@@ -150,6 +150,8 @@ access_hc_base_hc_vs_message_event_manager,hc.base.hc.vs.message.event.manager,m
 access_hc_base_hc_element_definition_user,hc.base.hc.element.definition.user,model_hc_element_definition,hc_base.group_hc_base_user,1,0,0,0
 access_hc_base_hc_vs_time_uom_manager,hc.base.hc.vs.time.uom.manager,model_hc_vs_time_uom,hc_base.group_hc_base_manager,1,1,1,1
 access_hc_base_hc_vs_designation_use_manager,hc.base.hc.vs.designation.use.manager,model_hc_vs_designation_use,hc_base.group_hc_base_manager,1,1,1,1
+access_hc_base_hc_address_use_manager,hc.base.hc.address.use.manager,model_hc_address_use,hc_base.group_hc_base_manager,1,1,1,1
+
 
 
 

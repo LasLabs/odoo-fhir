@@ -22,7 +22,7 @@ class ParameterDefinition(models.Model):
     max = fields.Integer(
         string="Max", 
         help="Maximum cardinality (a number of *).")                
-    documentation = fields.Char(
+    documentation = fields.Text(
         string="Documentation", 
         help="A brief description of the parameter.")                
     type_id = fields.Many2one(

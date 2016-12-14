@@ -55,7 +55,7 @@ class DataElement(models.Model):
         relation="data_element_jurisdiction_rel", 
         string="Jurisdictions", 
         help="Intended jurisdiction for data element (if applicable).")                        
-    copyright = fields.Char(
+    copyright = fields.Text(
         string="Copyright", 
         help="Use and/or Publishing restrictions.")                        
     stringency = fields.Selection(

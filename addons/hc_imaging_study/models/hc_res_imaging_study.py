@@ -89,7 +89,7 @@ class ImagingStudy(models.Model):
         comodel_name="hc.vs.imaging.study.reason", 
         string="Reason", 
         help="Reason for study.")                
-    description = fields.Char(
+    description = fields.Text(
         string="Description", 
         help="Institution-generated description (0008,1030).")                
     base_location_ids = fields.One2many(
@@ -141,7 +141,7 @@ class ImagingStudySeries(models.Model):
         string="Modality", 
         required="True", 
         help="The modality of the instances in the series (0008,0060).")                
-    description = fields.Char(
+    description = fields.Text(
         string="Description", 
         help="A description of the series (0008,103E).")                
     number_of_instances = fields.Integer(

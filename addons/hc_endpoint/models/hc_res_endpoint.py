@@ -127,31 +127,12 @@ class EndpointPayloadType(models.Model):
 
 # External Reference
 
-class Organization(models.Model):   
-    _inherit = "hc.res.organization"
-
-    endpoint_ids = fields.One2many(
-        comodel_name="hc.organization.endpoint", 
-        inverse_name="organization_id", 
-        string="Endpoints", 
-        help="Technical endpoints providing access to services operated for the organization.")
-
 class OrganizationEndpoint(models.Model):
-    _name = "hc.organization.endpoint" 
-    _description = "Organization Endpoint"
-    _inherit = ["hc.basic.association"]
-    _inherits = {"hc.res.endpoint": "endpoint_id"}
+    _inherit = "hc.organization.endpoint"
 
     endpoint_id = fields.Many2one(
         comodel_name="hc.res.endpoint", 
-        string="Endpoint",
-        required="True",
-        ondelete="restrict", 
-        help="Endpoint associated with this organization.")
-    organization_id = fields.Many2one(
-        comodel_name="hc.res.organization", 
-        string="Organization", 
-        help="Organization associated with this endpoint.")
-
+        string="Endpoint", 
+        help="Endpoint associated with this Organization Endpoint.")   
 
 

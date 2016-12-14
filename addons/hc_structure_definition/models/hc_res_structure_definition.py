@@ -64,7 +64,7 @@ class StructureDefinition(models.Model):
     purpose = fields.Text(
         string="Purpose", 
         help="Why this structure definition is defined.")                    
-    copyright = fields.Char(
+    copyright = fields.Text(
         string="Copyright", 
         help="Use and/or Publishing restrictions.")                    
     keyword_ids = fields.Many2many(

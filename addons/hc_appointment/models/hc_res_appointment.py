@@ -46,7 +46,7 @@ class Appointment(models.Model):
     priority = fields.Integer(
         string="Priority", 
         help="The priority of the appointment. Can be used to make informed decisions if needing to re-prioritize appointments. (The iCal Standard specifies 0 as undefined, 1 as highest, 9 as lowest priority).")                
-    description = fields.Char(
+    description = fields.Text(
         string="Description", 
         help="The brief description of the appointment as would be shown on a subject line in a meeting request, or appointment list. Detailed or expanded information should be put in the comment field.")                
     start = fields.Datetime(
@@ -68,7 +68,7 @@ class Appointment(models.Model):
     created = fields.Datetime(
         string="Appointment Creation Date", 
         help="The date that this appointment was initially created.")                
-    comment = fields.Char(
+    comment = fields.Text(
         string="Comment", 
         help="Additional comments about the appointment.")                
     requested_period_ids = fields.One2many(
