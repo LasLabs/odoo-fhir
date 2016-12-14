@@ -8,7 +8,7 @@ class MessageDefinition(models.Model):
     _rec_name = "title"
 
     url = fields.Char(
-        string="URL", 
+        string="URI", 
         help="Logical URI to reference this message definition (globally unique).")                        
     version = fields.Char(
         string="Version", 
@@ -95,10 +95,10 @@ class MessageDefinition(models.Model):
         inverse_name="message_definition_id", 
         string="Focus", 
         help="Resource(s) that are the subject of the event.")                        
-    allowed_message_ids = fields.One2many(
+    allowed_response_ids = fields.One2many(
         comodel_name="hc.message.definition.allowed.response", 
         inverse_name="message_definition_id", 
-        string="Allowed Message", 
+        string="Allowed Responses", 
         help="Responses to this message.")                        
 
 class MessageDefinitionFocus(models.Model):    

@@ -80,31 +80,31 @@ class ClaimResponse(models.Model):
     error_ids = fields.One2many(
         comodel_name="hc.claim.response.error", 
         inverse_name="claim_response_id", 
-        string="Error", 
+        string="Errors", 
         help="Processing errors.")                
     note_ids = fields.One2many(
         comodel_name="hc.claim.response.note", 
         inverse_name="claim_response_id", 
-        string="Note", 
+        string="Notes", 
         help="Processing notes.")                
     item_ids = fields.One2many(
         comodel_name="hc.claim.response.item", 
         inverse_name="claim_response_id", 
-        string="Item", 
+        string="Items", 
         help="Line items.")                
     added_item_ids = fields.One2many(
         comodel_name="hc.claim.response.added.item", 
         inverse_name="claim_response_id", 
-        string="Added Item", 
+        string="Added Items", 
         help="Insurer added line items.")                
     payment_id = fields.Many2one(
         comodel_name="hc.claim.response.payment", 
-        string="Payment", 
+        string="Payments", 
         help="Payment details, if paid.")                
     coverage_ids = fields.One2many(
         comodel_name="hc.claim.response.coverage", 
         inverse_name="claim_response_id", 
-        string="Coverage", 
+        string="Coverages", 
         help="Insurance or medical plan.")                
 
 class ClaimResponseItem(models.Model):    
@@ -127,12 +127,12 @@ class ClaimResponseItem(models.Model):
     adjudication_ids = fields.One2many(
         comodel_name="hc.claim.response.item.adjudication", 
         inverse_name="item_id", 
-        string="Adjudication", 
+        string="Adjudications", 
         help="Adjudication details.")                
     detail_ids = fields.One2many(
         comodel_name="hc.claim.response.item.detail", 
         inverse_name="item_id", 
-        string="Detail", 
+        string="Details", 
         help="Detail line items.")                
 
 class ClaimResponseItemAdjudication(models.Model):    
@@ -195,12 +195,12 @@ class ClaimResponseItemDetail(models.Model):
     adjudication_ids = fields.One2many(
         comodel_name="hc.claim.response.item.adjudication", 
         inverse_name="detail_id", 
-        string="Adjudication", 
+        string="Adjudications", 
         help="Detail adjudication.")                
     sub_detail_ids = fields.One2many(
         comodel_name="hc.claim.response.item.detail.sub.detail", 
         inverse_name="detail_id", 
-        string="Sub Detail", 
+        string="Sub Details", 
         help="Sub detail line items.")                
 
 class ClaimResponseItemDetailSubDetail(models.Model):    
@@ -223,7 +223,7 @@ class ClaimResponseItemDetailSubDetail(models.Model):
     adjudication_ids = fields.One2many(
         comodel_name="hc.claim.response.item.adjudication", 
         inverse_name="sub_detail_id", 
-        string="Adjudication", 
+        string="Adjudications", 
         help="Subdetail adjudication.")                
 
 class ClaimResponseAddedItem(models.Model):    
@@ -268,12 +268,12 @@ class ClaimResponseAddedItem(models.Model):
     adjudication_ids = fields.One2many(
         comodel_name="hc.claim.response.item.adjudication", 
         inverse_name="added_item_id", 
-        string="Adjudication", 
+        string="Adjudications", 
         help="Added items adjudication.")        
     detail_ids = fields.One2many(
         comodel_name="hc.claim.response.added.items.detail", 
         inverse_name="added_item_id", 
-        string="Detail", 
+        string="Details", 
         help="Added items details.")                
 
 class ClaimResponseAddedItemsDetail(models.Model):    
@@ -313,7 +313,7 @@ class ClaimResponseAddedItemsDetail(models.Model):
     adjudication_ids = fields.One2many(
         comodel_name="hc.claim.response.item.adjudication", 
         inverse_name="added_items_detail_id", 
-        string="Adjudication", 
+        string="Adjudications", 
         help=" Added items detail adjudication.")                
 
 class ClaimResponseError(models.Model):    

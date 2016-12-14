@@ -7,7 +7,7 @@ class ActivityDefinition(models.Model):
     _description = "Activity Definition"            
 
     url = fields.Char(
-        string="URL", 
+        string="URI", 
         help="Logical URL to reference this asset.")                    
     identifier_ids = fields.One2many(
         comodel_name="hc.activity.definition.identifier", 
@@ -91,10 +91,11 @@ class ActivityDefinition(models.Model):
         inverse_name="activity_definition_id", 
         string="Related Artifacts", 
         help="Related artifacts for the asset.")
-    # library_ids = fields.One2many(
-    #     comodel_name="hc.activity.definition.library", 
-    #     string="Libraries", 
-    #     help="Logic used by the asset.")                    
+    library_ids = fields.One2many(
+        comodel_name="hc.activity.definition.library", 
+        inverse_name="activity_definition_id", 
+        string="Libraries", 
+        help="Logic used by the asset.")                  
     category = fields.Selection(
         string="Category",
         selection=[
@@ -178,14 +179,14 @@ class ActivityDefinition(models.Model):
         inverse_name="activity_definition_id", 
         string="Dosage Instructions", 
         help="Detailed dosage instructions.")                    
-    # transform_id = fields.Many2one(
-    #     comodel_name="hc.res.structure.map", 
-    #     string="Transform", 
-    #     help="Transform to apply the template.")
+    transform_id = fields.Many2one(
+        comodel_name="hc.res.structure.map", 
+        string="Transform", 
+        help="Transform to apply the template.")
     dynamic_value_ids = fields.One2many(
         comodel_name="hc.activity.definition.dynamic.value", 
         inverse_name="activity_definition_id", 
-        string="Dynamic Value", 
+        string="Dynamic Values", 
         help="Dynamic aspects of the definition.")
                     
 class ActivityDefinitionDynamicValue(models.Model):    
@@ -285,7 +286,7 @@ class ActivityDefinitionLibrary(models.Model):
     library_id = fields.Many2one(
         comodel_name="hc.res.library", 
         string="Library", 
-        help="Logic used by the asset.")             
+        help="Library associated with this Activity Definition Library.")             
 
 class ActivityDefinitionRelatedArtifact(models.Model):  
     _name = "hc.activity.definition.related.artifact"   

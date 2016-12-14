@@ -7,8 +7,8 @@ class OperationDefinition(models.Model):
     _description = "Operation Definition"
 
     url = fields.Char(
-        string="URL", 
-        help="Logical URL to reference this operation definition.")                     
+        string="URI", 
+        help="Logical URI to reference this operation definition.")                     
     version = fields.Char(
         string="Version", 
         help="Logical id for this version of the operation definition.")                        
@@ -97,12 +97,12 @@ class OperationDefinition(models.Model):
     parameter_ids = fields.One2many(
         comodel_name="hc.operation.definition.parameter", 
         inverse_name="operation_definition_id", 
-        string="Parameter", 
+        string="Parameters", 
         help="Parameters for the operation/query.")                       
     overload_ids = fields.One2many(
         comodel_name="hc.operation.definition.overload", 
         inverse_name="operation_definition_id", 
-        string="Overload", 
+        string="Overloads", 
         help="For generating overloaded methods in code.")                       
 
 class OperationDefinitionParameter(models.Model):    
@@ -112,7 +112,7 @@ class OperationDefinitionParameter(models.Model):
     operation_definition_id = fields.Many2one(
         comodel_name="hc.res.operation.definition", 
         string="Operation Definition", 
-        help="Parameters for the operation/query.")                        
+        help="Operation Definition associated with this Operation Definition Parameter.")                        
     name_id = fields.Many2one(
         comodel_name="hc.vs.operation.definition.parameter.name", 
         string="Name", 
@@ -151,7 +151,7 @@ class OperationDefinitionParameter(models.Model):
     binding_ids = fields.One2many(
         comodel_name="hc.operation.definition.parameter.binding", 
         inverse_name="parameter_id", 
-        string="Binding", 
+        string="Bindings", 
         help="ValueSet details if this is coded.")                        
 
 class OperationDefinitionParameterBinding(models.Model):    
@@ -184,7 +184,7 @@ class OperationDefinitionParameterBinding(models.Model):
         store="True", 
         help="Source of value set.")                        
     value_set_uri = fields.Char(
-        string="Value Set URL", 
+        string="Value Set URI", 
         help="URI source of value set.")                        
     # value_set_id = fields.Many2one(
     #     comodel_name="hc.res.value.set", 
@@ -199,7 +199,7 @@ class OperationDefinitionOverload(models.Model):
     operation_definition_id = fields.Many2one(
         comodel_name="hc.res.operation.definition", 
         string="Operation Definition", 
-        help="For generating overloaded methods in code.")                        
+        help="Operation Definition associated with this Operation Definition Overload.")                        
     parameter_name_ids = fields.One2many(
         comodel_name="hc.operation.definition.overload.parameter.name", 
         inverse_name="overload_id", 

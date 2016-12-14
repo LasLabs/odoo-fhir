@@ -8,7 +8,7 @@ class DataElement(models.Model):
     _rec_name = "title"            
 
     url = fields.Char(
-        string="URL", 
+        string="URI", 
         help="Globally unique logical id for data element.")                        
     identifier_id = fields.Many2one(
         comodel_name="hc.data.element.identifier", 
@@ -77,7 +77,7 @@ class DataElement(models.Model):
     mapping_ids = fields.One2many(
         comodel_name="hc.data.element.mapping", 
         inverse_name="data_element_id", 
-        string="Mapping", 
+        string="Mappings", 
         help="External specification mapped to.")                        
 
 class DataElementMapping(models.Model):    

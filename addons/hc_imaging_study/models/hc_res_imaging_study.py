@@ -6,7 +6,8 @@ class ImagingStudy(models.Model):
     _name = "hc.res.imaging.study"    
     _description = "Imaging Study"        
 
-    uid = fields.Char(string="UID", 
+    uid = fields.Char(
+        string="UID", 
         required="True", 
         help="Formal identifier for the study (0020,000D).")                
     accession_id = fields.Many2one(
@@ -115,7 +116,8 @@ class ImagingStudyBaseLocation(models.Model):
         string="Type", 
         required="True", 
         help="The service type for accessing (e.g., retrieving, viewing) the DICOM instances.")                
-    url = fields.Char(string="URL", 
+    url = fields.Char(
+        string="URI", 
         required="True", 
         help="Study access URL.")                
 
@@ -190,7 +192,7 @@ class ImagingStudySeriesBaseLocation(models.Model):
         required="True", 
         help="The service type for accessing (e.g., retrieving, viewing) the DICOM instances.")           
     url = fields.Char(
-        string="URL", 
+        string="URI", 
         required="True", 
         help="Series access URL.")                
 

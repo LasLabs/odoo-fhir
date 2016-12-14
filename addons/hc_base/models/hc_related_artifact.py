@@ -25,7 +25,7 @@ class RelatedArtifact(models.Model):
         string="Citation", 
         help="Bibliographic citation for the artifact.")        
     url = fields.Char(
-        string="URL", 
+        string="URI", 
         help="URL for the related artifact.")        
     document_id = fields.Many2one(
         comodel_name="hc.related.artifact.document", 

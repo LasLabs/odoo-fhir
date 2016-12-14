@@ -163,7 +163,8 @@ class PractitionerRoleRole(models.Model):
 #             ("wed", "Wed"), 
 #             ("thu", "Thu"), 
 #             ("fri", "Fri"), 
-#             ("sat", "Sat"), ("sun", "Sun")], 
+#             ("sat", "Sat"), 
+#             ("sun", "Sun")], 
 #             help="Day of Week associated with the available time.")             
 #     available_time_id = fields.Many2one(
 #         comodel_name="hc.practitioner.role.available.time", 
@@ -178,5 +179,5 @@ class Practitioner(models.Model):
     role_ids = fields.One2many(
         comodel_name="hc.res.practitioner.role", 
         inverse_name="practitioner_id", 
-        string="Role", 
+        string="Roles", 
         help="Roles/organizations that the practitioner is associated with.")

@@ -12,8 +12,12 @@
         * code system - defines a set of codes with meanings (also known as enumeration, terminology, classification, and/or ontology)
         * value set - selects a set of codes from those defined by one or more code systems
 
-        Code systems define which codes (symbols and/or expressions) exist, and how they are understood. 
-        Value sets select a set of codes from one or more code systems to specify which codes can be used in a particular context.
+        **Scope and Usage**
+
+        The FHIR terminology specification is based two key concepts, originally defined in HL7 v3 Core Principles : 
+        
+        * CodeSystem - defines a set of codes with meanings (also known as enumeration, terminology, classification, and/or ontology) - e.g. define which codes (symbols and/or expressions) exist, and how they are understood
+        * ValueSet - selects a set of codes from those defined by one or more code systems to specify which codes can be used in a particular context
     """,
 
     'author': "Luigi Sison",
@@ -30,12 +34,14 @@
 
     # always loaded
     'data': [
-        # 'security/ir.model.access.csv',
-        'views/views.xml',
-        'views/templates.xml',
+        'security/ir.model.access.csv',
+        'views/hc_res_value_set_views.xml',
+        'views/hc_res_value_set_templates.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
         'demo/demo.xml',
     ],
+    'installable': 'True',
+    'auto-install': 'True',
 }

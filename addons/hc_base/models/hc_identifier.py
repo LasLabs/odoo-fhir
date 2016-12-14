@@ -56,8 +56,8 @@ class Identifier(models.Model):
         string="Type", 
         help="Description of identifier.")
     system = fields.Char(
-        string="Source URL", 
-        help="Web address of the source of the code.")
+        string="System URI", 
+        help="The namespace for the identifier.")
     value = fields.Char(
         string="Value", 
         help="Value of this identifier record.")

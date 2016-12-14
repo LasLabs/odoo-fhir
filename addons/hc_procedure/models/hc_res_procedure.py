@@ -59,11 +59,11 @@ class Procedure(models.Model):
         help="True if procedure was not performed as scheduled.")                    
     reason_not_peformed_ids = fields.Many2many(
         comodel_name="hc.vs.procedure.not.performed.reason", 
-        string="Reason Not Peformed", 
+        string="Reasons Not Peformed", 
         help="Reason procedure was not performed.")                   
     body_site_ids = fields.Many2many(
         comodel_name="hc.vs.body.site", 
-        string="Body Site", 
+        string="Body Sites", 
         help="Target body sites.")                 
     reason_reference_ids = fields.One2many(
         comodel_name="hc.procedure.reason.reference", 
@@ -146,7 +146,7 @@ class Procedure(models.Model):
     notes_ids = fields.One2many(
         comodel_name="hc.procedure.note", 
         inverse_name="procedure_id", 
-        string="Note", 
+        string="Notes", 
         help="Additional information about the procedure.")                    
     used_reference_ids = fields.One2many(
         comodel_name="hc.procedure.used.reference", 

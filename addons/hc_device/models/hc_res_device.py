@@ -64,7 +64,7 @@ class Device(models.Model):
         string="Location", 
         help="Where the resource is found.")       
     url = fields.Char(
-        string="UDI", 
+        string="URI", 
         help="Network address to contact device.")      
     note_ids = fields.One2many(
         comodel_name="hc.device.note", 

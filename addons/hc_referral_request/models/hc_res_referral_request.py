@@ -227,18 +227,18 @@ class ReferralRequestSupportingInformation(models.Model):
             ("string", "String"), 
             ("Referral Request", "Referral Request")], 
         help="Type of additional information to support referral or transfer of care request.")                
-    based_on_name = fields.Char(
-        string="Based On", 
-        compute="_compute_based_on_name", 
+    supporting_information_name = fields.Char(
+        string="Supporting Information", 
+        compute="_compute_supporting_information_name", 
         store="True", 
-        help="Additional information to support referral or transfer of care request.")                
+        help="Additional information to support referral or transfer of care request.")     
     supporting_information_string = fields.Char(
         string="Supporting Information String", 
         help="Specimen additional information to support referral or transfer of care request.")                
-    supporting_information_referral_request_id = fields.Many2one(
-        comodel_name="hc.res.referral.request", 
-        string="Supporting Information Referral Request", 
-        help="Referral Request additional information to support referral or transfer of care request.")                
+    supporting_information_code_id = fields.Many2one(
+        comodel_name="hc.vs.resource.type", 
+        string="Supporting Information Code", 
+        help="Code additional information to support referral or transfer of care request.")             
 
 class ReferralReason(models.Model):    
     _name = "hc.vs.referral.reason"    

@@ -8,7 +8,7 @@ class CapabilityStatement(models.Model):
     _rec_name = "title"                  
 
     url = fields.Char(
-        string="URL", 
+        string="URI", 
         help="Logical URI to reference this capability statement (globally unique).")                        
     version = fields.Char(
         string="Version", 
@@ -156,7 +156,7 @@ class CapabilityStatementImplementation(models.Model):
         required="True", 
         help="Describes this specific instance.")                        
     url = fields.Char(
-        string="URL", 
+        string="URI", 
         help="Base URL for the installation.")                        
 
 class CapabilityStatementRest(models.Model):    
@@ -368,7 +368,7 @@ class CapabilityStatementRestSearchParam(models.Model):
         required="True", 
         help="Name of search parameter.")                        
     definition = fields.Char(
-        string="Definition", 
+        string="Definition URI", 
         help="Source of definition for parameter.")                        
     type = fields.Selection(
         string="Type", 
@@ -477,10 +477,12 @@ class CapabilityStatementMessagingEndpoint(models.Model):
         string="Protocol", 
         required="True", 
         selection=[
-            ("http", "HTTP"), ("ftp", "FTP"), ("mllp +", "MLLP +")], 
+            ("http", "HTTP"), 
+            ("ftp", "FTP"), 
+            ("mllp +", "MLLP +")], 
         help="A list of the messaging transport protocol(s) identifiers, supported by this endpoint.")                        
     address = fields.Char(
-        string="Address", 
+        string="Address URI", 
         required="True", 
         help="Address of end-point.")                        
 

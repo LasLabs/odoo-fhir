@@ -151,6 +151,11 @@ class DemographicAgeGroup(models.Model):
     _description = "Demographic Age Group"      
     _inherit = ["hc.value.set.contains"]
 
+class DesignationUse(models.Model):    
+    _name = "hc.vs.designation.use"    
+    _description = "Designation Use"            
+    _inherit = ["hc.value.set.contains"] 
+
 class EncounterParticipantType(models.Model):   
     _name = "hc.vs.encounter.participant.type"  
     _description = "Encounter Participant Type"     
@@ -272,10 +277,10 @@ class SubstanceCode(models.Model):
     _description = "Substance Code"     
     _inherit = ["hc.value.set.contains"]    
 
-class UOM(models.Model):
-    _name = "hc.vs.uom"
-    _description = "Unit of Measure"
-    _inherit = ["hc.value.set.contains"]
+class TimeUOM(models.Model): 
+    _name = "hc.vs.time.uom" 
+    _description = "Time Unit of Measure"            
+    _inherit = ["hc.value.set.contains", "product.uom"]
 
 class UserType(models.Model):   
     _name = "hc.vs.user.type"   

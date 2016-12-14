@@ -70,12 +70,12 @@ class EligibilityResponse(models.Model):
     benefit_balance_ids = fields.One2many(
         comodel_name="hc.eligibility.response.benefit.balance", 
         inverse_name="eligibility_response_id", 
-        string="Benefit Balance", 
+        string="Benefit Balances", 
         help="Benefits by Category.")                
     error_ids = fields.One2many(
         comodel_name="hc.eligibility.response.error", 
         inverse_name="eligibility_response_id", 
-        string="Error", 
+        string="Errors", 
         help="Processing errors.")                
 
 class EligibilityResponseBenefitBalance(models.Model):    
@@ -116,7 +116,7 @@ class EligibilityResponseBenefitBalance(models.Model):
     financial_ids = fields.One2many(
         comodel_name="hc.eligibility.response.benefit.balance.financial", 
         inverse_name="benefit_balance_id", 
-        string="Financial", 
+        string="Financials", 
         help="Benefit Summary.")                
 
 class EligibilityResponseBenefitBalanceFinancial(models.Model):    

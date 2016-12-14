@@ -53,7 +53,7 @@ class MeasureReport(models.Model):
     group_ids = fields.One2many(
         comodel_name="hc.measure.report.group", 
         inverse_name="measure_report_id", 
-        string="Group", 
+        string="Groups", 
         help="Measure results for each group.")                    
 
 class MeasureReportGroup(models.Model):    
@@ -75,12 +75,12 @@ class MeasureReportGroup(models.Model):
     population_ids = fields.One2many(
         comodel_name="hc.measure.report.group.population", 
         inverse_name="group_id", 
-        string="Population", 
+        string="Populations", 
         help="The populations in the group.")                    
     stratifier_ids = fields.One2many(
         comodel_name="hc.measure.report.group.stratifier", 
         inverse_name="group_id", 
-        string="Stratifier", 
+        string="Stratifiers", 
         help="Stratification results.")                    
     supplemental_data_ids = fields.One2many(
         comodel_name="hc.measure.report.group.supplemental.data", 
@@ -134,7 +134,7 @@ class MeasureReportGroupStratifier(models.Model):
     group_ids = fields.One2many(
         comodel_name="hc.measure.report.group.stratifier.group", 
         inverse_name="stratifier_id", 
-        string="Group", 
+        string="Groups", 
         help="Stratum results, one for each unique value in the stratifier.")                    
 
 class MeasureReportGroupStratifierGroup(models.Model):    
@@ -155,7 +155,7 @@ class MeasureReportGroupStratifierGroup(models.Model):
     population_ids = fields.One2many(
         comodel_name="hc.measure.report.group.stratifier.group.population", 
         inverse_name="group_id", 
-        string="Population", 
+        string="Populations", 
         help="Population results in this stratum.")                    
 
 class MeasureReportGroupStratifierGroupPopulation(models.Model):    
@@ -204,7 +204,7 @@ class MeasureReportGroupSupplementalData(models.Model):
     group_ids = fields.One2many(
         comodel_name="hc.measure.report.group.supplemental.data.group", 
         inverse_name="supplemental_data_id", 
-        string="Group", 
+        string="Groups", 
         help="Supplemental data results, one for each unique supplemental data value.")                    
 
 class MeasureReportGroupSupplementalDataGroup(models.Model):    

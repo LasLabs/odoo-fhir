@@ -379,7 +379,8 @@ class ContractTerm(models.Model):
     action_reason_ids = fields.Many2many(
         comodel_name="hc.vs.purpose.of.use", 
         relation="contract_term_action_reason_rel", 
-        string="Action Reasons", help="Contract Term Action Reason.")                
+        string="Action Reasons", 
+        help="Contract Term Action Reason.")                
     text = fields.Char(
         string="Text", 
         help="Human readable Contract term text.")                
@@ -390,11 +391,12 @@ class ContractTerm(models.Model):
     agent_ids = fields.One2many(
         comodel_name="hc.contract.term.agent", 
         inverse_name="term_id", 
-        string="Agent", help="Term Agent List.")                
+        string="Agents", 
+        help="Term Agent List.")                
     valued_item_ids = fields.One2many(
         comodel_name="hc.contract.term.valued.item", 
         inverse_name="term_id", 
-        string="Valued Item", 
+        string="Valued Items", 
         help="Term Valued Item.")                
 
 class ContractTermAgent(models.Model):    
@@ -545,23 +547,19 @@ class ContractFriendlyLanguage(models.Model):
         help="Easily comprehended representation of this Contract.")                
     content_attachment_id = fields.Many2one(
         comodel_name="hc.contract.friendly.language.content.attachment", 
-        string="Content Attachment", 
-        required="True", 
+        string="Content Attachment",  
         help="Attachment easily comprehended representation of this contract.")                
     content_composition_id = fields.Many2one(
         comodel_name="hc.res.composition", 
         string="Content Composition", 
-        required="True", 
         help="Composition easily comprehended representation of this contract.")                
     content_document_reference_id = fields.Many2one(
         comodel_name="hc.res.document.reference", 
         string="Content Document Reference", 
-        required="True", 
         help="Document Reference easily comprehended representation of this contract.")                
     content_questionnaire_response_id = fields.Many2one(
         comodel_name="hc.res.questionnaire.response", 
         string="Content Questionnaire Response", 
-        required="True", 
         help="Questionnaire Response easily comprehended representation of this contract.")                
 
 class ContractLegalLanguage(models.Model):    
@@ -588,22 +586,19 @@ class ContractLegalLanguage(models.Model):
         help="Contract Legal Text.")                
     content_attachment_id = fields.Many2one(
         comodel_name="hc.contract.legal.language.content.attachment", 
-        string="Content Attachment", 
-        required="True", 
+        string="Content Attachment",  
         help="Attachment contract legal text.")                
     content_composition_id = fields.Many2one(
         comodel_name="hc.res.composition", 
         string="Content Composition", 
-        required="True", help="Composition contract legal text.")                
+        help="Composition contract legal text.")                
     content_document_reference_id = fields.Many2one(
         comodel_name="hc.res.document.reference", 
         string="Content Document Reference", 
-        required="True", 
         help="Document Reference contract legal text.")                
     content_questionnaire_response_id = fields.Many2one(
         comodel_name="hc.res.questionnaire.response", 
-        string="Content Questionnaire Response", 
-        required="True", 
+        string="Content Questionnaire Response",  
         help="Questionnaire Response contract legal text.")                
 
 class ContractComputableLanguage(models.Model):    

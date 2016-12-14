@@ -13,7 +13,7 @@ class Meta(models.Model):
         string="Last Updated", 
         help="When the resource version last changed.")                
     profile = fields.Char(
-        string="Profile URL", 
+        string="Profile URI", 
         help="URL of profiles this resource claims to conform to.")                
     security_ids = fields.Many2many(
         comodel_name="hc.vs.security.label", 

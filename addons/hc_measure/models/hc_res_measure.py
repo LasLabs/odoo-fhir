@@ -7,8 +7,8 @@ class Measure(models.Model):
     _description = "Measure"            
 
     url = fields.Char(
-        string="URL", 
-        help="Logical uri to reference this measure (globally unique).")                    
+        string="URI", 
+        help="Logical URI to reference this measure (globally unique).")                    
     identifier_ids = fields.One2many(
         comodel_name="hc.measure.identifier", 
         inverse_name="measure_id", 
@@ -150,7 +150,7 @@ class Measure(models.Model):
     group_ids = fields.One2many(
         comodel_name="hc.measure.group", 
         inverse_name="measure_id", 
-        string="Group", 
+        string="Groups", 
         help="Population criteria group.")                    
     supplemental_data_ids = fields.One2many(
         comodel_name="hc.measure.supplemental.data", 
@@ -180,12 +180,12 @@ class MeasureGroup(models.Model):
     population_ids = fields.One2many(
         comodel_name="hc.measure.group.population", 
         inverse_name="group_id", 
-        string="Population", 
+        string="Populations", 
         help="Population criteria.")                    
     stratifier_ids = fields.One2many(
         comodel_name="hc.measure.group.stratifier", 
         inverse_name="group_id", 
-        string="Stratifier", 
+        string="Stratifiers", 
         help="Stratifier criteria for the measure.")                    
 
 class MeasureGroupPopulation(models.Model):    

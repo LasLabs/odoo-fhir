@@ -138,7 +138,7 @@ class MessageHeaderSource(models.Model):
         string="Contact", 
         help="Human contact for problems.")                    
     endpoint = fields.Char(
-        string="Endpoint", 
+        string="Endpoint URI", 
         required="True", 
         help="Actual message source address or id.")                    
 
@@ -158,7 +158,7 @@ class MessageHeaderDestination(models.Model):
         string="Target", 
         help="Particular delivery destination within the destination.")                    
     endpoint = fields.Char(
-        string="Endpoint", 
+        string="Endpoint URI", 
         required="True", 
         help="Actual destination address or id.")                    
 

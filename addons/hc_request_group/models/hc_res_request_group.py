@@ -92,7 +92,6 @@ class RequestGroup(models.Model):
         comodel_name="hc.vs.resource.type", 
         string="Reason Resource", 
         help="Resource type of reason for the request group.")
-
     note_ids = fields.One2many(
         comodel_name="hc.request.group.note", 
         inverse_name="request_group_id", 
@@ -101,7 +100,7 @@ class RequestGroup(models.Model):
     action_ids = fields.One2many(
         comodel_name="hc.request.group.action", 
         inverse_name="request_group_id", 
-        string="Action", 
+        string="Actions", 
         help="Proposed actions, if any.")                
 
 class RequestGroupAction(models.Model):    
@@ -164,9 +163,9 @@ class RequestGroupAction(models.Model):
         string="Timing Duration", 
         help="Duration when the action should take place.")                
     timing_duration_uom_id = fields.Many2one(
-        comodel_name="product.uom", 
+        comodel_name="hc.vs.time.uom", 
         string="Timing Duration UOM", 
-        help="Timing unit of measure.")                
+        help="Timing Duration unit of measure.")              
     timing_range_low = fields.Float(
         string="Timing Range Low", 
         help="Low limit of when the action should take place.")                
@@ -176,7 +175,7 @@ class RequestGroupAction(models.Model):
     timing_range_uom_id = fields.Many2one(
         comodel_name="product.uom", 
         string="Timing Range UOM", 
-        help="Timing unit of measure.")                
+        help="Timing Range unit of measure.")                
     timing_id = fields.Many2one(
         comodel_name="hc.request.group.action.timing", 
         string="Timing", 
@@ -240,12 +239,12 @@ class RequestGroupAction(models.Model):
     condition_ids = fields.One2many(
         comodel_name="hc.request.group.action.condition", 
         inverse_name="action_id", 
-        string="Condition", 
+        string="Conditions", 
         help="Whether or not the action is applicable.")
     related_action_ids = fields.One2many(
         comodel_name="hc.request.group.action.related.action", 
         inverse_name="action_id", 
-        string="Related Action", 
+        string="Related Actions", 
         help="Relationship to another action.")
                 
 class RequestGroupActionCondition(models.Model):    
@@ -315,9 +314,9 @@ class RequestGroupActionRelatedAction(models.Model):
         string="Offset Duration", 
         help="Duration time offset for the relationship.")                
     offset_duration_uom_id = fields.Many2one(
-        comodel_name="product.uom", 
+        comodel_name="hc.vs.time.uom", 
         string="Offset Duration UOM", 
-        help="Offset unit of measure.")                
+        help="Offset Duration unit of measure.")           
     offset_range_low = fields.Float(
         string="Offset Range Low", 
         help="Low limit of time offset for the relationship.")                

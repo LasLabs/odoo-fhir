@@ -122,11 +122,11 @@ class ImgManifStudyBaseLocn(models.Model):
         string="Type",
         required="True", 
         help="The service type for accessing (e.g., retrieving, viewing) the DICOM instances.")                
-    uid = fields.Char(
-        string="UID", 
+    url = fields.Char(
+        string="URI", 
         required="True", 
-        help="Study access URL.")                
-
+        help="Study access URL.")
+               
 class ImgManifStudySeries(models.Model):    
     _name = "hc.img.manif.study.series"    
     _description = "Imaging Manifest Study Series"        
@@ -164,7 +164,7 @@ class ImgManifStudySeriesBaseLocn(models.Model):
         required="True",
         help="The service type for accessing (e.g., retrieving, viewing) the DICOM instances.")                
     url = fields.Char(
-        string="URL", 
+        string="URI", 
         required="True", 
         help="Series access URL.")                
 

@@ -250,6 +250,11 @@ sudo mv hc_test_script /odoo/odoo-fhir/addons/hc_test_script
 # sudo mv hc_value_set /odoo/odoo-fhir/addons/hc_value_set
 sudo mv hc_vision_prescription /odoo/odoo-fhir/addons/hc_vision_prescription
 
+# cd /odoo/odoo-fhir/addons/hc_concept_map
+# sudo mv models/models.py models/hc_res_concept_map.py
+# sudo mv views/views.xml views/hc_res_concept_map_views.xml
+# sudo mv views/templates.xml views/hc_res_concept_map_templates.xml
+
 
 echo "-----------------------------------------------------------"
 echo "Done! The module directories have been created."

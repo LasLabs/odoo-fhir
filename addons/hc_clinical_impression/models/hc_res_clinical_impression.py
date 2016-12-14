@@ -15,9 +15,9 @@ class ClinicalImpression(models.Model):
         string="Clinical Impression Status", 
         required="True", 
         selection=[
-            ("in-progress", "In-Progress"), 
+            ("in-progress", "In Progress"), 
             ("completed", "Completed"), 
-            ("entered-in-error", "Entered-In-Error")], 
+            ("entered-in-error", "Entered In Error")], 
         help="Identifies the workflow status of the assessment.")                
     code_id = fields.Many2one(
         comodel_name="hc.vs.clinical.impression.kind", 
@@ -476,6 +476,8 @@ class ClinicalImpressionFinding(models.Model):
             elif hc_res_clinical_impression.item_type == 'Observation': 
                 hc_res_clinical_impression.item_name = hc_res_clinical_impression.item_observation_id.name
 
+# Deprecated
+
 # class ClinicalImpressionRuledOut(models.Model): 
 #     _name = "hc.clinical.impression.ruled.out"  
 #     _description = "Clinical Impression Ruled Out"
@@ -513,9 +515,9 @@ class ClinicalImpressionPrognosisReference(models.Model):
         comodel_name="hc.res.clinical.impression", 
         string="Clinical Impression", 
         help="Clinical Impression associated with this Clinical Impression Prognosis Reference.")                
-    risk_assessment_id = fields.Many2one(
+    prognosis_reference_id = fields.Many2one(
         comodel_name="hc.res.risk.assessment", 
-        string="Risk Assessment", 
+        string="Prognosis Reference", 
         help="Risk Assessment associated with this Clinical Impression Prognosis Reference.")                
 
 class ClinicalImpressionNote(models.Model):    

@@ -7,7 +7,7 @@ class SearchParameter(models.Model):
     _description = "Search Parameter"                
 
     url = fields.Char(
-        string="URL", 
+        string="URI", 
         required="True", 
         help="Literal URL used to reference this search parameter.")                        
     version = fields.Char(
@@ -75,7 +75,7 @@ class SearchParameter(models.Model):
             ("uri", "URI")], 
         help="The type of value a search parameter refers to, and how the content is interpreted.")                        
     derived_from = fields.Char(
-        string="URI Derived From", 
+        string="Derived From URI", 
         help="Original Definition for the search parameter.")                        
     description = fields.Text(
         string="Description", 
@@ -129,7 +129,7 @@ class SearchParameterComponent(models.Model):
     search_parameter_id = fields.Many2one(
         comodel_name="hc.res.search.parameter", 
         string="Search Parameter", 
-        help="For Composite resources to define the parts.")                        
+        help="Search Parameter associated with this Search Parameter Component.")                        
     definition_id = fields.Many2one(
         comodel_name="hc.res.search.parameter", 
         string="Definition", 

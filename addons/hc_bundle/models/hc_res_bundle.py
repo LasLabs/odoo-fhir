@@ -53,7 +53,7 @@ class BundleLink(models.Model):
         required="True", 
         help="http://www.iana.org/assignments/link-relations/link-relations.xhtml.")                
     url = fields.Char(
-        string="URL", 
+        string="URI", 
         required="True", 
         help="URL of reference details for the link.")                
 
@@ -66,7 +66,7 @@ class BundleEntry(models.Model):
         string="Bundle", 
         help="Bundle associated with this Bundle Entry.")                
     full_url = fields.Char(
-        string="Full URL", 
+        string="Full URI", 
         help="Absolute URL for resource (server address, or UUID/OID).")                
     resource_id = fields.Many2one(
         comodel_name="hc.bundle.entry.resource", 
@@ -129,7 +129,7 @@ class BundleEntryRequest(models.Model):
             ("delete", "DELETE")], 
         help="HTTP verbs (in the HTTP command line).")                
     url = fields.Char(
-        string="URL", 
+        string="URI", 
         required="True", 
         help="The URL for the transaction.")                
     if_none_match = fields.Char(
@@ -158,7 +158,7 @@ class BundleEntryResponse(models.Model):
         required="True", 
         help="Status return code for entry.")                
     location = fields.Char(
-        string="Location URL", 
+        string="Location URI", 
         help="URL of the location, if the operation returns a location.")                
     etag = fields.Char(
         string="eTag", 

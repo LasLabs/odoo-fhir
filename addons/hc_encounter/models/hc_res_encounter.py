@@ -52,23 +52,23 @@ class Encounter(models.Model):
         inverse_name="encounter_id", 
         string="Incoming Referrals", 
         help="The ReferralRequest that initiated this encounter.")             
-    # appointment_id = fields.Many2one(
-    #     comodel_name="hc.res.appointment", 
-    #     string="Appointment", 
-    #     help="The appointment that scheduled this encounter.")                
+    appointment_id = fields.Many2one(
+        comodel_name="hc.res.appointment", 
+        string="Appointment", 
+        help="The appointment that scheduled this encounter.")                
     start_date = fields.Datetime(
         string="Start Date", 
         help="Start of the encounter.")               
     end_date = fields.Datetime(
         string="End Date", 
-        help="End of the encounter.")             
-    length_uom_id = fields.Many2one(
-        comodel_name="hc.vs.uom", 
-        string="Length UOM", 
-        help="Quantity of time the encounter lasted (less time absent) unit of measure.")             
+        help="End of the encounter.")                          
     length = fields.Float(
         string="Length", 
-        help="Quantity of time the encounter lasted (less time absent).")                
+        help="Quantity of time the encounter lasted (less time absent).")
+    length_uom_id = fields.Many2one(
+        comodel_name="hc.vs.time.uom", 
+        string="Length UOM", 
+        help="Length unit of measure.")                
     reason_ids = fields.Many2many(
         comodel_name="hc.vs.encounter.reason", 
         string="Reasons", 
@@ -119,7 +119,7 @@ class EncounterStatusHistory(models.Model):
     encounter_id = fields.Many2one(
         comodel_name="hc.res.encounter", 
         string="Encounter", 
-        help="Encounter associated with this status history.")                
+        help="Encounter associated with this Encounter Status History.")                
     status = fields.Selection(
         string="Status History Status", 
         required="True", 
@@ -147,7 +147,7 @@ class EncounterParticipant(models.Model):
     encounter_id = fields.Many2one(
         comodel_name="hc.res.encounter", 
         string="Encounter", 
-        help="Encounter associated with this participant.")                
+        help="Encounter associated with this Encounter Participant.")                
     type_ids = fields.Many2many(
         comodel_name="hc.vs.encounter.participant.type", 
         string="Types", 
@@ -281,11 +281,11 @@ class EncounterReferralRequest(models.Model):
     encounter_id = fields.Many2one(
         comodel_name="hc.res.encounter", 
         string="Encounter", 
-        help="Encounter associated with this Referral Request.")                
+        help="Encounter associated with this Encounter Referral Request.")                
     # referral_request_id = fields.Many2one(
     #     comodel_name="hc.res.referral.request", 
     #     string="Referral Request", 
-    #     help="Referral Request associated with this Encounter.")               
+    #     help="Referral Request associated with this Encounter Referral Request.")               
 
 class EncounterAccount(models.Model):   
     _name = "hc.encounter.account"  
@@ -295,11 +295,11 @@ class EncounterAccount(models.Model):
     encounter_id = fields.Many2one(
         comodel_name="hc.res.encounter", 
         string="Encounter", 
-        help="Encounter associated with this Account.")             
+        help="Encounter associated with this Encounter Account.")             
     account_id = fields.Many2one(
         comodel_name="hc.res.account", 
         string="Account", 
-        help="Account associated with this Encounter.")               
+        help="Account associated with this Encounter Account.")               
 
 class EncounterIndication(models.Model):    
     _name = "hc.encounter.indication"   
@@ -309,7 +309,7 @@ class EncounterIndication(models.Model):
     encounter_id = fields.Many2one(
         comodel_name="hc.res.encounter", 
         string="Encounter", 
-        help="Encounter associated with this encounter indication.")                
+        help="Encounter associated with this Encounter Indication.")                
     indication_type = fields.Selection(
         string="Indication Type", 
         selection=[
@@ -418,14 +418,6 @@ class V2ReadmissionIndicator(models.Model):
     _inherit = ["hc.value.set.contains"]
 
 # External Reference
-
-# class Procedure(models.Model):  
-#     _inherit = "hc.res.procedure"  
-
-#     encounter_id = fields.Many2one(
-#         comodel_name="hc.res.encounter", 
-#         string="Encounter", 
-#         help="The encounter associated with the procedure.")
 
 class Condition(models.Model):    
     _inherit = "hc.res.condition"

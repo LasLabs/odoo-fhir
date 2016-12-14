@@ -56,13 +56,13 @@ class DocumentManifest(models.Model):
     author_ids = fields.One2many(
         comodel_name="hc.document.manifest.author", 
         inverse_name="document_manifest_id", 
-        string="Author", 
+        string="Authors", 
         help="Who and/or what authored the document.")                
     created = fields.Datetime(
         string="Created", 
         help="When this document manifest created.")                
     source = fields.Char(
-        string="Source", 
+        string="Source URI", 
         help="The source system/application/software.")                
     status = fields.Selection(
         string="Document Manifest Status", 

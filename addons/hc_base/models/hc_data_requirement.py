@@ -109,18 +109,23 @@ class DataRequirementDataFilter(models.Model):
         string="Value End Date", 
         help="End of the filter period.")                
     value_duration = fields.Float(
-        string="Value Duration", help="Duration value of the filter.")                
-    value_duration_uom = fields.Selection(
+        string="Value Duration", 
+        help="Duration value of the filter.")
+    value_duration_uom_id = fields.Many2one(
+        comodel_name="hc.vs.time.uom", 
         string="Value Duration UOM", 
-        selection=[
-            ("s", "S"), 
-            ("min", "Min"), 
-            ("h", "H"), 
-            ("d", "D"), 
-            ("wk", "Wk"), 
-            ("mo", "Mo"), 
-            ("a", "A")], 
-        help="Unit of time (UCUM)")                
+        help="Value Duration unit of measure.")                    
+    # value_duration_uom = fields.Selection(
+    #     string="Value Duration UOM", 
+    #     selection=[
+    #         ("s", "S"), 
+    #         ("min", "Min"), 
+    #         ("h", "H"), 
+    #         ("d", "D"), 
+    #         ("wk", "Wk"), 
+    #         ("mo", "Mo"), 
+    #         ("a", "A")], 
+    #     help="Unit of time (UCUM)")                
 
 class DataRequirementProfile(models.Model):    
     _name = "hc.data.reqt.profile"    
@@ -130,11 +135,11 @@ class DataRequirementProfile(models.Model):
     data_requirement_id = fields.Many2one(
         comodel_name="hc.data.requirement", 
         string="Data Requirement", 
-        help="Data Requirement associated with this data requirement profile.")                
+        help="Data Requirement associated with this Data Requirement Profile.")                
     # profile_id = fields.Many2one(
     #     comodel_name="hc.res.structure.definition", 
     #     string="Profile", 
-    #     help="Profile associated with this data requirement profile.")                
+    #     help="Profile associated with this Data Requirement Profile.")                
 
 class DataRequirementMustSupport(models.Model):    
     _name = "hc.data.reqt.must.support"    

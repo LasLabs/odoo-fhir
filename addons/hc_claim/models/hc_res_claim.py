@@ -142,11 +142,12 @@ class Claim(models.Model):
     payee_ids = fields.One2many(
         comodel_name="hc.claim.payee", 
         inverse_name="claim_id", 
-        string="Payee", help="Payee.")                
+        string="Payees", 
+        help="Payee.")                
     information_ids = fields.One2many(
         comodel_name="hc.claim.special.condition", 
         inverse_name="claim_id", 
-        string="Special Condition", 
+        string="Information", 
         help="Exceptions, special considerations, the condition, situation, prior or concurrent issues.")                
     diagnosis_ids = fields.One2many(
         comodel_name="hc.claim.diagnosis", 
@@ -156,17 +157,17 @@ class Claim(models.Model):
     procedure_ids = fields.One2many(
         comodel_name="hc.claim.procedure", 
         inverse_name="claim_id", 
-        string="Procedure", 
+        string="Procedures", 
         help="Procedures performed.")                
     coverage_ids = fields.One2many(
         comodel_name="hc.claim.coverage", 
         inverse_name="claim_id", 
-        string="Coverage", 
+        string="Coverages", 
         help="Insurance or medical plan.")                
     accident_ids = fields.One2many(
         comodel_name="hc.claim.accident", 
         inverse_name="claim_id", 
-        string="Accident", 
+        string="Accidents", 
         help="Details about an accident.")                
     missing_teeth_ids = fields.One2many(
         comodel_name="hc.claim.missing.teeth", 
@@ -176,7 +177,7 @@ class Claim(models.Model):
     item_ids = fields.One2many(
         comodel_name="hc.claim.item", 
         inverse_name="claim_id", 
-        string="Item", 
+        string="Items", 
         help="Goods and Services.")                
 
 class ClaimRelatedClaim(models.Model):    
@@ -578,12 +579,12 @@ class ClaimItem(models.Model):
     detail_ids = fields.One2many(
         comodel_name="hc.claim.item.detail", 
         inverse_name="item_id", 
-        string="Detail", 
+        string="Details", 
         help="Additional items.")
     care_team_ids = fields.One2many(
         comodel_name="hc.claim.item.care.team", 
         inverse_name="item_id", 
-        string="Care Team", 
+        string="Care Teams", 
         help="Members of the care team.")
     prosthesis_ids = fields.One2many(
         comodel_name="hc.claim.item.prosthesis", 
@@ -648,7 +649,7 @@ class ClaimItemDetail(models.Model):
     sub_detail_ids = fields.One2many(
         comodel_name="hc.claim.item.detail.sub.detail", 
         inverse_name="detail_id", 
-        string="Sub Detail", 
+        string="Sub Details", 
         help="Additional items.")                
 
 class ClaimItemDetailSubDetail(models.Model):    

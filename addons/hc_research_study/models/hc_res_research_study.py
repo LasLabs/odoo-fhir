@@ -104,7 +104,7 @@ class ResearchStudy(models.Model):
     arm_ids = fields.One2many(
         comodel_name="hc.research.study.arm", 
         inverse_name="research_study_id", 
-        string="Arm", 
+        string="Arms", 
         help="Defined path through the study for a subject.")        
 
 class ResearchStudyArm(models.Model):    
@@ -144,7 +144,7 @@ class ResearchStudyProtocol(models.Model):
     protocol_id = fields.Many2one(
         comodel_name="hc.res.plan.definition", 
         string="Protocol", 
-        help="Steps followed in executing study.")
+        help="Plan Definition associated with this Research Study Research Study Protocol.")
 
 class ResearchStudyPartOf(models.Model):    
     _name = "hc.research.study.part.of"    
@@ -158,7 +158,7 @@ class ResearchStudyPartOf(models.Model):
     part_of_id = fields.Many2one(
         comodel_name="hc.res.research.study", 
         string="Part Of", 
-        help="Part of larger study.")
+        help="Research Study associated with this Research Study Research Study Part Of.")
 
 class ResearchStudyContact(models.Model):    
     _name = "hc.research.study.contact"    
@@ -199,7 +199,7 @@ class ResearchStudyEnrollment(models.Model):
     enrollment_id = fields.Many2one(
         comodel_name="hc.res.group", 
         string="Enrollment", 
-        help="Inclusion & exclusion criteria.")
+        help="Group associated with this Research Study Research Study Enrollment.")
 
 class ResearchStudySite(models.Model):    
     _name = "hc.research.study.site"    
@@ -213,7 +213,7 @@ class ResearchStudySite(models.Model):
     site_id = fields.Many2one(
         comodel_name="hc.res.location", 
         string="Site", 
-        help="Location involved in study execution.")
+        help="Location associated with this Research Study Research Study Site.")
 
 class ResearchStudyNote(models.Model):    
     _name = "hc.research.study.note"    

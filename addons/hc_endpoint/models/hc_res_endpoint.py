@@ -49,7 +49,7 @@ class Endpoint(models.Model):
         string="Period End Date", 
         help="End of the interval during responsibility is assumed.")                   
     address_uri = fields.Char(
-        string="Address URL", 
+        string="Address URI", 
         required="True", 
         help="Where the channel points to.")                   
     payload_format_id = fields.Many2one(

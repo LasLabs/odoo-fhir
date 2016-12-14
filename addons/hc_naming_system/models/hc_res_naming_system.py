@@ -2,8 +2,8 @@
 
 from openerp import models, fields, api
 
-# class hc_value_set(models.Model):
-#     _name = 'hc_value_set.hc_value_set'
+# class hc_naming_system(models.Model):
+#     _name = 'hc_naming_system.hc_naming_system'
 
 #     name = fields.Char()
 #     value = fields.Integer()
