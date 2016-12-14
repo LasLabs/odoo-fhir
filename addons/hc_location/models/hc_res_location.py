@@ -25,7 +25,7 @@ class Location(models.Model):
         comodel_name="hc.location.alias", 
         inverse_name="location_id", 
         string="Aliases", 
-        help="A list of alternate names that the location is known as, or was known as in the past.")
+        help="A list of alternate names that the location is known as or was known as in the past.")
     description = fields.Text(
         string="Description", 
         help="Description of the Location, which helps in finding or referencing the place.")

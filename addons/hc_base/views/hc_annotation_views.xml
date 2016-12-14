@@ -11,7 +11,7 @@
                         <field name="text"/>
 <!--                    Now this field is moved to hc_patient module so it should define in that module     
                         <field name="author_name"/>                   
- -->                        <field name="recorded_date"/>           
+ -->                    <field name="recorded_date"/>  
                     </search>             
               </field>                
         </record>                 

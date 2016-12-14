@@ -28,6 +28,7 @@ class Annotation(models.AbstractModel):
     author_string = fields.Char(
         string="Author String",
         help="Individual responsible for the annotation.")
+
     # author_practitioner_id = fields.Many2one(comodel_name="hc.res.practitioner", string="Author Practitioner", help="Practitioner responsible for the annotation.")
     # author_patient_id = fields.Many2one(comodel_name="hc.res.patient", string="Author Patient", help="Patient responsible for the annotation.")
     # author_related_person_id = fields.Many2one(comodel_name="hc.res.related.person", string="Author Related Person", help="Related person responsible for the annotation.")
