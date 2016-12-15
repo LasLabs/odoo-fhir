@@ -27,8 +27,6 @@ class AvailableTime(models.Model):
         'Error ! Closing Time cannot be before Opening Time.')
         ]
 
-
-
 class NotAvailableTime(models.Model):   
     _name = "hc.not.available.time" 
     _description = "Not Available Time"     
@@ -42,3 +40,10 @@ class NotAvailableTime(models.Model):
     during_end_date = fields.Datetime(
         string="During End Date", 
         help="End of period when the service not available.")
+
+    _sql_constraints = [ 
+        ('end_greater_start',
+        'CHECK(during_end_date >= during_start_date)',
+        'Error ! End Date cannot be before Start Date.')
+        ]
+ 

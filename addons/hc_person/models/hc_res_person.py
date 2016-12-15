@@ -154,23 +154,6 @@ class PersonAddress(models.Model):
         comodel_name="hc.res.person", 
         string="Person", 
         help="Entity associated with this Person Address.")
-    # use = fields.Selection(
-    #     string="Use",
-    #     selection=[
-    #         ("home", "Home"), 
-    #         ("work", "Work"), 
-    #         ("temp", "Temp"), 
-    #         ("old", "Old")],
-    #     default="home",  
-    #     help="The purpose of this address.")
-    # type = fields.Selection(
-    #     string="Type", 
-    #     selection=[
-    #         ("postal", "Postal"), 
-    #         ("physical", "Physical"), 
-    #         ("both", "Both")], 
-    #     default="both", 
-    #     help="Distinguishes between physical addresses (those you can visit) and mailing addresses (e.g. PO Boxes and care-of addresses). Most addresses are both.")
 
 class PersonIdentifier(models.Model):   
     _name = "hc.person.identifier"  

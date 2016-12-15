@@ -63,7 +63,7 @@ class SubscriptionChannel(models.Model):
             ("message", "Message")], 
         help="The type of channel to send notifications on.")
     endpoint = fields.Char(
-        string="URI", 
+        string="Endpoint URI", 
         help="Where the channel points to.")
     payload = fields.Char(
         string="Payload", 

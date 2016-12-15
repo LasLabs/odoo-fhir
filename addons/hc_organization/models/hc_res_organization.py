@@ -33,7 +33,7 @@ class Organization(models.Model):
         comodel_name="hc.organization.alias", 
         inverse_name="organization_id", 
         string="Aliases", 
-        help="A list of alternate names that the organization is known as, or was known as in the past.")
+        help="A list of alternative names that theorganiation is knwn as or was known as in the past.")
     telecom_ids = fields.One2many(
         comodel_name="hc.organization.telecom", 
         inverse_name="organization_id", 

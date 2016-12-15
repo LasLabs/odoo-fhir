@@ -17,7 +17,7 @@ class DeviceComponent(models.Model):
         required="True", 
         help="Instance id assigned by the software stack.")                
     last_system_change = fields.Datetime(
-        string="Last System Change Date", 
+        string="Last System Change", 
         required="True", 
         help="Recent system change timestamp.")                
     source_id = fields.Many2one(
