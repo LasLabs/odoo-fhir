@@ -301,13 +301,13 @@ class TestScriptTeardownAction(models.Model):
 class TestScriptIdentifier(models.Model):    
     _name = "hc.test.script.identifier"    
     _description = "Test Script Identifier"
-    _inherit = ["hc.identifier"]              
-    # _inherit = ["hc.basic.association", "hc.identifier"]    
+    # _inherit = ["hc.identifier"]              
+    _inherit = ["hc.basic.association", "hc.identifier"]    
 
 class TestScriptContact(models.Model):    
     _name = "hc.test.script.contact"    
     _description = "Test Script Contact"            
-    # _inherit = ["hc.basic.association"]    
+    _inherit = ["hc.basic.association"]    
     _inherits = {"hc.contact.detail": "contact_id"}
 
     contact_id = fields.Many2one(comodel_name="hc.contact.detail", string="Contact", ondelete="restrict", required="True", help="Contact Detail associated with this Test Script Contact.")                        
@@ -316,15 +316,15 @@ class TestScriptContact(models.Model):
 class TestScriptUseContext(models.Model):    
     _name = "hc.test.script.use.context"    
     _description = "Test Script Use Context"
-    _inherit = ["hc.usage.context"]             
-    # _inherit = ["hc.basic.association", "hc.usage.context"]    
+    # _inherit = ["hc.usage.context"]             
+    _inherit = ["hc.basic.association", "hc.usage.context"]    
 
     test_script_id = fields.Many2one(comodel_name="hc.res.test.script", string="Test Script", help="Test Script associated with this Test Script Use Context.")                        
 
 class TestScriptProfile(models.Model):    
     _name = "hc.test.script.profile"    
     _description = "Test Script Profile"            
-    # _inherit = ["hc.basic.association"]    
+    _inherit = ["hc.basic.association"]    
 
     test_script_id = fields.Many2one(comodel_name="hc.res.test.script", string="Test Script", help="Test Script associated with this Test Script Profile.")                        
     profile_type = fields.Selection(string="Profile Type", selection=[("string", "String"), ("Resource Type", "Resource Type")], help="Type of reference of the validation profile.")                        
@@ -335,7 +335,7 @@ class TestScriptProfile(models.Model):
 class TestScriptMetadataCapabilityOrigin(models.Model):    
     _name = "hc.test.script.metadata.capability.origin"    
     _description = "Test Script Metadata Capability Origin"            
-    # _inherit = ["hc.basic.association"]    
+    _inherit = ["hc.basic.association"]    
 
     capability_id = fields.Many2one(comodel_name="hc.test.script.capability", string="Capability", help="Capability associated with this Test Script Metadata Capability Origin.")                        
     origin = fields.Integer(string="Origin", help="Origin associated with this Test Script Metadata Capability Origin.")                        
@@ -343,7 +343,7 @@ class TestScriptMetadataCapabilityOrigin(models.Model):
 class TestScriptMetadataCapabilityLink(models.Model):    
     _name = "hc.test.script.metadata.capability.link"    
     _description = "Test Script Metadata Capability Link"            
-    # _inherit = ["hc.basic.association"]    
+    _inherit = ["hc.basic.association"]    
 
     capability_id = fields.Many2one(comodel_name="hc.test.script.capability", string="Capability", help="Capability associated with this Test Script Metadata Capability Link.")                        
     link = fields.Char(string="Import URL", help="URL of links to the FHIR specification.")                        
