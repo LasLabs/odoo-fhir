@@ -103,7 +103,10 @@ class QuestionnaireItem(models.Model):
     max_length = fields.Integer(
         string="Max Length", 
         help="No more than this many characters.")                    
-    # options_id = fields.Many2one(comodel_name="hc.res.value.set", string="Options", help="Valueset containing permitted answers.")                    
+    options_id = fields.Many2one(
+        comodel_name="hc.res.value.set", 
+        string="Options", 
+        help="Valueset containing permitted answers.")                    
     initial_type = fields.Selection(
         string="Initial Type", 
         selection=[

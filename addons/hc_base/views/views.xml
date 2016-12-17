@@ -28,10 +28,23 @@
                       groups="hc_base.group_hc_base_manager" 
                       sequence="40"/>
 
-        <menuitem id="hc_base.menu_adm" name="Administration" parent="hc_base.menu_root" groups="hc_base.group_hc_base_manager" sequence="20"/>
-            <menuitem id="hc_base.menu_indiv" name="Individuals" parent="hc_base.menu_adm" groups="hc_base.group_hc_base_manager" sequence="10"/>
-            <menuitem id="hc_base.menu_entity" name="Entities" parent="hc_base.menu_adm" groups="hc_base.group_hc_base_manager" sequence="20"/>
-            <menuitem id="hc_base.menu_pat_mgt" name="Patient Management" parent="hc_base.menu_adm" groups="hc_base.group_hc_base_manager" sequence="30"/>
+        <menuitem id="hc_base.menu_adm" 
+                  name="Administration" 
+                  parent="hc_base.menu_root" 
+                  groups="hc_base.group_hc_base_manager" 
+                  sequence="20"/>
+            <menuitem id="hc_base.menu_indiv" 
+                      name="Individuals" 
+                      parent="hc_base.menu_adm" 
+                      groups="hc_base.group_hc_base_manager" 
+                      sequence="10"/>
+            <menuitem id="hc_base.menu_entity" 
+                      name="Entities" 
+                      parent="hc_base.menu_adm" 
+                      groups="hc_base.group_hc_base_manager" 
+                      sequence="20"/>
+            <menuitem id="hc_base.menu_pat_mgt" 
+                      name="Patient Management" parent="hc_base.menu_adm" groups="hc_base.group_hc_base_manager" sequence="30"/>
             <menuitem id="hc_base.menu_dev" name="Devices" parent="hc_base.menu_adm" groups="hc_base.group_hc_base_manager" sequence="40"/>
             <menuitem id="hc_base.menu_res" name="Research" parent="hc_base.menu_adm" groups="hc_base.group_hc_base_manager" sequence="50"/>
             <menuitem id="hc_base.menu_secur" name="Security and Privacy" parent="hc_base.menu_adm" groups="hc_base.group_hc_base_manager" sequence="60"/>

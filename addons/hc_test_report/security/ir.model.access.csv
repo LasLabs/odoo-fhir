@@ -1,0 +1,12 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_hc_test_report_hc_res_test_report_user,hc.test.report.hc.res.test.report.user,model_hc_res_test_report,hc_base.group_hc_base_user,1,0,0,0
+access_hc_test_report_hc_test_report_participant_user,hc.test.report.hc.test.report.participant.user,model_hc_test_report_participant,hc_base.group_hc_base_user,1,0,0,0
+access_hc_test_report_hc_test_report_setup_user,hc.test.report.hc.test.report.setup.user,model_hc_test_report_setup,hc_base.group_hc_base_user,1,0,0,0
+access_hc_test_report_hc_test_report_setup_action_user,hc.test.report.hc.test.report.setup.action.user,model_hc_test_report_setup_action,hc_base.group_hc_base_user,1,0,0,0
+access_hc_test_report_hc_test_report_setup_action_operation_user,hc.test.report.hc.test.report.setup.action.operation.user,model_hc_test_report_setup_action_operation,hc_base.group_hc_base_user,1,0,0,0
+access_hc_test_report_hc_test_report_setup_action_assert_user,hc.test.report.hc.test.report.setup.action.assert.user,model_hc_test_report_setup_action_assert,hc_base.group_hc_base_user,1,0,0,0
+access_hc_test_report_hc_test_report_test_user,hc.test.report.hc.test.report.test.user,model_hc_test_report_test,hc_base.group_hc_base_user,1,0,0,0
+access_hc_test_report_hc_test_report_test_action_user,hc.test.report.hc.test.report.test.action.user,model_hc_test_report_test_action,hc_base.group_hc_base_user,1,0,0,0
+access_hc_test_report_hc_test_report_teardown_user,hc.test.report.hc.test.report.teardown.user,model_hc_test_report_teardown,hc_base.group_hc_base_user,1,0,0,0
+access_hc_test_report_hc_test_report_teardown_action_user,hc.test.report.hc.test.report.teardown.action.user,model_hc_test_report_teardown_action,hc_base.group_hc_base_user,1,0,0,0
+access_hc_test_report_hc_test_report_identifier_user,hc.test.report.hc.test.report.identifier.user,model_hc_test_report_identifier,hc_base.group_hc_base_user,1,0,0,0

@@ -80,10 +80,10 @@ class ConceptMap(models.Model):
     source_uri = fields.Char(
         string="Source URI", 
         help="URI that identifies the source of the concepts which are being mapped.")                        
-    # source_value_set_id = fields.Many2one(
-    #     comodel_name="hc.res.value.set", 
-    #     string="Source Value Set", 
-    #     help="Value Set that identifies the source of the concepts which are being mapped.")                        
+    source_value_set_id = fields.Many2one(
+        comodel_name="hc.res.value.set", 
+        string="Source Value Set", 
+        help="Value Set that identifies the source of the concepts which are being mapped.")                        
     source_structure_definition_id = fields.Many2one(
         comodel_name="hc.res.structure.definition", 
         string="Source Structure Definition", 
@@ -92,17 +92,22 @@ class ConceptMap(models.Model):
         string="Target Type", 
         required="True", 
         selection=[
-            ("uri", "URI"), ("Value Set", "Value Set"), ("Structure Definition", "Structure Definition")], help="Type of context to the mappings.")                        
+            ("uri", "URI"), 
+            ("Value Set", "Value Set"), 
+            ("Structure Definition", "Structure Definition")], 
+        help="Type of context to the mappings.")                        
     target_name = fields.Char(
         string="Target", 
-        compute="_compute_target_name", store="True", help="Provides context to the mappings.")                        
+        compute="_compute_target_name", 
+        store="True", 
+        help="Provides context to the mappings.")                        
     target_uri = fields.Char(
         string="Target URI", 
         help="URI that provides context to the mappings.")                        
-    # target_value_set_id = fields.Many2one(
-    #     comodel_name="hc.res.value.set", 
-    #     string="Target Value Set", 
-    #     help="Value Set that provides context to the mappings.")                        
+    target_value_set_id = fields.Many2one(
+        comodel_name="hc.res.value.set", 
+        string="Target Value Set", 
+        help="Value Set that provides context to the mappings.")                        
     target_structure_definition_id = fields.Many2one(
         comodel_name="hc.res.structure.definition", 
         string="Target Structure Definition", 
@@ -190,7 +195,7 @@ class ConceptMapGroupElementTarget(models.Model):
         comodel_name="hc.concept.map.group.element.target.depends.on", 
         inverse_name="target_id", 
         string="Product", 
-        help="Content as for ConceptMap.group.element.target.dependsOn Other concepts that this mapping also produces.")
+        help="Other concepts that this mapping also produces.")
     depends_on_ids = fields.One2many(
         comodel_name="hc.concept.map.group.element.target.depends.on", 
         inverse_name="target_id", 
@@ -200,7 +205,6 @@ class ConceptMapGroupElementTarget(models.Model):
 class ConceptMapGroupElementTargetDependsOn(models.Model):    
     _name = "hc.concept.map.group.element.target.depends.on"    
     _description = "Concept Map Group Element Target Depends On"                
-
     
     target_id = fields.Many2one(
         comodel_name="hc.concept.map.group.element.target", 

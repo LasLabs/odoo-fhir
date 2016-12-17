@@ -103,13 +103,13 @@ class Goal(models.Model):
             ("planned", "Planned"), 
             ("accepted", "Accepted"), 
             ("rejected", "Rejected"), 
-            ("in-progress", "In-Progress"), 
+            ("in-progress", "In Progress"), 
             ("achieved", "Achieved"), 
             ("sustaining", "Sustaining"), 
-            ("on-hold", "On-Hold"), 
+            ("on-hold", "On Hold"), 
             ("cancelled", "Cancelled"), 
-            ("on-target", "On-Target"), 
-            ("ahead-of-target", "Ahead-Of-Target"), 
+            ("on-target", "On Target"), 
+            ("ahead-of-target", "Ahead Of Target"), 
             ("behind-target", "Behind-Target")],
         help="Indicates whether the goal has been reached and is still considered relevant.")                
     status_date = fields.Date(

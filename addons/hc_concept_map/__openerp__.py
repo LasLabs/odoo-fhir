@@ -25,8 +25,7 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    # 'depends': ['hc_value_set'],
-    'depends': ['hc_structure_definition'],
+    'depends': ['hc_structure_definition', 'hc_value_set'],
 
     # always loaded
     'data': [

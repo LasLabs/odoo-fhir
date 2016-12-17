@@ -146,6 +146,11 @@ class DaysOfWeek(models.Model):
     _description = "Days Of Week"     
     _inherit = ["hc.value.set.contains"]
 
+class DefinedType(models.Model):    
+    _name = "hc.vs.defined.type"    
+    _description = "Defined Type"            
+    _inherit = ["hc.value.set.contains"]    
+
 class DemographicAgeGroup(models.Model):    
     _name = "hc.vs.demographic.age.group"   
     _description = "Demographic Age Group"      

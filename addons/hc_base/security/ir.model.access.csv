@@ -151,6 +151,7 @@ access_hc_base_hc_element_definition_user,hc.base.hc.element.definition.user,mod
 access_hc_base_hc_vs_time_uom_manager,hc.base.hc.vs.time.uom.manager,model_hc_vs_time_uom,hc_base.group_hc_base_manager,1,1,1,1
 access_hc_base_hc_vs_designation_use_manager,hc.base.hc.vs.designation.use.manager,model_hc_vs_designation_use,hc_base.group_hc_base_manager,1,1,1,1
 access_hc_base_hc_address_use_manager,hc.base.hc.address.use.manager,model_hc_address_use,hc_base.group_hc_base_manager,1,1,1,1
+access_hc_base_hc_vs_defined_type_manager,hc.base.hc.vs.defined.type.manager,model_hc_vs_defined_type,hc_base.group_hc_base_manager,1,1,1,1
 
 
 
