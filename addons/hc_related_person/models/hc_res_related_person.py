@@ -35,10 +35,10 @@ class RelatedPerson(models.Model):
             ("other", "Other"), 
             ("unknown", "Unknown")],          
         help="The gender of a related person used for administrative purposes.")
-    address_id = fields.Many2one(
-        comodel_name="hc.address", 
-        string="Address", 
-        help="Address where the related person can be contacted or visited.")
+    # address_id = fields.Many2one(
+    #     comodel_name="hc.address", 
+    #     string="Address", 
+    #     help="Address where the related person can be contacted or visited.")
     photo_ids = fields.One2many(
         comodel_name="hc.related.person.photo", 
         inverse_name="related_person_id", 
@@ -106,21 +106,21 @@ class RelatedPersonTelecom(models.Model):
         string="Related Person", 
         help="Related Person associated with this Related Person Telecom.")                  
         
-class RelatedPersonAddress(models.Model):
-    _name = "hc.related.person.address" 
-    _description = "Related Person Address"
-    _inherits = {"hc.person.address": "address_id"}
+# class RelatedPersonAddress(models.Model):
+#     _name = "hc.related.person.address" 
+#     _description = "Related Person Address"
+#     _inherits = {"hc.person.address": "address_id"}
 
-    address_id = fields.Many2one(
-        comodel_name="hc.address", 
-        string="Address", 
-        required="True",
-        ondelete="restrict", 
-        help="Address associated with this Related Person Address.") 
-    related_person_id = fields.Many2one(
-        comodel_name="hc.res.related.person", 
-        string="Related Person", 
-        help="Related Person associated with this Related Person Address.")
+#     address_id = fields.Many2one(
+#         comodel_name="hc.address", 
+#         string="Address", 
+#         required="True",
+#         ondelete="restrict", 
+#         help="Address associated with this Related Person Address.") 
+#     related_person_id = fields.Many2one(
+#         comodel_name="hc.res.related.person", 
+#         string="Related Person", 
+#         help="Related Person associated with this Related Person Address.")
 
 class RelatedPersonPhoto(models.Model):   
     _name = "hc.related.person.photo"  
