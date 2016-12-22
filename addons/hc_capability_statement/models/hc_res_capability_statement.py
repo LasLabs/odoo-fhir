@@ -93,11 +93,21 @@ class CapabilityStatement(models.Model):
         string="Formats", 
         required="True", 
         help="Formats supported.")                        
+    patch_format_ids = fields.Many2many(
+        comodel_name="hc.vs.mime.type", 
+        relation="capability_statement_patch_format_rel", 
+        string="Patch Formats", 
+        help="Patch formats supported.")                           
+    implementation_guide_ids = fields.One2many(
+        comodel_name="hc.capability.statement.implementation.guide", 
+        inverse_name="capability_statement_id", 
+        string="Implementation Guide URIs", 
+        help="Implementation Guide supported.")
     profile_ids = fields.One2many(
         comodel_name="hc.capability.statement.profile", 
         inverse_name="capability_statement_id", 
         string="Profiles", 
-        help="Profiles for use cases supported.")                        
+        help="Profiles for use cases supported.")
     software_ids = fields.One2many(
         comodel_name="hc.capability.statement.software", 
         inverse_name="capability_statement_id", 
@@ -122,7 +132,7 @@ class CapabilityStatement(models.Model):
         comodel_name="hc.capability.statement.document", 
         inverse_name="capability_statement_id", 
         string="Documents", 
-        help="Document definition.")                        
+        help="Document definition.")
 
 class CapabilityStatementSoftware(models.Model):    
     _name = "hc.capability.statement.software"    
@@ -187,11 +197,11 @@ class CapabilityStatementRest(models.Model):
         inverse_name="rest_id", 
         string="Search Params", 
         help="Added items detail adjudication.")                        
-    certificate_ids = fields.One2many(
-        comodel_name="hc.capability.statement.rest.certificate", 
+    security_ids = fields.One2many(
+        comodel_name="hc.capability.statement.rest.security", 
         inverse_name="rest_id", 
-        string="Certificates", 
-        help="Certificates associated with security profiles.")                        
+        string="Securities", 
+        help="Information about security of implementation.")                        
     resource_ids = fields.One2many(
         comodel_name="hc.capability.statement.rest.resource", 
         inverse_name="rest_id", 
@@ -208,46 +218,46 @@ class CapabilityStatementRest(models.Model):
         string="Operations", 
         help="Definition of an operation or a custom query.")                        
 
-class CapabilityStatementRestCertificate(models.Model):    
-    _name = "hc.capability.statement.rest.certificate"    
-    _description = "Capability Statement REST Certificate"                
-
+class CapabilityStatementRestSecurity(models.Model):    
+    _name = "hc.capability.statement.rest.security" 
+    _description = "Capability Statement REST Security"
+            
     rest_id = fields.Many2one(
         comodel_name="hc.capability.statement.rest", 
         string="REST", 
-        help="If the endpoint is a RESTful one.")                        
-    type_id = fields.Many2one(
-        comodel_name="hc.vs.mime.type", 
-        string="Type", 
-        help="MIME type for certificate.")                        
-    blob = fields.Binary(
-        string="Blob", 
-        help="Actual certificate.")                        
-    security_ids = fields.One2many(
-        comodel_name="hc.capability.statement.rest.certificate.security", 
-        inverse_name="certificate_id", 
-        string="Security", 
-        help="Information about security of implementation.")                        
-
-class CapabilityStatementRestCertificateSecurity(models.Model):    
-    _name = "hc.capability.statement.rest.certificate.security"    
-    _description = "Capability Statement REST Certificate Security"                
-
-    certificate_id = fields.Many2one(
-        comodel_name="hc.capability.statement.rest.certificate", 
-        string="Certificate", 
-        help="Certificates associated with security profiles.")                        
+        help="If the endpoint is a RESTful one.")                    
     is_cors = fields.Boolean(
         string="CORS", 
-        help="Adds CORS Headers (http://enable-cors.org/).")                        
+        help="Adds CORS Headers (http://enable-cors.org/).")                       
     service_ids = fields.One2many(
-        comodel_name="hc.capability.statement.rest.certificate.security.service", 
+        comodel_name="hc.capability.statement.rest.security.service", 
         inverse_name="security_id", 
         string="Services", 
         help="Types of security services are supported/required by the system.")                        
     description = fields.Text(
         string="Description", 
-        help="General description of how security works.")                        
+        help="General description of how security works.")
+    certificate_ids = fields.One2many(
+        comodel_name="hc.capability.statement.rest.security.certificate", 
+        inverse_name="security_id", 
+        string="Certificates", 
+        help="Certificates associated with security profiles.")
+
+class CapabilityStatementRestSecurityCertificate(models.Model): 
+    _name = "hc.capability.statement.rest.security.certificate" 
+    _description = "Capability Statement REST Security Certificate"
+
+    security_id = fields.Many2one(
+        comodel_name="hc.capability.statement.rest.security", 
+        string="Security", 
+        help="Information about security of implementation.")     
+    type_id = fields.Many2one(
+        comodel_name="hc.vs.mime.type", 
+        string="Type", 
+        help="MIME type for certificate.")     
+    blob = fields.Binary(
+        string="Blob", 
+        help="Actual certificate.")     
 
 class CapabilityStatementRestResource(models.Model):    
     _name = "hc.capability.statement.rest.resource"    
@@ -308,12 +318,16 @@ class CapabilityStatementRestResource(models.Model):
         inverse_name="resource_id", 
         string="Reference Policies", 
         help="A set of flags that defines how references are supported..")                        
-    search_include = fields.Char(
+    search_include_ids = fields.One2many(
+        comodel_name="hc.capability.statement.rest.resource.search.include", 
+        inverse_name="resource_id", 
         string="Search Include", 
-        help="_include values supported by the server.")                        
-    search_rev_include = fields.Char(
+        help="_include values supported by the server.")
+    search_rev_include_ids = fields.One2many(
+        comodel_name="hc.capability.statement.rest.resource.search.rev.include", 
+        inverse_name="resource_id", 
         string="Search Rev Include", 
-        help="_revinclude values supported by the server.")                        
+        help="_revinclude values supported by the server.")                   
     search_param_ids = fields.One2many(
         comodel_name="hc.capability.statement.rest.search.param", 
         inverse_name="resource_id", 
@@ -341,15 +355,16 @@ class CapabilityStatementRestResourceInteraction(models.Model):
             ("read", "Read"), 
             ("vread", "Vread"), 
             ("update", "Update"), 
+            ("patch", "Patch"), 
             ("delete", "Delete"), 
-            ("history-instance", "History Instance"), 
-            ("history-type", "History Type"), 
+            ("history-instance", "History-Instance"), 
+            ("history-type", "History-Type"), 
             ("create", "Create"), 
-            ("search-type", "Search Type")], 
-        help="A coded identifier of the operation, supported by the system.")
+            ("search-type", "Search-Type")], 
+        help="Coded identifier of the operation, supported by the system resource.")
     documentation = fields.Text(
         string="Documentation", 
-        help="Anything special about operation behavior.")                        
+        help="Anything special about operation behavior.")
 
 class CapabilityStatementRestSearchParam(models.Model):    
     _name = "hc.capability.statement.rest.search.param"    
@@ -385,20 +400,7 @@ class CapabilityStatementRestSearchParam(models.Model):
         help="The type of value a search parameter refers to, and how the content is interpreted.")
     documentation = fields.Text(
         string="Documentation", 
-        help="Server-specific usage.")                        
-    target_ids = fields.Many2many(
-        comodel_name="hc.vs.resource.type", 
-        relation="capability_statement_rest_search_param_target_rel", 
-        string="Targets", 
-        help="Types of resource (if a resource reference).")                        
-    modifier_ids = fields.One2many(
-        comodel_name="hc.capability.statement.rest.search.param.modifier", 
-        inverse_name="search_param_id", 
-        string="Modifiers", 
-        help="A modifier supported for the search parameter.")                        
-    chain = fields.Char(
-        string="Chain", 
-        help="Chained names supported.")                        
+        help="Server-specific usage.")                                   
 
 class CapabilityStatementRestInteraction(models.Model):    
     _name = "hc.capability.statement.rest.interaction"    
@@ -419,7 +421,7 @@ class CapabilityStatementRestInteraction(models.Model):
         help="A coded identifier of the operation, supported by the system.")                        
     documentation = fields.Text(
         string="Documentation", 
-        help="Anything special about operation behavior.")                        
+        help="Anything special about operation behavior.")                          
 
 class CapabilityStatementRestOperation(models.Model):    
     _name = "hc.capability.statement.rest.operation"    
@@ -437,7 +439,7 @@ class CapabilityStatementRestOperation(models.Model):
         comodel_name="hc.res.operation.definition", 
         string="Definition", 
         required="True", 
-        help="The defined operation/query.")                        
+        help="The defined operation/query.")          
 
 class CapabilityStatementMessaging(models.Model):    
     _name = "hc.capability.statement.messaging"    
@@ -593,8 +595,8 @@ class CapabilityStatementInstantiates(models.Model):
         string="Capability Statement", 
         help="Capability Statement associated with this Capability Statement Instantiates.")                        
     instantiates = fields.Char(
-        string="Instantiates URL", 
-        help="Canonical URL of service implemented/used by software.")                        
+        string="Instantiates URI", 
+        help="Instantiates associated with this Capability Statement Instantiates.")                        
 
 class CapabilityStatementFormat(models.Model):    
     _name = "hc.capability.statement.format"    
@@ -613,6 +615,19 @@ class CapabilityStatementFormat(models.Model):
             ("ttl", "TTL"), 
             ("mime type", "MIME Type")], 
         help="A list of the formats supported by this implementation using their content types.")                        
+
+class CapabilityStatementImplementationGuide(models.Model): 
+    _name = "hc.capability.statement.implementation.guide"  
+    _description = "Capability Statement Implementation Guide"          
+    _inherit = ["hc.basic.association"]
+
+    capability_statement_id = fields.Many2one(
+        comodel_name="hc.res.capability.statement", 
+        string="Capability Statement", 
+        help="Capability Statement associated with this Capability Statement Implementation Guide.")                   
+    implementation_guide = fields.Char(
+        string="Implementation Guide URI", 
+        help="Implementation Guide associated with this Capability Statement Implementation Guide.")                   
 
 class CapabilityStatementProfile(models.Model):    
     _name = "hc.capability.statement.profile"    
@@ -636,20 +651,20 @@ class CapabilityStatementRestCompartment(models.Model):
     rest_id = fields.Many2one(
         comodel_name="hc.capability.statement.rest", 
         string="REST", 
-        help="REST associated with this Capability Statement Rest Compartment.")                        
+        help="REST associated with this Capability Statement REST Compartment.")                        
     compartment = fields.Char(
-        string="Compartment URL", 
-        help="URL of compartments served/used by system.")                        
+        string="Compartment URI", 
+        help="Compartment associated with this Capability Statement Rest Compartment.")                        
 
-class CapabilityStatementRestCertificateSecurityService(models.Model):    
-    _name = "hc.capability.statement.rest.certificate.security.service"    
-    _description = "Capability Statement REST Certificate Security Service"            
+class CapabilityStatementRestSecurityService(models.Model):    
+    _name = "hc.capability.statement.rest.security.service"    
+    _description = "Capability Statement REST Security Service"            
     _inherit = ["hc.basic.association"]    
     
     security_id = fields.Many2one(
-        comodel_name="hc.capability.statement.rest.certificate.security", 
+        comodel_name="hc.capability.statement.rest.security", 
         string="Security", 
-        help="Security associated with this Capability Statement REST Certificate Security Service.")                        
+        help="Security associated with this Capability Statement REST Security Service.")                        
     service = fields.Selection(
         string="Service", 
         selection=[
@@ -669,7 +684,7 @@ class CapabilityStatementRestResourceReferencePolicy(models.Model):
     resource_id = fields.Many2one(
         comodel_name="hc.capability.statement.rest.resource", 
         string="Resource", 
-        help="Resource served on the REST interface.")                        
+        help="Resource associated with this Capability Statement REST Resource Reference Policy.")                        
     reference_policy = fields.Selection(
         string="Reference Policy", 
         selection=[
@@ -680,25 +695,29 @@ class CapabilityStatementRestResourceReferencePolicy(models.Model):
             ("local", "Local")], 
         help="A set of flags that defines how references are supported.")                        
 
-class CapabilityStatementRestSearchParamModifier(models.Model):    
-    _name = "hc.capability.statement.rest.search.param.modifier"    
-    _description = "Capability Statement REST Search Param Modifier"            
-    _inherit = ["hc.basic.association"]    
+class CapabilityStatementRestResourceSearchInclude(models.Model):  
+    _name = "hc.capability.statement.rest.resource.search.include"  
+    _description = "Capability Statement REST Resource Search Include"          
+    _inherit = ["hc.basic.association"]
 
-    search_param_id = fields.Many2one(
-        comodel_name="hc.capability.statement.rest.search.param", 
-        string="Search Param", 
-        help="Search Param associated with this Capability Statement REST Search Param Modifier.")                        
-    modifier = fields.Selection(
-        string="Modifier", 
-        selection=[
-            ("missing", "Missing"), 
-            ("exact", "Exact"), 
-            ("contains", "Contains"), 
-            ("not", "Not"), 
-            ("text", "Text"), 
-            ("in", "In"), 
-            ("not-in", "Not In"), 
-            ("below", "Below"), 
-            ("above", "Above") ], 
-        help="A modifier supported for the search parameter.")                        
+    resource_id = fields.Many2one(
+        comodel_name="hc.capability.statement.rest.resource", 
+        string="Resource", 
+        help="Resource associated with this Capability Statement REST Resource Search Include.")                 
+    search_include = fields.Char(
+        string="Search Include", 
+        help="Search Include associated with this Capability Statement REST Resource Search Include.")                    
+
+class CapabilityStatementRestResourceSearchRevInclude(models.Model):    
+    _name = "hc.capability.statement.rest.resource.search.rev.include"  
+    _description = "Capability Statement REST Resource Search Rev Include"          
+    _inherit = ["hc.basic.association"]
+
+    resource_id = fields.Many2one(
+        comodel_name="hc.capability.statement.rest.resource", 
+        string="Resource", 
+        help="Resource associated with this Capability Statement REST Resource Search Rev Include.")                 
+    search_rev_include = fields.Char(
+        string="Search Rev Include", 
+        help="Search Rev Include associated with this Capability Statement REST Resource Search Rev Include.")                    
+                      

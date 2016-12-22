@@ -2,84 +2,77 @@
 
 from openerp import models, fields, api
 
-class PaymentReconciliation(models.Model):    
-    _name = "hc.res.payment.reconciliation"    
-    _description = "Payment Reconciliation"        
+class PaymentReconciliation(models.Model):  
+    _name = "hc.res.payment.reconciliation" 
+    _description = "Payment Reconciliation"     
 
     identifier_ids = fields.One2many(
         comodel_name="hc.payment.reconciliation.identifier", 
         inverse_name="payment_reconciliation_id", 
         string="Identifiers", 
-        help="Business Identifier.")                
+        help="Business Identifier.")              
     status = fields.Selection(
-        string="Payment Reconciliation Status", 
-        required="True", 
+        string="Status", 
         selection=[
             ("active", "Active"), 
             ("cancelled", "Cancelled"), 
             ("draft", "Draft"), 
             ("entered-in-error", "Entered-In-Error")], 
-        help="The status of the resource instance.")                
+        help="Whether this is an input or an output parameter.")             
+    period_start_date = fields.Datetime(
+        string="Period Start Date", 
+        help="Start of the period covered.")                
+    period_end_date = fields.Datetime(
+        string="Period End Date", 
+        help="End of the period covered.")              
+    created = fields.Datetime(
+        string="Created", 
+        help="Creation date.")              
+    organization_id = fields.Many2one(
+        comodel_name="hc.res.organization", 
+        string="Organization", 
+        help="Insurer.")               
     # request_id = fields.Many2one(
     #     comodel_name="hc.res.process.request", 
     #     string="Request", 
-    #     help="Claim reference.")                
+    #     help="Claim reference.")              
     outcome = fields.Selection(
         string="Outcome", 
         selection=[
             ("complete", "Complete"), 
             ("error", "Error"), 
             ("partial", "Partial")], 
-        help="Transaction status: error, complete.")                
+        help="Transaction status: error, complete.")             
     disposition = fields.Text(
         string="Disposition", 
         help="Disposition Message.")                
-    ruleset_id = fields.Many2one(
-        comodel_name="hc.vs.ruleset", 
-        string="Ruleset", 
-        help="Resource version.")                
-    original_ruleset_id = fields.Many2one(
-        comodel_name="hc.vs.ruleset", 
-        string="Original Ruleset", 
-        help="Original version.")                
-    created = fields.Datetime(
-        string="Created", 
-        help="Creation date.")                
-    period_start_date = fields.Datetime(
-        string="Period Start Date", 
-        help="Start of the period covered.")                
-    period_end_date = fields.Datetime(
-        string="Period End Date", 
-        help="End of the period covered.")                
-    organization_id = fields.Many2one(
-        comodel_name="hc.res.organization", 
-        string="Organization", help="Insurer.")                
     request_provider_id = fields.Many2one(
         comodel_name="hc.res.practitioner", 
         string="Request Provider", 
-        help="Responsible practitioner.")                
+        help="Responsible practitioner.")              
     request_organization_id = fields.Many2one(
         comodel_name="hc.res.organization", 
         string="Request Organization", 
-        help="Responsible organization.")                
+        help="Responsible organization.")              
     form_id = fields.Many2one(
         comodel_name="hc.vs.forms", 
         string="Form", 
-        help="Printed Form Identifier.")                
+        help="Printed Form Identifier.")               
     total = fields.Float(
         string="Total", 
         required="True", 
-        help="Total amount of Payment.")                
+        help="Total amount of Payment.")              
     detail_ids = fields.One2many(
         comodel_name="hc.payment.reconciliation.detail", 
         inverse_name="payment_reconciliation_id", 
         string="Details", 
-        help="Details.")                
+        help="Details.")              
     note_ids = fields.One2many(
         comodel_name="hc.payment.reconciliation.note", 
         inverse_name="payment_reconciliation_id", 
         string="Notes", 
-        help="Note text.")                
+        help="Note text.")              
+              
 
 class PaymentReconciliationDetail(models.Model):    
     _name = "hc.payment.reconciliation.detail"    

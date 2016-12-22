@@ -45,7 +45,7 @@ class Person(models.Model):
             ("other", "Other"), 
             ("unknown", "Unknown")],          
         help="The gender of a person used for administrative purposes.")
-    birthdate = fields.Date(
+    birth_date = fields.Date(
         string="Birth Date", 
         help="The birth date for the person.")
     photo_ids = fields.One2many(
@@ -53,7 +53,10 @@ class Person(models.Model):
         inverse_name="person_id", 
         string="Photos", 
         help="Image of the Person.")
-    # person_managing_organization_id = fields.Many2one(comodel_name="hc.res.organization", string="Managing Organization", help="The Organization that is the custodian of the person record.")
+    # person_managing_organization_id = fields.Many2one(
+    #     comodel_name="hc.res.organization", 
+    #     string="Managing Organization", 
+    #     help="The Organization that is the custodian of the person record.")
     is_active_person = fields.Boolean(
         string="Active", 
         help="This person's record is in active use.")

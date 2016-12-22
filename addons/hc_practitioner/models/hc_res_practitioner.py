@@ -46,7 +46,7 @@ class Practitioner(models.Model):
             ("other", "Other"), 
             ("unknown", "Unknown")],          
         help="The gender of a practitioner used for administrative purposes.")
-    birthdate = fields.Date(
+    birth_date = fields.Date(
         string="Birth Date", 
         help="The birth date for the practitioner.")
     photo_ids = fields.One2many(

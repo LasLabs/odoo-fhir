@@ -23,13 +23,20 @@ class Account(models.Model):
             ("active", "Active"), 
             ("inactive", "Inactive"), 
             ("entered-in-error", "Entered-In-Error")], 
-        help="State of the procedure.")                    
+        help="Indicates whether the account is presently used/useable or not.")                    
     active_start_date = fields.Datetime(
         string="Active Start Date", 
         help="Start of the time window that transactions may be posted to this account.")                    
     active_end_date = fields.Datetime(
         string="Active End Date", 
         help="End of the time window that transactions may be posted to this account.")                    
+    currency = fields.Many2one(
+        comodel_name="res.currency", 
+        string="Currency", 
+        help="Base currency in which balance is tracked.")
+    balance = fields.Float(
+        string="Balance", 
+        help="How much is in account?")
     coverage_ids = fields.One2many(
         comodel_name="hc.account.coverage", 
         inverse_name="account_id", 
@@ -86,6 +93,11 @@ class Account(models.Model):
     description = fields.Text(
         string="Description", 
         help="Explanation of purpose/use.")                    
+    guarantor_ids = fields.One2many(
+        comodel_name="hc.account.guarantor", 
+        inverse_name="account_id", 
+        string="Guarantors", 
+        help="Responsible for the account.")
 
 @api.multi          
 def _compute_subject_name(self):            
@@ -102,6 +114,48 @@ def _compute_subject_name(self):
             hc_res_account.subject_name = hc_res_account.subject_healthcare_service_id.name
         elif hc_res_account.subject_type == 'Organization': 
             hc_res_account.subject_name = hc_res_account.subject_organization_id.name
+
+class AccountGuarantor(models.Model):   
+    _name = "hc.account.guarantor"  
+    _description = "Account Guarantor"
+    
+    account_id = fields.Many2one(
+        comodel_name="hc.res.account", 
+        string="Account", 
+        help="Account associated with this Account Guarantor.")
+    party_type = fields.Selection(
+        string="Party Type", 
+        required="True", 
+        selection=[
+            ("Patient", "Patient"), 
+            ("Related Person", "Related Person"), 
+            ("Organization", "Organization")], 
+        help="Type of what is account tied to.")        
+    party_name = fields.Char(
+        string="Party", 
+        compute="_compute_party_name", 
+        store="True", help="Responsible entity.")        
+    party_patient_id = fields.Many2one(
+        comodel_name="hc.res.patient", 
+        string="Party Patient", 
+        help="Patient account tied to.")      
+    party_related_person_id = fields.Many2one(
+        comodel_name="hc.res.related.person", 
+        string="Party Related Person", 
+        help="Related Person account tied to.")      
+    party_organization_id = fields.Many2one(
+        comodel_name="hc.res.organization", 
+        string="Party Organization", 
+        help="Organization account tied to.")      
+    is_on_hold = fields.Boolean(
+        string="On Hold", 
+        help="Credit or other hold applied.")       
+    start_date = fields.Datetime(
+        string="Start Date", 
+        help="Start of the guarrantee account during.")       
+    end_date = fields.Datetime(
+        string="End Date", 
+        help="End of the guarrantee account during.")     
 
 class AccountIdentifier(models.Model):    
     _name = "hc.account.identifier"    

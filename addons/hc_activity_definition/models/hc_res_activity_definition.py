@@ -29,11 +29,14 @@ class ActivityDefinition(models.Model):
         selection=[
             ("draft", "Draft"), 
             ("active", "Active"), 
-            ("inactive", "Inactive")], 
+            ("retired", "Retired")],
         help="The status of this activity definition. Enables tracking the life-cycle of the content.")                    
     is_experimental = fields.Boolean(
         string="Experimental", 
         help="If for testing purposes, not real usage.")                    
+    date = fields.Datetime(
+        string="Date", 
+        help="Date this was last changed.")
     description = fields.Text(
         string="Description", 
         help="Natural language description of the activity definition.")                    
@@ -49,10 +52,10 @@ class ActivityDefinition(models.Model):
     last_review_date = fields.Date(
         string="Last Review Date", 
         help="Last review date for the activity definition.")                    
-    effective_period_start_date = fields.Datetime(
+    start_date = fields.Datetime(
         string="Effective Period Start Date", 
         help="Start of the effective date range for the asset.")                    
-    effective_period_end_date = fields.Datetime(
+    end_date = fields.Datetime(
         string="Effective Period End Date", 
         help="End of the effective date range for the asset.")                    
     use_context_ids = fields.One2many(
@@ -179,6 +182,11 @@ class ActivityDefinition(models.Model):
         inverse_name="activity_definition_id", 
         string="Dosage Instructions", 
         help="Detailed dosage instructions.")                    
+    body_site_ids = fields.Many2many(
+        comodel_name="hc.vs.body.site", 
+        relation="activity_definition_body_site_rel", 
+        string="Body Sites", 
+        help="What part of body to perform on.")
     transform_id = fields.Many2one(
         comodel_name="hc.res.structure.map", 
         string="Transform", 
