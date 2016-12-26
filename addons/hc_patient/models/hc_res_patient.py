@@ -12,7 +12,7 @@ class Patient(models.Model):
         string="Person", 
         ondelete="restrict", 
         required="True", 
-        help="Person associated with this Patient.")
+        help="Person who is this Patient.")
     identifier_ids = fields.One2many(
         comodel_name="hc.patient.identifier", 
         inverse_name="patient_id", 
@@ -437,6 +437,13 @@ class ContactRelationship(models.Model):
     _inherit = ["hc.value.set.contains"]    
 
 # External Reference
+
+class Partner(models.Model):
+    _inherit = ["res.partner"]
+
+    is_patient = fields.Boolean(
+        string="Is a patient", 
+        help="This partner is a patient.")
 
 class PersonLink(models.Model):
     _inherit = ["hc.person.link"]

@@ -12,7 +12,7 @@ class RelatedPerson(models.Model):
         string="Person",
         ondelete="restrict",
         required="True",
-        help="Person associated with this Related Person.")
+        help="Person who is this Related Person.")
     identifier_ids = fields.One2many(
         comodel_name="hc.related.person.identifier", 
         inverse_name="related_person_id", 

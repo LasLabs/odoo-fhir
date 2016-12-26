@@ -21,10 +21,10 @@ class MedicationRequest(models.Model):
         inverse_name="medication_request_id", 
         string="Libraries", 
         help="What request fulfills.")                  
-    requisition_id = fields.Many2one(
-        comodel_name="hc.medication.request.requisition", 
-        string="Requisition", 
-        help="Identifier of composite.")                   
+    group_identifier_id = fields.Many2one(
+        comodel_name="hc.medication.request.group.identifier", 
+        string="Group Identifier", 
+        help="Composite request this is part of.")              
     status = fields.Selection(
         string="Status", 
         selection=[
@@ -36,14 +36,22 @@ class MedicationRequest(models.Model):
             ("stopped", "Stopped"), 
             ("draft", "Draft")], 
         help="A code specifying the state of the order. Generally this will be active or completed state.")                  
-    stage = fields.Selection(
-        string="Stage", 
+    intent = fields.Selection(
+        string="Intent", 
         required="True", 
         selection=[
             ("proposal", "Proposal"), 
             ("plan", "Plan"), 
-            ("original-order", "Original Order")], 
-        help="Whether the request is a proposal, plan, or an original order.")                  
+            ("order", "Order")], 
+        help="Whether the request is a proposal, plan, or an original order.")
+    priority = fields.Selection(
+        string="Priority", 
+        selection=[
+            ("routine", "Routine"), 
+            ("urgent", "Urgent"), 
+            ("stat", "Stat"), 
+            ("asap", "Asap")], 
+        help="Indicates how quickly the Medicaiton Request should be addressed with respect to other requests.")                 
     medication_type = fields.Selection(
         string="Medication Type", 
         required="True", 
@@ -65,11 +73,33 @@ class MedicationRequest(models.Model):
         string="Medication", 
         required="True", 
         help="Medication to be taken.")                 
-    patient_id = fields.Many2one(
-        comodel_name="hc.res.patient", 
-        string="Patient", 
+    subject_type = fields.Selection(
+        string="Subject Type", 
         required="True", 
-        help="Who prescription is for.")                 
+        selection=[
+            ("Patient", "Patient"), 
+            ("Group", "Group")], 
+        help="Who or group prescription is for.")
+    subject_name = fields.Char(
+        string="Subject", 
+        compute="_compute_subject_name", 
+        store="True", 
+        help="Who or group prescription is for.")
+    subject_patient_id = fields.Many2one(
+        comodel_name="hc.res.patient", 
+        string="Subject Patient", 
+        required="True", 
+        help="Who or group prescription is for.")
+    subject_group_id = fields.Many2one(
+        comodel_name="hc.res.group", 
+        string="Subject Group", 
+        help="Group or group prescription is for.")
+    # replaced by subject
+    # patient_id = fields.Many2one(
+    #     comodel_name="hc.res.patient", 
+    #     string="Patient", 
+    #     required="True", 
+    #     help="Who prescription is for.")                 
     context_type = fields.Selection(
         string="Context Type", 
         selection=[
@@ -107,13 +137,22 @@ class MedicationRequest(models.Model):
         comodel_name="hc.vs.resource.type", 
         string="Supporting Information Code", 
         help="Type of resource of information to support ordering of the medication.")                   
-    date_written = fields.Datetime(
-        string="Date Written", 
-        help="When prescription was initially authorized.")                   
-    prescriber_id = fields.Many2one(
+    authored_on = fields.Datetime(
+        string="Authored On", 
+        help="When request was initially authored.")
+    # replaced by authored_on
+    # date_written = fields.Datetime(
+    #     string="Date Written", 
+    #     help="When prescription was initially authorized.")                   
+    recorder_id = fields.Many2one(
         comodel_name="hc.res.practitioner", 
-        string="Prescriber", 
-        help="Who ordered the initial medication(s).")                 
+        string="Recorder", 
+        help="Person who entered the request.")
+    # replaced by recorder
+    # prescriber_id = fields.Many2one(
+    #     comodel_name="hc.res.practitioner", 
+    #     string="Prescriber", 
+    #     help="Who ordered the initial medication(s).")                 
     reason_code_ids = fields.Many2many(
         comodel_name="hc.vs.activity.definition.topic", 
         string="Reason Codes", 
@@ -146,6 +185,11 @@ class MedicationRequest(models.Model):
         inverse_name="medication_request_id", 
         string="Libraries", 
         help="A list of events of interest in the lifecycle.")                    
+    requester_ids = fields.One2many(
+        comodel_name="hc.medication.request.requester", 
+        inverse_name="medication_request_id", 
+        string="Requesters", 
+        help="Who/What requested the Request.")
     dispense_request_ids = fields.One2many(
         comodel_name="hc.medication.request.dispense.request", 
         inverse_name="medication_request_id", 
@@ -156,6 +200,55 @@ class MedicationRequest(models.Model):
         inverse_name="medication_request_id", 
         string="Substitutions", 
         help="Any restrictions on medication substitution.")                    
+
+class MedicationRequestRequester(models.Model):
+    _name = "hc.medication.request.requester"    
+    _description = "Medication Request Requester"               
+
+    medication_request_id = fields.Many2one(
+        comodel_name="hc.res.medication.request", 
+        string="Medication Request", 
+        help="Medication Request associated with this Medication Request Requester.")
+    agent_type = fields.Selection(
+        string="Agent Type", 
+        required="True", 
+        selection=[
+            ("Practitioner", "Practitioner"), 
+            ("Organization", "Organization"), 
+            ("Patient", "Patient"), 
+            ("Related Person", "Related Person"), 
+            ("Device", "Device")], 
+        help="Type of who ordered the initial medication(s).")
+    agent_name = fields.Char(
+        string="Agent", 
+        compute="_compute_agent_name", 
+        store="True", 
+        help="Who ordered the initial medication(s).")
+    agent_practitioner_id = fields.Many2one(
+        comodel_name="hc.res.practitioner", 
+        string="Agent Practitioner", 
+        help="Practitioner who ordered the initial medication(s).")
+    agent_organization_id = fields.Many2one(
+        comodel_name="hc.res.organization", 
+        string="Agent Organization", 
+        help="Organization ordered the initial medication(s).")
+    agent_patient_id = fields.Many2one(
+        comodel_name="hc.res.patient", 
+        string="Agent Patient", 
+        help="Patient ordered the initial medication(s).")
+    agent_related_person_id = fields.Many2one(
+        comodel_name="hc.res.related.person", 
+        string="Agent Related Person", 
+        help="Related Person ordered the initial medication(s).")
+    agent_device_id = fields.Many2one(
+        comodel_name="hc.res.device", 
+        string="Agent Device", 
+        help="Device ordered the initial medication(s).")
+    on_behalf_of_id = fields.Many2one(
+        comodel_name="hc.res.organization", 
+        string="On Behalf Of", 
+        required="True", 
+        help="Organization agent is acting for.")
 
 class MedicationRequestDispenseRequest(models.Model):   
     _name = "hc.medication.request.dispense.request"    
@@ -287,12 +380,12 @@ class MedicationRequestBasedOn(models.Model):
     based_on_referral_request_id = fields.Many2one(
         comodel_name="hc.res.referral.request", 
         string="Based On Referral Request", 
-        help="Referral Request fulfills.")                   
+        help="Referral Request fulfills.")                      
 
-class MedicationRequestRequisition(models.Model):   
-    _name = "hc.medication.request.requisition" 
-    _description = "Medication Request Requisition"     
-    _inherit = ["hc.basic.association", "hc.identifier"]    
+class MedicationRequestGroupIdentifier(models.Model):   
+    _name = "hc.medication.request.group.identifier"    
+    _description = "Medication Request Group Identifier"            
+    _inherit = ["hc.basic.association", "hc.identifier"]
 
 class MedicationRequestReasonReference(models.Model):   
     _name = "hc.medication.request.reason.reference"    

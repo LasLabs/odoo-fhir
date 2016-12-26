@@ -4,8 +4,15 @@ from openerp import models, fields, api
 
 class ContactDetail(models.Model):    
     _name = "hc.contact.detail"    
-    _description = "Contact Detail"            
+    _description = "Contact Detail"
+    # _inherits = {"hc.res.person": "person_id"}            
 
+    # person_id = fields.Many2one(
+    #     comodel_name="hc.res.person", 
+    #     string="Person", 
+    #     ondelete="restrict", 
+    #     required="True", 
+    #     help="Person who is this Contact Detail.")
     name = fields.Char(
         string="Name", 
         help="Name of an individual to contact.")               

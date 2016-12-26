@@ -52,7 +52,24 @@ class DiagnosticRequest(models.Model):
     #     string="Diagnostic Request Stage", 
     #     required="True", 
     #     selection=[("proposal", "Proposal"), ("plan", "Plan"), ("original-order", "Original-Order"), ("reflex-order", "Reflex-Order")], 
-    #     help="proposal | plan | original-order | reflex-order.")                    
+    #     help="Whether the request is a proposal, plan, an original order or a reflex order.")                    
+    intent = fields.Selection(
+        string="Intent", 
+        required="True", 
+        selection=[
+            ("logic-library", "Logic Library"), 
+            ("model-definition", "Model Definition"), 
+            ("asset-collection", "Asset Collection"), 
+            ("module-definition", "Module Definition")], 
+        help="Identifies the type of library such as a Logic Library, Model Definition, Asset Collection, or Module Definition.")
+    priority = fields.Selection(
+        string="Priority",
+        selection=[
+            ("routine", "Routine"), 
+            ("urgent", "Urgent"), 
+            ("asap", "Asap"), 
+            ("stat", "Stat")],
+        help="Indicates how quickly the title should be addressed with respect to other requests.")
     code_id = fields.Many2one(
         comodel_name="hc.vs.diagnostic.request", 
         string="Code", 
@@ -129,7 +146,8 @@ class DiagnosticRequest(models.Model):
         comodel_name="hc.diagnostic.request.occurrence.timing", 
         string="Occurrence Timing", 
         help="Timing when testing should occur.")             
-    authored = fields.Datetime(string="Authored Date", 
+    authored_on = fields.Datetime(
+        tring="Authored On", 
         help="Date request signed.")                   
     requester_type = fields.Selection(
         string="Requester Type", 
@@ -192,9 +210,10 @@ class DiagnosticRequest(models.Model):
         comodel_name="hc.res.related.person", 
         string="Requested Performer Related Person", 
         help="Related Person requested perfomer.")
-    reason_ids = fields.Many2many(
+    reason_code_ids = fields.Many2many(
         comodel_name="hc.vs.condition.code", 
-        string="Reasons", 
+        relation="diagnostic_request_reason_code_rel", 
+        string="Reason Codes", 
         help="Explanation/Justification for test.")
     supporting_info_ids = fields.One2many(
         comodel_name="hc.diagnostic.request.supporting.info", 

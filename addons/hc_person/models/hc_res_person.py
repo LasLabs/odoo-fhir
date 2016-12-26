@@ -217,17 +217,26 @@ class PersonPhoto(models.Model):
 class Partner(models.Model):
     _inherit = ["res.partner"]
 
-    name = fields.Char(
-        help="First Name + Last Name")
     is_person = fields.Boolean(
-        string="Is a person", 
+        string="Person", 
         help="This partner is a health care person.")
     is_patient = fields.Boolean(
-        string="Is a patient", 
+        string="Patient", 
         help="This partner is a patient.")
     is_practitioner = fields.Boolean(
-        string="Is a practitioner", 
+        string="Practitioner", 
         help="This partner is a health care practitioner.")
     is_related_person = fields.Boolean(
-        string="Is a related person", 
+        string="Related person", 
         help="This partner is a related person.")
+
+class ContactDetail(models.Model):  
+    _inherit = "hc.contact.detail"
+    _inherits = {"hc.res.person": "person_id"}
+
+    person_id = fields.Many2one(
+        comodel_name="hc.res.person", 
+        string="Person", 
+        ondelete="restrict", 
+        required="True", 
+        help="Person who is this Contact Detail.")

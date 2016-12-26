@@ -24,8 +24,7 @@ class PartnerTitle(models.Model):
 
 class HumanNameTerm(models.Model):  
     _name = "hc.human.name.term" 
-    _description = "Human Name Term"
-    _inherit = ["res.partner.title"]        
+    _description = "Human Name Term"       
 
     name = fields.Char(
         string="Human Name Term",
@@ -51,6 +50,9 @@ class HumanNameSuffix(models.Model):
     long_name = fields.Char(
         string="Suffix Name", 
         help="Full text of suffix abbreviation (e.g., Junior for Jr.)")
+    description = fields.Text(
+        string="Description",
+        help="Describes a suffix.")
     type = fields.Selection(
         # string="Type", 
         # selection=[
@@ -64,9 +66,6 @@ class HumanNameSuffix(models.Model):
         #     ("religious", "Religious")],
         # default="generational",
         help="Category of suffix.")
-    description = fields.Text(
-        string="Description",
-        help="Describes a suffix.")
 
 class HumanName(models.Model):
 
