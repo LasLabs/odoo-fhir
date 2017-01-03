@@ -27,17 +27,12 @@ class Person(models.Model):
         inverse_name="person_id", 
         string="Names",
         help="A name associated with the person.")
-    address_ids = fields.One2many(
-        comodel_name="hc.person.address", 
-        inverse_name="person_id", 
-        string="Addresses", 
-        help="One or more addresses for the person.")
     telecom_ids = fields.One2many(
         comodel_name="hc.person.telecom", 
         inverse_name="person_id", 
         string="Telecoms", 
-        help="A contact detail for the person.")
-    gender = fields.Selection(
+        help="A contact detail for the person.") 
+     gender = fields.Selection(
         string="Gender", 
         selection=[
             ("male", "Male"), 
@@ -48,15 +43,17 @@ class Person(models.Model):
     birth_date = fields.Date(
         string="Birth Date", 
         help="The birth date for the person.")
+    address_ids = fields.One2many(
+        comodel_name="hc.person.address", 
+        inverse_name="person_id", 
+        string="Addresses", 
+        help="One or more addresses for the person.")
     photo_ids = fields.One2many(
         comodel_name="hc.person.photo", 
         inverse_name="person_id", 
         string="Photos", 
         help="Image of the Person.")
-    # person_managing_organization_id = fields.Many2one(
-    #     comodel_name="hc.res.organization", 
-    #     string="Managing Organization", 
-    #     help="The Organization that is the custodian of the person record.")
+    # person_managing_organization_id = fields.Many2one(comodel_name="hc.res.organization", string="Managing Organization", help="The Organization that is the custodian of the person record.")
     is_active_person = fields.Boolean(
         string="Active", 
         help="This person's record is in active use.")
@@ -94,10 +91,10 @@ class PersonLink(models.Model):
         string="Target Type", 
         required="True", 
         selection=[
-            ("Person", "Person"),
-            ("Practitioner", "Practitioner"), 
-            ("Related Person", "Related Person"), 
-            ("Patient", "Patient")], 
+            ("person", "Person"),
+            ("practitioner", "Practitioner"), 
+            ("related_person", "Related Person"), 
+            ("patient", "Patient")], 
         help="Type of resource to which this actual person is associated.")                
     target_name = fields.Char(
         string="Target", 
@@ -120,8 +117,8 @@ class PersonLink(models.Model):
     #     comodel_name="hc.res.related.person", 
     #     string="Target Related Person", 
     #     help="Related Person who is the resource to which this actual person is associated.")
-    assurance_level = fields.Selection(
-        string="Link Assurance Level", 
+    assurance = fields.Selection(
+        string="Assurance Level", 
         selection=[
             ("level1", "Level 1"), 
             ("level2", "Level 2"), 
@@ -132,31 +129,14 @@ class PersonLink(models.Model):
     @api.multi          
     def _compute_target_name(self):         
         for hc_res_person in self:      
-            if hc_res_person.target_type == 'Person': 
+            if hc_res_person.target_type == 'person': 
                 hc_res_person.target_name = hc_res_person.target_person_id.name
-            # elif hc_res_person.target_type == 'Practitioner':   
+            # elif hc_res_person.target_type == 'practitioner':   
             #     hc_res_person.target_name = hc_res_person.target_practitioner_id.name
-            # elif hc_res_person.target_type == 'Related Person': 
+            # elif hc_res_person.target_type == 'related_person': 
             #     hc_res_person.target_name = hc_res_person.target_related_person_id.name
-            # elif hc_res_person.target_type == 'Patient':  
+            # elif hc_res_person.target_type == 'patient':  
             #     hc_res_person.target_name = hc_res_person.target_patient_id.name
-            
-class PersonAddress(models.Model):
-    _name = "hc.person.address" 
-    _description = "Person Address"
-    _inherit = ["hc.address.use"]
-    _inherits = {"hc.address": "address_id"}
-
-    address_id = fields.Many2one(
-        comodel_name="hc.address", 
-        string="Address", 
-        required="True",
-        ondelete="restrict", 
-        help="Address associated with this Person Address.") 
-    person_id = fields.Many2one(
-        comodel_name="hc.res.person", 
-        string="Person", 
-        help="Entity associated with this Person Address.")
 
 class PersonIdentifier(models.Model):   
     _name = "hc.person.identifier"  
@@ -202,6 +182,23 @@ class PersonTelecom(models.Model):
         string="Person", 
         help="Person associated with this Person Telecom.")
 
+class PersonAddress(models.Model):
+    _name = "hc.person.address" 
+    _description = "Person Address"
+    _inherit = ["hc.address.use"]
+    _inherits = {"hc.address": "address_id"}
+
+    address_id = fields.Many2one(
+        comodel_name="hc.address", 
+        string="Address", 
+        required="True",
+        ondelete="restrict", 
+        help="Address associated with this Person Address.") 
+    person_id = fields.Many2one(
+        comodel_name="hc.res.person", 
+        string="Person", 
+        help="Entity associated with this Person Address.")
+
 class PersonPhoto(models.Model):   
     _name = "hc.person.photo"  
     _description = "Person Photo"
@@ -217,26 +214,17 @@ class PersonPhoto(models.Model):
 class Partner(models.Model):
     _inherit = ["res.partner"]
 
+    name = fields.Char(
+        help="First Name + Last Name")
     is_person = fields.Boolean(
-        string="Person", 
+        string="Is a person", 
         help="This partner is a health care person.")
     is_patient = fields.Boolean(
-        string="Patient", 
+        string="Is a patient", 
         help="This partner is a patient.")
     is_practitioner = fields.Boolean(
-        string="Practitioner", 
+        string="Is a practitioner", 
         help="This partner is a health care practitioner.")
     is_related_person = fields.Boolean(
-        string="Related person", 
+        string="Is a related person", 
         help="This partner is a related person.")
-
-class ContactDetail(models.Model):  
-    _inherit = "hc.contact.detail"
-    _inherits = {"hc.res.person": "person_id"}
-
-    person_id = fields.Many2one(
-        comodel_name="hc.res.person", 
-        string="Person", 
-        ondelete="restrict", 
-        required="True", 
-        help="Person who is this Contact Detail.")
