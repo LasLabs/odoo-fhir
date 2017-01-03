@@ -196,23 +196,19 @@ class StructureMapGroupParameter(models.Model):
         help="Parameter value - variable or literal.")
     value_id = fields.Char(
         string="Value Id", 
-        required="True", 
-        help="Id parameter value - variable or literal.")                    
+        help="Id parameter value.")                    
     value_string = fields.Char(
         string="Value String", 
-        help="String of parameter value - variable or literal.")                    
+        help="String parameter value.")                    
     value_boolean = fields.Boolean(
         string="Value Boolean", 
-        required="True", 
-        help="Boolean parameter value - variable or literal.")                    
+        help="Boolean parameter value.")                    
     value_integer = fields.Integer(
         string="Value Integer", 
-        required="True", 
-        help="Integer parameter value - variable or literal.")                    
+        help="Integer parameter value.")                    
     value_decimal = fields.Float(
-        string="Value Decimal", 
-        required="True", 
-        help="Decimal parameter value - variable or literal.")                    
+        string="Value Decimal",  
+        help="Decimal parameter value.")                    
 
 class StructureMapGroupRule(models.Model):    
     _name = "hc.structure.map.group.rule"    
