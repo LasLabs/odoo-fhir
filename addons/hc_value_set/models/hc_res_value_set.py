@@ -398,3 +398,13 @@ class ValueSetContainsCode(models.Model):
     _name = "hc.vs.value.set.contains.code"    
     _description = "Value Set Contains Code"            
     _inherit = ["hc.value.set.contains"]    
+
+# External Reference
+
+class ElementDefinitionBinding(models.Model):    
+    _inherit = "hc.element.definition.binding"
+
+    value_set_id = fields.Many2one(
+        comodel_name="hc.res.value.set", 
+        string="Value Set", 
+        help="Value Set the reference to the value set.")
