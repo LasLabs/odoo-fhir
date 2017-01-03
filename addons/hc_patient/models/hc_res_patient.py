@@ -32,7 +32,7 @@ class Patient(models.Model):
         string="Telecoms", 
         help="A contact detail for the patient.")
     gender = fields.Selection(
-        string="Patient Gender", 
+        string="Gender", 
         selection=[
             ("male", "Male"), 
             ("female", "Female"), 
@@ -46,8 +46,7 @@ class Patient(models.Model):
         string="Birth Time", 
         help="The time when the patient was born.")
     is_deceased = fields.Boolean(
-        string="Deceased", 
-        required="False", 
+        string="Deceased",
         help="Indicates if the patient is deceased or not.")
     deceased_date = fields.Date(
         string="Deceased Date", 
