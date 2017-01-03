@@ -17,6 +17,8 @@ class Person(models.Model):
         comodel_name="hc.human.name",
         string="Full Name",
         help="Person's First Name and Last Name")
+    name = fields.Char(
+        related = "name_id.name")
     identifier_ids = fields.One2many(
         comodel_name="hc.person.identifier", 
         inverse_name="person_id", 
