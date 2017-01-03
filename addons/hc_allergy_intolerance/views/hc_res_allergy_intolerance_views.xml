@@ -21,7 +21,7 @@
             <field name="arch" type="xml">      
                 <tree string="Allergy Intolerances">
                     <field name="patient_id" string="Patient Name"/>
-                    <field name="substance_id"/>
+                    <field name="allergy_intolerance"/>
                 </tree> 
             </field>        
         </record>
@@ -40,11 +40,36 @@
                         <div name="buttons" class="oe_right oe_button_box"></div>                       
                         <group>                     
                             <group>                 
+                                <field name="code_id"/>
+                                <field name="allergy_intolerance"/>
                                 <field name="type" widget="radio"/>
-                                <field name="substance_id"/>                        
-                                <field name="status"/>                
+                                <field name="criticality"/>
+                                <field name="onset_type"/>
+                                <field name="onset_name"/>
+                                <field name="onset_date_time" attrs="{'invisible': [('onset_type','!=','date_time')]}"/>
+                                <field name="onset_age" attrs="{'invisible': [('onset_type','!=','age')]}"/>
+                                <field name="onset_age_uom_id" attrs="{'invisible': [('onset_type','!=','age')]}"/>
+                                <field name="onset_start_date" attrs="{'invisible': [('onset_type','!=','period')]}"/>
+                                <field name="onset_end_date" attrs="{'invisible': [('onset_type','!=','period')]}"/>
+                                <field name="onset_range_low" attrs="{'invisible': [('onset_type','!=','range')]}"/>
+                                <field name="onset_range_high" attrs="{'invisible': [('onset_type','!=','range')]}"/>
+                                <field name="onset_string" attrs="{'invisible': [('onset_type','!=','string')]}"/>                
                             </group>                    
-                            <group>                 
+                            <group>                             
+                                <field name="asserted_date"/>
+                                <field name="last_occurence"/>
+                                <field name="clinical_status"/>
+                                <field name="verification_status"/>
+                                <field name="recorder_type"/>
+                                <field name="recorder_name"/>
+                                <field name="recorder_practitioner_id" attrs="{'invisible': [('recorder_type','!=','practitioner')]}"/>
+                                <field name="recorder_patient_id" attrs="{'invisible': [('recorder_type','!=','patient')]}"/>
+                                <field name="asserter_type"/>
+                                <field name="asserter_name"/>
+                                <field name="asserter_patient_id" attrs="{'invisible': [('asserter_type','!=','patient')]}"/>
+                                <field name="asserter_related_person_id" attrs="{'invisible': [('asserter_type','!=','related_person')]}"/>
+                                <field name="asserter_practitioner_id" attrs="{'invisible': [('asserter_type','!=','practitioner')]}"/>
+
                             </group>                    
                         </group>                        
                         <notebook colspan="4">                                        
@@ -100,7 +125,43 @@
                                     </form>         
                                 </field>                
                             </page>
-                            <page string="Identifiers"/>                    
+                            <!-- <page string="Identifiers"/> -->
+                            <page string="Identifiers">
+                                <field name="identifier_ids" mode="tree">
+                                    <tree>
+                                        <field name="is_preferred"/>
+                                        <field name="name"/>
+                                        <field name="value"/>
+                                    </tree>
+                                    <form>
+                                        <sheet>
+                                            <div>
+                                                <h1>
+                                                    <field name="name" placeholder="Identifier"/>
+                                                </h1>
+                                            </div>
+                                            <group col="4" colspan="4">
+                                                <group>
+                                                    <field name="value"/>
+                                                    <field name="is_preferred"/>
+                                                    <field name="is_active"/>
+                                                </group>
+                                                <group>
+                                                    <field name="start_date" placeholder="Valid From"/>
+                                                    <field name="end_date" placeholder="Valid To"/>
+                                               </group>
+                                            </group>
+                                        </sheet>
+                                    </form>
+                                </field>
+                            </page>                    
+                            <page string="Categories">
+                                <field name="category_ids" mode="tree" editable="top">
+                                    <tree>
+                                        <field name="category"/>
+                                    </tree>
+                                </field>
+                            </page>
                             <page string="Annotations">
                                 <field name="note_ids" mode="tree">
                                     <tree>
