@@ -2,7 +2,8 @@ id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_hc_patient_hc_patient_animal_user,hc.patient.hc.patient.animal.user,model_hc_patient_animal,hc_base.group_hc_base_user,1,0,0,0
 access_hc_patient_hc_patient_address_user,hc.patient.hc.patient.address.user,model_hc_patient_address,hc_base.group_hc_base_user,1,0,0,0
 access_hc_patient_hc_patient_photo_user,hc.patient.hc.patient.photo.user,model_hc_patient_photo,hc_base.group_hc_base_user,1,0,0,0
-access_hc_patient_hc_patient_general_practitioner_user,hc.patient.hc.patient.general.practitioner.user,model_hc_patient_general_practitioner,hc_base.group_hc_base_user,1,0,0,0
+access_hc_patient_hc_patient_care_provider_organization_user,hc.patient.hc.patient.care.provider.organization.user,model_hc_patient_care_provider_organization,hc_base.group_hc_base_user,1,0,0,0
+access_hc_patient_hc_patient_care_provider_practitioner_user,hc.patient.hc.patient.care.provider.practitioner.user,model_hc_patient_care_provider_practitioner,hc_base.group_hc_base_user,1,0,0,0
 access_hc_patient_hc_patient_contact_user,hc.patient.hc.patient.contact.user,model_hc_patient_contact,hc_base.group_hc_base_user,1,0,0,0
 access_hc_patient_hc_patient_identifier_user,hc.patient.hc.patient.identifier.user,model_hc_patient_identifier,hc_base.group_hc_base_user,1,0,0,0
 access_hc_patient_hc_patient_language_user,hc.patient.hc.patient.language.user,model_hc_patient_language,hc_base.group_hc_base_user,1,0,0,0
@@ -14,7 +15,4 @@ access_hc_patient_hc_patient_telecom_user,hc.patient.hc.patient.telecom.user,mod
 access_hc_patient_hc_res_patient_user,hc.patient.hc.res.patient.user,model_hc_res_patient,hc_base.group_hc_base_user,1,0,0,0
 access_hc_patient_hc_vs_patient_contact_relationship_manager,hc.patient.hc.vs.patient.contact.relationship.manager,model_hc_vs_patient_contact_relationship,hc_base.group_hc_base_manager,1,1,1,1
 access_hc_patient_hc_patient_contact_telecom_user,hc.patient.hc.patient.contact.telecom.user,model_hc_patient_contact_telecom,hc_base.group_hc_base_user,1,0,0,0
-access_hc_patient_hc_patient_communication_manager,hc.patient.hc.patient.communication.manager,model_hc_patient_communication,hc_base.group_hc_base_manager,1,1,1,1
-
-
-
+access_hc_patient_hc_patient_language_manager,hc.patient.hc.patient.language.manager,model_hc_patient_language,hc_base.group_hc_base_manager,1,1,1,1
