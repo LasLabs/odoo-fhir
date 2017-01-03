@@ -32,7 +32,7 @@ class Person(models.Model):
         inverse_name="person_id", 
         string="Telecoms", 
         help="A contact detail for the person.") 
-     gender = fields.Selection(
+    gender = fields.Selection(
         string="Gender", 
         selection=[
             ("male", "Male"), 
