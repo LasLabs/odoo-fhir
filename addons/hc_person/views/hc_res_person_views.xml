@@ -191,7 +191,7 @@
                                 <field name="link_ids" mode="tree">
                                     <tree>
                                         <field name="target_name"/>
-                                        <field name="assurance_level"/>
+                                        <field name="assurance"/>
                                     </tree>
                                     <form>
                                         <sheet>
@@ -204,7 +204,7 @@
                                                     <field name="target_related_person_id" attrs="{'invisible': [('target_type','!=','Related Person')]}"/> -->
                                                 </group>
                                                 <group>
-                                                    <field name="assurance_level"/>
+                                                    <field name="assurance"/>
                                                 </group>
                                             </group>
                                         </sheet>
