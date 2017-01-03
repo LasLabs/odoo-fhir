@@ -40,6 +40,33 @@ class CarePlan(models.Model):
             ("completed", "Completed"), 
             ("cancelled", "Cancelled")], 
         help="Indicates whether the plan is currently being acted upon, represents future intentions or is now a historical record.")                
+    category_ids = fields.Many2many(
+        comodel_name="hc.vs.care.plan.category", 
+        relation="care_plan_category_rel", 
+        string="Categories", 
+        help="Type of plan.")               
+    description = fields.Text(
+        string="Description", 
+        help="Summary of nature of plan.")  
+    subject_type = fields.Selection(
+        string="Subject Type", 
+        selection=[
+            ("Patient", "Patient"), 
+            ("Group", "Group")], 
+        help="Type of who care plan is for.")
+    subject_name = fields.Char(
+        string="Subject", 
+        compute="_compute_subject_name", 
+        store="True", 
+        help="Who care plan is for.")
+    subject_patient_id = fields.Many2one(
+        comodel_name="hc.res.patient", 
+        string="Subject Patient", 
+        help="Patient who care plan is for.")
+    subject_group_id = fields.Many2one(
+        comodel_name="hc.res.group", 
+        string="Subject Group", 
+        help="Group who care plan is for.")
     context_type = fields.Selection(
         string="Context Type", 
         selection=[
@@ -65,37 +92,48 @@ class CarePlan(models.Model):
     end_date = fields.Datetime(
         string="End Date", 
         help="End of the time period plan covers.")                
+    modified = fields.Datetime(
+        string="Modified", 
+        help="When last updated.")
     author_ids = fields.One2many(
         comodel_name="hc.care.plan.author", 
         inverse_name="care_plan_id", 
         string="Authors", 
-        help="Who is responsible for plan.")                
-    modified = fields.Datetime(
-        string="Modified Date", 
-        help="When last updated.")                
-    category_ids = fields.Many2many(
-        comodel_name="hc.vs.care.plan.category", 
-        relation="care_plan_category_rel", 
-        string="Categories", 
-        help="Type of plan.")               
-    description = fields.Text(
-        string="Description", 
-        help="Summary of nature of plan.")                
-    addresses_ids = fields.One2many(
-        comodel_name="hc.care.plan.addresses", 
-        inverse_name="care_plan_id", 
-        string="Addresses", 
-        help="Health issues this plan addresses.")                
-    support_ids = fields.One2many(
-        comodel_name="hc.care.plan.support", 
-        inverse_name="care_plan_id", 
-        string="Supports", 
-        help="Information considered as part of plan.")                
+        help="Who is responsible for contents of the plan.")                
     care_team_ids = fields.One2many(
         comodel_name="hc.care.plan.care.team", 
         inverse_name="care_plan_id", 
         string="Care Teams", 
-        help="Who's involved in plan?")                
+        help="Who's involved in plan?")            
+    addresses_ids = fields.One2many(
+        comodel_name="hc.care.plan.addresses", 
+        inverse_name="care_plan_id", 
+        string="Addresses", 
+        help="Health issues this plan addresses.") 
+    support_ids = fields.One2many(
+        comodel_name="hc.care.plan.support", 
+        inverse_name="care_plan_id", 
+        string="Supports", 
+        help="Information considered as part of plan.")
+    definition_type = fields.Selection(
+        string="Definition Type", 
+        selection=[
+            ("Encounter", "Encounter"), 
+            ("Episode Of Care", "Episode Of Care")], 
+        help="Protocol or definition.")
+    definition_name = fields.Char(
+        string="Definition", 
+        compute="_compute_definition_name", 
+        store="True", 
+        help="Protocol or definition.")
+    definition_plan_definition_id = fields.Many2one(
+        comodel_name="hc.res.plan.definition", 
+        string="Care Plan Definition", 
+        help="Plan Definition protocol or definition.")
+    definition_questionnaire_id = fields.Many2one(
+        comodel_name="hc.res.questionnaire", 
+        string="Care Plan Definition Questionnaire", 
+        help="Questionnaire protocol or definition.")                   
     goal_ids = fields.One2many(
         comodel_name="hc.care.plan.goal", 
         inverse_name="care_plan_id", 
@@ -231,6 +269,25 @@ class CarePlanActivityDetail(models.Model):
         comodel_name="hc.care.plan.activity", 
         string="Activity", 
         help="Action to occur as part of plan.")                
+    definition_type = fields.Selection(
+        string="Definition Type", 
+        selection=[
+            ("Plan Definition", "Plan Definition"), 
+            ("Questionnaire", "Questionnaire")], 
+        help="Type of Information considered as part of plan.")
+    definition_name = fields.Char(
+        string="Definition", 
+        compute="_compute_definition_name", 
+        store="True", 
+        help="Protocol or definition.")
+    definition_plan_definition_id = fields.Many2one(
+        comodel_name="hc.res.plan.definition", 
+        string="Definition Plan Definition", 
+        help="Plan Definition protocol or definition.")
+    definition_questionnaire_id = fields.Many2one(
+        comodel_name="hc.res.questionnaire", 
+        string="Definition Questionnaire", 
+        help="Questionnaire protocol or definition.")
     category_id = fields.Many2one(
         comodel_name="hc.vs.care.plan.activity.category", 
         string="Category", 
@@ -425,11 +482,11 @@ class CarePlanActivityDetailGoal(models.Model):
     detail_id = fields.Many2one(
         comodel_name="hc.care.plan.activity.detail", 
         string="Detail", 
-        help="In-line definition of activity.")                
+        help="Detail associated with this Care Plan Activity Detail Goal.")                
     goal_id = fields.Many2one(
         comodel_name="hc.res.goal", 
         string="Goal", 
-        help="Goals this activity relates to.")                
+        help="Goal associated with this Care Plan Activity Detail Goal.")                
 
 class CarePlanActivityDetailPerformer(models.Model):    
     _name = "hc.care.plan.activity.detail.performer"    
@@ -439,7 +496,7 @@ class CarePlanActivityDetailPerformer(models.Model):
     detail_id = fields.Many2one(
         comodel_name="hc.care.plan.activity.detail", 
         string="Detail", 
-        help="In-line definition of activity.")                
+        help="Detail associated with this Care Plan Activity Detail Performer.")                
     performer_type = fields.Selection(
         string="Performer Type", 
         selection=[
@@ -482,7 +539,7 @@ class CarePlanActivityDetailReasonReference(models.Model):
     reason_reference_id = fields.Many2one(
         comodel_name="hc.res.condition", 
         string="Reason Reference", 
-        help="Reason Reference associated with this Care Plan Activity Detail Reason Reference.")                
+        help="Condition associated with this Care Plan Activity Detail Reason Reference.")                
 
 class CarePlanActivityDetailScheduledTiming(models.Model):    
     _name = "hc.care.plan.activity.detail.scheduled.timing"    
@@ -496,8 +553,8 @@ class CarePlanActivityProgress(models.Model):
 
     activity_id = fields.Many2one(
         comodel_name="hc.care.plan.activity", 
-        string="Detail", 
-        help="Detail associated with this Care Plan Activity Progress.")                
+        string="Activity", 
+        help="Activity associated with this Care Plan Activity Progress.")                
 
 class CarePlanAddresses(models.Model):    
     _name = "hc.care.plan.addresses"    
@@ -534,23 +591,23 @@ class CarePlanAuthor(models.Model):
         string="Author", 
         compute="_compute_author_name", 
         store="True", 
-        help="Who is responsible for plan.")                
+        help="Who is responsible for contents of the plan.")                
     author_patient_id = fields.Many2one(
         comodel_name="hc.res.patient", 
         string="Author Patient", 
-        help="Patient who is responsible for plan.")                
+        help="Patient who is responsible for contents of the plan.")                
     author_practitioner_id = fields.Many2one(
         comodel_name="hc.res.practitioner", 
         string="Author Practitioner", 
-        help="Practitioner who is responsible for plan.")                
+        help="Practitioner who is responsible for contents of the plan.")                
     author_related_person_id = fields.Many2one(
         comodel_name="hc.res.related.person", 
         string="Author Related Person", 
-        help="Related Person who is responsible for plan.")                
+        help="Related Person who is responsible for contents of the plan.")                
     author_organization_id = fields.Many2one(
         comodel_name="hc.res.organization", 
         string="Author Organization", 
-        help="Organization who is responsible for plan.")                          
+        help="Organization who is responsible for contents of the plan.")                          
 
 class CarePlanCareTeam(models.Model):    
     _name = "hc.care.plan.care.team"    
