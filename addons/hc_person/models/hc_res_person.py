@@ -129,11 +129,11 @@ class PersonLink(models.Model):
             ("level4", "Level 4")], 
         help="Level of assurance that this link is actually associated with the target resource.")
 
-    @api.multi          
-    def _compute_target_name(self):         
-        for hc_res_person in self:      
-            if hc_res_person.target_type == 'person': 
-                hc_res_person.target_name = hc_res_person.target_person_id.name
+    # @api.multi          
+    # def _compute_target_name(self):         
+    #     for hc_res_person in self:      
+    #         if hc_res_person.target_type == 'person': 
+    #             hc_res_person.target_name = hc_res_person.target_person_id.name
             # elif hc_res_person.target_type == 'practitioner':   
             #     hc_res_person.target_name = hc_res_person.target_practitioner_id.name
             # elif hc_res_person.target_type == 'related_person': 
