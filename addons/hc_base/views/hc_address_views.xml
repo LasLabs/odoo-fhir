@@ -8,7 +8,7 @@
           <field name="model">hc.address</field>
           <field name="arch" type="xml">
             <search string="Addresses">
-              <field name="name"/>
+              <field name="text"/>
               <field name="postal_code_id" string="Postal/ZIP Code"/>
               <field name="city_id" string="City/Place"/>
               <field name="district_id" string="District/County"/>
@@ -49,7 +49,7 @@
               <sheet>
                 <div class="oe_title oe_left" colwidth="200">
                   <h1>
-                    <field name="name" default_focus="1" readonly="1" placeholder="Full Address"/>
+                    <field name="text" default_focus="1" readonly="1" placeholder="Full Address"/>
                   </h1>
                 </div>
                 <group>
@@ -83,8 +83,15 @@
                     context=""
                     limit=""/>
 
-        <menuitem name="Address" id="hc_base.menu_addr" parent="hc_base.menu_datatype" sequence="10"/>
-        <menuitem name="Addresses" id="hc_base.menu_addr_addr" parent="hc_base.menu_addr" action="hc_address_action" sequence="10"/>
+        <menuitem name="Address"
+                  id="hc_base.menu_addr" 
+                  parent="hc_base.menu_datatype" 
+                  sequence="10"/>
+        <menuitem name="Addresses" 
+                  id="hc_base.menu_addr_addr" 
+                  parent="hc_base.menu_addr" 
+                  action="hc_address_action" 
+                  sequence="10"/>
 
         <!-- Postal/ZIP Code Views -->
 
@@ -215,7 +222,11 @@
                     context=""
                     limit=""/>
 
-        <menuitem name="Postal/ZIP Codes" id="hc_base.menu_addr_post" parent="hc_base.menu_addr" action="hc_vs_country_postal_code_action" sequence="20"/>
+        <menuitem name="Postal/ZIP Codes" 
+                  id="hc_base.menu_addr_post" 
+                  parent="hc_base.menu_addr" 
+                  action="hc_vs_country_postal_code_action" 
+                  sequence="20"/>
 
         <act_window id="hc_vs_country_postal_code_type_action"  
                     name="HC Country Postal/ZIP Code Types"
@@ -225,7 +236,11 @@
                     context=""
                     limit=""/>
    
-        <menuitem id="hc_base.menu_addr_post_type" name="Postal/ZIP Code Types" parent="hc_base.menu_addr" action="hc_vs_country_postal_code_type_action" sequence="21"/>
+        <menuitem id="hc_base.menu_addr_post_type" 
+                  name="Postal/ZIP Code Types" 
+                  parent="hc_base.menu_addr" 
+                  action="hc_vs_country_postal_code_type_action" 
+                  sequence="21"/>
 
         <!-- City Views -->           
                   
@@ -407,9 +422,23 @@
                     context=""
                     limit=""/>             
         
-        <menuitem name="Cities/Places" id="hc_base.menu_addr_city" parent="hc_base.menu_addr" action="hc_vs_country_city_action" sequence="30"/>
-        <menuitem name="City/Place Types" id="hc_base.menu_addr_city_type" parent="hc_base.menu_addr" action="hc_vs_country_city_type_action" sequence="31"/>
-        <menuitem name="City/Place Status" id="hc_base.menu_addr_city_status" parent="hc_base.menu_addr" action="hc_vs_country_city_status_action" sequence="32"/>
+        <menuitem name="Cities/Places" 
+                  id="hc_base.menu_addr_city" 
+                  parent="hc_base.menu_addr" 
+                  action="hc_vs_country_city_action" 
+                  sequence="30"/>
+        
+        <menuitem name="City/Place Types" 
+                  id="hc_base.menu_addr_city_type" 
+                  parent="hc_base.menu_addr" 
+                  action="hc_vs_country_city_type_action" 
+                  sequence="31"/>
+        
+        <menuitem name="City/Place Status" 
+                  id="hc_base.menu_addr_city_status" 
+                  parent="hc_base.menu_addr" 
+                  action="hc_vs_country_city_status_action" 
+                  sequence="32"/>
      
         <!-- District Views -->           
                 
@@ -543,7 +572,11 @@
                     context=""
                     limit=""/>
 
-        <menuitem name="Districts/Counties" id="hc_base.menu_addr_dist" parent="hc_base.menu_addr" action="hc_vs_country_district_action" sequence="40"/>
+        <menuitem name="Districts/Counties" 
+                  id="hc_base.menu_addr_dist" 
+                  parent="hc_base.menu_addr" 
+                  action="hc_vs_country_district_action" 
+                  sequence="40"/>
 
         <act_window id="hc_vs_country_district_type_action" 
                     name="HC Country District Types"
@@ -553,7 +586,11 @@
                     context=""
                     limit=""/>
    
-        <menuitem name="District/County Types" id="hc_base.menu_addr_dist_type" parent="hc_base.menu_addr" action="hc_vs_country_district_type_action" sequence="41"/>
+        <menuitem name="District/County Types" 
+                  id="hc_base.menu_addr_dist_type" 
+                  parent="hc_base.menu_addr" 
+                  action="hc_vs_country_district_type_action" 
+                  sequence="41"/>
 
         <!-- State Views -->
 
@@ -822,7 +859,11 @@
                     context=""
                     limit=""/>
 
-        <menuitem name="Divisions" id="hc_base.menu_addr_div" parent="hc_base.menu_addr" action="hc_vs_country_division_action" sequence="60"/>
+        <menuitem name="Divisions" 
+          id="hc_base.menu_addr_div" 
+          parent="hc_base.menu_addr" 
+          action="hc_vs_country_division_action" 
+          sequence="60"/>
 
         <act_window id="hc_vs_country_division_type_action" 
                     name="HC Country Division Types"
@@ -832,7 +873,11 @@
                     context=""
                     limit=""/>
 
-        <menuitem name="Division Types" id="hc_base.menu_addr_div_type" parent="hc_base.menu_addr" action="hc_vs_country_division_type_action" sequence="61"/>
+        <menuitem name="Division Types" 
+                  id="hc_base.menu_addr_div_type" 
+                  parent="hc_base.menu_addr" 
+                  action="hc_vs_country_division_type_action" 
+                  sequence="61"/>
 
         <!-- Region Views -->
 
@@ -958,7 +1003,11 @@
                     context=""
                     limit=""/>
 
-        <menuitem name="Regions" id="hc_base.menu_addr_reg" parent="hc_base.menu_addr" action="hc_vs_country_region_action" sequence="70"/>
+        <menuitem name="Regions" 
+                  id="hc_base.menu_addr_reg" 
+                  parent="hc_base.menu_addr" 
+                  action="hc_vs_country_region_action" 
+                  sequence="70"/>
 
         <act_window id="hc_vs_country_region_type_action" 
                     name="HC Country Region Types"
@@ -968,7 +1017,11 @@
                     context=""
                     limit=""/> 
 
-        <menuitem name="Region Types" id="hc_base.menu_addr_reg_type" parent="hc_base.menu_addr" action="hc_vs_country_region_type_action" sequence="71"/>
+        <menuitem name="Region Types" 
+                  id="hc_base.menu_addr_reg_type" 
+                  parent="hc_base.menu_addr" 
+                  action="hc_vs_country_region_type_action" 
+                  sequence="71"/>
 
     </data>
 </openerp>
