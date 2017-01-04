@@ -19,19 +19,19 @@ class CareTeam(models.Model):
             ("inactive", "Inactive"), 
             ("entered in error", "Entered In Error")], 
         help="Indicates whether the care team is currently active, suspended, inactive, or entered in error.")                
-    type_ids = fields.Many2many(
+    category_ids = fields.Many2many(
         comodel_name="hc.vs.participant.type", 
-        relation="care_team_content_type_rel", 
+        relation="care_team_category_rel", 
         string="Categories", 
-        help="Identifies what kind of team.")                
+        help="Identifies what kind of team (e.g., care plan team, episode of care team, longitudinal care team).")               
     name = fields.Char(
         string="Name", 
         help="Name of the team, such as crisis assessment team.")                
     subject_type = fields.Selection(
         string="Subject Type", 
         selection=[
-            ("Patient", "Patient"), 
-            ("Group", "Group")], 
+            ("patient", "Patient"), 
+            ("group", "Group")], 
         help="Type of who care team is for.")                
     subject_name = fields.Char(
         string="Subject", 
@@ -46,10 +46,16 @@ class CareTeam(models.Model):
         comodel_name="hc.res.group", 
         string="Subject Group", 
         help="Group who care team is for.")                
+    period_start_date = fields.Datetime(
+        string="Period Start Date", 
+        help="Start of the time period team covers.")
+    period_end_date = fields.Datetime(
+        string="Period End Date", 
+        help="End of the time period team covers.")              
     managing_organization_id = fields.Many2one(
         comodel_name="hc.res.organization", 
         string="Managing Organization", 
-        help="Organization responsible for the care team.")                
+        help="Organization responsible for the care team.")
     participant_ids = fields.One2many(
         comodel_name="hc.care.team.participant", 
         inverse_name="care_team_id", 
@@ -71,11 +77,11 @@ class CareTeamParticipant(models.Model):
     member_type = fields.Selection(
         string="Member Type", 
         selection=[
-            ("Practitioner", "Practitioner"), 
-            ("Related Person", "Related Person"), 
-            ("Patient", "Patient"), 
-            ("Organization", "Organization")], 
-        help="Type of who is involved.")                
+            ("practitioner", "Practitioner"), 
+            ("related_person", "Related Person"), 
+            ("patient", "Patient"), 
+            ("organization", "Organization")], 
+        help="Type of who is involved.")              
     member_name = fields.Char(
         string="Member", 
         compute="_compute_member_name", 

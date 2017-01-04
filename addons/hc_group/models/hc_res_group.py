@@ -72,8 +72,8 @@ class GroupCharacteristic(models.Model):
         selection=[
             ("code", "Code"), 
             ("boolean", "Boolean"),
-            ("Quantity", "Quantity"),
-            ("Range", "Range")], 
+            ("quantity", "Quantity"),
+            ("range", "Range")], 
         help="Type of value held by characteristic.")
     value_name = fields.Char(
         string="Value", 
@@ -82,8 +82,8 @@ class GroupCharacteristic(models.Model):
         comodel_name="hc.vs.group.characteristic.value", 
         string="Value Code", 
         help="Code of value held by characteristic.")                               
-    is_value = fields.Boolean(
-        string="Value", 
+    value_boolean = fields.Boolean(
+        string="Value Boolean", 
         help="Boolean value held by characteristic.")                
     value_quantity = fields.Float(
         string="Value Quantity", 
@@ -94,9 +94,8 @@ class GroupCharacteristic(models.Model):
     value_high_limit = fields.Float(
         string="Value High Limit", 
         help="High limit of value held by characteristic.")                
-    is_included = fields.Boolean(
-        string="Include", 
-        default="True", 
+    exclude = fields.Boolean(
+        string="Exclude", 
         help="Group includes or excludes this characteristic.")                
     period_start_date = fields.Datetime(
         string="Period Start Date", 
@@ -118,11 +117,11 @@ class GroupMember(models.Model):
         string="Type", 
         required="True", 
         selection=[
-            ("Patient", "Patient"), 
-            ("Practitioner", "Practitioner"),
-            ("Device", "Device"),
-            ("Medication", "Medication"),
-            ("Substance", "Substance")], 
+            ("patient", "Patient"), 
+            ("practitioner", "Practitioner"),
+            ("device", "Device"),
+            ("medication", "Medication"),
+            ("substance", "Substance")], 
         help="Type of reference to the group member.")                
     entity_name = fields.Char(
         string="Entity", 

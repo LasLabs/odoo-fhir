@@ -103,7 +103,7 @@
 													<field name="value_type"/>   
 												</group>
 												<group>
-													<field name="is_included" widget="upgrade_boolean"/>
+													<field name="exclude" widget="upgrade_boolean"/>
 													<field name="period_start_date"/>
 													<field name="period_end_date"/>  
 												</group>
@@ -123,6 +123,7 @@
 											<group col="4" colspan="4">	
 												<field name="entity_type"/>
 												<field name="entity_name"/>
+
 												<field name="is_member" widget="upgrade_boolean"/>
 											</group>
 										</sheet>		

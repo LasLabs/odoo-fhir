@@ -25,10 +25,10 @@ class Patient(models.Model):
             ("animal", "Animal")],
         default="human",  
         help="Patient is human or animal.")
-    animal_name = fields.Char(
-        string="Animal Name",
-        required="True",
-        help="Name of the animal.")
+    # animal_name = fields.Char(
+    #     string="Animal Name",
+    #     required="True",
+    #     help="Name of the animal.")
     is_active = fields.Boolean(
         string="Active", 
         help="Whether this patient's record is in active use.")

@@ -10,7 +10,7 @@ access_hc_base_hc_basic_association_user,hc.base.hc.basic.association.user,model
 access_hc_base_hc_human_name_user,hc.base.hc.human.name.user,model_hc_human_name,hc_base.group_hc_base_user,1,0,0,0
 access_hc_base_hc_human_name_use_user,hc.base.hc.human.name.use.user,model_hc_human_name_use,hc_base.group_hc_base_user,1,0,0,0
 access_hc_base_hc_human_name_user,hc.base.hc.human.name.user,model_hc_human_name,group_hc_base_user,1,0,0,0
-access_hc_base_hc_vs_human_name_suffix_manager,hc.base.hc.vs.human.name.suffix.manager,model_hc_vs_human_name_suffix,group_hc_base_manager,1,1,1,1
+access_hc_base_hc_human_name_suffix_user,hc.base.hc.human.name.suffix.user,model_hc_human_name_suffix,group_hc_base_user,1,0,0,0
 access_hc_base_hc_human_name_term_manager,hc.base.hc.human.name.term.manager,model_hc_human_name_term,group_hc_base_manager,1,1,1,1
 access_hc_base_hc_human_name_term_user,hc.base.hc.human.name.term.user,model_hc_human_name_term,group_hc_base_user,1,0,0,0
 access_hc_base_hc_identifier_manager,hc.base.hc.identifier.manager,model_hc_identifier,group_hc_base_manager,1,1,1,1
@@ -148,11 +148,26 @@ access_hc_base_hc_trigger_definition_event_timing_user,hc.base.hc.trigger.defini
 access_hc_base_hc_trigger_definition_event_data_user,hc.base.hc.trigger.definition.event.data.user,model_hc_trigger_definition_event_data,hc_base.group_hc_base_user,1,0,0,0
 access_hc_base_hc_vs_action_code_manager,hc.base.hc.vs.action.code.manager,model_hc_vs_action_code,hc_base.group_hc_base_manager,1,1,1,1
 access_hc_base_hc_vs_message_event_manager,hc.base.hc.vs.message.event.manager,model_hc_vs_message_event,hc_base.group_hc_base_manager,1,1,1,1
-access_hc_base_hc_element_definition_user,hc.base.hc.element.definition.user,model_hc_element_definition,hc_base.group_hc_base_user,1,0,0,0
 access_hc_base_hc_vs_time_uom_manager,hc.base.hc.vs.time.uom.manager,model_hc_vs_time_uom,hc_base.group_hc_base_manager,1,1,1,1
 access_hc_base_hc_vs_designation_use_manager,hc.base.hc.vs.designation.use.manager,model_hc_vs_designation_use,hc_base.group_hc_base_manager,1,1,1,1
 access_hc_base_hc_address_use_manager,hc.base.hc.address.use.manager,model_hc_address_use,hc_base.group_hc_base_manager,1,1,1,1
 access_hc_base_hc_vs_defined_type_manager,hc.base.hc.vs.defined.type.manager,model_hc_vs_defined_type,hc_base.group_hc_base_manager,1,1,1,1
+access_hc_base_hc_element_definition_user,hc.base.hc.element.definition.user,model_hc_element_definition,hc_base.group_hc_base_user,1,0,0,0
+access_hc_base_hc_element_definition_slicing_user,hc.base.hc.element.definition.slicing.user,model_hc_element_definition_slicing,hc_base.group_hc_base_user,1,0,0,0
+access_hc_base_hc_element_definition_base_user,hc.base.hc.element.definition.base.user,model_hc_element_definition_base,hc_base.group_hc_base_user,1,0,0,0
+access_hc_base_hc_element_definition_type_user,hc.base.hc.element.definition.type.user,model_hc_element_definition_type,hc_base.group_hc_base_user,1,0,0,0
+access_hc_base_hc_element_definition_example_user,hc.base.hc.element.definition.example.user,model_hc_element_definition_example,hc_base.group_hc_base_user,1,0,0,0
+access_hc_base_hc_element_definition_constraint_user,hc.base.hc.element.definition.constraint.user,model_hc_element_definition_constraint,hc_base.group_hc_base_user,1,0,0,0
+access_hc_base_hc_element_definition_binding_user,hc.base.hc.element.definition.binding.user,model_hc_element_definition_binding,hc_base.group_hc_base_user,1,0,0,0
+access_hc_base_hc_element_definition_mapping_user,hc.base.hc.element.definition.mapping.user,model_hc_element_definition_mapping,hc_base.group_hc_base_user,1,0,0,0
+access_hc_base_hc_element_definition_representation_user,hc.base.hc.element.definition.representation.user,model_hc_element_definition_representation,hc_base.group_hc_base_user,1,0,0,0
+access_hc_base_hc_element_definition_alias_user,hc.base.hc.element.definition.alias.user,model_hc_element_definition_alias,hc_base.group_hc_base_user,1,0,0,0
+access_hc_base_hc_element_definition_condition_user,hc.base.hc.element.definition.condition.user,model_hc_element_definition_condition,hc_base.group_hc_base_user,1,0,0,0
+access_hc_base_hc_element_definition_slicing_discriminator_user,hc.base.hc.element.definition.slicing.discriminator.user,model_hc_element_definition_slicing_discriminator,hc_base.group_hc_base_user,1,0,0,0
+access_hc_base_hc_element_definition_type_aggregation_user,hc.base.hc.element.definition.type.aggregation.user,model_hc_element_definition_type_aggregation,hc_base.group_hc_base_user,1,0,0,0
+access_hc_base_hc_vs_element_definition_code_manager,hc.base.hc.vs.element.definition.code.manager,model_hc_vs_element_definition_code,hc_base.group_hc_base_manager,1,1,1,1
+
+
 
 
 
