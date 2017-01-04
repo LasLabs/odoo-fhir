@@ -67,6 +67,11 @@ clear --clear the terminal screen
 sudo touch /odoo/odoo-fhir/addons/hc_allergy_intolerance/views/hc_route_codes_views.xml --create file
 sudo wget http://url -- download to current location
 ```
+* Remember commands
+```
+sudo chown $USER:$USER $HOME/.bash_history
+sudo chmod u+w $HOME/.bash_history
+```
 * Update GIT
 ```
 sudo apt-get update
