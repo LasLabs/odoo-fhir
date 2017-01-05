@@ -53,8 +53,8 @@ class ReferralRequest(models.Model):
     context_type = fields.Selection(
         string="Context Type", 
         selection=[
-            ("Encounter", "Encounter"), 
-            ("Episode of Care", "Episode Of Care")], 
+            ("encounter", "Encounter"), 
+            ("episode_of_care", "Episode Of Care")], 
         help="Type of originating encounter.")                
     context_name = fields.Char(
         string="Context", 
@@ -81,9 +81,9 @@ class ReferralRequest(models.Model):
     requester_type = fields.Selection(
         string="Requester Type", 
         selection=[
-            ("Practitioner", "Practitioner"), 
-            ("Organization", "Organization"), 
-            ("Patient", "Patient")], 
+            ("practitioner", "Practitioner"), 
+            ("organization", "Organization"), 
+            ("patient", "Patient")], 
         help="Type of requester of referral / transfer of care.")                
     requester_name = fields.Char(
         string="Requester", 
@@ -156,10 +156,10 @@ class ReferralRequestBasedOn(models.Model):
     based_on_type = fields.Selection(
         string="Based On Type", 
         selection=[
-            ("Referral Request", "Referral Request"), 
+            ("referral_request", "Referral Request"), 
             # ("Care Plan", "Care Plan"), 
-            ("Diagnostic Order", "Diagnostic Order"), 
-            ("Procedure Request", "Procedure Request")], 
+            ("diagnostic_request", "Diagnostic Request"), 
+            ("procedure_request", "Procedure Request")], 
         help="Type of request fulfilled by this request.")                
     based_on_name = fields.Char(
         string="Based On", 
@@ -195,8 +195,8 @@ class ReferralRequestRecipient(models.Model):
     recipient_type = fields.Selection(
         string="Recipient Type", 
         selection=[
-            ("Practitioner", "Practitioner"), 
-            ("Organization", "Organization")], 
+            ("practitioner", "Practitioner"), 
+            ("organization", "Organization")], 
         help="Type of receiver of referral / transfer of care request.")                
     recipient_name = fields.Char(
         string="Recipient", 
@@ -225,7 +225,7 @@ class ReferralRequestSupportingInformation(models.Model):
         string="Supporting Information Type", 
         selection=[
             ("string", "String"), 
-            ("Referral Request", "Referral Request")], 
+            ("referral_request", "Referral Request")], 
         help="Type of additional information to support referral or transfer of care request.")                
     supporting_information_name = fields.Char(
         string="Supporting Information", 
