@@ -11,15 +11,41 @@ class MedicationStatement(models.Model):
         inverse_name="medication_statement_id", 
         string="Identifiers", 
         help="External Identifier.")              
+    based_on_ids = fields.One2many(
+        comodel_name="hc.medication.statement.based.on", 
+        inverse_name="medication_statement_id", 
+        string="Based Ons", 
+        help="Fulfils plan, proposal or order.")
+    context_type = fields.Selection(
+        string="Context Type", 
+        selection=[
+            ("encounter", "Encounter"), 
+            ("episode_of_care", "Episode Of Care")], 
+        help="Encounter / Episode associated with Medication Statement.")
+    context_name = fields.Char(
+        string="Context", 
+        compute="_compute_context_name", 
+        store="True", 
+        help="Encounter / Episode associated with Medication Statement.")
+    context_encounter_id = fields.Many2one(
+        comodel_name="hc.res.encounter", 
+        string="Context Encounter", 
+        help="Encounter associated with medication statement.")
+    context_episode_of_care_id = fields.Many2one(
+        comodel_name="hc.res.episode.of.care", 
+        string="Context Episode Of Care", 
+        help="Episode Of Care associated with medication statement.")
     status = fields.Selection(
-        string="Medication Statement Status", 
+        string="Status", 
         required="True", 
         selection=[
             ("active", "Active"), 
             ("completed", "Completed"), 
             ("entered-in-error", "Entered-In-Error"), 
-            ("intended", "Intended")], 
-        help="A coded concept indicating the current status of a Medication Statement.")             
+            ("intended", "Intended"), 
+            ("stopped", "Stopped"), 
+            ("on-hold", "On-Hold")], 
+        help="A code representing the patient or other source's judgment about the state of the medication used that this statement is about.")             
     medication_code_id = fields.Many2one(
         comodel_name="hc.vs.medication.code", 
         string="Medication Code", 
@@ -114,6 +140,50 @@ class MedicationStatementIdentifier(models.Model):
         comodel_name="hc.res.medication.statement", 
         string="Medication Statement", 
         help="Medication Statement associated with this Medication Statement Identifier.")             
+
+class MedicationStatementBasedOn(models.Model): 
+    _name = "hc.medication.statement.based.on"
+    _description = "Medication Statement Based On"         
+    _inherit = ["hc.basic.association"]
+
+    medication_statement_id = fields.Many2one(
+        comodel_name="hc.res.medication.statement", 
+        string="Medication Statement", 
+        help="Medication Statement associated with this Medication Statement Based On.")                   
+    based_on_type = fields.Selection(
+        string="Based On Type", 
+        selection=[
+            ("medication_request", "Medication Request"), 
+            ("care_plan", "Care Plan"), 
+            ("diagnostic_request", "Diagnostic Request"), 
+            ("procedure_request", "Procedure Request"), 
+            ("referral_request", "Referral Request")], 
+        help="Type of fulfils plan, proposal or order.")                 
+    based_on_name = fields.Char(
+        string="Based On", 
+        compute="_compute_based_on_name", 
+        store="True", 
+        help="Fulfils plan, proposal or order")                  
+    based_on_medication_request_id = fields.Many2one(
+        comodel_name="hc.res.medication.request", 
+        string="Based On Medication Request", 
+        help="Medication Request that is fulfilled in whole or in part by this event.")                    
+    based_on_care_plan_id = fields.Many2one(
+        comodel_name="hc.res.care.plan", 
+        string="Based On Care Plan", 
+        help="Care Plan that is fulfilled in whole or in part by this event.")                    
+    based_on_diagnostic_request_id = fields.Many2one(
+        comodel_name="hc.res.diagnostic.request", 
+        string="Based On Diagnostic Request", 
+        help="Diagnostic Request that is fulfilled in whole or in part by this event.")                    
+    based_on_procedure_request_id = fields.Many2one(
+        comodel_name="hc.res.procedure.request", 
+        string="Based On Procedure Request", 
+        help="Procedure Request that is fulfilled in whole or in part by this event.")                    
+    based_on_referral_request_id = fields.Many2one(
+        comodel_name="hc.res.referral.request", 
+        string="Based On Referral Request", 
+        help="Referral Request that is fulfilled in whole or in part by this event.")                    
 
 class MedicationStatementReasonForUseReference(models.Model):   
     _name = "hc.medication.statement.reason.for.use.reference"  
