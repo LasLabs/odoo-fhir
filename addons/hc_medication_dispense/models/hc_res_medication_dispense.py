@@ -11,20 +11,20 @@ class MedicationDispense(models.Model):
         string="Identifier", 
         help="External identifier.")             
     status = fields.Selection(
-        string="Medication Dispense Status", 
+        string="Status", 
         selection=[
             ("in-progress", "In-Progress"), 
             ("on-hold", "On-Hold"), 
             ("completed", "Completed"), 
             ("entered-in-error", "Entered-In-Error"), 
             ("stopped", "Stopped")], 
-        help="A code specifying the state of the set of dispense events.")             
+        help="A code specifying the state of the set of dispense events.")         
     medication_type = fields.Selection(
         string="Medication Type", 
         required="True", 
         selection=[
             ("code", "Code"), 
-            ("Medication", "Medication")], 
+            ("medication", "Medication")], 
         help="Type of what medication was supplied.")             
     medication_name = fields.Char(
         string="Medication", 
@@ -35,7 +35,7 @@ class MedicationDispense(models.Model):
         comodel_name="hc.vs.medication.code", 
         string="Medication Code", 
         help="Code of what medication was supplied.")              
-    medication_medication_id = fields.Many2one(
+    medication_id = fields.Many2one(
         comodel_name="hc.res.medication", 
         string="Medication", 
         help="What medication was supplied.")              
@@ -119,6 +119,10 @@ class MedicationDispenseSubstitution(models.Model):
         comodel_name="hc.res.medication.dispense", 
         string="Medication Dispense", 
         help="Medication Dispense associated with this Medication Dispense Substitution.")                
+    was_substituted = fields.Boolean(
+        string="Was Substituted", 
+        required="True", 
+        help="Whether a substitution was or was not performed on the dispense.")
     type_id = fields.Many2one(
         comodel_name="hc.vs.substance.admin.substitution.code", 
         string="Type", 
@@ -127,7 +131,8 @@ class MedicationDispenseSubstitution(models.Model):
     reason_ids = fields.Many2many(
         comodel_name="hc.vs.substance.admin.substitution.reason", 
         relation="medication_dispense_substitution_reason_rel", 
-        string="Reasons", help="Why was substitution made.")                
+        string="Reasons", 
+        help="Why was substitution made.")                
     responsible_party_ids = fields.One2many(
         comodel_name="hc.medication.dispense.substitution.responsible.party", 
         inverse_name="substitution_id", 
@@ -193,8 +198,8 @@ class MedicationDispenseReceiver(models.Model):
     receiver_type = fields.Selection(
         string="Receiver Type", 
         selection=[
-            ("Patient", "Patient"), 
-            ("Practitioner", "Practitioner")], 
+            ("patient", "Patient"), 
+            ("practitioner", "Practitioner")], 
         help="Type of who collected the medication.")                
     receiver_name = fields.Char(
         string="Receiver", 
