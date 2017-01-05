@@ -59,10 +59,10 @@
 
         <menuitem id="hc_base.menu_language" 
                   name="Languages" 
-                  parent="hc_base.menu_datatype" 
+                  parent="hc_base.menu_vs" 
                   action="hc_language_action" 
                   groups="hc_base.group_hc_base_manager" 
-                  sequence="55"/>
+                  sequence="12"/>
 
     </data>
 </openerp>
