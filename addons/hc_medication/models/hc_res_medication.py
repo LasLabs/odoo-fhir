@@ -66,9 +66,9 @@ class MedicationProductIngredient(models.Model):
         string="Item Type",
         required="True",
         selection=[
-            ("Code", "Code"), 
-            ("Substance", "Substance"), 
-            ("Medication", "Medication")], 
+            ("code", "Code"), 
+            ("substance", "Substance"), 
+            ("medication", "Medication")], 
         help="Type of the product contained.")                    
     item_name = fields.Char(
         string="Item", 
@@ -86,13 +86,31 @@ class MedicationProductIngredient(models.Model):
         comodel_name="hc.res.medication", 
         string="Item Medication", 
         help="Medication product contained.")                    
-    ingredient_quantity_numerator = fields.Float(
-        string="Ingredient Quantity Numerator", 
-        help="Numerator value of how much ingredient in product.")                    
-    total_quantity_denominator = fields.Float(
-        string="Total Quantity Denominator", 
-        help="Denominator value of how much ingredient in product.")                    
-
+    amount_numerator = fields.Float(
+        string="Amount Numerator", 
+        help="Numerator value of quantity of ingredient present.")
+    amount_numerator_uom_id = fields.Many2one(
+        comodel_name="product.uom", 
+        string="Amount Numerator UOM", 
+        help="Amount Numerator unit of measure.")
+    amount_denominator = fields.Float(
+        string="Amount Denominator", 
+        help="Denominator value of quantity of ingredient present.")
+    amount_denominator_uom_id = fields.Many2one(
+        comodel_name="product.uom", 
+        string="Amount Denominator UOM", 
+        help="Amount Denominator unit of measure.")
+    amount = fields.Float(
+        string="Amount", 
+        compute="_compute_amount", 
+        store="True", 
+        help="Quantity of ingredient present.")
+    amount_uom = fields.Char(
+        string="Amount UOM", 
+        compute="_compute_amount_uom", 
+        store="True", 
+        help="Amount unit of measure. For example, 250 mg per tablet.")
+                   
 class MedicationProductBatch(models.Model): 
     _name = "hc.medication.product.batch"   
     _description = "Medication Product Batch"
