@@ -13,7 +13,8 @@ fatal: loose object 33b2710a3f7a6e5cb8201d748056bf79f0348812 (stored in .git/obj
 
 * Delete empty file `sudo rm .git/objects/33/b2710a3f7a6e5cb8201d748056bf79f0348812` then `sudo git fsck –full`until empty files are removed. You will get this message.
 
-```odoo@odoo-VirtualBox:/odoo/odoo-fhir$ sudo git fsck --fullChecking object directories: 100% (256/256), done.
+```
+odoo@odoo-VirtualBox:/odoo/odoo-fhir$ sudo git fsck --fullChecking object directories: 100% (256/256), done.
 Checking objects: 100% (5955/5955), done.
 error: HEAD: invalid sha1 pointer 767b35323f8b43bfaa6f21b4a562473e51561b57
 error: refs/heads/master: invalid sha1 pointer 767b35323f8b43bfaa6f21b4a562473e51561b57
@@ -37,11 +38,13 @@ missing blob 783b176c7c3c2d825c29794ae629fe115ad599eb
 
 * Get last 2 lines of the reflog `tail -n 2 .git/logs/refs/heads/master`
 
-```16326ea08ee42069d8fd3d0af360618f0bf73c28 b3b21a92bed2988eaf089d71d3f9643841291890 Luigi Sison <lsison@moxylus.com> 1483544046 -0800	commit: changes```
+```
+16326ea08ee42069d8fd3d0af360618f0bf73c28 b3b21a92bed2988eaf089d71d3f9643841291890 Luigi Sison <lsison@moxylus.com> 1483544046 -0800	commit: changes
+```
 
 * `sudo git show b3b21a92bed2988eaf089d71d3f9643841291890`
 
-* Point HEADv`sudo git update-ref HEAD b3b21a92bed2988eaf089d71d3f9643841291890`
+* Point HEAD `sudo git update-ref HEAD b3b21a92bed2988eaf089d71d3f9643841291890`
 
 * Kill the index file and reset the repo
 `sudo rm .git/index`
