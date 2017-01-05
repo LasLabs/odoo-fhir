@@ -64,7 +64,7 @@ class ProcedureRequest(models.Model):
     scheduled_type = fields.Selection(
         string="Scheduled Type", 
         selection=[
-            ("datetime", "Datetime"), 
+            ("date_time", "Date Time"), 
             ("period", "Period"), 
             ("timing", "Timing")], 
         help="Type of when procedure should occur.")
@@ -73,9 +73,9 @@ class ProcedureRequest(models.Model):
         compute="_compute_scheduled_name", 
         store="True", 
         help="When procedure should occur.")
-    scheduled_datetime = fields.Datetime(
-        string="Scheduled Datetime", 
-        help="dateTime when procedure should occur.")            
+    scheduled_date_time = fields.Datetime(
+        string="Scheduled Date Time", 
+        help="Date Time when procedure should occur.")            
     scheduled_start_date = fields.Datetime(
         string="Scheduled Start Date", 
         help="Start of the when procedure should occur.")
@@ -96,7 +96,7 @@ class ProcedureRequest(models.Model):
             ("practitioner", "Practitioner"), 
             ("organization", "Organization"), 
             ("patient", "Patient"), 
-            ("related person", "Related Person")], 
+            ("related_person", "Related Person")], 
         help="Type of who should perform the procedure.")
     performer_name = fields.Char(
         string="Performer", 
@@ -169,7 +169,7 @@ class ProcedureRequest(models.Model):
         selection=[
             ("Practitioner", "Practitioner"), 
             ("Patient", "Patient"), 
-            ("Related Person", "Related Person"), 
+            ("related_person", "Related Person"), 
             ("Device", "Device")], 
         help="Type of Ordering Party.")
     orderer_name = fields.Char(
@@ -221,8 +221,8 @@ class ProcedureRequest(models.Model):
     @api.multi          
     def _compute_scheduled_name(self):          
         for hc_procedure_used_request in self:      
-            if hc_procedure_used_request.scheduled_type == 'datetime':  
-                hc_procedure_used_request.scheduled_name = hc_procedure_used_request.scheduled_datetime_id.name
+            if hc_procedure_used_request.scheduled_type == 'date_time':  
+                hc_procedure_used_request.scheduled_name = hc_procedure_used_request.scheduled_date_time_id.name
             elif hc_procedure_used_request.scheduled_type == 'period':  
                 hc_procedure_used_request.scheduled_name = hc_procedure_used_request.scheduled_period_id.name
             elif hc_procedure_used_request.scheduled_type == 'timing':  
@@ -237,7 +237,7 @@ class ProcedureRequest(models.Model):
                 hc_res_procedure.performer_name = hc_res_procedure.performer_organization_id.name
             elif hc_res_procedure.performer_type == 'patient':  
                 hc_res_procedure.performer_name = hc_res_procedure.performer_patient_id.name
-            elif hc_res_procedure.performer_type == 'related person':   
+            elif hc_res_procedure.performer_type == 'related_person':   
                 hc_res_procedure.performer_name = hc_res_procedure.performer_related_person_id.name
 
     @api.multi          
@@ -255,7 +255,7 @@ class ProcedureRequest(models.Model):
                 hc_res_procedure.orderer_name = hc_res_procedure.orderer_practitioner_id.name
             elif hc_res_procedure.orderer_type == 'patient':    
                 hc_res_procedure.orderer_name = hc_res_procedure.orderer_patient_id.name
-            elif hc_res_procedure.orderer_type == 'related person': 
+            elif hc_res_procedure.orderer_type == 'related_person': 
                 hc_res_procedure.orderer_name = hc_res_procedure.orderer_related_person_id.name
             elif hc_res_procedure.orderer_type == 'device': 
                 hc_res_procedure.orderer_name = hc_res_procedure.orderer_device_id.name                    
@@ -269,6 +269,21 @@ class ProcedureRequestIdentifier(models.Model):
         comodel_name="hc.res.procedure.request", 
         string="Procedure Request", 
         help="Procedure Request associated with this Procedure Request Identifier.")                    
+
+class ProcedureRequestNotes(models.Model):    
+    _name = "hc.procedure.request.notes"    
+    _description = "Procedure Request Notes"        
+    _inherit = ["hc.basic.association", "hc.annotation"]    
+
+    procedure_request_id = fields.Many2one(
+        comodel_name="hc.res.procedure.request", 
+        string="Procedure Request", 
+        help="Procedure Request associated with this Procedure Request Note.")                    
+
+class ProcedureRequestScheduledTiming(models.Model):    
+    _name = "hc.procedure.request.scheduled.timing"    
+    _description = "Procedure Request Scheduled Timing"        
+    _inherit = ["hc.basic.association", "hc.timing"]    
 
 class ProcedureRequestSupportingInfo(models.Model):
     _name = "hc.procedure.request.supporting.info"  
@@ -297,22 +312,7 @@ class ProcedureRequestSupportingInfo(models.Model):
         comodel_name="hc.vs.resource.type", 
         string="Supporting Info Code", 
         help="Type of extra information to use in performing request.")
-
-class ProcedureRequestNotes(models.Model):    
-    _name = "hc.procedure.request.notes"    
-    _description = "Procedure Request Notes"        
-    _inherit = ["hc.basic.association", "hc.annotation"]    
-
-    procedure_request_id = fields.Many2one(
-        comodel_name="hc.res.procedure.request", 
-        string="Procedure Request", 
-        help="Procedure Request associated with this Procedure Request Note.")                    
-
-class ProcedureRequestScheduledTiming(models.Model):    
-    _name = "hc.procedure.request.scheduled.timing"    
-    _description = "Procedure Request Scheduled Timing"        
-    _inherit = ["hc.basic.association", "hc.timing"]    
-
+    
 class ProcedureCode(models.Model):  
     _name = "hc.vs.procedure.code"  
     _description = "Procedure Code"     
@@ -326,5 +326,4 @@ class ProcedureReasonCode(models.Model):
 class ProcedureRequestAsNeeded(models.Model):    
     _name = "hc.vs.procedure.request.as.needed"    
     _description = "Procedure Request As Needed"        
-    _inherit = ["hc.value.set.contains"]    
-    
+    _inherit = ["hc.value.set.contains"]
