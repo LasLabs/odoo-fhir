@@ -49,7 +49,7 @@ class Device(models.Model):
     patient_id = fields.Many2one(
         comodel_name="hc.res.patient", 
         string="Patient", 
-        help="If the resource is affixed to a person.")       
+        help="Patient to whom Device is affixed.")       
     owner_organization_id = fields.Many2one(
         comodel_name="hc.res.organization", 
         string="Owner Organization", 
