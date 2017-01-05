@@ -26,7 +26,7 @@ class MedicationAdministration(models.Model):
         required="True", 
         selection=[
             ("code", "Code"), 
-            ("Medication", "Medication")], 
+            ("medication", "Medication")], 
         help="Type of what was administered.")                
     medication_name = fields.Char(
         string="Medication", 
@@ -76,11 +76,30 @@ class MedicationAdministration(models.Model):
     effective_time_end_date = fields.Datetime(
         string="End Time End Date", 
         help="End time of administration.")               
-    performer_ids = fields.One2many(
-        comodel_name="hc.medication.administration.performer", 
-        inverse_name="medication_administration_id", 
-        string="Performers", 
-        help="Who administered substance.")                
+    performer_type = fields.Selection(
+        string="Performer Type", 
+        selection=[
+            ("practitioner", "Practitioner"), 
+            ("patient", "Patient"), 
+            ("related_person", "Related Person")], 
+        help="Type of who administered substance.")                
+    performer_name = fields.Char(
+        string="Performer", 
+        compute="_compute_performer_name", 
+        store="True", 
+        help="Who administered substance.")               
+    performer_practitioner_id = fields.Many2one(
+        comodel_name="hc.res.practitioner", 
+        string="Performer Practitioner", 
+        help="Practitioner who administered substance.")               
+    performer_patient_id = fields.Many2one(
+        comodel_name="hc.res.patient", 
+        string="Performer Patient", 
+        help="Patient who administered substance.")               
+    performer_related_person_id = fields.Many2one(
+        comodel_name="hc.res.related.person", 
+        string="Performer Related Person", 
+        help="Related Person who administered substance.")               
     reason_reference_ids = fields.One2many(
         comodel_name="hc.medication.administration.reason.reference", 
         inverse_name="medication_administration_id", 
@@ -156,8 +175,8 @@ class MedicationAdministrationDosage(models.Model):
     rate_type = fields.Selection(
         string="Rate Type", 
         selection=[
-            ("Ratio", "Ratio"), 
-            ("Quantity", "Quantity")], 
+            ("ratio", "Ratio"), 
+            ("quantity", "Quantity")], 
         help="Type of dose quantity per unit of time.")
     rate_name = fields.Char(
         string="Rate", 
@@ -183,10 +202,11 @@ class MedicationAdministrationDosage(models.Model):
         compute="_compute_rate_ratio", 
         store="True", 
         help="Dose quantity per unit of time.")
-    rate_ratio_uom_id = fields.Many2one(
-        comodel_name="product.uom", 
+    rate_ratio_uom = fields.Char(
         string="Rate Ratio UOM", 
-        help="Dose quantity per unit of time unit of measure.")
+        compute="_compute_rate_ratio_uom", 
+        store="True", 
+        help="Rate Ratio unit of measure.")
     rate_quantity = fields.Float(
         string="Rate Quantity", 
         help="Dose quantity per unit of time")
@@ -195,7 +215,6 @@ class MedicationAdministrationDosage(models.Model):
         string="Rate Quantity UOM", 
         help="Rate Quantity unit of measure.")
                     
-
 class MedicationAdministrationIdentifier(models.Model): 
     _name = "hc.medication.administration.identifier"   
     _description = "Medication Administration Identifier"       
@@ -232,42 +251,8 @@ class MedicationAdministrationSupportingInformation(models.Model):
     supporting_information_code_id = fields.Many2one(
         comodel_name="hc.vs.resource.type", 
         string="Supporting Information Code", 
-        help="Type of resource of additional information to support administration.")                
-
-class MedicationAdministrationPerformer(models.Model):  
-    _name = "hc.medication.administration.performer"    
-    _description = "Medication Administration Performer"        
-    _inherit = ["hc.basic.association"]
-
-    medication_administration_id = fields.Many2one(
-        comodel_name="hc.res.medication.administration", 
-        string="Medication Administration", 
-        help="Medication Administration associated with this Medication Administration Performer.")             
-    performer_type = fields.Selection(
-        string="Performer Type", 
-        selection=[
-            ("Practitioner", "Practitioner"), 
-            ("Patient", "Patient"), 
-            ("Related Person", "Related Person")], 
-        help="Type of who administered substance.")                
-    performer_name = fields.Char(
-        string="Performer", 
-        compute="_compute_performer_name", 
-        store="True", 
-        help="Who administered substance.")               
-    performer_practitioner_id = fields.Many2one(
-        comodel_name="hc.res.practitioner", 
-        string="Performer Practitioner", 
-        help="Practitioner who administered substance.")               
-    performer_patient_id = fields.Many2one(
-        comodel_name="hc.res.patient", 
-        string="Performer Patient", 
-        help="Patient who administered substance.")               
-    performer_related_person_id = fields.Many2one(
-        comodel_name="hc.res.related.person", 
-        string="Performer Related Person", 
-        help="RelatedPerson who administered substance.")                
-
+        help="Type of resource of additional information to support administration.")                         
+                    
 class MedicationAdministrationReasonReference(models.Model):    
     _name = "hc.medication.administration.reason.reference" 
     _description = "Medication Administration Reason Reference"     
@@ -280,8 +265,8 @@ class MedicationAdministrationReasonReference(models.Model):
     reason_reference_type = fields.Selection(
         string="Reason Reference Type", 
         selection=[
-            ("Condition", "Condition"), 
-            ("Observation", "Observation")], 
+            ("condition", "Condition"), 
+            ("observation", "Observation")], 
         help="Type of Condition or Observation that supports why the medication was administered.")                
     reason_reference_name = fields.Char(
         string="Reason Reference", 
@@ -295,17 +280,7 @@ class MedicationAdministrationReasonReference(models.Model):
     reason_reference_observation_id = fields.Many2one(
         comodel_name="hc.res.observation", 
         string="Reason Reference Observation", 
-        help="Observation that supports why the medication was administered.")              
-
-class MedicationAdministrationNote(models.Model):   
-    _name = "hc.medication.administration.note" 
-    _description = "Medication Administration Note"     
-    _inherit = ["hc.basic.association", "hc.annotation"]
-
-    medication_administration_id = fields.Many2one(
-        comodel_name="hc.res.medication.administration", 
-        string="Medication Administration", 
-        help="Medication Administration associated with this Medication Administration Note.")              
+        help="Observation that supports why the medication was administered.")                         
 
 class MedicationAdministrationDevice(models.Model): 
     _name = "hc.medication.administration.device"   
@@ -320,6 +295,16 @@ class MedicationAdministrationDevice(models.Model):
         comodel_name="hc.res.device", 
         string="Device", 
         help="Device associated with this Medication Administration Device.")                
+
+class MedicationAdministrationNote(models.Model):   
+    _name = "hc.medication.administration.note" 
+    _description = "Medication Administration Note"     
+    _inherit = ["hc.basic.association", "hc.annotation"]
+
+    medication_administration_id = fields.Many2one(
+        comodel_name="hc.res.medication.administration", 
+        string="Medication Administration", 
+        help="Medication Administration associated with this Medication Administration Note.")  
 
 class MedicationAdministrationEventHistory(models.Model):   
     _name = "hc.medication.administration.event.history"    
@@ -349,4 +334,3 @@ class ReasonMedicationGivenCode(models.Model):
     _name = "hc.vs.reason.medication.given.code"    
     _description = "Reason Medication Given Code"       
     _inherit = ["hc.value.set.contains"]
-
