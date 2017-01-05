@@ -15,8 +15,8 @@ class ProcedureRequest(models.Model):
         string="Subject Type", 
         required="True", 
         selection=[
-            ("Patient", "Patient"), 
-            ("Group", "Group")], 
+            ("patient", "Patient"), 
+            ("group", "Group")], 
         help="Type of who the procedure should be done to.")
     subject_name = fields.Char(
         string="Subject", 
@@ -167,10 +167,10 @@ class ProcedureRequest(models.Model):
     orderer_type = fields.Selection(
         string="Orderer Type", 
         selection=[
-            ("Practitioner", "Practitioner"), 
-            ("Patient", "Patient"), 
+            ("practitioner", "Practitioner"), 
+            ("patient", "Patient"), 
             ("related_person", "Related Person"), 
-            ("Device", "Device")], 
+            ("device", "Device")], 
         help="Type of Ordering Party.")
     orderer_name = fields.Char(
         string="Orderer", 
@@ -205,17 +205,17 @@ class ProcedureRequest(models.Model):
     @api.multi          
     def _compute_subject_name(self):            
         for hc_res_procedure in self:       
-            if hc_res_procedure.subject_type == 'Patient':  
+            if hc_res_procedure.subject_type == 'patient':  
                 hc_res_procedure.subject_name = hc_res_procedure.subject_patient_id.name
-            elif hc_res_procedure.subject_type == 'Group':  
+            elif hc_res_procedure.subject_type == 'group':  
                 hc_res_procedure.subject_name = hc_res_procedure.subject_group_id.name
 
     @api.multi          
     def _compute_reason_name(self):         
         for hc_res_procedure in self:       
-            if hc_res_procedure.reason_type == 'Code':  
+            if hc_res_procedure.reason_type == 'code':  
                 hc_res_procedure.reason_name = hc_res_procedure.reason_code_id.name
-            elif hc_res_procedure.reason_type == 'Condition':   
+            elif hc_res_procedure.reason_type == 'condition':   
                 hc_res_procedure.reason_name = hc_res_procedure.reason_condition_id.name
 
     @api.multi          
@@ -245,7 +245,7 @@ class ProcedureRequest(models.Model):
         for hc_res_procedure in self:       
             if hc_res_procedure.as_needed_type == 'boolean':    
                 hc_res_procedure.as_needed_name = hc_res_procedure.as_needed_boolean_id.name
-            elif hc_res_procedure.as_needed_type == 'Code': 
+            elif hc_res_procedure.as_needed_type == 'code': 
                 hc_res_procedure.as_needed_name = hc_res_procedure.as_needed_code_id.name
 
     @api.multi          
