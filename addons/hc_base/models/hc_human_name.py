@@ -128,7 +128,7 @@ class HumanName(models.Model):
     preferred_name = fields.Char(
         string="Preferred Name", 
         help="How the person prefers to be addressed in a conversation (e.g., John, Mr. Smith).")
-    mother_maiden_name_id = fields.Many2one(
+    mother_maiden_id = fields.Many2one(
         comodel_name="hc.human.name.term", 
         string="Mother Maiden Family Name", 
         help="Mother's surname at birth. Part of the family name.")
@@ -142,8 +142,40 @@ class HumanName(models.Model):
             ("first_maiden_last", "First Last (default)"), 
             ("maiden_last_first", "Last First (e.g., East Asian name)"),
             ("first_last_maiden", "First Last Maiden (e.g., Hispanic name)")],
-        default="first maiden last",
-        help="The display order of this human name.")
+        default="first_maiden_last",
+        help="The display order of this human name.")                 
+
+    @api.depends('display_order', 'prefix_ids', 'first_id', 'middle_ids', 'initial_ids', 'nickname_ids', 'mother_maiden_id', 'surname_id', 'suffix_ids', 'previous_surname_ids', 'birth_surname_id')
+    def _compute_full_name(self):
+        first = self.first_id.name if self.first_id else ''
+        middle = " ".join([middle.name for middle in self.middle_ids]) if self.middle_ids else ''
+        initial = " ".join([initial.name for initial in self.initial_ids]) if self.initial_ids else ''
+        nickname = " ".join([nickname.name for nickname in self.nickname_ids]) if self.nickname_ids else ''
+        given = first + ' ' + middle + ' ' + initial + ' ' + nickname
+        
+        mother_maiden = self.mother_maiden_id.name if self.mother_maiden_id else ''
+        birth_surname = self.birth_surname_id.name if self.birth_surname_id else ''
+        previous_surname = " ".join([previous_surname.name for previous_surname in self.previous_surname_ids]) if self.previous_surname_ids else ''
+        # previous_surname = self.previous_surname_id.name if self.previous_surname_id else ''
+        surname = self.surname_id.name if self.surname_id else ''
+        family = mother_maiden + ' ' + birth_surname + ' ' + previous_surname + ' ' + surname
+
+        family_reverse = birth_surname + ' ' + surname + ' ' + mother_maiden
+        
+        prefix = " ".join([prefix.name for prefix in self.prefix_ids]) if self.prefix_ids else ''
+        suffix = " ".join([suffix.name for suffix in self.suffix_ids]) if self.suffix_ids else ''
+
+        if self.display_order == 'first_maiden_last':
+            full = prefix + ' ' + given + ' ' + family + ' ' + suffix
+            self.name = full
+
+        if self.display_order == 'maiden_last_first':
+            full_reverse = prefix + ' ' + family + ' ' + given + ' ' + suffix
+            self.name = full_reverse
+
+        if self.display_order == 'first_last_maiden':
+            full_family_reverse = prefix + ' ' + given + ' ' + family_reverse + ' ' + suffix
+            self.name = full_family_reverse
 
 class HumanNameUse(models.Model):   
     _name = "hc.human.name.use" 
@@ -166,39 +198,8 @@ class HumanNameUse(models.Model):
         help="Start of the time period when name was/is in use.")                 
     end_date = fields.Datetime(
         string="End Date", 
-        help="End of the time period when name was/is in use.")                   
+        help="End of the time period when name was/is in use.")  
 
-    @api.depends('display_order', 'prefix_ids', 'first_id', 'middle_ids', 'initial_ids', 'nickname_ids', 'mother_maiden_name_id', 'surname_id', 'suffix_ids', 'previous_surname_ids', 'birth_last_name_id')
-    def _compute_full_name(self):
-        first_name = self.first_id.name if self.first_id else ''
-        middle_name = " ".join([middle.name for middle in self.middle_ids]) if self.middle_ids else ''
-        initials = " ".join([initial.name for initial in self.initial_ids]) if self.initial_ids else ''
-        nick_name = " ".join([nickname.name for nickname in self.nickname_ids]) if self.nickname_ids else ''
-        given = first_name+' '+middle_name+' '+initials+' '+nick_name
-        
-        maiden_name = self.mother_maiden_name_id.name if self.mother_maiden_name_id else ''
-        birth_last = self.birth_last_name_id.name if self.birth_last_name_id else ''
-        previous_surname = " ".join([previous_surname.name for previous_surname in self.previous_surname_ids]) if self.previous_surname_ids else ''
-        # previous_surname = self.previous_surname_id.name if self.previous_surname_id else ''
-        surname = self.surname_id.name if self.surname_id else ''
-        family = maiden_name +' '+ birth_surname +' '+ previous_surname +' '+ surname
-
-        family_reverse = birth_last +' '+ surname +' '+ maiden_name
-        
-        prefix = " ".join([prefix.name for prefix in self.prefix_ids]) if self.prefix_ids else ''
-        suffix = " ".join([suffix.name for suffix in self.suffix_ids]) if self.suffix_ids else ''
-
-        if self.display_order == 'first_maiden_last':
-            full = prefix +' '+ given +' '+ family +' '+ suffix
-            self.name = full
-
-        if self.display_order == 'maiden_last_first':
-            full_reverse = prefix +' '+ family +' '+ given +' '+ suffix
-            self.name = full_reverse
-
-        if self.display_order == 'first_last_maiden':
-            full_family_reverse = prefix +' '+ given +' '+ family_reverse +' '+ suffix
-            self.name = full_family_reverse
 # class HcExtensionHumanNameFull(models.Model):
 #     _inherit = 'hc.human.name'
 
@@ -220,11 +221,11 @@ class HumanNameUse(models.Model):
 # class HcExtensionHumanNameFamily(models.Model):
 #     _inherit = 'hc.human.name'
 
-#     @api.depends('mother_maiden_name_id','surname_id')
+#     @api.depends('mother_maiden_id','surname_id')
 #     def compute_family(self):
 #         family = ''
 #         lines = ''
-#         maiden = self.mother_maiden_name_id and ', '+self.mother_maiden_name_id.name or ''
+#         maiden = self.mother_maiden_id and ', '+self.mother_maiden_id.name or ''
 #         surname = self.surname_id and ', '+self.surname_id.name or ''
 #         lines = maiden+surname+lines
 #         self.name = lines
@@ -255,10 +256,10 @@ class HumanNameUse(models.Model):
 #         first = self.env['hc.human.name.term'].browse(vals['first_id']).name
         # middle = self.env['hc.human.name.term'].browse(vals['middle_ids']).name
         # last = self.env['hc.human.name.term'].browse(vals['surname_id']).name
-        # maiden = self.env['hc.human.name.term'].browse(vals['mother_maiden_name_id']).name
-        # full = first+' '+last
-        # full_first = first+' '+middle
-        # full_family = maiden+' '+last
+        # maiden = self.env['hc.human.name.term'].browse(vals['mother_maiden_id']).name
+        # full = first+ ' ' +last
+        # full_first = first+ ' ' +middle
+        # full_family = maiden+ ' ' +last
         # vals['name'] = full
         # vals['given'] = full_first
         # vals['family'] = full_family
@@ -278,19 +279,19 @@ class HumanNameUse(models.Model):
         # else:
         #     middle = self.middle_ids.name
 
-        # if 'mother_maiden_name_id' in vals:    
-        #     maiden = self.env['hc.human.name.term'].browse(vals['mother_maiden_name_id']).name
+        # if 'mother_maiden_id' in vals:    
+        #     maiden = self.env['hc.human.name.term'].browse(vals['mother_maiden_id']).name
         # else:
-        #     maiden = self.mother_maiden_name_id.name    
+        #     maiden = self.mother_maiden_id.name    
 
         # if 'surname_id' in vals:    
         #     last = self.env['hc.human.name.term'].browse(vals['surname_id']).name
         # else:
         #     last = self.surname_id.name
 
-        # full = first+' '+last
-        # full_first = first+' '+middle
-        # full_family = maiden+' '+last
+        # full = first+ ' ' +last
+        # full_first = first+ ' ' +middle
+        # full_family = maiden+ ' ' +last
         # vals['name'] = full
         # vals['given'] = full_first
         # vals['family'] = full_family

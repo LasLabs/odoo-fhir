@@ -10,73 +10,81 @@ class EligibilityRequest(models.Model):
         comodel_name="hc.eligibility.request.identifier", 
         inverse_name="eligibility_request_id", 
         string="Identifiers", 
-        help="Business Identifier.")                
-    outcome = fields.Selection(
-        string="Eligibility Request Outcome", 
-        required="True", 
+        help="Business Identifier.")
+    status = fields.Char(
+        string="Status", 
         selection=[
             ("active", "Active"), 
             ("cancelled", "Cancelled"), 
             ("draft", "Draft"), 
             ("entered-in-error", "Entered-In-Error")], 
-        help="Transaction status: error, complete.")                
-    ruleset_id = fields.Many2one(
-        comodel_name="hc.vs.ruleset", 
-        string="Ruleset", 
-        help="Resource version.")                
-    original_ruleset_id = fields.Many2one(
-        comodel_name="hc.vs.ruleset", 
-        string="Original Ruleset", 
-        help="Original version.")                
-    created = fields.Datetime(
-        string="Eligibility Request Creation Date", 
-        help="Creation date.")                
-    insurer_id = fields.Many2one(
-        comodel_name="hc.res.organization", 
-        string="Insurer", 
-        help="Target.")                
-    provider_id = fields.Many2one(
-        comodel_name="hc.res.practitioner", 
-        string="Provider", 
-        help="Responsible practitioner.")                
-    organization_id = fields.Many2one(
-        comodel_name="hc.res.organization", 
-        string="Organization", 
-        help="Responsible organization.")                
-    ruleset_id = fields.Many2one(
+        help="The status of the resource instance.")
+    priority_id = fields.Many2one(
         comodel_name="hc.vs.process.priority", 
-        string="Ruleset", 
-        help="Desired processing priority.")                
+        string="Priority", 
+        help="Desired processing priority.")
+    patient_id = fields.Many2one(
+        comodel_name="hc.res.patient", 
+        string="Patient",
+        help="The subject of the Products and Services.")
+    serviced_type = fields.Selection(
+        string="Serviced Type", 
+        selection=[
+            ("date", "Date"), 
+            ("period", "Period")], 
+        help="Type of who recorded the sensitivity.")
+    serviced_name = fields.Char(
+        string="Serviced", 
+        compute="_compute_serviced_name", 
+        store="True", 
+        help="Estimated date or dates of Service.")
+    serviced_date = fields.Date(
+        string="Serviced Date", 
+        help="Code of estimated date or dates of service.")
+    serviced_start_date = fields.Datetime(
+        string="Serviced Start Date", 
+        help="Start of estimated date or dates of service.")
+    serviced_end_date = fields.Datetime(
+        string="Serviced End Date", 
+        help="End of estimated date or dates of service.")
+    created = fields.Datetime(
+        string="Created", 
+        help="Creation date.")
     enterer_id = fields.Many2one(
         comodel_name="hc.res.practitioner", 
         string="Enterer", 
-        help="Author.")                
+        help="Author.")
+    provider_id = fields.Many2one(
+        comodel_name="hc.res.practitioner", 
+        string="Provider", 
+        help="Responsible practitioner.")
+    organization_id = fields.Many2one(
+        comodel_name="hc.res.organization", 
+        string="Organization", 
+        help="Responsible organization.")
+    insurer_id = fields.Many2one(
+        comodel_name="hc.res.organization", 
+        string="Insurer", 
+        help="Target.")
     facility_id = fields.Many2one(
         comodel_name="hc.res.location", 
         string="Facility", 
-        help="Servicing Facility.")                
-    patient_id = fields.Many2one(
-        comodel_name="hc.res.patient", 
-        string="Patient", 
-        help="The subject of the Products and Services.")                
+        help="Servicing Facility.")
     coverage_id = fields.Many2one(
         comodel_name="hc.res.coverage", 
         string="Coverage", 
-        help="Insurance or medical plan.")                
+        help="Insurance or medical plan.")
     business_arrangement = fields.Char(
-        string="Eligibility Request Creation Date", 
-        help="Business agreement.")                
-    serviced_date = fields.Date(
-        string="Serviced Date", 
-        help="Code of estimated date or dates of service.")                
-    ruleset_id = fields.Many2one(
+        string="Business Arrangement", 
+        help="Business agreement.")
+    benefit_category_id = fields.Many2one(
         comodel_name="hc.vs.benefit.category", 
-        string="Ruleset", 
-        help="Benefit Category.")                
-    ruleset_id = fields.Many2one(
+        string="Benefit Category", 
+        help="Benefit Category.")
+    benefit_sub_category_id = fields.Many2one(
         comodel_name="hc.vs.benefit.sub.category", 
-        string="Ruleset", 
-        help="Benefit Sub Category.")                
+        string="Benefit Sub Category", 
+        help="Benefit SubCategory.")
 
 class EligibilityRequestIdentifier(models.Model):    
     _name = "hc.eligibility.request.identifier"    
@@ -86,7 +94,7 @@ class EligibilityRequestIdentifier(models.Model):
     eligibility_request_id = fields.Many2one(
         comodel_name="hc.res.eligibility.request", 
         string="Eligibility Request", 
-        help="Eligibility Request associated with this Eligibility Request Eligibility Request Identifier.")                
+        help="Eligibility Request associated with this Eligibility Request Identifier.")                
 
 class ProcessPriority(models.Model):    
     _name = "hc.vs.process.priority"    
@@ -101,4 +109,19 @@ class BenefitCategory(models.Model):
 class BenefitSubCategory(models.Model):    
     _name = "hc.vs.benefit.sub.category"    
     _description = "Benefit Sub Category"        
+    _inherit = ["hc.value.set.contains"]
+
+class BenefitNetwork(models.Model):    
+    _name = "hc.vs.benefit.network"    
+    _description = "Benefit Network"        
+    _inherit = ["hc.value.set.contains"]
+
+class BenefitUnit(models.Model):    
+    _name = "hc.vs.benefit.unit"    
+    _description = "Benefit Unit"        
+    _inherit = ["hc.value.set.contains"]
+
+class BenefitTerm(models.Model):    
+    _name = "hc.vs.benefit.term"    
+    _description = "Benefit Term"        
     _inherit = ["hc.value.set.contains"]

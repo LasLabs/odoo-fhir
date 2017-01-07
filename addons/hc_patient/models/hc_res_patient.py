@@ -114,23 +114,18 @@ class Patient(models.Model):
         relation="patient_ethnicity_rel", 
         string="Ethnicities", 
         help="General ethnicity category reported by the patient - subject may have more than one.")
-    species_id = fields.Many2one(
+    animal_species_id = fields.Many2one(
         comodel_name="hc.vs.animal.species", 
-        string="Species",
-        required="True", 
+        string="Animal Species", 
         help="Identifies the high level taxonomic categorization of the kind of animal (e.g., dog, cow).")
-    breed_id = fields.Many2one(
+    animal_breed_id = fields.Many2one(
         comodel_name="hc.vs.animal.breed", 
-        string="Breed", 
+        string="Animal Breed", 
         help="Identifies the detailed categorization of the kind of animal (e.g., poodle, angus).")
-    gender_status_id = fields.Many2one(
+    animal_gender_status_id = fields.Many2one(
         comodel_name="hc.vs.animal.gender.status", 
-        string="Gender Status", 
+        string="Animal Gender Status", 
         help="Indicates the current state of the animal's reproductive organs (e.g., neutered, intact).")
-    # animal_id = fields.Many2one(
-    #     comodel_name="hc.patient.animal", 
-    #     string="Animal", 
-    #     help="If this patient is an animal (non-human).")
     link_ids = fields.One2many(
         comodel_name="hc.patient.link", 
         inverse_name="patient_id", 
@@ -174,11 +169,10 @@ class PatientIdentifier(models.Model):
 class PatientName(models.Model): 
     _name = "hc.patient.name"    
     _description = "Patient Name"
-    _inherit = ["hc.basic.association"]
-    _inherits = {"hc.human.name": "human_name_id"}
+    _inherits = {"hc.person.name": "name_id"}
 
-    human_name_id = fields.Many2one(
-        comodel_name="hc.human.name",
+    name_id = fields.Many2one(
+        comodel_name="hc.person.name",
         string="Human Name",
         required="True",
         ondelete="restrict", 
@@ -207,12 +201,11 @@ class PatientAddress(models.Model):
 class PatientTelecom(models.Model): 
     _name = "hc.patient.telecom"    
     _description = "Patient Telecom"        
-    _inherit = ["hc.contact.point.use"] 
-    _inherits = {"hc.contact.point": "telecom_id"}
+    _inherits = {"hc.person.telecom": "telecom_id"}
 
     telecom_id = fields.Many2one(
-        comodel_name="hc.contact.point", 
-        string="Telecom", 
+        comodel_name="hc.person.telecom", 
+        string="Person Telecom", 
         ondelete="restrict", 
         required="True", 
         help="Telecom associated with this Patient Telecom.")                 

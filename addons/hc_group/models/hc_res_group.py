@@ -88,6 +88,10 @@ class GroupCharacteristic(models.Model):
     value_quantity = fields.Float(
         string="Value Quantity", 
         help="Quantity value held by characteristic.")                
+    value_quantity_uom_id = fields.Many2one(
+        comodel_name="product.uom", 
+        string="Value Quantity UOM", 
+        help="Value Quantity unit of measure.")
     value_low_limit = fields.Float(
         string="Value Low Limit", 
         help="Low limit of value held by characteristic.")                

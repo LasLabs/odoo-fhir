@@ -292,7 +292,7 @@ class ClaimSpecialCondition(models.Model):
         string="Value Type", 
         selection=[
             ("string", "String"), 
-            ("Quantity", "Quantity")], 
+            ("quantity", "Quantity")], 
         help="Type of additional data.")                
     value_name = fields.Char(
         string="Value", 
@@ -304,7 +304,11 @@ class ClaimSpecialCondition(models.Model):
         help="String of additional data.")                
     value_quantity = fields.Float(
         string="Value Quantity", 
-        help="Quantity of additional data.")                
+        help="Quantity of additional data.")
+    value_quantity_uom_id = fields.Many2one(
+        comodel_name="product.uom", 
+        string="Value Quantity UOM", 
+        help="Value Quantity unit of measure.")                
 
 class ClaimDiagnosis(models.Model):    
     _name = "hc.claim.diagnosis"    
@@ -551,6 +555,10 @@ class ClaimItem(models.Model):
     quantity = fields.Float(
         string="Quantity", 
         help="Count of Products or Services.")
+    quantity_uom_id = fields.Many2one(
+        comodel_name="product.uom", 
+        string="Quantity UOM", 
+        help="Quantity unit of measure.")
     unit_price = fields.Float(
         string="Unit Price", 
         help="Fee, charge or cost per point.")
@@ -629,7 +637,11 @@ class ClaimItemDetail(models.Model):
         help="Program specific reason for item inclusion.")                
     quantity = fields.Float(
         string="Quantity", 
-        help="Count of Products or Services.")                
+        help="Count of Products or Services.")
+    quantity_uom_id = fields.Many2one(
+        comodel_name="product.uom", 
+        string="Quantity UOM", 
+        help="Quantity unit of measure.")                   
     unit_price = fields.Float(
         string="Unit Price", 
         help="Fee, charge or cost per point.")                

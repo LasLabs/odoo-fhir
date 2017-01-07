@@ -259,7 +259,11 @@ class ContractValuedItem(models.Model):
         help="Contract Valued Item Effective Tiem.")                
     quantity = fields.Integer(
         string="Quantity", 
-        help="Count of Contract Valued Items.")                
+        help="Count of Contract Valued Items.")
+    quantity_uom_id = fields.Many2one(
+        comodel_name="product.uom", 
+        string="Quantity UOM", 
+        help="Quantity unit of measure.")                 
     unit_price = fields.Float(
         string="Unit Price", 
         help="Contract Valued Item fee, charge, or cost.")                
@@ -509,7 +513,11 @@ class ContractTermValuedItem(models.Model):
         help="Contract Term Valued Item Effective Tiem.")                
     quantity = fields.Integer(
         string="Quantity", 
-        help="Contract Term Valued Item Count.")                
+        help="Contract Term Valued Item Count.")
+    quantity_uom_id = fields.Many2one(
+        comodel_name="product.uom", 
+        string="Quantity UOM", 
+        help="Quantity unit of measure.")               
     unit_price = fields.Float(
         string="Unit Price", 
         help="Contract Term Valued Item fee, charge, or cost.")                

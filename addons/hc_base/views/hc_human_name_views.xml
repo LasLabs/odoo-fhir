@@ -205,7 +205,7 @@
                         <field name="nickname_ids" widget="many2many_tags"/>
                       </group>  
                       <group>
-                        <field name="mother_maiden_name_id" placeholder="Mother's birth last name."/>
+                        <field name="mother_maiden_id" placeholder="Mother's birth last name."/>
                         <field name="surname_id" string="Last/Family Name"/>
                         <field name="suffix_ids" string="Suffix" placeholder="(e.g., Jr., MBA)" widget="many2many_tags"/>
                         <field name="preferred_name" placeholder="Preferred name in a conversation (e.g., Jack, Mr. Smith)"/>
