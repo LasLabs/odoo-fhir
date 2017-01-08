@@ -11,12 +11,46 @@ class Goal(models.Model):
         inverse_name="goal_id", 
         string="Identifiers", 
         help="External IDs for this goal.")                
+    status = fields.Selection(
+        string="Goal Status", 
+        required="True", 
+        selection=[
+            ("proposed", "Proposed"), 
+            ("planned", "Planned"), 
+            ("accepted", "Accepted"), 
+            ("rejected", "Rejected"), 
+            ("in-progress", "In Progress"), 
+            ("achieved", "Achieved"), 
+            ("sustaining", "Sustaining"), 
+            ("on-hold", "On Hold"), 
+            ("cancelled", "Cancelled"), 
+            ("on-target", "On Target"), 
+            ("ahead-of-target", "Ahead Of Target"), 
+            ("behind-target", "Behind-Target")],
+        help="Indicates whether the goal has been reached and is still considered relevant.")
+    category_ids = fields.Many2many(
+        comodel_name="hc.vs.goal.category", 
+        relation="goal_category_rel", 
+        string="Categories", 
+        help="E.g. Treatment, dietary, behavioral, etc.")               
+    priority = fields.Selection(
+        string="Goal Priority", 
+        selection=[
+            ("high", "High"), 
+            ("medium", "Medium"), 
+            ("low", "Low")], 
+        help="Identifies the mutually agreed level of importance associated with reaching/sustaining the goal.")
+    description_id = fields.Many2one(
+        comodel_name="hc.vs.goal.description", 
+        string="Description", 
+        required="True", 
+        help="Code or text describing goal.")
     subject_type = fields.Selection(
         string="Subject Type", 
         selection=[
-            ("Patient", "Patient"), 
-            ("Group", "Group"), 
-            ("Organization", "Organization")], 
+            ("patient", "Patient"), 
+            ("group", "Group"), 
+            ("organization", "Organization")], 
         help="Type of who this goal is intended for.")                
     subject_name = fields.Char(
         string="Subject", 
@@ -57,7 +91,7 @@ class Goal(models.Model):
         string="Target Type", 
         selection=[
             ("date", "Date"), 
-            ("Duration", "Duration")], 
+            ("duration", "Duration")], 
         help="Type of reach goal on or before.")                
     target_name = fields.Char(
         string="Target", 
@@ -84,34 +118,7 @@ class Goal(models.Model):
     #         ("wk", "Wk"), 
     #         ("mo", "Mo"), 
     #         ("a", "A")], 
-    #     help="Reach goal on or before unit of measure.")                
-    category_ids = fields.Many2many(
-        comodel_name="hc.vs.goal.category", 
-        relation="goal_category_rel", 
-        string="Categories", 
-        help="E.g. Treatment, dietary, behavioral, etc.")               
-    description_id = fields.Many2one(
-        comodel_name="hc.vs.goal.description", 
-        string="Description", 
-        required="True", 
-        help="Code or text describing goal.")                
-    status = fields.Selection(
-        string="Goal Status", 
-        required="True", 
-        selection=[
-            ("proposed", "Proposed"), 
-            ("planned", "Planned"), 
-            ("accepted", "Accepted"), 
-            ("rejected", "Rejected"), 
-            ("in-progress", "In Progress"), 
-            ("achieved", "Achieved"), 
-            ("sustaining", "Sustaining"), 
-            ("on-hold", "On Hold"), 
-            ("cancelled", "Cancelled"), 
-            ("on-target", "On Target"), 
-            ("ahead-of-target", "Ahead Of Target"), 
-            ("behind-target", "Behind-Target")],
-        help="Indicates whether the goal has been reached and is still considered relevant.")                
+    #     help="Reach goal on or before unit of measure.")                                 
     status_date = fields.Date(
         string="Status Date", 
         help="When goal status took effect.")                
@@ -123,9 +130,9 @@ class Goal(models.Model):
     expressed_by_type = fields.Selection(
         string="Expressed By Type", 
         selection=[
-            ("Patient", "Patient"), 
-            ("Practitioner", "Practitioner"), 
-            ("Related Person", "Related Person")], 
+            ("patient", "Patient"), 
+            ("practitioner", "Practitioner"), 
+            ("related_person", "Related Person")], 
         help="Type of who is responsible for creating goal.")                
     expressed_by_name = fields.Char(
         string="Expressed By", 
@@ -143,14 +150,7 @@ class Goal(models.Model):
     expressed_by_related_person_id = fields.Many2one(
         comodel_name="hc.res.related.person", 
         string="Expressed By Related Person", 
-        help="Related Person who's responsible for creating goal?")                
-    priority = fields.Selection(
-        string="Goal Priority", 
-        selection=[
-            ("high", "High"), 
-            ("medium", "Medium"), 
-            ("low", "Low")], 
-        help="Identifies the mutually agreed level of importance associated with reaching/sustaining the goal.")                
+        help="Related Person who's responsible for creating goal?")                                
     addresses_ids = fields.One2many(
         comodel_name="hc.goal.addresses", 
         inverse_name="goal_id", 
@@ -179,7 +179,7 @@ class GoalOutcome(models.Model):
         string="Result Type", 
         selection=[
             ("code", "Code"), 
-            ("Observation", "Observation")], 
+            ("observation", "Observation")], 
         help="Type of reach goal on or before.")                
     result_name = fields.Char(
         string="Result", 

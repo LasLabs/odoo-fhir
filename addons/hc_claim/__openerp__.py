@@ -38,7 +38,7 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['hc_eligibility_request','hc_referral_request', 'hc_procedure'],
+    'depends': ['hc_eligibility_request','hc_medication_request'],
 
     # always loaded
     'data': [

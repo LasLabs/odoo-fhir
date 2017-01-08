@@ -46,6 +46,18 @@ class MedicationStatement(models.Model):
             ("stopped", "Stopped"), 
             ("on-hold", "On-Hold")], 
         help="A code representing the patient or other source's judgment about the state of the medication used that this statement is about.")             
+    medication_type = fields.Selection(
+        string="Medication Type", 
+        required="True", 
+        selection=[
+            ("code", "Code"), 
+            ("Medication", "Medication")], 
+        help="Type of what medication was taken.")
+    medication_name = fields.Char(
+        string="Medication", 
+        compute="_compute_medication_name", 
+        store="True", 
+        help="What medication was taken.")
     medication_code_id = fields.Many2one(
         comodel_name="hc.vs.medication.code", 
         string="Medication Code", 
@@ -54,10 +66,26 @@ class MedicationStatement(models.Model):
         comodel_name="hc.res.medication", 
         string="Medication", 
         help="What medication was taken.")               
-    patient_id = fields.Many2one(
+    subject_type = fields.Selection(
+        string="Subject Type", 
+        required="True", 
+        selection=[
+            ("patient", "Patient"), 
+            ("group", "Group")], 
+        help="Type of who is/was taking the medication.")
+    subject_name = fields.Char(
+        string="Subject", 
+        compute="_compute_subject_name", 
+        store="True", 
+        help="Who is/was taking the medication.")
+    subject_patient_id = fields.Many2one(
         comodel_name="hc.res.patient", 
-        string="Patient", 
-        help="Who was/is taking medication.")             
+        string="Subject Patient", 
+        help="Patient who is/was taking the medication.")
+    subject_group_id = fields.Many2one(
+        comodel_name="hc.res.group", 
+        string="Subject Group", 
+        help="Group who is/was taking the medication.")      
     effective_type = fields.Selection(
         string="Effective Type", 
         selection=[
@@ -78,6 +106,18 @@ class MedicationStatement(models.Model):
     effective_end_date = fields.Datetime(
         string="Effective End Date", 
         help="End of the period when medication was consumed.")               
+    information_source_type = fields.Selection(
+        string="Information Source Type", 
+        selection=[
+            ("patient", "Patient"), 
+            ("practitioner", "Practitioner"), 
+            ("related_person", "Related Person")],
+        help="Type of person who provided the information about the taking of this medication.")
+    information_source_name = fields.Char(
+        string="Information Source", 
+        compute="_compute_information_source_name", 
+        store="True", 
+        help="Person who provided the information about the taking of this medication.")
     information_source_patient_id = fields.Many2one(
         comodel_name="hc.res.patient", 
         string="Information Source Patient", 
@@ -163,7 +203,7 @@ class MedicationStatementBasedOn(models.Model):
         string="Based On", 
         compute="_compute_based_on_name", 
         store="True", 
-        help="Fulfils plan, proposal or order")                  
+        help="Fulfils plan, proposal or order.")                  
     based_on_medication_request_id = fields.Many2one(
         comodel_name="hc.res.medication.request", 
         string="Based On Medication Request", 
@@ -184,31 +224,6 @@ class MedicationStatementBasedOn(models.Model):
         comodel_name="hc.res.referral.request", 
         string="Based On Referral Request", 
         help="Referral Request that is fulfilled in whole or in part by this event.")                    
-
-class MedicationStatementReasonForUseReference(models.Model):   
-    _name = "hc.medication.statement.reason.for.use.reference"  
-    _description = "Medication Statement Reason For Use Reference"      
-    _inherit = ["hc.basic.association"]
-
-    medication_statement_id = fields.Many2one(
-        comodel_name="hc.res.medication.statement", 
-        string="Medication Statement", 
-        help="Medication Statement associated with this Medication Statement Reason For Use Reference.")               
-    reason_for_use_reference_id = fields.Many2one(
-        comodel_name="hc.res.condition", 
-        string="Reason For Use Reference", 
-        help="Reason For Use Reference associated with this Medication Statement Reason For Use Reference.")              
-
-
-class MedicationStatementNote(models.Model):    
-    _name = "hc.medication.statement.note"  
-    _description = "Medication Statement Note"      
-    _inherit = ["hc.basic.association", "hc.annotation"]
-
-    medication_statement_id = fields.Many2one(
-        comodel_name="hc.res.medication.statement", 
-        string="Medication Statement", 
-        help="Medication Statement associated with this Medication Statement Note.")               
 
 class MedicationStatementDerivedFrom(models.Model): 
     _name = "hc.medication.statement.derived.from"  
@@ -237,6 +252,30 @@ class MedicationStatementDerivedFrom(models.Model):
         comodel_name="hc.vs.resource.type", 
         string="Derived From Code", 
         help="Resource type of additional supporting information.")
+
+    class MedicationStatementReasonForUseReference(models.Model):   
+    _name = "hc.medication.statement.reason.for.use.reference"  
+    _description = "Medication Statement Reason For Use Reference"      
+    _inherit = ["hc.basic.association"]
+
+    medication_statement_id = fields.Many2one(
+        comodel_name="hc.res.medication.statement", 
+        string="Medication Statement", 
+        help="Medication Statement associated with this Medication Statement Reason For Use Reference.")               
+    reason_for_use_reference_id = fields.Many2one(
+        comodel_name="hc.res.condition", 
+        string="Reason For Use Reference", 
+        help="Condition associated with this Medication Statement Reason For Use Reference.")              
+
+class MedicationStatementNote(models.Model):    
+    _name = "hc.medication.statement.note"  
+    _description = "Medication Statement Note"      
+    _inherit = ["hc.basic.association", "hc.annotation"]
+
+    medication_statement_id = fields.Many2one(
+        comodel_name="hc.res.medication.statement", 
+        string="Medication Statement", 
+        help="Medication Statement associated with this Medication Statement Note.")               
 
 class MedicationStatementDosage(models.Model):  
     _name = "hc.medication.statement.dosage"    

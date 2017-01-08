@@ -90,8 +90,8 @@ class Claim(models.Model):
     prescription_type = fields.Selection(
         string="Prescription Type", 
         selection=[
-            ("Medication Request", "Medication Request"), 
-            ("Vision Prescription", "Vision Prescription")], 
+            ("medication_request", "Medication Request"), 
+            ("vision_prescription", "Vision Prescription")], 
         help="Type of prescription.")                
     prescription_name = fields.Char(
         string="Prescription", 
@@ -214,20 +214,21 @@ class ClaimPayee(models.Model):
         string="Type", 
         required="True", 
         help="Type of party: Subscriber, Provider, other.")                              
-    # resource_type = fields.Selection(string="Resource Type", 
-    #     selection=[
-    #         ("organization", "Organization"), 
-    #         ("patient", "Patient"), 
-    #         ("practitioner", "Practitioner"), 
-    #         ("related person", "Related Person")], 
-    #     help="The type of payee Resource.")
+    resource_type = fields.Selection(
+        string="Resource Type", 
+        selection=[
+            ("organization", "Organization"), 
+            ("patient", "Patient"), 
+            ("practitioner", "Practitioner"), 
+            ("related person", "Related Person")], 
+        help="The type of payee Resource.")
     party_type = fields.Selection(
         string="Party Type", 
         selection=[
-            ("Practitioner", "Practitioner"), 
-            ("Organization", "Organization"), 
-            ("Patient", "Patient"), 
-            ("Related Person", "Related Person")], 
+            ("practitioner", "Practitioner"), 
+            ("organization", "Organization"), 
+            ("patient", "Patient"), 
+            ("related_person", "Related Person")], 
         help="Type of party to receive the payable.")                
     party_name = fields.Char(
         string="Party", 
@@ -241,7 +242,7 @@ class ClaimPayee(models.Model):
     party_organization_id = fields.Many2one(
         comodel_name="hc.res.organization", 
         string="Party Organization", 
-        help="Organization tto receive the payable")                
+        help="Organization to receive the payable")                
     party_patient_id = fields.Many2one(
         comodel_name="hc.res.patient", 
         string="Party Patient", 
@@ -357,7 +358,7 @@ class ClaimProcedure(models.Model):
         required="True", 
         selection=[
             ("code", "Code"), 
-            ("Procedure", "Procedure")], 
+            ("procedure", "Procedure")], 
         help="Type of patient's list of procedures performed.")                
     procedure_name = fields.Char(
         string="Procedure", 
@@ -430,8 +431,8 @@ class ClaimAccident(models.Model):
     location_type = fields.Selection(
         string="Location Type", 
         selection=[
-            ("Address", "Address"), 
-            ("Location", "Location")], 
+            ("address", "Address"), 
+            ("location", "Location")], 
         help="Type of accident place.")                
     location_name = fields.Char(
         string="Location", 
@@ -512,7 +513,7 @@ class ClaimItem(models.Model):
         string="Serviced Type", 
         selection=[
             ("date", "Date"), 
-            ("Period", "Period")], 
+            ("oeriod", "Period")], 
         help="Type of date of service.")
     serviced_name = fields.Char(
         string="Serviced", 
