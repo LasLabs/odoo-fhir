@@ -110,10 +110,10 @@ class Claim(models.Model):
         comodel_name="hc.res.medication.request", 
         string="Original Prescription", 
         help="Original Prescription.")                
-    referral_id = fields.Many2one(
-        comodel_name="hc.res.referral.request", 
-        string="Referral", 
-        help="Treatment Referral.")                
+    # referral_id = fields.Many2one(
+    #     comodel_name="hc.res.referral.request", 
+    #     string="Referral", 
+    #     help="Treatment Referral.")                
     patient_id = fields.Many2one(
         comodel_name="hc.res.patient", 
         string="Patient", 
@@ -358,7 +358,7 @@ class ClaimProcedure(models.Model):
         required="True", 
         selection=[
             ("code", "Code"), 
-            ("procedure", "Procedure")], 
+            ("procedure", "Procedure")],                                                          
         help="Type of patient's list of procedures performed.")                
     procedure_name = fields.Char(
         string="Procedure", 

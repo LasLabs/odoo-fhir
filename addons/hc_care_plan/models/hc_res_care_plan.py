@@ -14,8 +14,8 @@ class CarePlan(models.Model):
     subject_type = fields.Selection(
         string="Subject Type", 
         selection=[
-            ("Patient", "Patient"), 
-            ("Group", "Group")], 
+            ("patient", "Patient"), 
+            ("group", "Group")], 
         help="Type of who care plan is for.")                
     subject_name = fields.Char(
         string="Subject", 
@@ -51,8 +51,8 @@ class CarePlan(models.Model):
     subject_type = fields.Selection(
         string="Subject Type", 
         selection=[
-            ("Patient", "Patient"), 
-            ("Group", "Group")], 
+            ("patient", "Patient"), 
+            ("group", "Group")], 
         help="Type of who care plan is for.")
     subject_name = fields.Char(
         string="Subject", 
@@ -70,8 +70,8 @@ class CarePlan(models.Model):
     context_type = fields.Selection(
         string="Context Type", 
         selection=[
-            ("Encounter", "Encounter"), 
-            ("Episode Of Care", "Episode Of Care")], 
+            ("encounter", "Encounter"), 
+            ("episode_of_care", "Episode Of Care")], 
         help="Type created in context of.")                
     context_name = fields.Char(
         string="Context", 
@@ -118,8 +118,8 @@ class CarePlan(models.Model):
     definition_type = fields.Selection(
         string="Definition Type", 
         selection=[
-            ("Encounter", "Encounter"), 
-            ("Episode Of Care", "Episode Of Care")], 
+            ("encounter", "Encounter"), 
+            ("episode_of_care", "Episode Of Care")], 
         help="Protocol or definition.")
     definition_name = fields.Char(
         string="Definition", 
@@ -200,17 +200,17 @@ class CarePlanActivity(models.Model):
     reference_type = fields.Selection(
         string="Reference Type", 
         selection=[
-            ("Appointment", "Appointment"), 
-            ("Communication Request", "Communication Request"), 
-            ("Device Use Request", "Device Use Request"), 
-            ("Diagnostic Request", "Diagnostic Request"), 
-            ("Medication Request", "Medication Request"), 
-            ("Nutrition Request", "Nutrition Request"), 
-            ("Procedure Request", "Procedure Request"), 
-            # ("Process Request", "Process Request"),
-            ("Referral Request", "Referral Request"),
-            # ("Supply Request", "Supply Request"),
-            ("Vision Prescription", "Vision Prescription")], 
+            ("appointment", "Appointment"), 
+            ("communication_request", "Communication Request"), 
+            ("device_use_request", "Device Use Request"), 
+            ("diagnostic_request", "Diagnostic Request"), 
+            ("medication_request", "Medication Request"), 
+            ("nutrition_request", "Nutrition Request"), 
+            ("procedure_request", "Procedure Request"), 
+            # ("process_request", "Process Request"),
+            ("referral_request", "Referral Request"),
+            # ("supply_request", "Supply Request"),
+            ("vision_prescription", "Vision Prescription")], 
         help="Type of entity assessed.")                
     reference_name = fields.Char(
         string="Reference", 
@@ -272,8 +272,8 @@ class CarePlanActivityDetail(models.Model):
     definition_type = fields.Selection(
         string="Definition Type", 
         selection=[
-            ("Plan Definition", "Plan Definition"), 
-            ("Questionnaire", "Questionnaire")], 
+            ("plan_definition", "Plan Definition"), 
+            ("questionnaire", "Questionnaire")], 
         help="Type of Information considered as part of plan.")
     definition_name = fields.Char(
         string="Definition", 
@@ -333,8 +333,8 @@ class CarePlanActivityDetail(models.Model):
     scheduled_type = fields.Selection(
         string="Scheduled Type", 
         selection=[
-            ("Timing", "Timing"), 
-            ("Period", "Period"), 
+            ("timing", "Timing"), 
+            ("period", "Period"), 
             ("string", "String")], 
         help="Type of entity assessed.")                
     scheduled_name = fields.Char(
@@ -367,9 +367,9 @@ class CarePlanActivityDetail(models.Model):
     product_type = fields.Selection(
         string="Product Type", 
         selection=[
-            ("Code", "Code"), 
-            ("Medication", "Medication"), 
-            ("Substance", "Substance")], 
+            ("code", "Code"), 
+            ("medication", "Medication"), 
+            ("substance", "Substance")], 
         help="Type of what is to be administered/supplied.")
     product_name = fields.Char(
         string="Product", 
@@ -418,17 +418,17 @@ class CarePlanActivityActionResulting(models.Model):
     action_resulting_type = fields.Selection(
         string="Action Resulting Type", 
         selection=[
-            ("Appointment", "Appointment"), 
-            ("Communication Request", "Communication Request"), 
-            ("Device Use Request", "Device Use Request"), 
-            ("Diagnostic Request", "Diagnostic Request"), 
-            ("Medication Request", "Medication Request"), 
-            ("Nutrition Request", "Nutrition Request"), 
-            ("Procedure Request", "Procedure Request"), 
-            # ("Process Request", "Process Request"),
-            ("Referral Request", "Referral Request"),
-            # ("Supply Request", "Supply Request"),
-            ("Vision Prescription", "Vision Prescription")], 
+            ("appointment", "Appointment"), 
+            ("communication_request", "Communication Request"), 
+            ("device_use_request", "Device Use Request"), 
+            ("diagnostic_request", "Diagnostic Request"), 
+            ("medication_request", "Medication Request"), 
+            ("nutrition_request", "Nutrition Request"), 
+            ("procedure_request", "Procedure Request"), 
+            # ("process_request", "Process Request"),
+            ("referral_request", "Referral Request"),
+            # ("supply_request", "Supply Request"),
+            ("vision_prescription", "Vision Prescription")], 
         help="Type of resource that describes follow-on actions resulting from the plan.")                
     action_resulting_name = fields.Char(
         string="Action Resulting", 
@@ -500,10 +500,10 @@ class CarePlanActivityDetailPerformer(models.Model):
     performer_type = fields.Selection(
         string="Performer Type", 
         selection=[
-            ("Practitioner", "Practitioner"), 
-            ("Organization", "Organization"), 
-            ("Related Person", "Related Person"), 
-            ("Patient", "Patient")], 
+            ("practitioner", "Practitioner"), 
+            ("organization", "Organization"), 
+            ("related_person", "Related Person"), 
+            ("patient", "Patient")], 
         help="Type of entity assessed.")                
     performer_name = fields.Char(
         string="Performer", 
@@ -582,10 +582,10 @@ class CarePlanAuthor(models.Model):
     author_type = fields.Selection(
         string="Author Type", 
         selection=[
-            ("Patient", "Patient"), 
-            ("Practitioner", "Practitioner"), 
-            ("Related Person", "Related Person"), 
-            ("Organization", "Organization")], 
+            ("patient", "Patient"), 
+            ("practitioner", "Practitioner"), 
+            ("related_person", "Related Person"), 
+            ("organization", "Organization")], 
         help="Type of entity assessed.")                
     author_name = fields.Char(
         string="Author", 
@@ -665,7 +665,7 @@ class CarePlanSupport(models.Model):
         string="Support Type", 
         selection=[
             ("string", "String"), 
-            ("Care Plan", "Care Plan")], 
+            ("care_plan", "Care Plan")], 
         help="Type of Information considered as part of plan.")
     support_name = fields.Char(
         string="Support", 
@@ -708,10 +708,10 @@ class ReferralRequestBasedOn(models.Model):
     based_on_type = fields.Selection(
         string="Based On Type", 
         selection=[
-            ("Referral Request", "Referral Request"), 
-            ("Care Plan", "Care Plan"), 
-            ("Diagnostic Order", "Diagnostic Order"), 
-            ("Procedure Request", "Procedure Request")], 
+            ("referral_request", "Referral Request"), 
+            ("care_plan", "Care Plan"), 
+            ("diagnostic_request", "Diagnostic Request"), 
+            ("procedure_request", "Procedure Request")], 
         help="Type of request fulfilled by this request.")
     based_on_care_plan_id = fields.Many2one(
         comodel_name="hc.res.care.plan", 
@@ -724,13 +724,47 @@ class MedicationRequestBasedOn(models.Model):
     based_on_type = fields.Selection(
         string="Based On Type", 
         selection=[
-            ("Care Plan", "Care Plan"), 
-            ("Diagnostic Request", "Diagnostic Request"), 
-            ("Medication Request", "Medication Request"), 
-            ("Procedure Request", "Procedure Request"), 
-            ("Referral Request", "Referral Request")], 
+            ("care_plan", "Care Plan"), 
+            ("diagnostic_request", "Diagnostic Request"), 
+            ("medication_request", "Medication Request"), 
+            ("procedure_request", "Procedure Request"), 
+            ("referral_request", "Referral Request")], 
         help="Type of what request fulfills.")                   
     based_on_care_plan_id = fields.Many2one(
         comodel_name="hc.res.care.plan", 
         string="Based On Care Plan", 
         help="Care Plan request fulfills.")
+
+class MedicationStatementBasedOn(models.Model): 
+    _inherit = "hc.medication.statement.based.on"
+                   
+    based_on_type = fields.Selection(
+        string="Based On Type", 
+        selection=[
+            ("medication_request", "Medication Request"), 
+            ("care_plan", "Care Plan"), 
+            ("diagnostic_request", "Diagnostic Request"), 
+            ("procedure_request", "Procedure Request"), 
+            ("referral_request", "Referral Request")], 
+        help="Type of fulfils plan, proposal or order.")                               
+    based_on_care_plan_id = fields.Many2one(
+        comodel_name="hc.res.care.plan", 
+        string="Based On Care Plan", 
+        help="Care Plan that is fulfilled in whole or in part by this event.")
+
+class Procedure(models.Model):  
+    _inherit = "hc.res.procedure"
+
+    request_type = fields.Selection(
+        string="Procedure Request Type", 
+        selection=[
+            ("care_plan", "Care Plan"), 
+            ("diagnostic_request", "Diagnostic Request"),
+            ("procedure_request", "Procedure Request"),
+            ("referral_request", "Referral Request")], 
+        help="Type of request for this procedure.")
+    request_care_plan_id = fields.Many2one(
+        comodel_name="hc.res.care.plan", 
+        string="Request Care Plan", 
+        help="Care Plan request for this procedure.")
+

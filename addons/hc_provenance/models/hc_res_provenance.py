@@ -110,11 +110,11 @@ class ProvenanceAgent(models.Model):
     actor_type = fields.Selection(
         string="Actor Type", 
         selection=[
-            ("Practitioner", "Practitioner"), 
-            ("Related Person", "Related Person"), 
-            ("Patient", "Patient"), 
-            ("Device", "Device"), 
-            ("Organization", "Organization")], 
+            ("practitioner", "Practitioner"), 
+            ("related_person", "Related Person"), 
+            ("patient", "Patient"), 
+            ("device", "Device"), 
+            ("organization", "Organization")], 
         help="Type of individual, device or organization playing role.")                
     actor_name = fields.Char(
         string="Actor", 
@@ -206,7 +206,8 @@ class ProvenanceTarget(models.Model):
     target_type = fields.Selection(
         string="Target Type", 
         selection=[
-        ("string", "String"), ("Provenance", "Provenance")], 
+            ("string", "String"), 
+            ("provenance", "Provenance")], 
         help="Type of individual, device or organization playing role.")                
     target_name = fields.Char(
         string="Target", 

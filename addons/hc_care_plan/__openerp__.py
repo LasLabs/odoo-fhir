@@ -30,7 +30,7 @@
     # any module necessary for this one to work correctly
     # verify 'hc_medication_request'
     # 'hc_process_request', 'hc_supply_request' 
-    'depends': ['hc_goal','hc_vision_prescription', 'hc_communication_request', 'hc_questionnaire','hc_device_use_request'],
+    'depends': ['hc_questionnaire','hc_vision_prescription','hc_goal','hc_communication_request','hc_referral_request','hc_device_use_request'],
 
     # always loaded
     'data': [

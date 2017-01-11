@@ -25,7 +25,6 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    # 'depends': ['hc_contract'],
     'depends': ['hc_patient'],
 
     # always loaded

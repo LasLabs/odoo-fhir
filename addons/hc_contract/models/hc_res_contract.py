@@ -88,10 +88,10 @@ class Contract(models.Model):
         string="Binding Type", 
         required="True", 
         selection=[
-            ("Attachment", "Attachment"), 
-            ("Composition", "Composition"), 
-            ("Document Reference", "Document Reference"), 
-            ("Questionnaire Response", "Questionnaire Response")], 
+            ("attachment", "Attachment"), 
+            ("composition", "Composition"), 
+            ("document_reference", "Document Reference"), 
+            ("questionnaire_response", "Questionnaire Response")], 
         help="Type of Binding Contract.")                
     binding_name = fields.Char(
         string="Binding", 
@@ -766,3 +766,13 @@ class ContractValuedItemType(models.Model):
     _name = "hc.vs.contract.valued.item.type"    
     _description = "Contract Valued Item Type"        
     _inherit = ["hc.value.set.contains"]
+
+# External reference
+
+class CoverageContract(models.Model):
+    _inherit = "hc.coverage.contract"
+
+    contract_id = fields.Many2one(
+        comodel_name="hc.res.contract", 
+        string="Contract", 
+        help="Contract associated with this Coverage Contract.")

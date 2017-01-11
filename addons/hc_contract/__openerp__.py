@@ -25,7 +25,7 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['hc_document_reference', 'hc_questionnaire_response', 'hc_composition'],
+    'depends': ['hc_document_reference', 'hc_composition'],
 
     # always loaded
     'data': [

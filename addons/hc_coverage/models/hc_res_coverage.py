@@ -144,7 +144,6 @@ class CoverageContract(models.Model):
         comodel_name="hc.res.coverage", 
         string="Coverage", 
         help="Coverage associated with this Coverage Contract.")
-
     # contract_id = fields.Many2one(
     #     comodel_name="hc.res.contract", 
     #     string="Contract", 
@@ -159,7 +158,6 @@ class CoverageNetwork(models.Model):
         comodel_name="hc.res.coverage", 
         string="Coverage",
         help="Coverage associated with this Coverage Network.")
-
     organization_id = fields.Many2one(
         comodel_name="hc.res.organization", 
         string="Organization", 

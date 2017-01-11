@@ -30,10 +30,10 @@ class Observation(models.Model):
     subject_type = fields.Selection(
         string="Observation Subject Type", 
         selection=[
-            ("Patient", "Patient"), 
-            ("Group", "Group"), 
-            ("Device", "Device"), 
-            ("Location", "Location")], 
+            ("patient", "Patient"), 
+            ("group", "Group"), 
+            ("device", "Device"), 
+            ("location", "Location")], 
         help="Type of who and/or what this is about.")                    
     subject_name = fields.Char(
         string="Subject", 
@@ -62,8 +62,8 @@ class Observation(models.Model):
     effective_type = fields.Selection(
         string="Observation Effective Type", 
         selection=[
-            ("dateTime", "Datetime"), 
-            ("Period", "Period")], 
+            ("date_time", "Datetime"), 
+            ("period", "Period")], 
         help="Type of Clinically relevant time/time-period for observation.")                    
     effective_name = fields.Char(
         string="Effective", 
@@ -89,17 +89,17 @@ class Observation(models.Model):
     value_type = fields.Selection(
         string="Observation Value Type", 
         selection=[
-            ("Missing", "Missing"), 
-            ("Quantity", "Quantity"), 
+            ("missing", "Missing"), 
+            ("quantity", "Quantity"), 
             ("code", "Code"), 
             ("string", "String"), 
-            ("Range", "Range"), 
-            ("Ratio", "Ratio"), 
-            ("Sampled Data", "Sampled Data"), 
-            ("Attachment", "Attachment"),
+            ("range", "Range"), 
+            ("ratio", "Ratio"), 
+            ("sampled_data", "Sampled Data"), 
+            ("attachment", "Attachment"),
             ("time", "Time"),
-            ("dateTime", "Datetime"),
-            ("Period", "Period")],
+            ("date_time", "Datetime"),
+            ("period", "Period")],
         help="Type of result.")                    
     value_name = fields.Char(
         string="Value", 
@@ -180,8 +180,8 @@ class Observation(models.Model):
     device_type = fields.Selection(
         string="Observation Device Type", 
         selection=[
-            ("Device", "Device"), 
-            ("Device Metric", "Device Metric")], 
+            ("device", "Device"), 
+            ("device_metric", "Device Metric")], 
         help="Type of device.")                    
     device_name = fields.Char(
         string="Device", 
@@ -204,55 +204,55 @@ class Observation(models.Model):
     @api.multi            
     def _compute_subject_name(self):            
         for hc_res_observation in self:        
-            if hc_res_observation.subject_type == 'Patient':    
+            if hc_res_observation.subject_type == 'patient':    
                 hc_res_observation.subject_name = hc_res_observation.subject_patient_id.name
-            elif hc_res_observation.subject_type == 'Group':    
+            elif hc_res_observation.subject_type == 'group':    
                 hc_res_observation.subject_name = hc_res_observation.subject_group_id.name
-            elif hc_res_observation.subject_type == 'Device':    
+            elif hc_res_observation.subject_type == 'device':    
                 hc_res_observation.subject_name = hc_res_observation.subject_device_id.name
-            elif hc_res_observation.subject_type == 'Location':    
+            elif hc_res_observation.subject_type == 'location':    
                 hc_res_observation.subject_name = hc_res_observation.subject_location_id.name
 
     @api.multi            
     def _compute_effective_name(self):            
         for hc_res_observation in self:        
-            if hc_res_observation.effective_type == 'dateTime':    
-                hc_res_observation.effective_name = hc_res_observation.effective_datetime_id.name
-            elif hc_res_observation.effective_type == 'Period':    
+            if hc_res_observation.effective_type == 'date_time':    
+                hc_res_observation.effective_name = hc_res_observation.effective_datetime
+            elif hc_res_observation.effective_type == 'period':    
                 hc_res_observation.effective_name = hc_res_observation.effective_period_id.name
 
     @api.multi            
     def _compute_value_name(self):            
         for hc_res_observation in self:        
-            if hc_res_observation.value_type == 'Missing':    
-                hc_res_observation.value_name = hc_res_observation.value_missing_id.name
-            elif hc_res_observation.value_type == 'Quantity':    
-                hc_res_observation.value_name = hc_res_observation.value_quantity_id.name
-            elif hc_res_observation.value_type == 'Codeable Concept':    
+            if hc_res_observation.value_type == 'missing':    
+                hc_res_observation.value_name = hc_res_observation.value_missing
+            elif hc_res_observation.value_type == 'quantity':    
+                hc_res_observation.value_name = hc_res_observation.value_quantity
+            elif hc_res_observation.value_type == 'code':    
                 hc_res_observation.value_name = hc_res_observation.value_codeable_concept_id.name
             elif hc_res_observation.value_type == 'string':    
-                hc_res_observation.value_name = hc_res_observation.value_string_id.name
-            elif hc_res_observation.value_type == 'Range':    
+                hc_res_observation.value_name = hc_res_observation.value_string
+            elif hc_res_observation.value_type == 'range':    
                 hc_res_observation.value_name = hc_res_observation.value_range_id.name
-            elif hc_res_observation.value_type == 'Ratio':    
+            elif hc_res_observation.value_type == 'ratio':    
                 hc_res_observation.value_name = hc_res_observation.value_ratio_id.name
-            elif hc_res_observation.value_type == 'Sampled Data':   
+            elif hc_res_observation.value_type == 'sampled_data':   
                 hc_res_observation.value_name = hc_res_observation.value_sampled_data_id.name
-            elif hc_res_observation.value_type == 'Attachment': 
+            elif hc_res_observation.value_type == 'attachment': 
                 hc_res_observation.value_name = hc_res_observation.value_attachment_id.name
             elif hc_res_observation.value_type == 'time':   
-                hc_res_observation.value_name = hc_res_observation.value_time_id.name
-            elif hc_res_observation.value_type == 'dateTime':   
-                hc_res_observation.value_name = hc_res_observation.value_datetime_id.name
-            elif hc_res_observation.value_type == 'Period': 
+                hc_res_observation.value_name = hc_res_observation.value_time
+            elif hc_res_observation.value_type == 'date_time':   
+                hc_res_observation.value_name = hc_res_observation.value_datetime
+            elif hc_res_observation.value_type == 'period': 
                 hc_res_observation.value_name = hc_res_observation.value_period_id.name
 
     @api.multi          
     def _compute_device_name(self):         
         for hc_res_observation in self:     
-            if hc_res_observation.device_type == 'Device':  
+            if hc_res_observation.device_type == 'device':  
                 hc_res_observation.device_name = hc_res_observation.device_device_id.name
-            elif hc_res_observation.device_type == 'Device Metric': 
+            elif hc_res_observation.device_type == 'device_metric': 
                 hc_res_observation.device_name = hc_res_observation.device_device_metric_id.name
 
 class ObservationReferenceRange(models.Model):    
@@ -263,7 +263,7 @@ class ObservationReferenceRange(models.Model):
         comodel_name="hc.res.observation", 
         string="Observation", 
         required="True", 
-        help="Observation associated with this reference range observation.")                    
+        help="Observation associated with this Observation Reference Range.")                    
     low = fields.Float(
         string="Low", 
         help="Low Range, if relevant.")                    
@@ -300,7 +300,7 @@ class ObservationRelated(models.Model):
         comodel_name="hc.res.observation", 
         string="Observation", 
         required="True", 
-        help="Observation associated with this related observation.")                    
+        help="Observation associated with this Observation Related.")                    
     type = fields.Selection(
         string="Related Type", 
         selection=[
@@ -316,9 +316,9 @@ class ObservationRelated(models.Model):
         string="Related Target Type",
         required="True", 
         selection=[
-            ("Observation", "Observation"), 
-            ("Questionnaire Response", "Questionnaire Response"), 
-            ("Sequence", "Sequence")], 
+            ("observation", "Observation"), 
+            # ("questionnaire_response", "Questionnaire Response"), 
+            ("sequence", "Sequence")], 
         help="Type of resource that is related to this target.")                    
     target_name = fields.Char(
         string="Target", 
@@ -341,13 +341,12 @@ class ObservationRelated(models.Model):
     @api.multi          
     def _compute_target_name(self):         
         for hc_res_observation in self:     
-            if hc_res_observation.target_type == 'Observation': 
+            if hc_res_observation.target_type == 'observation': 
                 hc_res_observation.target_name = hc_res_observation.target_observation_id.name
-            elif hc_res_observation.target_type == 'Questionnaire Response':    
+            elif hc_res_observation.target_type == 'questionnaire_response':    
                 hc_res_observation.target_name = hc_res_observation.target_questionnaire_response_id.name
-            elif hc_res_observation.target_type == 'Sequence':  
+            elif hc_res_observation.target_type == 'sequence':  
                 hc_res_observation.target_name = hc_res_observation.target_sequence_id.name
-
 
 class ObservationComponent(models.Model):    
     _name = "hc.observation.component"    
@@ -357,7 +356,7 @@ class ObservationComponent(models.Model):
         comodel_name="hc.res.observation", 
         string="Observation", 
         required="True", 
-        help="Observation associated with this component observation.")                    
+        help="Observation associated with this Observation Component.")                    
     code = fields.Float(
         string="Code", 
         required="True", 
@@ -365,17 +364,17 @@ class ObservationComponent(models.Model):
     value_type = fields.Selection(
         string="Component Value Type", 
         selection=[
-            ("Missing", "Missing"), 
-            ("Quantity", "Quantity"), 
+            ("missing", "Missing"), 
+            ("quantity", "Quantity"), 
             ("code", "Code"), 
             ("string", "String"), 
-            ("Range", "Range"), 
-            ("Ratio", "Ratio"), 
-            ("Sampled Data", "Sampled Data"), 
-            ("Attachment", "Attachment"),
+            ("range", "Range"), 
+            ("ratio", "Ratio"), 
+            ("sampled_data", "Sampled Data"), 
+            ("attachment", "Attachment"),
             ("time", "Time"),
-            ("dateTime", "Datetime"),
-            ("Period", "Period")],
+            ("date_time", "Datetime"),
+            ("period", "Period")],
         help="Type of result.")                    
     value_name = fields.Char(
         string="Value", 
@@ -421,7 +420,7 @@ class ObservationComponent(models.Model):
     value_time = fields.Char(
         string="Value Time", 
         help="Time actual result.")                    
-    value_datetime = fields.Datetime(
+    value_date_time = fields.Datetime(
         string="Value Datetime", 
         help="DateTime actual result.")                    
     value_start_date = fields.Datetime(
@@ -447,26 +446,26 @@ class ObservationComponent(models.Model):
     @api.multi            
     def _compute_value_name(self):            
         for hc_res_observation in self:        
-            if hc_res_observation.value_type == 'Missing':    
-                hc_res_observation.value_name = hc_res_observation.value_missing_id.name
-            elif hc_res_observation.value_type == 'Quantity':    
-                hc_res_observation.value_name = hc_res_observation.value_quantity_id.name
-            elif hc_res_observation.value_type == 'Codeable Concept':    
+            if hc_res_observation.value_type == 'missing':    
+                hc_res_observation.value_name = hc_res_observation.value_missing
+            elif hc_res_observation.value_type == 'quantity':    
+                hc_res_observation.value_name = hc_res_observation.value_quantity
+            elif hc_res_observation.value_type == 'code':    
                 hc_res_observation.value_name = hc_res_observation.value_codeable_concept_id.name
             elif hc_res_observation.value_type == 'string':    
-                hc_res_observation.value_name = hc_res_observation.value_string_id.name
-            elif hc_res_observation.value_type == 'Range':    
+                hc_res_observation.value_name = hc_res_observation.value_string
+            elif hc_res_observation.value_type == 'range':    
                 hc_res_observation.value_name = hc_res_observation.value_range_id.name
-            elif hc_res_observation.value_type == 'Ratio':    
+            elif hc_res_observation.value_type == 'ratio':    
                 hc_res_observation.value_name = hc_res_observation.value_ratio_id.name
-            elif hc_res_observation.value_type == 'Sampled Data':   
+            elif hc_res_observation.value_type == 'sampled_data':   
                 hc_res_observation.value_name = hc_res_observation.value_sampled_data_id.name
             elif hc_res_observation.value_type == 'Attachment': 
                 hc_res_observation.value_name = hc_res_observation.value_attachment_id.name
             elif hc_res_observation.value_type == 'time':   
-                hc_res_observation.value_name = hc_res_observation.value_time_id.name
+                hc_res_observation.value_name = hc_res_observation.value_time
             elif hc_res_observation.value_type == 'dateTime':   
-                hc_res_observation.value_name = hc_res_observation.value_datetime_id.name
+                hc_res_observation.value_name = hc_res_observation.value_datetime
             elif hc_res_observation.value_type == 'Period': 
                 hc_res_observation.value_name = hc_res_observation.value_period_id.name
 
@@ -478,7 +477,7 @@ class ObservationComponentReferenceRange(models.Model):
         comodel_name="hc.observation.component", 
         string="Component", 
         required="True", 
-        help="Component associated with this component reference range component.")                    
+        help="Component associated with this Observation Component Reference Range.")                    
     low = fields.Float(
         string="Low", 
         help="Low Range, if relevant.")                    
@@ -516,14 +515,14 @@ class ObservationPerformer(models.Model):
         comodel_name="hc.res.observation", 
         string="Observation", 
         required="True", 
-        help="Observation associated with this observation performer observation.")                    
+        help="Observation associated with this Observation Performer.")                    
     performer_type = fields.Selection(
         string="Observation Performer Type", 
         selection=[
-            ("Practitioner", "Practitioner"), 
-            ("Organization", "Organization"), 
-            ("Patient", "Patient"), 
-            ("Related Person", "Related Person")], 
+            ("practitioner", "Practitioner"), 
+            ("organization", "Organization"), 
+            ("patient", "Patient"), 
+            ("related_person", "Related Person")], 
         help="Type of Who is responsible for the observation.")                    
     performer_name = fields.Char(
         string="Performer", 
@@ -549,13 +548,13 @@ class ObservationPerformer(models.Model):
     @api.multi          
     def _compute_performer_name(self):          
         for hc_res_observation in self:     
-            if hc_res_observation.performer_type == 'Practitioner': 
+            if hc_res_observation.performer_type == 'practitioner': 
                 hc_res_observation.performer_name = hc_res_observation.performer_practitioner_id.name
-            elif hc_res_observation.performer_type == 'Organization':   
+            elif hc_res_observation.performer_type == 'organization':   
                 hc_res_observation.performer_name = hc_res_observation.performer_organization_id.name
-            elif hc_res_observation.performer_type == 'Patient':    
+            elif hc_res_observation.performer_type == 'patient':    
                 hc_res_observation.performer_name = hc_res_observation.performer_patient_id.name
-            elif hc_res_observation.performer_type == 'Related Person': 
+            elif hc_res_observation.performer_type == 'related_person': 
                 hc_res_observation.performer_name = hc_res_observation.performer_related_person_id.name
 
 class ObservationComponentValueAttachment(models.Model):    
@@ -567,7 +566,7 @@ class ObservationComponentValueAttachment(models.Model):
         comodel_name="hc.observation.component", 
         string="Component", 
         required="True", 
-        help="Component associated with this observation component value attachment component.")                    
+        help="Component associated with this Observation Component Value Attachment.")                    
 
 class ObservationComponentValueSampledData(models.Model):    
     _name = "hc.observation.component.value.sampled.data"    
@@ -578,7 +577,7 @@ class ObservationComponentValueSampledData(models.Model):
         comodel_name="hc.observation.component", 
         string="Component", 
         required="True", 
-        help="Component associated with this observation component value sampled data component.")                    
+        help="Component associated with this Observation Component Value Sampled Data.")                    
 
 class ObservationIdentifier(models.Model):    
     _name = "hc.observation.identifier"    
@@ -589,7 +588,7 @@ class ObservationIdentifier(models.Model):
         comodel_name="hc.res.observation", 
         string="Observation", 
         required="True", 
-        help="Observation associated with this observation identifier observation.")                    
+        help="Observation associated with this Observation Identifier.")                    
 
 class ObservationValueAttachment(models.Model):    
     _name = "hc.observation.value.attachment"    
@@ -600,7 +599,7 @@ class ObservationValueAttachment(models.Model):
         comodel_name="hc.res.observation", 
         string="Observation", 
         required="True", 
-        help="Observation associated with this observation value attachment observation.")                    
+        help="Observation associated with this Observation Value Attachment.")                    
 
 class ObservationValueSampledData(models.Model):    
     _name = "hc.observation.value.sampled.data"    
@@ -611,7 +610,7 @@ class ObservationValueSampledData(models.Model):
         comodel_name="hc.res.observation", 
         string="Observation", 
         required="True", 
-        help="Observation associated with this observation value sampled data observation.")                    
+        help="Observation associated with this Observation Value Sampled Data.")                    
 
 class ObservationCategory(models.Model):    
     _name = "hc.vs.observation.category"    
@@ -661,7 +660,7 @@ class ConditionStageAssessment(models.Model):
     @api.multi          
     def _compute_assessment_name(self):         
         for hc_res_condition in self:       
-            if hc_res_condition.assessment_type == 'Observation': 
+            if hc_res_condition.assessment_type == 'observation': 
                 hc_res_condition.assessment_name = hc_res_condition.assessment_observation_id.name
 
 class ConditionEvidenceDetail(models.Model):    
@@ -676,10 +675,10 @@ class ConditionEvidenceDetail(models.Model):
     def _compute_detail_name(self):         
         for hc_res_condition in self:       
             if hc_res_condition.detail_type == 'string':    
-                hc_res_condition.detail_name = hc_res_condition.detail_string_id.name
-            elif hc_res_condition.detail_type == 'Condition':   
+                hc_res_condition.detail_name = hc_res_condition.detail_string
+            elif hc_res_condition.detail_type == 'condition':   
                 hc_res_condition.detail_name = hc_res_condition.detail_condition_id.name
-            elif hc_res_condition.detail_type == 'Observation': 
+            elif hc_res_condition.detail_type == 'observation': 
                 hc_res_condition.detail_name = hc_res_condition.detail_observation_id.name
 
 class SequenceVariant(models.Model):    

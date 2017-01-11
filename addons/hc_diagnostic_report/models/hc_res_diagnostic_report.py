@@ -336,10 +336,10 @@ class ConditionEvidenceDetail(models.Model):
             elif hc_res_condition.detail_type == 'Diagnostic Report':   
                 hc_res_condition.detail_name = hc_res_condition.detail_diagnostic_report_id.name
 
-class ProcedureDiagnosticReport(models.Model):  
-    _inherit = "hc.procedure.diagnostic.report"
+class ProcedureReport(models.Model):  
+    _inherit = "hc.procedure.report"
 
-    diagnostic_report_id = fields.Many2one(
+    report_id = fields.Many2one(
         comodel_name="hc.res.diagnostic.report", 
-        string="Diagnostic Report", 
-        help="Diagnostic Report associated with this Procedure.")
+        string="Report", 
+        help="Report associated with this Procedure Report.")

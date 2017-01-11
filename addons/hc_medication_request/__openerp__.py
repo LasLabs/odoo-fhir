@@ -29,7 +29,7 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['hc_observation', 'hc_referral_request', 'hc_procedure_request','hc_plan_definition'],
+    'depends': ['hc_observation','hc_plan_definition'],
 
     # always loaded
     'data': [

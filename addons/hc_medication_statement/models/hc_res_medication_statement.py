@@ -14,7 +14,7 @@ class MedicationStatement(models.Model):
     based_on_ids = fields.One2many(
         comodel_name="hc.medication.statement.based.on", 
         inverse_name="medication_statement_id", 
-        string="Based Ons", 
+        string="Based On", 
         help="Fulfils plan, proposal or order.")
     context_type = fields.Selection(
         string="Context Type", 
@@ -194,7 +194,7 @@ class MedicationStatementBasedOn(models.Model):
         string="Based On Type", 
         selection=[
             ("medication_request", "Medication Request"), 
-            ("care_plan", "Care Plan"), 
+            # ("care_plan", "Care Plan"), 
             ("diagnostic_request", "Diagnostic Request"), 
             ("procedure_request", "Procedure Request"), 
             ("referral_request", "Referral Request")], 
@@ -208,10 +208,10 @@ class MedicationStatementBasedOn(models.Model):
         comodel_name="hc.res.medication.request", 
         string="Based On Medication Request", 
         help="Medication Request that is fulfilled in whole or in part by this event.")                    
-    based_on_care_plan_id = fields.Many2one(
-        comodel_name="hc.res.care.plan", 
-        string="Based On Care Plan", 
-        help="Care Plan that is fulfilled in whole or in part by this event.")                    
+    # based_on_care_plan_id = fields.Many2one(
+    #     comodel_name="hc.res.care.plan", 
+    #     string="Based On Care Plan", 
+    #     help="Care Plan that is fulfilled in whole or in part by this event.")                    
     based_on_diagnostic_request_id = fields.Many2one(
         comodel_name="hc.res.diagnostic.request", 
         string="Based On Diagnostic Request", 
@@ -253,7 +253,7 @@ class MedicationStatementDerivedFrom(models.Model):
         string="Derived From Code", 
         help="Resource type of additional supporting information.")
 
-    class MedicationStatementReasonForUseReference(models.Model):   
+class MedicationStatementReasonForUseReference(models.Model):   
     _name = "hc.medication.statement.reason.for.use.reference"  
     _description = "Medication Statement Reason For Use Reference"      
     _inherit = ["hc.basic.association"]

@@ -57,7 +57,7 @@ class MedicationRequest(models.Model):
         required="True", 
         selection=[
             ("code", "Code"), 
-            ("Medication", "Medication")],
+            ("medication", "Medication")],
          help="Type of medication to be taken.")                   
     medication_name = fields.Char(
         string="Medication", 
@@ -77,8 +77,8 @@ class MedicationRequest(models.Model):
         string="Subject Type", 
         required="True", 
         selection=[
-            ("Patient", "Patient"), 
-            ("Group", "Group")], 
+            ("patient", "Patient"), 
+            ("group", "Group")], 
         help="Who or group prescription is for.")
     subject_name = fields.Char(
         string="Subject", 
@@ -103,8 +103,8 @@ class MedicationRequest(models.Model):
     context_type = fields.Selection(
         string="Context Type", 
         selection=[
-            ("Encounter", "Encounter"), 
-            ("Episode Of Care", "Episode Of Care")], 
+            ("encounter", "Encounter"), 
+            ("episode_of_care", "Episode Of Care")], 
         help="Type created during encounter/admission/stay.")                    
     context_name = fields.Char(
         string="Context", 
@@ -213,11 +213,11 @@ class MedicationRequestRequester(models.Model):
         string="Agent Type", 
         required="True", 
         selection=[
-            ("Practitioner", "Practitioner"), 
-            ("Organization", "Organization"), 
-            ("Patient", "Patient"), 
-            ("Related Person", "Related Person"), 
-            ("Device", "Device")], 
+            ("practitioner", "Practitioner"), 
+            ("organization", "Organization"), 
+            ("patient", "Patient"), 
+            ("related_person", "Related Person"), 
+            ("device", "Device")], 
         help="Type of who ordered the initial medication(s).")
     agent_name = fields.Char(
         string="Agent", 
@@ -322,14 +322,14 @@ class MedicationRequestDefinition(models.Model):
     definition_type = fields.Selection(
         string="Definition Type", 
         selection=[
-            ("Activity Definition", "Activity Definition"), 
-            ("Plan Definition", "Plan Definition")], 
+            ("activity_definition", "Activity Definition"), 
+            ("plan_definition", "Plan Definition")], 
         help="Protocol or definition.")                    
     definition_name = fields.Char(
         string="Definition", 
         compute="_compute_definition_name", 
         store="True", 
-        help="Protocol or definitio.")                 
+        help="Protocol or definition.")                 
     definition_activity_definition_id = fields.Many2one(
         comodel_name="hc.res.activity.definition", 
         string="Definition Activity Definition", 
@@ -351,11 +351,12 @@ class MedicationRequestBasedOn(models.Model):
     based_on_type = fields.Selection(
         string="Based On Type", 
         selection=[
-            # ("Care Plan", "Care Plan"), 
-            ("Diagnostic Request", "Diagnostic Request"), 
-            ("Medication Request", "Medication Request"), 
-            ("Procedure Request", "Procedure Request"), 
-            ("Referral Request", "Referral Request")], 
+            # ("care_plan", "Care Plan"), 
+            ("diagnostic_request", "Diagnostic Request"), 
+            ("medication_request", "Medication Request"), 
+            ("procedure_request", "Procedure Request"), 
+            # ("referral_request", "Referral Request")
+            ], 
         help="Type of what request fulfills.")
     based_on_name = fields.Char(
         string="Based On", 
@@ -377,10 +378,10 @@ class MedicationRequestBasedOn(models.Model):
         comodel_name="hc.res.procedure.request", 
         string="Based On Procedure Request", 
         help="Procedure Request fulfills.")                   
-    based_on_referral_request_id = fields.Many2one(
-        comodel_name="hc.res.referral.request", 
-        string="Based On Referral Request", 
-        help="Referral Request fulfills.")                      
+    # based_on_referral_request_id = fields.Many2one(
+    #     comodel_name="hc.res.referral.request", 
+    #     string="Based On Referral Request", 
+    #     help="Referral Request fulfills.")                      
 
 class MedicationRequestGroupIdentifier(models.Model):   
     _name = "hc.medication.request.group.identifier"    
@@ -399,13 +400,14 @@ class MedicationRequestReasonReference(models.Model):
     reason_reference_type = fields.Selection(
         string="Reason Reference Type", 
         selection=[
-            ("Condition", "Condition"), 
-            ("Observation", "Observation")], 
+            ("condition", "Condition"), 
+            ("observation", "Observation")], 
         help="Condition or Observation that supports why the prescription is being written.")                  
     reason_reference_name = fields.Char(
         string="Reason Reference", 
         compute="_compute_reason_reference_name", 
-        store="True", help="Condition or Observation that supports why the prescription is being writte.")                 
+        store="True", 
+        help="Condition or Observation that supports why the prescription is being writte.")                 
     reason_reference_condition_id = fields.Many2one(
         comodel_name="hc.res.condition", 
         string="Reason Reference Condition", 

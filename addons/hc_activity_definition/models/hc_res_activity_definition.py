@@ -123,7 +123,7 @@ class ActivityDefinition(models.Model):
         string="Timing Type", 
         selection=[
             ("code", "Code"), 
-            ("Timing", "Timing")], 
+            ("timing", "Timing")], 
         help="Type of when activity is to occur.")
     timing_name = fields.Char(
         string="Timing", 
@@ -149,8 +149,8 @@ class ActivityDefinition(models.Model):
     product_type = fields.Selection(
         string="Product Type", 
         selection=[
-            ("Medication", "Medication"), 
-            ("Substance", "Substance"), 
+            ("medication", "Medication"), 
+            ("substance", "Substance"), 
             ("code", "Code")], 
         help="Type of what's administered/supplied.")
     product_name = fields.Char(

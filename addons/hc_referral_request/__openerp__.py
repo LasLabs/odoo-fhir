@@ -38,7 +38,7 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['hc_diagnostic_request'],
+    'depends': ['hc_procedure_request','hc_claim'],
 
     # always loaded
     'data': [

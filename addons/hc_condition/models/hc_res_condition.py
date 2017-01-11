@@ -455,5 +455,3 @@ class ConditionStage(models.Model):
     _name = "hc.vs.condition.stage"    
     _description = "Condition Stage"        
     _inherit = ["hc.value.set.contains"]
-
-# External Reference

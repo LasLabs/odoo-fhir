@@ -27,7 +27,7 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['hc_claim_response'],
+    'depends': ['hc_claim_response','hc_referral_request'],
 
     # always loaded
     'data': [

@@ -207,12 +207,12 @@ class GoalAddresses(models.Model):
     addresses_type = fields.Selection(
         string="Addresses Type", 
         selection=[
-            ("Condition", "Condition"), 
-            ("Observation", "Observation"),
-            ("Medication Statement", "Medication Statement"), 
-            ("Nutrition Request", "Nutrition Request"),
-            ("Procedure Request", "Procedure Request"), 
-            ("Risk Assessment", "Risk Assessment")],
+            ("condition", "Condition"), 
+            ("observation", "Observation"),
+            ("medication_statement", "Medication Statement"), 
+            ("nutrition_request", "Nutrition Request"),
+            ("procedure_request", "Procedure Request"), 
+            ("risk_assessment", "Risk Assessment")],
         help="Type of issues addressed by this goal.")                
     addresses_name = fields.Char(
         string="Addresses", 
@@ -288,3 +288,31 @@ class GoalStatusReason(models.Model):
     _name = "hc.vs.goal.status.reason"    
     _description = "Goal Status Reason"        
     _inherit = ["hc.value.set.contains"]
+
+# External reference
+
+# class CarePlanGoal(models.Model):    
+#     _inherit = "hc.care.plan.goal"    
+#     _description = "Care Plan Goal"        
+#     _inherit = ["hc.basic.association"]
+                
+#     goal_id = fields.Many2one(
+#         comodel_name="hc.res.goal", 
+#         string="Goal", 
+#         help="Goal associated with this Care Plan Goal.")
+
+# class CarePlanActivityDetailGoal(models.Model):    
+#     _inherit = "hc.care.plan.activity.detail.goal"    
+              
+#     goal_id = fields.Many2one(
+#         comodel_name="hc.res.goal", 
+#         string="Goal", 
+#         help="Goal associated with this Care Plan Activity Detail Goal.")
+
+# class CarePlanActivityDetail(models.Model):    
+#     _inherit = "hc.care.plan.activity.detail"
+
+#     status_reason_id = fields.Many2one(
+#         comodel_name="hc.vs.goal.status.reason", 
+#         string="Status Reason", 
+#         help="Reason for current status.")

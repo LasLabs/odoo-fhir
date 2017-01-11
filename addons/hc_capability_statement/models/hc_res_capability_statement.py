@@ -193,7 +193,7 @@ class CapabilityStatementRest(models.Model):
         string="Compartment URIs", 
         help="URI of compartments served/used by system.")                        
     search_param_ids = fields.One2many(
-        comodel_name="hc.capability.statement.rest.search.param", 
+        comodel_name="hc.capability.statement.rest.resource.search.param", 
         inverse_name="rest_id", 
         string="Search Params", 
         help="Added items detail adjudication.")                        
@@ -329,7 +329,7 @@ class CapabilityStatementRestResource(models.Model):
         string="Search Rev Include", 
         help="_revinclude values supported by the server.")                   
     search_param_ids = fields.One2many(
-        comodel_name="hc.capability.statement.rest.search.param", 
+        comodel_name="hc.capability.statement.rest.resource.search.param", 
         inverse_name="resource_id", 
         string="Search Params", 
         help="Search params supported by implementation.")                        
@@ -366,9 +366,10 @@ class CapabilityStatementRestResourceInteraction(models.Model):
         string="Documentation", 
         help="Anything special about operation behavior.")
 
-class CapabilityStatementRestSearchParam(models.Model):    
-    _name = "hc.capability.statement.rest.search.param"    
-    _description = "Capability Statement REST Search Param"                
+class CapabilityStatementRestResourceSearchParam(models.Model): 
+    _name = "hc.capability.statement.rest.resource.search.param"    
+    _description = "Capability Statement REST Resource Search Param"
+                
 
     rest_id = fields.Many2one(
         comodel_name="hc.capability.statement.rest", 

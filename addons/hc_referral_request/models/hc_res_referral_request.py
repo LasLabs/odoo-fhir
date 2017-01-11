@@ -14,7 +14,7 @@ class ReferralRequest(models.Model):
     based_on_ids = fields.One2many(
         comodel_name="hc.referral.request.based.on", 
         inverse_name="referral_request_id", 
-        string="Based Ons", 
+        string="Based On", 
         help="Request fulfilled by this request.")                   
     parent_id = fields.Many2one(
         comodel_name="hc.referral.request.parent", 
@@ -157,7 +157,7 @@ class ReferralRequestBasedOn(models.Model):
         string="Based On Type", 
         selection=[
             ("referral_request", "Referral Request"), 
-            # ("Care Plan", "Care Plan"), 
+            # ("care_plan", "Care Plan"), 
             ("diagnostic_request", "Diagnostic Request"), 
             ("procedure_request", "Procedure Request")], 
         help="Type of request fulfilled by this request.")                
@@ -267,3 +267,45 @@ class EpisodeOfCareReferralRequest(models.Model):
         comodel_name="hc.res.referral.request", 
         string="Referral Request", 
         help="Referral Request associated with this Episode Of Care Referral Request.")
+
+class Claim(models.Model):    
+    _inherit = "hc.res.claim"
+
+    referral_id = fields.Many2one(
+        comodel_name="hc.res.referral.request", 
+        string="Referral", 
+        help="Treatment Referral.")
+
+class MedicationRequestBasedOn(models.Model):   
+    _inherit = "hc.medication.request.based.on"
+
+    based_on_type = fields.Selection(
+        string="Based On Type", 
+        selection=[
+            # ("care_plan", "Care Plan"), 
+            ("diagnostic_request", "Diagnostic Request"), 
+            ("medication_request", "Medication Request"), 
+            ("procedure_request", "Procedure Request"), 
+            ("referral_request", "Referral Request")
+            ], 
+        help="Type of what request fulfills.")
+    based_on_referral_request_id = fields.Many2one(
+        comodel_name="hc.res.referral.request", 
+        string="Based On Referral Request", 
+        help="Referral Request fulfills.")
+
+class Procedure(models.Model):  
+    _inherit = "hc.res.procedure"
+    
+    request_type = fields.Selection(
+        string="Procedure Request Type", 
+        selection=[
+            ("care_plan", "Care Plan"), 
+            ("diagnostic_request", "Diagnostic Request"),
+            ("procedure_request", "Procedure Request"),
+            ("referral_request", "Referral Request")], 
+        help="Type of request for this procedure.")
+    request_referral_request_id = fields.Many2one(
+        comodel_name="hc.res.referral.request", 
+        string="Request Referral Request", 
+        help="Referral Request for this procedure.")                

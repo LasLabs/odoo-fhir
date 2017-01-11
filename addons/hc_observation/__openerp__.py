@@ -20,7 +20,7 @@
         Uses for the Observation resource include:
 
         * Vital signs such as body weight, blood pressure, and temperature
-        * Laboratory Data llike blood glucose, or an estimated GFR
+        * Laboratory Data like blood glucose, or an estimated GFR
         * Imaging results like bone density or fetal measurements
         * Devices Measurements such as EKG data or Pulse Oximetry data
         * Clinical assessment tools such as APGAR or a Glasgow Coma Score
@@ -40,7 +40,7 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['hc_sequence', 'hc_device_metric', 'hc_encounter'],
+    'depends': ['hc_sequence', 'hc_device_metric'],
 
     # always loaded
     'data': [
