@@ -28,8 +28,7 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    # 'depends': ['hc_process_request'],
-    'depends': ['hc_practitioner'],
+    'depends': ['hc_process_request'],
 
     # always loaded
     'data': [

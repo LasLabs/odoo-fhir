@@ -32,10 +32,10 @@ class PaymentReconciliation(models.Model):
         comodel_name="hc.res.organization", 
         string="Organization", 
         help="Insurer.")               
-    # request_id = fields.Many2one(
-    #     comodel_name="hc.res.process.request", 
-    #     string="Request", 
-    #     help="Claim reference.")              
+    request_id = fields.Many2one(
+        comodel_name="hc.res.process.request", 
+        string="Request", 
+        help="Claim reference.")              
     outcome = fields.Selection(
         string="Outcome", 
         selection=[

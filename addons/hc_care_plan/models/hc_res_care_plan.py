@@ -207,9 +207,9 @@ class CarePlanActivity(models.Model):
             ("medication_request", "Medication Request"), 
             ("nutrition_request", "Nutrition Request"), 
             ("procedure_request", "Procedure Request"), 
-            # ("process_request", "Process Request"),
+            ("process_request", "Process Request"),
             ("referral_request", "Referral Request"),
-            # ("supply_request", "Supply Request"),
+            ("supply_request", "Supply Request"),
             ("vision_prescription", "Vision Prescription")], 
         help="Type of entity assessed.")                
     reference_name = fields.Char(
@@ -245,12 +245,18 @@ class CarePlanActivity(models.Model):
         comodel_name="hc.res.procedure.request", 
         string="Reference Procedure Request", 
         help="Procedure Request activity details defined in specific resource.")                
-    # reference_process_request_id = fields.Many2one(comodel_name="hc.res.process.request", string="Reference Process Request", help="Process Request activity details defined in specific resource.")                
+    reference_process_request_id = fields.Many2one(
+        comodel_name="hc.res.process.request", 
+        string="Reference Process Request", 
+        help="Process Request activity details defined in specific resource.")                
     reference_referral_request_id = fields.Many2one(
         comodel_name="hc.res.referral.request", 
         string="Reference Referral Request", 
         help="Referral Request activity details defined in specific resource.")                
-    # reference_supply_request_id = fields.Many2one(comodel_name="hc.res.supply.request", string="Reference Supply Request", help="Supply Request activity details defined in specific resource.")                
+    reference_supply_request_id = fields.Many2one(
+        comodel_name="hc.res.supply.request", 
+        string="Reference Supply Request", 
+        help="Supply Request activity details defined in specific resource.")                
     reference_vision_prescription_id = fields.Many2one(
         comodel_name="hc.res.vision.prescription", 
         string="Reference Vision Prescription", 
@@ -425,9 +431,9 @@ class CarePlanActivityActionResulting(models.Model):
             ("medication_request", "Medication Request"), 
             ("nutrition_request", "Nutrition Request"), 
             ("procedure_request", "Procedure Request"), 
-            # ("process_request", "Process Request"),
+            ("process_request", "Process Request"),
             ("referral_request", "Referral Request"),
-            # ("supply_request", "Supply Request"),
+            ("supply_request", "Supply Request"),
             ("vision_prescription", "Vision Prescription")], 
         help="Type of resource that describes follow-on actions resulting from the plan.")                
     action_resulting_name = fields.Char(
@@ -463,12 +469,18 @@ class CarePlanActivityActionResulting(models.Model):
         comodel_name="hc.res.procedure.request", 
         string="Action Resulting Procedure Request", 
         help="Procedure Request resource that describes follow-on actions resulting from the plan.")
-    # action_resulting_process_request_id = fields.Many2one(comodel_name="hc.res.process.request", string="Action Resulting Process Request", help="Process Request resource that describes follow-on actions resulting from the plan.")
+    action_resulting_process_request_id = fields.Many2one(
+        comodel_name="hc.res.process.request", 
+        string="Action Resulting Process Request", 
+        help="Process Request resource that describes follow-on actions resulting from the plan.")
     action_resulting_referral_request_id = fields.Many2one(
         comodel_name="hc.res.referral.request", 
         string="Action Resulting Referral Request", 
         help="Referral Request resource that describes follow-on actions resulting from the plan.")
-    # action_resulting_supply_request_id = fields.Many2one(comodel_name="hc.res.supply.request", string="Action Resulting Supply Request", help="Supply Request resource that describes follow-on actions resulting from the plan.")
+    action_resulting_supply_request_id = fields.Many2one(
+        comodel_name="hc.res.supply.request", 
+        string="Action Resulting Supply Request", 
+        help="Supply Request resource that describes follow-on actions resulting from the plan.")
     action_resulting_vision_prescription_id = fields.Many2one(
         comodel_name="hc.res.vision.prescription", 
         string="Action Resulting Vision Prescription", 
