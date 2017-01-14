@@ -53,11 +53,11 @@ class Condition(models.Model):
         string="Body Sites", 
         help="Anatomical location, if relevant.")              
     subject_type = fields.Selection(
-        string="Condition Subject Type",
+        string="Subject Type",
         required="True", 
         selection=[
-            ("Patient", "Patient"), 
-            ("Group", "Group")], 
+            ("patient", "Patient"), 
+            ("group", "Group")], 
         help="Type of who has the condition.")
     subject_name = fields.Char(
         string="Subject", 
@@ -74,17 +74,17 @@ class Condition(models.Model):
         string="Subject Group", 
         required="True", 
         help="Group who has the condition.")                
-    context_type = fields.Selection(
-        string="Condition Context Type",
-        selection=[
-            ("Encounter", "Encounter"), 
-            ("Episode Of Care", "Episode of Care")], 
-        help="Type of encounter when condition first asserted.")                    
-    context_name = fields.Char(
-        string="Context", 
-        compute="_compute_context_name",
-        store="True", 
-        help="Encounter when condition first asserted.")                
+    # context_type = fields.Selection(
+    #     string="Context Type",
+    #     selection=[
+    #         ("encounter", "Encounter"), 
+    #         ("episode_of_care", "Episode of Care")], 
+    #     help="Type of encounter when condition first asserted.")                    
+    # context_name = fields.Char(
+    #     string="Context", 
+    #     compute="_compute_context_name",
+    #     store="True", 
+    #     help="Encounter when condition first asserted.")                
     # context_encounter_id = fields.Many2one(
     #     comodel_name="hc.res.encounter", 
     #     string="Context Encounter", 
@@ -94,7 +94,7 @@ class Condition(models.Model):
     #     string="Context Episode Of Care", 
     #     help="Episode Of Care when condition first asserted.")                    
     onset_type = fields.Selection(
-        string="Condition Onset Type",
+        string="Onset Type",
         selection=[
             ("dateTime", "Datetime"), 
             ("Age", "Age"), 
@@ -132,7 +132,7 @@ class Condition(models.Model):
         string="Onset Range High", 
         help="High limit of estimated or actual date, date-time, or age.")                    
     abatement_type = fields.Selection(
-        string="Condition Abatement Type",
+        string="Abatement Type",
         selection=[
             ("date", "Date"), 
             ("Age", "Age"), 
@@ -180,7 +180,7 @@ class Condition(models.Model):
         string="Date Asserted",
         help="When first entered.")                    
     asserter_type = fields.Selection(
-        string="Condition Asserter Type",
+        string="Asserter Type",
         selection=[
             ("Practitioner", "Practitioner"), 
             ("Patient", "Patient")], 
@@ -217,53 +217,56 @@ class Condition(models.Model):
     @api.multi          
     def _compute_subject_name(self):            
         for hc_res_condition in self:       
-            if hc_res_condition.subject_type == 'Patient':  
+            if hc_res_condition.subject_type == 'patient':  
                 hc_res_condition.subject_name = hc_res_condition.subject_patient_id.name
-            elif hc_res_condition.subject_type == 'Group':  
+            elif hc_res_condition.subject_type == 'group':  
                 hc_res_condition.subject_name = hc_res_condition.subject_group_id.name
 
-    @api.multi          
-    def _compute_context_name(self):            
-        for hc_res_condition in self:       
-            if hc_res_condition.context_type == 'Episode Of Care':  
-                hc_res_condition.context_name = hc_res_condition.context_episode_of_care_id.name
+    # @api.multi          
+    # def _compute_context_name(self):            
+    #     for hc_res_condition in self:       
+    #         if hc_res_condition.context_type == 'encounter':
+    #             hc_res_condition.context_name = hc_res_condition.context_encounter_id.name
+    #         elif hc_res_condition.context_type == 'episode_of_care':  
+    #             hc_res_condition.context_name = hc_res_condition.context_episode_of_care_id.name
+
 
     @api.multi          
     def _compute_onset_name(self):          
         for hc_res_condition in self:       
-            if hc_res_condition.onset_type == 'dateTime':   
-                hc_res_condition.onset_name = hc_res_condition.onset_datetime_id.name
-            elif hc_res_condition.onset_type == 'Age':  
+            if hc_res_condition.onset_type == 'date_time':   
+                hc_res_condition.onset_name = hc_res_condition.onset_datetime
+            elif hc_res_condition.onset_type == 'age':  
                 hc_res_condition.onset_name = hc_res_condition.onset_age_id.name
-            elif hc_res_condition.onset_type == 'Period':   
+            elif hc_res_condition.onset_type == 'period':   
                 hc_res_condition.onset_name = hc_res_condition.onset_period_id.name
-            elif hc_res_condition.onset_type == 'Range':    
+            elif hc_res_condition.onset_type == 'range':    
                 hc_res_condition.onset_name = hc_res_condition.onset_range_id.name
             elif hc_res_condition.onset_type == 'string':   
-                hc_res_condition.onset_name = hc_res_condition.onset_string_id.name
+                hc_res_condition.onset_name = hc_res_condition.onset_string
 
     @api.multi          
     def _compute_abatement_name(self):          
         for hc_res_condition in self:       
             if hc_res_condition.abatement_type == 'date':   
-                hc_res_condition.abatement_name = hc_res_condition.abatement_date_id.name
-            elif hc_res_condition.abatement_type == 'Age':  
+                hc_res_condition.abatement_name = hc_res_condition.abatement_date
+            elif hc_res_condition.abatement_type == 'age':  
                 hc_res_condition.abatement_name = hc_res_condition.abatement_age_id.name
             elif hc_res_condition.abatement_type == 'boolean':  
-                hc_res_condition.abatement_name = hc_res_condition.abatement_boolean_id.name
-            elif hc_res_condition.abatement_type == 'Period':   
+                hc_res_condition.abatement_name = hc_res_condition.abatement_boolean
+            elif hc_res_condition.abatement_type == 'period':   
                 hc_res_condition.abatement_name = hc_res_condition.abatement_period_id.name
-            elif hc_res_condition.abatement_type == 'Range':    
+            elif hc_res_condition.abatement_type == 'range':    
                 hc_res_condition.abatement_name = hc_res_condition.abatement_range_id.name
             elif hc_res_condition.abatement_type == 'string':   
-                hc_res_condition.abatement_name = hc_res_condition.abatement_string_id.name
+                hc_res_condition.abatement_name = hc_res_condition.abatement_string
 
     @api.multi          
     def _compute_asserter_name(self):           
         for hc_res_condition in self:       
-            if hc_res_condition.asserter_type == 'Practitioner':    
+            if hc_res_condition.asserter_type == 'practitioner':    
                 hc_res_condition.asserter_name = hc_res_condition.asserter_practitioner_id.name
-            elif hc_res_condition.asserter_type == 'Patient':   
+            elif hc_res_condition.asserter_type == 'patient':   
                 hc_res_condition.asserter_name = hc_res_condition.asserter_patient_id.name
 
 class ConditionStage(models.Model):    
@@ -276,7 +279,7 @@ class ConditionStage(models.Model):
         string="Condition", 
         help="Condition associated with this Condition Stage.") 
     stage_type = fields.Selection(
-        string="Condition Abatement Type",
+        string="Abatement Type",
         required="True", 
         selection=[
             ("summary", "Summary"), 
@@ -337,11 +340,11 @@ class ConditionStageAssessment(models.Model):
         string="Stage", 
         help="Stage associated with this Condition Stage Assessment.")                    
     assessment_type = fields.Selection(
-        string="Condition Stage Assessment Assessment Type", 
+        string="Assessment Type", 
         selection=[
-            ("Clinical Impression", "Clinical Impression"), 
-            ("Diagnostic Report", "Diagnostic Report"), 
-            ("Observation", "Observation")], 
+            ("clinical_impression", "Clinical Impression"), 
+            ("diagnostic_report", "Diagnostic Report"), 
+            ("observation", "Observation")], 
         help="Type of assessment.")                    
     assessment_name = fields.Char(
         string="Assessment", 
@@ -364,11 +367,11 @@ class ConditionStageAssessment(models.Model):
     # @api.multi          
     # def _compute_assessment_name(self):         
     #     for hc_res_condition in self:       
-    #         if hc_res_condition.assessment_type == 'Clinical Impression':   
+    #         if hc_res_condition.assessment_type == 'clinical_impression':   
     #             hc_res_condition.assessment_name = hc_res_condition.assessment_clinical_impression_id.name
-    #         elif hc_res_condition.assessment_type == 'Observation': 
+    #         elif hc_res_condition.assessment_type == 'observation': 
     #             hc_res_condition.assessment_name = hc_res_condition.assessment_observation_id.name
-            # elif hc_res_condition.assessment_type == 'Diagnostic Report':   
+            # elif hc_res_condition.assessment_type == 'diagnostic_report':   
             #     hc_res_condition.assessment_name = hc_res_condition.assessment_diagnostic_report_id.name
             
 class ConditionEvidenceDetail(models.Model):    
@@ -380,15 +383,15 @@ class ConditionEvidenceDetail(models.Model):
         comodel_name="hc.condition.evidence", 
         string="Evidence", 
         help="Evidence associated with this Condition Evidence Detail.")                    
-    detail_type = fields.Selection(
-        string="Detail Type", 
-        selection=[
-            ("string", "String"), 
-            ("Condition", "Condition"), 
-            ("Observation", "Observation"), 
-            ("Clinical Impression", "Clinical Impression"), 
-            ("Diagnostic Report", "Diagnostic Report")], 
-        help="Type of supporting information found elsewhere.")                 
+    reference = fields.Reference(
+        string="Reference",
+        selection="_records_models")
+    # detail_type = fields.Selection(
+    #     string="Detail Type", 
+    #     selection=[
+    #         ("string", "String"), 
+    #         ("reference", "Reference")], 
+    #     help="Type of supporting information found elsewhere.")                 
     detail_name = fields.Char(
         string="Details", 
         compute="_compute_detail_name",
@@ -417,18 +420,26 @@ class ConditionEvidenceDetail(models.Model):
     #     string="Detail Diagnostic Report", 
     #     help="Diagnostic Report supporting information found elsewhere.")                    
 
+    @api.model
+    def _records_models(self):
+        #type manual is used to display custom models only
+        models = self.env['ir.model'].search([('state', '=', 'manual')])
+        return [(model.model, model.name)
+                for model in models
+                if model.model.startswith('hc.res')]
+
     @api.multi          
     def _compute_detail_name(self):         
         for hc_res_condition in self:       
             if hc_res_condition.detail_type == 'string':    
-                hc_res_condition.detail_name = hc_res_condition.detail_string_id.name
-            elif hc_res_condition.detail_type == 'Condition':   
+                hc_res_condition.detail_name = hc_res_condition.detail_string_
+            elif hc_res_condition.detail_type == 'condition':   
                 hc_res_condition.detail_name = hc_res_condition.detail_condition_id.name
-            # elif hc_res_condition.detail_type == 'Observation': 
+            # elif hc_res_condition.detail_type == 'observation': 
             #     hc_res_condition.detail_name = hc_res_condition.detail_observation_id.name
-            # elif hc_res_condition.detail_type == 'Clinical Impression': 
+            # elif hc_res_condition.detail_type == 'clinical_impression': 
             #     hc_res_condition.detail_name = hc_res_condition.detail_clinical_impression_id.name
-            # elif hc_res_condition.detail_type == 'Diagnostic Report':   
+            # elif hc_res_condition.detail_type == 'diagnostic_report':   
             #     hc_res_condition.detail_name = hc_res_condition.detail_diagnostic_report_id.name
 
 class ConditionNote(models.Model):  
