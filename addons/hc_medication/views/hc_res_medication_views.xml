@@ -1,6 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data>
     
+        <!-- Medication Views -->           
+            
+        <record id="hc_res_medication_view_search" model="ir.ui.view">          
+            <field name="name">Medication Search</field>        
+            <field name="model">hc.res.medication</field>       
+            <field name="arch" type="xml">      
+                <search string="Medications">   
+                    <field name="name"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="hc_res_medication_view_tree" model="ir.ui.view">            
+            <field name="name">Medication Tree</field>      
+            <field name="model">hc.res.medication</field>       
+            <field name="arch" type="xml">      
+                <tree string="Medications"> 
+                    <field name="name"/>
+                    <field name="code_id"/>
+                    <field name="is_brand"/>
+                </tree> 
+            </field>        
+        </record>           
+
+        <record id="hc_res_medication_view_form" model="ir.ui.view">        
+            <field name="name">Medication Form</field>  
+            <field name="model">hc.res.medication</field>   
+            <field name="arch" type="xml">  
+                <form string="Medication">
+                    <sheet>
+                        <div class="oe_title oe_left">      
+                            <h1>    
+                                <field name="name" default_focus="1" placeholder="Medication"/>
+                            </h1>   
+                        </div>      
+                        <div name="buttons" class="oe_right oe_button_box"></div>
+                        <group>
+                            <group>
+                                <field name="code_id"/>
+                                <field name="is_brand"/>
+                                <field name="manufacturer_id"/>
+                            </group>
+                            <group>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Products">
+                                <field name="product_ids" mode="tree">
+                                    <tree>
+                                        <field name="form_id"/>
+                                    </tree>
+                                    <form>
+                                        <sheet>
+                                            <group>
+                                                <field name="form_id"/>
+                                            </group>
+                                            <notebook>
+                                                <page string="Batches">
+                                                    <field name="batch_ids" mode="tree">
+                                                        <tree editable="top">
+                                                            <field name="lot_number"/>
+                                                            <field name="expiration_date"/>
+                                                        </tree>
+                                                    </field>
+                                                </page>
+                                                <page string="Ingredients">
+                                                    <field name="ingredient_ids" mode="tree">
+                                                        <tree>
+                                                            <field name="item_name"/>
+                                                            <field name="item_type"/>
+                                                            <field name="amount"/>
+                                                            <field name="amount_uom"/>
+                                                        </tree>
+                                                        <form>
+                                                            <sheet>
+                                                                <group>
+                                                                    <group>
+                                                                        <field name="item_type"/>
+                                                                        <field name="item_name" readonly="1"/>
+                                                                        <field name="item_code_id" attrs="{'invisible': [('item_type','!=','code')]}"/>
+                                                                        <field name="item_substance_id" attrs="{'invisible': [('item_type','!=','substance')]}"/>
+                                                                        <field name="item_medication_id" attrs="{'invisible': [('item_type','!=','medication')]}"/>
+                                                                    </group>
+                                                                    <group>
+                                                                        <field name="amount_numerator"/>
+                                                                        <field name="amount_numerator_uom_id"/>
+                                                                        <field name="amount_denominator"/>
+                                                                        <field name="amount_denominator_uom_id"/>
+                                                                        <field name="amount" readonly="1"/>
+                                                                        <field name="amount_uom" readonly="1"/>
+                                                                    </group>
+                                                                </group>
+                                                            </sheet>
+                                                        </form>
+                                                    </field>
+                                                </page>
+                                            </notebook>
+                                        </sheet>
+                                    </form>
+                                </field>
+                            </page>
+                            <page string="Packages">
+                                <field name="package_ids" mode="tree">
+                                    <tree>
+                                        <field name="container_id"/> 
+                                    </tree>
+                                    <form>
+                                        <sheet>
+                                            <group>
+                                                <field name="container_id"/>
+                                            </group>
+                                            <notebook>
+                                                <page name="Contents">
+                                                    <field name="content_ids" mode="tree">
+                                                        <tree>
+                                                            <field name="item_name"/>
+                                                            <field name="item_type"/>
+                                                            <field name="amount"/>
+                                                            <field name="amount_uom_id"/>
+                                                        </tree>
+                                                        <form>
+                                                            <sheet>
+                                                                <group>
+                                                                    <group>
+                                                                        <field name="item_type"/>
+                                                                        <field name="item_name" readonly="1"/>
+                                                                        <field name="item_code_id" attrs="{'invisible': [('item_type','!=','code')]}"/>
+                                                                        <field name="item_medication_id" attrs="{'invisible': [('item_type','!=','medication')]}"/>
+                                                                    </group>
+                                                                    <group>
+                                                                        <field name="amount"/>
+                                                                        <field name="amount_uom_id"/>
+                                                                    </group>
+                                                                </group>
+                                                            </sheet>
+                                                        </form>
+                                                    </field>
+                                                </page>
+                                            </notebook>
+                                        </sheet>
+                                    </form>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
 
         <!-- Medication Action and Menu --> 
   

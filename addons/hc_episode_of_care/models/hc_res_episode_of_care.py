@@ -184,7 +184,26 @@ class EpisodeOfCareType(models.Model):
 class Condition(models.Model):    
     _inherit = "hc.res.condition"
 
+    context_type = fields.Selection(
+        string="Condition Context Type",
+        selection=[
+            # ("encounter", "Encounter"), 
+            ("episode_of_care", "Episode of Care")], 
+        help="Type of encounter when condition first asserted.")                    
+    context_name = fields.Char(
+        string="Context", 
+        compute="_compute_context_name",
+        store="True", 
+        help="Encounter when condition first asserted.")  
     context_episode_of_care_id = fields.Many2one(
         comodel_name="hc.res.episode.of.care", 
         string="Context Episode Of Care", 
         help="Episode Of Care when condition first asserted.")
+
+    @api.multi          
+    def _compute_context_name(self):            
+        for hc_res_condition in self:       
+            if hc_res_condition.context_type == 'episode_of_care':  
+                hc_res_condition.context_name = hc_res_condition.context_episode_of_care_id.name
+            # elif hc_res_condition.context_type == 'encounter':
+            #     hc_res_condition.context_name = hc_res_condition.context_encounter_id.name

@@ -12,7 +12,7 @@
                     limit=""/>
                 
         <menuitem id="hc_family_member_history.menu_fam_hist" 
-                  name="Family Member History" 
+                  name="Family Member Histories" 
                   parent="hc_base.menu_clinic_gen" 
                   action="hc_res_family_member_history_action" 
                   groups="hc_base.group_hc_base_manager" 

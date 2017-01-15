@@ -61,7 +61,7 @@ class MedicationProductIngredient(models.Model):
     medication_product_id = fields.Many2one(
         comodel_name="hc.medication.product", 
         string="Product", 
-        help="Product associated with this Ingredient.")                    
+        help="Product associated with this Ingredient.")                     
     item_type = fields.Selection(
         string="Item Type",
         required="True",
@@ -110,7 +110,21 @@ class MedicationProductIngredient(models.Model):
         compute="_compute_amount_uom", 
         store="True", 
         help="Amount unit of measure. For example, 250 mg per tablet.")
-                   
+ 
+    @api.depends('amount_numerator', 'amount_denominator')        
+    def _compute_amount(self):        
+        if self.amount_numerator and self.amount_denominator:    
+            self.amount = self.amount_numerator / self.amount_denominator
+        
+    @api.depends('amount_numerator_uom_id', 'amount_denominator_uom_id')        
+    def _compute_amount_uom(self):        
+        amount_uom = ''    
+        if self.amount_numerator_uom_id:    
+            amount_uom += self.amount_numerator_uom_id.name
+        if self.amount_denominator_uom_id:    
+            amount_uom += (' per ' + self.amount_denominator_uom_id.name) if self.amount_numerator_uom_id else self.amount_denominator_uom_id.name
+        self.amount_uom = amount_uom
+
 class MedicationProductBatch(models.Model): 
     _name = "hc.medication.product.batch"   
     _description = "Medication Product Batch"
@@ -152,11 +166,26 @@ class MedicationPackageContent(models.Model):
         comodel_name="hc.medication.package", 
         string="Package", 
         help="Package associated with this Content.")                    
+    item_type = fields.Selection(
+        string="Item Type", 
+        required="True", 
+        selection=[
+            ("code", "Code"), 
+            ("medication", "Medication")], 
+        help="Type of the item in the package.")
+    item_name = fields.Char(
+        string="Item", 
+        compute="_compute_item_name", 
+        store="True", 
+        help="The item in the package.")
+    item_code_id = fields.Many2one(
+        comodel_name="hc.vs.medication.ingredient.code", 
+        string="Item Code", 
+        help="Code of the item in the package.")
     item_medication_id = fields.Many2one(
         comodel_name="hc.res.medication", 
         string="Item Medication", 
-        required="True", 
-        help="A product in the package.")                    
+        help="Medication item in the package.")                 
     amount = fields.Float(
         string="Amount", 
         help="How many are in the package?")                    
