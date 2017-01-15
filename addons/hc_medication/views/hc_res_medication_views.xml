@@ -115,11 +115,6 @@
                                                     </tree>
                                                     <form>
                                                         <sheet>
-                                                            <!-- <div>
-                                                                <h1>
-                                                                    <field name="item_name" placeholder="Item"/>\
-                                                                </h1>
-                                                            </div> -->
                                                             <group>
                                                                 <group>
                                                                     <field name="item_type"/>
@@ -191,11 +186,6 @@
                                                     </tree>
                                                     <form>
                                                         <sheet>
-                                                            <!-- <div>
-                                                                <h1>
-                                                                    <field name="item_name" placeholder="Item"/>\
-                                                                </h1>
-                                                            </div> -->
                                                             <group>
                                                                 <group>
                                                                     <field name="item_type"/>
