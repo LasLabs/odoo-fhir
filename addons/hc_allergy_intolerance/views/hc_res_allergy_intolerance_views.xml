@@ -143,6 +143,10 @@
                                                                     </group>
                                                                     <group>
                                                                         <field name="recorded_date"/>
+                                                                        <field name="author_type"/>
+                                                                    </group>
+                                                                    <group>
+                                                                        <field name="recorded_date"/>
                                                                     </group>
                                                                 </group>
                                                             </sheet>
