@@ -10,6 +10,9 @@
             <field name="arch" type="xml">      
                 <search string="Medications">   
                     <field name="name"/>
+                    <field name="code_id"/>
+                    <field name="is_brand"/>
+                    <field name="manufacturer_id"/>
                 </search>
             </field>
         </record>
@@ -22,6 +25,7 @@
                     <field name="name"/>
                     <field name="code_id"/>
                     <field name="is_brand"/>
+                    <field name="manufacturer_id"/>
                 </tree> 
             </field>        
         </record>           

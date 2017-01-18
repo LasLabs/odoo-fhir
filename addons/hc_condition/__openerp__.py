@@ -51,6 +51,11 @@
         'security/ir.model.access.csv',
         'views/hc_res_condition_views.xml',
         'views/hc_res_condition_templates.xml',
+        'data/hc.vs.condition.category.csv',
+        'data/hc.vs.condition.code.csv',
+        'data/hc.vs.condition.evidence.code.csv',
+        'data/hc.vs.condition.severity.csv',
+        'data/hc.vs.condition.stage.csv',
     ],
     # only loaded in demonstration mode
     'demo': [

@@ -1,5 +1,226 @@
 <openerp>
     <data>
+
+    <!-- Condition Views -->            
+            
+    <record id="hc_res_condition_view_search" model="ir.ui.view">           
+        <field name="name">Condition Search</field>     
+        <field name="model">hc.res.condition</field>        
+        <field name="arch" type="xml">      
+            <search string="Conditions">
+                <field name="name"/>    
+                <field name="identifier_ids"/>
+                <field name="clinical_status"/>
+                <field name="verification_status"/>
+                <field name="category_ids"/>
+                <field name="severity_id"/>
+                <field name="code_id"/>
+                <field name="body_site_ids"/>
+                <field name="subject_type"/>
+                <field name="subject_name"/>
+<!--                 <field name="context_type"/>
+                <field name="context_name"/> -->
+                <field name="onset_type"/>
+                <field name="onset_name"/>
+                <field name="abatement_type"/>
+                <field name="abatement_name"/>
+                <field name="date_asserted"/>
+                <field name="asserter_type"/>
+                <field name="asserter_name"/>
+                <field name="note_ids"/>
+            </search>   
+        </field>        
+    </record>           
+                   
+    <record id="hc_res_condition_view_tree" model="ir.ui.view">         
+        <field name="name">Condition Tree</field>       
+        <field name="model">hc.res.condition</field>        
+        <field name="arch" type="xml">      
+            <tree string="Conditions">
+                <field name="name"/>  
+                <field name="code_id"/>
+                <field name="subject_name"/>
+<!--                 <field name="context_name"/> -->
+                <field name="asserter_name"/>
+                <field name="date_asserted"/>
+            </tree> 
+        </field>        
+    </record>
+
+    <record id="hc_res_condition_view_form" model="ir.ui.view">                                                             
+        <field name="name">Condition Form</field>                                                           
+        <field name="model">hc.res.condition</field>                                                            
+        <field name="arch" type="xml">                                                          
+            <form string="Condition">                                                       
+                <sheet>                                                 
+                    <div class="oe_title oe_left">                                              
+                        <h1>                                            
+                            <field name="subject_name" readonly="1" default_focus="1" placeholder="Subject"/>                                     
+                        </h1>                                           
+                    </div>
+                    <div name="buttons" class="oe_right oe_button_box"></div>                                               
+                    <group>                                             
+                        <group>                                         
+                            <field name="subject_type"/>
+                            <field name="subject_name"/>
+                            <field name="subject_patient_id" attrs="{'invisible': [('subject_type','!=','patient')]}"/>
+                            <field name="subject_group_id" attrs="{'invisible': [('subject_type','!=','group')]}"/>
+                            <field name="code_id"/>
+                            <field name="name"/>
+                            <field name="date_asserted"/>
+                            <field name="clinical_status"/>
+                            <field name="verification_status"/>
+                            <field name="category_ids" widget="many2many_tags"/>
+                            <field name="severity_id"/>                                  
+                        </group>                                            
+                        <group>
+                            <field name="body_site_ids" widget="many2many_tags"/>               
+                            <field name="onset_type"/>
+                            <field name="onset_name"/>
+                            <field name="onset_date_time" attrs="{'invisible': [('onset_type','!=','date_time')]}"/>
+                            <field name="onset_age" attrs="{'invisible': [('onset_type','!=','age')]}"/>
+                            <field name="onset_age_uom_id" attrs="{'invisible': [('onset_type','!=','age')]}"/>
+                            <field name="onset_start_date" attrs="{'invisible': [('onset_type','!=','period')]}"/>
+                            <field name="onset_end_date" attrs="{'invisible': [('onset_type','!=','period')]}"/>
+                            <field name="onset_range_low" attrs="{'invisible': [('onset_type','!=','range')]}"/>
+                            <field name="onset_range_high" attrs="{'invisible': [('onset_type','!=','range')]}"/>
+                            <field name="onset_string" attrs="{'invisible': [('onset_type','!=','string')]}"/>
+                            <field name="abatement_type"/>
+                            <field name="abatement_name"/>
+                            <field name="abatement_date" attrs="{'invisible': [('abatement_type','!=','date')]}"/>
+                            <field name="abatement_age" attrs="{'invisible': [('abatement_type','!=','age')]}"/>
+                            <field name="abatement_age_uom_id" attrs="{'invisible': [('abatement_type','!=','age')]}"/>
+                            <field name="abatement_boolean" attrs="{'invisible': [('abatement_type','!=','boolean')]}"/>
+                            <field name="abatement_start_date" attrs="{'invisible': [('abatement_type','!=','period')]}"/>
+                            <field name="abatement_end_date" attrs="{'invisible': [('abatement_type','!=','period')]}"/>
+                            <field name="abatement_range_low" attrs="{'invisible': [('abatement_type','!=','range')]}"/>
+                            <field name="abatement_range_high" attrs="{'invisible': [('abatement_type','!=','range')]}"/>
+                            <field name="abatement_string" attrs="{'invisible': [('abatement_type','!=','string')]}"/>
+                            <field name="asserter_type"/>
+                            <field name="asserter_name"/>
+                            <field name="asserter_practitioner_id" attrs="{'invisible': [('asserter_type','!=','practitioner')]}"/>
+                            <field name="asserter_patient_id" attrs="{'invisible': [('asserter_type','!=','patient')]}"/>
+                            <field name="asserter_related_person_id" attrs="{'invisible': [('asserter_type','!=','related_person')]}"/>
+                            <field name="has_stage"/>
+                            <field name="stage_summary_id" attrs="{'invisible': [('has_stage','=',False)]}"/>
+                        </group>                                            
+                    </group>                                                
+                    <notebook>                                              
+                        <page string="Identifiers">                                         
+                            <field name="identifier_ids" mode="tree">                                       
+                                <tree>                                  
+                                    <field name="value"/>                               
+                                    <field name="is_preferred"/>                                
+                                    <field name="is_active"/>                               
+                                </tree>                                 
+                                <form>                                  
+                                    <sheet>                             
+                                        <group>                         
+                                            <group>                     
+                                                <field name="value"/>                   
+                                                <field name="is_preferred"/>                    
+                                                <field name="is_active"/>                   
+                                            </group>                        
+                                            <group>                     
+                                                <field name="start_date"/>                  
+                                                <field name="end_date"/>                    
+                                            </group>                        
+                                        </group>                            
+                                    </sheet>                                
+                                    </form>                             
+                                </field>                                    
+                        </page>                                         
+                        <page string="Notes">                                         
+                            <field name="note_ids" mode="tree">                                     
+                                <tree>                                  
+                                    <field name="text"/>                                
+                                    <field name="author_type"/>                             
+                                    <field name="recorded_date"/>                               
+                                </tree>                                 
+                                <form>                                  
+                                    <sheet>                             
+                                        <div>                           
+                                            <field name="text" placeholder="Annotation"/>                       
+                                        </div>                          
+                                        <group>                         
+                                            <group>                     
+                                                <field name="author_type"/>                 
+                                            </group>                        
+                                            <group>                     
+                                                <field name="recorded_date"/>                   
+                                            </group>                        
+                                        </group>
+                                    </sheet>                                
+                                    </form>                             
+                                </field>                                  
+                        </page> 
+                        <page string="Stage Assessments" attrs="{'invisible': [('has_stage','=',False)]}">                        
+                            <field name="stage_assessment_ids" mode="tree">                  
+                                <tree>              
+                                    <field name="stage_assessment_name"/>           
+                                    <field name="stage_assessment_type"/>                    
+                                </tree>             
+                                <form>              
+                                    <sheet>         
+                                        <group>     
+                                            <group> 
+                                                <field name="stage_assessment_type"/>
+                                                <field name="stage_assessment_name" readonly="1"/>
+                                                <!-- <field name="stage_assessment_observation_id" attrs="{'invisible': [('stage_assessment_type','!=','observation')]}"/>
+                                                <field name="stage_assessment_clinical_impression_id" attrs="{'invisible': [('stage_assessment_type','!=','clinical_impression')]}"/>
+                                                <field name="stage_assessment_diagnostic_report_id" attrs="{'invisible': [('stage_assessment_type','!=','diagnostic_report')]}"/> -->
+                                            </group>    
+                                        </group>        
+                                    </sheet>            
+                                </form>             
+                            </field>                    
+                        </page>                                                                                
+                        <page string="Evidences">                                           
+                            <field name="evidence_ids" mode="tree">                                     
+                                <tree>                                  
+                                    <field name="code_id"/>                             
+                                </tree>                                 
+                                <form>                                  
+                                    <sheet>                             
+                                        <group>                         
+                                            <group>                     
+                                                <field name="code_id"/>                 
+                                            </group>                        
+                                        </group>                            
+                                        <notebook>                          
+                                            <page string="Details">                        
+                                                <field name="detail_ids" mode="tree">                  
+                                                    <tree>              
+                                                        <field name="detail_name"/>           
+                                                        <field name="detail_type"/>                    
+                                                    </tree>             
+                                                    <form>              
+                                                        <sheet>         
+                                                            <group>     
+                                                                <group> 
+                                                                    <field name="reference_model"/>
+                                                                    <field name="detail_name" readonly="1"/>
+<!--                                                                     <field name="detail_string" attrs="{'invisible': [('detail_type','!=','string')]}"/>
+                                                                    <field name="detail_code_id" attrs="{'invisible': [('detail_type','!=','code')]}"/> -->
+                                                                </group>    
+                                                            </group>        
+                                                        </sheet>            
+                                                    </form>             
+                                                </field>                    
+                                            </page>                     
+                                        </notebook>
+                                    </sheet>                                                         
+                                </form>                             
+                            </field>                                    
+                        </page>                                                                                                                          
+                    </notebook>                                             
+                </sheet>                                                    
+            </form>                                                     
+        </field>                                                            
+    </record>                                          
+
+
+   <!-- Condition Action and Menu -->   
     
     <act_window id="hc_res_condition_action"    
                 name="HC Conditions"
@@ -15,6 +236,8 @@
               action="hc_res_condition_action"
               groups="hc_base.group_hc_base_manager" 
               sequence="20"/>
+
+                                                                  
 
     </data>
 </openerp>

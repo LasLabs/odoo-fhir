@@ -9,3 +9,4 @@ access_hc_condition_hc_condition_note_user,hc.condition.hc.condition.note.user,m
 access_hc_condition_hc_vs_condition_severity_manager,hc.condition.hc.vs.condition.severity.manager,model_hc_vs_condition_severity,hc_base.group_hc_base_manager,1,1,1,1
 access_hc_condition_hc_vs_condition_evidence_code_manager,hc.condition.hc.vs.condition.evidence.code.manager,model_hc_vs_condition_evidence_code,hc_base.group_hc_base_manager,1,1,1,1
 access_hc_condition_hc_vs_condition_stage_manager,hc.condition.hc.vs.condition.stage.manager,model_hc_vs_condition_stage,hc_base.group_hc_base_manager,1,1,1,1
+access_hc_condition_hc_vs_condition_category_manager,hc.condition.hc.vs.condition.category.manager,model_hc_vs_condition_category,hc_base.group_hc_base_manager,1,1,1,1

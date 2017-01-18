@@ -220,7 +220,7 @@ class ClaimPayee(models.Model):
             ("organization", "Organization"), 
             ("patient", "Patient"), 
             ("practitioner", "Practitioner"), 
-            ("related person", "Related Person")], 
+            ("related_person", "Related Person")], 
         help="The type of payee Resource.")
     party_type = fields.Selection(
         string="Party Type", 
@@ -273,7 +273,7 @@ class ClaimSpecialCondition(models.Model):
         string="Timing Type", 
         selection=[
             ("date", "Date"), 
-            ("Period", "Period")], 
+            ("period", "Period")], 
         help="Type of when it occurred.")                
     timing_name = fields.Char(
         string="Timing", 
@@ -513,7 +513,7 @@ class ClaimItem(models.Model):
         string="Serviced Type", 
         selection=[
             ("date", "Date"), 
-            ("oeriod", "Period")], 
+            ("period", "Period")], 
         help="Type of date of service.")
     serviced_name = fields.Char(
         string="Serviced", 
@@ -533,8 +533,8 @@ class ClaimItem(models.Model):
         string="Location Type", 
         selection=[
             ("code", "Code"),
-            ("Address", "Address"), 
-            ("Location", "Location")], 
+            ("address", "Address"), 
+            ("location", "Location")], 
         help="Type of place of service.")
     location_name = fields.Char(
         string="Location", 
@@ -732,8 +732,8 @@ class ClaimItemCareTeam(models.Model):
         string="Provider Type", 
         required="True", 
         selection=[
-            ("Practitioner", "Practitioner"), 
-            ("Organization", "Organization")], 
+            ("practitioner", "Practitioner"), 
+            ("organization", "Organization")], 
         help="Type of provider individual or organization.")                
     provider_name = fields.Char(
         string="Provider", 
@@ -941,11 +941,6 @@ class OralProsthodonticMaterial(models.Model):
 class PayeeType(models.Model):    
     _name = "hc.vs.payee.type"    
     _description = "Payee Type"        
-    _inherit = ["hc.value.set.contains"]
-
-class ProcessPriority(models.Model):    
-    _name = "hc.vs.process.priority"    
-    _description = "Process Priority"        
     _inherit = ["hc.value.set.contains"]
 
 class ProviderQualification(models.Model):    

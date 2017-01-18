@@ -38,7 +38,6 @@ access_hc_claim_hc_vs_information_type_manager,hc.claim.hc.vs.information.type.m
 access_hc_claim_hc_vs_missing_tooth_reason_manager,hc.claim.hc.vs.missing.tooth.reason.manager,model_hc_vs_missing_tooth_reason,hc_base.group_hc_base_manager,1,1,1,1
 access_hc_claim_hc_vs_oral_prosthodontic_material_manager,hc.claim.hc.vs.oral.prosthodontic.material.manager,model_hc_vs_oral_prosthodontic_material,hc_base.group_hc_base_manager,1,1,1,1
 access_hc_claim_hc_vs_payee_type_manager,hc.claim.hc.vs.payee.type.manager,model_hc_vs_payee_type,hc_base.group_hc_base_manager,1,1,1,1
-access_hc_claim_hc_vs_process_priority_manager,hc.claim.hc.vs.process.priority.manager,model_hc_vs_process_priority,hc_base.group_hc_base_manager,1,1,1,1
 access_hc_claim_hc_vs_provider_qualification_manager,hc.claim.hc.vs.provider.qualification.manager,model_hc_vs_provider_qualification,hc_base.group_hc_base_manager,1,1,1,1
 access_hc_claim_hc_vs_related_claim_relationship_manager,hc.claim.hc.vs.related.claim.relationship.manager,model_hc_vs_related_claim_relationship,hc_base.group_hc_base_manager,1,1,1,1
 access_hc_claim_hc_vs_service_place_manager,hc.claim.hc.vs.service.place.manager,model_hc_vs_service_place,hc_base.group_hc_base_manager,1,1,1,1

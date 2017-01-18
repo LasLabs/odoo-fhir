@@ -1,0 +1,4 @@
+id,"code","name","definition","source_id/id","system"
+hc_cond.sev_24484000,"24484000","Severe (severity modifier) (qualifier value)","","base.snomed","http://hl7.org/fhir/ValueSet/condition-severity"
+hc_cond.sev_6736007,"6736007","Moderate (severity modifier) (qualifier value)","","base.snomed","http://hl7.org/fhir/ValueSet/condition-severity"
+hc_cond.sev_255604002,"255604002","Mild (qualifier value)","","base.snomed","http://hl7.org/fhir/ValueSet/condition-severity"

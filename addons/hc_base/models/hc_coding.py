@@ -23,7 +23,6 @@ class BasicAssociation(models.AbstractModel):
 class Coding(models.AbstractModel):    
     _name = "hc.coding"    
     _description = "Coding"
-    _rec_name = "display"
 
     system = fields.Char(
         string="System URI", 
@@ -35,9 +34,9 @@ class Coding(models.AbstractModel):
         string="Code",
         index="True", 
         help="Symbol in syntax defined by the system.")        
-    display = fields.Char(
-        string="Display",
-        help="Representation defined by the system.")        
+    # display = fields.Char(
+    #     string="Display",
+    #     help="Representation defined by the system.")        
     is_user_selected = fields.Boolean(
         string="User Selected",
         default="True", 

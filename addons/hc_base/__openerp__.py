@@ -32,6 +32,7 @@
         'data/hc.human.name.suffix.csv',
         'data/data_participation_type.xml',
         'data/hc_base_data.xml',
+        'data/hc.vs.body.site.csv',
         'data/hc.vs.route.code.csv',
         # 'data/l10n_au/country_pl.xml',
         # 'data/l10n_ph/country_pl.xml',

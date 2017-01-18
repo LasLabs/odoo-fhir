@@ -222,7 +222,8 @@ class AllergyIntoleranceReaction(models.Model):
         selection=[
             ("unlikely", "Unlikely"), 
             ("likely", "Likely"), 
-            ("confirmed", "Confirmed")], 
+            ("confirmed", "Confirmed"),
+            ("unknown", "Unknown")], 
         help="Statement about the degree of clinical certainty that a Specific Substance was the cause of the Manifestation in a reaction event.")                   
     manifestation_ids = fields.Many2many(
         comodel_name="hc.vs.manifestation.code",
@@ -312,6 +313,11 @@ class AllergyIntoleranceCode(models.Model):
     _description = "Allergy Intolerance Code"        
     _inherit = ["hc.value.set.contains"]     
 
+class ManifestationCode(models.Model): 
+    _name = "hc.vs.manifestation.code" 
+    _description = "Manifestation Code"        
+    _inherit = ["hc.value.set.contains"]
+    
 # External Reference
 
 class Patient(models.Model):

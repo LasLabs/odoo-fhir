@@ -299,42 +299,20 @@ class ClinicalFinding(models.Model):
 class ConditionStageAssessment(models.Model):    
     _inherit = "hc.condition.stage.assessment"
 
-    assessment_diagnostic_report_id = fields.Many2one(
+    stage_assessment_diagnostic_report_id = fields.Many2one(
         comodel_name="hc.res.diagnostic.report", 
         string="Assessment Diagnostic Reports", 
         help="Diagnostic Report formal record of assessment.")
 
     @api.multi          
-    def _compute_assessment_name(self):         
-        for hc_res_condition in self:       
-            if hc_res_condition.assessment_type == 'Clinical Impression':   
-                hc_res_condition.assessment_name = hc_res_condition.assessment_clinical_impression_id.name
-            elif hc_res_condition.assessment_type == 'Observation': 
-                hc_res_condition.assessment_name = hc_res_condition.assessment_observation_id.name
-            elif hc_res_condition.assessment_type == 'Diagnostic Report':   
-                hc_res_condition.assessment_name = hc_res_condition.assessment_diagnostic_report_id.name
-
-class ConditionEvidenceDetail(models.Model):    
-    _inherit = "hc.condition.evidence.detail"
-
-    detail_diagnostic_report_id = fields.Many2one(
-        comodel_name="hc.res.diagnostic.report", 
-        string="Detail Diagnostic Report", 
-        help="Diagnostic Report supporting information found elsewhere.")     
-
-    @api.multi          
-    def _compute_detail_name(self):         
-        for hc_res_condition in self:       
-            if hc_res_condition.detail_type == 'string':    
-                hc_res_condition.detail_name = hc_res_condition.detail_string_id.name
-            elif hc_res_condition.detail_type == 'Condition':   
-                hc_res_condition.detail_name = hc_res_condition.detail_condition_id.name
-            elif hc_res_condition.detail_type == 'Observation': 
-                hc_res_condition.detail_name = hc_res_condition.detail_observation_id.name
-            elif hc_res_condition.detail_type == 'Clinical Impression': 
-                hc_res_condition.detail_name = hc_res_condition.detail_clinical_impression_id.name
-            elif hc_res_condition.detail_type == 'Diagnostic Report':   
-                hc_res_condition.detail_name = hc_res_condition.detail_diagnostic_report_id.name
+    def _compute_stage_assessment_name(self):         
+        for hc_condition_stage_assessment in self:       
+            if hc_condition_stage_assessment.stage_assessment_type == 'observation': 
+                hc_condition_stage_assessment.stage_assessment_name = hc_condition_stage_assessment.stage_assessment_observation_id.name
+            elif hc_condition_stage_assessment.stage_assessment_type == 'clinical_impression':   
+                hc_condition_stage_assessment.stage_assessment_name = hc_condition_stage_assessment.stage_assessment_clinical_impression_id.name
+            elif hc_condition_stage_assessment.stage_assessment_type == 'diagnostic_report':   
+                hc_condition_stage_assessment.stage_assessment_name = hc_condition_stage_assessment.stage_assessment_diagnostic_report_id.name
 
 class ProcedureReport(models.Model):  
     _inherit = "hc.procedure.report"

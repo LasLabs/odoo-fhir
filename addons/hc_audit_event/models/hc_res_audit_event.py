@@ -328,10 +328,5 @@ class AuditEventSubType(models.Model):
 
 class Dicm402Roleid(models.Model):    
     _name = "hc.vs.dicm.402.roleid"    
-    _description = "Dicm 402 Roleid"        
-    _inherit = ["hc.value.set.contains"]
-
-class AuditEventType(models.Model):    
-    _name = "hc.vs.audit.event.type"    
-    _description = "Audit Event Type"        
+    _description = "DICM 402 Role Id"        
     _inherit = ["hc.value.set.contains"]

@@ -120,11 +120,6 @@ class CareTeamIdentifier(models.Model):
         string="Care Team", 
         help="Care Team associated with this Care Team Identifier.")                           
 
-class ParticipantRole(models.Model):    
-    _name = "hc.vs.participant.role"    
-    _description = "Participant Role"        
-    _inherit = ["hc.value.set.contains"]
-
 class ParticipantType(models.Model):    
     _name = "hc.vs.participant.type"    
     _description = "Participant Type"        

@@ -320,11 +320,6 @@ class MedicationAdministrationEventHistory(models.Model):
         string="Event History", 
         help="Provenance associated with this Medication Administration Event History.")               
 
-class AdministrationMethodCode(models.Model):   
-    _name = "hc.vs.administration.method.code"  
-    _description = "Administration Method Code"     
-    _inherit = ["hc.value.set.contains"]
-
 class ReasonMedicationNotGivenCode(models.Model):   
     _name = "hc.vs.reason.medication.not.given.code"    
     _description = "Reason Medication Not Given Code"       

@@ -143,10 +143,6 @@
                                                                     </group>
                                                                     <group>
                                                                         <field name="recorded_date"/>
-                                                                        <field name="author_type"/>
-                                                                    </group>
-                                                                    <group>
-                                                                        <field name="recorded_date"/>
                                                                     </group>
                                                                 </group>
                                                             </sheet>
@@ -231,17 +227,6 @@
                 </form>                             
             </field>                                    
         </record>                                       
-
-
-        <!-- Attachment Type Action and Menu -->  
-      
-    <!--     <record id="hc_res_allergy_intolerance_action" model="ir.actions.act_window"> 
-            <field name="name">HC Allergy Intolerances</field>
-            <field name="type">ir.actions.act_window</field>
-            <field name="res_model">hc.res.allergy.intolerance</field>
-            <field name="view_type">form</field>
-            <field name="view_mode">tree,form</field>
-        </record>  -->
 
         <!-- Allergy Intolerance Action and Menu -->    
         

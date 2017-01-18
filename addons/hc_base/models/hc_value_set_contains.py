@@ -9,15 +9,18 @@ class ValueSetContains(models.AbstractModel):
     _inherit = ["hc.codeable.concept.coding"]
     _order = "code"
 
-    system = fields.Char(
-        string="Source URL",
-        help="Web address of the source of the code.")
+    # system = fields.Char(
+    #     string="Source URL",
+    #     help="Web address of the source of the code.")
     is_abstract = fields.Boolean(
         string="Abstract", 
         help="If user cannot select this entry.")
-    version = fields.Char(
-        string="Version", 
-        help="Version in which this code / display is defined.")
+    # version = fields.Char(
+    #     string="Version", 
+    #     help="Version in which this code / display is defined.")
+    # code = fields.Char(
+    #     string="Code", 
+    #     help="Code - if blank, this is not a choosable code.")
     name = fields.Char(
         string="Name", 
         help="User display for the concept.")
@@ -135,6 +138,7 @@ class ConditionCode(models.Model):
     _name = "hc.vs.condition.code"
     _description = "Condition"
     _inherit = ["hc.value.set.contains"]
+    _rec_name = "code"
 
 class ConditionOutcome(models.Model):
     _name = "hc.vs.condition.outcome"

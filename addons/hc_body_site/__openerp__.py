@@ -36,6 +36,7 @@
         'security/ir.model.access.csv',
         'views/hc_res_body_site_views.xml',
         'views/hc_res_body_site_templates.xml',
+        'data/hc.vs.body.site.relative.location.csv',
     ],
     # only loaded in demonstration mode
     'demo': [

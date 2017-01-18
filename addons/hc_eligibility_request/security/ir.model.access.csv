@@ -7,4 +7,6 @@ access_hc_eligibility_request_hc_vs_benefit_sub_category_manager,hc.eligibility.
 access_hc_eligibility_request_hc_vs_benefit_network_manager,hc.eligibility.request.hc.vs.benefit.network.manager,model_hc_vs_benefit_network,hc_base.group_hc_base_manager,1,1,1,1
 access_hc_eligibility_request_hc_vs_benefit_term_manager,hc.eligibility.request.hc.vs.benefit.term.manager,model_hc_vs_benefit_term,hc_base.group_hc_base_manager,1,1,1,1
 access_hc_eligibility_request_hc_vs_benefit_unit_manager,hc.eligibility.request.hc.vs.benefit.unit.manager,model_hc_vs_benefit_unit,hc_base.group_hc_base_manager,1,1,1,1
+access_hc_eligibility_request_hc_vs_adjudication_error_manager,hc.eligibility.request.hc.vs.adjudication.error.manager,model_hc_vs_adjudication_error,hc_base.group_hc_base_manager,1,1,1,1
+
 

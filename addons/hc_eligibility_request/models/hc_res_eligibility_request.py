@@ -125,3 +125,8 @@ class BenefitTerm(models.Model):
     _name = "hc.vs.benefit.term"    
     _description = "Benefit Term"        
     _inherit = ["hc.value.set.contains"]
+
+class AdjudicationError(models.Model):    
+    _name = "hc.vs.adjudication.error"    
+    _description = "Adjudication Error"        
+    _inherit = ["hc.value.set.contains"]

@@ -10,7 +10,7 @@ class DeviceUseStatement(models.Model):
         string="Body Site Type", 
         selection=[
             ("code", "Code"), 
-            ("Body Site", "Body Site")], 
+            ("body_site", "Body Site")], 
         help="Type of definition or protocol.")				
     body_site_name = fields.Char(
         string="Body Site", 
@@ -18,7 +18,7 @@ class DeviceUseStatement(models.Model):
         store="True", 
         help="Target body site.")				
     body_site_code_id = fields.Many2one(
-        comodel_name="hc.vs.body.site.code", 
+        comodel_name="hc.vs.body.site", 
         string="Body Site Code", 
         help="Code of target body site.")				
     body_site_id = fields.Many2one(
@@ -61,9 +61,9 @@ class DeviceUseStatement(models.Model):
     timing_type = fields.Selection(
         string="Timing Type", 
         selection=[
-            ("Timing", "Timing"), 
-            ("Period", "Period"), 
-            ("dateTime", "Datetime")], 
+            ("timing", "Timing"), 
+            ("period", "Period"), 
+            ("date_time", "Date Time")], 
         help="Type of how often the device was used.")				
     timing_name = fields.Char(
         string="Timing", 

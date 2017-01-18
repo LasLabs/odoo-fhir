@@ -17,7 +17,7 @@ class BodySite(models.Model):
         string="Identifiers", 
         help="Body Site identifier.")
     code_id = fields.Many2one(
-        comodel_name="hc.vs.body.site.code", 
+        comodel_name="hc.vs.body.site", 
         string="Code", 
         help="Named anatomical location.")
     modifier_ids = fields.Many2many(
@@ -56,11 +56,6 @@ class BodySiteImage(models.Model):
 class BodySiteRelativeLocation(models.Model):
     _name = "hc.vs.body.site.relative.location"
     _description = "Body Site Relative Location"
-    _inherit = ["hc.value.set.contains"]
-
-class BodySiteCode(models.Model):
-    _name = "hc.vs.body.site.code"
-    _description = "Body Site Code"
     _inherit = ["hc.value.set.contains"]
 
 # External Reference

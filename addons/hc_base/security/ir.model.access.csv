@@ -109,7 +109,6 @@ access_hc_base_hc_ratio_user,hc.base.hc.ratio.user,model_hc_ratio,hc_base.group_
 access_hc_base_hc_period_user,hc.base.hc.period.user,model_hc_period,hc_base.group_hc_base_user,1,0,0,0
 access_hc_base_hc_signature_user,hc.base.hc.signature.user,model_hc_signature,hc_base.group_hc_base_user,1,0,0,0
 access_hc_base_hc_vs_commitment_type_indication_manager,hc.base.hc.vs.commitment.type.indication.manager,model_hc_vs_commitment_type_indication,hc_base.group_hc_base_manager,1,1,1,1
-access_hc_base_hc_vs_manifestation_code_manager,hc.base.hc.vs.manifestation.code.manager,model_hc_vs_manifestation_code,hc_base.group_hc_base_manager,1,1,1,1
 access_hc_base_hc_vs_route_code_manager,hc.base.hc.vs.route.code.manager,model_hc_vs_route_code,hc_base.group_hc_base_manager,1,1,1,1
 access_hc_base_hc_vs_substance_code_manager,hc.base.hc.vs.substance.code.manager,model_hc_vs_substance_code,hc_base.group_hc_base_manager,1,1,1,1
 access_hc_base_hc_vs_request_priority_manager,hc.base.hc.vs.request.priority.manager,model_hc_vs_request_priority,hc_base.group_hc_base_manager,1,1,1,1
