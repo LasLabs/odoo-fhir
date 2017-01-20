@@ -36,6 +36,11 @@
         'security/ir.model.access.csv',
         'views/hc_res_medication_views.xml',
         'views/hc_res_medication_templates.xml',
+        'data/hc.vs.medication.code.csv',
+        'data/hc.vs.medication.form.code.csv',
+        'data/hc.vs.medication.form.group.code.csv',
+        'data/hc.vs.medication.ingredient.code.csv',
+        'data/hc.vs.medication.package.container.csv',
     ],
     # only loaded in demonstration mode
     'demo': [

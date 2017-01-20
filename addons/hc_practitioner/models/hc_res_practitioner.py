@@ -73,18 +73,9 @@ class Practitioner(models.Model):
         string="Qualifications", 
         help="Qualification obtained by training and certification")
 
-    # @api.model
-    # def create(self, vals):
-    #     name = self.env['hc.human.name'].browse(vals['name_id'])
-    #     vals['name'] = name.first_id.name+' '+name.surname_id.name
-    #     return super(Practitioner, self).create(vals)
-
-    # _defaults = {
-    #     "is_company": False,
-    #     "customer": False,
-    #     "company_type": "person",
-    #     "is_person": True,
-    #     }
+    _defaults = {
+        "is_practitioner": True,
+        }
 
     @api.model
     def create(self, vals):

@@ -100,7 +100,7 @@
           <field name="model">hc.vs.country.postal.code</field>   
           <field name="arch" type="xml">    
             <search string="Postal/ZIP Codes"> 
-              <field name="name"/>
+              <field name="postal_code"/>
               <field name="postal_place"/>
               <field name="city_ids" string="Cities/Places"/>
               <field name="district_ids" string="District/County"/>
@@ -117,7 +117,7 @@
           <field name="model">hc.vs.country.postal.code</field>   
           <field name="arch" type="xml">   
             <tree string="Postal/ZIP Codes">
-              <field name="name" string="Code"/>
+              <field name="postal_code" string="Code"/>
               <field name="postal_place"/>
               <field name="city_ids" string="Cities/Places"/>
               <field name="district_ids" string="Districts/Counties"/>
@@ -136,7 +136,7 @@
               <sheet>   
                 <div class="oe_title oe_left" colwidth="200">
                   <h1>
-                    <field name="name" default_focus="1" placeholder="Postal or ZIP Code"/>
+                    <field name="postal_code" default_focus="1" placeholder="Postal or ZIP Code"/>
                   </h1>
                   <field name="postal_place" placeholder="(optional) Place like Hillsdale Shopping Center"/>
                 </div>
@@ -148,8 +148,8 @@
                     </group>
                     <group>    
                       <field name="division_id"/>   
-                      <field name="region_id"/>   
-                      <field name="country_id"/>    
+                      <field name="region_id" readonly="1"/>   
+                      <field name="country_id" readonly="1"/>    
                     </group>    
                   </group>    
               </sheet>    

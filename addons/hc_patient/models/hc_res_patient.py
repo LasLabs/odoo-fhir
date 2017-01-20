@@ -25,10 +25,9 @@ class Patient(models.Model):
             ("animal", "Animal")],
         default="human",  
         help="Patient is human or animal.")
-    # animal_name = fields.Char(
-    #     string="Animal Name",
-    #     required="True",
-    #     help="Name of the animal.")
+    animal_name = fields.Char(
+        string="Animal Name",
+        help="Name of the animal.")
     is_active = fields.Boolean(
         string="Active", 
         help="Whether this patient's record is in active use.")
@@ -476,6 +475,13 @@ class ContactRelationship(models.Model):
     _inherit = ["hc.value.set.contains"]    
 
 # External Reference
+
+class Partner(models.Model):
+    _inherit = ["res.partner"]
+
+    is_patient = fields.Boolean(
+        string="Is a patient", 
+        help="This partner is a patient.")
 
 class PersonLink(models.Model):
     _inherit = ["hc.person.link"]

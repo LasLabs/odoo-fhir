@@ -47,6 +47,10 @@ class RelatedPerson(models.Model):
         required="True", 
         help="Patient(s) related to this person.")
 
+    _defaults = {
+        "is_related_person": True,
+        }
+    
     @api.model
     def create(self, vals):
         vals['is_related_person'] = self.env.context.get('is_related_person', False)
@@ -171,7 +175,7 @@ class Partner(models.Model):
 
     is_related_person = fields.Boolean(
         string="Is a related person", 
-        help="This partner is a related person.")
+        help="This partner is a health care related person.")
 
 class PersonLink(models.Model):
     _inherit = ["hc.person.link"]

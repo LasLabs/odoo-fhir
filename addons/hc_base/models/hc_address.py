@@ -312,7 +312,7 @@ class CountryPostalCode(models.Model):
         string="Division", 
         help="Group of primary subdivisions (e.g., Pacific and Mountain in the US).")
     region_id = fields.Many2one(
-        related="division_id.region_id", 
+        related="division_id.region_id",
         string="Region", 
         help="A grouping of divisions or states (e.g. West, Midwest).")
     country_id = fields.Many2one(

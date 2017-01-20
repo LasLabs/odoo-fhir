@@ -16,24 +16,22 @@ class Person(models.Model):
     name_id = fields.Many2one(
         comodel_name="hc.human.name",
         string="Full Name",
-        help="Person's First Name and Last Name")
-    name = fields.Char(
-        related = "name_id.name")
+        help="A full text representation of this Person's name.")
     identifier_ids = fields.One2many(
         comodel_name="hc.person.identifier", 
         inverse_name="person_id", 
         string="Identifiers", 
-        help="A human identifier for this person.")
+        help="A human identifier for this Person.")
     name_ids = fields.One2many(
         comodel_name="hc.person.name", 
         inverse_name="person_id", 
         string="Names",
-        help="A name associated with the person.")
+        help="A name associated with this Person.")
     telecom_ids = fields.One2many(
         comodel_name="hc.person.telecom", 
         inverse_name="person_id", 
         string="Telecoms", 
-        help="A contact detail for the person.") 
+        help="A contact detail for the person.")
     gender = fields.Selection(
         string="Gender", 
         selection=[
@@ -71,7 +69,7 @@ class Person(models.Model):
     @api.model
     def create(self, vals):
         name = self.env['hc.human.name'].browse(vals['name_id'])
-        vals['name'] = name.first_id.name+' '+name.surname_id.name
+        vals['name'] = name.name
         # vals['is_patient'] = self.env.context.get('is_patient', False)
         # vals['is_practitioner'] = self.env.context.get('is_practitioner', False)
         # vals['is_related_person'] = self.env.context.get('is_related_person', False)
@@ -219,8 +217,6 @@ class PersonPhoto(models.Model):
 class Partner(models.Model):
     _inherit = ["res.partner"]
 
-    name = fields.Char(
-        help="First Name + Last Name")
     is_person = fields.Boolean(
         string="Is a person", 
         help="This partner is a health care person.")
@@ -232,4 +228,4 @@ class Partner(models.Model):
         help="This partner is a health care practitioner.")
     is_related_person = fields.Boolean(
         string="Is a related person", 
-        help="This partner is a related person.")
+        help="This partner is a health care related person.")

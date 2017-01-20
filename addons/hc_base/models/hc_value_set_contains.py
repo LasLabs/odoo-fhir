@@ -198,11 +198,6 @@ class Forms(models.Model):
 class Jurisdiction(models.Model):   
     _name = "hc.vs.jurisdiction"    
     _description = "Jurisdiction"       
-    _inherit = ["hc.value.set.contains"]
-
-class ManifestationCode(models.Model): 
-    _name = "hc.vs.manifestation.code" 
-    _description = "Manifestation Code"        
     _inherit = ["hc.value.set.contains"]  
 
 class MaritalStatus(models.Model):  

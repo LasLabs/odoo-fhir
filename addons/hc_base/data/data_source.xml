@@ -29,5 +29,14 @@
             <field name="country_id" ref="base.dk"/>
         </record>
 
+        <record id="base.nlm_rxnorm" model="res.partner">  
+            <field name="name">RxNorm</field>
+            <field name="company_type">company</field>
+            <field name="website">https://www.nlm.nih.gov/research/umls/rxnorm/overview.html</field>
+            <field name="notify_email">none</field>
+            <field name="category_id" eval="[(6, 0, [ref('hc_base.partner_source'), ref('hc_base.partner_document')])]"/>
+            <field name="country_id" ref="base.us"/>
+        </record>
+
     </data>
 </openerp>

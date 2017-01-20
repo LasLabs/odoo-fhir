@@ -204,6 +204,17 @@ class MedicationFormCode(models.Model):
     _description = "Medication Form Code"        
     _inherit = ["hc.value.set.contains"]
 
+    form_group_ids = fields.Many2many(
+        comodel_name="hc.vs.medication.form.group.code", 
+        relation="medication_form_code_form_group_rel", 
+        string="Form Groups", 
+        help="Dose Form Group associated with this Dose Form.")
+
+class MedicationFormGroupCode(models.Model):    
+    _name = "hc.vs.medication.form.group.code"  
+    _description = "Medication Form Group Code"         
+    _inherit = ["hc.value.set.contains"]
+
 class MedicationIngredientCode(models.Model):    
     _name = "hc.vs.medication.ingredient.code"    
     _description = "Medication Ingredient Code"        

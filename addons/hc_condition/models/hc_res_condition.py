@@ -376,15 +376,11 @@ class ConditionEvidenceDetail(models.Model):
     reference_model = fields.Reference(
         string="Reference Model",
         selection="_reference_models")
-    detail_type = fields.Selection(
-        string="Detail Type", 
-        selection=[
-            ("string", "String"), 
-            ("code", "Code")], 
+    detail_type = fields.Char(
+        string="Detail Type",
         help="Type of supporting information found elsewhere.")
     detail_name = fields.Char(
-        string="Detail", 
-        compute="_compute_detail_name", 
+        string="Detail",
         store="True", 
         help="Supporting information found elsewhere.")
     detail_string = fields.Char(
@@ -398,7 +394,7 @@ class ConditionEvidenceDetail(models.Model):
     @api.model
     def _reference_models(self):
         #type manual is used to display custom models only
-        models = self.env['ir.model'].search([('state', '=', 'manual')])
+        models = self.env['ir.model'].search([('state', '!=', 'manual')])
         return [(model.model, model.name)
                 for model in models
                 if model.model.startswith('hc.res')]
