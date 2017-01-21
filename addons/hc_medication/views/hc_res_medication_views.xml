@@ -171,7 +171,6 @@
                   groups="hc_base.group_hc_base_manager" 
                   sequence="10"/>
 
-
         <!-- Medication Value Set Action and Menu -->        
                 
         <menuitem id="hc_medication.menu_med_med_conf" 
@@ -195,18 +194,17 @@
                   groups="hc_base.group_hc_base_manager" 
                   sequence="10"/>
 
-
-        <!-- <record id="hc_vs_medication_code_view_search" model="ir.ui.view">                  
+        <record id="hc_vs_medication_code_view_search" model="ir.ui.view">                  
             <field name="name">Medication Code Search</field>               
             <field name="model">hc.vs.medication.code</field>               
-            <field name="inherit_id" ref="hc_value_set_contains_view_search"/>              
+<!--             <field name="inherit_id" ref="hc_value_set_contains_view_search"/>      -->         
             <field name="arch" type="xml">              
                 <search string="Medication Codes">          
                     <field name="name"/>        
                     <field name="code"/>        
                     <field name="definition"/>      
                     <group>     
-                        <filter name="group_by_parent" string="parent" context="{'group_by': 'parent_id'}" />   
+                        <filter name="group_by_parent" string="parent" context="{'group_by': 'contains_id'}" />   
                     </group>        
                 </search>           
             </field>                
@@ -215,35 +213,33 @@
         <record id="hc_vs_medication_code_view_tree" model="ir.ui.view">                
             <field name="name">Medication Code Tree</field>         
             <field name="model">hc.vs.medication.code</field>           
-            <field name="inherit_id" ref="hc_value_set_contains_view_tree"/>            
+            <!-- <field name="inherit_id" ref="hc_value_set_contains_view_tree"/>  -->           
             <field name="arch" type="xml">          
-                <tree string="Medication Codes">       
-                    <field name="system"/>  
-                    <field name="code"/>    
+                <tree string="Medication Codes" default_order="name, code">         
                     <field name="name"/>    
-                    <field name="definition"/>  
+                    <field name="code"/>    
+                    <field name="definition"/>
+                    <field name="source_id" invisible="0"/>  
                 </tree>     
             </field>            
-        </record>          -->      
+        </record>               
 
-        <!-- <record id="hc_vs_medication_code_view_form" model="ir.ui.view">           
+        <record id="hc_vs_medication_code_view_form" model="ir.ui.view">           
             <field name="name">Medication Code Form</field>         
             <field name="model">hc.vs.medication.code</field>
-            <field name="inherit_id" ref="hc_value_set_contains_view_form"/>         
-            <field name="arch" type="xml">           -->
-                <!-- <form string="Medication Codes">        
+            <!-- <field name="inherit_id" ref="hc_value_set_contains_view_form"/>  -->        
+            <field name="arch" type="xml">          
+                <form string="Medication Codes">        
                     <sheet>     
-                        <div class="oe_title oe_left" colwidth="200">    
-                            <h1>  
-                                <field name="name" default_focus="1" placeholder="Name (e.g., subject)"/>
-                            </h1> 
-                            <field name="code" placeholder="Code (e.g., SBJ)"/> 
-                        </div>
+                        <h1>  
+                            <field name="name" default_focus="1" placeholder="Name (e.g., subject)"/>
+                        </h1> 
+                        <field name="code" placeholder="Code (e.g., SBJ)"/> 
                         <field name="definition" placeholder="Definition"/> 
                         <field name="comments" placeholder="Comments"/>     
                         <group>   
                             <group> 
-                                <field name="contains_id"/>
+                                <field name="contains_id" invisible="0"/>
                                 <field name="is_abstract" widget="upgrade_boolean"/>
                                 <field name="level" placeholder="An integer (e.g., 1, 2)"/>
                                 <field name="version" placeholder="e.g., v2.5"/>
@@ -254,9 +250,306 @@
                             </group>  
                         </group>    
                     </sheet>      
-                </form> -->       
-<!--             </field>          
-        </record> -->
+                </form>       
+            </field>          
+        </record>          
+                    
+        <act_window id="hc_vs_medication_form_code_action"          
+                    name="HC Medication Form Codes"
+                    res_model="hc.vs.medication.form.code"
+                    view_mode="tree,form"
+                    domain=""
+                    context=""
+                    limit=""/>
+
+        <menuitem id="hc_medication.menu_med_form" 
+                  name="Medication Form Codes" 
+                  parent="hc_medication.menu_med_med_conf" 
+                  action="hc_vs_medication_form_code_action" 
+                  groups="hc_base.group_hc_base_manager" 
+                  sequence="20"/>
+        <record id="hc_vs_medication_form_code_view_search" model="ir.ui.view">                                 
+            <field name="name">Medication Form Code Search</field>                              
+            <field name="model">hc.vs.medication.form.code</field>                              
+<!--             <field name="inherit_id" ref="hc_value_set_contains_view_search"/>   -->                            
+            <field name="arch" type="xml">                              
+                <search string="Medication Form Codes">                         
+                    <field name="name"/>                        
+                    <field name="code"/>                        
+                    <field name="definition"/>                      
+                    <group>                     
+                        <filter name="group_by_parent" string="Parent" context="{'group_by': 'contains_id'}"/>
+                        <filter name="group_by_form_group" string="Form Group" context="{'group_by': 'form_group_ids'}"/>
+                    </group>                        
+                </search>                           
+            </field>                                
+        </record>
+
+        <record id="hc_vs_medication_form_code_view_tree" model="ir.ui.view">                                   
+            <field name="name">Medication Form Code Tree</field>                                
+            <field name="model">hc.vs.medication.form.code</field>                              
+<!--             <field name="inherit_id" ref="hc_value_set_contains_view_tree"/>    -->                             
+            <field name="arch" type="xml">                              
+                <tree string="Medication Form Codes" default_order="name, code">                            
+                    <field name="name"/>                        
+                    <field name="code"/>
+                    <field name="form_group_ids"/>                        
+                    <field name="definition"/>                      
+                    <field name="source_id" invisible="0"/>                     
+                </tree>                         
+            </field>                                
+        </record>                                   
+                                    
+        <record id="hc_vs_medication_form_code_view_form" model="ir.ui.view">                                   
+            <field name="name">Medication Form Code Form</field>                                
+            <field name="model">hc.vs.medication.form.code</field>                              
+            <field name="arch" type="xml">                              
+                <form string="Medication Form Codes" >                          
+                    <sheet>                     
+                        <h1>                
+                            <field name="name" default_focus="1" placeholder="Name (e.g., United States)"/>         
+                        </h1>               
+                        <field name="code" placeholder="Code (e.g., US)"/>          
+                        <field name="definition" placeholder="Definition"/>     
+                        <field name="comments" placeholder="Comments"/> 
+                        <group>                 
+                            <group>             
+                                <field name="form_group_ids" widget="many2many_tags"/>
+                                <field name="contains_id" invisible="0"/>           
+                                <field name="is_abstract" widget="upgrade_boolean"/>            
+                                <field name="level" placeholder="An integer (e.g., 1, 2)"/>         
+                                <field name="version" placeholder="e.g., v2.5"/>            
+                            </group>                
+                            <group>             
+                                <field name="source_id" placeholder="e.g., U.S. Census Bureau"/>            
+                                <field name="system" widget="url" placeholder="e.g., www.census.gov/"/>         
+                            </group>                
+                        </group>                    
+                    </sheet>
+                </form> 
+            </field>        
+        </record> 
+        
+        <act_window id="hc_vs_medication_form_group_code_action"
+                    name="HC Medication Form Group Codes"                                               
+                    res_model="hc.vs.medication.form.group.code"                                                
+                    view_mode="tree,form"                                               
+                    domain=""                                               
+                    context=""                                              
+                    limit=""/>
+
+        <menuitem id="hc_medication.menu_med_form_grp" 
+                  name="Medication Form Group Codes" 
+                  parent="hc_medication.menu_med_med_conf" 
+                  action="hc_vs_medication_form_group_code_action" 
+                  groups="hc_base.group_hc_base_manager" 
+                  sequence="30"/>
+
+        <record id="hc_vs_medication_form_group_code_view_search" model="ir.ui.view">
+            <field name="name">Medication Form Group Code Search</field>
+            <field name="model">hc.vs.medication.form.group.code</field>
+            <!-- <field name="inherit_id" ref="hc_value_set_contains_view_search"/> -->
+            <field name="arch" type="xml">                                                      
+                <search string="Medication Form Group Codes">                                                   
+                    <field name="name"/>                                                
+                    <field name="code"/>                                                
+                    <field name="definition"/>                                              
+                    <group>                                             
+                        <filter name="group_by_parent" string="parent" context="{'group_by': 'contains_id'}" />
+                    </group>                                                
+                </search>                                                   
+            </field>                                                        
+        </record>                                                           
+                                                                    
+        <record id="hc_vs_medication_form_group_code_view_tree" model="ir.ui.view">
+            <field name="name">Medication Form Group Code Tree</field>
+            <field name="model">hc.vs.medication.form.group.code</field>
+            <!-- <field name="inherit_id" ref="hc_value_set_contains_view_tree"/> -->
+            <field name="arch" type="xml">                                                      
+                <tree string="Medication Form Group Codes" default_order="name, code">
+                    <field name="name"/>                                                
+                    <field name="code"/>                                                
+                    <field name="definition"/>                                              
+                    <field name="source_id" invisible="0"/>                                             
+                </tree>                                                 
+            </field>                                                        
+        </record>                                                           
+                                                                    
+        <record id="hc_vs_medication_form_group_code_view_form" model="ir.ui.view">
+            <field name="name">Medication Form Group Code Form</field>
+            <field name="model">hc.vs.medication.form.group.code</field>
+            <field name="arch" type="xml">                                                      
+                <form string="Medication Form Group Codes" >                                                    
+                    <sheet>                                             
+                        <h1>                                            
+                            <field name="name" default_focus="1" placeholder="Name (e.g., United States)"/>
+                        </h1>                                           
+                        <field name="code" placeholder="Code (e.g., US)"/>                                          
+                        <field name="definition" placeholder="Definition"/>                                         
+                        <field name="comments" placeholder="Comments"/>                                         
+                        <group>                                         
+                            <group>                                     
+                                <field name="contains_id" invisible="0"/>                                   
+                                <field name="is_abstract" widget="upgrade_boolean"/>                                    
+                                <field name="level" placeholder="An integer (e.g., 1, 2)"/>    
+                                <field name="version" placeholder="e.g., v2.5"/>                                    
+                            </group>                                        
+                            <group>                                     
+                                <field name="source_id" placeholder="e.g., U.S. Census Bureau"/>  
+                                <field name="system" widget="url" placeholder="e.g., www.census.gov/"/>
+                            </group>                                        
+                        </group>                                            
+                    </sheet>                                                
+                </form>                                                 
+            </field>                                                        
+        </record>                                                           
+
+        <act_window id="hc_vs_medication_ingredient_code_action"                                      
+                    name="HC Medication Ingredient Codes"                           
+                    res_model="hc.vs.medication.ingredient.code"                            
+                    view_mode="tree,form"                           
+                    domain=""                           
+                    context=""                          
+                    limit=""/>  
+
+        <menuitem id="hc_medication.menu_med_ingr" 
+                  name="Medication Ingredient Codes" 
+                  parent="hc_medication.menu_med_med_conf" 
+                  action="hc_vs_medication_ingredient_code_action" 
+                  groups="hc_base.group_hc_base_manager" 
+                  sequence="40"/>                                            
+                                        
+        <record id="hc_vs_medication_ingredient_code_view_search" model="ir.ui.view">
+            <field name="name">Medication Ingredient Code Search</field>                                    
+            <field name="model">hc.vs.medication.ingredient.code</field>                                    
+            <!-- <field name="inherit_id" ref="hc_value_set_contains_view_search"/> -->                                  
+            <field name="arch" type="xml">                                  
+                <search string="Medication Ingredient Codes">                               
+                    <field name="name"/>                            
+                    <field name="code"/>                            
+                    <field name="definition"/>                          
+                    <group>                         
+                        <filter name="group_by_parent" string="parent" context="{'group_by': 'contains_id'}" />
+                    </group>                            
+                </search>                               
+            </field>                                    
+        </record>                                       
+                                                
+        <record id="hc_vs_medication_ingredient_code_view_tree" model="ir.ui.view">                                     
+            <field name="name">Medication Ingredient Code Tree</field>                                  
+            <field name="model">hc.vs.medication.ingredient.code</field>                                    
+            <!-- <field name="inherit_id" ref="hc_value_set_contains_view_tree"/> -->                                    
+            <field name="arch" type="xml">                                  
+                <tree string="Medication Ingredient Codes" default_order="name, code">                              
+                    <field name="name"/>                            
+                    <field name="code"/>                            
+                    <field name="definition"/>                          
+                    <field name="source_id" invisible="0"/>                         
+                </tree>                             
+            </field>                                    
+        </record>                                       
+                                                
+        <record id="hc_vs_medication_ingredient_code_view_form" model="ir.ui.view">                                     
+            <field name="name">Medication Ingredient Code Form</field>                                  
+            <field name="model">hc.vs.medication.ingredient.code</field>                                    
+            <field name="arch" type="xml">                                  
+                <form string="Medication Ingredient Codes" >                                
+                    <sheet>                         
+                        <h1>                        
+                            <field name="name" default_focus="1" placeholder="Name (e.g., United States)"/>
+                        </h1>                       
+                        <field name="code" placeholder="Code (e.g., US)"/>                      
+                        <field name="definition" placeholder="Definition"/>                     
+                        <field name="comments" placeholder="Comments"/>                     
+                        <group>                     
+                            <group>                 
+                                <field name="contains_id" invisible="0"/>               
+                                <field name="is_abstract" widget="upgrade_boolean"/>                
+                                <field name="level" placeholder="An integer (e.g., 1, 2)"/>             
+                                <field name="version" placeholder="e.g., v2.5"/>                
+                            </group>                    
+                            <group>                 
+                                <field name="source_id" placeholder="e.g., U.S. Census Bureau"/>                
+                                <field name="system" widget="url" placeholder="e.g., www.census.gov/"/>             
+                            </group>                    
+                        </group>                        
+                    </sheet>                            
+                </form>                             
+            </field>                                    
+        </record>                                       
+
+        <act_window id="hc_vs_medication_package_container_action"                                 
+                    name="HC Medication Package Containers"                     
+                    res_model="hc.vs.medication.package.container"                      
+                    view_mode="tree,form"                       
+                    domain=""                       
+                    context=""                      
+                    limit=""/> 
+
+        <menuitem id="hc_medication.menu_med_pkg" 
+                  name="Medication Package Containers" 
+                  parent="hc_medication.menu_med_med_conf" 
+                  action="hc_vs_medication_package_container_action" 
+                  groups="hc_base.group_hc_base_manager" sequence="50"/>
+                         
+        <record id="hc_vs_medication_package_container_view_search" model="ir.ui.view">                                 
+            <field name="name">Medication Package Container Search</field>                              
+            <field name="model">hc.vs.medication.package.container</field>                              
+            <!-- <field name="inherit_id" ref="hc_value_set_contains_view_search"/> -->                              
+            <field name="arch" type="xml">                              
+                <search string="Medication Package Containers">                         
+                    <field name="name"/>                        
+                    <field name="code"/>                        
+                    <field name="definition"/>                      
+                    <group>                     
+                        <filter name="group_by_parent" string="parent" context="{'group_by': 'contains_id'}" />
+                    </group>                        
+                </search>                           
+            </field>                                
+        </record>                                   
+                                            
+        <record id="hc_vs_medication_package_container_view_tree" model="ir.ui.view">                                   
+            <field name="name">Medication Package Container Tree</field>                                
+            <field name="model">hc.vs.medication.package.container</field>                              
+            <!-- <field name="inherit_id" ref="hc_value_set_contains_view_tree"/> -->                                
+            <field name="arch" type="xml">                              
+                <tree string="Medication Package Containers" default_order="name, code">                            
+                    <field name="name"/>                        
+                    <field name="code"/>                        
+                    <field name="definition"/>                      
+                    <field name="source_id" invisible="0"/>                     
+                </tree>                         
+            </field>                                
+        </record>                                   
+                                            
+        <record id="hc_vs_medication_package_container_view_form" model="ir.ui.view">                                   
+            <field name="name">Medication Package Container Form</field>                                
+            <field name="model">hc.vs.medication.package.container</field>                              
+            <field name="arch" type="xml">                              
+                <form string="Medication Package Containers" >                          
+                    <sheet>                     
+                        <h1>                    
+                            <field name="name" default_focus="1" placeholder="Name (e.g., United States)"/>             
+                        </h1>                   
+                        <field name="code" placeholder="Code (e.g., US)"/>                  
+                        <field name="definition" placeholder="Definition"/>                 
+                        <field name="comments" placeholder="Comments"/>                 
+                        <group>                 
+                            <group>             
+                                <field name="contains_id" invisible="0"/>           
+                                <field name="is_abstract" widget="upgrade_boolean"/>            
+                                <field name="level" placeholder="An integer (e.g., 1, 2)"/>         
+                                <field name="version" placeholder="e.g., v2.5"/>            
+                            </group>                
+                            <group>             
+                                <field name="source_id" placeholder="e.g., U.S. Census Bureau"/>            
+                                <field name="system" widget="url" placeholder="e.g., www.census.gov/"/>         
+                            </group>                
+                        </group>                    
+                    </sheet>                        
+                </form>                         
+            </field>                                
+        </record>                                   
 
     </data>
 </openerp>

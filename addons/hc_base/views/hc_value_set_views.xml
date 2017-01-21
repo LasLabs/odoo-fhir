@@ -12,7 +12,7 @@
                     <field name="code"/>
                     <field name="definition"/>
                     <group> 
-                        <filter name="group_by_parent" string="parent" context="{'group_by': 'parent_id'}"/>
+                        <filter name="group_by_parent" string="parent" context="{'group_by': 'contains_id'}"/>
                     </group>
                 </search>   
             </field>        
@@ -22,10 +22,11 @@
             <field name="name">Value Set Tree</field>         
             <field name="model">hc.value.set.contains</field>          
             <field name="arch" type="xml">          
-                  <tree string="Value Set Contains">       
-                        <field name="code"/>      
+                  <tree string="Value Set Contains" default_order="name, code">       
                         <field name="name"/>      
-                        <field name="definition"/>      
+                        <field name="code"/>      
+                        <field name="definition"/>
+                        <field name="source_id" invisible="1"/>   
                   </tree>       
             </field>          
         </record>           
@@ -36,16 +37,15 @@
             <field name="arch" type="xml">          
                 <form string="Value Set Contains">        
                     <sheet>     
-                        <div class="oe_title oe_left">    
-                            <h1>  
-                                <field name="name" default_focus="1" placeholder="Name (e.g., United States)"/>
-                            </h1> 
-                            <field name="code" placeholder="Code (e.g., US)"/> 
-                            <field name="definition" placeholder="Definition" colwidth="100"/> 
-                            <field name="comments" placeholder="Comments"/> 
-                        </div>    
+                        <h1>  
+                            <field name="name" default_focus="1" placeholder="Name (e.g., subject)"/>
+                        </h1> 
+                        <field name="code" placeholder="Code (e.g., SBJ)"/> 
+                        <field name="definition" placeholder="Definition"/> 
+                        <field name="comments" placeholder="Comments"/>     
                         <group>   
                             <group> 
+                                <field name="contains_id" invisible="0"/>
                                 <field name="is_abstract" widget="upgrade_boolean"/>
                                 <field name="level" placeholder="An integer (e.g., 1, 2)"/>
                                 <field name="version" placeholder="e.g., v2.5"/>

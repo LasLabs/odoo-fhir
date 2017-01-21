@@ -42,6 +42,9 @@
         'data/hc.vs.medication.ingredient.code.csv',
         'data/hc.vs.medication.package.container.csv',
     ],
+    'css': [
+        'static/src/css/hc_medication.css',
+    ],
     # only loaded in demonstration mode
     'demo': [
         'demo/demo.xml',

@@ -307,3 +307,35 @@ sudo mv /home/odoo/Downloads/hc.human.name.suffix.csv /odoo/odoo-fhir/addons/hc_
 
 * [Oodoo Guidelines](https://www.odoo.com/documentation/9.0/reference/guidelines.html)
 * [OCA Guidelines](https://github.com/OCA/maintainer-tools/blob/master/CONTRIBUTING.mdo)
+
+##Views
+
+###[How to Adjust Column Widths in Tree Views](http://107.167.187.43/index.php/topics/view/view-column-widths)
+
+* Create CSS definition file `yourmodule.css` in `yourmodule/static/src/css/yourmodule.css`. For example,
+```
+sudo mkdir /odoo/odoo-fhir/addons/hc_medication/static
+sudo mkdir /odoo/odoo-fhir/addons/hc_medication/static/src
+sudo mkdir /odoo/odoo-fhir/addons/hc_medication/static/src/css
+
+sudo touch /odoo/odoo-fhir/addons/hc_medication/static/src/css/hc_medication.css
+```
+* Create CSS definition in `yourmodule.css`. For example,
+```
+.code_name { 
+  width: 80%; 
+}
+```
+* Add CSS class in `<div>` definition. For example,
+```
+<div class="code_name">
+...
+</div>
+```
+
+* Add to `css: []` part of `__openerp__.py`. For example, in `/odoo-fhir/addons/hc_medication/__openerp__.py`,
+```
+'css': [
+        'static/src/css/hc_medication.css',
+    ],
+```

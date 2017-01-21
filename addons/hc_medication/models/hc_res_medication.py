@@ -197,13 +197,34 @@ class MedicationPackageContent(models.Model):
 class MedicationCode(models.Model):    
     _name = "hc.vs.medication.code"    
     _description = "Medication Code"        
-    _inherit = ["hc.value.set.contains"]    
+    _inherit = ["hc.value.set.contains"]
+
+    name = fields.Char(
+        string="Name", 
+        help="Name of this medication.")
+    code = fields.Char(
+        string="Code", 
+        help="Code of this medication.")
+    contains_id = fields.Many2one(
+        comodel_name="hc.vs.medication.code", 
+        string="Parent",
+        help="Parent concept.")    
 
 class MedicationFormCode(models.Model):    
     _name = "hc.vs.medication.form.code"    
     _description = "Medication Form Code"        
     _inherit = ["hc.value.set.contains"]
 
+    name = fields.Char(
+        string="Name", 
+        help="Name of this medication form.")
+    code = fields.Char(
+        string="Code", 
+        help="Code of this medication form.")
+    contains_id = fields.Many2one(
+        comodel_name="hc.vs.medication.form.code", 
+        string="Parent",
+        help="Parent concept.")
     form_group_ids = fields.Many2many(
         comodel_name="hc.vs.medication.form.group.code", 
         relation="medication_form_code_form_group_rel", 
@@ -215,12 +236,45 @@ class MedicationFormGroupCode(models.Model):
     _description = "Medication Form Group Code"         
     _inherit = ["hc.value.set.contains"]
 
+    name = fields.Char(
+        string="Name", 
+        help="Name of this medication form group.")
+    code = fields.Char(
+        string="Code", 
+        help="Code of this medication form group.")
+    contains_id = fields.Many2one(
+        comodel_name="hc.vs.medication.form.group.code", 
+        string="Parent",
+        help="Parent concept.")
+
 class MedicationIngredientCode(models.Model):    
     _name = "hc.vs.medication.ingredient.code"    
     _description = "Medication Ingredient Code"        
     _inherit = ["hc.value.set.contains"]
 
+    name = fields.Char(
+        string="Name", 
+        help="Name of this ingredient.")
+    code = fields.Char(
+        string="Code", 
+        help="Code of this ingredient.")
+    contains_id = fields.Many2one(
+        comodel_name="hc.vs.medication.ingredient.code", 
+        string="Parent",
+        help="Parent concept.")
+
 class MedicationPackageContainer(models.Model):    
     _name = "hc.vs.medication.package.container"    
     _description = "Medication Package Container"        
-    _inherit = ["hc.value.set.contains"]    
+    _inherit = ["hc.value.set.contains"]
+
+    name = fields.Char(
+        string="Name", 
+        help="Name of this medication package container.")
+    code = fields.Char(
+        string="Code", 
+        help="Code of this medication package container.")
+    contains_id = fields.Many2one(
+        comodel_name="hc.vs.medication.package.container", 
+        string="Parent",
+        help="Parent concept.")    

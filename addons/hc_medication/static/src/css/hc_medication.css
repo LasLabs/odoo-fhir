@@ -1,0 +1,6 @@
+/* --- Column Width --- */
+
+.code_name th[data-id='name']{ 
+  width: 100%; 	/* using percentage is recommended for responsive design */
+  				/* Other format: width: 400px; */ 
+}
