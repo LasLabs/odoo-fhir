@@ -241,6 +241,21 @@ class PractitionerSpecialty(models.Model):
     _description = "Practitioner Specialty"     
     _inherit = ["hc.value.set.contains"]
 
+    name = fields.Char(
+        string="Name", 
+        help="Name of this practitioner specialty.")
+    code = fields.Char(
+        string="Code", 
+        help="Code of this practitioner specialty.")
+    contains_id = fields.Many2one(
+        comodel_name="hc.vs.practitioner.specialty", 
+        string="Parent",
+        help="Parent concept.")
+    country_id = fields.Many2one(
+        comodel_name="res.country", 
+        string="Country", 
+        help="Country (can be ISO 3166 3 letter code).")
+
 # External Reference
 
 class Partner(models.Model):
@@ -260,11 +275,11 @@ class PersonLink(models.Model):
 
     @api.multi          
     def _compute_target_name(self):         
-        for hc_res_person in self:      
-            if hc_res_person.target_type == 'Person': 
-                hc_res_person.target_name = hc_res_person.target_person_id.name
-            elif hc_res_person.target_type == 'Practitioner':   
-                hc_res_person.target_name = hc_res_person.target_practitioner_id.name
+        for hc_person_link in self:      
+            if hc_person_link.target_type == 'person': 
+                hc_person_link.target_name = hc_person_link.target_person_id.name
+            elif hc_person_link.target_type == 'practitioner':   
+                hc_person_link.target_name = hc_person_link.target_practitioner_id.name
 
 class Annotation(models.Model):
     _inherit = ["hc.annotation"]

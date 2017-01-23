@@ -8,13 +8,13 @@
         <field name="model">hc.res.condition</field>        
         <field name="arch" type="xml">      
             <search string="Conditions">
-                <field name="name"/>    
+                <field name="code_id"/>
+                <field name="code"/>    
                 <field name="identifier_ids"/>
                 <field name="clinical_status"/>
                 <field name="verification_status"/>
                 <field name="category_ids"/>
                 <field name="severity_id"/>
-                <field name="code_id"/>
                 <field name="body_site_ids"/>
                 <field name="subject_type"/>
                 <field name="subject_name"/>
@@ -37,11 +37,13 @@
         <field name="model">hc.res.condition</field>        
         <field name="arch" type="xml">      
             <tree string="Conditions">
-                <field name="name"/>  
-                <field name="code_id"/>
                 <field name="subject_name"/>
+                <field name="subject_type"/>
+                <field name="code_id"/>  
+                <field name="code"/>
 <!--                 <field name="context_name"/> -->
                 <field name="asserter_name"/>
+                <field name="asserter_type"/>
                 <field name="date_asserted"/>
             </tree> 
         </field>        
@@ -52,21 +54,18 @@
         <field name="model">hc.res.condition</field>                                                            
         <field name="arch" type="xml">                                                          
             <form string="Condition">                                                       
-                <sheet>                                                 
-                    <div class="oe_title oe_left">                                              
-                        <h1>                                            
-                            <field name="subject_name" readonly="1" default_focus="1" placeholder="Subject"/>                                     
-                        </h1>                                           
-                    </div>
+                <sheet>                                                                                            
+                    <h1>                                            
+                        <field name="subject_patient_id" attrs="{'invisible': [('subject_type','!=','patient')]}" placeholder="Patient"/>
+                        <field name="subject_group_id" attrs="{'invisible': [('subject_type','!=','group')]}" placeholder="Group"/>                                     
+                    </h1>                                           
                     <div name="buttons" class="oe_right oe_button_box"></div>                                               
                     <group>                                             
                         <group>                                         
                             <field name="subject_type"/>
-                            <field name="subject_name"/>
-                            <field name="subject_patient_id" attrs="{'invisible': [('subject_type','!=','patient')]}"/>
-                            <field name="subject_group_id" attrs="{'invisible': [('subject_type','!=','group')]}"/>
+                            <!-- <field name="subject_name"/> -->
                             <field name="code_id"/>
-                            <field name="name"/>
+                            <field name="code" readonly="1"/>
                             <field name="date_asserted"/>
                             <field name="clinical_status"/>
                             <field name="verification_status"/>
@@ -77,30 +76,30 @@
                             <field name="body_site_ids" widget="many2many_tags"/>               
                             <field name="onset_type"/>
                             <field name="onset_name"/>
-                            <field name="onset_date_time" attrs="{'invisible': [('onset_type','!=','date_time')]}"/>
-                            <field name="onset_age" attrs="{'invisible': [('onset_type','!=','age')]}"/>
-                            <field name="onset_age_uom_id" attrs="{'invisible': [('onset_type','!=','age')]}"/>
-                            <field name="onset_start_date" attrs="{'invisible': [('onset_type','!=','period')]}"/>
-                            <field name="onset_end_date" attrs="{'invisible': [('onset_type','!=','period')]}"/>
-                            <field name="onset_range_low" attrs="{'invisible': [('onset_type','!=','range')]}"/>
-                            <field name="onset_range_high" attrs="{'invisible': [('onset_type','!=','range')]}"/>
-                            <field name="onset_string" attrs="{'invisible': [('onset_type','!=','string')]}"/>
+                            <field name="onset_date_time" class="oe_edit_only" attrs="{'invisible': [('onset_type','!=','date_time')]}"/>
+                            <field name="onset_age" class="oe_edit_only" attrs="{'invisible': [('onset_type','!=','age')]}"/>
+                            <field name="onset_age_uom_id" class="oe_edit_only" attrs="{'invisible': [('onset_type','!=','age')]}"/>
+                            <field name="onset_start_date" class="oe_edit_only" attrs="{'invisible': [('onset_type','!=','period')]}"/>
+                            <field name="onset_end_date" class="oe_edit_only" attrs="{'invisible': [('onset_type','!=','period')]}"/>
+                            <field name="onset_range_low" class="oe_edit_only" attrs="{'invisible': [('onset_type','!=','range')]}"/>
+                            <field name="onset_range_high" class="oe_edit_only" attrs="{'invisible': [('onset_type','!=','range')]}"/>
+                            <field name="onset_string" class="oe_edit_only" attrs="{'invisible': [('onset_type','!=','string')]}"/>
                             <field name="abatement_type"/>
                             <field name="abatement_name"/>
-                            <field name="abatement_date" attrs="{'invisible': [('abatement_type','!=','date')]}"/>
-                            <field name="abatement_age" attrs="{'invisible': [('abatement_type','!=','age')]}"/>
-                            <field name="abatement_age_uom_id" attrs="{'invisible': [('abatement_type','!=','age')]}"/>
-                            <field name="abatement_boolean" attrs="{'invisible': [('abatement_type','!=','boolean')]}"/>
-                            <field name="abatement_start_date" attrs="{'invisible': [('abatement_type','!=','period')]}"/>
-                            <field name="abatement_end_date" attrs="{'invisible': [('abatement_type','!=','period')]}"/>
-                            <field name="abatement_range_low" attrs="{'invisible': [('abatement_type','!=','range')]}"/>
-                            <field name="abatement_range_high" attrs="{'invisible': [('abatement_type','!=','range')]}"/>
-                            <field name="abatement_string" attrs="{'invisible': [('abatement_type','!=','string')]}"/>
+                            <field name="abatement_date" class="oe_edit_only" attrs="{'invisible': [('abatement_type','!=','date')]}"/>
+                            <field name="abatement_age" class="oe_edit_only" attrs="{'invisible': [('abatement_type','!=','age')]}"/>
+                            <field name="abatement_age_uom_id" class="oe_edit_only" attrs="{'invisible': [('abatement_type','!=','age')]}"/>
+                            <field name="abatement_boolean" class="oe_edit_only" attrs="{'invisible': [('abatement_type','!=','boolean')]}"/>
+                            <field name="abatement_start_date" class="oe_edit_only" attrs="{'invisible': [('abatement_type','!=','period')]}"/>
+                            <field name="abatement_end_date" class="oe_edit_only" attrs="{'invisible': [('abatement_type','!=','period')]}"/>
+                            <field name="abatement_range_low" class="oe_edit_only" attrs="{'invisible': [('abatement_type','!=','range')]}"/>
+                            <field name="abatement_range_high" class="oe_edit_only" attrs="{'invisible': [('abatement_type','!=','range')]}"/>
+                            <field name="abatement_string" class="oe_edit_only" attrs="{'invisible': [('abatement_type','!=','string')]}"/>
                             <field name="asserter_type"/>
                             <field name="asserter_name"/>
-                            <field name="asserter_practitioner_id" attrs="{'invisible': [('asserter_type','!=','practitioner')]}"/>
-                            <field name="asserter_patient_id" attrs="{'invisible': [('asserter_type','!=','patient')]}"/>
-                            <field name="asserter_related_person_id" attrs="{'invisible': [('asserter_type','!=','related_person')]}"/>
+                            <field name="asserter_practitioner_id" class="oe_edit_only" attrs="{'invisible': [('asserter_type','!=','practitioner')]}"/>
+                            <field name="asserter_patient_id" class="oe_edit_only" attrs="{'invisible': [('asserter_type','!=','patient')]}"/>
+                            <field name="asserter_related_person_id" class="oe_edit_only" attrs="{'invisible': [('asserter_type','!=','related_person')]}"/>
                             <field name="has_stage"/>
                             <field name="stage_summary_id" attrs="{'invisible': [('has_stage','=',False)]}"/>
                         </group>                                            
@@ -166,9 +165,9 @@
                                             <group> 
                                                 <field name="stage_assessment_type"/>
                                                 <field name="stage_assessment_name" readonly="1"/>
-                                                <!-- <field name="stage_assessment_observation_id" attrs="{'invisible': [('stage_assessment_type','!=','observation')]}"/>
-                                                <field name="stage_assessment_clinical_impression_id" attrs="{'invisible': [('stage_assessment_type','!=','clinical_impression')]}"/>
-                                                <field name="stage_assessment_diagnostic_report_id" attrs="{'invisible': [('stage_assessment_type','!=','diagnostic_report')]}"/> -->
+                                                <!-- <field name="stage_assessment_observation_id" class="oe_edit_only" attrs="{'invisible': [('stage_assessment_type','!=','observation')]}"/>
+                                                <field name="stage_assessment_clinical_impression_id" class="oe_edit_only" attrs="{'invisible': [('stage_assessment_type','!=','clinical_impression')]}"/>
+                                                <field name="stage_assessment_diagnostic_report_id" class="oe_edit_only" attrs="{'invisible': [('stage_assessment_type','!=','diagnostic_report')]}"/> -->
                                             </group>    
                                         </group>        
                                     </sheet>            
@@ -193,16 +192,17 @@
                                                     <tree>              
                                                         <field name="detail_name"/>           
                                                         <field name="detail_type"/>
-                                                        <field name="reference_model"/>                    
+                                                        <!-- <field name="reference_model"/> -->                    
                                                     </tree>             
                                                     <form>              
                                                         <sheet>         
                                                             <group>     
                                                                 <group> 
-                                                                    <field name="reference_model"/>
-                                                                    <field name="detail_name" readonly="1"/>
-<!--                                                                     <field name="detail_string" attrs="{'invisible': [('detail_type','!=','string')]}"/>
-                                                                    <field name="detail_code_id" attrs="{'invisible': [('detail_type','!=','code')]}"/> -->
+                                                                    <!-- <field name="reference_model"/> -->
+                                                                    <field name="detail_name"/>
+                                                                    <field name="detail_type" readonly="1"/>
+<!--                                                                     <field name="detail_string" class="oe_edit_only" attrs="{'invisible': [('detail_type','!=','string')]}"/>
+                                                                    <field name="detail_code_id" class="oe_edit_only" attrs="{'invisible': [('detail_type','!=','code')]}"/> -->
                                                                 </group>    
                                                             </group>        
                                                         </sheet>            

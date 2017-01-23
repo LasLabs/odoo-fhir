@@ -38,5 +38,17 @@
             <field name="country_id" ref="base.us"/>
         </record>
 
+        <record id="base.nucc" model="res.partner">  
+            <field name="name">National Uniform Claim Committee (NUCC)</field>
+            <field name="company_type">company</field>
+            <field name="website">https://www.nucc.org</field>
+            <field name="commment">A standards organization in the United States that maintains code set for provider taxonomy.
+
+                The National Uniform Claim Committee (NUCC) is a voluntary organization that develops a standardized data set for use by the non-institutional health care community to transmit claim and encounter information to and from all third-party payers. It is chaired by the American Medical Association (AMA), with the Centers for Medicare and Medicaid Services (CMS) as a critical partner. The committee includes representation from key provider and payer organizations, as well as designated standards maintenance organizations, public health organizations, and a vendor. (Ref: HIMMS http://www.himss.org/library/medical-banking/financial-systems/uniform-claims)</field>
+            <field name="notify_email">none</field>
+            <field name="category_id" eval="[(6, 0, [ref('hc_base.partner_source'), ref('hc_base.partner_organization')])]"/>
+            <field name="country_id" ref="base.us"/>
+        </record>
     </data>
 </openerp>
+

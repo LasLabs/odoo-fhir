@@ -102,7 +102,7 @@ class PersonLink(models.Model):
     target_name = fields.Char(
         string="Target", 
         compute="_compute_target_name", 
-        store="True", 
+        # store="True", 
         help="The resource to which this actual person is associated.")
     target_person_id = fields.Many2one(
         comodel_name="hc.res.person", 
@@ -129,17 +129,17 @@ class PersonLink(models.Model):
             ("level4", "Level 4")], 
         help="Level of assurance that this link is actually associated with the target resource.")
 
-    # @api.multi          
-    # def _compute_target_name(self):         
-    #     for hc_res_person in self:      
-    #         if hc_res_person.target_type == 'person': 
-    #             hc_res_person.target_name = hc_res_person.target_person_id.name
-            # elif hc_res_person.target_type == 'practitioner':   
-            #     hc_res_person.target_name = hc_res_person.target_practitioner_id.name
-            # elif hc_res_person.target_type == 'related_person': 
-            #     hc_res_person.target_name = hc_res_person.target_related_person_id.name
-            # elif hc_res_person.target_type == 'patient':  
-            #     hc_res_person.target_name = hc_res_person.target_patient_id.name
+    @api.multi          
+    def _compute_target_name(self):         
+        for hc_person_link in self:      
+            if hc_person_link.target_type == 'person': 
+                hc_person_link.target_name = hc_person_link.target_person_id.name
+    #         elif hc_person_link.target_type == 'practitioner':   
+    #             hc_person_link.target_name = hc_person_link.target_practitioner_id.name
+    #         elif hc_person_link.target_type == 'related_person': 
+    #             hc_person_link.target_name = hc_person_link.target_related_person_id.name
+    #         elif hc_person_link.target_type == 'patient':  
+    #             hc_person_link.target_name = hc_person_link.target_patient_id.name
 
 class PersonIdentifier(models.Model):   
     _name = "hc.person.identifier"  

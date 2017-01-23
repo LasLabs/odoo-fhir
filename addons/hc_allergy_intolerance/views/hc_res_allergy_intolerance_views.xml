@@ -9,13 +9,13 @@
             <field name="model">hc.res.allergy.intolerance</field>      
             <field name="arch" type="xml">      
                 <search string="Allergy Intolerances">
-                    <field name="allergy_intolerance"/>
+                    <field name="code_id" string="Allergy/Intolerance"/>
+                    <field name="code"/>
                     <field name="asserted_date"/>
                     <field name="asserter_name"/>
                     <field name="asserter_type"/>
                     <field name="category_ids" widget="many2one"/>
                     <field name="clinical_status"/>
-                    <field name="code_id"/>
                     <field name="criticality"/>
                     <field name="identifier_ids" widget="many2one"/>
                     <field name="last_occurence"/>
@@ -40,7 +40,7 @@
             <field name="arch" type="xml">      
                 <tree string="Allergy Intolerances">
                     <field name="patient_id"/>
-                    <field name="allergy_intolerance"/>
+                    <field name="code_id" string="Allergy/Intolerance"/>
                     <field name="asserted_date"/>
                     <field name="clinical_status"/>
                     <field name="verification_status"/>
@@ -62,20 +62,20 @@
                         <div name="buttons" class="oe_right oe_button_box"></div>                       
                         <group>                     
                             <group>                 
-                                <field name="code_id"/>
-                                <field name="allergy_intolerance"/>
+                                <field name="code_id" string="Allergy/Intolerance"/>
+                                <field name="code" readonly="1"/>
                                 <field name="type" widget="radio"/>
                                 <field name="criticality"/>
                                 <field name="onset_type"/>
                                 <field name="onset_name"/>
-                                <field name="onset_date_time" attrs="{'invisible': [('onset_type','!=','date_time')]}"/>
-                                <field name="onset_age" attrs="{'invisible': [('onset_type','!=','age')]}"/>
-                                <field name="onset_age_uom_id" attrs="{'invisible': [('onset_type','!=','age')]}"/>
-                                <field name="onset_start_date" attrs="{'invisible': [('onset_type','!=','period')]}"/>
-                                <field name="onset_end_date" attrs="{'invisible': [('onset_type','!=','period')]}"/>
-                                <field name="onset_range_low" attrs="{'invisible': [('onset_type','!=','range')]}"/>
-                                <field name="onset_range_high" attrs="{'invisible': [('onset_type','!=','range')]}"/>
-                                <field name="onset_string" attrs="{'invisible': [('onset_type','!=','string')]}"/>                
+                                <field name="onset_date_time" class="oe_edit_only" attrs="{'invisible': [('onset_type','!=','date_time')]}"/>
+                                <field name="onset_age" class="oe_edit_only" attrs="{'invisible': [('onset_type','!=','age')]}"/>
+                                <field name="onset_age_uom_id" class="oe_edit_only" attrs="{'invisible': [('onset_type','!=','age')]}"/>
+                                <field name="onset_start_date" class="oe_edit_only" attrs="{'invisible': [('onset_type','!=','period')]}"/>
+                                <field name="onset_end_date" class="oe_edit_only" attrs="{'invisible': [('onset_type','!=','period')]}"/>
+                                <field name="onset_range_low" class="oe_edit_only" attrs="{'invisible': [('onset_type','!=','range')]}"/>
+                                <field name="onset_range_high" class="oe_edit_only" attrs="{'invisible': [('onset_type','!=','range')]}"/>
+                                <field name="onset_string" class="oe_edit_only" attrs="{'invisible': [('onset_type','!=','string')]}"/>               
                             </group>                    
                             <group>                             
                                 <field name="asserted_date"/>
@@ -84,13 +84,13 @@
                                 <field name="verification_status"/>
                                 <field name="recorder_type"/>
                                 <field name="recorder_name"/>
-                                <field name="recorder_practitioner_id" attrs="{'invisible': [('recorder_type','!=','practitioner')]}"/>
-                                <field name="recorder_patient_id" attrs="{'invisible': [('recorder_type','!=','patient')]}"/>
+                                <field name="recorder_practitioner_id" class="oe_edit_only" attrs="{'invisible': [('recorder_type','!=','practitioner')]}"/>
+                                <field name="recorder_patient_id" class="oe_edit_only" attrs="{'invisible': [('recorder_type','!=','patient')]}"/>
                                 <field name="asserter_type"/>
                                 <field name="asserter_name"/>
-                                <field name="asserter_patient_id" attrs="{'invisible': [('asserter_type','!=','patient')]}"/>
-                                <field name="asserter_related_person_id" attrs="{'invisible': [('asserter_type','!=','related_person')]}"/>
-                                <field name="asserter_practitioner_id" attrs="{'invisible': [('asserter_type','!=','practitioner')]}"/>
+                                <field name="asserter_patient_id" class="oe_edit_only" attrs="{'invisible': [('asserter_type','!=','patient')]}"/>
+                                <field name="asserter_related_person_id" class="oe_edit_only" attrs="{'invisible': [('asserter_type','!=','related_person')]}"/>
+                                <field name="asserter_practitioner_id" class="oe_edit_only" attrs="{'invisible': [('asserter_type','!=','practitioner')]}"/>
                             </group>                    
                         </group>                        
                         <notebook colspan="4">                                        
@@ -208,12 +208,12 @@
                                             </div>          
                                             <group>         
                                                 <group>
-                                                    <field name="author_type"/>
-                                                    <field name="author_string" attrs="{'invisible': [('author_type','!=','string')]}"/>
-                                                    <field name="author_patient_id" attrs="{'invisible': [('author_type','!=','patient')]}"/>
-                                                    <field name="author_practitioner_id" attrs="{'invisible': [('author_type','!=','practitioner')]}"/>
-                                                    <field name="author_related_person_id" attrs="{'invisible': [('author_type','!=','related_person')]}"/>          
                                                     <field name="recorded_date"/>
+                                                    <field name="author_type"/>
+                                                    <field name="author_string" class="oe_edit_only" attrs="{'invisible': [('author_type','!=','string')]}"/>
+                                                    <field name="author_patient_id" class="oe_edit_only" attrs="{'invisible': [('author_type','!=','patient')]}"/>
+                                                    <field name="author_practitioner_id" class="oe_edit_only" attrs="{'invisible': [('author_type','!=','practitioner')]}"/>
+                                                    <field name="author_related_person_id" class="oe_edit_only" attrs="{'invisible': [('author_type','!=','related_person')]}"/>
                                                 </group>
                                                 <group>       
                                                 </group>
@@ -244,6 +244,162 @@
                   action="hc_res_allergy_intolerance_action"
                   groups="hc_base.group_hc_base_manager"
                   sequence="10"/>
+ 
+        <!-- Allergy Intolerance Value Set Action and Menu -->           
         
+        <record id="hc_vs_allergy_intolerance_code_view_search" model="ir.ui.view">                     
+            <field name="name">Allergy Intolerance Code Search</field>                  
+            <field name="model">hc.vs.allergy.intolerance.code</field>                  
+            <!-- <field name="inherit_id" ref="hc_value_set_contains_view_search"/> -->                  
+            <field name="arch" type="xml">                  
+                <search string="Allergy Intolerance Codes">             
+                    <field name="name"/>            
+                    <field name="code"/>            
+                    <field name="definition"/>          
+                    <group>         
+                        <filter name="group_by_parent" string="parent" context="{'group_by': 'contains_id'}" />     
+                    </group>            
+                </search>               
+            </field>                    
+        </record>                       
+        
+        <record id="hc_vs_allergy_intolerance_code_view_tree" model="ir.ui.view">                       
+            <field name="name">Allergy Intolerance Code Tree</field>                    
+            <field name="model">hc.vs.allergy.intolerance.code</field>                  
+            <!-- <field name="inherit_id" ref="hc_value_set_contains_view_tree"/> -->                    
+            <field name="arch" type="xml">                  
+                <tree string="Allergy Intolerance Codes" default_order="name, code">                
+                    <field name="name"/>            
+                    <field name="code"/>            
+                    <field name="definition"/>          
+                    <field name="source_id" invisible="0"/>         
+                </tree>             
+            </field>                    
+        </record>                       
+
+        <record id="hc_vs_allergy_intolerance_code_view_form" model="ir.ui.view">                       
+            <field name="name">Allergy Intolerance Code Form</field>                    
+            <field name="model">hc.vs.allergy.intolerance.code</field>                  
+            <field name="arch" type="xml">                  
+                <form string="Allergy Intolerance Codes" >              
+                    <sheet>         
+                        <h1>        
+                            <field name="name" default_focus="1" placeholder="Name (e.g., United States)"/> 
+                        </h1>       
+                        <field name="code" placeholder="Code (e.g., US)"/>      
+                        <field name="definition" placeholder="Definition"/>     
+                        <field name="comments" placeholder="Comments"/>     
+                        <group>     
+                            <group> 
+                                <field name="contains_id" invisible="0"/>
+                                <field name="is_abstract" widget="upgrade_boolean"/>
+                                <field name="level" placeholder="An integer (e.g., 1, 2)"/>
+                                <field name="version" placeholder="e.g., v2.5"/>
+                            </group>    
+                            <group> 
+                                <field name="source_id" placeholder="e.g., U.S. Census Bureau"/>
+                                <field name="system" widget="url" placeholder="e.g., www.census.gov/"/>
+                            </group>    
+                        </group>        
+                    </sheet>            
+                </form>             
+            </field>                    
+        </record>                       
+
+        <menuitem id="hc_medication.menu_allergy_conf" 
+                  name="Configuration" 
+                  parent="hc_allergy_intolerance.menu_allergy" 
+                  groups="hc_base.group_hc_base_manager" 
+                  sequence="10"/>
+            
+        <act_window id="hc_vs_allergy_intolerance_code_action"          
+                    name="HC Allergy Intolerance Codes"
+                    res_model="hc.vs.allergy.intolerance.code"
+                    view_mode="tree,form"
+                    domain=""
+                    context=""
+                    limit=""/>
+
+        <menuitem id="hc_medication.menu_allergy_code" 
+                  name="Allergy Intolerance Codes" 
+                  parent="hc_medication.menu_allergy_conf" 
+                  action="hc_vs_allergy_intolerance_code_action" 
+                  groups="hc_base.group_hc_base_manager" 
+                  sequence="10"/>
+        
+        <record id="hc_vs_manifestation_code_view_search" model="ir.ui.view">                       
+            <field name="name">Manifestation Code Search</field>                    
+            <field name="model">hc.vs.manifestation.code</field>                    
+            <!-- <field name="inherit_id" ref="hc_value_set_contains_view_search"/> -->                  
+            <field name="arch" type="xml">                  
+                <search string="Manifestation Codes">               
+                    <field name="name"/>            
+                    <field name="code"/>            
+                    <field name="definition"/>          
+                    <group>         
+                        <filter name="group_by_parent" string="parent" context="{'group_by': 'contains_id'}" />     
+                    </group>            
+                </search>               
+            </field>                    
+        </record>                       
+        
+        <record id="hc_vs_manifestation_code_view_tree" model="ir.ui.view">                     
+            <field name="name">Manifestation Code Tree</field>                  
+            <field name="model">hc.vs.manifestation.code</field>                    
+            <!-- <field name="inherit_id" ref="hc_value_set_contains_view_tree"/> -->                    
+            <field name="arch" type="xml">                  
+                <tree string="Manifestation Codes" default_order="name, code">              
+                    <field name="name"/>            
+                    <field name="code"/>            
+                    <field name="definition"/>          
+                    <field name="source_id" invisible="0"/>         
+                </tree>             
+            </field>                    
+        </record>                       
+        
+        <record id="hc_vs_manifestation_code_view_form" model="ir.ui.view">                     
+            <field name="name">Manifestation Code Form</field>                  
+            <field name="model">hc.vs.manifestation.code</field>                    
+            <field name="arch" type="xml">                  
+                <form string="Manifestation Codes" >                
+                    <sheet>         
+                        <h1>        
+                            <field name="name" default_focus="1" placeholder="Name (e.g., United States)"/> 
+                        </h1>       
+                        <field name="code" placeholder="Code (e.g., US)"/>      
+                        <field name="definition" placeholder="Definition"/>     
+                        <field name="comments" placeholder="Comments"/>     
+                        <group>     
+                            <group> 
+                                <field name="contains_id" invisible="0"/>
+                                <field name="is_abstract" widget="upgrade_boolean"/>
+                                <field name="level" placeholder="An integer (e.g., 1, 2)"/>
+                                <field name="version" placeholder="e.g., v2.5"/>
+                            </group>    
+                            <group> 
+                                <field name="source_id" placeholder="e.g., U.S. Census Bureau"/>
+                                <field name="system" widget="url" placeholder="e.g., www.census.gov/"/>
+                            </group>    
+                        </group>        
+                    </sheet>            
+                </form>             
+            </field>                    
+        </record>                       
+
+        <act_window id="hc_vs_manifestation_code_action"            
+                    name="HC Manifestation Codes"
+                    res_model="hc.vs.manifestation.code"
+                    view_mode="tree,form"
+                    domain=""
+                    context=""
+                    limit=""/>
+
+        <menuitem id="hc_medication.menu_manif_code" 
+                  name="Manifestation Codes" 
+                  parent="hc_medication.menu_allergy_conf" 
+                  action="hc_vs_manifestation_code_action" 
+                  groups="hc_base.group_hc_base_manager" 
+                  sequence="20"/>
+
     </data>
 </openerp>

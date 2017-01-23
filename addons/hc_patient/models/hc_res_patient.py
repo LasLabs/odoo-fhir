@@ -493,15 +493,15 @@ class PersonLink(models.Model):
 
     @api.multi          
     def _compute_target_name(self):         
-        for hc_res_person in self:      
-            if hc_res_person.target_type == 'Person': 
-                hc_res_person.target_name = hc_res_person.target_person_id.name
-            elif hc_res_person.target_type == 'Practitioner':   
-                hc_res_person.target_name = hc_res_person.target_practitioner_id.name
-            elif hc_res_person.target_type == 'Related Person': 
-                hc_res_person.target_name = hc_res_person.target_related_person_id.name
-            elif hc_res_person.target_type == 'Patient':  
-                hc_res_person.target_name = hc_res_person.target_patient_id.name
+        for hc_person_link in self:      
+            if hc_person_link.target_type == 'person': 
+                hc_person_link.target_name = hc_person_link.target_person_id.name
+            elif hc_person_link.target_type == 'practitioner':   
+                hc_person_link.target_name = hc_person_link.target_practitioner_id.name
+            elif hc_person_link.target_type == 'related_person': 
+                hc_person_link.target_name = hc_person_link.target_related_person_id.name
+            elif hc_person_link.target_type == 'patient':  
+                hc_person_link.target_name = hc_person_link.target_patient_id.name
 
 class RelatedPersonPatient(models.Model): 
     _inherit = ["hc.related.person.patient"]

@@ -7,10 +7,11 @@ class AllergyIntolerance(models.Model):
     _description = "Allergy Intolerance"
     _inherit = ["hc.basic.association"]
 
-    name = fields.Char(
-        string="Name Date", 
-        related="code_id.name", 
-        help="Name of the allergy or intolerance.")
+    # name = fields.Char(
+    #     string="Allergy/Intolerance", 
+    #     related="code_id.name", 
+    #     help="Name of the allergy or intolerance.")
+    
     identifier_ids = fields.One2many(
         comodel_name="hc.allergy.intolerance.identifier", 
         inverse_name="allergy_intolerance_id", 
@@ -54,12 +55,12 @@ class AllergyIntolerance(models.Model):
         help="Estimate of the potential clinical harm, or seriousness, of a reaction to an identified Substance.")                    
     code_id = fields.Many2one(
         comodel_name="hc.vs.allergy.intolerance.code", 
-        string="Code", 
-        help="Allergy or intolerance code.")
-    allergy_intolerance = fields.Char(
         string="Allergy/Intolerance", 
-        related="code_id.name", 
-        help="Name of the allergy or intolerance.")                    
+        help="Allergy or intolerance.")                   
+    code = fields.Char(
+        string="Code", 
+        related="code_id.code", 
+        help="Allergy or intolerance code.")
     patient_id = fields.Many2one(
         comodel_name="hc.res.patient", 
         string="Patient", 
@@ -77,7 +78,7 @@ class AllergyIntolerance(models.Model):
     onset_name = fields.Char(
         string="Onset", 
         compute="_compute_onset_name", 
-        store="True", 
+        # store="True", 
         help="When allergy or intolerance was identified.")
     onset_date_time = fields.Datetime(
         string="Onset Datetime", 
@@ -117,7 +118,8 @@ class AllergyIntolerance(models.Model):
         help="Type of individual who recorded the sensitivity.")
     recorder_name = fields.Char(
         string="Recorder",
-        compute="compute_recorder_name",
+        compute="_compute_recorder_name",
+        # store="True",
         help="Individual who recorded the sensitivity.")
     recorder_practitioner_id = fields.Many2one(
         comodel_name="hc.res.practitioner", 
@@ -137,8 +139,8 @@ class AllergyIntolerance(models.Model):
     asserter_name = fields.Char(
         string="Asserter", 
         compute="_compute_asserter_name", 
-        store="True", 
-        help="Source of the information about the allerg.")
+        # store="True", 
+        help="Source of the information about the allergy.")
     asserter_patient_id = fields.Many2one(
         comodel_name="hc.res.patient", 
         string="Asserter Patient", 
@@ -170,33 +172,33 @@ class AllergyIntolerance(models.Model):
         for hc_res_allergy_intolerance in self:         
             if hc_res_allergy_intolerance.onset_type == 'date_time':        
                     hc_res_allergy_intolerance.onset_name = hc_res_allergy_intolerance.onset_date_time
-            elif hc_res_allergy_intolerance.onset_type == 'age':        
-                    hc_res_allergy_intolerance.onset_name = hc_res_allergy_intolerance.onset_age + hc_res_allergy_intolerance.onset_age_uom_id.name
-            elif hc_res_allergy_intolerance.onset_type == 'period':     
-                    hc_res_allergy_intolerance.onset_name = "Between " + hc_res_allergy_intolerance.onset_start_date + " and" + hc_res_allergy_intolerance.onset_end_date
-            elif hc_res_allergy_intolerance.onset_type == 'range':      
-                    hc_res_allergy_intolerance.onset_name = "Between " + hc_res_allergy_intolerance.onset_range_low + " and" + hc_res_allergy_intolerance.onset_range_high
+            # elif hc_res_allergy_intolerance.onset_type == 'age':        
+            #         hc_res_allergy_intolerance.onset_name = hc_res_allergy_intolerance.onset_age + hc_res_allergy_intolerance.onset_age_uom_id.name
+            # elif hc_res_allergy_intolerance.onset_type == 'period':     
+            #         hc_res_allergy_intolerance.onset_name = "Between " + hc_res_allergy_intolerance.onset_start_date + " and" + hc_res_allergy_intolerance.onset_end_date
+            # elif hc_res_allergy_intolerance.onset_type == 'range':      
+            #         hc_res_allergy_intolerance.onset_name = "Between " + hc_res_allergy_intolerance.onset_range_low + " and" + hc_res_allergy_intolerance.onset_range_high
             elif hc_res_allergy_intolerance.onset_type == 'string':     
                     hc_res_allergy_intolerance.onset_name = hc_res_allergy_intolerance.onset_string
 
     @api.multi
-    def compute_recorder_name(self):
-        for hc_allergy_intolerance in self:
-            if hc_allergy_intolerance.recorder_type == 'practitioner':
-                hc_allergy_intolerance.recorder_name = hc_allergy_intolerance.recorder_practitioner_id.name
-            elif hc_allergy_intolerance.recorder_type == 'patient':
-                hc_allergy_intolerance.recorder_name = hc_allergy_intolerance.recorder_patient_id.name
+    def _compute_recorder_name(self):
+        for hc_res_allergy_intolerance in self:
+            if hc_res_allergy_intolerance.recorder_type == 'practitioner':
+                hc_res_allergy_intolerance.recorder_name = hc_res_allergy_intolerance.recorder_practitioner_id.name
+            elif hc_res_allergy_intolerance.recorder_type == 'patient':
+                hc_res_allergy_intolerance.recorder_name = hc_res_allergy_intolerance.recorder_patient_id.name
             
     @api.multi
-    def compute_asserter_name(self):
-        for hc_allergy_intolerance in self:
-            if hc_allergy_intolerance.asserter_type == 'patient':
-                hc_allergy_intolerance.asserter_name = hc_allergy_intolerance.asserter_patient_id.name
-            elif hc_allergy_intolerance.asserter_type == 'related_person':
-                hc_allergy_intolerance.asserter_name = hc_allergy_intolerance.asserter_related_person_id.name
-            elif hc_allergy_intolerance.asserter_type == 'practitioner':
-                hc_allergy_intolerance.asserter_name = hc_allergy_intolerance.asserter_practitioner_id.name
-
+    def _compute_asserter_name(self):
+        for hc_res_allergy_intolerance in self:
+            if hc_res_allergy_intolerance.asserter_type == 'patient':
+                hc_res_allergy_intolerance.asserter_name = hc_res_allergy_intolerance.asserter_patient_id.name
+            elif hc_res_allergy_intolerance.asserter_type == 'related_person':
+                hc_res_allergy_intolerance.asserter_name = hc_res_allergy_intolerance.asserter_related_person_id.name
+            elif hc_res_allergy_intolerance.asserter_type == 'practitioner':
+                hc_res_allergy_intolerance.asserter_name = hc_res_allergy_intolerance.asserter_practitioner_id.name
+    
     # @api.depends('patient','substance','patient_id','substance_id')
     # def compute_allergy(self):
     #     allergy = ''
@@ -313,11 +315,33 @@ class AllergyIntoleranceCode(models.Model):
     _description = "Allergy Intolerance Code"        
     _inherit = ["hc.value.set.contains"]     
 
+    name = fields.Char(
+        string="Name", 
+        help="Name of this allergy intolerance.")
+    code = fields.Char(
+        string="Code", 
+        help="Code of this allergy intolerance.")
+    contains_id = fields.Many2one(
+        comodel_name="hc.vs.allergy.intolerance.code", 
+        string="Parent",
+        help="Parent concept.")
+
 class ManifestationCode(models.Model): 
     _name = "hc.vs.manifestation.code" 
     _description = "Manifestation Code"        
     _inherit = ["hc.value.set.contains"]
-    
+
+    name = fields.Char(
+        string="Name", 
+        help="Name of this manifestation.")
+    code = fields.Char(
+        string="Code", 
+        help="Code of this manifestation.")
+    contains_id = fields.Many2one(
+        comodel_name="hc.vs.manifestation.code", 
+        string="Parent",
+        help="Parent concept.")    
+
 # External Reference
 
 class Patient(models.Model):

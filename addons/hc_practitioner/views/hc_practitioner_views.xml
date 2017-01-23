@@ -191,6 +191,91 @@
                 </field>
             </field>
         </record>
+
+        <!-- Practitioner Value Set Action and Menu -->         
+        
+        <menuitem id="hc_practitioner.menu_prac_conf" 
+                  name="Configuration" 
+                  parent="hc_practitioner.menu_prac" 
+                  groups="hc_base.group_hc_base_manager" 
+                  sequence="10"/>            
+        
+        <record id="hc_vs_practitioner_specialty_view_search" model="ir.ui.view">                       
+            <field name="name">Practitioner Specialty Search</field>                    
+            <field name="model">hc.vs.practitioner.specialty</field>                    
+            <!-- <field name="inherit_id" ref="hc_value_set_contains_view_search"/> -->                  
+            <field name="arch" type="xml">                  
+                <search string="Practitioner Specialties">               
+                    <field name="name"/>            
+                    <field name="code"/>            
+                    <field name="definition"/>          
+                    <group>         
+                        <filter name="group_by_parent" string="parent" context="{'group_by': 'contains_id'}" />     
+                    </group>            
+                </search>               
+            </field>                    
+        </record>                       
+                                
+        <record id="hc_vs_practitioner_specialty_view_tree" model="ir.ui.view">                     
+            <field name="name">Practitioner Specialty Tree</field>                  
+            <field name="model">hc.vs.practitioner.specialty</field>                    
+            <!-- <field name="inherit_id" ref="hc_value_set_contains_view_tree"/>  -->                   
+            <field name="arch" type="xml">                  
+                <tree string="Practitioner Specialties" default_order="name, code">              
+                    <field name="name"/>            
+                    <field name="code"/>            
+                    <field name="definition"/>          
+                    <field name="source_id" invisible="0"/>         
+                </tree>             
+            </field>                    
+        </record>                       
+                                
+        <record id="hc_vs_practitioner_specialty_view_form" model="ir.ui.view">                     
+            <field name="name">Practitioner Specialty Form</field>                  
+            <field name="model">hc.vs.practitioner.specialty</field>                    
+            <field name="arch" type="xml">                  
+                <form string="Practitioner Specialties">                
+                    <sheet>         
+                        <h1>        
+                            <field name="name" default_focus="1" placeholder="Name (e.g., United States)"/> 
+                        </h1>       
+                        <field name="code" placeholder="Code (e.g., US)"/>      
+                        <field name="definition" placeholder="Definition"/>     
+                        <field name="comments" placeholder="Comments"/>     
+                        <group>     
+                            <group> 
+                                <field name="contains_id" invisible="0"/>
+                                <field name="is_abstract" widget="upgrade_boolean"/>
+                                <field name="level" placeholder="An integer (e.g., 1, 2)"/>
+                                <field name="version" placeholder="e.g., v2.5"/>
+                            </group>    
+                            <group> 
+                                <field name="source_id" placeholder="e.g., U.S. Census Bureau"/>
+                                <field name="system" widget="url" placeholder="e.g., www.census.gov/"/>
+                            </group>    
+                        </group>        
+                    </sheet>            
+                </form>             
+            </field>                    
+        </record>                       
+
+
+        <act_window id="hc_vs_practitioner_specialty_action"            
+                    name="HC Practitioner Specialties"
+                    res_model="hc.vs.practitioner.specialty"
+                    view_mode="tree,form"
+                    domain=""
+                    context=""
+                    limit=""/>
+
+        <menuitem id="hc_practitioner.menu_prac_spec" 
+                  name="Practitioner Specialties" 
+                  parent="hc_practitioner.menu_prac_conf" 
+                  action="hc_vs_practitioner_specialty_action" 
+                  groups="hc_base.group_hc_base_manager" 
+                  sequence="10"/>
+
+
     
     </data>
 </openerp>

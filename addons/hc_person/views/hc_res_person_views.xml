@@ -30,15 +30,10 @@
             <field name="arch" type="xml">                  
                 <form string="Person">                
                     <sheet>
-                        <field name="image" 
-                               widget="image" 
-                               class="oe_left oe_avatar" 
-                               options="{'preview_image': 'image_medium', 'size': [90, 90]}"/>
+                        <field name="image" widget="image" class="oe_left oe_avatar" options="{'preview_image': 'image_medium', 'size': [90, 90]}"/>
                         <div class="oe_title">           
                             <h1>          
-                                <field name="name_id" 
-                                       default_focus="1" 
-                                       placeholder="Full Name"/>       
+                                <field name="name_id" default_focus="1" placeholder="Full Name"/>       
                             </h1>         
                         </div>            
                         <div name="buttons" 
@@ -198,7 +193,7 @@
                                             <group>
                                                 <group>
                                                     <field name="target_type"/>
-                                                    <field name="target_person_id" attrs="{'invisible': [('target_type','!=','Person')]}"/>
+                                                    <field name="target_person_id" attrs="{'invisible': [('target_type','!=','person')]}"/>
                                                     <!-- <field name="target_patient_id" attrs="{'invisible': [('target_type','!=','Patient')]}"/>
                                                     <field name="target_practitioner_id" attrs="{'invisible': [('target_type','!=','Practitioner')]}"/>
                                                     <field name="target_related_person_id" attrs="{'invisible': [('target_type','!=','Related Person')]}"/> -->
