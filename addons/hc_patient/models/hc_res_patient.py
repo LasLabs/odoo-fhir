@@ -42,16 +42,24 @@ class Patient(models.Model):
         string="Telecoms", 
         help="A contact detail for the patient.")
     gender = fields.Selection(
-        string="Gender", 
-        selection=[
-            ("male", "Male"), 
-            ("female", "Female"), 
-            ("other", "Other"), 
-            ("unknown", "Unknown")], 
+        related="person_id.gender",
+        readonly="1",
         help="The gender that the patient is considered to have for administration and record keeping purposes.")
-    birth_date = fields.Date(
-        string="Birth Date", 
+    # gender = fields.Selection(
+    #     string="Gender", 
+    #     selection=[
+    #         ("male", "Male"), 
+    #         ("female", "Female"), 
+    #         ("other", "Other"), 
+    #         ("unknown", "Unknown")], 
+    #     help="The gender that the patient is considered to have for administration and record keeping purposes.")
+    birth_date=fields.Date(
+        related="person_id.birth_date",
+        readonly="1",
         help="The date of birth for the patient.")
+    # birth_date = fields.Date(
+    #     string="Birth Date", 
+    #     help="The date of birth for the patient.")
     birth_time = fields.Char(
         string="Birth Time", 
         help="The time when the patient was born.")
@@ -491,7 +499,8 @@ class PersonLink(models.Model):
         string="Target Patient", 
         help="Patient who is the resource to which this actual person is associated.")
 
-    @api.multi          
+    @api.multi
+    @api.depends('target_person_id', 'target_practitioner_id', 'target_related_person_id', 'target_patient_id')          
     def _compute_target_name(self):         
         for hc_person_link in self:      
             if hc_person_link.target_type == 'person': 
@@ -514,11 +523,11 @@ class RelatedPersonPatient(models.Model):
 class Annotation(models.Model):
     _inherit = ["hc.annotation"]
 
-    author_name = fields.Char(
-        string="Author", 
-        compute="_compute_author_name", 
-        store="True",
-        help="Individual responsible for the annotation.")
+    # author_name = fields.Char(
+    #     string="Author", 
+    #     compute="_compute_author_name", 
+    #     store="True",
+    #     help="Individual responsible for the annotation.")
     author_patient_id = fields.Many2one(
         comodel_name="hc.res.patient", 
         string="Author Patient", 

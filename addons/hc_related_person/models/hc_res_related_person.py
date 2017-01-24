@@ -28,13 +28,13 @@ class RelatedPerson(models.Model):
         string="Telecoms", 
         help="A contact detail for this related person.")
     gender = fields.Selection(
-        string="Gender", 
-        selection=[
-            ("male", "Male"), 
-            ("female", "Female"), 
-            ("other", "Other"), 
-            ("unknown", "Unknown")],          
+        related="person_id.gender",
+        readonly="1",       
         help="The gender of a related person used for administrative purposes.")
+    birth_date = fields.Date(
+        related="person_id.birth_date",
+        readonly="1", 
+        help="The birth date for the related person.")
     photo_ids = fields.One2many(
         comodel_name="hc.related.person.photo", 
         inverse_name="related_person_id", 

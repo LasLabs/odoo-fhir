@@ -327,7 +327,7 @@
           </field>
         </record> -->
 
-        <record id="hc_person.hc_res_person_view_form_inherited_patient" model="ir.ui.view">     
+        <record id="hc_res_person_view_form_inherited_patient" model="ir.ui.view">     
           <field name="name">Person Form</field>   
           <field name="model">hc.res.person</field>   
           <field name="inherit_id" ref="hc_person.hc_res_person_view_form"/>   
@@ -344,7 +344,7 @@
             <field name="inherit_id" ref="hc_base.hc_annotation_view_form"/>   
             <field name="arch" type="xml">
                 <field name="author_type" position="after">
-<!--                     <field name="author_name"/> -->
+                    <!-- <field name="author_name"/> -->
                     <field name="author_patient_id" attrs="{'invisible': [('author_type', '!=', 'patient')]}"/>  
                 </field>
             </field>
