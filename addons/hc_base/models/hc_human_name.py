@@ -151,20 +151,27 @@ class HumanName(models.Model):
         middle = " ".join([middle.name for middle in self.middle_ids]) if self.middle_ids else ''
         initial = " ".join([initial.name for initial in self.initial_ids]) if self.initial_ids else ''
         nickname = " ".join([nickname.name for nickname in self.nickname_ids]) if self.nickname_ids else ''
-        given = first + ' ' + middle + ' ' + initial + ' ' + nickname
-        
+
+        if nickname == '':
+            given = first + ' ' + middle + ' ' + initial
+            self.given = given
+
+        if nickname != '':
+            given = first + ' ' + middle + ' ' + initial + ' (' + nickname + ')'
+            self.given = given
+
         mother_maiden = self.mother_maiden_id.name if self.mother_maiden_id else ''
         birth_surname = self.birth_surname_id.name if self.birth_surname_id else ''
         previous_surname = " ".join([previous_surname.name for previous_surname in self.previous_surname_ids]) if self.previous_surname_ids else ''
-        # previous_surname = self.previous_surname_id.name if self.previous_surname_id else ''
         surname = self.surname_id.name if self.surname_id else ''
         family = mother_maiden + ' ' + birth_surname + ' ' + previous_surname + ' ' + surname
+        self.family = family
 
         family_reverse = birth_surname + ' ' + surname + ' ' + mother_maiden
         
         prefix = " ".join([prefix.name for prefix in self.prefix_ids]) if self.prefix_ids else ''
         suffix = " ".join([suffix.name for suffix in self.suffix_ids]) if self.suffix_ids else ''
-
+        
         if self.display_order == 'first_maiden_last':
             full = prefix + ' ' + given + ' ' + family + ' ' + suffix
             self.name = full

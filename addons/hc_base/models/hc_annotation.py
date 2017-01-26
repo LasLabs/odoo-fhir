@@ -25,18 +25,26 @@ class Annotation(models.AbstractModel):
             ("patient", "Patient"),
             ("related_person", "Related Person")],
         help="Type of individual responsible for the annotation.")
-    author_string = fields.Char(
-        string="Author String",
-        help="Individual responsible for the annotation.")
     author_name = fields.Char(
         string="Author", 
         compute="_compute_author_name", 
         store="True",
         help="Individual responsible for the annotation.")
-
-    # author_practitioner_id = fields.Many2one(comodel_name="hc.res.practitioner", string="Author Practitioner", help="Practitioner responsible for the annotation.")
-    # author_patient_id = fields.Many2one(comodel_name="hc.res.patient", string="Author Patient", help="Patient responsible for the annotation.")
-    # author_related_person_id = fields.Many2one(comodel_name="hc.res.related.person", string="Author Related Person", help="Related person responsible for the annotation.")
+    author_string = fields.Char(
+        string="Author String",
+        help="Individual responsible for the annotation.")
+    # author_practitioner_id = fields.Many2one(
+    #     comodel_name="hc.res.practitioner", 
+    #     string="Author Practitioner", 
+    #     help="Practitioner responsible for the annotation.")
+    # author_patient_id = fields.Many2one(
+    #     comodel_name="hc.res.patient", 
+    #     string="Author Patient", 
+    #     help="Patient responsible for the annotation.")
+    # author_related_person_id = fields.Many2one(
+    #     comodel_name="hc.res.related.person", 
+    #     string="Author Related Person", 
+    #     help="Related Person responsible for the annotation.")
 
     @api.multi
     def _compute_author_name(self):

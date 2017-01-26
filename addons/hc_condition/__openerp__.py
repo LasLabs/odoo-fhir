@@ -44,18 +44,18 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['hc_body_site', 'hc_group'],
+    'depends': ['hc_group'],
 
     # always loaded
     'data': [
         'security/ir.model.access.csv',
         'views/hc_res_condition_views.xml',
         'views/hc_res_condition_templates.xml',
-        'data/hc.vs.condition.category.csv',
-        'data/hc.vs.condition.code.csv',
-        'data/hc.vs.condition.evidence.code.csv',
-        'data/hc.vs.condition.severity.csv',
-        'data/hc.vs.condition.stage.csv',
+        # 'data/hc.vs.condition.category.csv',
+        # 'data/hc.vs.condition.code.csv',
+        # 'data/hc.vs.condition.evidence.code.csv',
+        # 'data/hc.vs.condition.severity.csv',
+        # 'data/hc.vs.condition.stage.csv',
     ],
     # only loaded in demonstration mode
     'demo': [

@@ -136,7 +136,8 @@ class Patient(models.Model):
     link_ids = fields.One2many(
         comodel_name="hc.patient.link", 
         inverse_name="patient_id", 
-        string="Links", help="Link to another patient resource that concerns the same actual person.")
+        string="Links", 
+        help="Link to another patient resource that concerns the same actual person.")
     contact_ids = fields.One2many(
         comodel_name="hc.patient.contact", 
         inverse_name="patient_id", 
@@ -187,7 +188,9 @@ class PatientName(models.Model):
     patient_id = fields.Many2one(
         comodel_name="hc.res.patient", 
         string="Patient", 
-        help="Patient associated with this Patient Name.")                  
+        help="Patient associated with this Patient Name.")
+    # first_id = fields.Many2one(
+    #     related="name_id.first_id")                      
 
 class PatientAddress(models.Model): 
     _name = "hc.patient.address"    
@@ -431,6 +434,15 @@ class PatientLink(models.Model):
             ("seealso", "See also")], 
         help="The type of link between this patient resource and another patient resource.")
 
+    @api.multi          
+    @api.depends('other_patient_id', 'other_related_person_id')         
+    def _compute_other_name(self):          
+        for hc_patient_link in self:        
+            if hc_patient_link.other_type == 'patient':   
+                hc_patient_link.other_name = hc_patient_link.other_patient_id.name
+            elif hc_patient_link.other_type == 'related_person':  
+                hc_patient_link.other_name = hc_patient_link.other_related_person_id.name
+
 class PatientContactTelecom(models.Model):  
     _name = "hc.patient.contact.telecom"    
     _description = "Patient Contact Telecom"            
@@ -458,24 +470,33 @@ class PatientGeneralPractitioner(models.Model):
         string="Patient", 
         help="Patient associated with this Patient General Practitioner.")                        
     general_practitioner_type = fields.Selection(
-        string="General practitioner Type", 
+        string="General Practitioner Type", 
         selection=[
             ("organization", "Organization"), 
-            ("practititioner", "Practititioner")], 
+            ("practitioner", "Practitioner")], 
         help="Type of patient's nominated primary care provider.")                       
     general_practitioner_name = fields.Char(
-        string="General practitioner", 
+        string="General Practitioner", 
         compute="_compute_general_practitioner_name", 
         store="True", 
         help="Patient's nominated primary care provider.")                        
     general_practitioner_organization_id = fields.Many2one(
         comodel_name="hc.res.organization", 
-        string="General practitioner Organization", 
+        string="General Practitioner Organization", 
         help="Organization that is patient's nominated primary care provider.")                        
     general_practitioner_practitioner_id = fields.Many2one(
         comodel_name="hc.res.practitioner", 
         string="General Practitioner Person", 
         help="Practitioner who is patient's nominated primary care provider.")                        
+
+    @api.multi          
+    @api.depends('general_practitioner_organization_id', 'general_practitioner_practitioner_id')          
+    def _compute_general_practitioner_name(self):           
+        for hc_patient_general_practitioner in self:        
+            if hc_patient_general_practitioner.general_practitioner_type == 'organization':  
+                hc_patient_general_practitioner.general_practitioner_name = hc_patient_general_practitioner.general_practitioner_organization_id.name
+            elif hc_patient_general_practitioner.general_practitioner_type == 'practitioner':  
+                hc_patient_general_practitioner.general_practitioner_name = hc_patient_general_practitioner.general_practitioner_practitioner_id.name
 
 class ContactRelationship(models.Model):    
     _name = "hc.vs.patient.contact.relationship"    

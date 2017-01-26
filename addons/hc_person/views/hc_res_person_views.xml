@@ -36,8 +36,7 @@
                                 <field name="name_id" default_focus="1" placeholder="Full Name"/>       
                             </h1>         
                         </div>            
-                        <div name="buttons" 
-                             class="oe_right oe_button_box">
+                        <div name="buttons" class="oe_right oe_button_box">
                         </div>           
                         <group>           
                             <group>         
@@ -64,7 +63,7 @@
                                                 <field name="human_name_id"/>
                                             </group>
                                             <group>
-                                                <field name="first_id"/>
+                                                <field name="first_id" readonly="1"/>
                                                 <field name="middle_ids" widget="many2many_tags"/>
                                                 <field name="mother_maiden_id"/>
                                                 <field name="surname_id"/>
@@ -85,11 +84,9 @@
                                     </tree>
                                     <form>
                                         <sheet>
-                                            <div>
-                                                <h1>
-                                                    <field name="name" placeholder="Identifier"/>
-                                                </h1>
-                                            </div>
+                                            <h1>
+                                                <field name="name" placeholder="Identifier"/>
+                                            </h1>
                                             <group col="4" colspan="4">
                                                 <group>
                                                     <field name="value"/>

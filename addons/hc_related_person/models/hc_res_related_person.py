@@ -166,7 +166,18 @@ class RelatedPersonPatient(models.Model):
 class RelatedPersonRelationshipType(models.Model):  
     _name = "hc.vs.related.person.relationship.type"    
     _description = "Related Person Relationship Type"
-    _inherit = ["hc.value.set.contains"]    
+    _inherit = ["hc.value.set.contains"]
+
+    name = fields.Char(
+        string="Name", 
+        help="Name of this related person relationship type.")
+    code = fields.Char(
+        string="Code", 
+        help="Code of this related person relationship type.")
+    contains_id = fields.Many2one(
+        comodel_name="hc.vs.related.person.relationship.type", 
+        string="Parent",
+        help="Parent concept.")    
 
 # External Reference
 

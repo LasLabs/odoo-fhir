@@ -181,13 +181,24 @@
             </field>
         </record> -->
 
+        <record id="hc_res_person_view_form_inherited_practitioner" model="ir.ui.view">         
+            <field name="name">Person Form</field>      
+            <field name="model">hc.res.person</field>       
+            <field name="inherit_id" ref="hc_person.hc_res_person_view_form"/>      
+            <field name="arch" type="xml">      
+                <field name="target_type" position="after"> 
+                    <field name="target_practitioner_id" attrs="{'invisible': [('target_type','!=','practitioner')]}"/>
+                </field>    
+            </field>        
+        </record>           
+
         <record id="hc_annotation_view_form_inherited_practitioner" model="ir.ui.view">     
             <field name="name">Annotation Form</field>   
             <field name="model">hc.annotation</field>   
             <field name="inherit_id" ref="hc_base.hc_annotation_view_form"/>   
             <field name="arch" type="xml">
                 <field name="author_type" position="after">
-                    <field name="author_practitioner_id" attrs="{'invisible': [('author_type', '!=', 'practitioner')]}"/>  
+                    <field name="author_practitioner_id" attrs="{'invisible': [('author_type','!=','practitioner')]}"/>  
                 </field>
             </field>
         </record>

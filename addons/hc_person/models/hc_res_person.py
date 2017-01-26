@@ -102,7 +102,7 @@ class PersonLink(models.Model):
     target_name = fields.Char(
         string="Target", 
         compute="_compute_target_name", 
-        # store="True", 
+        store="True", 
         help="The resource to which this actual person is associated.")
     target_person_id = fields.Many2one(
         comodel_name="hc.res.person", 
@@ -130,7 +130,7 @@ class PersonLink(models.Model):
         help="Level of assurance that this link is actually associated with the target resource.")
 
     @api.multi
-    @api.depends('target_person_id')            
+    # @api.depends('target_person_id')            
     def _compute_target_name(self):         
         for hc_person_link in self:      
             if hc_person_link.target_type == 'person': 

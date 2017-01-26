@@ -46,8 +46,8 @@
         'security/ir.model.access.csv',
         'views/hc_res_allergy_intolerance_views.xml',
         'views/hc_res_allergy_intolerance_templates.xml',
-        'data/hc.vs.allergy.intolerance.code.csv',
-        'data/hc.vs.manifestation.code.csv',
+        # 'data/hc.vs.allergy.intolerance.code.csv',
+        # 'data/hc.vs.manifestation.code.csv',
     ],
     # only loaded in demonstration mode
     'demo': [

@@ -270,13 +270,13 @@ class PersonLink(models.Model):
         string="Target Practitioner", 
         help="Practitioner who is the resource to which this actual person is associated.")
 
-    # @api.multi          
-    # def _compute_target_name(self):         
-    #     for hc_person_link in self:      
-    #         if hc_person_link.target_type == 'person': 
-    #             hc_person_link.target_name = hc_person_link.target_person_id.name
-    #         elif hc_person_link.target_type == 'practitioner':   
-    #             hc_person_link.target_name = hc_person_link.target_practitioner_id.name
+    @api.multi          
+    def _compute_target_name(self):         
+        for hc_person_link in self:      
+            if hc_person_link.target_type == 'person': 
+                hc_person_link.target_name = hc_person_link.target_person_id.name
+            elif hc_person_link.target_type == 'practitioner':   
+                hc_person_link.target_name = hc_person_link.target_practitioner_id.name
 
 class Annotation(models.Model):
     _inherit = ["hc.annotation"]
@@ -286,13 +286,13 @@ class Annotation(models.Model):
         string="Author Practitioner", 
         help="Practitioner responsible for the annotation.")
 
-    # @api.multi
-    # def _compute_author_name(self):
-    #     for hc_annotation in self:
-    #         if hc_annotation.author_type == 'string':
-    #             hc_annotation.author_name = hc_annotation.author_string
-    #         elif hc_annotation.author_type == 'practitioner':
-    #             hc_annotation.author_name = hc_annotation.author_practitioner_id.name
+    @api.multi
+    def _compute_author_name(self):
+        for hc_annotation in self:
+            if hc_annotation.author_type == 'string':
+                hc_annotation.author_name = hc_annotation.author_string
+            elif hc_annotation.author_type == 'practitioner':
+                hc_annotation.author_name = hc_annotation.author_practitioner_id.name
 
 class Signature(models.AbstractModel):    
     _inherit = "hc.signature"

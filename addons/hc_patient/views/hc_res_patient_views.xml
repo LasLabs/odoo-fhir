@@ -69,7 +69,36 @@
                             </group>                    
                         </group>                        
                         <notebook colspan="4">                      
-                            <page string="Names"/>                  
+                        <!--     <page string="Names"/>  -->
+                            <page string="Names">
+                                <field name="name_ids" mode="tree">
+                                    <tree>
+                                        <field name="is_preferred" widget="upgrade_boolean"/>
+                                        <field name="first_id"/>
+                                        <field name="surname_id"/>
+                                        <field name="given"/>
+                                        <field name="family"/>
+                                    </tree>
+                                    <form>
+                                        <sheet>
+                                            <group>
+                                                <field name="is_preferred"/>
+                                                <field name="person_id"/>
+                                            </group>
+                                            <group>
+                                                <field name="first_id" readonly="1"/>
+                                                <field name="middle_ids"/>
+                                                <field name="initial_ids"/>
+                                                <field name="nickname_ids"/>
+                                                <field name="mother_maiden_id"/>
+                                                <field name="surname_id"/>
+                                                <field name="family"/>
+                                                <field name="given"/>
+                                            </group>
+                                        </sheet>
+                                    </form>
+                                </field>
+                            </page>                  
                             <!-- <page string="Identifiers"/> -->                    
                             <page string="Identifiers">
                                 <field name="identifier_ids" mode="tree">
@@ -99,8 +128,35 @@
                                         </sheet>
                                     </form>
                                 </field>
-                            </page>
-                            <page string="Addresses"/>                                               
+                            </page> 
+                            <!-- <page string="Addresses"/> -->
+                            <page string="Addresses">         
+                                <field name="address_ids" mode="tree">
+                                    <tree>      
+                                        <field name="use" widget="radio"/>    
+                                        <field name="is_preferred"/>    
+                                        <field name="line1"/>   
+                                        <field name="line2"/>   
+                                        <field name="city_id"/>   
+                                        <field name="postal_code_id"/>    
+                                        <field name="country_id"/>
+                                        <field name="start_date"/>    
+                                        <field name="end_date"/>
+                                    </tree>     
+                                    <form>      
+                                        <sheet>   
+                                            <group col="4" colspan="4">  
+                                                <field name="use" widget="radio" colspan="4"/>
+                                                <field name="address_id" class="oe_no_button"/>
+                                                <field name="is_preferred"/>
+                                                <field name="is_active"/>
+                                                <field name="start_date" placeholder="Valid From"/>
+                                                <field name="end_date" placeholder="Valid To"/>
+                                            </group>  
+                                        </sheet>    
+                                    </form>     
+                                </field>        
+                            </page>                                               
                             <page string="Telecom">
                                 <field name="telecom_ids" mode="tree">
                                     <tree>
@@ -126,31 +182,132 @@
                                     </form>
                                 </field>
                             </page>                    
-                            <page string="Photos"/>
-                            <page string="Marital History">
-                                <field name="marital_history_ids" mode="tree">
+                            <!-- <page string="Photos"/> -->
+                            <page string="Photos">
+                                <field name="photo_ids" mode="tree">
                                     <tree>
-                                        <field name="marital_status_id"/>
-                                        <field name="start_date"/>
-                                        <field name="end_date"/>
+                                        <field name="name" string="Photo Name"/>
                                     </tree>
                                     <form>
                                         <sheet>
                                             <group>
                                                 <group>
-                                                    <field name="marital_status_id"/>
-                                                    <field name="start_date" placeholder="Valid From"/>
-                                                    <field name="end_date" placeholder="Valid To"/>
+                                                    <field name="name" string="Photo Name"/>
+                                                    <field name="datas"/>
                                                 </group>
                                                 <group>
-                                                    <field name="partner_id"/>
+                                                    <field name="is_preferred"/>
+                                                    <field name="is_active"/>
+                                                    <field name="start_date" placeholder="Valid From"/>
+                                                    <field name="end_date" placeholder="Valid To"/>
                                                 </group>
                                             </group>
                                         </sheet>
                                     </form>
                                 </field>
                             </page>
-                            <!-- <page string="Languages"/>  -->                   
+                            <page string="General Practitioners">
+                                 <field name="general_practitioner_ids" mode="tree">
+                                    <tree>
+                                        <field name="general_practitioner_name"/>
+                                        <field name="general_practitioner_type"/>
+                                    </tree>
+                                    <form>
+                                        <sheet>
+                                            <group>
+                                                <group>
+                                                    <field name="general_practitioner_type"/>
+                                                    <field name="general_practitioner_organization_id" attrs="{'invisible': [('general_practitioner_type','!=','organization')]}"/>
+                                                    <field name="general_practitioner_practitioner_id" attrs="{'invisible': [('general_practitioner_type','!=','practitioner')]}"/>
+                                                </group>
+                                                <group>
+                                                </group>
+                                            </group>
+                                        </sheet>
+                                    </form>
+                                </field>
+                            </page>
+                            <page string="Links"/>
+                            <!-- <page string="Links">
+                                 <field name="links_ids" mode="tree">
+                                    <tree>
+                                        <field name="other_name"/>
+                                        <field name="other_type"/>
+                                        <field name="type"/>
+                                    </tree>
+                                    <form>
+                                        <sheet>
+                                            <group>
+                                                <group>
+                                                    <field name="other_type"/>
+                                                    <field name="other_patient_id" attrs="{'invisible': [('other_type','!=','patient')]}"/>
+                                                    <field name="other_related_person_id" attrs="{'invisible': [('other_type','!=','related_person')]}"/>
+                                                </group>
+                                                <group>
+                                                    <field name="type"/>
+                                                </group>
+                                            </group>
+                                        </sheet>
+                                    </form>
+                                </field>
+                            </page> -->
+                            <!-- <page string="Contacts"/> -->
+                            <page string="Contacts">
+                                <field name="contact_ids" mode="tree">
+                                    <tree>
+                                        <field name="name_id"/>
+                                        <field name="organization_id"/>
+                                        <field name="start_date" string="Valid From"/>
+                                        <field name="end_date" string="Valid To"/>
+                                    </tree>
+                                    <form>
+                                        <sheet>                    
+                                            <h1>                    
+                                                <field name="name_id" default_focus="1" placeholder="Name"/>              
+                                            </h1>                   
+                                            <group>
+                                                <group>
+                                                    <field name="gender"/>
+                                                    <field name="relationship_ids"/>
+                                                    <field name="start_date" placeholder="Valid From"/>
+                                                    <field name="end_date" placeholder="Valid To"/>
+                                                </group>
+                                                <group>
+                                                    <field name="address_id"/>
+                                                    <field name="organization_id"/>
+                                                </group>
+                                            </group>
+                                            <notebook>
+                                                <page string="Telecom">                    
+                                                    <field name="telecom_ids" mode="tree">
+                                                        <tree>
+                                                            <field name="is_preferred" widget="upgrade_boolean"/>
+                                                            <field name="telecom_id"/>
+                                                            <field name="use"/>
+                                                        </tree>
+                                                        <form>
+                                                            <sheet>
+                                                                <group>
+                                                                    <group>
+                                                                        <field name="telecom_id"/>
+                                                                        <field name="use"/>
+                                                                    </group>
+                                                                    <group>
+                                                                        <field name="is_preferred"/>
+                                                                        <field name="is_active"/>
+                                                                        <field name="start_date" placeholder="Valid From"/>
+                                                                        <field name="end_date" placeholder="Valid To"/>
+                                                                    </group>
+                                                                </group>
+                                                            </sheet>
+                                                        </form>
+                                                    </field>               
+                                                </page>    
+                                            </notebook>
+                                        </sheet>
+                                    </form>
+                                </field>
+                            </page>                   
                             <page string="Languages">
                                 <field name="communication_ids" mode="tree">
                                     <tree>
@@ -202,34 +359,37 @@
                                                             </sheet>        
                                                         </form>         
                                                     </field>                
-                                                </page>                 
+                                                </page>
+                                                <page string="Marital History"/>
+                                                <!-- page string="Marital History">
+                                                    <field name="marital_history_ids" mode="tree">
+                                                        <tree>
+                                                            <field name="marital_status_id"/>
+                                                            <field name="partner_id"/>
+                                                            <field name="start_date"/>
+                                                            <field name="end_date"/>
+                                                        </tree> 
+                                                        <form>
+                                                            <sheet>
+                                                                <group>
+                                                                    <group>
+                                                                        <field name="marital_status_id"/>
+                                                                        <field name="start_date" placeholder="Valid From"/>
+                                                                        <field name="end_date" placeholder="Valid To"/>
+                                                                    </group>
+                                                                    <group>
+                                                                        <field name="partner_id"/>
+                                                                    </group>
+                                                                </group>
+                                                            </sheet>
+                                                        </form>
+                                                    </field>
+                                                </page> -->                 
                                             </notebook>
                                         </sheet>
                                     </form>
                                 </field>
-                            </page>
-                            <page string="Related Persons"/>           
-                            <!-- <page string="Related Persons">
-                                <field name="related_person_ids" mode="tree">
-                                    <tree>
-                                        <field name="related_person_id"/>
-                                        <field name="relationship_id"/>              
-                                        <field name="start_date"/>
-                                        <field name="end_date"/>
-                                    </tree>
-                                    <form>
-                                        <sheet>
-                                            <group>
-                                                <field name="related_person_id"/>
-                                                <field name="relationship_id"/>              
-                                                <field name="start_date" placeholder="Valid From"/>
-                                                <field name="end_date" placeholder="Valid To"/>
-                                            </group>
-                                        </sheet>
-                                    </form>
-                                </field>
-                            </page> -->                    
-                            <page string="Contacts"/>                   
+                            </page>                   
                         </notebook>                     
                     </sheet>                            
                 </form>                             
@@ -265,7 +425,7 @@
                 <tree string="Patient Languages">   
                     <field name="patient_id"/>
                     <field name="language_id"/>
-                    <field name="is_preferred"/>
+                    <field name="is_preferred" widget="upgrade_boolean"/>
                 </tree> 
             </field>        
         </record>
@@ -338,14 +498,24 @@
           </field>
         </record>
 
+        <record id="hc_res_person_view_form_inherited_patient" model="ir.ui.view">          
+            <field name="name">Person Form</field>      
+            <field name="model">hc.res.person</field>       
+            <field name="inherit_id" ref="hc_person.hc_res_person_view_form"/>      
+            <field name="arch" type="xml">      
+                <field name="target_type" position="after"> 
+                    <field name="target_patient_id" attrs="{'invisible': [('target_type','!=','patient')]}"/>
+                </field>    
+            </field>        
+        </record>           
+
         <record id="hc_annotation_view_form_inherited_patient" model="ir.ui.view">     
             <field name="name">Annotation Form</field>   
             <field name="model">hc.annotation</field>   
             <field name="inherit_id" ref="hc_base.hc_annotation_view_form"/>   
             <field name="arch" type="xml">
                 <field name="author_type" position="after">
-                    <!-- <field name="author_name"/> -->
-                    <field name="author_patient_id" attrs="{'invisible': [('author_type', '!=', 'patient')]}"/>  
+                    <field name="author_patient_id" attrs="{'invisible': [('author_type','!=','patient')]}"/>  
                 </field>
             </field>
         </record>
