@@ -362,8 +362,8 @@ class PatientContact(models.Model):
         string="Patient", 
         help="Patient associated with this Patient Contact.")
     relationship_ids = fields.Many2many(
-        comodel_name="hc.vs.patient.contact.relationship", 
-        relation="patient_contact_relationship_rel", 
+        comodel_name="hc.vs.v2.contact.role", 
+        relation="patient_contact_role_rel", 
         string="Relationships", 
         help="The kind of relationship.")
     name_id = fields.Many2one(
@@ -499,9 +499,68 @@ class PatientGeneralPractitioner(models.Model):
                 hc_patient_general_practitioner.general_practitioner_name = hc_patient_general_practitioner.general_practitioner_practitioner_id.name
 
 class ContactRelationship(models.Model):    
-    _name = "hc.vs.patient.contact.relationship"    
-    _description = "Patient Contact Relationship"   
+    _name = "hc.vs.v2.contact.role"    
+    _description = "V2 Contact Role"   
     _inherit = ["hc.value.set.contains"]    
+
+    name = fields.Char(
+        string="Name", 
+        help="Name of this v2 contact role.")
+    code = fields.Char(
+        string="Code", 
+        help="Code of this v2 contact role.")
+    contains_id = fields.Many2one(
+        comodel_name="hc.vs.v2.contact.role", 
+        string="Parent",
+        help="Parent concept.")
+
+class AnimalBreed(models.Model):    
+    _name = "hc.vs.animal.breed"    
+    _description = "Animal Breed"   
+    _inherit = ["hc.value.set.contains"]
+
+    name = fields.Char(
+        string="Name", 
+        help="Name of this animal breed.")
+    code = fields.Char(
+        string="Code", 
+        help="Code of this animal breed.")
+    contains_id = fields.Many2one(
+        comodel_name="hc.vs.animal.breed", 
+        string="Parent",
+        help="Parent concept.")
+
+class AnimalGenderStatus(models.Model): 
+    _name = "hc.vs.animal.gender.status"    
+    _description = "Animal Gender Status"   
+    _inherit = ["hc.value.set.contains"]
+
+    name = fields.Char(
+        string="Name", 
+        help="Name of this animal gender status.")
+    code = fields.Char(
+        string="Code", 
+        help="Code of this animal gender status.")
+    contains_id = fields.Many2one(
+        comodel_name="hc.vs.animal.gender.status", 
+        string="Parent",
+        help="Parent concept.")
+
+class AnimalSpecies(models.Model):  
+    _name = "hc.vs.animal.species"  
+    _description = "Animal Species" 
+    _inherit = ["hc.value.set.contains"]
+
+    name = fields.Char(
+        string="Name", 
+        help="Name of this animal species.")
+    code = fields.Char(
+        string="Code", 
+        help="Code of this animal species.")
+    contains_id = fields.Many2one(
+        comodel_name="hc.vs.animal.species", 
+        string="Parent",
+        help="Parent concept.")
 
 # External Reference
 

@@ -13,6 +13,9 @@ access_hc_patient_hc_patient_marital_history_user,hc.patient.hc.patient.marital.
 access_hc_patient_hc_patient_name_user,hc.patient.hc.patient.name.user,model_hc_patient_name,hc_base.group_hc_base_user,1,0,0,0
 access_hc_patient_hc_patient_telecom_user,hc.patient.hc.patient.telecom.user,model_hc_patient_telecom,hc_base.group_hc_base_user,1,0,0,0
 access_hc_patient_hc_res_patient_user,hc.patient.hc.res.patient.user,model_hc_res_patient,hc_base.group_hc_base_user,1,0,0,0
-access_hc_patient_hc_vs_patient_contact_relationship_manager,hc.patient.hc.vs.patient.contact.relationship.manager,model_hc_vs_patient_contact_relationship,hc_base.group_hc_base_manager,1,1,1,1
+access_hc_patient_hc_vs_v2_contact_role_manager,hc.patient.hc.vs.v2.contact.role.manager,model_hc_vs_v2_contact_role,hc_base.group_hc_base_manager,1,1,1,1
+access_hc_patient_hc_vs_animal_breed_manager,hc.patient.hc.vs.animal.breed.manager,model_hc_vs_animal_breed,hc_patient.group_hc_patient_manager,1,1,1,1
+access_hc_patient_hc_vs_animal_gender_status_manager,hc.patient.hc.vs.animal.gender.status.manager,model_hc_vs_animal_gender_status,hc_patient.group_hc_patient_manager,1,1,1,1
+access_hc_patient_hc_vs_animal_species_manager,hc.patient.hc.vs.animal.species.manager,model_hc_vs_animal_species,hc_patient.group_hc_patient_manager,1,1,1,1
 access_hc_patient_hc_patient_contact_telecom_user,hc.patient.hc.patient.contact.telecom.user,model_hc_patient_contact_telecom,hc_base.group_hc_base_user,1,0,0,0
 access_hc_patient_hc_patient_language_manager,hc.patient.hc.patient.language.manager,model_hc_patient_language,hc_base.group_hc_base_manager,1,1,1,1

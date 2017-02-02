@@ -382,6 +382,7 @@ class ConditionEvidenceDetail(models.Model):
     #     selection="_reference_models")
     detail_type = fields.Char(
         string="Detail Type",
+        compute="_compute_detail_type",
         help="Type of supporting information found elsewhere.")
     detail_name = fields.Reference(
         string="Detail",
@@ -404,6 +405,12 @@ class ConditionEvidenceDetail(models.Model):
         return [(model.model, model.name)
                 for model in models
                 if model.model.startswith('hc.res')]
+
+    @api.depends('detail_name')
+    def _compute_detail_type(self):
+        for this in self:
+            if this.detail_name:
+                this.detail_type = this.detail_name.name
 
     # @api.multi          
     # def _compute_detail_name(self):         

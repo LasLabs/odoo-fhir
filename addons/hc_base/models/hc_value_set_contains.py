@@ -139,54 +139,6 @@ class AdministrationMethodCode(models.Model):
         string="Parent",
         help="Parent concept.")
 
-class AnimalBreed(models.Model):    
-    _name = "hc.vs.animal.breed"    
-    _description = "Animal Breed"   
-    _inherit = ["hc.value.set.contains"]
-
-    name = fields.Char(
-        string="Name", 
-        help="Name of this animal breed.")
-    code = fields.Char(
-        string="Code", 
-        help="Code of this animal breed.")
-    contains_id = fields.Many2one(
-        comodel_name="hc.vs.animal.breed", 
-        string="Parent",
-        help="Parent concept.")
-
-class AnimalGenderStatus(models.Model): 
-    _name = "hc.vs.animal.gender.status"    
-    _description = "Animal Gender Status"   
-    _inherit = ["hc.value.set.contains"]
-
-    name = fields.Char(
-        string="Name", 
-        help="Name of this animal gender status.")
-    code = fields.Char(
-        string="Code", 
-        help="Code of this animal gender status.")
-    contains_id = fields.Many2one(
-        comodel_name="hc.vs.animal.gender.status", 
-        string="Parent",
-        help="Parent concept.")
-
-class AnimalSpecies(models.Model):  
-    _name = "hc.vs.animal.species"  
-    _description = "Animal Species" 
-    _inherit = ["hc.value.set.contains"]
-
-    name = fields.Char(
-        string="Name", 
-        help="Name of this animal species.")
-    code = fields.Char(
-        string="Code", 
-        help="Code of this animal species.")
-    contains_id = fields.Many2one(
-        comodel_name="hc.vs.animal.species", 
-        string="Parent",
-        help="Parent concept.")
-
 class ApproachSiteCode(models.Model):    
     _name = "hc.vs.approach.site.code"    
     _description = "Approach Site Code"        

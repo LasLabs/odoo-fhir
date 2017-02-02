@@ -130,7 +130,7 @@
                                 </field>
                             </page> 
                             <!-- <page string="Addresses"/> -->
-                            <page string="Addresses">         
+                            <page string="Addresses" attrs="{'invisible': [('type','=','animal')]}">         
                                 <field name="address_ids" mode="tree">
                                     <tree>      
                                         <field name="use" widget="radio"/>    
@@ -157,7 +157,7 @@
                                     </form>     
                                 </field>        
                             </page>                                               
-                            <page string="Telecom">
+                            <page string="Telecom" attrs="{'invisible': [('type','=','animal')]}">
                                 <field name="telecom_ids" mode="tree">
                                     <tree>
                                         <field name="is_preferred"/>
@@ -227,7 +227,7 @@
                                     </form>
                                 </field>
                             </page>
-                            <page string="Links"/>
+                            <page string="Links" attrs="{'invisible': [('type','=','animal')]}"/>
                             <!-- <page string="Links">
                                  <field name="links_ids" mode="tree">
                                     <tree>
@@ -308,7 +308,7 @@
                                     </form>
                                 </field>
                             </page>                   
-                            <page string="Languages">
+                            <page string="Languages" attrs="{'invisible': [('type','=','animal')]}">
                                 <field name="communication_ids" mode="tree">
                                     <tree>
                                         <field name="is_preferred" widget="upgrade_boolean"/>
@@ -360,7 +360,7 @@
                                                         </form>         
                                                     </field>                
                                                 </page>
-                                                <page string="Marital History"/>
+                                                <page string="Marital History" attrs="{'invisible': [('type','=','animal')]}"/>
                                                 <!-- page string="Marital History">
                                                     <field name="marital_history_ids" mode="tree">
                                                         <tree>
