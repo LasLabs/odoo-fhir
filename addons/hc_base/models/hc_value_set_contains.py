@@ -255,7 +255,6 @@ class ConditionCode(models.Model):
     _name = "hc.vs.condition.code"
     _description = "Condition"
     _inherit = ["hc.value.set.contains"]
-    _rec_name = "code"
 
     name = fields.Char(
         string="Name", 

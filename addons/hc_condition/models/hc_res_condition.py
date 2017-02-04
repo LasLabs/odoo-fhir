@@ -410,7 +410,7 @@ class ConditionEvidenceDetail(models.Model):
     def _compute_detail_type(self):
         for this in self:
             if this.detail_name:
-                this.detail_type = this.detail_name.name
+                this.detail_type = this.detail_name._description
 
     # @api.multi          
     # def _compute_detail_name(self):         
