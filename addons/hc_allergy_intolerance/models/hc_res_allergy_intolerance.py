@@ -78,7 +78,7 @@ class AllergyIntolerance(models.Model):
     onset_name = fields.Char(
         string="Onset", 
         compute="_compute_onset_name", 
-        # store="True", 
+        store="True", 
         help="When allergy or intolerance was identified.")
     onset_date_time = fields.Datetime(
         string="Onset Datetime", 
@@ -167,17 +167,17 @@ class AllergyIntolerance(models.Model):
         string="Reactions", 
         help="Adverse Reaction Events linked to exposure to substance.")
 
-    @api.multi              
+    @api.depends('onset_type')              
     def _compute_onset_name(self):              
-        for hc_res_allergy_intolerance in self:         
+        for hc_res_allergy_intolerance in self: 
             if hc_res_allergy_intolerance.onset_type == 'date_time':        
-                    hc_res_allergy_intolerance.onset_name = hc_res_allergy_intolerance.onset_date_time
-            # elif hc_res_allergy_intolerance.onset_type == 'age':        
-            #         hc_res_allergy_intolerance.onset_name = hc_res_allergy_intolerance.onset_age + hc_res_allergy_intolerance.onset_age_uom_id.name
-            # elif hc_res_allergy_intolerance.onset_type == 'period':     
-            #         hc_res_allergy_intolerance.onset_name = "Between " + hc_res_allergy_intolerance.onset_start_date + " and" + hc_res_allergy_intolerance.onset_end_date
-            # elif hc_res_allergy_intolerance.onset_type == 'range':      
-            #         hc_res_allergy_intolerance.onset_name = "Between " + hc_res_allergy_intolerance.onset_range_low + " and" + hc_res_allergy_intolerance.onset_range_high
+                    hc_res_allergy_intolerance.onset_name = str(hc_res_allergy_intolerance.onset_date_time)
+            if hc_res_allergy_intolerance.onset_type == 'age':    
+                    hc_res_allergy_intolerance.onset_name = str(hc_res_allergy_intolerance.onset_age) + ' ' + hc_res_allergy_intolerance.onset_age_uom_id.name
+            elif hc_res_allergy_intolerance.onset_type == 'period':     
+                    hc_res_allergy_intolerance.onset_name = 'Between ' + str(hc_res_allergy_intolerance.onset_start_date) + ' and ' + str(hc_res_allergy_intolerance.onset_end_date)
+            elif hc_res_allergy_intolerance.onset_type == 'range':      
+                    hc_res_allergy_intolerance.onset_name = 'Between ' + str(hc_res_allergy_intolerance.onset_range_low) + ' and ' + str(hc_res_allergy_intolerance.onset_range_high)
             elif hc_res_allergy_intolerance.onset_type == 'string':     
                     hc_res_allergy_intolerance.onset_name = hc_res_allergy_intolerance.onset_string
 
