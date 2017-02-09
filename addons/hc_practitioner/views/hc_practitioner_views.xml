@@ -270,7 +270,6 @@
             </field>                    
         </record>                       
 
-
         <act_window id="hc_vs_practitioner_specialty_action"            
                     name="HC Practitioner Specialties"
                     res_model="hc.vs.practitioner.specialty"

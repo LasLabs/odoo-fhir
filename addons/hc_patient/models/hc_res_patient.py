@@ -561,6 +561,9 @@ class AnimalSpecies(models.Model):
         comodel_name="hc.vs.animal.species", 
         string="Parent",
         help="Parent concept.")
+    level_name = fields.Char(
+        string="Level Name",
+        help="Name of level (e.g., Species")
 
 # External Reference
 

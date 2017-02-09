@@ -41,7 +41,9 @@
 
     # always loaded
     'data': [
-       'security/ir.model.access.csv',
+        'security/ir.model.access.csv',
+        'data/hc.vs.animal.species.csv',
+        'data/hc.vs.v2.contact.role.csv',
         'views/hc_res_patient_views.xml',
         'views/hc_res_patient_templates.xml',
     ],
