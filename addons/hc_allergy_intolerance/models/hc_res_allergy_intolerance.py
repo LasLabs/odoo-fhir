@@ -23,7 +23,8 @@ class AllergyIntolerance(models.Model):
         selection=[
             ("draft", "Draft"), 
             ("active", "Active"), 
-            ("resolved", "Resolved")], 
+            ("resolved", "Resolved")],
+        default="draft", 
         help="The clinical status of the allergy or intolerance.")
     verification_status = fields.Selection(
         string="Verification Status", 
@@ -32,7 +33,8 @@ class AllergyIntolerance(models.Model):
             ("unconfirmed", "Unconfirmed"), 
             ("confirmed", "Confirmed"), 
             ("refuted", "Refuted"), 
-            ("entered-in-error", "Entered-In-Error")], 
+            ("entered-in-error", "Entered-In-Error")],
+        default="unconfirmed", 
         help="Assertion about certainty associated with the propensity, or potential risk, of a reaction to the identified substance (including pharmaceutical product).")                    
     type = fields.Selection(
         string="Type", 
@@ -51,7 +53,8 @@ class AllergyIntolerance(models.Model):
         selection=[
             ("low", "Low"), 
             ("high", "High"), 
-            ("unable-to-assess", "Unable to Assess")], 
+            ("unable-to-assess", "Unable to Assess")],
+        default="low", 
         help="Estimate of the potential clinical harm, or seriousness, of a reaction to an identified Substance.")                    
     code_id = fields.Many2one(
         comodel_name="hc.vs.allergy.intolerance.code", 
@@ -88,8 +91,9 @@ class AllergyIntolerance(models.Model):
         size=3, 
         help="Age when allergy or intolerance was identified.")
     onset_age_uom_id = fields.Many2one(
-        comodel_name="hc.vs.time.uom", 
-        string="Onset Age UOM", 
+        comodel_name="product.uom", 
+        string="Onset Age UOM",
+        # domain=[("category_id", '=', "uom_categ_utime")],
         default="a", 
         help="Onset age unit of measure.")
     onset_start_date = fields.Datetime(
@@ -172,8 +176,8 @@ class AllergyIntolerance(models.Model):
         for hc_res_allergy_intolerance in self: 
             if hc_res_allergy_intolerance.onset_type == 'date_time':        
                     hc_res_allergy_intolerance.onset_name = str(hc_res_allergy_intolerance.onset_date_time)
-            if hc_res_allergy_intolerance.onset_type == 'age':    
-                    hc_res_allergy_intolerance.onset_name = str(hc_res_allergy_intolerance.onset_age) + ' ' + hc_res_allergy_intolerance.onset_age_uom_id.name
+            elif hc_res_allergy_intolerance.onset_type == 'age':    
+                    hc_res_allergy_intolerance.onset_name = str(hc_res_allergy_intolerance.onset_age) + ' ' + str(hc_res_allergy_intolerance.onset_age_uom_id.name)
             elif hc_res_allergy_intolerance.onset_type == 'period':     
                     hc_res_allergy_intolerance.onset_name = 'Between ' + str(hc_res_allergy_intolerance.onset_start_date) + ' and ' + str(hc_res_allergy_intolerance.onset_end_date)
             elif hc_res_allergy_intolerance.onset_type == 'range':      
@@ -242,8 +246,9 @@ class AllergyIntoleranceReaction(models.Model):
         string="Duration", 
         help="How long Manifestations persisted.")
     duration_uom_id = fields.Many2one(
-        comodel_name="hc.vs.time.uom", 
-        string="Duration UOM", 
+        comodel_name="product.uom", 
+        string="Duration UOM",
+        # domain=[('category_id', '=', 'uom_categ_utime')], 
         help="Duration unit of measure.")            
     severity = fields.Selection(
         string="Reaction Severity", 
