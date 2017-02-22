@@ -74,7 +74,7 @@
                                 <field name="onset_start_date" class="oe_edit_only" attrs="{'invisible': [('onset_type','!=','period')]}"/>
                                 <field name="onset_end_date" class="oe_edit_only" attrs="{'invisible': [('onset_type','!=','period')]}"/>
                                 <field name="onset_range_low" class="oe_edit_only" attrs="{'invisible': [('onset_type','!=','range')]}"/>
-                                <field name="onset_range_high" class="oe_edit_only" attrs="{'invisible': [('onset_type','!=','range')]}"/>
+                                <field name="onset_range_high" class="oe_edit_only" attrs="{'invisible': [('onset_type','!=','range')]}"/>In
                                 <field name="onset_string" class="oe_edit_only" attrs="{'invisible': [('onset_type','!=','string')]}"/>               
                             </group>                    
                             <group>                             

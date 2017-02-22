@@ -3,10 +3,11 @@
     <data noupdate="0">     
 
         <record id="base.hl7" model="res.partner">  
-            <field name="name">HL7 (Health Level 7)</field>
+            <field name="name">HL7 (Health Level 7 International)</field>
             <field name="company_type">company</field>
             <field name="website">www.hl7.org</field>
-            <field name="comment"></field>
+            <field name="comment">Founded in 1987, Health Level Seven International (HL7) is a not-for-profit, ANSI-accredited standards developing organization dedicated to providing a comprehensive framework and related standards for the exchange, integration, sharing, and retrieval of electronic health information that supports clinical practice and the management, delivery and evaluation of health services. (Ref: http://www.hl7.org/)       
+            </field>
             <field name="notify_email">none</field>
             <field name="category_id" eval="[(6, 0, [ref('hc_base.partner_source'), ref('hc_base.partner_organization')])]"/>
             <field name="country_id" ref="base.us"/>
@@ -16,7 +17,7 @@
             <field name="name">HL7 v3</field>
             <field name="company_type">company</field>
             <field name="website">www.hl7.org</field>
-            <field name="comment"></field>
+            <field name="comment">The Version 3 Normative Edition represents a new approach to clinical information exchange based on a model driven methodology that produces messages and electronic documents expressed in XML syntax. (Ref: http://www.hl7.org/implement/standards/product_brief.cfm?product_id=186)</field>
             <field name="notify_email">none</field>
             <field name="category_id" eval="[(6, 0, [ref('hc_base.partner_source'), ref('hc_base.partner_document')])]"/>
             <field name="country_id" ref="base.us"/>
@@ -26,7 +27,7 @@
             <field name="name">HL7 v2</field>
             <field name="company_type">company</field>
             <field name="website">www.hl7.org</field>
-            <field name="comment"></field>
+            <field name="comment">HL7’s Version 2.x (V2) messaging standard is the workhorse of electronic data exchange in the clinical domain and arguably the most widely implemented standard for healthcare in the world. This messaging standard allows the exchange of clinical data between systems. It is designed to support a central patient care system as well as a more distributed environment where data resides in departmental systems. (ref: http://www.hl7.org/implement/standards/product_brief.cfm?product_id=185)</field>
             <field name="notify_email">none</field>
             <field name="category_id" eval="[(6, 0, [ref('hc_base.partner_source'), ref('hc_base.partner_document')])]"/>
             <field name="country_id" ref="base.us"/>
@@ -35,7 +36,11 @@
         <record id="base.hl7fhir" model="res.partner">  
             <field name="name">HL7 FHIR</field>
             <field name="company_type">company</field>
-            <field name="website">www.hl7.org</field>
+            <field name="website">http://www.hl7.org/fhir/</field>
+            <field name="comment">FHIR® – Fast Healthcare Interoperability Resources (hl7.org/fhir) – is a next generation standards framework created by HL7. FHIR combines the best features of HL7's v2 , HL7 v3  and CDA  product lines while leveraging the latest web standards and applying a tight focus on implementability.
+
+            FHIR solutions are built from a set of modular components called "Resources". These resources can easily be assembled into working systems that solve real world clinical and administrative problems at a fraction of the price of existing alternatives. FHIR is suitable for use in a wide variety of contexts – mobile phone apps, cloud communications, EHR-based data sharing, server communication in large institutional healthcare providers, and much more.  (Ref: http://www.hl7.org/fhir/summary.html)    
+            </field>
             <field name="notify_email">none</field>
             <field name="category_id" eval="[(6, 0, [ref('hc_base.partner_source'), ref('hc_base.partner_document')])]"/>
             <field name="country_id" ref="base.us"/>
@@ -45,7 +50,7 @@
             <field name="name">SNOMED CT</field>
             <field name="company_type">company</field>
             <field name="website">www.ihtsdo.org/snomed-ct</field>
-            <field name="comment"></field>
+            <field name="comment">SNOMED CT is the most comprehensive and precise clinical health terminology product in the world, owned and distributed around the world by SNOMED International. (Ref: http://www.snomed.org/snomed-ct)</field>
             <field name="notify_email">none</field>
             <field name="category_id" eval="[(6, 0, [ref('hc_base.partner_source'), ref('hc_base.partner_organization')])]"/>
             <field name="country_id" ref="base.dk"/>
@@ -55,7 +60,18 @@
             <field name="name">RxNorm</field>
             <field name="company_type">company</field>
             <field name="website">https://www.nlm.nih.gov/research/umls/rxnorm/overview.html</field>
-            <field name="comment"></field>
+            <field name="comment">RxNorm is two things: a normalized naming system for generic and branded drugs; and a tool for supporting semantic interoperation between drug terminologies and pharmacy knowledge base systems. The National Library of Medicine (NLM) produces RxNorm.
+
+            Purpose of RxNorm. Hospitals, pharmacies, and other organizations use computer systems to record and process drug information. Because these systems use many different sets of drug names, it can be difficult for one system to communicate with another. To address this challenge, RxNorm provides normalized names and unique identifiers for medicines and drugs. The goal of RxNorm is to allow computer systems to communicate drug-related information efficiently and unambiguously.
+
+            Scope of RxNorm. RxNorm contains the names of prescription and many over-the-counter drugs available in the United States. RxNorm includes generic and branded:
+
+            Clinical drugs - pharmaceutical products given to (or taken by) a patient with therapeutic or diagnostic intent
+            Drug packs - packs that contain multiple drugs, or drugs designed to be administered in a specified sequence
+            
+            Radiopharmaceuticals, bulk powders, contrast media, food, dietary supplements, and medical devices, such as bandages and crutches, are all out of scope for RxNorm. 
+
+            (ref: https://www.nlm.nih.gov/research/umls/rxnorm/overview.html)</field>
             <field name="notify_email">none</field>
             <field name="category_id" eval="[(6, 0, [ref('hc_base.partner_source'), ref('hc_base.partner_document')])]"/>
             <field name="country_id" ref="base.us"/>
@@ -68,14 +84,32 @@
             <!-- <field name="comment"></field> -->
             <field name="comment">A standards organization in the United States that maintains the code set for provider taxonomy.
 
-                The National Uniform Claim Committee (NUCC) is a voluntary organization that develops a standardized data set for use by the non-institutional health care community to transmit claim and encounter information to and from all third-party payers. It is chaired by the American Medical Association (AMA), with the Centers for Medicare and Medicaid Services (CMS) as a critical partner. The committee includes representation from key provider and payer organizations, as well as designated standards maintenance organizations, public health organizations, and a vendor. (Ref: HIMMS http://www.himss.org/library/medical-banking/financial-systems/uniform-claims)</field>
+            The National Uniform Claim Committee (NUCC) is a voluntary organization that develops a standardized data set for use by the non-institutional health care community to transmit claim and encounter information to and from all third-party payers. It is chaired by the American Medical Association (AMA), with the Centers for Medicare and Medicaid Services (CMS) as a critical partner. The committee includes representation from key provider and payer organizations, as well as designated standards maintenance organizations, public health organizations, and a vendor. (Ref: HIMMS http://www.himss.org/library/medical-banking/financial-systems/uniform-claims)</field>
             <field name="notify_email">none</field>
             <field name="category_id" eval="[(6, 0, [ref('hc_base.partner_source'), ref('hc_base.partner_organization')])]"/>
             <field name="country_id" ref="base.us"/>
         </record>
  
-         <record id="base.fda_product_label" model="res.partner">  
+        <record id="base.fda" model="res.partner">  
             <field name="name">FDA (US Food and Drug Administration)</field>
+            <field name="company_type">company</field>
+            <field name="website">http://www.fda.gov</field>
+            <field name="comment">A federal agency of the United States.
+
+            The Food and Drug Administration is responsible for protecting the public health by ensuring the safety, efficacy, and security of human and veterinary drugs, biological products, and medical devices; and by ensuring the safety of our nation's food supply, cosmetics, and products that emit radiation.
+
+            FDA also has responsibility for regulating the manufacturing, marketing, and distribution of tobacco products to protect the public health and to reduce tobacco use by minors.
+
+            FDA is responsible for advancing the public health by helping to speed innovations that make medical products more effective, safer, and more affordable and by helping the public get the accurate, science-based information they need to use medical products and foods to maintain and improve their health.
+
+            FDA also plays a significant role in the Nation's counterterrorism capability. FDA fulfills this responsibility by ensuring the security of the food supply and by fostering development of medical products to respond to deliberate and naturally emerging public health threats. (ref: https://www.fda.gov/AboutFDA/WhatWeDo/default.htm)</field>
+            <field name="notify_email">none</field>
+            <field name="category_id" eval="[(6, 0, [ref('hc_base.partner_source'), ref('hc_base.partner_organization')])]"/>
+            <field name="country_id" ref="base.us"/>
+        </record>
+
+        <record id="base.fda_product_label" model="res.partner">  
+            <field name="name">FDA (US Food and Drug Administration) Product Label</field>
             <field name="company_type">company</field>
             <field name="website">http://www.fda.gov/ForIndustry/DataStandards/StructuredProductLabeling/ucm168397.htm</field>
             <field name="comment"></field>
@@ -85,11 +119,33 @@
         </record>
 
          <record id="base.ucum" model="res.partner">  
-            <field name="name">UCUM</field>
+            <field name="name">UCUM (Unified Code for Units of Measure)</field>
             <field name="company_type">company</field>
             <field name="website">http://unitsofmeasure.org/ucum.html</field>
             <field name="notify_email">none</field>
-            <field name="comment"></field>
+            <field name="comment">The Unified Code for Units of Measure (UCUM) is a code system intended to include all units of measures being contemporarily used in international science, engineering, and business. The purpose is to facilitate unambiguous electronic communication of quantities together with their units. The focus is on electronic communication, as opposed to communication between humans. A typical application of The Unified Code for Units of Measure are electronic data interchange (EDI) protocols, but there is nothing that prevents it from being used in other types of machine communication.
+
+            UCUM is based on the ISO 80000: 2009 Quantities and Units standards series that specify the use of System International (SI) units in publications. ISO 80000 standards series is developed by Technical Committee 12, International Organization of Standardization (ISO/TC12) Quantities and units in co-operation with Technical Committee 25, International Electrotechnical Committee (IEC/TC 25).
+
+            ISO 80000 consists of the following parts, under the general title Quantities and units:
+
+            Part 1: General
+            Part 2: Mathematical signs and symbols to be used in the natural sciences and technology
+            Part 3: Space and time
+            Part 4: Mechanics
+            Part 5: Thermodynamics
+            Part 6: Electromagnetism
+            Part 7: Light
+            Part 8: Acoustics
+            Part 9: Physical chemistry and molecular physics
+            Part 10: Atomic and nuclear physics
+            Part 11: Characteristic numbers
+            Part 12: Solid state physics
+            Part 13: Information science and technology
+            Part 14: Telebiometrics related to human physiology.
+            Thus, UCUM support EDI protocols for the quantities and units in the domains of knowledge specified in ISO 80000 standards parts 2-14 above
+
+            (Ref: http://unitsofmeasure.org/)</field>
             <field name="category_id" eval="[(6, 0, [ref('hc_base.partner_source'), ref('hc_base.partner_document')])]"/>
             <field name="country_id" ref="base.us"/>
         </record>
@@ -105,11 +161,12 @@
         </record>
 
         <record id="base.loinc" model="res.partner">  
-            <field name="name">LOINC</field>
+            <field name="name">LOINC (Logical Observation Identifiers Names and Codes)</field>
             <field name="company_type">company</field>
             <field name="website">https://loinc.org</field>
             <field name="notify_email">none</field>
-            <field name="comment"></field>
+            <field name="comment">LOINC is a freely available international standard for tests, measurements, and observations. (Ref: https://loinc.org)   
+            </field>
             <field name="category_id" eval="[(6, 0, [ref('hc_base.partner_source'), ref('hc_base.partner_organization')])]"/>
             <field name="country_id" ref="base.us"/>
         </record>

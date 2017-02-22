@@ -480,6 +480,21 @@
                   groups="hc_base.group_hc_base_manager" 
                   sequence="10"/>
 
+        <act_window id="hc_vs_animal_species_action"                                
+                    name="HC Animal Species"                    
+                    res_model="hc.vs.animal.species"                    
+                    view_mode="tree,form"                   
+                    domain=""                   
+                    context=""                  
+                    limit=""/>                  
+
+        <menuitem id="hc_patient.menu_pat_species" 
+                  name="Animal Species" 
+                  parent="hc_patient.menu_pat_conf" 
+                  action="hc_vs_animal_species_action" 
+                  groups="hc_base.group_hc_base_manager" 
+                  sequence="10"/>
+                  
         <!-- Animal Species Views -->                               
                                         
         <record id="hc_vs_animal_species_view_search" model="ir.ui.view">                               
@@ -541,21 +556,6 @@
                 </form>                     
             </field>                            
         </record>                               
-
-        <act_window id="hc_vs_animal_species_action"                                
-                    name="HC Animal Species"                    
-                    res_model="hc.vs.animal.species"                    
-                    view_mode="tree,form"                   
-                    domain=""                   
-                    context=""                  
-                    limit=""/>                  
-
-        <menuitem id="hc_patient.menu_pat_species" 
-                  name="Animal Species" 
-                  parent="hc_patient.menu_pat_conf" 
-                  action="hc_vs_animal_species_action" 
-                  groups="hc_base.group_hc_base_manager" 
-                  sequence="20"/>
 
         <!-- External Reference View -->
 
