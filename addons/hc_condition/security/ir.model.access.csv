@@ -1,6 +1,5 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_hc_condition_hc_res_condition_user,hc.condition.hc.res.condition.user,model_hc_res_condition,hc_base.group_hc_base_user,1,0,0,0
-access_hc_condition_hc_condition_stage_user,hc.condition.hc.condition.stage.user,model_hc_condition_stage,hc_base.group_hc_base_user,1,0,0,0
 access_hc_condition_hc_condition_evidence_user,hc.condition.hc.condition.evidence.user,model_hc_condition_evidence,hc_base.group_hc_base_user,1,0,0,0
 access_hc_condition_hc_condition_identifier_user,hc.condition.hc.condition.identifier.user,model_hc_condition_identifier,hc_base.group_hc_base_user,1,0,0,0
 access_hc_condition_hc_condition_stage_assessment_user,hc.condition.hc.condition.stage.assessment.user,model_hc_condition_stage_assessment,hc_base.group_hc_base_user,1,0,0,0
