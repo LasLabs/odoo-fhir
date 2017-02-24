@@ -1,7 +1,7 @@
 <openerp>
     <data>
 
-    	<!-- Participation Type Views --> 
+        <!-- Participation Type Views --> 
 
         <record id="hc_vs_participation_type_view_search" model="ir.ui.view">           
             <field name="name">Participation Type Search</field>        
@@ -76,10 +76,10 @@
         </record>   
 
         <menuitem id="hc_base.menu_vs" 
-            	  name="Value Sets" 
-            	  parent="hc_base.menu_datatype"
-            	  groups="group_hc_base_manager"
-            	  sequence="70"/>
+                  name="Value Sets" 
+                  parent="hc_base.menu_datatype"
+                  groups="group_hc_base_manager"
+                  sequence="70"/>
         
         <menuitem id="hc_base.menu_vs_partic" 
                   name="Participation Types" 

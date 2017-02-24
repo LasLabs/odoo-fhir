@@ -9,7 +9,7 @@ class product_uom(osv.osv):
 
     _columns = {
         'code': fields.char('Code', 
-            help="Code of this unit of measure."),
+            help="Code of this unit of measure. Case sensitive."),
         'source_id': fields.many2one('res.partner', 'Source',
             help="The source of the definition of the unit of measure."),
     }
@@ -23,7 +23,7 @@ class product_uom(osv.osv):
 
 #     code = fields.Char(
 #         string="Code", 
-#         help="Code of this unit of measure.")
+#         help="Code of this unit of measure. Case sensitive.")
 #     source_id = fields.Many2one(
 #         comodel_name="res.partner", 
 #         string="Source",

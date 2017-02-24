@@ -512,7 +512,7 @@ class ContactRelationship(models.Model):
     contains_id = fields.Many2one(
         comodel_name="hc.vs.v2.contact.role", 
         string="Parent",
-        help="Parent concept.")
+        help="Parent contact relationship.")
 
 class AnimalBreed(models.Model):    
     _name = "hc.vs.animal.breed"    
@@ -528,7 +528,11 @@ class AnimalBreed(models.Model):
     contains_id = fields.Many2one(
         comodel_name="hc.vs.animal.breed", 
         string="Parent",
-        help="Parent concept.")
+        help="Parent breed.")
+    hierarchy_id = fields.Many2one(
+        comodel_name="hc.vs.animal.species", 
+        string="Hierarchy",
+        help="Hierarchy grouping of this animal breed.")
 
 class AnimalGenderStatus(models.Model): 
     _name = "hc.vs.animal.gender.status"    
@@ -544,7 +548,7 @@ class AnimalGenderStatus(models.Model):
     contains_id = fields.Many2one(
         comodel_name="hc.vs.animal.gender.status", 
         string="Parent",
-        help="Parent concept.")
+        help="Parent gender status.")
 
 class AnimalSpecies(models.Model):  
     _name = "hc.vs.animal.species"  
@@ -560,7 +564,7 @@ class AnimalSpecies(models.Model):
     contains_id = fields.Many2one(
         comodel_name="hc.vs.animal.species", 
         string="Parent",
-        help="Parent concept.")
+        help="Parent animal species.")
     level_name = fields.Char(
         string="Level Name",
         help="Name of level (e.g., Species")

@@ -63,7 +63,7 @@
                             <group>                   
                                 <field name="race_ids" widget="many2many_tags" attrs="{'invisible': [('type','!=','human')]}"/>             
                                 <field name="ethnicity_ids" widget="many2many_tags" attrs="{'invisible': [('type','!=','human')]}"/>
-                                <field name="animal_species_id" attrs="{'invisible': [('type','!=','animal')]}"/>
+                                <field name="animal_species_id" attrs="{'invisible': [('type','!=','animal')], 'required': [('type','=','animal')]}"/>
                                 <field name="animal_breed_id" attrs="{'invisible': [('type','!=','animal')]}"/>
                                 <field name="animal_gender_status_id" attrs="{'invisible': [('type','!=','animal')]}"/>
                             </group>                    
@@ -495,6 +495,21 @@
                   groups="hc_base.group_hc_base_manager" 
                   sequence="10"/>
                   
+        <act_window id="hc_vs_animal_breed_action"          
+                    name="HC Animal Breeds"
+                    res_model="hc.vs.animal.breed"
+                    view_mode="tree,form"
+                    domain=""
+                    context=""
+                    limit=""/>
+
+        <menuitem id="hc_practitioner.menu_pat_breed" 
+                  name="Animal Breeds" 
+                  parent="hc_patient.menu_pat_conf" 
+                  action="hc_vs_animal_breed_action" 
+                  groups="hc_base.group_hc_base_manager" 
+                  sequence="20"/>
+
         <!-- Animal Species Views -->                               
                                         
         <record id="hc_vs_animal_species_view_search" model="ir.ui.view">                               
@@ -505,7 +520,8 @@
                 <search string="Animal Species">                        
                     <field name="name"/>                    
                     <field name="code"/>                    
-                    <field name="definition"/>                  
+                    <field name="definition"/>
+                    <field name="contains_id"/>                    
                     <group>                 
                         <filter name="group_by_parent" string="parent" context="{'group_by': 'contains_id'}"/>             
                     </group>                    
@@ -556,6 +572,71 @@
                 </form>                     
             </field>                            
         </record>                               
+
+        <!-- Animal Breed Views -->         
+            
+        <record id="hc_vs_animal_breed_view_search" model="ir.ui.view">             
+            <field name="name">Animal Breed Search</field>          
+            <field name="model">hc.vs.animal.breed</field>          
+<!--             <field name="inherit_id" ref="hc_value_set_contains_view_search"/>     -->      
+            <field name="arch" type="xml">          
+                <search string="Animal Breeds">     
+                    <field name="name"/>    
+                    <field name="code"/>    
+                    <field name="definition"/>
+                    <field name="hierarchy_id"/>
+                    <field name="contains_id"/>  
+                    <group> 
+                        <filter name="group_by_hierarchy" string="hierarchy" context="{'group_by': 'hierarchy_id'}" />
+                        <filter name="group_by_parent" string="parent" context="{'group_by': 'contains_id'}" />
+                    </group>    
+                </search>       
+            </field>            
+        </record>               
+
+        <record id="hc_vs_animal_breed_view_tree" model="ir.ui.view">           
+            <field name="name">Animal Breed Tree</field>        
+            <field name="model">hc.vs.animal.breed</field>      
+<!--             <field name="inherit_id" ref="hc_value_set_contains_view_tree"/>        --> 
+            <field name="arch" type="xml">      
+                <tree string="Animal Breeds" default_order="name, code">    
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="definition"/>
+                    <field name="hierarchy_id"/>
+                    <field name="contains_id"/>
+                    <field name="source_id" invisible="0"/>
+                </tree> 
+            </field>        
+        </record>           
+
+        <record id="hc_vs_animal_breed_view_form" model="ir.ui.view">                       
+            <field name="name">Animal Breed Form</field>                    
+            <field name="model">hc.vs.animal.breed</field>                  
+            <field name="arch" type="xml">                  
+                <form string="Animal Breeds" >              
+                    <sheet>         
+                        <h1>        
+                            <field name="name" default_focus="1" placeholder="Name (e.g., United States)"/> 
+                        </h1>       
+                        <field name="code" placeholder="Code (e.g., US)"/>      
+                        <field name="definition" placeholder="Definition"/>   
+                        <group>     
+                            <group> 
+                                <field name="hierarchy_id" placeholder="e.g., dog"/>
+                                <field name="contains_id"/>
+                            </group>    
+                            <group> 
+                                <field name="source_id" placeholder="e.g., U.S. Census Bureau"/>
+                                <field name="system" widget="url" placeholder="e.g., www.census.gov/"/>
+                            </group>    
+                        </group>        
+                    </sheet>            
+                </form>             
+            </field>                    
+        </record>                       
+
+
 
         <!-- External Reference View -->
 

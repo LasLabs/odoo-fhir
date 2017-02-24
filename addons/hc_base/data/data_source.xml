@@ -109,7 +109,7 @@
         </record>
 
         <record id="base.fda_product_label" model="res.partner">  
-            <field name="name">FDA (US Food and Drug Administration) Product Label</field>
+            <field name="name">FDA Product Label</field>
             <field name="company_type">company</field>
             <field name="website">http://www.fda.gov/ForIndustry/DataStandards/StructuredProductLabeling/ucm168397.htm</field>
             <field name="comment"></field>
@@ -119,7 +119,7 @@
         </record>
 
          <record id="base.ucum" model="res.partner">  
-            <field name="name">UCUM (Unified Code for Units of Measure)</field>
+            <field name="name">UCUM</field>
             <field name="company_type">company</field>
             <field name="website">http://unitsofmeasure.org/ucum.html</field>
             <field name="notify_email">none</field>
