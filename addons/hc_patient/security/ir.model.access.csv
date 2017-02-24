@@ -5,7 +5,7 @@ access_hc_patient_hc_patient_care_provider_organization_user,hc.patient.hc.patie
 access_hc_patient_hc_patient_care_provider_practitioner_user,hc.patient.hc.patient.care.provider.practitioner.user,model_hc_patient_care_provider_practitioner,hc_base.group_hc_base_user,1,0,0,0
 access_hc_patient_hc_patient_contact_user,hc.patient.hc.patient.contact.user,model_hc_patient_contact,hc_base.group_hc_base_user,1,0,0,0
 access_hc_patient_hc_patient_identifier_user,hc.patient.hc.patient.identifier.user,model_hc_patient_identifier,hc_base.group_hc_base_user,1,0,0,0
-access_hc_patient_hc_patient_language_user,hc.patient.hc.patient.language.user,model_hc_patient_language,hc_base.group_hc_base_user,1,0,0,0
+access_hc_patient_hc_patient_communication_user,hc.patient.hc.patient.communication.user,model_hc_patient_communication,hc_base.group_hc_base_user,1,0,0,0
 access_hc_patient_hc_patient_language_proficiency_user,hc.patient.hc.patient.language.proficiency.user,model_hc_patient_language_proficiency,hc_base.group_hc_base_user,1,0,0,0
 access_hc_patient_hc_patient_link_user,hc.patient.hc.patient.link.user,model_hc_patient_link,hc_base.group_hc_base_user,1,0,0,0
 access_hc_patient_hc_patient_marital_history_user,hc.patient.hc.patient.marital.history.user,model_hc_patient_marital_history,hc_base.group_hc_base_user,1,0,0,0
