@@ -10,6 +10,11 @@ class MedicationDispense(models.Model):
         comodel_name="hc.medication.dispense.identifier", 
         string="Identifier", 
         help="External identifier.")             
+    part_of_ids = fields.One2many(
+        comodel_name="hc.medication.dispense.part.of", 
+        inverse_name="medication_dispense_id", 
+        string="Supporting Information", 
+        help="Event that dispense is part of.")
     status = fields.Selection(
         string="Status", 
         selection=[
@@ -19,6 +24,10 @@ class MedicationDispense(models.Model):
             ("entered-in-error", "Entered-In-Error"), 
             ("stopped", "Stopped")], 
         help="A code specifying the state of the set of dispense events.")         
+    category_id = fields.Many2one(
+        comodel_name="hc.vs.medication.dispense.category", 
+        string="Category", 
+        help="Type of medication dispense")
     medication_type = fields.Selection(
         string="Medication Type", 
         required="True", 
@@ -39,23 +48,49 @@ class MedicationDispense(models.Model):
         comodel_name="hc.res.medication", 
         string="Medication", 
         help="What medication was supplied.")              
-    patient_id = fields.Many2one(
+    subject_type = fields.Selection(
+        string="Subject Type", 
+        selection=[
+            ("patient", "Patient"), 
+            ("group", "Group")], 
+        help="Type of who the dispense is for.")
+    subject_name = fields.Char(
+        string="Subject", 
+        compute="_compute_subject_name", 
+        store="True", 
+        help="Who the dispense is for.")
+    subject_patient_id = fields.Many2one(
         comodel_name="hc.res.patient", 
-        string="Patient", 
-        help="Who the dispense is for.")              
+        string="Subject Patient", 
+        help="Who the dispense is for.")
+    subject_group_id = fields.Many2one(
+        comodel_name="hc.res.group", 
+        string="Subject Group", 
+        help="Group who the dispense is for.")              
+    context_type = fields.Selection(
+        string="Context Type", 
+        selection=[
+            ("encounter", "Encounter"), 
+            ("episode_of_care", "Episode Of Care")], 
+        help="Encounter / Episode associated with event.")
+    context_name = fields.Char(
+        string="Context", 
+        compute="_compute_context_name", 
+        store="True", 
+        help="Encounter / Episode associated with event.")
+    context_encounter_id = fields.Many2one(
+        comodel_name="hc.res.encounter", 
+        string="Context Encounter", 
+        help="Encounter associated with event.")
+    context_episode_of_care_id = fields.Many2one(
+        comodel_name="hc.res.episode.of.care", 
+        string="Context Episode Of Care", 
+        help="Episode Of Care associated with event.")
     supporting_information_ids = fields.One2many(
         comodel_name="hc.medication.dispense.supporting.information", 
         inverse_name="medication_dispense_id", 
         string="Supporting Informations", 
-        help="Information that supports the dispensing of the medication.")             
-    dispenser_id = fields.Many2one(
-        comodel_name="hc.res.practitioner", 
-        string="Dispenser", 
-        help="Practitioner responsible for dispensing medication.")              
-    dispensing_organization_id = fields.Many2one(
-        comodel_name="hc.res.organization", 
-        string="Dispensing Organization", 
-        help="Organization responsible for the dispense of the medication.")             
+        help="Information that supports the dispensing of the medication.")                 
     authorizing_prescription_ids = fields.One2many(
         comodel_name="hc.medication.dispense.authorizing.prescription", 
         inverse_name="medication_dispense_id", 
@@ -77,9 +112,9 @@ class MedicationDispense(models.Model):
         help="Amount of medication expressed as a timing amount.")             
     when_prepared = fields.Datetime(
         string="When Prepared Date", 
-        help="Dispense processing time.")              
+        help="When product was packaged and reviewed.")              
     when_handed_over = fields.Datetime(
-        string="When Handed Over Date", 
+        string="When product was given out.", 
         help="Handover time.")               
     destination_id = fields.Many2one(
         comodel_name="hc.res.location", 
@@ -95,21 +130,102 @@ class MedicationDispense(models.Model):
         inverse_name="medication_dispense_id", 
         string="Notes", 
         help="Information about the dispense.")               
-    dosage_instruction_ids = fields.One2many(
-        comodel_name="hc.medication.dispense.dosage.instruction", 
+    # dosage_instruction_ids = fields.One2many(
+    #     comodel_name="hc.medication.dispense.dosage.instruction", 
+    #     inverse_name="medication_dispense_id", 
+    #     string="Dosage Instructions", 
+    #     help="Medicine administration instructions to the patient/caregiver.")              
+    detected_issue_ids = fields.One2many(
+        comodel_name="hc.medication.dispense.detected.issue", 
         inverse_name="medication_dispense_id", 
-        string="Dosage Instructions", 
-        help="Medicine administration instructions to the patient/caregiver.")              
+        string="Supporting Information", 
+        help="Clinical Issue with action.")
+    is_not_done = fields.Boolean(
+        string="Is Not Done", 
+        help="Whether the dispense was or was not performed.")
+    not_done_reason_type = fields.Selection(
+        string="Not Done Reason Type", 
+        selection=[
+            ("code", "Code"), 
+            ("detected_issue", "Detected Issue")], 
+        help="Type of why a dispense was not performed.")
+    not_done_reason_name = fields.Char(
+        string="Not Done Reason", 
+        compute="_compute_not_done_reason_name", 
+        store="True", 
+        help="Why a dispense was not performed.")
+    not_done_reason_code_id = fields.Many2one(
+        comodel_name="hc.vs.medication.not.done.reason", 
+        string="Not Done Reason Code", 
+        help="Code of why a dispense was not performed.")
+    not_done_reason_detected_issue_id = fields.Many2one(
+        comodel_name="hc.res.detected.issue", 
+        string="Not Done Reason Detected Issue", 
+        help="Detected Issue why a dispense was not performed.")
     event_history_ids = fields.One2many(
         comodel_name="hc.medication.dispense.event.history", 
         inverse_name="medication_dispense_id", 
         string="Event Histories", 
         help="A list of events of interest in the lifecycle.")                
+    performer_ids = fields.One2many(
+        comodel_name="hc.medication.dispense.performer", 
+        inverse_name="medication_dispense_id", 
+        string="Performers", 
+        help="Who performed event.")
     substitution_ids = fields.One2many(
         comodel_name="hc.medication.dispense.substitution", 
         inverse_name="medication_dispense_id", 
         string="Substitutions", 
         help="Deals with substitution of one medicine for another.")              
+
+class MedicationDispensePerformer(models.Model):    
+    _name = "hc.medication.dispense.performer"  
+    _description = "Medication Dispense Performer"
+
+    medication_dispense_id = fields.Many2one(
+        comodel_name="hc.res.medication.dispense", 
+        string="Medication Dispense", 
+        help="Medication Dispense associated with this Medication Dispense Performer.")
+    actor_type = fields.Selection(
+        string="Actor Type", 
+        required="True", 
+        selection=[
+            ("practitioner", "Practitioner"), 
+            ("organization", "Organization"), 
+            ("patient", "Patient"), 
+            ("device", "Device"), 
+            ("related_person", "Related Person")], 
+        help="Type of individual who was performing.")
+    actor_name = fields.Char(
+        string="Actor", 
+        compute="_compute_actor_name", 
+        store="True", 
+        help="Individual who was performing.")
+    actor_practitioner_id = fields.Many2one(
+        comodel_name="hc.res.practitioner", 
+        string="Actor Practitioner", 
+        required="True", 
+        help="Practitioner who was performing.")
+    actor_organization_id = fields.Many2one(
+        comodel_name="hc.res.organization", 
+        string="Actor Organization", 
+        help="Organization who was performing.")
+    actor_patient_id = fields.Many2one(
+        comodel_name="hc.res.patient", 
+        string="Actor Patient", 
+        help="Patient who was performing.")
+    actor_device_id = fields.Many2one(
+        comodel_name="hc.res.device", 
+        string="Actor Device", 
+        help="Device that was performing.")
+    actor_related_person_id = fields.Many2one(
+        comodel_name="hc.res.related.person", 
+        string="Actor Related Person", 
+        help="Related Person who was performing.")
+    on_behalf_of_id = fields.Many2one(
+        comodel_name="hc.res.organization", 
+        string="On Behalf Of", 
+        help="Organization was acting for.")
 
 class MedicationDispenseSubstitution(models.Model): 
     _name = "hc.medication.dispense.substitution"   
@@ -143,6 +259,19 @@ class MedicationDispenseIdentifier(models.Model):
     _name = "hc.medication.dispense.identifier" 
     _description = "Medication Dispense Identifier"     
     _inherit = ["hc.basic.association", "hc.identifier"]
+
+class MedicationDispensePartOf(models.Model):   
+    _name = "hc.medication.dispense.part.of"    
+    _description = "Medication Dispense Part Of"
+
+    medication_dispense_id = fields.Many2one(
+        omodel_name="hc.res.medication.dispense", 
+        string="Medication Dispense", 
+        help="Medication Dispense associated with this Medication Dispense Receiver.")        
+    part_of_id = fields.Many2one(
+        comodel_name="hc.res.procedure", 
+        string="Part Of", 
+        help="Procedure associated with this Medication Dispense Part Of.")     
 
 class MedicationDispenseSupportingInformation(models.Model):    
     _name = "hc.medication.dispense.supporting.information" 
@@ -215,6 +344,19 @@ class MedicationDispenseReceiver(models.Model):
         string="Receiver Practitioner", 
         help="Practitioner who collected the medication.")               
 
+class MedicationDispenseDetectedIssue(models.Model):    
+    _name = "hc.medication.dispense.detected.issue" 
+    _description = "Medication Dispense Detected Issue"
+
+    medication_dispense_id = fields.Many2one(
+        comodel_name="hc.res.medication.dispense", 
+        string="Medication Dispense", 
+        help="Medication Dispense associated with this .")        
+    detected_issue_id = fields.Many2one(
+        comodel_name="hc.res.detected.issue", 
+        string="Detected Issue", 
+        help="Detected Issue associated with this Medication Dispense Detected Issue.")      
+
 class MedicationDispenseNote(models.Model): 
     _name = "hc.medication.dispense.note"   
     _description = "Medication Dispense Note"       
@@ -225,15 +367,15 @@ class MedicationDispenseNote(models.Model):
         string="Medication Dispense", 
         help="Medication Dispense associated with this Medication Dispense Note.")                
 
-class MedicationDispenseDosageInstruction(models.Model):    
-    _name = "hc.medication.dispense.dosage.instruction" 
-    _description = "Medication Dispense Dosage Instruction"     
-    _inherit = ["hc.basic.association", "hc.dosage.instruction"]
+# class MedicationDispenseDosageInstruction(models.Model):    
+#     _name = "hc.medication.dispense.dosage.instruction" 
+#     _description = "Medication Dispense Dosage Instruction"     
+#     _inherit = ["hc.basic.association", "hc.dosage"]
 
-    medication_dispense_id = fields.Many2one(
-        comodel_name="hc.res.medication.dispense", 
-        string="Medication Dispense", 
-        help="Medication Dispense associated with this Medication Dispense Dosage Instruction.")             
+#     medication_dispense_id = fields.Many2one(
+#         comodel_name="hc.res.medication.dispense", 
+#         string="Medication Dispense", 
+#         help="Medication Dispense associated with this Medication Dispense Dosage Instruction.")             
 
 class MedicationDispenseEventHistory(models.Model): 
     _name = "hc.medication.dispense.event.history"  
@@ -263,12 +405,66 @@ class MedicationDispenseSubstitutionResponsibleParty(models.Model):
         string="Responsible Party", 
         help="Responsible Party associated with this Medication Dispense Substitution Responsible Party.")               
 
-class MedicationDispenseType(models.Model): 
-    _name = "hc.vs.medication.dispense.type"    
-    _description = "Medication Dispense Type"       
+class MedicationDispenseCategory(models.Model): 
+    _name = "hc.vs.medication.dispense.category"    
+    _description = "Medication Dispense Category"           
     _inherit = ["hc.value.set.contains"]
 
-class SubstanceAdminSubstitutionCode(models.Model): 
-    _name = "hc.vs.substance.admin.substitution.code"   
-    _description = "Substance Admin Substitution Code"      
+    name = fields.Char(
+        string="Name", 
+        help="Name of this medication dispense category.")                    
+    code = fields.Char(
+        string="Code", 
+        help="Code of this medication dispense category.")                    
+    contains_id = fields.Many2one(
+        comodel_name="hc.vs.medication.dispense.category", 
+        string="Contains", 
+        help="Parent medication dispense category.")                    
+
+class ActPharmacySupplyType(models.Model):  
+    _name = "hc.vs.act.pharmacy.supply.type"    
+    _description = "Act Pharmacy Supply Type"           
     _inherit = ["hc.value.set.contains"]
+
+    name = fields.Char(
+        string="Name", 
+        help="Name of this act pharmacy supply type.")                    
+    code = fields.Char(
+        string="Code", 
+        help="Code of this act pharmacy supply type.")                    
+    contains_id = fields.Many2one(
+        comodel_name="hc.vs.act.pharmacy.supply.type", 
+        string="Contains", 
+        help="Parent act pharmacy supply type.")                    
+
+class MedicationNotDoneReason(models.Model):    
+    _name = "hc.vs.medication.not.done.reason"  
+    _description = "Medication Not Done Reason"         
+    _inherit = ["hc.value.set.contains"]
+
+    name = fields.Char(
+        string="Name", 
+        help="Name of this medication not done reason.")                  
+    code = fields.Char(
+        string="Code", 
+        help="Code of this medication not done reason.")                  
+    contains_id = fields.Many2one(
+        comodel_name="hc.vs.medication.not.done.reason", 
+        string="Contains", 
+        help="Parent medication not done reason.")                    
+
+class ActSubstanceAdminSubsititutionCode(models.Model): 
+    _name = "hc.vs.act.substance.admin.subsititution.code"  
+    _description = "Act Substance Admin Subsititution Code"         
+    _inherit = ["hc.value.set.contains"]
+
+    name = fields.Char(
+        string="Name", 
+        help="Name of this act substance admin subsititution code.")                  
+    code = fields.Char(
+        string="Code", 
+        help="Code of this act substance admin subsititution code.")                  
+    contains_id = fields.Many2one(
+        comodel_name="hc.vs.act.substance.admin.subsititution.code", 
+        string="Contains", 
+        help="Parent act substance admin subsititution code.")                    

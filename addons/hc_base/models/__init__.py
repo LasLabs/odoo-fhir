@@ -11,7 +11,8 @@ import hc_available_time
 import hc_contact_detail
 import hc_contributor
 import hc_data_requirement
-import hc_dosage_instruction
+import hc_timing
+import hc_dosage
 import hc_element_definition
 import hc_human_name
 import hc_identifier
@@ -26,7 +27,6 @@ import hc_related_resource
 import hc_resource
 import hc_sampled_data
 import hc_signature
-import hc_timing
 import hc_trigger_definition
 import hc_usage_context
 import product_uom

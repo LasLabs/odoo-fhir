@@ -125,12 +125,12 @@ access_hc_base_hc_resource_user,hc.base.hc.resource.user,model_hc_resource,hc_ba
 access_hc_base_hc_resource_meta_user,hc.base.hc.resource.meta.user,model_hc_resource_meta,hc_base.group_hc_base_user,1,0,0,0
 access_hc_base_hc_meta_user,hc.base.hc.meta.user,model_hc_meta,hc_base.group_hc_base_user,1,0,0,0
 access_hc_base_hc_vs_common_tag_manager,hc.base.hc.vs.common.tag.manager,model_hc_vs_common_tag,hc_base.group_hc_base_manager,1,1,1,1
-access_hc_base_hc_vs_additional_instructions_code_manager,hc.base.hc.vs.additional.instructions.code.manager,model_hc_vs_additional_instructions_code,hc_base.group_hc_base_manager,1,1,1,1
+access_hc_base_hc_vs_additional_instruction_code_manager,hc.base.hc.vs.additional.instruction.code.manager,model_hc_vs_additional_instruction_code,hc_base.group_hc_base_manager,1,1,1,1
 access_hc_base_hc_vs_medication_as_needed_reason_manager,hc.base.hc.vs.medication.as.needed.reason.manager,model_hc_vs_medication_as_needed_reason,hc_base.group_hc_base_manager,1,1,1,1
 access_hc_base_hc_vs_approach_site_code_manager,hc.base.hc.vs.approach.site.code.manager,model_hc_vs_approach_site_code,hc_base.group_hc_base_manager,1,1,1,1
 access_hc_base_hc_vs_administration_method_code_manager,hc.base.hc.vs.administration.method.code.manager,model_hc_vs_administration_method_code,hc_base.group_hc_base_manager,1,1,1,1
-access_hc_base_hc_dosage_instruction_user,hc.base.hc.dosage.instruction.user,model_hc_dosage_instruction,hc_base.group_hc_base_user,1,0,0,0
-access_hc_base_hc_dosage_instruction_timing_user,hc.base.hc.dosage.instruction.timing.user,model_hc_dosage_instruction_timing,hc_base.group_hc_base_user,1,0,0,0
+access_hc_base_hc_dosage_user,hc.base.hc.dosage.user,model_hc_dosage,hc_base.group_hc_base_user,1,0,0,0
+access_hc_base_hc_dosage_timing_user,hc.base.hc.dosage.timing.user,model_hc_dosage_timing,hc_base.group_hc_base_user,1,0,0,0
 access_hc_base_hc_related_artifact_user,hc.base.hc.related.artifact.user,model_hc_related_artifact,hc_base.group_hc_base_user,1,0,0,0
 access_hc_base_hc_related_artifact_document_user,hc.base.hc.related.artifact.document.user,model_hc_related_artifact_document,hc_base.group_hc_base_user,1,0,0,0
 access_hc_base_hc_usage_context_user,hc.base.hc.usage.context.user,model_hc_usage_context,hc_base.group_hc_base_user,1,0,0,0

@@ -68,7 +68,7 @@ class ActCode(models.Model):
     contains_id = fields.Many2one(
         comodel_name="hc.vs.act.code", 
         string="Parent",
-        help="Parent concept.")
+        help="Parent art code.")
 
 class ActionCode(models.Model):    
     _name = "hc.vs.action.code"    
@@ -84,7 +84,7 @@ class ActionCode(models.Model):
     contains_id = fields.Many2one(
         comodel_name="hc.vs.action.code", 
         string="Parent",
-        help="Parent concept.")
+        help="Parent action code.")
 
 class ActReason(models.Model):    
     _name = "hc.vs.act.reason"    
@@ -100,12 +100,7 @@ class ActReason(models.Model):
     contains_id = fields.Many2one(
         comodel_name="hc.vs.act.reason", 
         string="Parent",
-        help="Parent concept.")
-
-# class AdditionalInstructionsCode(models.Model):    
-#     _name = "hc.vs.additional.instructions.code"    
-#     _description = "Additional Instructions Code"        
-#     _inherit = ["hc.value.set.contains"]    
+        help="Parent act reason.")
 
 class AdministrativeGender(models.Model):   
     _name = "hc.vs.administrative.gender"   
@@ -633,7 +628,7 @@ class RouteCode(models.Model):
     contains_id = fields.Many2one(
         comodel_name="hc.vs.route.code",
         string="Parent",
-        help="Parent concept.")
+        help="Parent route code.")
 
 class Ruleset(models.Model):    
     _name = "hc.vs.ruleset"    

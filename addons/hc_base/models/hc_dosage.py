@@ -2,31 +2,34 @@
 
 from openerp import models, fields, api
 
-class DosageInstruction(models.Model):    
-    _name = "hc.dosage.instruction"    
-    _description = "Dosage Instruction"        
-
+class Dosage(models.Model): 
+    _name = "hc.dosage" 
+    _description = "Dosage"
+       
     sequence = fields.Integer(
         string="Sequence", 
-        help="The order of the dosage instructions.")                
+        help="The order of the dosage instruction.")                
     text = fields.Text(
         string="Text", 
-        help="Free text dosage instructions e.g. SIG.")                
-    additional_instructions_ids = fields.Many2many(
-        comodel_name="hc.vs.additional.instructions.code", 
-        relation="dosage_instruction_additional_instructions_rel", 
-        string="Additional Instructionss", 
-        help='Supplemental instructions - e.g. "with meals".')             
-    # timing_id = fields.Many2one(
-    #     comodel_name="hc.dosage.instruction.timing", 
-    #     string="Timing", 
-    #     help="When medication should be administered.")                
-    action_type = fields.Selection(
-        string="Action Type", 
+        help="Free text dosage instruction e.g. SIG.")                
+    additional_instruction_ids = fields.Many2many(
+        comodel_name="hc.vs.additional.instruction.code", 
+        relation="dosage_instruction_additional_instruction_rel", 
+        string="Additional Instruction", 
+        help='Supplemental instruction - e.g. "with meals".')             
+    patient_instruction = fields.Text(
+        string="Patient Instruction", 
+        help="Patient or consumer oriented instructions.")
+    timing_id = fields.Many2one(
+        comodel_name="hc.dosage.timing", 
+        string="Timing", 
+        help="When medication should be administered.")        
+    as_needed_type = fields.Selection(
+        string="As Needed Type", 
         selection=[
             ("boolean", "Boolean"), 
             ("code", "Code")], 
-        help="Type of actions taken during assessment.")                
+        help='Type of take "as needed" (for x).')                
     as_needed_name = fields.Char(
         string="As Needed", 
         compute="_compute_as_needed_name", 
@@ -39,25 +42,10 @@ class DosageInstruction(models.Model):
         comodel_name="hc.vs.medication.as.needed.reason", 
         string="As Needed Code", 
         help='Code of take "as needed" (for x).')                
-    site_type = fields.Selection(
-        string="Site Type", 
-        selection=[
-            ("code", "Code"), 
-            ("Body Site", "Body Site")], 
-        help="Type of body site to administer to.")                
-    site_name = fields.Char(
-        string="Site", 
-        compute="_compute_site_name", 
-        store="True", 
-        help="Body site to administer to.")                
-    site_code_id = fields.Many2one(
+    site_id = fields.Many2one(
         comodel_name="hc.vs.approach.site.code", 
-        string="Site Code", 
-        help="Code of body site to administer to.")                
-    # site_body_site_id = fields.Many2one(
-    #     comodel_name="hc.res.body.site", 
-    #     string="Site Body Site", 
-    #     help="Body Site to administer to.")               
+        string="Site", 
+        help="Body site to administer to.")             
     route_id = fields.Many2one(
         comodel_name="hc.vs.route.code", 
         string="Route", 
@@ -69,8 +57,8 @@ class DosageInstruction(models.Model):
     dose_type = fields.Selection(
         string="Dose Type", 
         selection=[
-            ("Range", "Range"), 
-            ("Quantity", "Quantity")], 
+            ("range", "Range"), 
+            ("quantity", "Quantity")], 
         help="Type of amount of medication per dose.")                
     dose_name = fields.Char(
         string="Dose", 
@@ -134,9 +122,9 @@ class DosageInstruction(models.Model):
     rate_type = fields.Selection(
         string="Rate Type", 
         selection=[
-            ("Ratio", "Ratio"), 
-            ("Range", "Range"), 
-            ("Quantity", "Quantity")], 
+            ("ratio", "Ratio"), 
+            ("range", "Range"), 
+            ("quantity", "Quantity")], 
         help="Type of amount of medication per unit of time.")                
     rate_name = fields.Char(
         string="Rate", 
@@ -184,12 +172,23 @@ class DosageInstruction(models.Model):
         string="Rate Quantity UOM", 
         help="Rate Quantity unit of measure.")                
 
-class AdditionalInstructionsCode(models.Model):    
-    _name = "hc.vs.additional.instructions.code"    
-    _description = "Additional Instructions Code"        
+class DosageTiming(models.Model):   
+    _name = "hc.dosage.timing"  
+    _description = "Dosage Timing"          
+    _inherit = ["hc.basic.association", "hc.timing"]
+
+class AdditionalInstructionCode(models.Model):    
+    _name = "hc.vs.additional.instruction.code"    
+    _description = "Additional Instruction Code"        
     _inherit = ["hc.value.set.contains"]
 
-# class DosageInstructionTiming(models.Model):    
-#     _name = "hc.dosage.instruction.timing"    
-#     _description = "Dosage Instruction Timing"        
-#     _inherit = ["hc.basic.association", "hc.timing"]
+    name = fields.Char(
+        string="Name", 
+        help="Name of this additional instruction code.")
+    code = fields.Char(
+        string="Code", 
+        help="Code of this additional instruction code.")
+    contains_id = fields.Many2one(
+        comodel_name="hc.vs.additional.instruction.code", 
+        string="Parent",
+        help="Parent additional instruction code.")

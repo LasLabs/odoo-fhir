@@ -454,9 +454,31 @@ class MedicationRequestEventHistory(models.Model):
 class MedicationRequestCategory(models.Model):  
     _name = "hc.vs.medication.request.category" 
     _description = "Medication Request Category"        
-    _inherit = ["hc.value.set.contains"]    
+    _inherit = ["hc.value.set.contains"]
+
+    name = fields.Char(
+        string="Name", 
+        help="Name of this medication request category.")
+    code = fields.Char(
+        string="Code", 
+        help="Code of this medication request category.")
+    contains_id = fields.Many2one(
+        comodel_name="hc.vs.substance.admin.substitution.reason", 
+        string="Contains", 
+        help="Parent medication request category.")
 
 class SubstanceAdminSubstitutionReason(models.Model):   
     _name = "hc.vs.substance.admin.substitution.reason" 
     _description = "Substance Admin Substitution Reason"        
     _inherit = ["hc.value.set.contains"]
+
+    name = fields.Char(
+        string="Name", 
+        help="Name of this substance admin substitution reason.")
+    code = fields.Char(
+        string="Code", 
+        help="Code of this substance admin substitution reason.")
+    contains_id = fields.Many2one(
+        comodel_name="hc.vs.substance.admin.substitution.reason", 
+        string="Contains", 
+        help="Parent substance admin substitution reason.")
