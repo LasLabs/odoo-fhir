@@ -130,11 +130,11 @@ class MedicationDispense(models.Model):
         inverse_name="medication_dispense_id", 
         string="Notes", 
         help="Information about the dispense.")               
-    # dosage_instruction_ids = fields.One2many(
-    #     comodel_name="hc.medication.dispense.dosage.instruction", 
-    #     inverse_name="medication_dispense_id", 
-    #     string="Dosage Instructions", 
-    #     help="Medicine administration instructions to the patient/caregiver.")              
+    dosage_instruction_ids = fields.One2many(
+        comodel_name="hc.medication.dispense.dosage.instruction", 
+        inverse_name="medication_dispense_id", 
+        string="Dosage Instructions", 
+        help="Medicine administration instructions to the patient/caregiver.")              
     detected_issue_ids = fields.One2many(
         comodel_name="hc.medication.dispense.detected.issue", 
         inverse_name="medication_dispense_id", 
@@ -367,15 +367,15 @@ class MedicationDispenseNote(models.Model):
         string="Medication Dispense", 
         help="Medication Dispense associated with this Medication Dispense Note.")                
 
-# class MedicationDispenseDosageInstruction(models.Model):    
-#     _name = "hc.medication.dispense.dosage.instruction" 
-#     _description = "Medication Dispense Dosage Instruction"     
-#     _inherit = ["hc.basic.association", "hc.dosage"]
+class MedicationDispenseDosageInstruction(models.Model):    
+    _name = "hc.medication.dispense.dosage.instruction" 
+    _description = "Medication Dispense Dosage Instruction"     
+    _inherit = ["hc.basic.association", "hc.dosage"]
 
-#     medication_dispense_id = fields.Many2one(
-#         comodel_name="hc.res.medication.dispense", 
-#         string="Medication Dispense", 
-#         help="Medication Dispense associated with this Medication Dispense Dosage Instruction.")             
+    medication_dispense_id = fields.Many2one(
+        comodel_name="hc.res.medication.dispense", 
+        string="Medication Dispense", 
+        help="Medication Dispense associated with this Medication Dispense Dosage Instruction.")             
 
 class MedicationDispenseEventHistory(models.Model): 
     _name = "hc.medication.dispense.event.history"  
