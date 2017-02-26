@@ -280,7 +280,7 @@ class MedicationStatementNote(models.Model):
 class MedicationStatementDosage(models.Model):  
     _name = "hc.medication.statement.dosage"    
     _description = "Medication Statement Supporting Information"        
-    _inherit = ["hc.basic.association", "hc.dosage.instruction"]
+    _inherit = ["hc.basic.association", "hc.dosage"]
 
     medication_statement_id = fields.Many2one(
         comodel_name="hc.res.medication.statement", 

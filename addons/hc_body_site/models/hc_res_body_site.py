@@ -57,13 +57,3 @@ class BodySiteRelativeLocation(models.Model):
     _name = "hc.vs.body.site.relative.location"
     _description = "Body Site Relative Location"
     _inherit = ["hc.value.set.contains"]
-
-# External Reference
-
-class DosageInstruction(models.Model):    
-    _inherit = "hc.dosage.instruction"    
-
-    site_body_site_id = fields.Many2one(
-        comodel_name="hc.res.body.site", 
-        string="Site Body Site", 
-        help="Body Site to administer to.")
