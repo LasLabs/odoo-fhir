@@ -156,6 +156,17 @@ class AccountGuarantor(models.Model):
     end_date = fields.Datetime(
         string="End Date", 
         help="End of the guarrantee account during.")     
+   
+    @api.multi          
+    @api.depends('party_patient_id', 'party_related_person_id', 'party_organization_id')             
+    def _compute_party_name(self):          
+        for hc_account_guarantor in self:       
+            if hc_account_guarantor.party_type == 'patient':    
+                hc_account_guarantor.party_name = hc_account_guarantor.party_patient_id.name
+            elif hc_account_guarantor.party_type == 'related_person':   
+                hc_account_guarantor.party_name = hc_account_guarantor.party_related_person_id.name
+            elif hc_account_guarantor.party_type == 'organization': 
+                hc_account_guarantor.party_name = hc_account_guarantor.party_organization_id.name
 
 class AccountIdentifier(models.Model):    
     _name = "hc.account.identifier"    
