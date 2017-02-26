@@ -51,12 +51,12 @@ class Account(models.Model):
     subject_type = fields.Selection(
         string="Subject Type",
         selection=[
-            ("Patient", "Patient"), 
-            ("Device", "Device"), 
-            ("Practitioner", "Practitioner"), 
-            ("Location", "Location"), 
-            ("Healthcare Service", "Healthcare Service"), 
-            ("Organization", "Organization")], 
+            ("patient", "Patient"), 
+            ("device", "Device"), 
+            ("practitioner", "Practitioner"), 
+            ("location", "Location"), 
+            ("healthcare_service", "Healthcare Service"), 
+            ("organization", "Organization")], 
         help="Type of what is account tied to.")                   
     subject_name = fields.Char(
         string="Subject", 
@@ -102,17 +102,17 @@ class Account(models.Model):
 @api.multi          
 def _compute_subject_name(self):            
     for hc_res_account in self:     
-        if hc_res_account.subject_type == 'Patient':    
+        if hc_res_account.subject_type == 'patient':    
             hc_res_account.subject_name = hc_res_account.subject_patient_id.name
-        elif hc_res_account.subject_type == 'Device':   
+        elif hc_res_account.subject_type == 'device':   
             hc_res_account.subject_name = hc_res_account.subject_device_id.name
-        elif hc_res_account.subject_type == 'Practitioner': 
+        elif hc_res_account.subject_type == 'practitioner': 
             hc_res_account.subject_name = hc_res_account.subject_practitioner_id.name
-        elif hc_res_account.subject_type == 'Location': 
+        elif hc_res_account.subject_type == 'location': 
             hc_res_account.subject_name = hc_res_account.subject_location_id.name
-        elif hc_res_account.subject_type == 'Healthcare Service':   
+        elif hc_res_account.subject_type == 'healthcare Service':   
             hc_res_account.subject_name = hc_res_account.subject_healthcare_service_id.name
-        elif hc_res_account.subject_type == 'Organization': 
+        elif hc_res_account.subject_type == 'organization': 
             hc_res_account.subject_name = hc_res_account.subject_organization_id.name
 
 class AccountGuarantor(models.Model):   
@@ -127,9 +127,9 @@ class AccountGuarantor(models.Model):
         string="Party Type", 
         required="True", 
         selection=[
-            ("Patient", "Patient"), 
-            ("Related Person", "Related Person"), 
-            ("Organization", "Organization")], 
+            ("patient", "Patient"), 
+            ("related_person", "Related Person"), 
+            ("organization", "Organization")], 
         help="Type of what is account tied to.")        
     party_name = fields.Char(
         string="Party", 
