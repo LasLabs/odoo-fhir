@@ -26,7 +26,7 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['hc_patient'],
+    'depends': ['hc_patient', 'hc_plan_definition', 'hc_questionnaire'],
 
     # always loaded
     'data': [

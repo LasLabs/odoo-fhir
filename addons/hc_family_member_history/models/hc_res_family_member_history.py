@@ -18,6 +18,45 @@ class FamilyMemberHistory(models.Model):
         inverse_name="family_member_history_id", 
         string="Identifiers", 
         help="External Id(s) for this record.")                 
+    definition_type = fields.Selection(
+        string="Definition Type", 
+        selection=[
+            ("plan_definition", "Plan Definition"), 
+            ("questionnaire", "Questionnaire")], 
+        help="Type of instantiates protocol or definition.")
+    definition_name = fields.Char(
+        string="Definition", 
+        compute="_compute_definition_name", 
+        store="True", 
+        help="Instantiates protocol or definitio.")
+    definition_plan_definition_id = fields.Many2one(
+        comodel_name="hc.res.plan.definition", 
+        string="Definition Plan Definition", 
+        help="Istantiates Plan Definition.")
+    definition_questionnaire_id = fields.Many2one(
+        comodel_name="hc.res.questionnaire", 
+        string="Definition Questionnaire", 
+        help="Instantiates Questionnaire.")
+    status = fields.Selection(
+        string="status", 
+        required="True", 
+        selection=[
+            ("partial", "Partial"), 
+            ("completed", "Completed"), 
+            ("entered-in-error", "Entered-In-Error"), 
+            ("health-unknown", "Health-Unknown")], 
+        help="A code specifying the status of the record of the family history of a specific family member.")
+    is_not_done = fields.Boolean(
+        string="Not Done", 
+        help="Family member history did not occur.")
+    not_done_reason = fields.Char(
+        string="Not Done Reason", 
+        selection=[
+            ("subject-unknown", "Subject-Unknown"), 
+            ("withheld", "Withheld"), 
+            ("unable-to-obtain", "Unable-To-Obtain"), 
+            ("deferred", "Deferred")], 
+        help="Describes why the family member history did not occur in coded and/or textual form.")
     patient_id = fields.Many2one(
         comodel_name="hc.res.patient", 
         string="Patient", 
@@ -28,16 +67,7 @@ class FamilyMemberHistory(models.Model):
         help="When history was captured.")                    
     update_date = fields.Date(
         string="Update Date", 
-        help="When history was updated.")                   
-    family_history_status = fields.Selection(
-        string="Family History Status", 
-        required="True", 
-        selection=[
-            ("partial", "Partial"), 
-            ("completed", "Completed"), 
-            ("entered-in-error", "Entered-In-Error"), 
-            ("health-unknown", "Health-Unknown")], 
-        help="A code specifying a state of a Family Member History record.")                  
+        help="When history was updated.")                                        
     name = fields.Char(
         string="Name", 
         help="The family member described.")                  
@@ -149,10 +179,11 @@ class FamilyMemberHistory(models.Model):
     deceased_string = fields.Text(
         string="Deceased", 
         help="String of dead? how old/when?")
-    note_id = fields.Many2one(
+    note_ids = fields.One2many(
         comodel_name="hc.family.member.history.note", 
-        string="Note", 
-        help="General note about a family member.")
+        inverse_name="family_member_history_id", 
+        string="Notes", 
+        help="General note about related person.")
     condition_ids = fields.One2many(
         comodel_name="hc.family.member.history.condition", 
         inverse_name="family_member_history_id", 
@@ -208,10 +239,11 @@ class FamilyMemberHistoryCondition(models.Model):
     onset_string = fields.Char(
         string="Onset", 
         help="String of when condition first manifested.")                    
-    note_id = fields.Many2one(
+    note_ids = fields.One2many(
         comodel_name="hc.family.member.history.condition.note", 
-        string="Note", 
-        help="Extra information about condition.")                    
+        inverse_name="condition_id", 
+        string="Notes", 
+        help="Extra information about condition.")              
 
 class FamilyMemberHistoryIdentifier(models.Model): 
     _name = "hc.family.member.history.identifier"   
@@ -232,12 +264,22 @@ class FamilyMemberHistoryIdentifier(models.Model):
 class FamilyMemberHistoryNote(models.Model):  
     _name = "hc.family.member.history.note"  
     _description = "Family Member History Note"     
-    _inherit = ["hc.basic.association", "hc.annotation"]                 
+    _inherit = ["hc.basic.association", "hc.annotation"]
+
+    family_member_history_id = fields.Many2one(
+        comodel_name="hc.res.family.member.history", 
+        string="Family Member History", 
+        help="Family Member History associated with this Family Member History Note.")
 
 class FamilyMemberHistoryConditionNote(models.Model):   
     _name = "hc.family.member.history.condition.note"   
     _description = "Family Member History Condition Note"           
     _inherit = ["hc.basic.association", "hc.annotation"]
+
+    condition_id = fields.Many2one(
+        comodel_name="hc.family.member.history.condition", 
+        string="Condition", 
+        help="Condition associated with this Family Member History Condition Note.")
 
 class V3FamilyMember(models.Model): 
     _name = "hc.vs.v3.family.member"    

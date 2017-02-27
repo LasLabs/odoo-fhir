@@ -141,14 +141,14 @@ class ApproachSiteCode(models.Model):
 
     name = fields.Char(
         string="Name", 
-        help="Name of this approach site.")
+        help="Name of this approach site code.")
     code = fields.Char(
         string="Code", 
-        help="Code of this approach site.")
+        help="Code of this approach site code.")
     contains_id = fields.Many2one(
         comodel_name="hc.vs.approach.site.code", 
         string="Parent",
-        help="Parent concept.")
+        help="Parent approach site code.")
 
 class BodySite(models.Model):   
     _name = "hc.vs.body.site"   
@@ -164,7 +164,7 @@ class BodySite(models.Model):
     contains_id = fields.Many2one(
         comodel_name="hc.vs.body.site", 
         string="Parent",
-        help="Parent concept.")
+        help="Parent body site.")
 
 class C80DocClassCode(models.Model):    
     _name = "hc.vs.c80.doc.class.code"    
@@ -173,14 +173,14 @@ class C80DocClassCode(models.Model):
 
     name = fields.Char(
         string="Name", 
-        help="Name of this C80 Doc Class.")
+        help="Name of this C80 doc class.")
     code = fields.Char(
         string="Code", 
         help="Code of this C80 Doc Class.")
     contains_id = fields.Many2one(
         comodel_name="hc.vs.c80.doc.class.code", 
         string="Parent",
-        help="Parent concept.")
+        help="Parent c80 doc class.")
 
 class C80DocTypeCode(models.Model):    
     _name = "hc.vs.c80.doc.type.code"    
@@ -189,14 +189,14 @@ class C80DocTypeCode(models.Model):
 
     name = fields.Char(
         string="Name", 
-        help="Name of this C80 Doc Type.")
+        help="Name of this C80 doc type.")
     code = fields.Char(
         string="Code", 
-        help="Code of this C80 Doc Type.")
+        help="Code of this C80 doc type.")
     contains_id = fields.Many2one(
         comodel_name="hc.vs.c80.doc.type.code", 
         string="Parent",
-        help="Parent concept.")
+        help="Parent C80 doc type.")
 
 class C80FacilityCode(models.Model):    
     _name = "hc.vs.c80.facility.code"    
@@ -205,14 +205,14 @@ class C80FacilityCode(models.Model):
 
     name = fields.Char(
         string="Name", 
-        help="Name of this C80 Facility.")
+        help="Name of this C80 facility code.")
     code = fields.Char(
         string="Code", 
-        help="Code of this C80 Facility.")
+        help="Code of this C80 facility code.")
     contains_id = fields.Many2one(
         comodel_name="hc.vs.c80.facility.code", 
         string="Parent",
-        help="Parent concept.")
+        help="Parent C80 facility code.")
 
 class C80PracticeCode(models.Model):   
     _name = "hc.vs.c80.practice.code"  
@@ -221,14 +221,14 @@ class C80PracticeCode(models.Model):
 
     name = fields.Char(
         string="Name", 
-        help="Name of this C80 Practice.")
+        help="Name of this C80 practice code.")
     code = fields.Char(
         string="Code", 
-        help="Code of this C80 Practice.")
+        help="Code of this C80 practice code.")
     contains_id = fields.Many2one(
         comodel_name="hc.vs.c80.practice.code", 
         string="Parent",
-        help="Parent concept.")
+        help="Parent C80 practice code.")
 
 class ClinicalConcept(models.Model):    
     _name = "hc.vs.clinical.concept"    
@@ -244,7 +244,7 @@ class ClinicalConcept(models.Model):
     contains_id = fields.Many2one(
         comodel_name="hc.vs.clinical.concept", 
         string="Parent",
-        help="Parent concept.")
+        help="Parent clinical concept.")
 
 class ConditionCode(models.Model):
     _name = "hc.vs.condition.code"
@@ -253,14 +253,14 @@ class ConditionCode(models.Model):
 
     name = fields.Char(
         string="Name", 
-        help="Name of this condition.")
+        help="Name of this condition code.")
     code = fields.Char(
         string="Code", 
-        help="Code of this condition.")
+        help="Code of this condition code.")
     contains_id = fields.Many2one(
         comodel_name="hc.vs.condition.code", 
         string="Parent",
-        help="Parent concept.")
+        help="Parent condition code.")
 
 class ConditionOutcome(models.Model):
     _name = "hc.vs.condition.outcome"
@@ -276,7 +276,7 @@ class ConditionOutcome(models.Model):
     contains_id = fields.Many2one(
         comodel_name="hc.vs.condition.outcome", 
         string="Parent",
-        help="Parent concept.")
+        help="Parent condition outcome.")
 
 class DaysOfWeek(models.Model):  
     _name = "hc.vs.days.of.week"  
@@ -292,7 +292,7 @@ class DaysOfWeek(models.Model):
     contains_id = fields.Many2one(
         comodel_name="hc.vs.days.of.week", 
         string="Parent",
-        help="Parent concept.")
+        help="Parent day of week.")
 
 class DefinedType(models.Model):    
     _name = "hc.vs.defined.type"    
@@ -308,7 +308,7 @@ class DefinedType(models.Model):
     contains_id = fields.Many2one(
         comodel_name="hc.vs.defined.type", 
         string="Parent",
-        help="Parent concept.")
+        help="Parent defined type.")
 
 class DemographicAgeGroup(models.Model):    
     _name = "hc.vs.demographic.age.group"   
@@ -324,7 +324,7 @@ class DemographicAgeGroup(models.Model):
     contains_id = fields.Many2one(
         comodel_name="hc.vs.demographic.age.group", 
         string="Parent",
-        help="Parent concept.")
+        help="Parent demographic age group.")
 
 class DesignationUse(models.Model):    
     _name = "hc.vs.designation.use"    
@@ -340,7 +340,7 @@ class DesignationUse(models.Model):
     contains_id = fields.Many2one(
         comodel_name="hc.vs.designation.use",
         string="Parent",
-        help="Parent concept.")
+        help="Parent designation use.")
 
 class EncounterParticipantType(models.Model):   
     _name = "hc.vs.encounter.participant.type"  
@@ -356,7 +356,7 @@ class EncounterParticipantType(models.Model):
     contains_id = fields.Many2one(
         comodel_name="hc.vs.encounter.participant.type",
         string="Parent",
-        help="Parent concept.")
+        help="Parent participant type.")
 
 class EncounterReason(models.Model):    
     _name = "hc.vs.encounter.reason"    
@@ -372,7 +372,7 @@ class EncounterReason(models.Model):
     contains_id = fields.Many2one(
         comodel_name="hc.vs.encounter.reason",
         string="Parent",
-        help="Parent concept.")
+        help="Parent encounter reason.")
 
 class Ethnicity(models.Model):  
     _name = "hc.vs.ethnicity"  
@@ -388,7 +388,7 @@ class Ethnicity(models.Model):
     contains_id = fields.Many2one(
         comodel_name="hc.vs.ethnicity",
         string="Parent",
-        help="Parent concept.")
+        help="Parent ethnicity.")
 
 class FormatCode(models.Model): 
     _name = "hc.vs.format.code" 
@@ -397,14 +397,14 @@ class FormatCode(models.Model):
 
     name = fields.Char(
         string="Name", 
-        help="Name of this format.")
+        help="Name of this format code.")
     code = fields.Char(
         string="Code", 
-        help="Code of this format.")
+        help="Code of this format code.")
     contains_id = fields.Many2one(
         comodel_name="hc.vs.format.code",
         string="Parent",
-        help="Parent concept.")
+        help="Parent format code.")
 
 class FormCode(models.Model):   
     _name = "hc.vs.form.code"   
@@ -436,7 +436,7 @@ class Forms(models.Model):
     contains_id = fields.Many2one(
         comodel_name="hc.vs.forms",
         string="Parent",
-        help="Parent concept.")
+        help="Parent form.")
 
 class Jurisdiction(models.Model):   
     _name = "hc.vs.jurisdiction"    
@@ -452,7 +452,7 @@ class Jurisdiction(models.Model):
     contains_id = fields.Many2one(
         comodel_name="hc.vs.jurisdiction",
         string="Parent",
-        help="Parent concept.")  
+        help="Parent jurisdiction.")  
 
 class MaritalStatus(models.Model):  
     _name = "hc.vs.marital.status"  
@@ -468,7 +468,7 @@ class MaritalStatus(models.Model):
     contains_id = fields.Many2one(
         comodel_name="hc.vs.marital.status",
         string="Parent",
-        help="Parent concept.")
+        help="Parent marital status.")
 
 class MedicationAsNeededReason(models.Model):    
     _name = "hc.vs.medication.as.needed.reason"    
@@ -484,7 +484,7 @@ class MedicationAsNeededReason(models.Model):
     contains_id = fields.Many2one(
         comodel_name="hc.vs.medication.as.needed.reason",
         string="Parent",
-        help="Parent concept.")
+        help="Parent medication as needed reason.")
 
 class MessageEvent(models.Model):    
     _name = "hc.vs.message.event"    
@@ -500,7 +500,7 @@ class MessageEvent(models.Model):
     contains_id = fields.Many2one(
         comodel_name="hc.vs.message.event",
         string="Parent",
-        help="Parent concept.")
+        help="Parent message event.")
     
 class OccupationCode(models.Model):  
     _name = "hc.vs.occupation.code"  
@@ -509,14 +509,14 @@ class OccupationCode(models.Model):
 
     name = fields.Char(
         string="Name", 
-        help="Name of this occupation.")
+        help="Name of this occupation code.")
     code = fields.Char(
         string="Code", 
-        help="Code of this occupation.")
+        help="Code of this occupation code.")
     contains_id = fields.Many2one(
         comodel_name="hc.vs.occupation.code",
         string="Parent",
-        help="Parent concept.")
+        help="Parent occupation code.")
 
 class ParticipantRole(models.Model):    
     _name = "hc.vs.participant.role"    
@@ -532,7 +532,7 @@ class ParticipantRole(models.Model):
     contains_id = fields.Many2one(
         comodel_name="hc.vs.participant.role",
         string="Parent",
-        help="Parent concept.")
+        help="Parent participant role.")
 
 class ParticipationType(models.Model): 
     _name = "hc.vs.participation.type" 
@@ -548,7 +548,7 @@ class ParticipationType(models.Model):
     contains_id = fields.Many2one(
         comodel_name="hc.vs.participation.type", 
         string="Parent",
-        help="Parent concept.")
+        help="Parent participation type.")
 
 class PurposeOfUse(models.Model):    
     _name = "hc.vs.purpose.of.use"    
@@ -564,7 +564,7 @@ class PurposeOfUse(models.Model):
     contains_id = fields.Many2one(
         comodel_name="hc.vs.purpose.of.use",
         string="Parent",
-        help="Parent concept.")
+        help="Parent purpose of use")
 
 class Race(models.Model):  
     _name = "hc.vs.race"  
@@ -580,7 +580,7 @@ class Race(models.Model):
     contains_id = fields.Many2one(
         comodel_name="hc.vs.race",
         string="Parent",
-        help="Parent concept.")  
+        help="Parent race.")  
 
 class RequestPriority(models.Model):    
     _name = "hc.vs.request.priority"    
@@ -596,7 +596,7 @@ class RequestPriority(models.Model):
     contains_id = fields.Many2one(
         comodel_name="hc.vs.request.priority",
         string="Parent",
-        help="Parent concept.")
+        help="Parent request priority.")
 
 class ResourceType(models.Model):   
     _name = "hc.vs.resource.type"   
@@ -612,7 +612,7 @@ class ResourceType(models.Model):
     contains_id = fields.Many2one(
         comodel_name="hc.vs.resource.type",
         string="Parent",
-        help="Parent concept.")
+        help="Parent resource type.")
 
 class RouteCode(models.Model): 
     _name = "hc.vs.route.code" 
@@ -621,10 +621,10 @@ class RouteCode(models.Model):
 
     name = fields.Char(
         string="Name", 
-        help="Name of this route.")
+        help="Name of this route code.")
     code = fields.Char(
         string="Code", 
-        help="Code of this route.")
+        help="Code of this route code.")
     contains_id = fields.Many2one(
         comodel_name="hc.vs.route.code",
         string="Parent",
@@ -644,7 +644,7 @@ class Ruleset(models.Model):
     contains_id = fields.Many2one(
         comodel_name="hc.vs.ruleset",
         string="Parent",
-        help="Parent concept.")
+        help="Parent ruleset.")
 
 class SecurityLabel(models.Model):  
     _name = "hc.vs.security.label"  
@@ -660,7 +660,7 @@ class SecurityLabel(models.Model):
     contains_id = fields.Many2one(
         comodel_name="hc.vs.security.label",
         string="Parent",
-        help="Parent concept.")
+        help="Parent security label.")
 
 class SubstanceCode(models.Model):  
     _name = "hc.vs.substance.code"  
@@ -669,14 +669,14 @@ class SubstanceCode(models.Model):
 
     name = fields.Char(
         string="Name", 
-        help="Name of this substance.")
+        help="Name of this substance code.")
     code = fields.Char(
         string="Code", 
-        help="Code of this substance.")
+        help="Code of this substance code.")
     contains_id = fields.Many2one(
         comodel_name="hc.vs.substance.code",
         string="Parent",
-        help="Parent concept.")
+        help="Parent substance code.")
 
 class TimeUOM(models.Model): 
     _name = "hc.vs.time.uom" 
@@ -692,7 +692,7 @@ class TimeUOM(models.Model):
     contains_id = fields.Many2one(
         comodel_name="hc.vs.time.uom",
         string="Parent",
-        help="Parent concept.")
+        help="Parent time unit of measure.")
 
 class UserType(models.Model):   
     _name = "hc.vs.user.type"   
@@ -708,7 +708,7 @@ class UserType(models.Model):
     contains_id = fields.Many2one(
         comodel_name="hc.vs.user.type",
         string="Parent",
-        help="Parent concept.")
+        help="Parent user type.")
 
 class WorkflowSetting(models.Model):    
     _name = "hc.vs.workflow.setting"    
@@ -724,7 +724,7 @@ class WorkflowSetting(models.Model):
     contains_id = fields.Many2one(
         comodel_name="hc.vs.workflow.setting",
         string="Parent",
-        help="Parent concept.")
+        help="Parent workflow setting.")
 
 class WorkflowTask(models.Model):   
     _name = "hc.vs.workflow.task"   
@@ -740,4 +740,4 @@ class WorkflowTask(models.Model):
     contains_id = fields.Many2one(
         comodel_name="hc.vs.workflow.task",
         string="Parent",
-        help="Parent concept.")
+        help="Parent workflow task.")

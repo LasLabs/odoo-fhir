@@ -275,7 +275,7 @@ class ActivityDefinitionContributor(models.Model):
 class ActivityDefinitionDosageInstruction(models.Model):    
     _name = "hc.activity.definition.dosage.instruction" 
     _description = "Activity Definition Dosage Instruction"     
-    _inherit = ["hc.basic.association", "hc.dosage.instruction"]
+    _inherit = ["hc.basic.association", "hc.dosage"]
 
     activity_definition_id = fields.Many2one(
         comodel_name="hc.res.activity.definition", 
