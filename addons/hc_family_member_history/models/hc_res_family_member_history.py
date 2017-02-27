@@ -179,6 +179,16 @@ class FamilyMemberHistory(models.Model):
     deceased_string = fields.Text(
         string="Deceased", 
         help="String of dead? how old/when?")
+    reason_code_ids = fields.Many2many(
+        comodel_name="hc.vs.clinical.finding", 
+        relation="family_member_history_reason_code_rel", 
+        string="Reason Codes", 
+        help="Why was family member history performed?.")
+    reason_reference_ids = fields.One2many(
+        comodel_name="hc.family.member.history.reason.reference", 
+        inverse_name="family_member_history_id", 
+        string="Reason References", 
+        help="Why was family member history performed?.")
     note_ids = fields.One2many(
         comodel_name="hc.family.member.history.note", 
         inverse_name="family_member_history_id", 
@@ -261,6 +271,45 @@ class FamilyMemberHistoryIdentifier(models.Model):
         string="Family Member History", 
         help="Family Member History associated with this Family Member Identifier.")              
                  
+class FamilyMemberHistoryFamilyMemberHistoryReasonReference(models.Model):  
+    _name = "hc.family.member.history.reason.reference"   
+    _description = "Family Member History Reason Reference"           
+    _inherit = ["hc.basic.association"] 
+    
+    family_member_history_id = fields.Many2one(
+        comodel_name="hc.res.family.member.history", 
+        string="Family Member History", 
+        help="Family Member History associated with this Family Member History Reason Reference.")                      
+    reason_reference_type = fields.Selection(
+        string="Reason Reference Type", 
+        selection=[
+            ("condition", "Condition"), 
+            ("observation", "Observation"), 
+            ("allergy_intolerance", "Allergy Intolerance"), 
+            ("questionnaire_response", "Questionnaire Response")], 
+        help="Type of what is account tied to.")                     
+    reason_reference_name = fields.Char(
+        string="Reason Reference", 
+        compute="_compute_reason_reference_name", 
+        store="True", 
+        help="Why was family member history performed.")                     
+    reason_reference_condition_id = fields.Many2one(
+        comodel_name="hc.res.condition", 
+        string="Reason Reference Condition", 
+        help="Condition account tied to.")                        
+    reason_reference_observation_id = fields.Many2one(
+        comodel_name="hc.res.observation", 
+        string="Reason Reference Observation", 
+        help="Observation account tied to.")                        
+    reason_reference_allergy_intolerance_id = fields.Many2one(
+        comodel_name="hc.res.allergy.intolerance", 
+        string="Reason Reference Allergy Intolerance", 
+        help="Allergy Intolerance account tied to.")                        
+    reason_reference_questionnaire_response_id = fields.Many2one(
+        comodel_name="hc.res.questionnaire.response", 
+        string="Reason Reference Questionnaire Response", 
+        help="Questionnaire Response account tied to.")                        
+
 class FamilyMemberHistoryNote(models.Model):  
     _name = "hc.family.member.history.note"  
     _description = "Family Member History Note"     

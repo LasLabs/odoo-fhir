@@ -430,7 +430,7 @@ class MedicationRequestNote(models.Model):
 class MedicationRequestDosageInstruction(models.Model): 
     _name = "hc.medication.request.dosage.instruction"  
     _description = "Medication Request Dosage Instruction"      
-    _inherit = ["hc.basic.association", "hc.dosage.instruction"]    
+    _inherit = ["hc.basic.association", "hc.dosage"]    
 
     medication_request_id = fields.Many2one(
         comodel_name="hc.res.medication.request", 

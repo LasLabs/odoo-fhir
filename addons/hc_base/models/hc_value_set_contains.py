@@ -342,6 +342,22 @@ class DesignationUse(models.Model):
         string="Parent",
         help="Parent designation use.")
 
+class ClinicalFinding(models.Model):    
+    _name = "hc.vs.clinical.finding"    
+    _description = "Clinical Finding"        
+    _inherit = ["hc.value.set.contains"]
+
+    name = fields.Char(
+        string="Name", 
+        help="Name of this clinical finding.")
+    code = fields.Char(
+        string="Code", 
+        help="Code of this clinical finding.")
+    contains_id = fields.Many2one(
+        comodel_name="hc.vs.clinical.finding", 
+        string="Contains", 
+        help="Parent clinical finding.")
+
 class EncounterParticipantType(models.Model):   
     _name = "hc.vs.encounter.participant.type"  
     _description = "Encounter Participant Type"     

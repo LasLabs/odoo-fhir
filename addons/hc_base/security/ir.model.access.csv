@@ -162,6 +162,8 @@ access_hc_base_hc_element_definition_condition_user,hc.base.hc.element.definitio
 access_hc_base_hc_element_definition_slicing_discriminator_user,hc.base.hc.element.definition.slicing.discriminator.user,model_hc_element_definition_slicing_discriminator,hc_base.group_hc_base_user,1,0,0,0
 access_hc_base_hc_element_definition_type_aggregation_user,hc.base.hc.element.definition.type.aggregation.user,model_hc_element_definition_type_aggregation,hc_base.group_hc_base_user,1,0,0,0
 access_hc_base_hc_vs_element_definition_code_manager,hc.base.hc.vs.element.definition.code.manager,model_hc_vs_element_definition_code,hc_base.group_hc_base_manager,1,1,1,1
+access_hc_base_hc_vs_clinical_finding_manager,hc.base.hc.vs.clinical.finding.manager,model_hc_vs_clinical_finding,hc_base.group_hc_base_manager,1,1,1,1
+
 
 
 

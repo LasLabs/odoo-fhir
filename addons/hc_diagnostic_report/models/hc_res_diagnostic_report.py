@@ -284,15 +284,32 @@ class DiagnosticReportCategory(models.Model):
     _description = "Diagnostic Report Category"        
     _inherit = ["hc.value.set.contains"]
 
+    name = fields.Char(
+        string="Name", 
+        help="Name of this diagnostic report category.")
+    code = fields.Char(
+        string="Code", 
+        help="Code of this diagnostic report category.")
+    contains_id = fields.Many2one(
+        comodel_name="hc.vs.diagnostic.report.category", 
+        string="Contains", 
+        help="Parent diagnostic report category.")
+
 class DiagnosticReportCode(models.Model):    
     _name = "hc.vs.diagnostic.report.code"    
     _description = "Diagnostic Report Code"        
     _inherit = ["hc.value.set.contains"]
 
-class ClinicalFinding(models.Model):    
-    _name = "hc.vs.clinical.finding"    
-    _description = "Clinical Finding"        
-    _inherit = ["hc.value.set.contains"]
+    name = fields.Char(
+        string="Name", 
+        help="Name of this diagnostic report code.")
+    code = fields.Char(
+        string="Code", 
+        help="Code of this diagnostic report code.")
+    contains_id = fields.Many2one(
+        comodel_name="hc.vs.diagnostic.report.code", 
+        string="Contains", 
+        help="Parent diagnostic report code.")
 
 # External Reference
 
