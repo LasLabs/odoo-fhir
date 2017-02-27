@@ -5,14 +5,14 @@ from openerp import models, fields, api
 class FamilyMemberHistory(models.Model):    
     _name = "hc.res.family.member.history"  
     _description = "Family Member History"          
-    _inherits = {"hc.res.person": "person_id"}
+    # _inherits = {"hc.res.person": "person_id"}
 
-    person_id = fields.Many2one(
-        comodel_name="hc.res.person",
-        string="Person",
-        required="True",
-        ondelete="restrict",
-        help="Person who is this Family Member.")
+    # person_id = fields.Many2one(
+    #     comodel_name="hc.res.person",
+    #     string="Person",
+    #     required="True",
+    #     ondelete="restrict",
+    #     help="Person who is this Family Member.")
     identifier_ids = fields.One2many(
         comodel_name="hc.family.member.history.identifier", 
         inverse_name="family_member_history_id", 
@@ -69,13 +69,33 @@ class FamilyMemberHistory(models.Model):
         string="Update Date", 
         help="When history was updated.")                                        
     name = fields.Char(
-        string="Name", 
-        help="The family member described.")                  
+        string="name",
+        readonly="1", 
+        help="The family member described (e.g., 'My aunt Agatha', 'uncle'.")                  
     relationship_id = fields.Many2one(
         comodel_name="hc.vs.v3.family.member", 
         string="Relationship", 
         required="True", 
-        help="Relationship to the subject.")                    
+        help="Relationship to the subject.")
+    # gender = fields.Selection(
+    #     related="person_id.gender",
+    #     readonly="1",
+    #     help="The gender a family member used for administrative purposes.")
+    # born = fields.Char(
+    #     string="Birth Date",
+    #     related="person_id.born_name",
+    #     readonly="1",
+    #     help="(approximate) date of birth.")
+    # age = fields.Char(
+    #     string="Age",
+    #     related="person_id.age_name", 
+    #     readonly="1", 
+    #     help="(approximate) age.")
+    # deceased = fields.Char(
+    #     string="Deceased Age",
+    #     related="person_id.deceased_name", 
+    #     readonly="1", 
+    #     help="Dead? How old/when?.")
     gender = fields.Selection(
         string="Gender", 
         selection=[
@@ -95,11 +115,11 @@ class FamilyMemberHistory(models.Model):
         string="Born", 
         compute="compute_born_name", 
         help="Date of birth.")                 
-    earliest_birth_date = fields.Date(
-        string="Earliest Birth Date", 
+    earliest_born_date = fields.Date(
+        string="Earliest Born Date", 
         help="Earliest approximate date of birth.")                   
-    latest_birth_date = fields.Date(
-        string="Latest Birth Date", 
+    latest_born_date = fields.Date(
+        string="Latest Born Date", 
         help="Latest approximate date of birth.")                 
     born_date = fields.Date(
         string="Born Date", 
@@ -142,24 +162,24 @@ class FamilyMemberHistory(models.Model):
     is_deceased = fields.Boolean(
         string="Deceased", 
         help="Dead? How old/when?.")                    
-    is_deceased_age_known = fields.Boolean(
-        string="Is Deceased Age Known", 
-        help="Deceased age known?")  
+    # is_deceased_age_known = fields.Boolean(
+    #     string="Is Deceased Age Known", 
+    #     help="Deceased age known?")  
     deceased_type = fields.Selection(
-        string="Deceased Type", 
+        string="Deceased Age Type", 
         selection=[
-            ("boolean", "Boolean"), 
-            ("Age", "Age"), 
-            ("Range", "Range"), 
+            ("age", "Age"), 
+            ("range", "Range"), 
             ("date", "Date"), 
             ("string", "String")], 
+        default="date",
         help="Type of dead? how old/when.")                   
     deceased_name = fields.Char(
-        string="Deceased", 
-        compute="compute_deceased_name", 
+        string="Deceased Age", 
+        compute="_compute_deceased_age_name", 
         help="Dead? How old/when.")                                  
     deceased_age = fields.Integer(
-        string="Deceased Age", 
+        string="Deceased Age Integer", 
         size=3, 
         help="Dead? How old/when?.")
     deceased_age_uom_id = fields.Many2one(
@@ -199,6 +219,50 @@ class FamilyMemberHistory(models.Model):
         inverse_name="family_member_history_id", 
         string="Conditions", 
         help="Condition that the related person had.")
+
+    # @api.multi          
+    # @api.depends('definition_plan_definition_id', 'definition_questionnaire_id')
+    @api.depends('definition_type')            
+    def _compute_definition_name(self):         
+        for hc_res_family_member_history in self:       
+            if hc_res_family_member_history.definition_type == 'plan_definition':   
+                hc_res_family_member_history.definition_name = hc_res_family_member_history.definition_plan_definition_id.name
+            elif hc_res_family_member_history.definition_type == 'questionnaire':   
+                hc_res_family_member_history.definition_name = hc_res_family_member_history.definition_questionnaire_id.name
+
+    @api.depends('born_type')           
+    def _compute_born_name(self):           
+        for hc_res_family_member_history in self:      
+            if hc_res_family_member_history.born_type == 'period':   
+                hc_res_family_member_history.born_name = 'Between' + str(hc_res_family_member_history.earliest_born_date) + ' and ' + str(hc_res_family_member_history.latest_born_date)
+            elif hc_res_family_member_history.born_type == 'date': 
+                hc_res_family_member_history.born_name = str(hc_res_family_member_history.born_date)
+            elif hc_res_family_member_history.born_type == 'string':   
+                hc_res_family_member_history.born_name = hc_res_family_member_history.born_string
+
+    @api.multi          
+    @api.depends('age_type')            
+    def _compute_age_name(self):            
+        for hc_res_family_member_history in self:      
+            if hc_res_family_member_history.age_type == 'age': 
+                hc_res_family_member_history.age_name = str(hc_res_family_member_history.age_age) + ' ' + hc_res_family_member_history.age_age_uom_id.name
+            elif hc_res_family_member_history.age_type == 'range': 
+                hc_res_family_member_history.age_name = 'Between' + str(hc_res_family_member_history.age_age_range_low) + ' and ' + str(hc_res_family_member_history.age_age_range_high)
+            elif hc_res_family_member_history.age_type == 'string':    
+                hc_res_family_member_history.age_name = hc_res_family_member_history.age_string
+
+    # @api.multi          
+    @api.depends('deceased_type')         
+    def _compute_deceased_age_name(self):           
+        for hc_res_family_member_history in self:      
+            if hc_res_family_member_history.deceased_type == 'age':  
+                hc_res_family_member_history.deceased_name = str(hc_res_family_member_history.deceased_age) + ' ' + hc_res_family_member_history.deceased_age_uom_id.name
+            elif hc_res_family_member_history.deceased_type == 'range':    
+                hc_res_family_member_history.deceased_name = 'Between' + str(hc_res_family_member_history.deceased_age_range_low) + ' and ' + str(hc_res_family_member_history.deceased_age_range_high)
+            elif hc_res_family_member_history.deceased_type == 'date': 
+                hc_res_family_member_history.deceased_name = str(hc_res_family_member_history.deceased_date)
+            elif hc_res_family_member_history.deceased_type == 'string': 
+                hc_res_family_member_history.deceased_name = hc_res_family_member_history.deceased_string
 
 class FamilyMemberHistoryCondition(models.Model):   
     _name = "hc.family.member.history.condition"    
@@ -309,6 +373,22 @@ class FamilyMemberHistoryFamilyMemberHistoryReasonReference(models.Model):
         comodel_name="hc.res.questionnaire.response", 
         string="Reason Reference Questionnaire Response", 
         help="Questionnaire Response account tied to.")                        
+
+    @api.multi          
+    @api.depends('reason_reference_condition_id', 'reason_reference_observation_id', 'reason_reference_allergy_intolerance_id', 'reason_reference_questionnaire_response_id')           
+    def _compute_reason_reference_name(self):           
+        for hc_family_member_history_reason_reference in self:      
+            if hc_family_member_history_reason_reference.reason_reference_type == 'condition':  
+                hc_family_member_history_reason_reference.reason_reference_name = hc_family_member_history_reason_reference.reason_reference_condition_id.name
+            elif hc_family_member_history_reason_reference.reason_reference_type == 'observation':  
+                hc_family_member_history_reason_reference.reason_reference_name = hc_family_member_history_reason_reference.reason_reference_observation_id.name
+            elif hc_family_member_history_reason_reference.reason_reference_type == 'allergy_intolerance':  
+                hc_family_member_history_reason_reference.reason_reference_name = hc_family_member_history_reason_reference.reason_reference_allergy_intolerance_id.name
+            elif hc_family_member_history_reason_reference.reason_reference_type == 'questionnaire_response':   
+                hc_family_member_history_reason_reference.reason_reference_name = hc_family_member_history_reason_reference.reason_reference_questionnaire_response_id.name
+
+
+
 
 class FamilyMemberHistoryNote(models.Model):  
     _name = "hc.family.member.history.note"  
