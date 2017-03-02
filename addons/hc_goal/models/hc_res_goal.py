@@ -269,25 +269,48 @@ class GoalDescription(models.Model):
     _description = "Goal Description"        
     _inherit = ["hc.value.set.contains"]
 
+    name = fields.Char(
+        string="Name", 
+        help="Name of this goal description.")
+    code = fields.Char(
+        string="Code", 
+        help="Code of this goal description.")
+    contains_id = fields.Many2one(
+        comodel_name="hc.vs.goal.description", 
+        string="Contains", 
+        help="Parent goal description.")
+
 class GoalOutcomeResult(models.Model):    
     _name = "hc.vs.goal.outcome.result"    
     _description = "Goal Outcome Result"        
     _inherit = ["hc.value.set.contains"]
 
-class GoalStartEvent(models.Model):    
-    _name = "hc.vs.goal.start.event"    
-    _description = "Goal Start Event"        
-    _inherit = ["hc.value.set.contains"]
-
-class GoalCategory(models.Model):    
-    _name = "hc.vs.goal.category"    
-    _description = "Goal Category"        
-    _inherit = ["hc.value.set.contains"]
+    name = fields.Char(
+        string="Name", 
+        help="Name of this goal outcome result.")
+    code = fields.Char(
+        string="Code", 
+        help="Code of this goal outcome result.")
+    contains_id = fields.Many2one(
+        comodel_name="hc.vs.goal.outcome.result", 
+        string="Contains", 
+        help="Parent goal outcome result.")
 
 class GoalStatusReason(models.Model):    
     _name = "hc.vs.goal.status.reason"    
     _description = "Goal Status Reason"        
     _inherit = ["hc.value.set.contains"]
+
+    name = fields.Char(
+        string="Name", 
+        help="Name of this goal status reason.")
+    code = fields.Char(
+        string="Code", 
+        help="Code of this goal status reason.")
+    contains_id = fields.Many2one(
+        comodel_name="hc.vs.goal.status.reason", 
+        string="Contains", 
+        help="Parent goal status reason.")
 
 # External reference
 

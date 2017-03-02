@@ -37,6 +37,9 @@ class ActivityDefinition(models.Model):
     date = fields.Datetime(
         string="Date", 
         help="Date this was last changed.")
+    publisher = fields.Char(
+        string="Publisher", 
+        help="Name of the publisher (Organization or individual).")
     description = fields.Text(
         string="Description", 
         help="Natural language description of the activity definition.")                    
@@ -52,10 +55,10 @@ class ActivityDefinition(models.Model):
     last_review_date = fields.Date(
         string="Last Review Date", 
         help="Last review date for the activity definition.")                    
-    start_date = fields.Datetime(
+    effective_period_start_date = fields.Datetime(
         string="Effective Period Start Date", 
         help="Start of the effective date range for the asset.")                    
-    end_date = fields.Datetime(
+    effective_period_end_date = fields.Datetime(
         string="Effective Period End Date", 
         help="End of the effective date range for the asset.")                    
     use_context_ids = fields.One2many(
@@ -77,10 +80,7 @@ class ActivityDefinition(models.Model):
         comodel_name="hc.activity.definition.contributor", 
         inverse_name="activity_definition_id", 
         string="Contributors", 
-        help="A content contributor.")                    
-    publisher = fields.Char(
-        string="Publisher", 
-        help="Name of the publisher (Organization or individual).")                    
+        help="A content contributor.")                                        
     contact_ids = fields.One2many(
         comodel_name="hc.activity.definition.contact", 
         inverse_name="activity_definition_id", 
@@ -99,23 +99,10 @@ class ActivityDefinition(models.Model):
         inverse_name="activity_definition_id", 
         string="Libraries", 
         help="Logic used by the asset.")                  
-    category = fields.Selection(
-        string="Category",
-        selection=[
-            ("communication", "Communication"), 
-            ("device", "Device"),
-            ("diagnostic", "Diagnostic"),
-            ("diet", "Diet"),
-            ("drug", "Drug"),
-            ("encounter", "Encounter"),
-            ("immunization", "Immunization"),
-            ("observation", "Observation"),
-            ("procedure", "Procedure"),
-            ("referral", "Referral"),
-            ("supply", "Supply"),
-            ("vision", "Vision"),
-            ("other", "Other")],  
-        help="High-level categorization of the type of activity.")                    
+    kind_id = fields.Many2one(
+        comodel_name="hc.vs.resource.type", 
+        string="Kind", 
+        help="Kind of resource.")                   
     code_id = fields.Many2one(
         comodel_name="hc.vs.activity.definition.code", 
         string="Code", help="Detail type of activity.")                    
@@ -141,11 +128,7 @@ class ActivityDefinition(models.Model):
     location_id = fields.Many2one(
         comodel_name="hc.res.location", 
         string="Location", 
-        help="Where it should happen.")                    
-    participant_type = fields.Many2many(
-        comodel_name="hc.vs.action.participant.type", 
-        string="Participant Types", 
-        help="The type of participant in the action.")                    
+        help="Where it should happen.")                                        
     product_type = fields.Selection(
         string="Product Type", 
         selection=[
@@ -177,8 +160,8 @@ class ActivityDefinition(models.Model):
         comodel_name="product.uom", 
         string="Quantity UOM", 
         help="Quantity unit of measure.")                    
-    dosage_instruction_ids = fields.One2many(
-        comodel_name="hc.activity.definition.dosage.instruction", 
+    dosage_ids = fields.One2many(
+        comodel_name="hc.activity.definition.dosage", 
         inverse_name="activity_definition_id", 
         string="Dosage Instructions", 
         help="Detailed dosage instructions.")                    
@@ -191,12 +174,38 @@ class ActivityDefinition(models.Model):
         comodel_name="hc.res.structure.map", 
         string="Transform", 
         help="Transform to apply the template.")
+    participant_ids = fields.One2many(
+        comodel_name="hc.activity.definition.participant", 
+        inverse_name="activity_definition_id", 
+        string="Participants", 
+        help="Who should participate in the action.")
     dynamic_value_ids = fields.One2many(
         comodel_name="hc.activity.definition.dynamic.value", 
         inverse_name="activity_definition_id", 
         string="Dynamic Values", 
         help="Dynamic aspects of the definition.")
-                    
+
+class ActivityDefinitionParticipant(models.Model):  
+    _name = "hc.activity.definition.participant"    
+    _description = "Activity Definition Participant"    
+
+    activity_definition_id = fields.Many2one(
+        comodel_name="hc.res.activity.definition", 
+        string="Activity Definition", 
+        help="Activity Definition associated with this Participant.")         
+    type = fields.Selection(
+        string="Participant Type", 
+        required="True", 
+        selection=[
+            ("patient", "Patient"), 
+            ("practitioner", "Practitioner"), 
+            ("related-person", "Related Person")], 
+        help="The type of participant in the action.")          
+    role_id = fields.Many2one(
+        comodel_name="hc.vs.action.participant.role", 
+        string="Role", 
+        help="E.g. Nurse, Surgeon, Parent, etc.")            
+           
 class ActivityDefinitionDynamicValue(models.Model):    
     _name = "hc.activity.definition.dynamic.value"    
     _description = "Activity Definition Dynamic Value"            
@@ -272,9 +281,9 @@ class ActivityDefinitionContributor(models.Model):
         string="Activity Definition", 
         help="Activity Definition associated with this Activity Definition Contributor.")             
 
-class ActivityDefinitionDosageInstruction(models.Model):    
-    _name = "hc.activity.definition.dosage.instruction" 
-    _description = "Activity Definition Dosage Instruction"     
+class ActivityDefinitionDosage(models.Model):    
+    _name = "hc.activity.definition.dosage" 
+    _description = "Activity Definition Dosage"     
     _inherit = ["hc.basic.association", "hc.dosage"]
 
     activity_definition_id = fields.Many2one(
@@ -309,29 +318,70 @@ class ActivityDefinitionRelatedArtifact(models.Model):
 class ActivityDefinitionTiming(models.Model):   
     _name = "hc.activity.definition.timing" 
     _description = "Activity Definition Timing"     
-    _inherit = ["hc.basic.association", "hc.timing"]
-
-class ActionParticipantType(models.Model):  
-    _name = "hc.vs.action.participant.type" 
-    _description = "Action Participant Type"        
-    _inherit = ["hc.value.set.contains"]
+    _inherit = ["hc.basic.association", "hc.timing"]    
 
 class ActivityDefinitionCode(models.Model): 
     _name = "hc.vs.activity.definition.code"    
     _description = "Activity Definition Code"       
     _inherit = ["hc.value.set.contains"]
 
+    name = fields.Char(
+        string="Name", 
+        help="Name of this activity definition code.")
+    code = fields.Char(
+        string="Code", 
+        help="Code of this activity definition code.")
+    contains_id = fields.Many2one(
+        comodel_name="hc.vs.activity.definition.code", 
+        string="Contains", 
+        help="Parent activity definition code.")
+
 class ActivityDefinitionProduct(models.Model):  
     _name = "hc.vs.activity.definition.product" 
     _description = "Activity Definition Product"        
     _inherit = ["hc.value.set.contains"]
+
+    name = fields.Char(
+        string="Name", 
+        help="Name of this activity definition product.")
+    code = fields.Char(
+        string="Code", 
+        help="Code of this activity definition product.")
+    contains_id = fields.Many2one(
+        comodel_name="hc.vs.activity.definition.product", 
+        string="Contains", 
+        help="Parent activity definition product.")
 
 class ActivityDefinitionTopic(models.Model):    
     _name = "hc.vs.activity.definition.topic"   
     _description = "Activity Definition Topic"      
     _inherit = ["hc.value.set.contains"]
 
+    name = fields.Char(
+        string="Name", 
+        help="Name of this activity definition topic.")
+    code = fields.Char(
+        string="Code", 
+        help="Code of this activity definition topic.")
+    contains_id = fields.Many2one(
+        comodel_name="hc.vs.activity.definition.topic", 
+        string="Contains", 
+        help="Parent activity definition topic.")
+
 class ActivityDefinitionTimingCode(models.Model):   
     _name = "hc.vs.activity.definition.timing.code" 
     _description = "Activity Definition Timing Code"        
     _inherit = ["hc.value.set.contains"]
+
+    name = fields.Char(
+        string="Name", 
+        help="Name of this activity definition timing code.")
+    code = fields.Char(
+        string="Code", 
+        help="Code of this activity definition timing code.")
+    contains_id = fields.Many2one(
+        comodel_name="hc.vs.activity.definition.timing.code", 
+        string="Contains", 
+        help="Parent activity definition timing code.")
+
+             

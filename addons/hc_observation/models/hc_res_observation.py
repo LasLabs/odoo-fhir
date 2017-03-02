@@ -614,38 +614,99 @@ class ObservationValueSampledData(models.Model):
 
 class ObservationCategory(models.Model):    
     _name = "hc.vs.observation.category"    
-    _description = "Observation Category"        
-    _inherit = ["hc.value.set.contains"]    
+    _description = "Observation Category"           
+    _inherit = ["hc.value.set.contains"]
 
-class ObservationCode(models.Model):    
-    _name = "hc.vs.observation.code"    
-    _description = "Observation Code"        
-    _inherit = ["hc.value.set.contains"]    
+    name = fields.Char(
+        string="Name", 
+        help="Name of this observation category.")                    
+    code = fields.Char(
+        string="Code", 
+        help="Code of this observation category.")                    
+    contains_id = fields.Many2one(
+        comodel_name="hc.vs.observation.category", 
+        string="Contains", 
+        help="Parent observation category.")                                      
 
-class ObservationInterpretation(models.Model):    
-    _name = "hc.vs.observation.interpretation"    
-    _description = "Observation Interpretation"        
-    _inherit = ["hc.value.set.contains"]    
+class ObservationInterpretation(models.Model):  
+    _name = "hc.vs.observation.interpretation"  
+    _description = "Observation Interpretation"         
+    _inherit = ["hc.value.set.contains"]
 
-class ObservationMethod(models.Model):    
-    _name = "hc.vs.observation.method"    
-    _description = "Observation Method"        
-    _inherit = ["hc.value.set.contains"]    
+    name = fields.Char(
+        string="Name", 
+        help="Name of this observation interpretation.")                  
+    code = fields.Char(
+        string="Code", 
+        help="Code of this observation interpretation.")                  
+    contains_id = fields.Many2one(
+        comodel_name="hc.vs.observation.interpretation", 
+        string="Contains", 
+        help="Parent observation interpretation.")                    
 
-class ObservationValueAbsentReason(models.Model):    
-    _name = "hc.vs.observation.value.absent.reason"    
-    _description = "Observation Value Absent Reason"        
-    _inherit = ["hc.value.set.contains"]    
+class ObservationMethod(models.Model):  
+    _name = "hc.vs.observation.method"  
+    _description = "Observation Method"         
+    _inherit = ["hc.value.set.contains"]
 
-class ObservationValueCode(models.Model):    
-    _name = "hc.vs.observation.value.code"    
-    _description = "Observation Value Code"        
-    _inherit = ["hc.value.set.contains"]    
+    name = fields.Char(
+        string="Name", 
+        help="Name of this observation method.")                  
+    code = fields.Char(
+        string="Code", 
+        help="Code of this observation method.")                  
+    contains_id = fields.Many2one(
+        comodel_name="hc.vs.observation.method", 
+        string="Contains", 
+        help="Parent observation method.")                    
 
-class ReferenceRangeMeaning(models.Model):    
-    _name = "hc.vs.reference.range.meaning"    
-    _description = "Reference Range Meaning"        
-    _inherit = ["hc.value.set.contains"]    
+class ObservationValueAbsentReason(models.Model):   
+    _name = "hc.vs.observation.value.absent.reason" 
+    _description = "Observation Value Absent Reason"            
+    _inherit = ["hc.value.set.contains"]
+
+    name = fields.Char(
+        string="Name", 
+        help="Name of this observation value absent reason.")                 
+    code = fields.Char(
+        string="Code", 
+        help="Code of this observation value absent reason.")                 
+    contains_id = fields.Many2one(
+        comodel_name="hc.vs.observation.value.absent.reason", 
+        string="Contains", 
+        help="Parent observation value absent reason.")                  
+
+class ObservationValueCode(models.Model):   
+    _name = "hc.vs.observation.value.code"  
+    _description = "Observation Value Code"         
+    _inherit = ["hc.value.set.contains"]
+
+    name = fields.Char(
+        string="Name", 
+        help="Name of this observation value code.")                  
+    code = fields.Char(
+        string="Code", 
+        help="Code of this observation value code.")                  
+    contains_id = fields.Many2one(
+        comodel_name="hc.vs.observation.value.code", 
+        string="Contains", 
+        help="Parent observation value code.")                    
+
+class ReferenceRangeMeaning(models.Model):  
+    _name = "hc.vs.reference.range.meaning" 
+    _description = "Reference Range Meaning"            
+    _inherit = ["hc.value.set.contains"]
+
+    name = fields.Char(
+        string="Name", 
+        help="Name of this reference range meaning.")                 
+    code = fields.Char(
+        string="Code", 
+        help="Code of this reference range meaning.")                 
+    contains_id = fields.Many2one(
+        comodel_name="hc.vs.reference.range.meaning", 
+        string="Contains", 
+        help="Parent reference range meaning.")                   
 
 # External Reference
 

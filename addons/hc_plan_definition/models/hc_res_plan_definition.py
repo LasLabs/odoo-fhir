@@ -44,6 +44,9 @@ class PlanDefinition(models.Model):
     date = fields.Datetime(
         string="Date", 
         help="Date this was last changed.")                    
+    publisher = fields.Char(
+        string="Publisher", 
+        help="Name of the publisher (Organization or individual).")
     description = fields.Text(
         string="Description", 
         help="Natural language description of the plan definition.")                    
@@ -84,10 +87,7 @@ class PlanDefinition(models.Model):
         comodel_name="hc.plan.definition.contributor", 
         inverse_name="plan_definition_id", 
         string="Contributors", 
-        help="A content contributor.")                    
-    publisher = fields.Char(
-        string="Publisher", 
-        help="Name of the publisher (Organization or individual).")                    
+        help="A content contributor.")                                      
     contact_ids = fields.One2many(
         comodel_name="hc.plan.definition.contact", 
         inverse_name="plan_definition_id", 
@@ -106,11 +106,113 @@ class PlanDefinition(models.Model):
         inverse_name="plan_definition_id", 
         string="Libraries", 
         help="Logic used by the plan definition.")                    
+    goal_definition_ids = fields.One2many(
+        comodel_name="hc.plan.definition.goal.definition", 
+        inverse_name="plan_definition_id", 
+        string="Goal Definitions", 
+        help="What the plan is trying to accomplish.")
     action_definition_ids = fields.One2many(
         comodel_name="hc.plan.definition.action.definition", 
         inverse_name="plan_definition_id", 
         string="Action Definitions", 
         help="Action defined by the plan.")                    
+
+class PlanDefinitionGoalDefinition(models.Model):   
+    _name = "hc.plan.definition.goal.definition"    
+    _description = "Plan Definition Goal Definition"
+
+    plan_definition_id = fields.Many2one(
+        comodel_name="hc.res.plan.definition", 
+        string="Plan Definition", 
+        help="Plan Definition associated with this Plan Definition Goal Definition.")     
+    category_id = fields.Many2one(
+        comodel_name="hc.vs.goal.category", 
+        string="Category", 
+        help="E.g. Treatment, dietary, behavioral, etc.")      
+    description_id = fields.Many2one(
+        comodel_name="hc.vs.clinical.finding", 
+        string="Description", 
+        required="True", 
+        help="Code or text describing the goal.")        
+    priority = fields.Selection(
+        string="Priority", 
+        selection=[
+            ("high-priority", "High Priority"), 
+            ("medium-priority", "Medium Priority"), 
+            ("low-priority", "Low Priority")], 
+        help="Identifies the expected level of importance associated with reaching/sustaining the defined goal.")      
+    start_id = fields.Many2one(
+        comodel_name="hc.vs.goal.start.event", 
+        string="Start", 
+        help="When goal pursuit begins.")     
+    addresses_ids = fields.Many2many(
+        comodel_name="hc.vs.condition.code", 
+        relation="plan_definition_goal_definition_addresses_rel", 
+        string="Addresses", 
+        help="What does the goal address.")        
+    documentation_ids = fields.One2many(
+        comodel_name="hc.plan.definition.goal.definition.documentation", 
+        inverse_name="goal_definition_id", 
+        string="Documentations", 
+        help="Supporting documentation for the goal.")     
+    target_ids = fields.One2many(
+        comodel_name="hc.plan.definition.goal.definition.target", 
+        inverse_name="goal_definition_id", 
+        string="Targets", 
+        help="Target outcome for the goal.")        
+
+class PlanDefinitionGoalDefinitionTarget(models.Model): 
+    _name = "hc.plan.definition.goal.definition.target" 
+    _description = "Plan Definition Goal Definition Target"
+
+    goal_definition_id = fields.Many2one(
+        comodel_name="hc.plan.definition.goal.definition", 
+        string="Goal Definition", 
+        help="What the plan is trying to accomplish.")        
+    measure_id = fields.Many2one(
+        comodel_name="hc.vs.observation.code", 
+        string="Measure", 
+        help="The parameter whose value is to be tracked.")       
+    detail_type = fields.Selection(
+        string="Detail Type", 
+        selection=[
+            ("quantity", "Quantity"), 
+            ("range", "Range"), 
+            ("codeable_concept", "Codeable Concept")], 
+        help="Type of the target value to be achieved.")       
+    detail_name = fields.Char(
+        string="Detail", 
+        compute="_compute_detail_name", 
+        store="True", 
+        help="The target value to be achieved.")
+    detail_quantity = fields.Float(
+        string="Detail Quantity", 
+        help="Quantity the target value to be achieved.")
+    detail_quantity_uom_id = fields.Many2one(
+        comodel_name="product.uom", 
+        string="Detail Quantity UOM", 
+        help="Detail Quantity unit of measure.")
+    detail_range_low = fields.Float(
+        string="Detail Range Low", 
+        help="Low limit of the target value to be achieved.")
+    detail_range_high = fields.Float(
+        string="Detail Range High", 
+        help="High limit of the target value to be achieved.")
+    detail_range_uom_id = fields.Many2one(
+        comodel_name="product.uom", 
+        string="Detail Range UOM", 
+        help="Detail Range unit of measure.")
+    detail_code_id = fields.Many2one(
+        comodel_name="hc.vs.goal.definition.target", 
+        string="Detail Code", 
+        help="Code of the target value to be achieved.")
+    due = fields.Float(
+        string="Due", 
+        help="Indicates the timeframe after the start of the goal in which the goal should be met.")
+    due_uom_id = fields.Many2one(
+        comodel_name="hc.vs.time.uom", 
+        string=" UOM", 
+        help="Due unit of measure.")
 
 class PlanDefinitionActionDefinition(models.Model):    
     _name = "hc.plan.definition.action.definition"    
@@ -140,26 +242,81 @@ class PlanDefinitionActionDefinition(models.Model):
         comodel_name="hc.vs.action.code", 
         relation="plan_definition_action_definition_code_rel", 
         string="Codes", 
-        help="The meaning of the action or its sub-actions.")                    
+        help="The meaning of the action or its sub-actions.")
+    reason_ids = fields.Many2many(
+        comodel_name="hc.vs.action.code", 
+        relation="plan_definition_action_definition_reason_rel", 
+        string="Reasons", 
+        help="Why the action should be performed.")       
     documentation_ids = fields.One2many(
         comodel_name="hc.plan.definition.action.definition.documentation", 
         inverse_name="action_definition_id", 
         string="Documentation", 
         help="Supporting documentation for the intended performer of the action.")                    
+    goal_id_ids = fields.One2many(
+        comodel_name="hc.plan.definition.action.definition.goal.id", 
+        inverse_name="action_definition_id", 
+        string="Goal Ids", 
+        help="What goals this action supports.")
     trigger_definition_ids = fields.One2many(
         comodel_name="hc.plan.definition.action.definition.trigger.definition", 
         inverse_name="action_definition_id", 
         string="Trigger Definitions", 
         help="When the action should be triggered.")                    
+    input_ids = fields.One2many(
+        comodel_name="hc.plan.definition.action.definition.input", 
+        inverse_name="action_definition_id", 
+        string="Inputs", 
+        help="Input data requirements.")
+    output_ids = fields.One2many(
+        comodel_name="hc.plan.definition.action.definition.output", 
+        inverse_name="action_definition_id", 
+        string="Outputs", 
+        help="Output data definition.")
+    timing_type = fields.Selection(
+        string="Timing Type", 
+        selection=[
+            ("date_time", "Date Time"), 
+            ("period", "Period"), 
+            ("duration", "Duration"), 
+            ("range", "Range"), 
+            ("timing", "Timing")], 
+        help="Type of when the action should take place.")
+    timing_name = fields.Char(
+        string="Timing", 
+        compute="_compute_timing_name", 
+        store="True", 
+        help="When the action should take place.")
+    timing_date_time = fields.Datetime(
+        string="Timing Date Time", 
+        help="When the action should take place.")
+    timing_start_date = fields.Datetime(
+        string="Timing Start Date", 
+        help="Start of when the action should take place.")
+    timing_end_date = fields.Datetime(
+        string="Timing End Date", 
+        help="End of when the action should take place.")
+    timing_duration = fields.Float(
+        string="Timing Duration", 
+        help="Duration when the action should take place.")
+    timing_duration_uom_id = fields.Many2one(
+        comodel_name="hc.vs.time.uom", 
+        string="Timing Duration UOM", 
+        help="Timing Duration unit of measure.")
+    timing_range_low = fields.Float(
+        string="Timing Range Low", 
+        help="Low limit of when the action should take place.")
+    timing_range_high = fields.Float(
+        string="Timing Range High", 
+        help="High limit of when the action should take place.")
+    timing_range_uom_id = fields.Many2one(
+        comodel_name="product.uom", 
+        string="Timing Range UOM", 
+        help="Timing Range unit of measure.")
     timing_id = fields.Many2one(
         comodel_name="hc.plan.definition.action.definition.timing", 
         string="Timing", 
-        help="When the action should take place.")                    
-    participant_type_ids = fields.One2many(
-        comodel_name="hc.plan.definition.action.definition.participant.type", 
-        inverse_name="action_definition_id", 
-        string="Participant Types", 
-        help="The type of participant in the action.")                    
+        help="When the action should take place.")                 
     type = fields.Selection(
         string="Type", 
         selection=[
@@ -204,14 +361,33 @@ class PlanDefinitionActionDefinition(models.Model):
             ("single", "Single"), 
             ("multiple", "Multiple")], 
         help="Defines whether the action can be selected multiple times.")
-    activity_definition_id = fields.Many2one(
+    definition_type = fields.Selection(
+        string="Definition Type", 
+        selection=[
+            ("activity_definition", "Activity Definition"), 
+            ("plan_definition", "Plan Definition")], 
+        help="Type of time offset for the relationship.")
+    definition_name = fields.Char(
+        string="Definition", 
+        compute="_compute_definition_name", 
+        store="True", 
+        help="Description of the activity to be performed.")
+    definition_activity_definition_id = fields.Many2one(
         comodel_name="hc.res.activity.definition", 
-        string="Activity Definition", 
-        help="Description of the activity to be performed.")                    
-    # transform_id = fields.Many2one(
-    #     comodel_name="hc.res.structure.map", 
-    #     string="Transform", 
-    #     help="Transform to apply the template.")                    
+        string="Definition Activity Definition", 
+        help="Activity Definition description of the activity to be performed.")
+    definition_plan_definition_id = fields.Many2one(
+        comodel_name="hc.res.plan.definition", 
+        string="Definition Plan Definition", 
+        help="Plan Definition description of the activity to be performed.")                  
+    transform_id = fields.Many2one(
+        comodel_name="hc.res.structure.map", 
+        string="Transform", 
+        help="Transform to apply the template.")                    
+    action_definition_id = fields.Many2one(
+        comodel_name="hc.plan.definition.action.definition", 
+        string="Action Definition", 
+        help="A sub-action.")                    
     condition_ids = fields.One2many(
         comodel_name="hc.plan.definition.action.definition.condition", 
         inverse_name="action_definition_id", 
@@ -222,15 +398,16 @@ class PlanDefinitionActionDefinition(models.Model):
         inverse_name="action_definition_id", 
         string="Related Actions", 
         help="Relationship to another action.")                    
+    participant_ids = fields.One2many(
+        comodel_name="hc.plan.definition.action.definition.participant", 
+        inverse_name="action_definition_id", 
+        string="Participants", 
+        help="Who should participate in the action.")
     dynamic_value_ids = fields.One2many(
         comodel_name="hc.plan.definition.action.definition.dynamic.value", 
         inverse_name="action_definition_id", 
         string="Dynamic Values", 
         help="Dynamic aspects of the definition.")                    
-    action_definition_id = fields.Many2one(
-        comodel_name="hc.plan.definition.action.definition", 
-        string="Action Definition", 
-        help="A sub-action.")                    
 
 class PlanDefinitionActionDefinitionCondition(models.Model):    
     _name = "hc.plan.definition.action.definition.condition"    
@@ -276,16 +453,64 @@ class PlanDefinitionActionDefinitionRelatedAction(models.Model):
         required="True", 
         selection=[
             ("before-start", "Before Start"), 
-            ("before", "Before"), ("before-end", "Before End"), 
+            ("before", "Before"), 
+            ("before-end", "Before End"), 
             ("concurrent-with-start", "Concurrent With Start"), 
             ("concurrent", "Concurrent"), 
             ("concurrent-with-end", "Concurrent With End"), 
-            ("after-start", "After-Start"), ("after", "After"), 
+            ("after-start", "After-Start"), 
+            ("after", "After"), 
             ("after-end", "After End")], 
         help="The relationship of this action to the related action.")
-    offset = fields.Float(
+    offset_type = fields.Selection(
+        string="Offset Type", 
+        selection=[
+            ("duration", "Duration"), 
+            ("range", "Range")], 
+        help="Type of time offset for the relationship.")
+    offset_name = fields.Char(
         string="Offset", 
-        help="Duration time offset for the relationship.")                    
+        compute="_compute_offset_name", 
+        store="True", 
+        help="Time offset for the relationship.")
+    offset_duration = fields.Float(
+        string="Offset Duration", 
+        help="Duration time offset for the relationship.")
+    offset_duration_uom_id = fields.Many2one(
+        comodel_name="hc.vs.time.uom", 
+        string="Offset Duration UOM", 
+        help="Offset Duration unit of measure.")
+    offset_range_low = fields.Float(
+        string="Offset Range Low", 
+        help="Low limit of time offset for the relationship.")
+    offset_range_high = fields.Float(
+        string="Offset Range High", 
+        help="High limit of time offset for the relationship.")
+    offset_range_uom_id = fields.Many2one(
+        comodel_name="product.uom", 
+        string="Offset Range UOM", 
+        help="Offset Range unit of measure.")
+                   
+class PlanDefinitionActionDefinitionParticipant(models.Model):
+    _name = "hc.plan.definition.action.definition.participant"    
+    _description = "Plan Definition Action Definition Participant"
+
+    action_definition_id = fields.Many2one(
+        comodel_name="hc.plan.definition.action.definition", 
+        string="Action Definition", 
+        help="Action defined by the plan.")
+    type = fields.Selection(
+        string="Participant Type", 
+        required="True", 
+        selection=[
+            ("patient", "Patient"), 
+            ("practitioner", "Practitioner"), 
+            ("related-person", "Related Person")], 
+        help="The type of participant in the action.")
+    role_id = fields.Many2one(
+        comodel_name="hc.vs.action.participant.role", 
+        string="Role", 
+        help="E.g. Nurse, Surgeon, Parent, etc.")
 
 class PlanDefinitionActionDefinitionDynamicValue(models.Model):    
     _name = "hc.plan.definition.action.definition.dynamic.value"    
@@ -391,6 +616,16 @@ class PlanDefinitionActionDefinitionActionIdentifier(models.Model):
     _description = "Plan Definition Action Definition Action Identifier"        
     _inherit = ["hc.basic.association", "hc.identifier"]    
 
+class PlanDefinitionGoalDefinitionDocumentation(models.Model):  
+    _name = "hc.plan.definition.goal.definition.documentation"  
+    _description = "Plan Definition Goal Definition Documentation"          
+    _inherit = ["hc.basic.association", "hc.related.artifact"]
+
+    goal_definition_id = fields.Many2one(
+        comodel_name="hc.plan.definition.goal.definition", 
+        string="Goal Definition", 
+        help="Goal Definition associated with this Plan Definition Goal Definition Documentation.")             
+
 class PlanDefinitionActionDefinitionDocumentation(models.Model):    
     _name = "hc.plan.definition.action.definition.documentation"    
     _description = "Plan Definition Action Definition Documentation"        
@@ -400,6 +635,19 @@ class PlanDefinitionActionDefinitionDocumentation(models.Model):
         comodel_name="hc.plan.definition.action.definition", 
         string="Action Definition", 
         help="Action Definition associated with this Plan Definition Action Definition Documentation.")                    
+
+class PlanDefinitionActionDefinitionGoalId(models.Model):   
+    _name = "hc.plan.definition.action.definition.goal.id"  
+    _description = "Plan Definition Action Definition Goal Id"          
+    _inherit = ["hc.basic.association"]
+
+    action_definition_id = fields.Many2one(
+        comodel_name="hc.plan.definition.action.definition", 
+        string="Action Definition", 
+        help="Action Definition associated with this Plan Definition Action Definition Goal Id.")
+    goal_id = fields.Text(
+        string="Goal Id", 
+        help="Goal Id associated with this Plan Definition Action Definition Goal Id.")
 
 class PlanDefinitionActionDefinitionTriggerDefinition(models.Model):    
     _name = "hc.plan.definition.action.definition.trigger.definition"    
@@ -411,40 +659,64 @@ class PlanDefinitionActionDefinitionTriggerDefinition(models.Model):
         string="Action Definition", 
         help="Action Definition associated with this Plan Definition Action Definition Trigger Definition.")                    
 
+class PlanDefinitionActionDefinitionInput(models.Model):    
+    _name = "hc.plan.definition.action.definition.input"    
+    _description = "Plan Definition Action Definition Input"            
+    _inherit = ["hc.basic.association", "hc.data.requirement"]
+
+    action_definition_id = fields.Many2one(
+        comodel_name="hc.plan.definition.action.definition", 
+        string="Action Definition", 
+        help="Action Definition associated with this Plan Definition Action Definition Input.")                 
+
+class PlanDefinitionActionDefinitionOutput(models.Model):   
+    _name = "hc.plan.definition.action.definition.output"   
+    _description = "Plan Definition Action Definition Output"           
+    _inherit = ["hc.basic.association", "hc.data.requirement"]
+
+    action_definition_id = fields.Many2one(
+        comodel_name="hc.plan.definition.action.definition", 
+        string="Action Definition", 
+        help="Action Definition associated with this Plan Definition Action Definition Output.")                    
+
 class PlanDefinitionActionDefinitionTiming(models.Model):    
     _name = "hc.plan.definition.action.definition.timing"    
     _description = "Plan Definition Action Definition Timing"        
-    _inherit = ["hc.basic.association", "hc.timing"]    
-
-    action_definition_id = fields.Many2one(
-        comodel_name="hc.plan.definition.action.definition", 
-        string="Action Definition", 
-        help="Action Definition associated with this Plan Definition Action Definition Timing.")                    
-
-class PlanDefinitionActionDefinitionParticipantType(models.Model):    
-    _name = "hc.plan.definition.action.definition.participant.type"    
-    _description = "Plan Definition Action Definition Participant Type"        
-    _inherit = ["hc.basic.association"]    
-
-    action_definition_id = fields.Many2one(
-        comodel_name="hc.plan.definition.action.definition", 
-        string="Action Definition", 
-        help="Action Definition associated with this Plan Definition Action Definition Participant Type.")                    
-    participant_type = fields.Selection(
-        string="Participant Type", 
-        selection=[
-            ("patient", "Patient"), 
-            ("practitioner", "Practitioner"), 
-            ("related-person", "Related Person")], 
-        help="The relationship of this action to the related action.")
+    _inherit = ["hc.basic.association", "hc.timing"]                      
 
 class PlanDefnActionDefnRelatedActionActionIdentifier(models.Model):    
     _name = "hc.plan.defn.action.defn.related.action.action.identifier" 
     _description = "Plan Definition Action Definition Related Action Action Identifier"     
     _inherit = ["hc.basic.association", "hc.identifier"]
    
+class GoalDefinitionTarget(models.Model):   
+    _name = "hc.vs.goal.definition.target"  
+    _description = "Goal Definition Target"         
+    _inherit = ["hc.value.set.contains"]
+
+    name = fields.Char(
+        string="Name", 
+        help="Name of this goal definition target.")                  
+    code = fields.Char(
+        string="Code", 
+        help="Code of this goal definition target.")                  
+    contains_id = fields.Many2one(
+        comodel_name="hc.vs.goal.definition.target", 
+        string="Contains", 
+        help="Parent goal definition target.")                    
 
 class PlanDefinitionTopic(models.Model):    
     _name = "hc.vs.plan.definition.topic"    
     _description = "Plan Definition Topic"        
-    _inherit = ["hc.value.set.contains"]    
+    _inherit = ["hc.value.set.contains"]
+
+    name = fields.Char(
+        string="Name", 
+        help="Name of this plan definition topic.")
+    code = fields.Char(
+        string="Code", 
+        help="Code of this plan definition topic.")
+    contains_id = fields.Many2one(
+        comodel_name="hc.vs.plan.definition.topic", 
+        string="Contains", 
+        help="Parent plan definition topic.")

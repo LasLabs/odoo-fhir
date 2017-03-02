@@ -24,30 +24,13 @@ class Account(models.Model):
             ("inactive", "Inactive"), 
             ("entered-in-error", "Entered-In-Error")], 
         help="Indicates whether the account is presently used/useable or not.")                    
-    active_start_date = fields.Datetime(
-        string="Active Start Date", 
-        help="Start of the time window that transactions may be posted to this account.")                    
-    active_end_date = fields.Datetime(
-        string="Active End Date", 
-        help="End of the time window that transactions may be posted to this account.")                    
-    currency = fields.Many2one(
-        comodel_name="res.currency", 
-        string="Currency", 
-        help="Base currency in which balance is tracked.")
-    balance = fields.Float(
-        string="Balance", 
-        help="How much is in account?")
-    coverage_ids = fields.One2many(
-        comodel_name="hc.account.coverage", 
-        inverse_name="account_id", 
-        string="Coverages", 
-        help="The party(s) that are responsible for covering the payment of this account.")                  
-    coverage_period_start_date = fields.Datetime(
-        string="Coverage Period Start Date", 
-        help="Start of the transaction window.")                    
-    coverage_period_end_date = fields.Datetime(
-        string="Coverage Period End Date", 
-        help="End of the transaction window.")                    
+    # type_id = fields.Many2one(
+    #     comodel_name="hc.vs.account.type", 
+    #     string="Type", 
+    #     help="E.g. patient, expense, depreciation.")
+    # name = fields.Char(
+    #     string="Name", 
+    #     help="Human-readable label.")                     
     subject_type = fields.Selection(
         string="Subject Type",
         selection=[
@@ -86,6 +69,33 @@ class Account(models.Model):
         comodel_name="hc.res.organization", 
         string="Subject Organization", 
         help="Organization account tied to")                    
+    period_start_date = fields.Datetime(
+        string="Coverage Period Start Date", 
+        help="Start of the transaction window.")                    
+    period_end_date = fields.Datetime(
+        string="Coverage Period End Date", 
+        help="End of the transaction window.")
+    active_start_date = fields.Datetime(
+        string="Active Start Date", 
+        help="Start of the time window that transactions may be posted to this account.")                    
+    active_end_date = fields.Datetime(
+        string="Active End Date", 
+        help="End of the time window that transactions may be posted to this account.")                    
+    balance = fields.Float(
+        string="Balance", 
+        help="How much is in account?")
+    currency = fields.Many2one(
+        comodel_name="res.currency", 
+        string="Currency", 
+        help="Base currency in which balance is tracked.")
+    coverage_ids = fields.One2many(
+        comodel_name="hc.account.coverage", 
+        inverse_name="account_id", 
+        string="Coverages", 
+        help="The party(s) that are responsible for covering the payment of this account.")                  
+    priority = fields.Integer(
+        string="Priority", 
+        help="The priority of the coverage in the context of this account.")
     owner_id = fields.Many2one(
         comodel_name="hc.res.organization", 
         string="Owner", 
@@ -152,10 +162,10 @@ class AccountGuarantor(models.Model):
         help="Credit or other hold applied.")       
     start_date = fields.Datetime(
         string="Start Date", 
-        help="Start of the guarrantee account during.")       
+        help="Start of the guarantee account during.")       
     end_date = fields.Datetime(
         string="End Date", 
-        help="End of the guarrantee account during.")     
+        help="End of the guarantee account during.")     
    
     @api.multi          
     @api.depends('party_patient_id', 'party_related_person_id', 'party_organization_id')             
@@ -191,3 +201,19 @@ class AccountCoverage(models.Model):
         comodel_name="hc.res.coverage", 
         string="Coverage", 
         help="Coverage associated with this Account Coverage.")             
+
+class AccountType(models.Model):    
+    _name = "hc.vs.account.type"    
+    _description = "Account Type"           
+    _inherit = ["hc.value.set.contains"]
+    
+    name = fields.Char(
+        string="Name", 
+        help="Name of this account type.")                    
+    code = fields.Char(
+        string="Code", 
+        help="Code of this account type.")                    
+    contains_id = fields.Many2one(
+        comodel_name="hc.vs.account.type", 
+        string="Contains", 
+        help="Parent account type.")                    

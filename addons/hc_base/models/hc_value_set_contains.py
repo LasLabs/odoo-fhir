@@ -86,6 +86,22 @@ class ActionCode(models.Model):
         string="Parent",
         help="Parent action code.")
 
+class ActionParticipantRole(models.Model):  
+    _name = "hc.vs.action.participant.role" 
+    _description = "Action Participant Role"            
+    _inherit = ["hc.value.set.contains"]
+    
+    name = fields.Char(
+        string="Name", 
+        help="Name of this action participant role.")                 
+    code = fields.Char(
+        string="Code", 
+        help="Code of this action participant role.")                 
+    contains_id = fields.Many2one(
+        comodel_name="hc.vs.action.participant.role", 
+        string="Contains", 
+        help="Parent action participant role.") 
+
 class ActReason(models.Model):    
     _name = "hc.vs.act.reason"    
     _description = "Act Reason"        
@@ -454,6 +470,38 @@ class Forms(models.Model):
         string="Parent",
         help="Parent form.")
 
+class GoalCategory(models.Model):    
+    _name = "hc.vs.goal.category"    
+    _description = "Goal Category"        
+    _inherit = ["hc.value.set.contains"]
+
+    name = fields.Char(
+        string="Name", 
+        help="Name of this goal category.")
+    code = fields.Char(
+        string="Code", 
+        help="Code of this goal category.")
+    contains_id = fields.Many2one(
+        comodel_name="hc.vs.goal.category", 
+        string="Contains", 
+        help="Parent goal category.")
+
+class GoalStartEvent(models.Model):    
+    _name = "hc.vs.goal.start.event"    
+    _description = "Goal Start Event"        
+    _inherit = ["hc.value.set.contains"]
+
+    name = fields.Char(
+        string="Name", 
+        help="Name of this goal start event.")
+    code = fields.Char(
+        string="Code", 
+        help="Code of this goal start event.")
+    contains_id = fields.Many2one(
+        comodel_name="hc.vs.goal.start.event", 
+        string="Contains", 
+        help="Parent goal start event.")
+
 class Jurisdiction(models.Model):   
     _name = "hc.vs.jurisdiction"    
     _description = "Jurisdiction"       
@@ -518,6 +566,22 @@ class MessageEvent(models.Model):
         string="Parent",
         help="Parent message event.")
     
+class ObservationCode(models.Model):    
+    _name = "hc.vs.observation.code"    
+    _description = "Observation Code"           
+    _inherit = ["hc.value.set.contains"]
+
+    name = fields.Char(
+        string="Name", 
+        help="Name of this observation code.")                    
+    code = fields.Char(
+        string="Code", 
+        help="Code of this observation code.")                    
+    contains_id = fields.Many2one(
+        comodel_name="hc.vs.observation.code", 
+        string="Contains", 
+        help="Parent observation code.")  
+
 class OccupationCode(models.Model):  
     _name = "hc.vs.occupation.code"  
     _description = "Occupation Code" 
