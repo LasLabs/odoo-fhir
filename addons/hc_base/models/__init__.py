@@ -24,9 +24,11 @@ import hc_range
 import hc_ratio
 import hc_related_artifact
 import hc_related_resource
+import hc_reference
 import hc_resource
 import hc_sampled_data
 import hc_signature
 import hc_trigger_definition
 import hc_usage_context
 import product_uom
+import hc_extension
