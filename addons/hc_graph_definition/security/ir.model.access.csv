@@ -1,0 +1,8 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_hc_graph_definition_hc_res_graph_definition_user,hc.graph.definition.hc.res.graph.definition.user,model_hc_res_graph_definition,hc_base.group_hc_base_user,1,0,0,0
+access_hc_graph_definition_hc_graph_definition_link_user,hc.graph.definition.hc.graph.definition.link.user,model_hc_graph_definition_link,hc_base.group_hc_base_user,1,0,0,0
+access_hc_graph_definition_hc_graph_definition_link_target_user,hc.graph.definition.hc.graph.definition.link.target.user,model_hc_graph_definition_link_target,hc_base.group_hc_base_user,1,0,0,0
+access_hc_graph_definition_hc_graph_definition_link_target_compartment_user,hc.graph.definition.hc.graph.definition.link.target.compartment.user,model_hc_graph_definition_link_target_compartment,hc_base.group_hc_base_user,1,0,0,0
+access_hc_graph_definition_hc_graph_definition_contact_user,hc.graph.definition.hc.graph.definition.contact.user,model_hc_graph_definition_contact,hc_base.group_hc_base_user,1,0,0,0
+access_hc_graph_definition_hc_graph_definition_use_context_user,hc.graph.definition.hc.graph.definition.use.context.user,model_hc_graph_definition_use_context,hc_base.group_hc_base_user,1,0,0,0
+access_hc_graph_definition_hc_vs_compartment_type_manager,hc.graph.definition.hc.vs.compartment.type.manager,model_hc_vs_compartment_type,hc_base.group_hc_base_manager,1,1,1,1

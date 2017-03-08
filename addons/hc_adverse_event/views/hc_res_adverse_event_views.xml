@@ -1,0 +1,22 @@
+<openerp>
+    <data>
+
+    <!-- Adverse Event Action and Menu -->  
+  
+    <act_window id="hc_res_adverse_event_action"  
+                name="HC Adverse Events"
+                res_model="hc.res.adverse.event"
+                view_mode="tree,form"
+                domain=""
+                context=""
+                limit=""/>
+
+    <menuitem id="hc_adverse_event.menu_adv_event" 
+              name="Adverse Events" 
+              parent="hc_base.menu_clinic_gen" 
+              action="hc_res_adverse_event_action" 
+              groups="hc_base.group_hc_base_manager" 
+              sequence="15"/>
+
+    </data>
+</openerp>

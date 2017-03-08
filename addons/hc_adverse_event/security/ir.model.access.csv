@@ -1,0 +1,13 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_hc_adverse_event_hc_res_adverse_event_user,hc.adverse.event.hc.res.adverse.event.user,model_hc_res_adverse_event,hc_base.group_hc_base_user,1,0,0,0
+access_hc_adverse_event_hc_adverse_event_suspect_entity_user,hc.adverse.event.hc.adverse.event.suspect.entity.user,model_hc_adverse_event_suspect_entity,hc_base.group_hc_base_user,1,0,0,0
+access_hc_adverse_event_hc_adverse_event_identifier_user,hc.adverse.event.hc.adverse.event.identifier.user,model_hc_adverse_event_identifier,hc_base.group_hc_base_user,1,0,0,0
+access_hc_adverse_event_hc_adverse_event_reaction_user,hc.adverse.event.hc.adverse.event.reaction.user,model_hc_adverse_event_reaction,hc_base.group_hc_base_user,1,0,0,0
+access_hc_adverse_event_hc_adverse_event_subject_medical_history_user,hc.adverse.event.hc.adverse.event.subject.medical.history.user,model_hc_adverse_event_subject_medical_history,hc_base.group_hc_base_user,1,0,0,0
+access_hc_adverse_event_hc_adverse_event_reference_document_user,hc.adverse.event.hc.adverse.event.reference.document.user,model_hc_adverse_event_reference_document,hc_base.group_hc_base_user,1,0,0,0
+access_hc_adverse_event_hc_adverse_event_study_user,hc.adverse.event.hc.adverse.event.study.user,model_hc_adverse_event_study,hc_base.group_hc_base_user,1,0,0,0
+access_hc_adverse_event_hc_vs_adverse_event_type_manager,hc.adverse.event.hc.vs.adverse.event.type.manager,model_hc_vs_adverse_event_type,hc_base.group_hc_base_manager,1,1,1,1
+access_hc_adverse_event_hc_vs_adverse_event_seriousness_manager,hc.adverse.event.hc.vs.adverse.event.seriousness.manager,model_hc_vs_adverse_event_seriousness,hc_base.group_hc_base_manager,1,1,1,1
+access_hc_adverse_event_hc_vs_adverse_event_causality_assess_manager,hc.adverse.event.hc.vs.adverse.event.causality.assess.manager,model_hc_vs_adverse_event_causality_assess,hc_base.group_hc_base_manager,1,1,1,1
+access_hc_adverse_event_hc_vs_adverse_event_causality_method_manager,hc.adverse.event.hc.vs.adverse.event.causality.method.manager,model_hc_vs_adverse_event_causality_method,hc_base.group_hc_base_manager,1,1,1,1
+access_hc_adverse_event_hc_vs_adverse_event_causality_result_manager,hc.adverse.event.hc.vs.adverse.event.causality.result.manager,model_hc_vs_adverse_event_causality_result,hc_base.group_hc_base_manager,1,1,1,1
