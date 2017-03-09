@@ -6,142 +6,142 @@ class AdverseEvent(models.Model):
     _name = "hc.res.adverse.event"    
     _description = "Adverse Event"                
 
-identifier_id = fields.Many2one(
-    comodel_name="hc.adverse.event.identifier", 
-    string="Identifier", 
-    help="Identifier.")                        
-category = fields.Selection(
-    string="Adverse Event Category", 
-    selection=[
-        ("ae", "AE"), 
-        ("pae", "PAE")], 
-    help="What occurred and caused harm to the subject, or had the potential to cause harm to the subject.")                        
-type_id = fields.Many2one(
-    comodel_name="hc.vs.adverse.event.type", 
-    string="Type", 
-    help="This element defines the specific type of event that occurred or that was prevented from occuring.")                        
-subject_type = fields.Selection(
-    string="Subject Type", 
-    selection=[
-        ("patient", "Patient"), 
-        ("research_subject", "Research Subject"), 
-        ("medication", "Medication"), 
-        ("device", "Device")], 
-    help="Type of subject or group impacted by event.")                        
-subject_name = fields.Char(
-    string="Subject", 
-    compute="_compute_subject_name", 
-    store="True", 
-    help="Subject or group impacted by event.")                        
-subject_patient_id = fields.Many2one(
-    comodel_name="hc.res.patient", 
-    string="Subject Patient", 
-    help="Patient subject or group impacted by event.")                        
-subject_related_person_id = fields.Many2one(
-    comodel_name="hc.res.related.person", 
-    string="Subject Related Person", 
-    help="Related Person subject or group impacted by event.")                        
-subject_medication_id = fields.Many2one(
-    comodel_name="hc.res.medication", 
-    string="Subject Medication", 
-    help="Medication subject or group impacted by event.")                        
-subject_device_id = fields.Many2one(
-    comodel_name="hc.res.device", 
-    string="Subject Device", 
-    help="Device subject or group impacted by event.")                        
-date = fields.Datetime(
-    string="Date", 
-    help="Date.")                        
-reaction_ids = fields.One2many(
-    comodel_name="hc.adverse.event.reaction", 
-    inverse_name="adverse_event_id", 
-    string="Reactions", 
-    help="Adverse Reaction Events linked to exposure to substance.")                        
-location_id = fields.Many2one(
-    comodel_name="hc.res.location", 
-    string="Location", 
-    help="Location.")                        
-seriousness_id = fields.Many2one(
-    comodel_name="hc.vs.adverse.event.seriousness", 
-    string="Seriousness", 
-    help="Overall seriousness of this event for the patient.")                        
-outcome = fields.Selection(
-    string="Outcome", 
-    selection=[
-        ("resolved", "Resolved"), 
-        ("recovering", "Recovering"), 
-        ("ongoing", "Ongoing"), 
-        ("resolvedwithsequelae", "Resolved with Sequelae"), 
-        ("fatal", "Fatal"), 
-        ("unknown", "Unknown")], 
-        help="Indicates whether the care team is currently active, suspended, inactive, or entered in error.")                        
-recorder_type = fields.Selection(
-    string="Recorder Type", 
-    selection=[
-        ("patient", "Patient"), 
-        ("research_subject", "Research Subject"), 
-        ("medication", "Medication"), 
-        ("device", "Device")], 
-    help="Type of recorder.")                        
-recorder_name = fields.Char(
-    string="Recorder", 
-    compute="_compute_recorder_name", 
-    store="True", 
-    help="Recorder.")                        
-recorder_patient_id = fields.Many2one(
-    comodel_name="hc.res.patient", 
-    string="Recorder Patient", 
-    help="Patient recorder.")                        
-recorder_practitioner_id = fields.Many2one(
-    comodel_name="hc.res.practitioner", 
-    string="Recorder Practitioner", 
-    help="Practitioner recorder.")                        
-recorder_related_person_id = fields.Many2one(
-    comodel_name="hc.res.related.person", 
-    string="Recorder Related Person", 
-    help="Related Person recorder.")                        
-event_type = fields.Selection(
-    string="Event Type", 
-    selection=[
-        ("practitioner", "Practitioner"), 
-        ("device", "Device")], 
-    help="Type of who was involved in the adverse event or the potential adverse event.")                        
-event_participant_name = fields.Char(
-    string="Event Participant", 
-    compute="_compute_event_participant_name", 
-    store="True", 
-    help="Who was involved in the adverse event or the potential adverse event.")                        
-event_participant_practitioner_id = fields.Many2one(
-    comodel_name="hc.res.practitioner", 
-    string="Event Participant Practitioner", 
-    help="Practitioner who was involved in the adverse event or the potential adverse event.")                        
-event_participant_device_id = fields.Many2one(
-    comodel_name="hc.res.device", 
-    string="Event Participant Device", 
-    help="Device who was involved in the adverse event or the potential adverse event.")                        
-description = fields.Text(
-    string="Description", 
-    help="Description.")                        
-subject_medical_history_ids = fields.One2many(
-    comodel_name="hc.adverse.event.subject.medical.history", 
-    inverse_name="adverse_event_id", 
-    string="Subject Medical Histories", 
-    help="Subject medical history.")                        
-reference_document_ids = fields.One2many(
-    comodel_name="hc.adverse.event.reference.document", 
-    inverse_name="adverse_event_id", 
-    string="Reference Documents", 
-    help="Reference document.")                        
-study_ids = fields.One2many(
-    comodel_name="hc.adverse.event.study", 
-    inverse_name="adverse_event_id", 
-    string="Studies", 
-    help="Study.")                        
-suspect_entity_ids = fields.One2many(
-    comodel_name="hc.adverse.event.suspect.entity", 
-    inverse_name="adverse_event_id", 
-    string="Suspect Entities", 
-    help="Suspect Entity.")                        
+    identifier_id = fields.Many2one(
+        comodel_name="hc.adverse.event.identifier", 
+        string="Identifier", 
+        help="Identifier.")                        
+    category = fields.Selection(
+        string="Adverse Event Category", 
+        selection=[
+            ("ae", "AE"), 
+            ("pae", "PAE")], 
+        help="What occurred and caused harm to the subject, or had the potential to cause harm to the subject.")                        
+    type_id = fields.Many2one(
+        comodel_name="hc.vs.adverse.event.type", 
+        string="Type", 
+        help="This element defines the specific type of event that occurred or that was prevented from occuring.")                        
+    subject_type = fields.Selection(
+        string="Subject Type", 
+        selection=[
+            ("patient", "Patient"), 
+            ("research_subject", "Research Subject"), 
+            ("medication", "Medication"), 
+            ("device", "Device")], 
+        help="Type of subject or group impacted by event.")                        
+    subject_name = fields.Char(
+        string="Subject", 
+        compute="_compute_subject_name", 
+        store="True", 
+        help="Subject or group impacted by event.")                        
+    subject_patient_id = fields.Many2one(
+        comodel_name="hc.res.patient", 
+        string="Subject Patient", 
+        help="Patient subject or group impacted by event.")                        
+    subject_related_person_id = fields.Many2one(
+        comodel_name="hc.res.related.person", 
+        string="Subject Related Person", 
+        help="Related Person subject or group impacted by event.")                        
+    subject_medication_id = fields.Many2one(
+        comodel_name="hc.res.medication", 
+        string="Subject Medication", 
+        help="Medication subject or group impacted by event.")                        
+    subject_device_id = fields.Many2one(
+        comodel_name="hc.res.device", 
+        string="Subject Device", 
+        help="Device subject or group impacted by event.")                        
+    date = fields.Datetime(
+        string="Date", 
+        help="Date.")                        
+    reaction_ids = fields.One2many(
+        comodel_name="hc.adverse.event.reaction", 
+        inverse_name="adverse_event_id", 
+        string="Reactions", 
+        help="Adverse Reaction Events linked to exposure to substance.")                        
+    location_id = fields.Many2one(
+        comodel_name="hc.res.location", 
+        string="Location", 
+        help="Location.")                        
+    seriousness_id = fields.Many2one(
+        comodel_name="hc.vs.adverse.event.seriousness", 
+        string="Seriousness", 
+        help="Overall seriousness of this event for the patient.")                        
+    outcome = fields.Selection(
+        string="Outcome", 
+        selection=[
+            ("resolved", "Resolved"), 
+            ("recovering", "Recovering"), 
+            ("ongoing", "Ongoing"), 
+            ("resolvedwithsequelae", "Resolved with Sequelae"), 
+            ("fatal", "Fatal"), 
+            ("unknown", "Unknown")], 
+            help="Indicates whether the care team is currently active, suspended, inactive, or entered in error.")                        
+    recorder_type = fields.Selection(
+        string="Recorder Type", 
+        selection=[
+            ("patient", "Patient"), 
+            ("research_subject", "Research Subject"), 
+            ("medication", "Medication"), 
+            ("device", "Device")], 
+        help="Type of recorder.")                        
+    recorder_name = fields.Char(
+        string="Recorder", 
+        compute="_compute_recorder_name", 
+        store="True", 
+        help="Recorder.")                        
+    recorder_patient_id = fields.Many2one(
+        comodel_name="hc.res.patient", 
+        string="Recorder Patient", 
+        help="Patient recorder.")                        
+    recorder_practitioner_id = fields.Many2one(
+        comodel_name="hc.res.practitioner", 
+        string="Recorder Practitioner", 
+        help="Practitioner recorder.")                        
+    recorder_related_person_id = fields.Many2one(
+        comodel_name="hc.res.related.person", 
+        string="Recorder Related Person", 
+        help="Related Person recorder.")                        
+    event_type = fields.Selection(
+        string="Event Type", 
+        selection=[
+            ("practitioner", "Practitioner"), 
+            ("device", "Device")], 
+        help="Type of who was involved in the adverse event or the potential adverse event.")                        
+    event_participant_name = fields.Char(
+        string="Event Participant", 
+        compute="_compute_event_participant_name", 
+        store="True", 
+        help="Who was involved in the adverse event or the potential adverse event.")                        
+    event_participant_practitioner_id = fields.Many2one(
+        comodel_name="hc.res.practitioner", 
+        string="Event Participant Practitioner", 
+        help="Practitioner who was involved in the adverse event or the potential adverse event.")                        
+    event_participant_device_id = fields.Many2one(
+        comodel_name="hc.res.device", 
+        string="Event Participant Device", 
+        help="Device who was involved in the adverse event or the potential adverse event.")                        
+    description = fields.Text(
+        string="Description", 
+        help="Description.")                        
+    subject_medical_history_ids = fields.One2many(
+        comodel_name="hc.adverse.event.subject.medical.history", 
+        inverse_name="adverse_event_id", 
+        string="Subject Medical Histories", 
+        help="Subject medical history.")                        
+    reference_document_ids = fields.One2many(
+        comodel_name="hc.adverse.event.reference.document", 
+        inverse_name="adverse_event_id", 
+        string="Reference Documents", 
+        help="Reference document.")                        
+    study_ids = fields.One2many(
+        comodel_name="hc.adverse.event.study", 
+        inverse_name="adverse_event_id", 
+        string="Studies", 
+        help="Study.")                        
+    suspect_entity_ids = fields.One2many(
+        comodel_name="hc.adverse.event.suspect.entity", 
+        inverse_name="adverse_event_id", 
+        string="Suspect Entities", 
+        help="Suspect Entity.")                        
 
 class AdverseEventSuspectEntity(models.Model):    
     _name = "hc.adverse.event.suspect.entity"    

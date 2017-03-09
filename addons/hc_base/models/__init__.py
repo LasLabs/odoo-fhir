@@ -18,6 +18,7 @@ import hc_human_name
 import hc_identifier
 import hc_language
 import hc_meta
+import hc_narrative
 import hc_parameter_definition
 import hc_quantity
 import hc_range

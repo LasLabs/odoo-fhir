@@ -27,7 +27,7 @@ class GraphDefinitionLink(models.Model):
     _description = "Graph Definition Link"                
 
     graph_definition_id = fields.Many2one(comodel_name="hc.res.graph.definition", string="Graph Definition", help="Graph Definition associated with this Graph Definition Link.")                        
-    target_id = fields.Many2one(comodel_name="hc.graph.definition.target", string="Target", help="Potential target for the link.")                        
+    target_id = fields.Many2one(comodel_name="hc.graph.definition.link.target", string="Target", help="Potential target for the link.")                        
     path = fields.Char(string="Path", required="True", help="Path in the resource that contains the link.")                        
     slice_name = fields.Char(string="Slice Name", help="Which slice (if profiled).")                        
     min = fields.Integer(string="Min", help="Minimum occurences for this link.")                        
@@ -42,14 +42,14 @@ class GraphDefinitionLinkTarget(models.Model):
     link_id = fields.Many2one(comodel_name="hc.graph.definition.link", string="Link", help="Links this graph makes rules about.")                        
     type_id = fields.Many2one(comodel_name="hc.vs.resource.type", string="Type", help="Type of resource this link refers to.")                        
     profile = fields.Char(string="URI", help="Profile for the target resource.")                        
-    link_ids = fields.One2many(comodel_name="hc.graph.definition.link.target.link", inverse_name="target_id", string="Links", help="Content as for GraphDefinition.link Additional links from target resource.")                        
+    link_ids = fields.One2many(comodel_name="hc.graph.definition.link", inverse_name="target_id", string="Links", help="Content as for GraphDefinition.link Additional links from target resource.")                        
     compartment_ids = fields.One2many(comodel_name="hc.graph.definition.link.target.compartment", inverse_name="target_id", string="Compartments", help="Compartment Consistency Rules.")                        
 
 class GraphDefinitionLinkTargetCompartment(models.Model):    
     _name = "hc.graph.definition.link.target.compartment"    
     _description = "Graph Definition Link Target Compartment"                
 
-    target_id = fields.Many2one(comodel_name="hc.graph.definition.target", string="Target", help="Potential target for the link.")                        
+    target_id = fields.Many2one(comodel_name="hc.graph.definition.link.target", string="Target", help="Potential target for the link.")                        
     code_id = fields.Many2one(comodel_name="hc.vs.compartment.type", string="Code", required="True", help="Identifies the compartment.")                        
     rule = fields.Selection(string="Rule", required="True", selection=[("identical", "Identical"), ("matching", "Matching"), ("different", "Different"), ("custom", "Custom")], help="How a compartment must be linked.")                    
     expression = fields.Text(string="Expression", help="Custom rule, as a FHIRPath expression.")                        
