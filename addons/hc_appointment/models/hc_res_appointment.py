@@ -43,12 +43,22 @@ class Appointment(models.Model):
         comodel_name="hc.vs.encounter.reason", 
         string="Reason", 
         help="The reason that this appointment is being scheduled, this is more clinical than administrative.")                
+    indication_ids = fields.One2many(
+        comodel_name="hc.appointment.indication", 
+        inverse_name="appointment_id", 
+        string="Indications", 
+        help="Reason the appointment is to takes place (resource).")
     priority = fields.Integer(
         string="Priority", 
         help="The priority of the appointment. Can be used to make informed decisions if needing to re-prioritize appointments. (The iCal Standard specifies 0 as undefined, 1 as highest, 9 as lowest priority).")                
     description = fields.Text(
         string="Description", 
         help="The brief description of the appointment as would be shown on a subject line in a meeting request, or appointment list. Detailed or expanded information should be put in the comment field.")                
+    supporting_information_ids = fields.One2many(
+        comodel_name="hc.appointment.supporting.information", 
+        inverse_name="appointment_id", 
+        string="Supporting Information", 
+        help="Additional information to support the appointment.")
     start = fields.Datetime(
         string="Start Date", 
         required="True", 
@@ -71,6 +81,11 @@ class Appointment(models.Model):
     comment = fields.Text(
         string="Comment", 
         help="Additional comments about the appointment.")                
+    incoming_referral_ids = fields.One2many(
+        comodel_name="hc.appointment.incoming.referral", 
+        inverse_name="appointment_id", 
+        string="Incoming Referrals", 
+        help="The slot that this appointment is filling. If provided then the schedule will not be provided as slots are not recursive, and the start/end values MUST be the same as from the slot.")
     requested_period_ids = fields.One2many(
         comodel_name="hc.appointment.requested.period", 
         inverse_name="appointment_id", 
@@ -98,12 +113,12 @@ class AppointmentParticipant(models.Model):
     actor_type = fields.Selection(
         string="Actor Type", 
         selection=[
-            ("Patient", "Patient"), 
-            ("Practitioner", "Practitioner"), 
-            ("Related Person", "Related Person"), 
-            ("Device", "Device"), 
-            ("Healthcare Service", "Healthcare Service"), 
-            ("Location", "Location")], 
+            ("patient", "Patient"), 
+            ("practitioner", "Practitioner"), 
+            ("related_person", "Related Person"), 
+            ("device", "Device"), 
+            ("healthcare_service", "Healthcare Service"), 
+            ("location", "Location")], 
         help="Type of what is account tied to.")                
     actor_name = fields.Char(
         string="Actor", 
@@ -139,7 +154,7 @@ class AppointmentParticipant(models.Model):
         selection=[
             ("required", "Required"), 
             ("optional", "Optional"), 
-            ("information-only", "Information-Only")], 
+            ("information-only", "Information Only")], 
         help="Is this participant required to be present at the meeting.")                
     status = fields.Selection(
         string="Participant Status", 
@@ -148,7 +163,7 @@ class AppointmentParticipant(models.Model):
             ("accepted", "Accepted"), 
             ("declined", "Declined"), 
             ("tentative", "Tentative"), 
-            ("needs-action", "Needs-Action")], 
+            ("needs-action", "Needs Action")], 
         help="Participation status of the Patient.")                
 
 class AppointmentIdentifier(models.Model):    
@@ -160,6 +175,63 @@ class AppointmentIdentifier(models.Model):
         comodel_name="hc.res.appointment", 
         string="Appointment", 
         help="Appointment associated with this Appointment Identifier.")                
+
+class AppointmentIndication(models.Model):  
+    _name = "hc.appointment.indication" 
+    _description = "Appointment Indication"         
+    _inherit = ["hc.basic.association"]
+
+    appointment_id = fields.Many2one(
+        comodel_name="hc.res.appointment", 
+        string="Appointment", 
+        help="Appointment associated with this Appointment Indication.")                  
+    # indication_type = fields.Selection(
+    #     string="Indication Type", 
+    #     selection=[
+    #         ("condition", "Condition"), 
+    #         ("procedure", "Procedure")], 
+    #     help="Type of reason the appointment is to takes place (resource).")                   
+    # indication_name = fields.Char(
+    #     string="Indication", 
+    #     compute="_compute_indication_name", 
+    #     store="True", 
+    #     help="Reason the appointment is to takes place (resource).")                   
+    # indication_condition_id = fields.Many2one(
+    #     comodel_name="hc.res.condition", 
+    #     string="Indication Condition", 
+    #     help="Condition that is participating in the appointment.")                   
+    # indication_procedure_id = fields.Many2one(
+    #     comodel_name="hc.res.procedure", 
+    #     string="Indication Procedure", 
+    #     help="Procedure that is participating in the appointment.")                   
+
+class AppointmentSupportingInformation(models.Model):   
+    _name = "hc.appointment.supporting.information" 
+    _description = "Appointment Supporting Information"         
+    _inherit = ["hc.basic.association"]
+
+    appointment_id = fields.Many2one(
+        comodel_name="hc.res.appointment", 
+        string="Appointment", 
+        help="Appointment associated with this Appointment Supporting Information.")                  
+    supporting_information_type = fields.Selection(
+        string="Supporting Information Type", 
+        selection=[
+            ("string", "String"), 
+            ("code", "Code")], 
+        help="Type of additional information to support the appointment.")                   
+    supporting_information_name = fields.Char(
+        string="Supporting Information", 
+        compute="_compute_supporting_information_name", 
+        store="True", 
+        help="Additional information to support the appointment.")                 
+    supporting_information_string = fields.Char(
+        string="Supporting Information String", 
+        help="String of additional information to support the appointment.")                  
+    supporting_information_code_id = fields.Many2one(
+        comodel_name="hc.vs.resource.type", 
+        string="Supporting Information Code", 
+        help="Resource type of additional information to support the appointment.")                    
 
 class AppointmentSlot(models.Model):    
     _name = "hc.appointment.slot"    
@@ -174,6 +246,20 @@ class AppointmentSlot(models.Model):
         comodel_name="hc.res.slot", 
         string="Slot", 
         help="The slot that this appointment is filling. If provided then the schedule will not be provided as slots are not recursive, and the start/end values MUST be the same as from the slot")                
+
+class AppointmentIncomingReferral(models.Model):    
+    _name = "hc.appointment.incoming.referral"  
+    _description = "Appointment Incoming Referral"          
+    _inherit = ["hc.basic.association"]
+
+    appointment_id = fields.Many2one(
+        comodel_name="hc.res.appointment", 
+        string="Appointment", 
+        help="Appointment associated with this Appointment Incoming Referral.")                   
+    # incoming_referral_id = fields.Many2one(
+    #     comodel_name="hc.res.referral.request", 
+    #     string="Incoming Referral", 
+    #     help="The ReferralRequest provided as information to allocate to the Encounter")                 
 
 class AppointmentRequestedPeriod(models.Model):    
     _name = "hc.appointment.requested.period"    

@@ -456,3 +456,26 @@ class EncounterIndication(models.Model):
         comodel_name="hc.res.procedure", 
         string="Indication Procedure", 
         help="Procedure reason the encounter takes place (resource).")
+
+class AppointmentIndication(models.Model):  
+    _inherit = "hc.appointment.indication" 
+                                   
+    indication_type = fields.Selection(
+        string="Indication Type", 
+        selection=[
+            ("condition", "Condition"), 
+            ("procedure", "Procedure")], 
+        help="Type of reason the appointment is to takes place (resource).")                   
+    indication_name = fields.Char(
+        string="Indication", 
+        compute="_compute_indication_name", 
+        store="True", 
+        help="Reason the appointment is to takes place (resource).")                                     
+    indication_condition_id = fields.Many2one(
+        comodel_name="hc.res.condition", 
+        string="Indication Condition", 
+        help="Condition that is participating in the appointment.")  
+    indication_procedure_id = fields.Many2one(
+        comodel_name="hc.res.procedure", 
+        string="Indication Procedure", 
+        help="Procedure that is participating in the appointment.") 

@@ -16,7 +16,7 @@
               parent="hc_base.menu_clinic_gen" 
               action="hc_res_adverse_event_action" 
               groups="hc_base.group_hc_base_manager" 
-              sequence="15"/>
+              sequence="70"/>
 
     </data>
 </openerp>
