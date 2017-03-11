@@ -474,8 +474,8 @@ class AppointmentIndication(models.Model):
     indication_condition_id = fields.Many2one(
         comodel_name="hc.res.condition", 
         string="Indication Condition", 
-        help="Condition that is participating in the appointment.")  
+        help="Condition reason the appointment is to takes place (resource).")  
     indication_procedure_id = fields.Many2one(
         comodel_name="hc.res.procedure", 
         string="Indication Procedure", 
-        help="Procedure that is participating in the appointment.") 
+        help="Procedure reason the appointment is to takes place (resource).") 

@@ -4,8 +4,14 @@ from openerp import models, fields, api
 
 class Appointment(models.Model):    
     _name = "hc.res.appointment"    
-    _description = "Appointment"        
+    _description = "Appointment"
+    _rec_name = "actor_name"        
 
+    actor_name = fields.Char(
+        string="Actor Name",
+        # related="hc_appointment_participant.actor_name",
+        readonly="1",
+        help="A Person, Location, Healthcare Service or Device that is participating in the appointment.")
     identifier_ids = fields.One2many(
         comodel_name="hc.appointment.identifier", 
         inverse_name="appointment_id", 
@@ -21,7 +27,8 @@ class Appointment(models.Model):
             ("arrived", "Arrived"), 
             ("fulfilled", "Fulfilled"), 
             ("cancelled", "Cancelled"), 
-            ("noshow", "No Show")], 
+            ("noshow", "No Show")],
+        default="proposed", 
         help="The overall status of the Appointment.")                
     service_category_id = fields.Many2one(
         comodel_name="hc.vs.service.category", 
@@ -165,6 +172,22 @@ class AppointmentParticipant(models.Model):
             ("tentative", "Tentative"), 
             ("needs-action", "Needs Action")], 
         help="Participation status of the Patient.")                
+        
+    @api.depends('actor_type')           
+    def _compute_actor_name(self):          
+        for hc_appointment_participant in self:       
+            if hc_appointment_participant.actor_type == 'patient':  
+                hc_appointment_participant.actor_name = hc_appointment_participant.actor_patient_id.name
+            elif hc_appointment_participant.actor_type == 'practitioner':   
+                hc_appointment_participant.actor_name = hc_appointment_participant.actor_practitioner_id.name
+            elif hc_appointment_participant.actor_type == 'related_person': 
+                hc_appointment_participant.actor_name = hc_appointment_participant.actor_related_person_id.name
+            elif hc_appointment_participant.actor_type == 'device': 
+                hc_appointment_participant.actor_name = hc_appointment_participant.actor_device_id.name
+            elif hc_appointment_participant.actor_type == 'healthcare_service':     
+                hc_appointment_participant.actor_name = hc_appointment_participant.actor_healthcare_service_id.name 
+            elif hc_appointment_participant.actor_type == 'location':       
+                hc_appointment_participant.actor_name = hc_appointment_participant.actor_location_id.name   
 
 class AppointmentIdentifier(models.Model):    
     _name = "hc.appointment.identifier"    
@@ -199,11 +222,11 @@ class AppointmentIndication(models.Model):
     # indication_condition_id = fields.Many2one(
     #     comodel_name="hc.res.condition", 
     #     string="Indication Condition", 
-    #     help="Condition that is participating in the appointment.")                   
+    #     help="Condition reason the appointment is to takes place (resource).")                   
     # indication_procedure_id = fields.Many2one(
     #     comodel_name="hc.res.procedure", 
     #     string="Indication Procedure", 
-    #     help="Procedure that is participating in the appointment.")                   
+    #     help="Procedure reason the appointment is to takes place (resource).")                   
 
 class AppointmentSupportingInformation(models.Model):   
     _name = "hc.appointment.supporting.information" 
@@ -214,24 +237,28 @@ class AppointmentSupportingInformation(models.Model):
         comodel_name="hc.res.appointment", 
         string="Appointment", 
         help="Appointment associated with this Appointment Supporting Information.")                  
-    supporting_information_type = fields.Selection(
+    supporting_information_type = fields.Char(
         string="Supporting Information Type", 
-        selection=[
-            ("string", "String"), 
-            ("code", "Code")], 
-        help="Type of additional information to support the appointment.")                   
-    supporting_information_name = fields.Char(
+        compute="_compute_supporting_information_type", 
+        help="Type of additional information to support the appointment.")
+    supporting_information_name = fields.Reference(
         string="Supporting Information", 
-        compute="_compute_supporting_information_name", 
         store="True", 
-        help="Additional information to support the appointment.")                 
-    supporting_information_string = fields.Char(
-        string="Supporting Information String", 
-        help="String of additional information to support the appointment.")                  
-    supporting_information_code_id = fields.Many2one(
-        comodel_name="hc.vs.resource.type", 
-        string="Supporting Information Code", 
-        help="Resource type of additional information to support the appointment.")                    
+        selection="_reference_models", 
+        help="Additional information to support the appointment.")
+                 
+    @api.model
+    def _reference_models(self):
+        models = self.env['ir.model'].search([('state','!=','manual')])
+        return [(model.model, model.name)
+            for model in models
+                if model.model.startswith('hc.res')]
+
+    @api.depends('supporting_information_name')
+    def _compute_supporting_information_type(self):
+        for this in self:
+            if this.supporting_information_name:
+                this.supporting_information_type = this.supporting_information_name._description
 
 class AppointmentSlot(models.Model):    
     _name = "hc.appointment.slot"    

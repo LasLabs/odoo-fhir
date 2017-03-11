@@ -403,7 +403,7 @@ class ConditionEvidenceDetail(models.Model):
         #type manual is used to display custom models only
         models = self.env['ir.model'].search([('state', '!=', 'manual')])
         return [(model.model, model.name)
-                for model in models
+            for model in models
                 if model.model.startswith('hc.res')]
 
     @api.depends('detail_name')

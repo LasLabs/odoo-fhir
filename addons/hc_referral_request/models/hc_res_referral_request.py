@@ -286,8 +286,7 @@ class MedicationRequestBasedOn(models.Model):
             ("diagnostic_request", "Diagnostic Request"), 
             ("medication_request", "Medication Request"), 
             ("procedure_request", "Procedure Request"), 
-            ("referral_request", "Referral Request")
-            ], 
+            ("referral_request", "Referral Request")], 
         help="Type of what request fulfills.")
     based_on_referral_request_id = fields.Many2one(
         comodel_name="hc.res.referral.request", 
@@ -309,7 +308,6 @@ class Procedure(models.Model):
         comodel_name="hc.res.referral.request", 
         string="Request Referral Request", 
         help="Referral Request for this procedure.")
-
 
 class AppointmentIncomingReferral(models.Model):    
     _inherit = "hc.appointment.incoming.referral"  
