@@ -1,1 +1,4 @@
 id,"code","name","definition","comments","is_active","source_id/id","system"
+hc_healthcare_service.serv_prov_cond_free,"free","Free","This service is available for no patient cost.","","","base.hl7fhir","http://hl7.org/fhir/ValueSet/service-provision-conditions"
+hc_healthcare_service.serv_prov_cond_disc,"disc","Discounts Available","There are discounts available on this service for qualifying patients.","","","base.hl7fhir","http://hl7.org/fhir/ValueSet/service-provision-conditions"
+hc_healthcare_service.serv_prov_cond_cost,"cost","Fees apply","Fees apply for this service.","","","base.hl7fhir","http://hl7.org/fhir/ValueSet/service-provision-conditions"

@@ -35,7 +35,7 @@
                     <field name="code"/>                    
                     <field name="definition"/>                  
                     <group>                 
-                        <filter name="group_by_parent" string="parent" context="{'group_by': 'contains_id'}" />             
+                        <filter name="group_by_parent" string="parent" context="{'group_by': 'contains_id'}"/>           
                     </group>                    
                 </search>                       
             </field>                            
@@ -59,7 +59,7 @@
             <field name="name">Service Category Form</field>                            
             <field name="model">hc.vs.service.category</field>                          
             <field name="arch" type="xml">                          
-                <form string="Service Categories" >                      
+                <form string="Service Categories">                      
                     <sheet>                 
                         <h1>                
                             <field name="name" default_focus="1" placeholder="Name (e.g., United States)"/>         
@@ -95,21 +95,150 @@
                   action="hc_vs_service_category_action" 
                   groups="hc_base.group_hc_base_manager" 
                   sequence="10"/>
+        
+        <!-- Service Provision Condition Views -->                                      
+                                        
+        <record id="hc_vs_service_provision_condition_view_search" model="ir.ui.view">                                      
+            <field name="name">Service Provision Condition Search</field>                                   
+            <field name="model">hc.vs.service.provision.condition</field>                                   
+            <field name="arch" type="xml">                                  
+                <search string="Service Provision Conditions">                              
+                    <field name="name"/>                            
+                    <field name="code"/>                            
+                    <field name="definition"/>                          
+                    <group>                         
+<!--                         <filter name="group_by_parent" string="parent" context="{'group_by': 'contains_id'}"/>    -->                  
+                    </group>                            
+                </search>                               
+            </field>                                    
+        </record>                                       
+                                                
+        <record id="hc_vs_service_provision_condition_view_tree" model="ir.ui.view">                                        
+            <field name="name">Service Provision Condition Tree</field>                                 
+            <field name="model">hc.vs.service.provision.condition</field>                                   
+            <field name="arch" type="xml">                                  
+                <tree string="Service Provision Conditions" default_order="name, code">                             
+                    <field name="name"/>                            
+                    <field name="code"/>                            
+                    <field name="definition"/>                          
+                    <field name="contains_id"/>                         
+                    <field name="source_id" invisible="0"/>                         
+                </tree>                             
+            </field>                                    
+        </record>                                       
+                                                
+        <record id="hc_vs_service_provision_condition_view_form" model="ir.ui.view">                                        
+            <field name="name">Service Provision Condition Form</field>                                 
+            <field name="model">hc.vs.service.provision.condition</field>                                   
+            <field name="arch" type="xml">                                  
+                <form string="Service Provision Conditions">                               
+                    <sheet>                         
+                        <h1>                        
+                            <field name="name" default_focus="1" placeholder="Name (e.g., United States)"/>                 
+                        </h1>                       
+                        <field name="code" placeholder="Code (e.g., US)"/>                      
+                        <field name="definition" placeholder="Definition"/>                     
+                        <field name="comments" placeholder="Comments"/>                     
+                        <group>                     
+                            <group>                 
+                                <field name="contains_id"/>             
+                            </group>                    
+                            <group>                 
+                                <field name="source_id" placeholder="e.g., U.S. Census Bureau"/>                
+                                <field name="system" widget="url" placeholder="e.g., www.census.gov/"/>             
+                            </group>                    
+                        </group>                        
+                    </sheet>                            
+                </form>                             
+            </field>                                    
+        </record>                                       
 
+        <act_window id="hc_vs_service_provision_condition_action"           
+                    name="HC Service Provision Conditions"
+                    res_model="hc.vs.service.provision.condition"
+                    view_mode="tree,form"
+                    domain=""
+                    context=""
+                    limit=""/>
 
-<!--         <menuitem id="hc_healthcare_service.menu_serv_prov_cond" 
+        <menuitem id="hc_healthcare_service.menu_serv_prov_cond" 
                   name="Service Provision Conditions" 
                   parent="hc_healthcare_service.menu_hc_service_conf" 
                   action="hc_vs_service_provision_condition_action" 
                   groups="hc_base.group_hc_base_manager" 
                   sequence="20"/>
+
+        <!-- Service Referral Method Views -->
+
+        <record id="hc_vs_service_referral_method_view_search" model="ir.ui.view">                                                              
+            <field name="name">Service Referral Method Search</field>                                                           
+            <field name="model">hc.vs.service.referral.method</field>                                                           
+            <field name="arch" type="xml">                                                          
+                <search string="Service Referral Methods">                                                      
+                    <field name="name"/>                                                    
+                    <field name="code"/>                                                    
+                    <field name="definition"/>                                                  
+                    <group>                                                 
+                        <!-- <filter name="group_by_parent" string="parent" context="{'group_by': 'contains_id'}"/> -->                                             
+                    </group>                                                    
+                </search>                                                       
+            </field>                                                            
+        </record>                                                               
+                                                                        
+        <record id="hc_vs_service_referral_method_view_tree" model="ir.ui.view">                                                                
+            <field name="name">Service Referral Method Tree</field>                                                         
+            <field name="model">hc.vs.service.referral.method</field>                                                           
+            <field name="arch" type="xml">                                                          
+                <tree string="Service Referral Methods" default_order="name, code">                                                     
+                    <field name="name"/>                                                    
+                    <field name="code"/>                                                    
+                    <field name="definition"/>                                                  
+                    <field name="contains_id"/>                                                 
+                    <field name="source_id" invisible="0"/>                                                 
+                </tree>                                                     
+            </field>                                                            
+        </record>                                                               
+                                                                        
+        <record id="hc_vs_service_referral_method_view_form" model="ir.ui.view">                                                                
+            <field name="name">Service Referral Method Form</field>                                                         
+            <field name="model">hc.vs.service.referral.method</field>                                                           
+            <field name="arch" type="xml">                                                          
+                <form string="Service Referral Methods">                                                       
+                    <sheet>                                                 
+                        <h1>                                                
+                            <field name="name" default_focus="1" placeholder="Name (e.g., United States)"/>                                         
+                        </h1>                                               
+                        <field name="code" placeholder="Code (e.g., US)"/>                                              
+                        <field name="definition" placeholder="Definition"/>                                             
+                        <field name="comments" placeholder="Comments"/>                                             
+                        <group>                                             
+                            <group>                                         
+                                <field name="contains_id"/>                                     
+                            </group>                                            
+                            <group>                                         
+                                <field name="source_id" placeholder="e.g., U.S. Census Bureau"/>                                        
+                                <field name="system" widget="url" placeholder="e.g., www.census.gov/"/>                                     
+                            </group>                                            
+                        </group>                                                
+                    </sheet>                                                    
+                </form>                                                     
+            </field>                                                            
+        </record>                                                               
         
+        <act_window id="hc_vs_service_referral_method_action"           
+                    name="HC Service Referral Methods"
+                    res_model="hc.vs.service.referral.method"
+                    view_mode="tree,form"
+                    domain=""
+                    context=""
+                    limit=""/>
+
         <menuitem id="hc_healthcare_service.menu_serv_ref_meth" 
                   name="Service Referral Methods" 
                   parent="hc_healthcare_service.menu_hc_service_conf" 
                   action="hc_vs_service_referral_method_action" 
                   groups="hc_base.group_hc_base_manager" 
-                  sequence="30"/> -->
+                  sequence="30"/>
         
         <!-- Service Type Views -->                                                             
                                                                 
@@ -122,7 +251,8 @@
                     <field name="code"/>                                                    
                     <field name="definition"/>                                                  
                     <group>                                                 
-                        <filter name="group_by_parent" string="parent" context="{'group_by': 'contains_id'}" />                                             
+                        <filter name="group_by_parent" string="parent" context="{'group_by': 'contains_id'}"/>
+                        <filter name="group_by_source" string="source" context="{'group_by': 'source_id'}"/>                                             
                     </group>                                                    
                 </search>                                                       
             </field>                                                            
@@ -146,7 +276,7 @@
             <field name="name">Service Type Form</field>                                                            
             <field name="model">hc.vs.service.type</field>                                                          
             <field name="arch" type="xml">                                                          
-                <form string="Service Types" >                                                      
+                <form string="Service Types">                                                      
                     <sheet>                                                 
                         <h1>                                                
                             <field name="name" default_focus="1" placeholder="Name (e.g., United States)"/>                                         
@@ -156,7 +286,8 @@
                         <field name="comments" placeholder="Comments"/>                                             
                         <group>                                             
                             <group>                                         
-                                <field name="contains_id"/>                                     
+                                <field name="contains_id"/>
+                                <field name="level"/>                                     
                             </group>                                            
                             <group>                                         
                                 <field name="source_id" placeholder="e.g., U.S. Census Bureau"/>                                        
