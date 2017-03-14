@@ -31,6 +31,9 @@
     'data': [
         'security/ir.model.access.csv',
         'data/hc.vs.service.category.csv',
+        'data/hc.vs.service.provision.condition.csv',
+        'data/hc.vs.service.referral.method.csv',
+        'data/hc.vs.service.type.csv',
         'views/hc_res_healthcare_service_views.xml',
         'views/hc_res_healthcare_service_templates.xml',
     ],

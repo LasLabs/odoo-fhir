@@ -418,7 +418,7 @@ class MedicationDispenseCategory(models.Model):
         help="Code of this medication dispense category.")                    
     contains_id = fields.Many2one(
         comodel_name="hc.vs.medication.dispense.category", 
-        string="Contains", 
+        string="Parent", 
         help="Parent medication dispense category.")                    
 
 class ActPharmacySupplyType(models.Model):  
@@ -434,7 +434,7 @@ class ActPharmacySupplyType(models.Model):
         help="Code of this act pharmacy supply type.")                    
     contains_id = fields.Many2one(
         comodel_name="hc.vs.act.pharmacy.supply.type", 
-        string="Contains", 
+        string="Parent", 
         help="Parent act pharmacy supply type.")                    
 
 class MedicationNotDoneReason(models.Model):    
@@ -450,7 +450,7 @@ class MedicationNotDoneReason(models.Model):
         help="Code of this medication not done reason.")                  
     contains_id = fields.Many2one(
         comodel_name="hc.vs.medication.not.done.reason", 
-        string="Contains", 
+        string="Parent", 
         help="Parent medication not done reason.")                    
 
 class ActSubstanceAdminSubsititutionCode(models.Model): 
@@ -466,5 +466,5 @@ class ActSubstanceAdminSubsititutionCode(models.Model):
         help="Code of this act substance admin subsititution code.")                  
     contains_id = fields.Many2one(
         comodel_name="hc.vs.act.substance.admin.subsititution.code", 
-        string="Contains", 
+        string="Parent", 
         help="Parent act substance admin subsititution code.")                    

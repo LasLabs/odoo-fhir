@@ -702,7 +702,7 @@ class GoalDefinitionTarget(models.Model):
         help="Code of this goal definition target.")                  
     contains_id = fields.Many2one(
         comodel_name="hc.vs.goal.definition.target", 
-        string="Contains", 
+        string="Parent", 
         help="Parent goal definition target.")                    
 
 class PlanDefinitionTopic(models.Model):    
@@ -718,5 +718,5 @@ class PlanDefinitionTopic(models.Model):
         help="Code of this plan definition topic.")
     contains_id = fields.Many2one(
         comodel_name="hc.vs.plan.definition.topic", 
-        string="Contains", 
+        string="Parent", 
         help="Parent plan definition topic.")

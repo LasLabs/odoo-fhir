@@ -1,0 +1,8 @@
+id,"code","name","definition","comments","is_active","source_id/id","system"
+hc_base.day_week_mon,"mon","Monday","Monday","","","base.hl7fhir","http://hl7.org/fhir/ValueSet/days-of-week"
+hc_base.day_week_tue,"tue","Tuesday","Tuesday","","","base.hl7fhir","http://hl7.org/fhir/ValueSet/days-of-week"
+hc_base.day_week_wed,"wed","Wednesday","Wednesday","","","base.hl7fhir","http://hl7.org/fhir/ValueSet/days-of-week"
+hc_base.day_week_thu,"thu","Thursday","Thursday","","","base.hl7fhir","http://hl7.org/fhir/ValueSet/days-of-week"
+hc_base.day_week_fri,"fri","Friday","Friday","","","base.hl7fhir","http://hl7.org/fhir/ValueSet/days-of-week"
+hc_base.day_week_sat,"sat","Saturday","Saturday","","","base.hl7fhir","http://hl7.org/fhir/ValueSet/days-of-week"
+hc_base.day_week_sun,"sun","Sunday","Sunday","","","base.hl7fhir","http://hl7.org/fhir/ValueSet/days-of-week"

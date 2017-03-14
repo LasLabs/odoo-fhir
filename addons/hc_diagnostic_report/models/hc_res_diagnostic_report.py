@@ -292,7 +292,7 @@ class DiagnosticReportCategory(models.Model):
         help="Code of this diagnostic report category.")
     contains_id = fields.Many2one(
         comodel_name="hc.vs.diagnostic.report.category", 
-        string="Contains", 
+        string="Parent", 
         help="Parent diagnostic report category.")
 
 class DiagnosticReportCode(models.Model):    
@@ -308,7 +308,7 @@ class DiagnosticReportCode(models.Model):
         help="Code of this diagnostic report code.")
     contains_id = fields.Many2one(
         comodel_name="hc.vs.diagnostic.report.code", 
-        string="Contains", 
+        string="Parent", 
         help="Parent diagnostic report code.")
 
 # External Reference

@@ -277,7 +277,7 @@ class GoalDescription(models.Model):
         help="Code of this goal description.")
     contains_id = fields.Many2one(
         comodel_name="hc.vs.goal.description", 
-        string="Contains", 
+        string="Parent", 
         help="Parent goal description.")
 
 class GoalOutcomeResult(models.Model):    
@@ -293,7 +293,7 @@ class GoalOutcomeResult(models.Model):
         help="Code of this goal outcome result.")
     contains_id = fields.Many2one(
         comodel_name="hc.vs.goal.outcome.result", 
-        string="Contains", 
+        string="Parent", 
         help="Parent goal outcome result.")
 
 class GoalStatusReason(models.Model):    
@@ -309,7 +309,7 @@ class GoalStatusReason(models.Model):
         help="Code of this goal status reason.")
     contains_id = fields.Many2one(
         comodel_name="hc.vs.goal.status.reason", 
-        string="Contains", 
+        string="Parent", 
         help="Parent goal status reason.")
 
 # External reference

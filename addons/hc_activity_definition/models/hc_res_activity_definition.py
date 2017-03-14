@@ -333,7 +333,7 @@ class ActivityDefinitionCode(models.Model):
         help="Code of this activity definition code.")
     contains_id = fields.Many2one(
         comodel_name="hc.vs.activity.definition.code", 
-        string="Contains", 
+        string="Parent", 
         help="Parent activity definition code.")
 
 class ActivityDefinitionProduct(models.Model):  
@@ -349,7 +349,7 @@ class ActivityDefinitionProduct(models.Model):
         help="Code of this activity definition product.")
     contains_id = fields.Many2one(
         comodel_name="hc.vs.activity.definition.product", 
-        string="Contains", 
+        string="Parent", 
         help="Parent activity definition product.")
 
 class ActivityDefinitionTopic(models.Model):    
@@ -365,7 +365,7 @@ class ActivityDefinitionTopic(models.Model):
         help="Code of this activity definition topic.")
     contains_id = fields.Many2one(
         comodel_name="hc.vs.activity.definition.topic", 
-        string="Contains", 
+        string="Parent", 
         help="Parent activity definition topic.")
 
 class ActivityDefinitionTimingCode(models.Model):   
@@ -381,7 +381,7 @@ class ActivityDefinitionTimingCode(models.Model):
         help="Code of this activity definition timing code.")
     contains_id = fields.Many2one(
         comodel_name="hc.vs.activity.definition.timing.code", 
-        string="Contains", 
+        string="Parent", 
         help="Parent activity definition timing code.")
 
              

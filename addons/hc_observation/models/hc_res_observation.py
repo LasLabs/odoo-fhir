@@ -625,7 +625,7 @@ class ObservationCategory(models.Model):
         help="Code of this observation category.")                    
     contains_id = fields.Many2one(
         comodel_name="hc.vs.observation.category", 
-        string="Contains", 
+        string="Parent", 
         help="Parent observation category.")                                      
 
 class ObservationInterpretation(models.Model):  
@@ -641,7 +641,7 @@ class ObservationInterpretation(models.Model):
         help="Code of this observation interpretation.")                  
     contains_id = fields.Many2one(
         comodel_name="hc.vs.observation.interpretation", 
-        string="Contains", 
+        string="Parent", 
         help="Parent observation interpretation.")                    
 
 class ObservationMethod(models.Model):  
@@ -657,7 +657,7 @@ class ObservationMethod(models.Model):
         help="Code of this observation method.")                  
     contains_id = fields.Many2one(
         comodel_name="hc.vs.observation.method", 
-        string="Contains", 
+        string="Parent", 
         help="Parent observation method.")                    
 
 class ObservationValueAbsentReason(models.Model):   
@@ -673,7 +673,7 @@ class ObservationValueAbsentReason(models.Model):
         help="Code of this observation value absent reason.")                 
     contains_id = fields.Many2one(
         comodel_name="hc.vs.observation.value.absent.reason", 
-        string="Contains", 
+        string="Parent", 
         help="Parent observation value absent reason.")                  
 
 class ObservationValueCode(models.Model):   
@@ -689,7 +689,7 @@ class ObservationValueCode(models.Model):
         help="Code of this observation value code.")                  
     contains_id = fields.Many2one(
         comodel_name="hc.vs.observation.value.code", 
-        string="Contains", 
+        string="Parent", 
         help="Parent observation value code.")                    
 
 class ReferenceRangeMeaning(models.Model):  
@@ -705,7 +705,7 @@ class ReferenceRangeMeaning(models.Model):
         help="Code of this reference range meaning.")                 
     contains_id = fields.Many2one(
         comodel_name="hc.vs.reference.range.meaning", 
-        string="Contains", 
+        string="Parent", 
         help="Parent reference range meaning.")                   
 
 # External Reference
@@ -722,7 +722,7 @@ class ConditionStageAssessment(models.Model):
     def _compute_stage_assessment_name(self):         
         for hc_condition_stage_assessment in self:       
             if hc_condition_stage_assessment.stage_assessment_type == 'observation': 
-                hc_condition_stage_assessment.stage_assessment_name = hc_condition_stage_assessment.stage_assessment_observation_id.nam
+                hc_condition_stage_assessment.stage_assessment_name = hc_condition_stage_assessment.stage_assessment_observation_id.name
 
 class SequenceVariant(models.Model):    
     _inherit = "hc.sequence.variant"

@@ -464,7 +464,7 @@ class MedicationRequestCategory(models.Model):
         help="Code of this medication request category.")
     contains_id = fields.Many2one(
         comodel_name="hc.vs.substance.admin.substitution.reason", 
-        string="Contains", 
+        string="Parent", 
         help="Parent medication request category.")
 
 class SubstanceAdminSubstitutionReason(models.Model):   
@@ -480,5 +480,5 @@ class SubstanceAdminSubstitutionReason(models.Model):
         help="Code of this substance admin substitution reason.")
     contains_id = fields.Many2one(
         comodel_name="hc.vs.substance.admin.substitution.reason", 
-        string="Contains", 
+        string="Parent", 
         help="Parent substance admin substitution reason.")

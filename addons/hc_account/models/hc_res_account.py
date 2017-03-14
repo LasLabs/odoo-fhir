@@ -215,5 +215,5 @@ class AccountType(models.Model):
         help="Code of this account type.")                    
     contains_id = fields.Many2one(
         comodel_name="hc.vs.account.type", 
-        string="Contains", 
+        string="Parent", 
         help="Parent account type.")                    
