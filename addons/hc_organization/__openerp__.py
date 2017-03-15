@@ -32,6 +32,7 @@
     # always loaded
     'data': [
         'security/ir.model.access.csv',
+        'data/data_organization.xml',
         'views/hc_res_organization_views.xml',
         'views/hc_res_organization_templates.xml',
     ],

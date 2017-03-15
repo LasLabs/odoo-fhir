@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+
+        <!-- Days of Week -->
+
+        <record id="hc_base.day_week_mon" model="hc.vs.days.of.week">    
+            <field name="code">mon</field>
+            <field name="name">Monday</field>
+            <field name="definition">Monday</field>
+            <field name="source_id" ref="base.hl7fhir"/>
+            <field name="system">http://hl7.org/fhir/ValueSet/days-of-week</field>
+        </record>    
+            
+        <record id="hc_base.day_week_tue" model="hc.vs.days.of.week">    
+            <field name="code">tue</field>
+            <field name="name">Tuesday</field>
+            <field name="definition">Tuesday</field>
+            <field name="source_id" ref="base.hl7fhir"/>
+            <field name="system">http://hl7.org/fhir/ValueSet/days-of-week</field>
+        </record>    
+            
+        <record id="hc_base.day_week_wed" model="hc.vs.days.of.week">    
+            <field name="code">wed</field>
+            <field name="name">Wednesday</field>
+            <field name="definition">Wednesday</field>
+            <field name="source_id" ref="base.hl7fhir"/>
+            <field name="system">http://hl7.org/fhir/ValueSet/days-of-week</field>
+        </record>    
+            
+        <record id="hc_base.day_week_thu" model="hc.vs.days.of.week">    
+            <field name="code">thu</field>
+            <field name="name">Thursday</field>
+            <field name="definition">Thursday</field>
+            <field name="source_id" ref="base.hl7fhir"/>
+            <field name="system">http://hl7.org/fhir/ValueSet/days-of-week</field>
+        </record>    
+            
+        <record id="hc_base.day_week_fri" model="hc.vs.days.of.week">    
+            <field name="code">fri</field>
+            <field name="name">Friday</field>
+            <field name="definition">Friday</field>
+            <field name="source_id" ref="base.hl7fhir"/>
+            <field name="system">http://hl7.org/fhir/ValueSet/days-of-week</field>
+        </record>    
+            
+        <record id="hc_base.day_week_sat" model="hc.vs.days.of.week">    
+            <field name="code">sat</field>
+            <field name="name">Saturday</field>
+            <field name="definition">Saturday</field>
+            <field name="source_id" ref="base.hl7fhir"/>
+            <field name="system">http://hl7.org/fhir/ValueSet/days-of-week</field>
+        </record>    
+            
+        <record id="hc_base.day_week_sun" model="hc.vs.days.of.week">    
+            <field name="code">sun</field>
+            <field name="name">Sunday</field>
+            <field name="definition">Sunday</field>
+            <field name="source_id" ref="base.hl7fhir"/>
+            <field name="system">http://hl7.org/fhir/ValueSet/days-of-week</field>
+        </record>    
+
+    </data>
+</odoo>

@@ -240,10 +240,32 @@ class OrganizationType(models.Model):
     _description = "Organization Type" 
     _inherit = ["hc.value.set.contains"]
 
-class OrganizationContactPurpose(models.Model): 
-    _name = "hc.vs.contact.entity.type"    
-    _description = "Organization Contact Purpose"
+    name = fields.Char(
+        string="Name", 
+        help="Name of this organization type.")
+    code = fields.Char(
+        string="Code", 
+        help="Code of this organization type.")
+    contains_id = fields.Many2one(
+        comodel_name="hc.vs.organization.type", 
+        string="Parent", 
+        help="Parent organization type.")
+
+class ContactEntityType(models.Model):  
+    _name = "hc.vs.contact.entity.type" 
+    _description = "Contact Entity Type"
     _inherit = ["hc.value.set.contains"]
+
+    name = fields.Char(
+        string="Name", 
+        help="Name of this contact entity type.")
+    code = fields.Char(
+        string="Code", 
+        help="Code of this contact entity type.")
+    contains_id = fields.Many2one(
+        comodel_name="hc.vs.contact.entity.type", 
+        string="Parent", 
+        help="Parent contact entity type.")
 
 # External Reference
 

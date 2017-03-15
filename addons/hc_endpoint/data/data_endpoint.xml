@@ -1,0 +1,699 @@
+<?xml version="1.0" encoding="utf-8"?>      
+<openerp>       
+    <data noupdate="0">
+
+        <!-- Endpoint Connection Type -->   
+            
+        <record id="hc_endpoint.end_con_type_1" model="hc.vs.endpoint.connection.type"> 
+            <field name="code">"ihe-xcpd"</field>
+            <field name="name">IHE XCPD</field>
+            <field name="definition">"IHE Cross Community Patient Discovery Profile (XCPD) - http://wiki.ihe.net/index.php/Cross-Community_Patient_Discovery"</field>
+            <field name="source_id" ref="base.hl7fhir"/>
+            <field name="system">"http://hl7.org/fhir/ValueSet/endpoint-connection-type"</field>
+        </record>   
+            
+        <record id="hc_endpoint.end_con_type_2" model="hc.vs.endpoint.connection.type"> 
+            <field name="code">ihe-xca</field>
+            <field name="name">IHE XCA</field>
+            <field name="definition">"IHE Cross Community Access Profile (XCA) - http://wiki.ihe.net/index.php/Cross-Community_Access"</field>
+            <field name="source_id" ref="base.hl7fhir"/>
+            <field name="system">http://hl7.org/fhir/ValueSet/endpoint-connection-type</field>
+        </record>   
+            
+        <record id="hc_endpoint.end_con_type_3" model="hc.vs.endpoint.connection.type"> 
+            <field name="code">ihe-xdr</field>
+            <field name="name">IHE XDR</field>
+            <field name="definition">"IHE Cross-Enterprise Document Reliable Exchange (XDR) - http://wiki.ihe.net/index.php/Cross-enterprise_Document_Reliable_Interchange"</field>
+            <field name="source_id" ref="base.hl7fhir"/>
+            <field name="system">http://hl7.org/fhir/ValueSet/endpoint-connection-type</field>
+        </record>   
+            
+        <record id="hc_endpoint.end_con_type_4" model="hc.vs.endpoint.connection.type"> 
+            <field name="code">ihe-xds</field>
+            <field name="name">IHE XDS</field>
+            <field name="definition">"IHE Cross-Enterprise Document Sharing (XDS) - http://wiki.ihe.net/index.php/Cross-Enterprise_Document_Sharing"</field>
+            <field name="source_id" ref="base.hl7fhir"/>
+            <field name="system">http://hl7.org/fhir/ValueSet/endpoint-connection-type</field>
+        </record>   
+            
+        <record id="hc_endpoint.end_con_type_5" model="hc.vs.endpoint.connection.type"> 
+            <field name="code">ihe-iid</field>
+            <field name="name">IHE IID</field>
+            <field name="definition">"IHE Invoke Image Display (IID) - http://wiki.ihe.net/index.php/Invoke_Image_Display"</field>
+            <field name="source_id" ref="base.hl7fhir"/>
+            <field name="system">http://hl7.org/fhir/ValueSet/endpoint-connection-type</field>
+        </record>   
+            
+        <record id="hc_endpoint.end_con_type_6" model="hc.vs.endpoint.connection.type"> 
+            <field name="code">dicom-wado-rs</field>
+            <field name="name">DICOM WADO-RS</field>
+            <field name="definition">"DICOMweb RESTful Image Retrieve - http://dicom.nema.org/medical/dicom/current/output/chtml/part18/sect_6.5.html"</field>
+            <field name="source_id" ref="base.hl7fhir"/>
+            <field name="system">http://hl7.org/fhir/ValueSet/endpoint-connection-type</field>
+        </record>   
+            
+        <record id="hc_endpoint.end_con_type_7" model="hc.vs.endpoint.connection.type"> 
+            <field name="code">dicom-qido-rs</field>
+            <field name="name">DICOM QIDO-RS</field>
+            <field name="definition">"DICOMweb RESTful Image query - http://dicom.nema.org/medical/dicom/current/output/chtml/part18/sect_6.7.html"</field>
+            <field name="source_id" ref="base.hl7fhir"/>
+            <field name="system">http://hl7.org/fhir/ValueSet/endpoint-connection-type</field>
+        </record>   
+            
+        <record id="hc_endpoint.end_con_type_8" model="hc.vs.endpoint.connection.type"> 
+            <field name="code">dicom-stow-rs</field>
+            <field name="name">DICOM STOW-RS</field>
+            <field name="definition">"DICOMweb RESTful image sending and storage - http://dicom.nema.org/medical/dicom/current/output/chtml/part18/sect_6.6.html"</field>
+            <field name="source_id" ref="base.hl7fhir"/>
+            <field name="system">http://hl7.org/fhir/ValueSet/endpoint-connection-type</field>
+        </record>   
+            
+        <record id="hc_endpoint.end_con_type_9" model="hc.vs.endpoint.connection.type"> 
+            <field name="code">dicom-wado-uri</field>
+            <field name="name">DICOM WADO-URI</field>
+            <field name="definition">"DICOMweb Image Retrieve - http://dicom.nema.org/dicom/2013/output/chtml/part18/sect_6.3.html"</field>
+            <field name="source_id" ref="base.hl7fhir"/>
+            <field name="system">http://hl7.org/fhir/ValueSet/endpoint-connection-type</field>
+        </record>   
+            
+        <record id="hc_endpoint.end_con_type_10" model="hc.vs.endpoint.connection.type">    
+            <field name="code">hl7-fhir-rest</field>
+            <field name="name">HL7 FHIR</field>
+            <field name="definition">""</field>
+            <field name="source_id" ref="base.hl7fhir"/>
+            <field name="system">http://hl7.org/fhir/ValueSet/endpoint-connection-type</field>
+        </record>   
+            
+        <record id="hc_endpoint.end_con_type_11" model="hc.vs.endpoint.connection.type">    
+            <field name="code">hl7-fhir-msg</field>
+            <field name="name">HL7 FHIR Messaging</field>
+            <field name="definition">""</field>
+            <field name="source_id" ref="base.hl7fhir"/>
+            <field name="system">http://hl7.org/fhir/ValueSet/endpoint-connection-type</field>
+        </record>   
+            
+        <record id="hc_endpoint.end_con_type_12" model="hc.vs.endpoint.connection.type">    
+            <field name="code">hl7v2-mllp</field>
+            <field name="name">HL7 v2 MLLP</field>
+            <field name="definition">"HL7v2 messages over an LLP TCP connection"</field>
+            <field name="source_id" ref="base.hl7fhir"/>
+            <field name="system">http://hl7.org/fhir/ValueSet/endpoint-connection-type</field>
+        </record>   
+            
+        <record id="hc_endpoint.end_con_type_13" model="hc.vs.endpoint.connection.type">    
+            <field name="code">secure-email</field>
+            <field name="name">Secure email</field>
+            <field name="definition">"email delivery using a digital certificate to encrypt the content using the public key, receiver must have the private key to decrypt the content"</field>
+            <field name="source_id" ref="base.hl7fhir"/>
+            <field name="system">http://hl7.org/fhir/ValueSet/endpoint-connection-type</field>
+        </record>   
+            
+        <record id="hc_endpoint.end_con_type_14" model="hc.vs.endpoint.connection.type">    
+            <field name="code">direct-project</field>
+            <field name="name">Direct Project</field>
+            <field name="definition">"Direct Project information - http://wiki.directproject.org/"</field>
+            <field name="source_id" ref="base.hl7fhir"/>
+            <field name="system">http://hl7.org/fhir/ValueSet/endpoint-connection-type</field>
+        </record>   
+   
+    
+        <!-- Endpoint Payload Type -->  
+    
+        <record id="hc_endpoint.end_pay_type_1" model="hc.vs.endpoint.payload.type">    
+            <field name="code">urn:ihe:pcc:handp:2008</field>
+            <field name="name">History and Physical Specification</field>
+            <field name="definition"></field>
+            <field name="source_id" ref="base.hl7fhir"/>
+            <field name="system">http://hl7.org/fhir/ValueSet/endpoint-payload-type</field>
+        </record>   
+            
+        <record id="hc_endpoint.end_pay_type_2" model="hc.vs.endpoint.payload.type">    
+            <field name="code">urn:ihe:pcc:xphr:2007</field>
+            <field name="name">HL7 CCD Document</field>
+            <field name="definition"></field>
+            <field name="source_id" ref="base.hl7fhir"/>
+            <field name="system">http://hl7.org/fhir/ValueSet/endpoint-payload-type</field>
+        </record>   
+            
+        <record id="hc_endpoint.end_pay_type_3" model="hc.vs.endpoint.payload.type">    
+            <field name="code">urn:ihe:pcc:aps:2007</field>
+            <field name="name">IHE Antepartum Summary</field>
+            <field name="definition"></field>
+            <field name="source_id" ref="base.hl7fhir"/>
+            <field name="system">http://hl7.org/fhir/ValueSet/endpoint-payload-type</field>
+        </record>   
+            
+        <record id="hc_endpoint.end_pay_type_4" model="hc.vs.endpoint.payload.type">    
+            <field name="code">urn:ihe:pcc:xds-ms:2007</field>
+            <field name="name">XDS Medical Summaries</field>
+            <field name="definition"></field>
+            <field name="source_id" ref="base.hl7fhir"/>
+            <field name="system">http://hl7.org/fhir/ValueSet/endpoint-payload-type</field>
+        </record>   
+            
+        <record id="hc_endpoint.end_pay_type_5" model="hc.vs.endpoint.payload.type">    
+            <field name="code">urn:ihe:pcc:xphr:2007</field>
+            <field name="name">Personal Health Records</field>
+            <field name="definition"></field>
+            <field name="source_id" ref="base.hl7fhir"/>
+            <field name="system">http://hl7.org/fhir/ValueSet/endpoint-payload-type</field>
+        </record>   
+            
+        <record id="hc_endpoint.end_pay_type_6" model="hc.vs.endpoint.payload.type">    
+            <field name="code">urn:ihe:pcc:edr:2007</field>
+            <field name="name">Emergency Department Referral (EDR)</field>
+            <field name="definition"></field>
+            <field name="source_id" ref="base.hl7fhir"/>
+            <field name="system">http://hl7.org/fhir/ValueSet/endpoint-payload-type</field>
+        </record>   
+            
+        <record id="hc_endpoint.end_pay_type_7" model="hc.vs.endpoint.payload.type">    
+            <field name="code">urn:ihe:pcc:edes:2007</field>
+            <field name="name">Emergency Department Encounter Summary (EDES)</field>
+            <field name="definition"></field>
+            <field name="source_id" ref="base.hl7fhir"/>
+            <field name="system">http://hl7.org/fhir/ValueSet/endpoint-payload-type</field>
+        </record>   
+            
+        <record id="hc_endpoint.end_pay_type_8" model="hc.vs.endpoint.payload.type">    
+            <field name="code">urn:ihe:pcc:apr:handp:2008</field>
+            <field name="name">Antepartum Record (APR) - History and Physical</field>
+            <field name="definition"></field>
+            <field name="source_id" ref="base.hl7fhir"/>
+            <field name="system">http://hl7.org/fhir/ValueSet/endpoint-payload-type</field>
+        </record>   
+            
+        <record id="hc_endpoint.end_pay_type_9" model="hc.vs.endpoint.payload.type">    
+            <field name="code">urn:ihe:pcc:apr:lab:2008</field>
+            <field name="name">Antepartum Record (APR) - Laboratory</field>
+            <field name="definition"></field>
+            <field name="source_id" ref="base.hl7fhir"/>
+            <field name="system">http://hl7.org/fhir/ValueSet/endpoint-payload-type</field>
+        </record>   
+            
+        <record id="hc_endpoint.end_pay_type_10" model="hc.vs.endpoint.payload.type">   
+            <field name="code">urn:ihe:pcc:apr:edu:2008</field>
+            <field name="name">Antepartum Record (APR) - Education</field>
+            <field name="definition"></field>
+            <field name="source_id" ref="base.hl7fhir"/>
+            <field name="system">http://hl7.org/fhir/ValueSet/endpoint-payload-type</field>
+        </record>   
+            
+        <record id="hc_endpoint.end_pay_type_11" model="hc.vs.endpoint.payload.type">   
+            <field name="code">urn:ihe:pcc:irc:2008</field>
+            <field name="name">Immunization Registry Content (IRC)</field>
+            <field name="definition"></field>
+            <field name="source_id" ref="base.hl7fhir"/>
+            <field name="system">http://hl7.org/fhir/ValueSet/endpoint-payload-type</field>
+        </record>   
+            
+        <record id="hc_endpoint.end_pay_type_12" model="hc.vs.endpoint.payload.type">   
+            <field name="code">urn:ihe:pcc:crc:2008</field>
+            <field name="name">Cancer Registry Content (CRC)</field>
+            <field name="definition"></field>
+            <field name="source_id" ref="base.hl7fhir"/>
+            <field name="system">http://hl7.org/fhir/ValueSet/endpoint-payload-type</field>
+        </record>   
+            
+        <record id="hc_endpoint.end_pay_type_13" model="hc.vs.endpoint.payload.type">   
+            <field name="code">urn:ihe:pcc:cm:2008</field>
+            <field name="name">Care Management (CM)</field>
+            <field name="definition"></field>
+            <field name="source_id" ref="base.hl7fhir"/>
+            <field name="system">http://hl7.org/fhir/ValueSet/endpoint-payload-type</field>
+        </record>   
+            
+        <record id="hc_endpoint.end_pay_type_14" model="hc.vs.endpoint.payload.type">   
+            <field name="code">urn:ihe:pcc:ic:2009</field>
+            <field name="name">Immunization Content (IC)</field>
+            <field name="definition"></field>
+            <field name="source_id" ref="base.hl7fhir"/>
+            <field name="system">http://hl7.org/fhir/ValueSet/endpoint-payload-type</field>
+        </record>   
+            
+        <record id="hc_endpoint.end_pay_type_15" model="hc.vs.endpoint.payload.type">   
+            <field name="code">urn:ihe:pcc:tn:2007</field>
+            <field name="name">PCC TN</field>
+            <field name="definition"></field>
+            <field name="source_id" ref="base.hl7fhir"/>
+            <field name="system">http://hl7.org/fhir/ValueSet/endpoint-payload-type</field>
+        </record>   
+            
+        <record id="hc_endpoint.end_pay_type_16" model="hc.vs.endpoint.payload.type">   
+            <field name="code">urn:ihe:pcc:nn:2007</field>
+            <field name="name">PCC NN</field>
+            <field name="definition"></field>
+            <field name="source_id" ref="base.hl7fhir"/>
+            <field name="system">http://hl7.org/fhir/ValueSet/endpoint-payload-type</field>
+        </record>   
+            
+        <record id="hc_endpoint.end_pay_type_17" model="hc.vs.endpoint.payload.type">   
+            <field name="code">urn:ihe:pcc:ctn:2007</field>
+            <field name="name">PCC CTN</field>
+            <field name="definition"></field>
+            <field name="source_id" ref="base.hl7fhir"/>
+            <field name="system">http://hl7.org/fhir/ValueSet/endpoint-payload-type</field>
+        </record>   
+            
+        <record id="hc_endpoint.end_pay_type_18" model="hc.vs.endpoint.payload.type">   
+            <field name="code">urn:ihe:pcc:edpn:2007</field>
+            <field name="name">PCC EDPN</field>
+            <field name="definition"></field>
+            <field name="source_id" ref="base.hl7fhir"/>
+            <field name="system">http://hl7.org/fhir/ValueSet/endpoint-payload-type</field>
+        </record>   
+            
+        <record id="hc_endpoint.end_pay_type_19" model="hc.vs.endpoint.payload.type">   
+            <field name="code">urn:ihe:pcc:hp:2008</field>
+            <field name="name">PCC HP</field>
+            <field name="definition"></field>
+            <field name="source_id" ref="base.hl7fhir"/>
+            <field name="system">http://hl7.org/fhir/ValueSet/endpoint-payload-type</field>
+        </record>   
+            
+        <record id="hc_endpoint.end_pay_type_20" model="hc.vs.endpoint.payload.type">   
+            <field name="code">urn:ihe:pcc:ldhp:2009</field>
+            <field name="name">PCC LDHP</field>
+            <field name="definition"></field>
+            <field name="source_id" ref="base.hl7fhir"/>
+            <field name="system">http://hl7.org/fhir/ValueSet/endpoint-payload-type</field>
+        </record>   
+            
+        <record id="hc_endpoint.end_pay_type_21" model="hc.vs.endpoint.payload.type">   
+            <field name="code">urn:ihe:pcc:lds:2009</field>
+            <field name="name">PCC LDS</field>
+            <field name="definition"></field>
+            <field name="source_id" ref="base.hl7fhir"/>
+            <field name="system">http://hl7.org/fhir/ValueSet/endpoint-payload-type</field>
+        </record>   
+            
+        <record id="hc_endpoint.end_pay_type_22" model="hc.vs.endpoint.payload.type">   
+            <field name="code">urn:ihe:pcc:mds:2009</field>
+            <field name="name">PCC MDS</field>
+            <field name="definition"></field>
+            <field name="source_id" ref="base.hl7fhir"/>
+            <field name="system">http://hl7.org/fhir/ValueSet/endpoint-payload-type</field>
+        </record>   
+            
+        <record id="hc_endpoint.end_pay_type_23" model="hc.vs.endpoint.payload.type">   
+            <field name="code">urn:ihe:pcc:nds:2010</field>
+            <field name="name">PCC NDS</field>
+            <field name="definition"></field>
+            <field name="source_id" ref="base.hl7fhir"/>
+            <field name="system">http://hl7.org/fhir/ValueSet/endpoint-payload-type</field>
+        </record>   
+            
+        <record id="hc_endpoint.end_pay_type_24" model="hc.vs.endpoint.payload.type">   
+            <field name="code">urn:ihe:pcc:ppvs:2010</field>
+            <field name="name">PCC PPVS</field>
+            <field name="definition"></field>
+            <field name="source_id" ref="base.hl7fhir"/>
+            <field name="system">http://hl7.org/fhir/ValueSet/endpoint-payload-type</field>
+        </record>   
+            
+        <record id="hc_endpoint.end_pay_type_25" model="hc.vs.endpoint.payload.type">   
+            <field name="code">urn:ihe:pcc:trs:2011</field>
+            <field name="name">PCC TRS</field>
+            <field name="definition"></field>
+            <field name="source_id" ref="base.hl7fhir"/>
+            <field name="system">http://hl7.org/fhir/ValueSet/endpoint-payload-type</field>
+        </record>   
+            
+        <record id="hc_endpoint.end_pay_type_26" model="hc.vs.endpoint.payload.type">   
+            <field name="code">urn:ihe:pcc:ets:2011</field>
+            <field name="name">PCC ETS</field>
+            <field name="definition"></field>
+            <field name="source_id" ref="base.hl7fhir"/>
+            <field name="system">http://hl7.org/fhir/ValueSet/endpoint-payload-type</field>
+        </record>   
+            
+        <record id="hc_endpoint.end_pay_type_27" model="hc.vs.endpoint.payload.type">   
+            <field name="code">urn:ihe:pcc:its:2011</field>
+            <field name="name">PCC ITS</field>
+            <field name="definition"></field>
+            <field name="source_id" ref="base.hl7fhir"/>
+            <field name="system">http://hl7.org/fhir/ValueSet/endpoint-payload-type</field>
+        </record>   
+            
+        <record id="hc_endpoint.end_pay_type_28" model="hc.vs.endpoint.payload.type">   
+            <field name="code">urn:ihe:iti:bppc:2007</field>
+            <field name="name">Basic Patient Privacy Consents</field>
+            <field name="definition"></field>
+            <field name="source_id" ref="base.hl7fhir"/>
+            <field name="system">http://hl7.org/fhir/ValueSet/endpoint-payload-type</field>
+        </record>   
+            
+        <record id="hc_endpoint.end_pay_type_29" model="hc.vs.endpoint.payload.type">   
+            <field name="code">urn:ihe:iti:bppc-sd:2007</field>
+            <field name="name">Basic Patient Privacy Consents with Scanned Document</field>
+            <field name="definition"></field>
+            <field name="source_id" ref="base.hl7fhir"/>
+            <field name="system">http://hl7.org/fhir/ValueSet/endpoint-payload-type</field>
+        </record>   
+            
+        <record id="hc_endpoint.end_pay_type_30" model="hc.vs.endpoint.payload.type">   
+            <field name="code">urn:ihe:iti:xdw:2011:workflowDoc</field>
+            <field name="name">XDW Workflow Document</field>
+            <field name="definition"></field>
+            <field name="source_id" ref="base.hl7fhir"/>
+            <field name="system">http://hl7.org/fhir/ValueSet/endpoint-payload-type</field>
+        </record>   
+            
+        <record id="hc_endpoint.end_pay_type_31" model="hc.vs.endpoint.payload.type">   
+            <field name="code">urn:ihe:iti:dsg:detached:2014</field>
+            <field name="name">DSG Detached Document</field>
+            <field name="definition"></field>
+            <field name="source_id" ref="base.hl7fhir"/>
+            <field name="system">http://hl7.org/fhir/ValueSet/endpoint-payload-type</field>
+        </record>   
+            
+        <record id="hc_endpoint.end_pay_type_32" model="hc.vs.endpoint.payload.type">   
+            <field name="code">urn:ihe:iti:dsg:enveloping:2014</field>
+            <field name="name">DSG Enveloping Document</field>
+            <field name="definition"></field>
+            <field name="source_id" ref="base.hl7fhir"/>
+            <field name="system">http://hl7.org/fhir/ValueSet/endpoint-payload-type</field>
+        </record>   
+            
+        <record id="hc_endpoint.end_pay_type_33" model="hc.vs.endpoint.payload.type">   
+            <field name="code">urn:ihe:iti:xds-sd:pdf:2008</field>
+            <field name="name">PDF embedded in CDA per XDS-SD profile</field>
+            <field name="definition"></field>
+            <field name="source_id" ref="base.hl7fhir"/>
+            <field name="system">http://hl7.org/fhir/ValueSet/endpoint-payload-type</field>
+        </record>   
+            
+        <record id="hc_endpoint.end_pay_type_34" model="hc.vs.endpoint.payload.type">   
+            <field name="code">urn:ihe:iti:xds-sd:text:2008</field>
+            <field name="name">Text embedded in CDA per XDS-SD profile</field>
+            <field name="definition"></field>
+            <field name="source_id" ref="base.hl7fhir"/>
+            <field name="system">http://hl7.org/fhir/ValueSet/endpoint-payload-type</field>
+        </record>   
+            
+        <record id="hc_endpoint.end_pay_type_35" model="hc.vs.endpoint.payload.type">   
+            <field name="code">urn:ihe:lab:xd-lab:2008</field>
+            <field name="name">CDA Laboratory Report</field>
+            <field name="definition"></field>
+            <field name="source_id" ref="base.hl7fhir"/>
+            <field name="system">http://hl7.org/fhir/ValueSet/endpoint-payload-type</field>
+        </record>   
+            
+        <record id="hc_endpoint.end_pay_type_36" model="hc.vs.endpoint.payload.type">   
+            <field name="code">urn:ihe:rad:TEXT</field>
+            <field name="name">Radiology XDS-I Text</field>
+            <field name="definition"></field>
+            <field name="source_id" ref="base.hl7fhir"/>
+            <field name="system">http://hl7.org/fhir/ValueSet/endpoint-payload-type</field>
+        </record>   
+            
+        <record id="hc_endpoint.end_pay_type_37" model="hc.vs.endpoint.payload.type">   
+            <field name="code">urn:ihe:rad:PDF</field>
+            <field name="name">Radiology XDS-I PDF</field>
+            <field name="definition"></field>
+            <field name="source_id" ref="base.hl7fhir"/>
+            <field name="system">http://hl7.org/fhir/ValueSet/endpoint-payload-type</field>
+        </record>   
+            
+        <record id="hc_endpoint.end_pay_type_38" model="hc.vs.endpoint.payload.type">   
+            <field name="code">urn:ihe:rad:CDA:ImagingReportStructuredHeadings:2013</field>
+            <field name="name">Radiology XDS-I Structured CDA</field>
+            <field name="definition"></field>
+            <field name="source_id" ref="base.hl7fhir"/>
+            <field name="system">http://hl7.org/fhir/ValueSet/endpoint-payload-type</field>
+        </record>   
+            
+        <record id="hc_endpoint.end_pay_type_39" model="hc.vs.endpoint.payload.type">   
+            <field name="code">urn:ihe:card:imaging:2011</field>
+            <field name="name">Cardiac Imaging Report</field>
+            <field name="definition"></field>
+            <field name="source_id" ref="base.hl7fhir"/>
+            <field name="system">http://hl7.org/fhir/ValueSet/endpoint-payload-type</field>
+        </record>   
+            
+        <record id="hc_endpoint.end_pay_type_40" model="hc.vs.endpoint.payload.type">   
+            <field name="code">urn:ihe:card:CRC:2012</field>
+            <field name="name">Cardiology CRC</field>
+            <field name="definition"></field>
+            <field name="source_id" ref="base.hl7fhir"/>
+            <field name="system">http://hl7.org/fhir/ValueSet/endpoint-payload-type</field>
+        </record>   
+            
+        <record id="hc_endpoint.end_pay_type_41" model="hc.vs.endpoint.payload.type">   
+            <field name="code">urn:ihe:card:EPRC-IE:2014</field>
+            <field name="name">Cardiology EPRC-IE</field>
+            <field name="definition"></field>
+            <field name="source_id" ref="base.hl7fhir"/>
+            <field name="system">http://hl7.org/fhir/ValueSet/endpoint-payload-type</field>
+        </record>   
+            
+        <record id="hc_endpoint.end_pay_type_42" model="hc.vs.endpoint.payload.type">   
+            <field name="code">urn:ihe:dent:TEXT</field>
+            <field name="name">Dental Text</field>
+            <field name="definition"></field>
+            <field name="source_id" ref="base.hl7fhir"/>
+            <field name="system">http://hl7.org/fhir/ValueSet/endpoint-payload-type</field>
+        </record>   
+            
+        <record id="hc_endpoint.end_pay_type_43" model="hc.vs.endpoint.payload.type">   
+            <field name="code">urn:ihe:dent:PDF</field>
+            <field name="name">Dental PDF</field>
+            <field name="definition"></field>
+            <field name="source_id" ref="base.hl7fhir"/>
+            <field name="system">http://hl7.org/fhir/ValueSet/endpoint-payload-type</field>
+        </record>   
+            
+        <record id="hc_endpoint.end_pay_type_44" model="hc.vs.endpoint.payload.type">   
+            <field name="code">urn:ihe:dent:CDA:ImagingReportStructuredHeadings:2013</field>
+            <field name="name">Dental CDA</field>
+            <field name="definition"></field>
+            <field name="source_id" ref="base.hl7fhir"/>
+            <field name="system">http://hl7.org/fhir/ValueSet/endpoint-payload-type</field>
+        </record>   
+            
+        <record id="hc_endpoint.end_pay_type_45" model="hc.vs.endpoint.payload.type">   
+            <field name="code">urn:ihe:pat:apsr:all:2010</field>
+            <field name="name">Anatomic Pathology Structured Report All</field>
+            <field name="definition"></field>
+            <field name="source_id" ref="base.hl7fhir"/>
+            <field name="system">http://hl7.org/fhir/ValueSet/endpoint-payload-type</field>
+        </record>   
+            
+        <record id="hc_endpoint.end_pay_type_46" model="hc.vs.endpoint.payload.type">   
+            <field name="code">urn:ihe:pat:apsr:cancer:all:2010</field>
+            <field name="name">Anatomic Pathology Structured Report Cancer All</field>
+            <field name="definition"></field>
+            <field name="source_id" ref="base.hl7fhir"/>
+            <field name="system">http://hl7.org/fhir/ValueSet/endpoint-payload-type</field>
+        </record>   
+            
+        <record id="hc_endpoint.end_pay_type_47" model="hc.vs.endpoint.payload.type">   
+            <field name="code">urn:ihe:pat:apsr:cancer:breast:2010</field>
+            <field name="name">Anatomic Pathology Structured Report Cancer Breast</field>
+            <field name="definition"></field>
+            <field name="source_id" ref="base.hl7fhir"/>
+            <field name="system">http://hl7.org/fhir/ValueSet/endpoint-payload-type</field>
+        </record>   
+            
+        <record id="hc_endpoint.end_pay_type_48" model="hc.vs.endpoint.payload.type">   
+            <field name="code">urn:ihe:pat:apsr:cancer:colon:2010</field>
+            <field name="name">Anatomic Pathology Structured Report Cancer Colon</field>
+            <field name="definition"></field>
+            <field name="source_id" ref="base.hl7fhir"/>
+            <field name="system">http://hl7.org/fhir/ValueSet/endpoint-payload-type</field>
+        </record>   
+            
+        <record id="hc_endpoint.end_pay_type_49" model="hc.vs.endpoint.payload.type">   
+            <field name="code">urn:ihe:pat:apsr:cancer:prostate:2010</field>
+            <field name="name">Anatomic Pathology Structured Report Cancer Prostate</field>
+            <field name="definition"></field>
+            <field name="source_id" ref="base.hl7fhir"/>
+            <field name="system">http://hl7.org/fhir/ValueSet/endpoint-payload-type</field>
+        </record>   
+            
+        <record id="hc_endpoint.end_pay_type_50" model="hc.vs.endpoint.payload.type">   
+            <field name="code">urn:ihe:pat:apsr:cancer:thyroid:2010</field>
+            <field name="name">Anatomic Pathology Structured Report Cancer Thyroid</field>
+            <field name="definition"></field>
+            <field name="source_id" ref="base.hl7fhir"/>
+            <field name="system">http://hl7.org/fhir/ValueSet/endpoint-payload-type</field>
+        </record>   
+            
+        <record id="hc_endpoint.end_pay_type_51" model="hc.vs.endpoint.payload.type">   
+            <field name="code">urn:ihe:pat:apsr:cancer:lung:2010</field>
+            <field name="name">Anatomic Pathology Structured Report Cancer Lung</field>
+            <field name="definition"></field>
+            <field name="source_id" ref="base.hl7fhir"/>
+            <field name="system">http://hl7.org/fhir/ValueSet/endpoint-payload-type</field>
+        </record>   
+            
+        <record id="hc_endpoint.end_pay_type_52" model="hc.vs.endpoint.payload.type">   
+            <field name="code">urn:ihe:pat:apsr:cancer:skin:2010</field>
+            <field name="name">Anatomic Pathology Structured Report Cancer Skin</field>
+            <field name="definition"></field>
+            <field name="source_id" ref="base.hl7fhir"/>
+            <field name="system">http://hl7.org/fhir/ValueSet/endpoint-payload-type</field>
+        </record>   
+            
+        <record id="hc_endpoint.end_pay_type_53" model="hc.vs.endpoint.payload.type">   
+            <field name="code">urn:ihe:pat:apsr:cancer:kidney:2010</field>
+            <field name="name">Anatomic Pathology Structured Report Cancer Kidney</field>
+            <field name="definition"></field>
+            <field name="source_id" ref="base.hl7fhir"/>
+            <field name="system">http://hl7.org/fhir/ValueSet/endpoint-payload-type</field>
+        </record>   
+            
+        <record id="hc_endpoint.end_pay_type_54" model="hc.vs.endpoint.payload.type">   
+            <field name="code">urn:ihe:pat:apsr:cancer:cervix:2010</field>
+            <field name="name">Anatomic Pathology Structured Report Cancer Cervix</field>
+            <field name="definition"></field>
+            <field name="source_id" ref="base.hl7fhir"/>
+            <field name="system">http://hl7.org/fhir/ValueSet/endpoint-payload-type</field>
+        </record>   
+            
+        <record id="hc_endpoint.end_pay_type_55" model="hc.vs.endpoint.payload.type">   
+            <field name="code">urn:ihe:pat:apsr:cancer:endometrium:2010</field>
+            <field name="name">Anatomic Pathology Structured Report Cancer Endometrium</field>
+            <field name="definition"></field>
+            <field name="source_id" ref="base.hl7fhir"/>
+            <field name="system">http://hl7.org/fhir/ValueSet/endpoint-payload-type</field>
+        </record>   
+            
+        <record id="hc_endpoint.end_pay_type_56" model="hc.vs.endpoint.payload.type">   
+            <field name="code">urn:ihe:pat:apsr:cancer:ovary:2010</field>
+            <field name="name">Anatomic Pathology Structured Report Cancer Ovary</field>
+            <field name="definition"></field>
+            <field name="source_id" ref="base.hl7fhir"/>
+            <field name="system">http://hl7.org/fhir/ValueSet/endpoint-payload-type</field>
+        </record>   
+            
+        <record id="hc_endpoint.end_pay_type_57" model="hc.vs.endpoint.payload.type">   
+            <field name="code">urn:ihe:pat:apsr:cancer:esophagus: 2010</field>
+            <field name="name">Anatomic Pathology Structured Report Cancer Esophagus</field>
+            <field name="definition"></field>
+            <field name="source_id" ref="base.hl7fhir"/>
+            <field name="system">http://hl7.org/fhir/ValueSet/endpoint-payload-type</field>
+        </record>   
+            
+        <record id="hc_endpoint.end_pay_type_58" model="hc.vs.endpoint.payload.type">   
+            <field name="code">urn:ihe:pat:apsr:cancer:stomach: 2010</field>
+            <field name="name">Anatomic Pathology Structured Report Cancer Stomach</field>
+            <field name="definition"></field>
+            <field name="source_id" ref="base.hl7fhir"/>
+            <field name="system">http://hl7.org/fhir/ValueSet/endpoint-payload-type</field>
+        </record>   
+            
+        <record id="hc_endpoint.end_pay_type_59" model="hc.vs.endpoint.payload.type">   
+            <field name="code">urn:ihe:pat:apsr:cancer:liver:2010</field>
+            <field name="name">Anatomic Pathology Structured Report Cancer Liver</field>
+            <field name="definition"></field>
+            <field name="source_id" ref="base.hl7fhir"/>
+            <field name="system">http://hl7.org/fhir/ValueSet/endpoint-payload-type</field>
+        </record>   
+            
+        <record id="hc_endpoint.end_pay_type_60" model="hc.vs.endpoint.payload.type">   
+            <field name="code">urn:ihe:pat:apsr:cancer:pancreas: 2010</field>
+            <field name="name">Anatomic Pathology Structured Report Cancer Pancreas</field>
+            <field name="definition"></field>
+            <field name="source_id" ref="base.hl7fhir"/>
+            <field name="system">http://hl7.org/fhir/ValueSet/endpoint-payload-type</field>
+        </record>   
+            
+        <record id="hc_endpoint.end_pay_type_61" model="hc.vs.endpoint.payload.type">   
+            <field name="code">urn:ihe:pat:apsr:cancer:testis:2010</field>
+            <field name="name">Anatomic Pathology Structured Report Cancer Testis</field>
+            <field name="definition"></field>
+            <field name="source_id" ref="base.hl7fhir"/>
+            <field name="system">http://hl7.org/fhir/ValueSet/endpoint-payload-type</field>
+        </record>   
+            
+        <record id="hc_endpoint.end_pay_type_62" model="hc.vs.endpoint.payload.type">   
+            <field name="code">urn:ihe:pat:apsr:cancer:urinary_bladder:2010</field>
+            <field name="name">Anatomic Pathology Structured Report Cancer Urinary Bladder</field>
+            <field name="definition"></field>
+            <field name="source_id" ref="base.hl7fhir"/>
+            <field name="system">http://hl7.org/fhir/ValueSet/endpoint-payload-type</field>
+        </record>   
+            
+        <record id="hc_endpoint.end_pay_type_63" model="hc.vs.endpoint.payload.type">   
+            <field name="code">urn:ihe:pat:apsr:cancer:lip_oral_cavity:2010</field>
+            <field name="name">Anatomic Pathology Structured Report Cancer Lip Oral Cavity</field>
+            <field name="definition"></field>
+            <field name="source_id" ref="base.hl7fhir"/>
+            <field name="system">http://hl7.org/fhir/ValueSet/endpoint-payload-type</field>
+        </record>   
+            
+        <record id="hc_endpoint.end_pay_type_64" model="hc.vs.endpoint.payload.type">   
+            <field name="code">urn:ihe:pat:apsr:cancer:pharynx:2010</field>
+            <field name="name">Anatomic Pathology Structured Report Cancer Pharynx</field>
+            <field name="definition"></field>
+            <field name="source_id" ref="base.hl7fhir"/>
+            <field name="system">http://hl7.org/fhir/ValueSet/endpoint-payload-type</field>
+        </record>   
+            
+        <record id="hc_endpoint.end_pay_type_65" model="hc.vs.endpoint.payload.type">   
+            <field name="code">urn:ihe:pat:apsr:cancer:salivary_gland:2010</field>
+            <field name="name">Anatomic Pathology Structured Report Cancer Salivary Gland</field>
+            <field name="definition"></field>
+            <field name="source_id" ref="base.hl7fhir"/>
+            <field name="system">http://hl7.org/fhir/ValueSet/endpoint-payload-type</field>
+        </record>   
+            
+        <record id="hc_endpoint.end_pay_type_66" model="hc.vs.endpoint.payload.type">   
+            <field name="code">urn:ihe:pat:apsr:cancer:larynx:2010</field>
+            <field name="name">Anatomic Pathology Structured Report Cancer Larynx</field>
+            <field name="definition"></field>
+            <field name="source_id" ref="base.hl7fhir"/>
+            <field name="system">http://hl7.org/fhir/ValueSet/endpoint-payload-type</field>
+        </record>   
+            
+        <record id="hc_endpoint.end_pay_type_67" model="hc.vs.endpoint.payload.type">   
+            <field name="code">urn:ihe:pharm:pre:2010</field>
+            <field name="name">Pharmacy Pre</field>
+            <field name="definition"></field>
+            <field name="source_id" ref="base.hl7fhir"/>
+            <field name="system">http://hl7.org/fhir/ValueSet/endpoint-payload-type</field>
+        </record>   
+            
+        <record id="hc_endpoint.end_pay_type_68" model="hc.vs.endpoint.payload.type">   
+            <field name="code">urn:ihe:pharm:padv:2010</field>
+            <field name="name">Pharmacy PADV</field>
+            <field name="definition"></field>
+            <field name="source_id" ref="base.hl7fhir"/>
+            <field name="system">http://hl7.org/fhir/ValueSet/endpoint-payload-type</field>
+        </record>   
+            
+        <record id="hc_endpoint.end_pay_type_69" model="hc.vs.endpoint.payload.type">   
+            <field name="code">urn:ihe:pharm:dis:2010</field>
+            <field name="name">Pharmacy DIS</field>
+            <field name="definition"></field>
+            <field name="source_id" ref="base.hl7fhir"/>
+            <field name="system">http://hl7.org/fhir/ValueSet/endpoint-payload-type</field>
+        </record>   
+            
+        <record id="hc_endpoint.end_pay_type_70" model="hc.vs.endpoint.payload.type">   
+            <field name="code">urn:ihe:pharm:pml:2013</field>
+            <field name="name">Pharmacy PML</field>
+            <field name="definition"></field>
+            <field name="source_id" ref="base.hl7fhir"/>
+            <field name="system">http://hl7.org/fhir/ValueSet/endpoint-payload-type</field>
+        </record>   
+            
+        <record id="hc_endpoint.end_pay_type_71" model="hc.vs.endpoint.payload.type">   
+            <field name="code">urn:hl7-org:sdwg:ccda-structuredBody:1.1</field>
+            <field name="name">For documents following C-CDA constraints using a structured body.</field>
+            <field name="definition"></field>
+            <field name="source_id" ref="base.hl7fhir"/>
+            <field name="system">http://hl7.org/fhir/ValueSet/endpoint-payload-type</field>
+        </record>   
+            
+        <record id="hc_endpoint.end_pay_type_72" model="hc.vs.endpoint.payload.type">   
+            <field name="code">urn:hl7-org:sdwg:ccda-nonXMLBody:1.1</field>
+            <field name="name">For documents following C-CDA constraints using a non structured body.</field>
+            <field name="definition"></field>
+            <field name="source_id" ref="base.hl7fhir"/>
+            <field name="system">http://hl7.org/fhir/ValueSet/endpoint-payload-type</field>
+        </record>   
+    
+    </data>
+</openerp>

@@ -32,6 +32,9 @@
     # always loaded
     'data': [
         'security/ir.model.access.csv',
+        # 'data/data_endpoint.xml',
+        # 'data/hc.vs.endpoint.connection.type.csv',
+        'data/hc.vs.endpoint.payload.type.csv',
         'views/hc_res_endpoint_views.xml',
         'views/hc_res_endpoint_templates.xml',
     ],
