@@ -18,6 +18,10 @@ class Location(models.Model):
             ("suspended", "Suspended"), 
             ("inactive", "Inactive")], 
         help="Indicates whether the location is still in use.")
+    operational_status_id = fields.Many2one(
+        comodel_name="hc.vs.bed.status", 
+        string="Operational Status", 
+        help="The Operational status of the location (typically only for a bed/room).")
     name = fields.Char(
         string="Name", 
         help="Name of the location as used by humans.")
@@ -36,7 +40,7 @@ class Location(models.Model):
             ("kind", "Kind")], 
         help="Indicates whether a resource instance represents a specific location or a class of locations.")
     type_id = fields.Many2one(
-        comodel_name="hc.vs.location.type", 
+        comodel_name="hc.vs.service.delivery.location.role.type", 
         string="Type", 
         help="Indicates the type of function performed at the location.")
     telecom_ids = fields.One2many(
@@ -129,15 +133,53 @@ class LocationEndpoint(models.Model):
         string="Endpoint", 
         help="Endpoint associated with this Location Endpoint.")
 
-class LocationType(models.Model):  
-    _name = "hc.vs.location.type"  
-    _description = "Location Type" 
+class BedStatus(models.Model):
+    _name = "hc.vs.bed.status"    
+    _description = "Bed Status"         
     _inherit = ["hc.value.set.contains"]
 
-class LocationPhysicalType(models.Model):  
-    _name = "hc.vs.location.physical.type"  
-    _description = "Location Physical Type" 
+    name = fields.Char(
+        string="Name", 
+        help="Name of this bed status.")
+    code = fields.Char(
+        string="Code", 
+        help="Code of this bed status.")
+    contains_id = fields.Many2one(
+        comodel_name="hc.vs.bed.status", 
+        string="Parent", 
+        help="Parent bed status.")
+
+class ServiceDeliveryLocationRoleType(models.Model):    
+    _name = "hc.vs.service.delivery.location.role.type" 
+    _description = "Service Delivery Location Role Type"            
     _inherit = ["hc.value.set.contains"]
+
+    name = fields.Char(
+        string="Name", 
+        help="Name of this service delivery location role type.")                 
+    code = fields.Char(
+        string="Code", 
+        help="Code of this service delivery location role type.")                 
+    contains_id = fields.Many2one(
+        comodel_name="hc.vs.service.delivery.location.role.type", 
+        string="Parent", 
+        help="Parent service delivery location role type.")                    
+
+class LocationPhysicalType(models.Model):   
+    _name = "hc.vs.location.physical.type"  
+    _description = "Location Physical Type"         
+    _inherit = ["hc.value.set.contains"]
+
+    name = fields.Char(
+        string="Name", 
+        help="Name of this location physical type.")                  
+    code = fields.Char(
+        string="Code", 
+        help="Code of this location physical type.")                  
+    contains_id = fields.Many2one(
+        comodel_name="hc.vs.location.physical.type", 
+        string="Parent", 
+        help="Parent location physical type.")                  
 
 # External Reference
 

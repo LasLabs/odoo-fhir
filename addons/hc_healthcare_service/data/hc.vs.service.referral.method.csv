@@ -1,6 +1,0 @@
-id,"code","name","definition","comments","is_active","source_id/id","system"
-hc_healthcare_service.serv_ref_meth_fax,"fax","Fax","Referrals may be accepted by fax.","","","base.hl7fhir","http://hl7.org/fhir/ValueSet/service-referral-method"
-hc_healthcare_service.serv_ref_meth_phone,"phone","Phone","Referrals may be accepted over the phone from a practitioner.","","","base.hl7fhir","http://hl7.org/fhir/ValueSet/service-referral-method"
-hc_healthcare_service.serv_ref_meth_elec,"elec","Secure Messaging","Referrals may be accepted via a secure messaging system. To determine the types of secure messaging systems supported, refer to the identifiers collection. Callers will need to understand the specific identifier system used to know that they are able to transmit messages.","","","base.hl7fhir","http://hl7.org/fhir/ValueSet/service-referral-method"
-hc_healthcare_service.serv_ref_meth_semail,"semail","Secure Email","Referrals may be accepted via a secure email. To send please enrypt with the services public key.","","","base.hl7fhir","http://hl7.org/fhir/ValueSet/service-referral-method"
-hc_healthcare_service.serv_ref_meth_mail,"mail","Mail","Referrals may be accepted via regular postage (or hand delivered).","","","base.hl7fhir","http://hl7.org/fhir/ValueSet/service-referral-method"

@@ -32,6 +32,8 @@
     # always loaded
     'data': [
         'security/ir.model.access.csv',
+        'data/data_location.xml',
+        'data/hc.vs.service.delivery.location.role.type.csv',
         'views/hc_res_location_views.xml',
         'views/hc_res_location_templates.xml',
     ],

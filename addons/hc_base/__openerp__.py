@@ -40,6 +40,7 @@
         'data/hc.vs.c80.practice.code.csv',
         'data/hc.vs.participant.role.csv',
         'data/hc.vs.route.code.csv',
+        'data/hc.vs.substance.code.csv',
         # 'data/l10n_au/country_pl.xml',
         # 'data/l10n_ph/country_pl.xml',
         'data/l10n_us/country_pl.xml',
