@@ -1,22 +1,102 @@
 <openerp>
-  <data>
+    <data>
     
-    <!-- Substance Action and Menu -->      
-      
-    <act_window id="hc_res_substance_action"      
-                name="HC Substances"
-                res_model="hc.res.substance"
-                view_mode="tree,form"
-                domain=""
-                context=""
-                limit=""/>
+        <!-- Substance Action and Menu -->      
+          
+        <act_window id="hc_res_substance_action"      
+                    name="HC Substances"
+                    res_model="hc.res.substance"
+                    view_mode="tree,form"
+                    domain=""
+                    context=""
+                    limit=""/>
 
-    <menuitem id="hc_substance.menu_substance" 
-              name="Substances" 
-              parent="hc_base.menu_entity" 
-              action="hc_res_substance_action" 
-              groups="hc_base.group_hc_base_manager" 
-              sequence="50"/>
+        <menuitem id="hc_substance.menu_substance" 
+                  name="Substances" 
+                  parent="hc_base.menu_entity" 
+                  action="hc_res_substance_action" 
+                  groups="hc_base.group_hc_base_manager" 
+                  sequence="50"/>
 
-  </data>
+        <menuitem id="hc_substance.menu_substance_conf" 
+                  name="Configuration" 
+                  parent="hc_substance.menu_substance" 
+                  groups="hc_base.group_hc_base_manager" 
+                  sequence="10"/>
+
+        <!-- Substance Category Views -->                       
+                            
+        <record id="hc_vs_substance_category_view_search" model="ir.ui.view">                       
+            <field name="name">Substance Category Search</field>                    
+            <field name="model">hc.vs.substance.category</field>                    
+            <field name="arch" type="xml">                  
+                <search string="Substance Categories">              
+                    <field name="name"/>            
+                    <field name="code"/>            
+                    <field name="definition"/>          
+                    <group>         
+                        <filter name="group_by_parent" string="parent" context="{'group_by': 'contains_id'}"/>      
+                    </group>            
+                </search>               
+            </field>                    
+        </record>                       
+                                
+        <record id="hc_vs_substance_category_view_tree" model="ir.ui.view">                     
+            <field name="name">Substance Category Tree</field>                  
+            <field name="model">hc.vs.substance.category</field>                    
+            <field name="arch" type="xml">                  
+                <tree string="Substance Categories" default_order="name, code">             
+                    <field name="name"/>            
+                    <field name="code"/>            
+                    <field name="definition"/>          
+                    <field name="contains_id"/>         
+                    <field name="source_id" invisible="0"/>         
+                </tree>             
+            </field>                    
+        </record>                       
+                                
+        <record id="hc_vs_substance_category_view_form" model="ir.ui.view">                     
+            <field name="name">Substance Category Form</field>                  
+            <field name="model">hc.vs.substance.category</field>                    
+            <field name="arch" type="xml">                  
+                <form string="Substance Categories">               
+                    <sheet>         
+                        <h1>        
+                            <field name="name" default_focus="1" placeholder="Name (e.g., Biological Substance)"/>  
+                        </h1>       
+                        <field name="code" placeholder="Code (e.g., biological)"/>      
+                        <field name="definition" placeholder="Definition"/>     
+                        <field name="comments" placeholder="Comments"/>     
+                        <group>     
+                            <group> 
+                                <field name="snomed_code" placeholder="SNOMED Code (e.g., 115668003)"/>     
+                                <field name="snomed_definition" placeholder="SNOMED Definition (e.g., Biological substance (substance))"/>      
+                                <field name="contains_id"/>
+                            </group>    
+                            <group> 
+                                <field name="source_id" placeholder="e.g., U.S. Census Bureau"/>
+                                <field name="system" widget="url" placeholder="e.g., www.census.gov/"/>
+                            </group>    
+                        </group>        
+                    </sheet>            
+                </form>             
+            </field>                    
+        </record>                              
+                    
+        <act_window id="hc_vs_substance_category_action"            
+                    name="HC Substance Categories"
+                    res_model="hc.vs.substance.category"
+                    view_mode="tree,form"
+                    domain=""
+                    context=""
+                    limit=""/>
+
+        <menuitem id="hc_substance.menu_substance_cat" 
+                  name="Substance Categories" 
+                  parent="hc_substance.menu_substance_conf" 
+                  action="hc_vs_substance_category_action" 
+                  groups="hc_base.group_hc_base_manager" 
+                  sequence="10"/>
+
+    </data>
 </openerp>

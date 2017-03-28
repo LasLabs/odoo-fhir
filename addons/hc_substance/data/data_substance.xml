@@ -7,57 +7,166 @@
         <record id="hc_substance.subs_cat_allergen" model="hc.vs.substance.category">   
             <field name="code">allergen</field>
             <field name="name">Allergen</field>
-            <field name="definition">"A substance that causes an allergic reaction."</field>
+            <field name="definition">A substance that causes an allergic reaction.</field>
+            <field name="snomed_code">406455002</field>
+            <field name="snomed_definition">Allergen class (substance)</field>
             <field name="source_id" ref="base.hl7fhir"/>
             <field name="system">http://hl7.org/fhir/ValueSet/substance-category</field>
+            <field name="version"></field>
         </record>   
             
         <record id="hc_substance.subs_cat_biological" model="hc.vs.substance.category"> 
             <field name="code">biological</field>
             <field name="name">Biological Substance</field>
-            <field name="definition">"A substance that is produced by or extracted from a biological source."</field>
+            <field name="definition">A substance that is produced by or extracted from a biological source.</field>
+            <field name="snomed_code">115668003</field>
+            <field name="snomed_definition">Biological substance (substance)</field>
             <field name="source_id" ref="base.hl7fhir"/>
             <field name="system">http://hl7.org/fhir/ValueSet/substance-category</field>
+            <field name="version"></field>
         </record>   
             
         <record id="hc_substance.subs_cat_body" model="hc.vs.substance.category">   
             <field name="code">body</field>
             <field name="name">Body Substance</field>
-            <field name="definition">"A substance that comes directly from a human or an animal (e.g. blood, urine, feces, tears, etc.)."</field>
+            <field name="definition">A substance that comes directly from a human or an animal (e.g. blood, urine, feces, tears, etc.).</field>
+            <field name="snomed_code">91720002</field>
+            <field name="snomed_definition">Body substance (substance)</field>
             <field name="source_id" ref="base.hl7fhir"/>
             <field name="system">http://hl7.org/fhir/ValueSet/substance-category</field>
+            <field name="version"></field>
         </record>   
             
         <record id="hc_substance.subs_cat_chemical" model="hc.vs.substance.category">   
             <field name="code">chemical</field>
             <field name="name">Chemical</field>
-            <field name="definition">"Any organic or inorganic substance of a particular molecular identity, including -- (i) any combination of such substances occurring in whole or in part as a result of a chemical reaction or occurring in nature and (ii) any element or uncombined radical (http://www.epa.gov/opptintr/import-export/pubs/importguide.pdf)."</field>
+            <field name="definition">Any organic or inorganic substance of a particular molecular identity, including -- (i) any combination of such substances occurring in whole or in part as a result of a chemical reaction or occurring in nature and (ii) any element or uncombined radical (http://www.epa.gov/opptintr/import-export/pubs/importguide.pdf).</field>
+            <field name="snomed_code">441900009</field>
+            <field name="snomed_definition">Chemical (substance)</field>
             <field name="source_id" ref="base.hl7fhir"/>
             <field name="system">http://hl7.org/fhir/ValueSet/substance-category</field>
+            <field name="version"></field>
         </record>   
             
         <record id="hc_substance.subs_cat_food" model="hc.vs.substance.category">   
             <field name="code">food</field>
             <field name="name">Dietary Substance</field>
-            <field name="definition">"A food, dietary ingredient, or dietary supplement for human or animal."</field>
+            <field name="definition">A food, dietary ingredient, or dietary supplement for human or animal.</field>
+            <field name="snomed_code">116273005</field>
+            <field name="snomed_definition">Dietary substance (substance)</field>
             <field name="source_id" ref="base.hl7fhir"/>
             <field name="system">http://hl7.org/fhir/ValueSet/substance-category</field>
+            <field name="version"></field>
         </record>   
             
         <record id="hc_substance.subs_cat_drug" model="hc.vs.substance.category">   
             <field name="code">drug</field>
             <field name="name">Drug or Medicament</field>
-            <field name="definition">"A substance intended for use in the diagnosis, cure, mitigation, treatment, or prevention of disease in man or other animals (Federal Food Drug and Cosmetic Act)."</field>
+            <field name="definition">A substance intended for use in the diagnosis, cure, mitigation, treatment, or prevention of disease in man or other animals (Federal Food Drug and Cosmetic Act).</field>
+            <field name="snomed_code">410942007</field>
+            <field name="snomed_definition">Drug or medicament (substance)</field>
             <field name="source_id" ref="base.hl7fhir"/>
             <field name="system">http://hl7.org/fhir/ValueSet/substance-category</field>
+            <field name="version"></field>
         </record>   
             
         <record id="hc_substance.subs_cat_material" model="hc.vs.substance.category">   
             <field name="code">material</field>
             <field name="name">Material</field>
-            <field name="definition">"A finished product which is not normally ingested, absorbed or injected (e.g. steel, iron, wood, plastic and paper)."</field>
+            <field name="definition">A finished product which is not normally ingested, absorbed or injected (e.g. steel, iron, wood, plastic and paper).</field>
+            <field name="snomed_code">260769002</field>
+            <field name="snomed_definition">Material (substance)</field>
             <field name="source_id" ref="base.hl7fhir"/>
             <field name="system">http://hl7.org/fhir/ValueSet/substance-category</field>
+            <field name="version"></field>
+        </record>   
+            
+        <record id="hc_substance.subs_cat_aromatherapy" model="hc.vs.substance.category">   
+            <field name="code">aromatherapy</field>
+            <field name="name">Aromatherapy Agent</field>
+            <field name="definition">A volatile plant oil known as essential oil for the treatment or prevention of disease. (http://www.quinessence.com/aromatherapy)</field>
+            <field name="snomed_code">420056007</field>
+            <field name="snomed_definition">Aromatherapy agent (substance)</field>
+            <field name="source_id" ref="base.snomed"/>
+            <field name="system">http://snomed.info</field>
+            <field name="version"></field>
+        </record>   
+            
+        <record id="hc_substance.subs_cat_cancer" model="hc.vs.substance.category"> 
+            <field name="code">cancer</field>
+            <field name="name">Cancer-related Substance</field>
+            <field name="definition">For example, carcinogen, metabolite and/or marker of carcinogen, metabolite and/or marker of neoplasm, oncogene protein, tumor-associated antigen. (SNOMED)</field>
+            <field name="snomed_code">61321005</field>
+            <field name="snomed_definition">Cancer-related substance (substance)</field>
+            <field name="source_id" ref="base.snomed"/>
+            <field name="system">http://snomed.info</field>
+            <field name="version"></field>
+        </record>   
+            
+        <record id="hc_substance.subs_cat_oil" model="hc.vs.substance.category">    
+            <field name="code">oil</field>
+            <field name="name">Oil</field>
+            <field name="definition">For example, cutting oil, fixed oil, fuel oil, lubricating oil, oil - dietary, oil derived from plant, petroleum. (SNOMED)</field>
+            <field name="snomed_code">21847005</field>
+            <field name="snomed_definition">Oil (substance)</field>
+            <field name="source_id" ref="base.snomed"/>
+            <field name="system">http://snomed.info</field>
+            <field name="version"></field>
+        </record>   
+            
+        <record id="hc_substance.subs_cat_hazard" model="hc.vs.substance.category"> 
+            <field name="code">hazard</field>
+            <field name="name">Substance categorized by hazard characteristics</field>
+            <field name="definition">For example, air contaminant, asphyxiant atmosphere, noxious fumes, toxic substance. (SNOMED)</field>
+            <field name="snomed_code">438951008</field>
+            <field name="snomed_definition">Substance categorized by hazard characteristics (substance)</field>
+            <field name="source_id" ref="base.snomed"/>
+            <field name="system">http://snomed.info</field>
+            <field name="version"></field>
+        </record>   
+            
+        <record id="hc_substance.subs_cat_physical" model="hc.vs.substance.category">   
+            <field name="code">physical</field>
+            <field name="name">Substance categorized by physical state</field>
+            <field name="definition">For example, aerosol, dust, gaseous substance, inert matter, liquid substance, natural form of water, solid substance. (SNOMED)</field>
+            <field name="snomed_code">115669006</field>
+            <field name="snomed_definition">Substance categorized by physical state (substance)</field>
+            <field name="source_id" ref="base.snomed"/>
+            <field name="system">http://snomed.info</field>
+            <field name="version"></field>
+        </record>   
+            
+        <record id="hc_substance.subs_cat_functional" model="hc.vs.substance.category"> 
+            <field name="code">functional</field>
+            <field name="name">Substance categorized functionally</field>
+            <field name="definition">For example, analyte, biologically active substance, chemical categorized functionally, chemical or external agent, industrial and household substance, microscope slide mounting medium, psychoactive substance, specimen transport medium, sporocidal agent, stain, tissue embedding medium, tissue fixative. (SNOMED)</field>
+            <field name="snomed_code">312412007</field>
+            <field name="snomed_definition">Substance categorized functionally (substance)</field>
+            <field name="source_id" ref="base.snomed"/>
+            <field name="system">http://snomed.info</field>
+            <field name="version"></field>
+        </record>   
+            
+        <record id="hc_substance.subs_cat_structural" model="hc.vs.substance.category"> 
+            <field name="code">structural</field>
+            <field name="name">Substance categorized structurally</field>
+            <field name="definition">For example, chemical categorized structurally, fundamental constituent of matter, suspended air particulates. (SNOMED)</field>
+            <field name="snomed_code">312413002</field>
+            <field name="snomed_definition">Substance categorized structurally (substance)</field>
+            <field name="source_id" ref="base.snomed"/>
+            <field name="system">http://snomed.info</field>
+            <field name="version"></field>
+        </record>   
+            
+        <record id="hc_substance.subs_cat_abuse" model="hc.vs.substance.category">  
+            <field name="code">abuse</field>
+            <field name="name">Substance of abuse</field>
+            <field name="definition">For example, denatured ethanol, industrial alcohol, psychoactive substance of abuse - non-pharmaceutical, tobacco. (SNOMED)</field>
+            <field name="snomed_code">312417001</field>
+            <field name="snomed_definition">Substance of abuse (substance)</field>
+            <field name="source_id" ref="base.snomed"/>
+            <field name="system">http://snomed.info</field>
+            <field name="version"></field>
         </record>   
 
     </data>

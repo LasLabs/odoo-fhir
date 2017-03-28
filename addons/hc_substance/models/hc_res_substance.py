@@ -146,6 +146,13 @@ class SubstanceCategory(models.Model):
     code = fields.Char(
         string="Code", 
         help="Code of this substance category.")
+    snomed_code = fields.Char(
+        string="SNOMED Code", 
+        help="SNOMED code of this substance category.")
+    snomed_definition = fields.Char(
+        string="SNOMED Definition", 
+        help="SNOMED fully-specified name of this substance category.")
+
     contains_id = fields.Many2one(
         comodel_name="hc.vs.substance.category", 
         string="Parent", 

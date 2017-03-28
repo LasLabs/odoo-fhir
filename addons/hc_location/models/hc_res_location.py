@@ -56,15 +56,10 @@ class Location(models.Model):
         comodel_name="hc.vs.location.physical.type", 
         string="Physical Type", 
         help="Physical form of the location.")
-    longitude = fields.Float(
-        string="Longitude", 
-        help="Longitude with WGS84 datum.")
-    latitude = fields.Float(
-        string="Latitude", 
-        help="Latitude with WGS84 datum.")
-    altitude = fields.Float(
-        string="Altitude", 
-        help="Altitude with WGS84 datum.")
+    position_id = fields.Many2one(
+        comodel_name="hc.location.position", 
+        string="Position", 
+        help="absolute geographic location.")
     managing_organization_id = fields.Many2one(
         comodel_name="hc.res.organization", 
         string="Managing Organization", 
@@ -78,6 +73,22 @@ class Location(models.Model):
         inverse_name="location_id", 
         string="Endpoints", 
         help="Technical endpoints providing access to services operated for the location.")
+
+class LocationPosition(models.Model):   
+    _name = "hc.location.position"  
+    _description = "Location Position"
+
+    longitude = fields.Float(
+        string="Longitude", 
+        required="True", 
+        help="Longitude with WGS84 datum.")       
+    latitude = fields.Float(
+        string="Latitude", 
+        required="True", 
+        help="Latitude with WGS84 datum.")      
+    altitude = fields.Float(
+        string="Altitude", 
+        help="Altitude with WGS84 datum.")       
 
 class LocationIdentifier(models.Model):   
     _name = "hc.location.identifier"  
