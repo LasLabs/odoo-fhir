@@ -1,23 +1,174 @@
 <openerp>
-  <data>
+    <data>
     
 
-    <!-- Encounter Action and Menu -->  
-    
-    <act_window id="hc_res_encounter_action"    
-                name="HC Encounters"
-                res_model="hc.res.encounter"
-                view_mode="tree,form"
-                domain=""
-                context=""
-                limit=""/>
+        <!-- Encounter Action and Menu -->  
+        
+        <act_window id="hc_res_encounter_action"    
+                    name="HC Encounters"
+                    res_model="hc.res.encounter"
+                    view_mode="tree,form"
+                    domain=""
+                    context=""
+                    limit=""/>
 
-    <menuitem id="hc_encounter.menu_enc" 
-              name="Encounters" 
-              parent="hc_base.menu_pat_mgt" 
-              action="hc_res_encounter_action" 
-              groups="hc_base.group_hc_base_manager" 
-              sequence="10"/>
+        <menuitem id="hc_encounter.menu_enc" 
+                  name="Encounters" 
+                  parent="hc_base.menu_pat_mgt" 
+                  action="hc_res_encounter_action" 
+                  groups="hc_base.group_hc_base_manager" 
+                  sequence="10"/>
 
-  </data>
+        <menuitem id="hc_encounter.menu_enc_conf" 
+                  name="Configuration" 
+                  parent="hc_encounter.menu_enc" 
+                  groups="hc_base.group_hc_base_manager" 
+                  sequence="10"/>
+        
+        <!-- Encounter Participant Type Views -->                     
+                        
+        <record id="hc_vs_encounter_particpant_type_view_search" model="ir.ui.view">                     
+            <field name="name">Encounter Participant Type Search</field>                  
+            <field name="model">hc.vs.encounter.participant.type</field>                  
+            <field name="arch" type="xml">                  
+                <search string="Encounter Participant Types">             
+                    <field name="name"/>            
+                    <field name="code"/>            
+                    <field name="definition"/>          
+                    <group>         
+                        <filter name="group_by_parent" string="parent" context="{'group_by': 'contains_id'}"/>      
+                    </group>            
+                </search>               
+            </field>                    
+        </record>                       
+                                
+        <record id="hc_vs_encounter_particpant_type_view_tree" model="ir.ui.view">                       
+            <field name="name">Encounter Participant Type Tree</field>                    
+            <field name="model">hc.vs.encounter.participant.type</field>                  
+            <field name="arch" type="xml">                  
+                <tree string="Encounter Participant Types" default_order="name, code">                
+                    <field name="name"/>            
+                    <field name="code"/>            
+                    <field name="definition"/>          
+                    <field name="contains_id"/>         
+                    <field name="source_id" invisible="0"/>         
+                </tree>             
+            </field>                    
+        </record>                       
+                                
+        <record id="hc_vs_encounter_particpant_type_view_form" model="ir.ui.view">                       
+            <field name="name">Encounter Participant Type Form</field>                    
+            <field name="model">hc.vs.encounter.participant.type</field>                  
+            <field name="arch" type="xml">                  
+                <form string="Encounter Participant Types" >              
+                    <sheet>         
+                        <h1>        
+                            <field name="name" default_focus="1" placeholder="Name (e.g., Biological Substance)"/>  
+                        </h1>       
+                        <field name="code" placeholder="Code (e.g., biological)"/>      
+                        <field name="definition" placeholder="Definition"/>     
+                        <field name="comments" placeholder="Comments"/>     
+                        <group>     
+                            <group> 
+                                <field name="contains_id"/>
+                            </group>    
+                            <group> 
+                                <field name="source_id" placeholder="e.g., U.S. Census Bureau"/>
+                                <field name="system" widget="url" placeholder="e.g., www.census.gov/"/>
+                            </group>    
+                        </group>        
+                    </sheet>            
+                </form>             
+            </field>                    
+        </record>                       
+
+        <act_window id="hc_vs_encounter_particpant_type_action"          
+                    name="HC Encounter Participant Types"
+                    res_model="hc.vs.encounter.participant.type"
+                    view_mode="tree,form"
+                    domain=""
+                    context=""
+                    limit=""/>
+ 
+        <menuitem id="hc_encounter.menu_enc_part_type" 
+                  name="Encounter Participant Types" 
+                  parent="hc_encounter.menu_enc_conf" 
+                  action="hc_vs_encounter_particpant_type_action" 
+                  groups="hc_base.group_hc_base_manager" 
+                  sequence="5"/>
+
+
+        <!-- Encounter Reason Views -->
+
+        <record id="hc_vs_encounter_reason_view_search" model="ir.ui.view">                     
+            <field name="name">Encounter Reason Search</field>                  
+            <field name="model">hc.vs.encounter.reason</field>                  
+            <field name="arch" type="xml">                  
+                <search string="Encounter Reasons">             
+                    <field name="name"/>            
+                    <field name="code"/>            
+                    <field name="definition"/>          
+                    <group>         
+                        <filter name="group_by_parent" string="parent" context="{'group_by': 'contains_id'}"/>      
+                    </group>            
+                </search>               
+            </field>                    
+        </record>                       
+                                
+        <record id="hc_vs_encounter_reason_view_tree" model="ir.ui.view">                       
+            <field name="name">Encounter Reason Tree</field>                    
+            <field name="model">hc.vs.encounter.reason</field>                  
+            <field name="arch" type="xml">                  
+                <tree string="Encounter Reasons" default_order="name, code">                
+                    <field name="name"/>            
+                    <field name="code"/>            
+                    <field name="definition"/>          
+                    <field name="contains_id"/>         
+                    <field name="source_id" invisible="0"/>         
+                </tree>             
+            </field>                    
+        </record>                       
+                                
+        <record id="hc_vs_encounter_reason_view_form" model="ir.ui.view">                       
+            <field name="name">Encounter Reason Form</field>                    
+            <field name="model">hc.vs.encounter.reason</field>                  
+            <field name="arch" type="xml">                  
+                <form string="Encounter Reasons" >              
+                    <sheet>         
+                        <h1>        
+                            <field name="name" default_focus="1" placeholder="Name (e.g., Biological Substance)"/>  
+                        </h1>       
+                        <field name="code" placeholder="Code (e.g., biological)"/>      
+                        <field name="definition" placeholder="Definition"/>     
+                        <field name="comments" placeholder="Comments"/>     
+                        <group>     
+                            <group> 
+                                <field name="contains_id"/>
+                            </group>    
+                            <group> 
+                                <field name="source_id" placeholder="e.g., U.S. Census Bureau"/>
+                                <field name="system" widget="url" placeholder="e.g., www.census.gov/"/>
+                            </group>    
+                        </group>        
+                    </sheet>            
+                </form>             
+            </field>                    
+        </record>                       
+ 
+        <act_window id="hc_vs_encounter_reason_action"          
+                    name="HC Encounter Reasons"
+                    res_model="hc.vs.encounter.reason"
+                    view_mode="tree,form"
+                    domain=""
+                    context=""
+                    limit=""/>
+
+        <menuitem id="hc_encounter.menu_enc_rsn" 
+                  name="Encounter Reasons" 
+                  parent="hc_encounter.menu_enc_conf" 
+                  action="hc_vs_encounter_reason_action" 
+                  groups="hc_base.group_hc_base_manager" 
+                  sequence="10"/>
+
+    </data>
 </openerp>

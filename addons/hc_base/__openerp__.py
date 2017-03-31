@@ -38,6 +38,7 @@
         'data/hc.vs.additional.instruction.code.csv',
         'data/hc.vs.body.site.csv',
         'data/hc.vs.c80.practice.code.csv',
+        'data/hc.vs.encounter.reason.csv',
         'data/hc.vs.participant.role.csv',
         'data/hc.vs.route.code.csv',
         'data/hc.vs.substance.code.csv',

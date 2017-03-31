@@ -171,6 +171,16 @@
             <field name="country_id" ref="base.us"/>
         </record>
 
+        <record id="base.nlm_umls" model="res.partner">  
+            <field name="name">UMLS Terminology Services</field>
+            <field name="company_type">company</field>
+            <field name="website">https://uts.nlm.nih.gov//uts.html</field>
+            <field name="notify_email">none</field>
+            <field name="comment">A terminology service of the U.S. National Library of Medicine, National Institutes of Health.</field>
+            <field name="category_id" eval="[(6, 0, [ref('hc_base.partner_source'), ref('hc_base.partner_document')])]"/>
+            <field name="country_id" ref="base.us"/>
+        </record>
+
     </data>
 </openerp>
 

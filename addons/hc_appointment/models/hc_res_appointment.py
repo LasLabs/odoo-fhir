@@ -5,20 +5,21 @@ from openerp import models, fields, api
 class Appointment(models.Model):    
     _name = "hc.res.appointment"    
     _description = "Appointment"
-    _rec_name = "actor_name"        
+    _rec_name = "description"
+    # _rec_name = "actor_name"        
 
-    actor_name = fields.Char(
-        string="Actor Name",
-        # related="hc_appointment_participant.actor_name",
-        readonly="1",
-        help="A Person, Location, Healthcare Service or Device that is participating in the appointment.")
+    # actor_name = fields.Char(
+    #     string="Actor Name",
+    #     related="hc_appointment_participant.actor_name",
+    #     readonly="1",
+    #     help="A Person, Location, Healthcare Service or Device that is participating in the appointment.")
     identifier_ids = fields.One2many(
         comodel_name="hc.appointment.identifier", 
         inverse_name="appointment_id", 
         string="Identifiers", 
         help="External Ids for this item.")                
     status = fields.Selection(
-        string="Appointment Status", 
+        string="Status", 
         required="True", 
         selection=[
             ("proposed", "Proposed"), 
@@ -32,7 +33,7 @@ class Appointment(models.Model):
         help="The overall status of the Appointment.")                
     service_category_id = fields.Many2one(
         comodel_name="hc.vs.service.category", 
-        string="Appointment Service Category", 
+        string="Service Category", 
         help="A broad categorisation of the service that is to be performed during this appointment.")              
     service_type_ids = fields.Many2many(
         comodel_name="hc.vs.service.type",
@@ -46,7 +47,7 @@ class Appointment(models.Model):
         help="The specialty of a practitioner that would be required to perform the service requested in this appointment.")                
     appointment_type_id = fields.Many2one(
         comodel_name="hc.vs.v2.appointment.reason.code", 
-        string="Appointment Type", 
+        string="Type", 
         help="The style of appointment or patient that has been booked in the slot (not service type).")                
     reason_ids = fields.Many2many(
         comodel_name="hc.vs.encounter.reason", 
@@ -86,7 +87,7 @@ class Appointment(models.Model):
         string="Slots", 
         help="The slot that this appointment is filling. If provided then the schedule will not be provided as slots are not recursive, and the start/end values MUST be the same as from the slot.")                
     created = fields.Datetime(
-        string="Appointment Creation Date", 
+        string="Creation Date", 
         help="The date that this appointment was initially created.")                
     comment = fields.Text(
         string="Comment", 
@@ -290,7 +291,7 @@ class AppointmentIncomingReferral(models.Model):
     # incoming_referral_id = fields.Many2one(
     #     comodel_name="hc.res.referral.request", 
     #     string="Incoming Referral", 
-    #     help="The ReferralRequest provided as information to allocate to the Encounter")                 
+    #     help="The ReferralRequest provided as information to allocate to the Encounter.")                 
 
 class AppointmentRequestedPeriod(models.Model):    
     _name = "hc.appointment.requested.period"    
