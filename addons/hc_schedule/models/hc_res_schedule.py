@@ -4,7 +4,8 @@ from openerp import models, fields, api
 
 class Schedule(models.Model):    
     _name = "hc.res.schedule"    
-    _description = "Schedule"        
+    _description = "Schedule"
+    _rec_name = "actor_name"        
 
     identifier_ids = fields.One2many(
         comodel_name="hc.schedule.identifier", 
@@ -30,12 +31,12 @@ class Schedule(models.Model):
         string="Actor Type", 
         required="True", 
         selection=[
-            ("Healthcare Service", "Healthcare Service"), 
-            ("Location", "Location"), 
-            ("Practitioner", "Practitioner"), 
-            ("Device", "Device"), 
-            ("Patient", "Patient"), 
-            ("Related Person", "Related Person")], 
+            ("patient", "Patient"), 
+            ("practitioner", "Practitioner"), 
+            ("related_person", "Related Person"), 
+            ("device", "Device"), 
+            ("healthcare_service", "Healthcare Service"), 
+            ("location", "Location")], 
         help="Type of resource this Schedule resource is providing availability information for.")                
     actor_name = fields.Char(
         string="Actor", 
@@ -76,6 +77,22 @@ class Schedule(models.Model):
     comment = fields.Text(
         string="Comment", 
         help="Comments on the availability to describe any extended information.")                
+       
+    @api.depends('actor_type')          
+    def _compute_actor_name(self):          
+        for hc_res_schedule in self:        
+            if hc_res_schedule.actor_type == 'patient': 
+                hc_res_schedule.actor_name = hc_res_schedule.actor_patient_id.name
+            elif hc_res_schedule.actor_type == 'practitioner':  
+                hc_res_schedule.actor_name = hc_res_schedule.actor_practitioner_id.name
+            elif hc_res_schedule.actor_type == 'related_person':    
+                hc_res_schedule.actor_name = hc_res_schedule.actor_related_person_id.name
+            elif hc_res_schedule.actor_type == 'device':    
+                hc_res_schedule.actor_name = hc_res_schedule.actor_device_id.name
+            elif hc_res_schedule.actor_type == 'healthcare_service':    
+                hc_res_schedule.actor_name = hc_res_schedule.actor_healthcare_service_id.name
+            elif hc_res_schedule.actor_type == 'location':  
+                hc_res_schedule.actor_name = hc_res_schedule.actor_location_id.name
 
 class ScheduleIdentifier(models.Model):    
     _name = "hc.schedule.identifier"    
