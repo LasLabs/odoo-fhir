@@ -9,6 +9,8 @@
             <field name="arch" type="xml">                                      
                 <search string=" Schedules">                                    
                     <field name="name"/>                                                    
+                    <field name="actor_name"/>                              
+                    <field name="actor_type"/>                              
                     <field name="service_category_id"/>                             
                     <field name="service_type_ids"/>                                
                     <field name="specialty_ids"/>                               
@@ -16,6 +18,7 @@
                     <field name="planning_horizon_end_date"/>                               
                     <group string="Group By">                               
                         <filter name="group_by_service_category" string="Service Category" context="{'group_by':'service_category_id'}"/>                          
+                        <filter name="group_by_actor" string="Actor" context="{'group_by':'actor_name'}"/>                          
                     </group>                                
                 </search>                                   
             </field>                                        
@@ -28,6 +31,10 @@
                 <tree string=" Schedules" default_order="service_category_id, name">                                                              
                     <field name="service_category_id"/>
                     <field name="name"/>                             
+                <tree string=" Schedules" default_order="actor_name">                                   
+                    <field name="actor_name"/>                              
+                    <field name="actor_type"/>                              
+                    <field name="service_category_id"/>                             
                     <field name="planning_horizon_start_date"/>                             
                     <field name="planning_horizon_end_date"/>                               
                 </tree>                                 
@@ -41,7 +48,7 @@
                 <form string="Schedule">                                    
                     <sheet>                                                     
                         <h1>                        
-                            <field name="name" placeholder="Name"/>                
+                            <field name="name" placeholder="Name"/>                              
                         </h1>                                             
                         <group>                         
                             <group>

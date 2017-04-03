@@ -107,8 +107,8 @@ class ScheduleActor(models.Model):
     actor_location_id = fields.Many2one(
         comodel_name="hc.res.location", 
         string="Actor Location", 
-        help="Location resource this schedule resource is providing availability information for.")                
-
+        help="Location resource this schedule resource is providing availability information for.")                             
+       
     @api.depends('actor_type')          
     def _compute_actor_name(self):          
         for hc_schedule_actor in self:        
