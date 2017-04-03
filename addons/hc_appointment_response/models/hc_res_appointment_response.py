@@ -4,7 +4,8 @@ from openerp import models, fields, api
 
 class AppointmentResponse(models.Model):    
     _name = "hc.res.appointment.response"    
-    _description = "Appointment Response"            
+    _description = "Appointment Response"
+    _rec_name = "appointment_id"
 
     identifier_ids = fields.One2many(
         comodel_name="hc.appointment.response.identifier", 
@@ -30,12 +31,12 @@ class AppointmentResponse(models.Model):
     actor_type = fields.Selection(
         string="Actor Type", 
         selection=[
-            ("Patient", "Patient"), 
-            ("Practitioner", "Practitioner"), 
-            ("Related Person", "Related Person"), 
-            ("Device", "Device"), 
-            ("Healthcare Service", "Healthcare Service"), 
-            ("Location", "Location")], 
+            ("patient", "Patient"), 
+            ("practitioner", "Practitioner"), 
+            ("related_person", "Related Person"), 
+            ("device", "Device"), 
+            ("healthcare_service", "Healthcare Service"), 
+            ("location", "Location")], 
         help="Type of what is account tied to.")                    
     actor_name = fields.Char(
         string="Actor", 
@@ -80,6 +81,22 @@ class AppointmentResponse(models.Model):
     comment = fields.Text(
         string="Comment", 
         help="Additional comments about the appointment.")                    
+
+    @api.depends('actor_type')          
+    def _compute_actor_name(self):          
+        for hc_res_appointment_response in self:        
+            if hc_res_appointment_response.actor_type == 'patient': 
+                hc_res_appointment_response.actor_name = hc_res_appointment_response.actor_patient_id.name
+            elif hc_res_appointment_response.actor_type == 'practitioner':  
+                hc_res_appointment_response.actor_name = hc_res_appointment_response.actor_practitioner_id.name
+            elif hc_res_appointment_response.actor_type == 'related_person':    
+                hc_res_appointment_response.actor_name = hc_res_appointment_response.actor_related_person_id.name
+            elif hc_res_appointment_response.actor_type == 'device':    
+                hc_res_appointment_response.actor_name = hc_res_appointment_response.actor_device_id.name
+            elif hc_res_appointment_response.actor_type == 'healthcare_service':    
+                hc_res_appointment_response.actor_name = hc_res_appointment_response.actor_healthcare_service_id.name
+            elif hc_res_appointment_response.actor_type == 'location':  
+                hc_res_appointment_response.actor_name = hc_res_appointment_response.actor_location_id.name
 
 class AppointmentResponseIdentifier(models.Model):    
     _name = "hc.appointment.response.identifier"    

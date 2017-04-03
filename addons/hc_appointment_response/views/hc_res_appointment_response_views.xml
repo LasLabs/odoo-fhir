@@ -1,6 +1,106 @@
 <openerp>
     <data>
 
+        <!-- Appointment Response Views -->         
+            
+        <record id="hc_res_appointment_response_view_search" model="ir.ui.view">            
+            <field name="name">Appointment Response Search</field>      
+            <field name="model">hc.res.appointment.response</field>     
+            <field name="arch" type="xml">      
+                <search string=" Appointment Responses">    
+                    <field name="actor_name"/>
+                    <field name="actor_type"/>
+                    <field name="participant_status"/>
+                    <field name="start"/>
+                    <field name="end"/>
+                    <group string="Group By">  
+                        <filter name="group_by_actor" string="Actor" context="{'group_by':'actor_name'}"/>
+                    </group>
+                </search>   
+            </field>        
+        </record>           
+        
+        <record id="hc_res_appointment_response_view_tree" model="ir.ui.view">          
+            <field name="name">Appointment Response Tree</field>        
+            <field name="model">hc.res.appointment.response</field>     
+            <field name="arch" type="xml">      
+                <tree string=" Appointment Responses" default_order="actor_name, start">   
+                    <field name="appointment_id"/>
+                    <field name="actor_name"/>
+                    <field name="actor_type"/>
+                    <field name="participant_status"/>
+                    <field name="start"/>
+                    <field name="end"/>
+                </tree> 
+            </field>        
+        </record>           
+
+        <record id="hc_res_appointment_response_view_form" model="ir.ui.view">                          
+            <field name="name">Appointment Response Form</field>                        
+            <field name="model">hc.res.appointment.response</field>                     
+            <field name="arch" type="xml">                      
+                <form string="Appointment Response">                    
+                    <sheet>                
+                        <h1>        
+                            <field name="appointment_id" default_focus="1" placeholder="Description (e.g., Check-up)"/> 
+                        </h1>       
+                        <group>         
+                            <group>
+                                <field name="actor_name"/>
+                                <field name="actor_type"/>
+                                <field name="actor_patient_id" class="oe_edit_only" attrs="{'invisible': [('actor_type','!=','patient')]}"/>
+                                <field name="actor_practitioner_id" class="oe_edit_only" attrs="{'invisible': [('actor_type','!=','practitioner')]}"/>
+                                <field name="actor_related_person_id" class="oe_edit_only" attrs="{'invisible': [('actor_type','!=','related_person')]}"/>
+                                <field name="actor_device_id" class="oe_edit_only" attrs="{'invisible': [('actor_type','!=','device')]}"/>
+                                <field name="actor_healthcare_service_id" class="oe_edit_only" attrs="{'invisible': [('actor_type','!=','healthcare_service')]}"/>
+                                <field name="actor_location_id" class="oe_edit_only" attrs="{'invisible': [('actor_type','!=','location')]}"/>
+                                <field name="participant_type_ids" widget="many2many_tags"/>
+                                <field name="participant_status"/>
+                            </group>        
+                            <group>     
+                                <field name="start"/>
+                                <field name="end"/>
+                                <field name="comment"/>
+                            </group>        
+                        </group>        
+                        <notebook colspan="4">      
+                            <page string="Identifiers">
+                                <field name="identifier_ids" mode="tree">
+                                    <tree>
+                                        <field name="is_preferred"/>
+                                        <field name="name"/>
+                                        <field name="value"/>
+                                        <field name="type_id"/>
+                                    </tree>
+                                    <form>
+                                        <sheet>
+                                            <div>
+                                                <h1>
+                                                    <field name="name" placeholder="Identifier"/>
+                                                </h1>
+                                            </div>
+                                            <group col="4" colspan="4">
+                                                <group>
+                                                    <field name="value"/>
+                                                    <field name="type_id"/>
+                                                    <field name="is_preferred"/>
+                                                    <field name="is_active"/>
+                                                </group>
+                                                <group>
+                                                    <field name="start_date" placeholder="Valid From"/>
+                                                    <field name="end_date" placeholder="Valid To"/>
+                                                </group>
+                                            </group>
+                                        </sheet>
+                                    </form>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>   
+
         <!-- Appointment Response Action and Menu -->   
     
         <act_window id="hc_res_appointment_response_action" 

@@ -131,6 +131,7 @@ class AppointmentParticipant(models.Model):
             ("device", "Device"), 
             ("healthcare_service", "Healthcare Service"), 
             ("location", "Location")], 
+        default="patient",
         help="Type of what is account tied to.")                
     actor_name = fields.Char(
         string="Actor", 
@@ -166,7 +167,8 @@ class AppointmentParticipant(models.Model):
         selection=[
             ("required", "Required"), 
             ("optional", "Optional"), 
-            ("information-only", "Information Only")], 
+            ("information-only", "Information Only")],
+        default="required", 
         help="Is this participant required to be present at the meeting.")                
     status = fields.Selection(
         string="Participant Status", 
@@ -175,7 +177,8 @@ class AppointmentParticipant(models.Model):
             ("accepted", "Accepted"), 
             ("declined", "Declined"), 
             ("tentative", "Tentative"), 
-            ("needs-action", "Needs Action")], 
+            ("needs-action", "Needs Action")],
+        default="tentative",
         help="Participation status of the Patient.")                
         
     @api.depends('actor_type')           
@@ -233,6 +236,14 @@ class AppointmentIndication(models.Model):
     #     string="Indication Procedure", 
     #     help="Procedure reason the appointment is to takes place (resource).")                   
 
+    # @api.depends('indication_type')         
+    # def _compute_indication_name(self):         
+    #     for hc_res_appointment in self:     
+    #         if hc_res_appointment.indication_type == 'condition':   
+    #             hc_res_appointment.indication_name = hc_res_appointment.indication_condition_id.name
+    #         elif hc_res_appointment.indication_type == 'procedure': 
+    #             hc_res_appointment.indication_name = hc_res_appointment.indication_procedure_id.name
+                
 class AppointmentSupportingInformation(models.Model):   
     _name = "hc.appointment.supporting.information" 
     _description = "Appointment Supporting Information"         

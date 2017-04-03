@@ -35,6 +35,7 @@
     # always loaded
     'data': [
         'security/ir.model.access.csv',
+        'data/data_slot.xml',
         'views/hc_res_slot_views.xml',
         'views/hc_res_slot_templates.xml',
     ],

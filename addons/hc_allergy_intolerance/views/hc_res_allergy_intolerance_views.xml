@@ -28,7 +28,7 @@
                     <field name="type"/>
                     <field name="verification_status"/>
                     <group string="Group By" >  
-                        <filter name="group_by_asserter" string="Asserter" context="{'group_by': 'asserter_name'}" />
+                        <filter name="group_by_asserter" string="Asserter" context="{'group_by':'asserter_name'}"/>
                     </group>    
                 </search>   
             </field>        
@@ -282,7 +282,7 @@
             <field name="name">Allergy Intolerance Code Form</field>                    
             <field name="model">hc.vs.allergy.intolerance.code</field>                  
             <field name="arch" type="xml">                  
-                <form string="Allergy Intolerance Codes" >              
+                <form string="Allergy Intolerance Codes">              
                     <sheet>         
                         <h1>        
                             <field name="name" default_focus="1" placeholder="Name (e.g., United States)"/> 

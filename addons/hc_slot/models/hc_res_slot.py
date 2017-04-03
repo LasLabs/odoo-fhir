@@ -4,8 +4,11 @@ from openerp import models, fields, api
 
 class Slot(models.Model):    
     _name = "hc.res.slot"    
-    _description = "Slot"        
+    _description = "Slot"    
 
+    name = fields.Char(
+        string="Name",
+        help="Name of the slot.")
     identifier_ids = fields.One2many(
         comodel_name="hc.slot.identifier", 
         inverse_name="slot_id", 

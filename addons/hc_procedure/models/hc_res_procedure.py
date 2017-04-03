@@ -478,4 +478,13 @@ class AppointmentIndication(models.Model):
     indication_procedure_id = fields.Many2one(
         comodel_name="hc.res.procedure", 
         string="Indication Procedure", 
-        help="Procedure reason the appointment is to takes place (resource).") 
+        help="Procedure reason the appointment is to takes place (resource).")
+
+    @api.depends('indication_type')         
+    def _compute_indication_name(self):         
+        for hc_res_appointment in self:     
+            if hc_res_appointment.indication_type == 'condition':   
+                hc_res_appointment.indication_name = hc_res_appointment.indication_condition_id.name
+            elif hc_res_appointment.indication_type == 'procedure': 
+                hc_res_appointment.indication_name = hc_res_appointment.indication_procedure_id.name
+ 

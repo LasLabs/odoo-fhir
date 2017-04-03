@@ -66,11 +66,11 @@ class AuditEventAgent(models.Model):
     reference_type = fields.Selection(
         string="Reference Type", 
         selection=[
-            ("Practitioner", "Practitioner"), 
-            ("Organization", "Organization"), 
-            ("Device", "Device"), 
-            ("Patient", "Patient"), 
-            ("Related Person", "Related Person")], 
+            ("practitioner", "Practitioner"), 
+            ("organization", "Organization"), 
+            ("device", "Device"), 
+            ("patient", "Patient"), 
+            ("related_person", "Related Person")], 
         help="Type of direct reference to resource.")
     reference_name = fields.Char(
         string="Reference", 
@@ -114,7 +114,7 @@ class AuditEventAgent(models.Model):
     location_id = fields.Many2one(
         comodel_name="hc.res.location", 
         string="Location", 
-        help="Where.")                
+        help="Where.")                   
     policy_ids = fields.One2many(
         comodel_name="hc.audit.event.agent.policy", 
         inverse_name="agent_id", 
@@ -124,6 +124,10 @@ class AuditEventAgent(models.Model):
         comodel_name="hc.vs.dicm.405.mediatype", 
         string="Media", 
         help="Type of media.")                
+    purpose_of_use_ids = fields.Many2many(
+        comodel_name="hc.vs.purpose.of.use", 
+        string="Purpose Of Uses", 
+        help="Participant purpose of use.")              
     network_ids = fields.One2many(
         comodel_name="hc.audit.event.agent.network", 
         inverse_name="agent_id", 
@@ -145,10 +149,6 @@ class AuditEventAgentNetwork(models.Model):
         comodel_name="hc.vs.network.type", 
         string="Type", 
         help="The type of network access point.")                
-    purpose_of_use_ids = fields.Many2many(
-        comodel_name="hc.vs.purpose.of.use", 
-        string="Purpose Of Uses", 
-        help="Participant purpose of use.")              
 
 class AuditEventSource(models.Model):    
     _name = "hc.audit.event.source"    
