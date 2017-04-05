@@ -7,6 +7,10 @@ class AllergyIntolerance(models.Model):
     _description = "Allergy Intolerance"
     _inherit = ["hc.basic.association"]
 
+    name = fields.Char(
+        string="Allergy Intolerance Case Name", 
+        required="True", 
+        help="Text representation of the allergy case. Patient Name + Allergy + Onset Name.")
     identifier_ids = fields.One2many(
         comodel_name="hc.allergy.intolerance.identifier", 
         inverse_name="allergy_intolerance_id", 

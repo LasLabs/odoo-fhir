@@ -9,6 +9,7 @@
             <field name="model">hc.res.allergy.intolerance</field>      
             <field name="arch" type="xml">      
                 <search string="Allergy Intolerances">
+                    <field name="name"/>
                     <field name="code_id" string="Allergy/Intolerance"/>
                     <field name="code"/>
                     <field name="asserted_date"/>
@@ -39,6 +40,7 @@
             <field name="model">hc.res.allergy.intolerance</field>      
             <field name="arch" type="xml">      
                 <tree string="Allergy Intolerances">
+                    <field name="name"/>
                     <field name="patient_id"/>
                     <field name="code_id" string="Allergy/Intolerance"/>
                     <field name="asserted_date"/>
@@ -56,12 +58,13 @@
                     <sheet>                                
                         <div class="oe_title oe_left">                      
                             <h1>                    
-                                <field name="patient_id" default_focus="1" placeholder="Patient"/>              
+                                <field name="name" default_focus="1" placeholder="Allergy Case Name"/>              
                             </h1>                   
                         </div>                      
                         <div name="buttons" class="oe_right oe_button_box"></div>                       
                         <group>                     
                             <group>                 
+                                <field name="patient_id"/>
                                 <field name="code_id" string="Allergy/Intolerance"/>
                                 <field name="code" readonly="1"/>
                                 <field name="type" widget="radio"/>

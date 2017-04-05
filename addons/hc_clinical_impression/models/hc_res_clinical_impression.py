@@ -6,6 +6,10 @@ class ClinicalImpression(models.Model):
     _name = "hc.res.clinical.impression"    
     _description = "Clinical Impression"        
 
+    name = fields.Char(
+        string="Event Name", 
+        required="True", 
+        help="Text representation of the clinical impression event. Subject Name + Code + Date.")
     identifier_ids = fields.One2many(
         comodel_name="hc.clinical.impression.identifier", 
         inverse_name="clinical_impression_id", 

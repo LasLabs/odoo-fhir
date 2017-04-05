@@ -9,7 +9,7 @@ class Procedure(models.Model):
     name = fields.Char(
         string="Name", 
         required="True", 
-        help="The patient's procedure described.")                   
+        help="Text representation of the procedure event. Subject Name + Code + Performed Date/Period.")                   
     identifier_ids = fields.One2many(
         comodel_name="hc.procedure.identifier", 
         inverse_name="procedure_id", 
@@ -56,14 +56,19 @@ class Procedure(models.Model):
         help="Group who the procedure was performed on.")
     encounter_id = fields.Many2one(
         comodel_name="hc.res.encounter", 
-        string="Encounter", 
+        string="Encounter",
         help="The encounter associated with the procedure.")
     performed_date_type = fields.Selection(
         string="Procedure Performed Date Type", 
         selection=[
             ("date_time", "Datetime"),  
             ("period", "Period")], 
-        help="Type of performed date.")                  
+        help="Date/Period the procedure was performed.")
+    performed_date_name = fields.Char(
+        string="Performed Date/Period",
+        compute="_compute_performed_date_name",
+        store="True",  
+        help="Who the procedure was performed on.")                 
     performed_datetime = fields.Datetime(
         string="Performed Datetime", 
         help="Date the procedure was performed.")                 
@@ -181,6 +186,14 @@ class Procedure(models.Model):
                 hc_res_procedure.subject_name = hc_res_procedure.subject_patient_id.name
             elif hc_res_procedure.subject_type == 'group':  
                 hc_res_procedure.subject_name = hc_res_procedure.subject_group_id.name
+
+    @api.depends('performed_date_type')         
+    def _compute_performed_date_name(self):         
+        for hc_res_procedure in self:       
+            if hc_res_procedure.performed_date_type == 'date_time': 
+                hc_res_procedure.performed_date_name = hc_res_procedure.performed_date_date_time_id.name
+            elif hc_res_procedure.performed_date_type == 'period':  
+                hc_res_procedure.performed_date_name = 'Between' + str(hc_res_procedure.performed_start_date) + ' and ' + str(hc_res_procedure.performed_end_date)
 
     @api.multi
     def _compute_request_name(self):
@@ -460,25 +473,25 @@ class EncounterIndication(models.Model):
 class AppointmentIndication(models.Model):  
     _inherit = "hc.appointment.indication" 
                                    
-    indication_type = fields.Selection(
-        string="Indication Type", 
-        selection=[
-            ("condition", "Condition"), 
-            ("procedure", "Procedure")], 
-        help="Type of reason the appointment is to takes place (resource).")                   
-    indication_name = fields.Char(
-        string="Indication", 
-        compute="_compute_indication_name", 
-        store="True", 
-        help="Reason the appointment is to takes place (resource).")                                     
+    # indication_type = fields.Selection(
+    #     string="Indication Type", 
+    #     selection=[
+    #         ("condition", "Condition"), 
+    #         ("procedure", "Procedure")], 
+    #     help="Type of reason the appointment is to take place (resource).")                   
+    # indication_name = fields.Char(
+    #     string="Indication", 
+    #     compute="_compute_indication_name", 
+    #     store="True", 
+    #     help="Reason the appointment is to take place (resource).")                                     
     indication_condition_id = fields.Many2one(
         comodel_name="hc.res.condition", 
         string="Indication Condition", 
-        help="Condition reason the appointment is to takes place (resource).")  
+        help="Condition reason the appointment is to take place (resource).")  
     indication_procedure_id = fields.Many2one(
         comodel_name="hc.res.procedure", 
         string="Indication Procedure", 
-        help="Procedure reason the appointment is to takes place (resource).")
+        help="Procedure reason the appointment is to take place (resource).")
 
     @api.depends('indication_type')         
     def _compute_indication_name(self):         

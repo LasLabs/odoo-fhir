@@ -755,9 +755,36 @@ class SubstanceCode(models.Model):
         help="Code of this substance code.")
     contains_id = fields.Many2one(
         comodel_name="hc.vs.substance.code",
-        string="Parent",
+        string="Parent", 
         help="Parent substance code.")
+    # contains_ids = fields.Many2many(
+    #     comodel_name="hc.parent.substance.code", 
+    #     relation="substance_code_contains_rel", 
+    #     string="Parents", 
+    #     help="Parent substance code.")
 
+class ParentSubstanceCode(models.Model):    
+    _name = "hc.parent.substance.code"  
+    _description = "Parent Substance Code"          
+    _inherit = ["hc.basic.association"] 
+    _inherits = {"hc.vs.substance.code": "substance_code_id"}   
+
+    substance_code_id = fields.Many2one(
+        comodel_name="hc.vs.substance.code", 
+        string="Substance Code", 
+        ondelete="restrict", 
+        required="True", 
+        help="Substance Code associated with this Parent Substance Code.")                          
+
+class SubstanceCode(models.Model):  
+    _inherit = "hc.vs.substance.code"
+
+    contains_ids = fields.Many2many(
+        comodel_name="hc.parent.substance.code", 
+        relation="substance_code_contains_rel", 
+        string="Parents", 
+        help="Parent substance code.")
+    
 class TimeUOM(models.Model): 
     _name = "hc.vs.time.uom" 
     _description = "Time Unit of Measure"            

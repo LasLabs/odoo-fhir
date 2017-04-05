@@ -9,8 +9,7 @@
             <field name="arch" type="xml">                                      
                 <search string=" Schedules">                                    
                     <field name="name"/>                                                    
-                    <field name="actor_name"/>                              
-                    <field name="actor_type"/>                              
+                    <field name="actor_ids"/>                                                         
                     <field name="service_category_id"/>                             
                     <field name="service_type_ids"/>                                
                     <field name="specialty_ids"/>                               
@@ -30,10 +29,7 @@
             <field name="arch" type="xml">                                      
                 <tree string=" Schedules" default_order="service_category_id, name">                                                              
                     <field name="service_category_id"/>
-                    <field name="name"/>                             
-                <tree string=" Schedules" default_order="actor_name">                                   
-                    <field name="actor_name"/>                              
-                    <field name="actor_type"/>                              
+                    <field name="name"/>                                                           
                     <field name="service_category_id"/>                             
                     <field name="planning_horizon_start_date"/>                             
                     <field name="planning_horizon_end_date"/>                               

@@ -6,6 +6,10 @@ class DetectedIssue(models.Model):
     _name = "hc.res.detected.issue"
     _description = "Detected Issue"
 
+    name = fields.Char(
+        string="Event Name", 
+        required="True", 
+        help="Text representation of the detected issue event. Patient Name + Detected Issue + Date.")
     patient_id = fields.Many2one(
         comodel_name="hc.res.patient", 
         string="Patient", 

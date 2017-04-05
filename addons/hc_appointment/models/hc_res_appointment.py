@@ -216,25 +216,25 @@ class AppointmentIndication(models.Model):
         comodel_name="hc.res.appointment", 
         string="Appointment", 
         help="Appointment associated with this Appointment Indication.")                  
-    # indication_type = fields.Selection(
-    #     string="Indication Type", 
-    #     selection=[
-    #         ("condition", "Condition"), 
-    #         ("procedure", "Procedure")], 
-    #     help="Type of reason the appointment is to takes place (resource).")                   
-    # indication_name = fields.Char(
-    #     string="Indication", 
-    #     compute="_compute_indication_name", 
-    #     store="True", 
-    #     help="Reason the appointment is to takes place (resource).")                   
+    indication_type = fields.Selection(
+        string="Indication Type", 
+        selection=[
+            ("condition", "Condition"), 
+            ("procedure", "Procedure")], 
+        help="Type of reason the appointment is to take place (resource).")                   
+    indication_name = fields.Char(
+        string="Indication", 
+        compute="_compute_indication_name", 
+        store="True", 
+        help="Reason the appointment is to take place (resource).")                   
     # indication_condition_id = fields.Many2one(
     #     comodel_name="hc.res.condition", 
     #     string="Indication Condition", 
-    #     help="Condition reason the appointment is to takes place (resource).")                   
+    #     help="Condition reason the appointment is to take place (resource).")                   
     # indication_procedure_id = fields.Many2one(
     #     comodel_name="hc.res.procedure", 
     #     string="Indication Procedure", 
-    #     help="Procedure reason the appointment is to takes place (resource).")                   
+    #     help="Procedure reason the appointment is to take place (resource).")                   
 
     # @api.depends('indication_type')         
     # def _compute_indication_name(self):         
@@ -255,11 +255,11 @@ class AppointmentSupportingInformation(models.Model):
         help="Appointment associated with this Appointment Supporting Information.")                  
     supporting_information_type = fields.Char(
         string="Supporting Information Type", 
-        compute="_compute_supporting_information_type", 
+        compute="_compute_supporting_information_type",
+        store="True",  
         help="Type of additional information to support the appointment.")
     supporting_information_name = fields.Reference(
-        string="Supporting Information", 
-        store="True", 
+        string="Supporting Information",
         selection="_reference_models", 
         help="Additional information to support the appointment.")
                  

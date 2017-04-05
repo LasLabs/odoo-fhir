@@ -6,11 +6,12 @@ class Condition(models.Model):
     _name = "hc.res.condition"    
     _description = "Condition"            
 
-    # name = fields.Char(
-    #     string="Condition", 
-    #     compute="_compute_name", 
-    #     store="True", 
-    #     help="Text representation of the condition.")
+    name = fields.Char(
+        string="Event Name",
+        required="True", 
+        # compute="_compute_name", 
+        # store="True", 
+        help="Text representation of the condition event. Subject Name + Code + Onset Name.")
     identifier_ids = fields.One2many(
         comodel_name="hc.condition.identifier", 
         inverse_name="condition_id", 
@@ -234,11 +235,6 @@ class Condition(models.Model):
         string="Evidence", 
         help="Supporting evidence.")                    
 
-    # @api.depends('code_id')   
-    # def _compute_name(self):    
-    #     for hc_res_condition in self:
-    #         hc_res_condition.name = hc_res_condition.code_id.name
-
     @api.multi          
     def _compute_subject_name(self):            
         for hc_res_condition in self:       
@@ -246,6 +242,11 @@ class Condition(models.Model):
                 hc_res_condition.subject_name = hc_res_condition.subject_patient_id.name
             elif hc_res_condition.subject_type == 'group':  
                 hc_res_condition.subject_name = hc_res_condition.subject_group_id.name
+
+    # @api.depends('code_id' 'subject_name')   
+    # def _compute_name(self):    
+    #     for hc_res_condition in self:
+    #         hc_res_condition.name = str(hc_res_condition.subject_name) + ' ' + str(hc_res_condition.code_id.name)
 
     # @api.multi          
     # def _compute_context_name(self):            
