@@ -184,7 +184,7 @@ class AllergyIntolerance(models.Model):
             elif hc_res_allergy_intolerance.onset_type == 'string':     
                     hc_res_allergy_intolerance.onset_name = hc_res_allergy_intolerance.onset_string
 
-    @api.multi
+    @api.depends('recorder_type')
     def _compute_recorder_name(self):
         for hc_res_allergy_intolerance in self:
             if hc_res_allergy_intolerance.recorder_type == 'practitioner':
@@ -192,7 +192,7 @@ class AllergyIntolerance(models.Model):
             elif hc_res_allergy_intolerance.recorder_type == 'patient':
                 hc_res_allergy_intolerance.recorder_name = hc_res_allergy_intolerance.recorder_patient_id.name
             
-    @api.multi
+    @api.depends('asserter_type')
     def _compute_asserter_name(self):
         for hc_res_allergy_intolerance in self:
             if hc_res_allergy_intolerance.asserter_type == 'patient':
