@@ -4,7 +4,8 @@ from openerp import models, fields, api
 
 class ImagingStudy(models.Model):    
     _name = "hc.res.imaging.study"    
-    _description = "Imaging Study"        
+    _description = "Imaging Study"
+    _rec_name = "uid"
 
     uid = fields.Char(
         string="UID", 
