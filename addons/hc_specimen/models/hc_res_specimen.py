@@ -6,6 +6,10 @@ class Specimen(models.Model):
     _name = "hc.res.specimen"	
     _description = "Specimen"			
 
+    name = fields.Char(
+        string="Event Name", 
+        required="True", 
+        help="Text representation of the specimen event. Subject Name + Accession Identifier + Received Time.")
     identifier_ids = fields.One2many(
         comodel_name="hc.specimen.identifier", 
         inverse_name="specimen_id", 
