@@ -6,6 +6,13 @@ class Sequence(models.Model):
     _name = "hc.res.sequence"    
     _description = "Sequence"        
 
+    name = fields.Char(
+        string="Event Name", 
+        required="True", 
+        help="Text representation of the sequence event. Subject Name + Type + Date.")
+    date = fields.Datetime(
+        string="Date", 
+        help="When this sequence event was completed.")
     identifier_ids = fields.One2many(
         comodel_name="hc.sequence.identifier", 
         inverse_name="sequence_id", 
@@ -35,6 +42,10 @@ class Sequence(models.Model):
         comodel_name="hc.res.device", 
         string="Device", 
         help="The method for sequencing.")                
+    performer_id = fields.Many2one(
+        comodel_name="hc.res.organization", 
+        string="Performer", 
+        help="Who should be responsible for test result.")
     quantity = fields.Float(
         string="Quantity", 
         help="Quantity of the sequence.")                
@@ -53,11 +64,10 @@ class Sequence(models.Model):
         inverse_name="sequence_id", 
         string="Pointers", 
         help="Pointer to next atomic sequence.")                
-    reference_seq_ids = fields.One2many(
-        comodel_name="hc.sequence.reference.seq", 
-        inverse_name="sequence_id", 
-        string="Reference Sequences", 
-        help="A sequence that is used to represent an allele or variant.")                
+    reference_seq_id = fields.Many2one(
+        comodel_name="hc.reference.sequence", 
+        string="Reference Sequence", 
+        help="Reference Sequence associated with this Sequence Resource.")      
     variant_ids = fields.One2many(
         comodel_name="hc.sequence.variant", 
         inverse_name="sequence_id", 
@@ -72,21 +82,12 @@ class Sequence(models.Model):
         comodel_name="hc.sequence.repository", 
         inverse_name="sequence_id", 
         string="Repositories", 
-        help="External repository.")                
-    structure_variant_ids = fields.One2many(
-        comodel_name="hc.sequence.structure.variant", 
-        inverse_name="sequence_id", 
-        string="Structure Variants", 
-        help="Structural variant.")                
+        help="External repository.")                              
 
-class SequenceReferenceSeq(models.Model):    
-    _name = "hc.sequence.reference.seq"    
-    _description = "Sequence Reference Sequence"        
-
-    sequence_id = fields.Many2one(
-        comodel_name="hc.res.sequence", 
-        string="Sequence", 
-        help="Sequence associated with this reference seq.")                
+class ReferenceSequence(models.Model):  
+    _name = "hc.reference.sequence" 
+    _description = "Reference Sequence"
+           
     chromosome_id = fields.Many2one(
         comodel_name="hc.vs.chromosome.human", 
         string="Chromosome", 
@@ -155,8 +156,16 @@ class SequenceQuality(models.Model):
         comodel_name="hc.res.sequence", 
         string="Sequence", 
         help="Sequence associated with this quality.")                
+    type = fields.Selection(
+        string="Quality Type", 
+        required="True", 
+        selection=[
+            ("indel", "Indel"), 
+            ("snp", "SNP"), 
+            ("unknown", "Unknown")], 
+        help="Indicates whether the account is presently used/useable or not.")
     standard_sequence_id = fields.Many2one(
-        comodel_name="hc.vs.sequence.standard.sequence", 
+        comodel_name="hc.vs.sequence.quality.standard.sequence", 
         string="Standard Sequence", 
         help="Standard sequence for comparison.")                
     start = fields.Integer(
@@ -171,8 +180,8 @@ class SequenceQuality(models.Model):
     method_id = fields.Many2one(
         comodel_name="hc.vs.sequence.quality.method", 
         string="Method", help="Method for quality.")                
-    true_positives = fields.Float(
-        string="True Positives", 
+    truth_tp = fields.Float(
+        string="Truth TP", 
         help="True positives from the perspective of the truth data.")                
     query_tp = fields.Float(
         string="Query TP", 
@@ -192,8 +201,8 @@ class SequenceQuality(models.Model):
     recall = fields.Float(
         string="Recall", 
         help="Recall (sensitivity); TRUTH.TP / (TRUTH.TP + TRUTH.FN).")             
-    f_measure = fields.Float(
-        string="f Measure", 
+    f_score = fields.Float(
+        string="f Score", 
         help="F-score.")                
 
 class SequenceRepository(models.Model):    
@@ -204,76 +213,31 @@ class SequenceRepository(models.Model):
         comodel_name="hc.res.sequence", 
         string="Sequence", 
         help="Sequence associated with this repository.")                
+    type = fields.Selection(
+        string="Repository Type", 
+        required="True", 
+        selection=[
+            ("directlink", "Directlink"), 
+            ("openapi", "Openapi"), 
+            ("login", "Login"), 
+            ("oauth", "Oauth"), 
+            ("other", "Other")], 
+        help="Indicates whether the account is presently used/useable or not.")
     url = fields.Char(
         string="URI", 
         help="URI of the repository.")                
     name = fields.Char(
         string="Name", 
         help="Name of the repository.")                
-    variant_id = fields.Char(
-        string="Variant ID", 
-        help="ID of the variant in this external repository.")
-    read_id = fields.Char(
-        string="Read ID", 
-        help="ID of the read in this external repository.")
-
-class SequenceStructureVariant(models.Model):    
-    _name = "hc.sequence.structure.variant"    
-    _description = "Sequence Structure Variant"        
-
-    sequence_id = fields.Many2one(
-        comodel_name="hc.res.sequence", 
-        string="Sequence", 
-        help="Sequence associated with this structure variant.")                
-    precision_of_boundaries = fields.Char(
-        string="Precision Of Boundaries", 
-        help="Precision of boundaries.")                
-    reported_acgh_ratio = fields.Float(
-        string="Reported ACGH Ratio", 
-        help="Structural Variant reported aCGH ratio.")                
-    length = fields.Integer(
-        string="Length", 
-        help="Structural Variant Length.")                
-    outer_ids = fields.One2many(
-        comodel_name="hc.sequence.structure.variant.outer", 
-        inverse_name="structure_variant_id", 
-        string="Outers", 
-        help="Structural variant outer.")                
-    inner_ids = fields.One2many(
-        comodel_name="hc.sequence.structure.variant.inner", 
-        inverse_name="structure_variant_id", 
-        string="Inners", 
-        help="Structural variant inner.")                
-
-class SequenceStructureOuter(models.Model):    
-    _name = "hc.sequence.structure.variant.outer"    
-    _description = "Sequence Structure Variant Outer"        
-
-    structure_variant_id = fields.Many2one(
-        comodel_name="hc.sequence.structure.variant", 
-        string="Structure Variant", 
-        help="Structure Variant associated with this outer.")                
-    start = fields.Integer(
-        string="Start", 
-        help="Structural Variant Outer Start-End.")                
-    end = fields.Integer(
-        string="End", 
-        help="Structural Variant Outer Start-End.")                
-
-class SequenceStructureInner(models.Model):    
-    _name = "hc.sequence.structure.variant.inner"    
-    _description = "Sequence Structure Variant Inner"        
-
-    structure_variant_id = fields.Many2one(
-        comodel_name="hc.sequence.structure.variant", 
-        string="Structure Variant", 
-        help="Structure Variant associated with this inner.")                
-    start = fields.Integer(
-        string="Start", 
-        help="Structural Variant Inner Start-End.")                
-    end = fields.Integer(
-        string="End", 
-        help="Structural Variant Inner Start-End.")                
+    dataset_id = fields.Char(
+        string="Dataset Id", 
+        help="Id of the dataset that used to call for dataset in repository.")
+    variantset_id = fields.Char(
+        string="Variantset Id", 
+        help="Id of the variantset that used to call for variantset in repository.")
+    readset_id = fields.Char(
+        string="Readset Id", 
+        help="Id of the read.")
 
 class SequenceIdentifier(models.Model):    
     _name = "hc.sequence.identifier"    
@@ -304,17 +268,61 @@ class ChormosomeHuman(models.Model):
     _description = "Chromosome Human"        
     _inherit = ["hc.value.set.contains"]
 
+    name = fields.Char(
+        string="Name", 
+        help="Name of this chromosome human.")
+    code = fields.Char(
+        string="Code", 
+        help="Code of this chromosome human.")
+    contains_id = fields.Many2one(
+        comodel_name="hc.vs.chromosome.human", 
+        string="Parent", 
+        help="Parent chromosome human.")
+
 class SequenceReferenceSeq(models.Model):    
     _name = "hc.vs.sequence.reference.seq"    
     _description = "Sequence Reference Seq"        
     _inherit = ["hc.value.set.contains"]
 
-class SequenceStandardSequence(models.Model):    
-    _name = "hc.vs.sequence.standard.sequence"    
-    _description = "Sequence Standard Sequence"        
+    name = fields.Char(
+        string="Name", 
+        help="Name of this sequence reference sequence.")
+    code = fields.Char(
+        string="Code", 
+        help="Code of this sequence reference sequence.")
+    contains_id = fields.Many2one(
+        comodel_name="hc.vs.sequence.reference.seq", 
+        string="Parent", 
+        help="Parent sequence reference sequence.")
+
+class SequenceQualityStandardSequence(models.Model):    
+    _name = "hc.vs.sequence.quality.standard.sequence"    
+    _description = "Sequence Quality Standard Sequence"        
     _inherit = ["hc.value.set.contains"]
+
+    name = fields.Char(
+        string="Name", 
+        help="Name of this sequence quality standard sequence.")
+    code = fields.Char(
+        string="Code", 
+        help="Code of this sequence quality standard sequence.")
+    contains_id = fields.Many2one(
+        comodel_name="hc.vs.sequence.quality.standard.sequence", 
+        string="Parent", 
+        help="Parent sequence quality standard sequence.")
 
 class SequenceQualityMethod(models.Model):    
     _name = "hc.vs.sequence.quality.method"    
     _description = "Sequence Quality Method"        
     _inherit = ["hc.value.set.contains"]
+
+    name = fields.Char(
+        string="Name", 
+        help="Name of this sequence quality method.")
+    code = fields.Char(
+        string="Code", 
+        help="Code of this sequence quality method.")
+    contains_id = fields.Many2one(
+        comodel_name="hc.vs.sequence.quality.method", 
+        string="Parent", 
+        help="Parent sequence quality method.")
