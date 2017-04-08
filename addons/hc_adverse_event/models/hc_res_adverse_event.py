@@ -147,6 +147,38 @@ class AdverseEvent(models.Model):
         string="Suspect Entities", 
         help="Suspect Entity.")                        
 
+    @api.depends('subject_type')            
+    def _compute_subject_name(self):            
+        for hc_res_adverse_event in self:       
+            if hc_res_adverse_event.subject_type == 'patient':  
+                hc_res_adverse_event.subject_name = hc_res_adverse_event.subject_patient_id.name
+            elif hc_res_adverse_event.subject_type == 'research_subject':   
+                hc_res_adverse_event.subject_name = hc_res_adverse_event.subject_research_subject_id.name
+            elif hc_res_adverse_event.subject_type == 'medication': 
+                hc_res_adverse_event.subject_name = hc_res_adverse_event.subject_medication_id.name
+            elif hc_res_adverse_event.subject_type == 'device': 
+                hc_res_adverse_event.subject_name = hc_res_adverse_event.subject_device_id.name
+
+    @api.depends('recorder_type')           
+    def _compute_recorder_name(self):           
+        for hc_res_adverse_event in self:       
+            if hc_res_adverse_event.recorder_type == 'patient': 
+                hc_res_adverse_event.recorder_name = hc_res_adverse_event.recorder_patient_id.name
+            elif hc_res_adverse_event.recorder_type == 'research_subject':  
+                hc_res_adverse_event.recorder_name = hc_res_adverse_event.recorder_research_subject_id.name
+            elif hc_res_adverse_event.recorder_type == 'medication':    
+                hc_res_adverse_event.recorder_name = hc_res_adverse_event.recorder_medication_id.name
+            elif hc_res_adverse_event.recorder_type == 'device':    
+                hc_res_adverse_event.recorder_name = hc_res_adverse_event.recorder_device_id.name
+
+    @api.depends('event_type')          
+    def _compute_event_name(self):          
+        for hc_res_adverse_event in self:       
+            if hc_res_adverse_event.event_type == 'practitioner':   
+                hc_res_adverse_event.event_name = hc_res_adverse_event.event_practitioner_id.name
+            elif hc_res_adverse_event.event_type == 'device':   
+                hc_res_adverse_event.event_name = hc_res_adverse_event.event_device_id.name
+
 class AdverseEventSuspectEntity(models.Model):    
     _name = "hc.adverse.event.suspect.entity"    
     _description = "Adverse Event Suspect Entity"                
@@ -231,6 +263,28 @@ class AdverseEventSuspectEntity(models.Model):
         string="Causality Result", 
         help="Causality result.")                        
 
+    @api.depends('instance_type')           
+    def _compute_instance_name(self):           
+        for hc_adverse_event_suspect_entity in self:        
+            if hc_adverse_event_suspect_entity.instance_type == 'substance':    
+                hc_adverse_event_suspect_entity.instance_name = hc_adverse_event_suspect_entity.instance_substance_id.name
+            elif hc_adverse_event_suspect_entity.instance_type == 'medication': 
+                hc_adverse_event_suspect_entity.instance_name = hc_adverse_event_suspect_entity.instance_medication_id.name
+            elif hc_adverse_event_suspect_entity.instance_type == 'medication_administration':  
+                hc_adverse_event_suspect_entity.instance_name = hc_adverse_event_suspect_entity.instance_medication_administration_id.name
+            elif hc_adverse_event_suspect_entity.instance_type == 'medication_statement':   
+                hc_adverse_event_suspect_entity.instance_name = hc_adverse_event_suspect_entity.instance_medication_statement_id.name
+            elif hc_adverse_event_suspect_entity.instance_type == 'device': 
+                hc_adverse_event_suspect_entity.instance_name = hc_adverse_event_suspect_entity.instance_device_id.name
+
+    @api.depends('causality_author_type')           
+    def _compute_causality_author_name(self):           
+        for hc_adverse_event_suspect_entity in self:        
+            if hc_adverse_event_suspect_entity.causality_author_type == 'practitioner': 
+                hc_adverse_event_suspect_entity.causality_author_name = hc_adverse_event_suspect_entity.causality_author_practitioner_id.name
+            elif hc_adverse_event_suspect_entity.causality_author_type == 'practitioner_role':  
+                hc_adverse_event_suspect_entity.causality_author_name = hc_adverse_event_suspect_entity.causality_author_practitioner_role_id.name
+
 class AdverseEventIdentifier(models.Model):    
     _name = "hc.adverse.event.identifier"    
     _description = "Adverse Event Identifier"            
@@ -298,6 +352,22 @@ class AdverseEventSubjectMedicalHistory(models.Model):
         comodel_name="hc.res.procedure", 
         string="Subject Medical History Procedure", 
         help="Procedure subject medical history.")                        
+
+    @api.depends('subject_medical_history_type')            
+    def _compute_subject_medical_history_name(self):            
+        for hc_adverse_event_subject_medical_history in self:       
+            if hc_adverse_event_subject_medical_history.subject_medical_history_type == 'condition':    
+                hc_adverse_event_subject_medical_history.subject_medical_history_name = hc_adverse_event_subject_medical_history.subject_medical_history_condition_id.name
+            elif hc_adverse_event_subject_medical_history.subject_medical_history_type == 'observation':    
+                hc_adverse_event_subject_medical_history.subject_medical_history_name = hc_adverse_event_subject_medical_history.subject_medical_history_observation_id.name
+            elif hc_adverse_event_subject_medical_history.subject_medical_history_type == 'allergy_intolerance':    
+                hc_adverse_event_subject_medical_history.subject_medical_history_name = hc_adverse_event_subject_medical_history.subject_medical_history_allergy_intolerance_id.name
+            elif hc_adverse_event_subject_medical_history.subject_medical_history_type == 'family_member_history':  
+                hc_adverse_event_subject_medical_history.subject_medical_history_name = hc_adverse_event_subject_medical_history.subject_medical_history_family_member_history_id.name
+            elif hc_adverse_event_subject_medical_history.subject_medical_history_type == 'immunization':   
+                hc_adverse_event_subject_medical_history.subject_medical_history_name = hc_adverse_event_subject_medical_history.subject_medical_history_immunization_id.name
+            elif hc_adverse_event_subject_medical_history.subject_medical_history_type == 'procedure':  
+                hc_adverse_event_subject_medical_history.subject_medical_history_name = hc_adverse_event_subject_medical_history.subject_medical_history_procedure_id.name
 
 class AdverseEventReferenceDocument(models.Model):    
     _name = "hc.adverse.event.reference.document"    
