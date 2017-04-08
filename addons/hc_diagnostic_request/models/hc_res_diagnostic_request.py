@@ -6,6 +6,10 @@ class DiagnosticRequest(models.Model):
     _name = "hc.res.diagnostic.request"    
     _description = "Diagnostic Request"
 
+    name = fields.Char(
+        string="Event Name", 
+        required="True", 
+        help="Name for this diagnostic request. Subject Name + Code + Occurrence.")
     identifier_ids = fields.One2many(
         comodel_name="hc.diagnostic.request.identifier", 
         inverse_name="diagnostic_request_id", 
@@ -231,6 +235,60 @@ class DiagnosticRequest(models.Model):
         string="Relevant Histories", 
         help="Request provenance.")                    
 
+        @api.depends('subject_type')            
+        def _compute_subject_name(self):            
+            for hc_res_diagnostic_request in self:      
+                if hc_res_diagnostic_request.subject_type == 'patient': 
+                    hc_res_diagnostic_request.subject_name = hc_res_diagnostic_request.subject_patient_id.name
+                elif hc_res_diagnostic_request.subject_type == 'group': 
+                    hc_res_diagnostic_request.subject_name = hc_res_diagnostic_request.subject_group_id.name
+                elif hc_res_diagnostic_request.subject_type == 'location':  
+                    hc_res_diagnostic_request.subject_name = hc_res_diagnostic_request.subject_location_id.name
+                elif hc_res_diagnostic_request.subject_type == 'device':    
+                    hc_res_diagnostic_request.subject_name = hc_res_diagnostic_request.subject_device_id.name
+
+        @api.depends('context_type')            
+        def _compute_context_name(self):            
+            for hc_res_diagnostic_request in self:      
+                if hc_res_diagnostic_request.context_type == 'encounter':   
+                    hc_res_diagnostic_request.context_name = hc_res_diagnostic_request.context_encounter_id.name
+                elif hc_res_diagnostic_request.context_type == 'episode_of_care':   
+                    hc_res_diagnostic_request.context_name = hc_res_diagnostic_request.context_episode_of_care_id.name
+
+        @api.depends('occurrence_type')         
+        def _compute_occurrence_name(self):         
+            for hc_res_diagnostic_report in self:       
+                if hc_res_diagnostic_report.occurrence_type == 'datetime':  
+                    hc_res_diagnostic_report.occurrence_name = str(hc_res_diagnostic_report.occurrence_datetime)
+                elif hc_res_diagnostic_report.occurrence_type == 'period':  
+                    hc_res_diagnostic_report.occurrence_name = 'Between' + str(hc_res_diagnostic_report.occurrence_start_date) + ' and ' + str(hc_res_diagnostic_report.occurrence_end_date)
+                elif hc_res_diagnostic_report.occurrence_type == 'timing':  
+                    hc_res_diagnostic_report.occurrence_name = hc_res_diagnostic_report.occurrence_timing_id.name
+
+        @api.depends('requester_type')          
+        def _compute_requester_name(self):          
+            for hc_res_diagnostic_request in self:      
+                if hc_res_diagnostic_request.requester_type == 'device':    
+                    hc_res_diagnostic_request.requester_name = hc_res_diagnostic_request.requester_device_id.name
+                elif hc_res_diagnostic_request.requester_type == 'practitioner':    
+                    hc_res_diagnostic_request.requester_name = hc_res_diagnostic_request.requester_practitioner_id.name
+                elif hc_res_diagnostic_request.requester_type == 'organization':    
+                    hc_res_diagnostic_request.requester_name = hc_res_diagnostic_request.requester_organization_id.name
+
+        @api.depends('requested_performer_type')            
+        def _compute_requested_performer_name(self):            
+            for hc_res_diagnostic_request in self:      
+                if hc_res_diagnostic_request.requested_performer_type == 'practitioner':    
+                    hc_res_diagnostic_request.requested_performer_name = hc_res_diagnostic_request.requested_performer_practitioner_id.name
+                elif hc_res_diagnostic_request.requested_performer_type == 'organization':  
+                    hc_res_diagnostic_request.requested_performer_name = hc_res_diagnostic_request.requested_performer_organization_id.name
+                elif hc_res_diagnostic_request.requested_performer_type == 'patient':   
+                    hc_res_diagnostic_request.requested_performer_name = hc_res_diagnostic_request.requested_performer_patient_id.name
+                elif hc_res_diagnostic_request.requested_performer_type == 'device':    
+                    hc_res_diagnostic_request.requested_performer_name = hc_res_diagnostic_request.requested_performer_device_id.name
+                elif hc_res_diagnostic_request.requested_performer_type == 'related_person':    
+                    hc_res_diagnostic_request.requested_performer_name = hc_res_diagnostic_request.requested_performer_related_person_id.name
+
 class DiagnosticRequestIdentifier(models.Model):    
     _name = "hc.diagnostic.request.identifier"    
     _description = "Diagnostic Request Identifier"        
@@ -260,23 +318,28 @@ class DiagnosticRequestBasedOn(models.Model):
         comodel_name="hc.res.diagnostic.request", 
         string="Diagnostic Request", 
         help="Diagnostic Request associated with this Diagnostic Request Based On.")                    
-    based_on_type = fields.Selection(
+    based_on_type = fields.Char(
         string="Based On Type", 
-        selection=[
-            ("string", "String"), 
-            ("code", "Code")], 
-        help="Type of what request fulfills.")                    
-    based_on_name = fields.Char(
+        compute="_compute_based_on_type", 
+        store="True", 
+        help="Type of what request fulfills.")
+    based_on_name = fields.Reference(
         string="Based On", 
-        compute="compute_based_on_name", 
-        help="What request fulfills.")                    
-    based_on_string = fields.Char(
-        string="Based On String", 
-        help="String of what request fulfills.")
-    based_on_code_id = fields.Many2one(
-        comodel_name="hc.vs.resource.type", 
-        string="Based On Code", 
-        help="Resource type of what request fulfills.")
+        selection="_reference_models", 
+        help="What request fulfills.")
+
+    @api.model          
+    def _reference_models(self):            
+        models = self.env['ir.model'].search([('state', '!=', 'manual')])       
+        return [(model.model, model.name)       
+            for model in models 
+                if model.model.startswith('hc.res')]
+                
+    @api.depends('based_on_name')           
+    def _compute_based_on_type(self):           
+        for this in self:       
+            if this.based_on_name:  
+                this.based_on_type = this.based_on_name._description
 
 class DiagnosticRequestDefinition(models.Model):    
     _name = "hc.diagnostic.request.definition"    
@@ -287,24 +350,29 @@ class DiagnosticRequestDefinition(models.Model):
         comodel_name="hc.res.diagnostic.request", 
         string="Diagnostic Request", 
         help="Diagnostic Request associated with this Diagnostic Request Definition.")                    
-    definition_type = fields.Selection(
+    definition_type = fields.Char(
         string="Definition Type", 
-        selection=[
-            ("string", "String"), 
-            ("code", "Code")], 
-        help="Type of protocol or definition.")                    
-    definition_name = fields.Char(
+        compute="_compute_definition_type", 
+        store="True", 
+        help="Type of protocol or definition.")
+    definition_name = fields.Reference(
         string="Definition", 
-        compute="compute_definition_name", 
-        help="Protocol or definition.")                    
-    definition_string = fields.Char(
-        string="Definition String", 
-        help="String of protocol or definition.")
-    definition_code_id = fields.Many2one(
-        comodel_name="hc.vs.resource.type", 
-        string="Definition Code", 
-        help="Resource type of protocol or definition.")
+        selection="_reference_models", 
+        help="Protocol or definition.")
 
+    @api.model          
+    def _reference_models(self):            
+        models = self.env['ir.model'].search([('state', '!=', 'manual')])       
+        return [(model.model, model.name)       
+            for model in models 
+                if model.model.startswith('hc.res')]
+                
+    @api.depends('definition_name')         
+    def _compute_definition_type(self):         
+        for this in self:       
+            if this.definition_name:    
+                this.definition_type = this.definition_name._description
+                
 class DiagnosticRequestNote(models.Model):    
     _name = "hc.diagnostic.request.note"    
     _description = "Diagnostic Request Note"        
@@ -338,23 +406,28 @@ class DiagnosticRequestReplaces(models.Model):
         comodel_name="hc.res.diagnostic.request", 
         string="Diagnostic Request", 
         help="Diagnostic Request associated with this Diagnostic Request Replaces.")                    
-    replaces_type = fields.Selection(
+    replaces_type = fields.Char(
         string="Replaces Type", 
-        selection=[
-            ("string", "String"), 
-            ("code", "Code")], 
-        help="Type of what request replaces.")                    
-    replaces_name = fields.Char(
+        compute="_compute_replaces_type", 
+        store="True", 
+        help="Type of what request replaces.")
+    replaces_name = fields.Reference(
         string="Replaces", 
-        compute="compute_replaces_name", 
-        help="What request replaces.")                    
-    replaces_string = fields.Char(
-        string="Replaces String", 
-        help="String of what request replaces.")
-    replaces_code_id = fields.Many2one(
-        comodel_name="hc.vs.resource.type", 
-        string="Replaces Code", 
-        help="Resource type of what request replaces.")
+        selection="_reference_models", 
+        help="What request replaces.")
+
+    @api.model          
+    def _reference_models(self):            
+        models = self.env['ir.model'].search([('state', '!=', 'manual')])       
+        return [(model.model, model.name)       
+            for model in models 
+                if model.model.startswith('hc.res')]
+                
+    @api.depends('replaces_name')           
+    def _compute_replaces_type(self):           
+        for this in self:       
+            if this.replaces_name:  
+                this.replaces_type = this.replaces_name._description
                    
 class DiagnosticRequestSupportingInfo(models.Model):    
     _name = "hc.diagnostic.request.supporting.info"    
@@ -365,24 +438,29 @@ class DiagnosticRequestSupportingInfo(models.Model):
         comodel_name="hc.res.diagnostic.request", 
         string="Diagnostic Request", 
         help="Diagnostic Request associated with this Diagnostic Request Supporting Information.")                    
-    supporting_info_type = fields.Selection(
+    supporting_info_type = fields.Char(
         string="Supporting Info Type", 
-        selection=[
-            ("string", "String"), 
-            ("code", "Code")], 
-        help="Type of additional clinical information.")                    
-    supporting_info_name = fields.Char(
+        compute="_compute_supporting_info_type", 
+        store="True", 
+        help="Type of additional clinical information.")
+    supporting_info_name = fields.Reference(
         string="Supporting Info", 
-        compute="compute_supporting_info_name", 
-        help="Additional clinical information.")                    
-    supporting_info_string = fields.Char(
-        string="Supporting Info String", 
-        help="String of additional clinical information.")
-    supporting_info_code_id = fields.Many2one(
-        comodel_name="hc.vs.resource.type", 
-        string="Supporting Info Code", 
-        help="Resource type of additional clinical information.")                    
+        selection="_reference_models", 
+        help="Additional clinical information.")
 
+    @api.model          
+    def _reference_models(self):            
+        models = self.env['ir.model'].search([('state', '!=', 'manual')])       
+        return [(model.model, model.name)       
+            for model in models 
+                if model.model.startswith('hc.res')]
+                
+    @api.depends('supporting_info_name')            
+    def _compute_supporting_info_type(self):            
+        for this in self:       
+            if this.supporting_info_name:   
+                this.supporting_info_type = this.supporting_info_name._description
+                
 class DiagnosticRequestOccurrenceTiming(models.Model):  
     _name = "hc.diagnostic.request.occurrence.timing"    
     _description = "Diagnostic Request Occurrence Timing"       
@@ -392,7 +470,7 @@ class DiagnosticRequest(models.Model):
     _name = "hc.vs.diagnostic.request"    
     _description = "Diagnostic Request"        
     _inherit = ["hc.value.set.contains"]      
-  
+
 class DiagnosticRequestStage(models.Model): 
     _name = "hc.vs.diagnostic.request.stage"    
     _description = "Diagnostic Request Stage"       
