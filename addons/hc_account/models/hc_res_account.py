@@ -109,21 +109,21 @@ class Account(models.Model):
         string="Guarantors", 
         help="Responsible for the account.")
 
-@api.multi          
-def _compute_subject_name(self):            
-    for hc_res_account in self:     
-        if hc_res_account.subject_type == 'patient':    
-            hc_res_account.subject_name = hc_res_account.subject_patient_id.name
-        elif hc_res_account.subject_type == 'device':   
-            hc_res_account.subject_name = hc_res_account.subject_device_id.name
-        elif hc_res_account.subject_type == 'practitioner': 
-            hc_res_account.subject_name = hc_res_account.subject_practitioner_id.name
-        elif hc_res_account.subject_type == 'location': 
-            hc_res_account.subject_name = hc_res_account.subject_location_id.name
-        elif hc_res_account.subject_type == 'healthcare Service':   
-            hc_res_account.subject_name = hc_res_account.subject_healthcare_service_id.name
-        elif hc_res_account.subject_type == 'organization': 
-            hc_res_account.subject_name = hc_res_account.subject_organization_id.name
+    @api.depends('subject_type')          
+    def _compute_subject_name(self):            
+        for hc_res_account in self:     
+            if hc_res_account.subject_type == 'patient':    
+                hc_res_account.subject_name = hc_res_account.subject_patient_id.name
+            elif hc_res_account.subject_type == 'device':   
+                hc_res_account.subject_name = hc_res_account.subject_device_id.name
+            elif hc_res_account.subject_type == 'practitioner': 
+                hc_res_account.subject_name = hc_res_account.subject_practitioner_id.name
+            elif hc_res_account.subject_type == 'location': 
+                hc_res_account.subject_name = hc_res_account.subject_location_id.name
+            elif hc_res_account.subject_type == 'healthcare Service':   
+                hc_res_account.subject_name = hc_res_account.subject_healthcare_service_id.name
+            elif hc_res_account.subject_type == 'organization': 
+                hc_res_account.subject_name = hc_res_account.subject_organization_id.name
 
 class AccountGuarantor(models.Model):   
     _name = "hc.account.guarantor"  
@@ -166,9 +166,8 @@ class AccountGuarantor(models.Model):
     end_date = fields.Datetime(
         string="End Date", 
         help="End of the guarantee account during.")     
-   
-    @api.multi          
-    @api.depends('party_patient_id', 'party_related_person_id', 'party_organization_id')             
+       
+    @api.depends('party_type')             
     def _compute_party_name(self):          
         for hc_account_guarantor in self:       
             if hc_account_guarantor.party_type == 'patient':    
