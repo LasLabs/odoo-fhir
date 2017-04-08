@@ -6,6 +6,13 @@ class BodySite(models.Model):
     _name = "hc.res.body.site"
     _description = "Body Site"
 
+    name = fields.Char(
+        string="Event Name", 
+        required="True", 
+        help="Text representation of the body site event. Patient + Code + Date.")
+    date = fields.Datetime(
+        string="Date", 
+        help="The date that this body site event occurred.")
     patient_id = fields.Many2one(
         comodel_name="hc.res.patient", 
         string="Patient", 
@@ -57,3 +64,4 @@ class BodySiteRelativeLocation(models.Model):
     _name = "hc.vs.body.site.relative.location"
     _description = "Body Site Relative Location"
     _inherit = ["hc.value.set.contains"]
+
