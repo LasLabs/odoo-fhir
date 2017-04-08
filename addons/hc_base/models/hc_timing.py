@@ -6,6 +6,10 @@ class Timing(models.Model):
     _name = "hc.timing"    
     _description = "Timing"        
 
+    name = fields.Char(
+        string="Event Name", 
+        required="True", 
+        help="Human-readable label for this timing definition.")
     event_ids = fields.One2many(
         comodel_name="hc.timing.event", 
         inverse_name="timing_id", 
