@@ -4,7 +4,8 @@ from openerp import models, fields, api
 
 class ImagingManifest(models.Model):    
     _name = "hc.res.imaging.manifest"    
-    _description = "Imaging Manifest"        
+    _description = "Imaging Manifest"
+    _rec_name = "uid"
 
     uid = fields.Char(
         string="UID", 
