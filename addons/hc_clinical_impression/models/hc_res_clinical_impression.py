@@ -156,7 +156,7 @@ class ClinicalImpression(models.Model):
     #     string="Ruled Outs", 
     #     help="Diagnosis considered not possible.")                
 
-    @api.multi          
+    @api.depends('subject_type')          
     def _compute_subject_name(self):            
         for hc_res_clinical_impression in self:     
             if hc_res_clinical_impression.subject_type == 'patient':    
@@ -164,15 +164,15 @@ class ClinicalImpression(models.Model):
             elif hc_res_clinical_impression.subject_type == 'group':    
                 hc_res_clinical_impression.subject_name = hc_res_clinical_impression.subject_group_id.name
 
-    @api.multi          
+    @api.depends('effective_type') 
     def _compute_effective_name(self):          
         for hc_res_clinical_impression in self:     
-            if hc_res_clinical_impression.effective_type == 'date_time': 
-                hc_res_clinical_impression.effective_name = hc_res_clinical_impression.effective_datetime_id.name
+            if hc_res_clinical_impression.effective_type == 'datetime': 
+                hc_res_clinical_impression.effective_name = str(hc_res_clinical_impression.effective_datetime)
             elif hc_res_clinical_impression.effective_type == 'period': 
-                hc_res_clinical_impression.effective_name = hc_res_clinical_impression.effective_period_id.name
-
-    @api.multi          
+                hc_res_clinical_impression.effective_name = 'Between' + str(hc_res_clinical_impression.effective_start_date) + ' and ' + str(hc_res_clinical_impression.effective_end_date)
+    
+    @api.depends('context_type')          
     def _compute_context_name(self):            
         for hc_res_clinical_impression in self:     
             if hc_res_clinical_impression.context_type == 'encounter':  
@@ -189,7 +189,8 @@ class ClinicalImpressionPlan(models.Model):
         comodel_name="hc.res.clinical.impression", 
         string="Clinical Impression", 
         help="Clinical impression associated with this clinical impression plan.")                
-    plan_type = fields.Selection(string="Plan Type", 
+    plan_type = fields.Selection(
+        string="Plan Type", 
         selection=[
             ("care_plan", "Care Plan"), 
             ("appointment", "Appointment"),
@@ -258,7 +259,7 @@ class ClinicalImpressionPlan(models.Model):
         string="Plan Vision Prescription", 
         help="Vision Prescription plan of action after assessment.")                
 
-    @api.multi          
+    @api.depends('plan_type')         
     def _compute_plan_name(self):           
         for hc_res_clinical_impression in self:     
             if hc_res_clinical_impression.plan_type == 'care_plan': 
@@ -344,7 +345,7 @@ class ClinicalImpressionAction(models.Model):
         string="Action Appointment", 
         help="Appointment actions taken during assessment.")
 
-    @api.multi          
+    @api.depends('action_type')          
     def _compute_action_name(self):         
         for hc_res_clinical_impression in self:
             if hc_res_clinical_impression.action_type == 'procedure': 
@@ -417,7 +418,7 @@ class ClinicalImpressionInvestigation(models.Model):
         string="Item Imaging Study", 
         help="Imaging Study record of a specific investigation.")
 
-    @api.multi          
+    @api.depends('item_type')          
     def _compute_item_name(self):           
         for hc_res_clinical_impression in self:     
             if hc_res_clinical_impression.item_type == 'observation':   
@@ -470,7 +471,7 @@ class ClinicalImpressionFinding(models.Model):
         string="Cause", 
         help="Which investigations support finding.")                
 
-    @api.multi          
+    @api.depends('item_type')          
     def _compute_item_name(self):           
         for hc_res_clinical_impression in self:     
             if hc_res_clinical_impression.item_type == 'code':  
@@ -563,7 +564,7 @@ class ClinicalImpressionProblem(models.Model):
         string="Problem Allergy Intolerance", 
         help="Allergy Intolerance general assessment of patient state.")                           
 
-    @api.multi          
+    @api.depends('problem_type')          
     def _compute_problem_name(self):            
         for hc_res_clinical_impression in self:     
             if hc_res_clinical_impression.problem_type == 'condition':  
@@ -633,7 +634,7 @@ class ConditionStageAssessment(models.Model):
         string="Assessment Clinical Impressions", 
         help="Clinical Impression formal record of assessment.")                                       
 
-    @api.multi          
+    @api.depends('assessment_type')          
     def _compute_stage_assessment_name(self):         
         for hc_condition_stage_assessment in self:       
             if hc_condition_stage_assessment.stage_assessment_type == 'observation': 
