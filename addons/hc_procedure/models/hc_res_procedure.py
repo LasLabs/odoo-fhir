@@ -16,7 +16,7 @@ class Procedure(models.Model):
         string="Identifiers", 
         help="External Ids for this procedure.")                                      
     status = fields.Selection(
-        string="Procedure Status", 
+        string="Status", 
         required="True", 
         selection=[
             ("in-progress", "In-Progress"), 
@@ -34,7 +34,7 @@ class Procedure(models.Model):
         required="True", 
         help="Identification of the procedure.")                 
     subject_type = fields.Selection(
-        string="Procedure Subject Type",
+        string="Subject Type",
         required="True",  
         selection=[
             ("patient", "Patient"), 
@@ -59,7 +59,7 @@ class Procedure(models.Model):
         string="Encounter",
         help="The encounter associated with the procedure.")
     performed_date_type = fields.Selection(
-        string="Procedure Performed Date Type", 
+        string="Performed Date Type", 
         selection=[
             ("date_time", "Datetime"),  
             ("period", "Period")], 
@@ -120,7 +120,7 @@ class Procedure(models.Model):
         string="Follow Ups", 
         help="Instructions for follow up.")                 
     request_type = fields.Selection(
-        string="Procedure Request Type", 
+        string="Request Type", 
         selection=[
             # ("care_plan", "Care Plan"), 
             ("diagnostic_request", "Diagnostic Request"),
@@ -179,7 +179,7 @@ class Procedure(models.Model):
         string="Focal Devices", 
         help="Device changed in procedure.")
 
-    @api.multi          
+    @api.depends('subject_type')         
     def _compute_subject_name(self):         
         for hc_res_procedure in self:       
             if hc_res_procedure.subject_type == 'patient':  
@@ -195,7 +195,7 @@ class Procedure(models.Model):
             elif hc_res_procedure.performed_date_type == 'period':  
                 hc_res_procedure.performed_date_name = 'Between' + str(hc_res_procedure.performed_start_date) + ' and ' + str(hc_res_procedure.performed_end_date)
 
-    @api.multi
+    @api.depends('request_type')
     def _compute_request_name(self):
         for hc_res_procedure in self:
             if hc_res_procedure.request_type == 'care_plan':
@@ -241,7 +241,7 @@ class ProcedureUsedReference(models.Model):
         string="Used Reference Substance", 
         help="Substance item used during procedure.")
 
-    @api.multi          
+    @api.depends('used_reference_type')          
     def _compute_used_reference_name(self):          
         for hc_procedure_used_reference in self:        
             if hc_procedure_used_reference.used_reference_type == 'device': 
@@ -285,7 +285,7 @@ class ProcedureComponent(models.Model):
         string="Component Observation", 
         help="Observation event related to the procedure.")              
 
-    @api.multi          
+    @api.depends('component_type')          
     def _compute_component_name(self):           
         for hc_procedure_component in self:     
             if hc_procedure_component.component_type == 'procedure':  
@@ -336,7 +336,7 @@ class ProcedurePerformer(models.Model):
         string="Role", 
         help="The The role the actor was in.")                   
 
-    @api.multi          
+    @api.depends('actor_type')          
     def _compute_actor_name(self):           
         for hc_procedure_performer in self:     
             if hc_procedure_performer.actor_type == 'practitioner': 
