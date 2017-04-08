@@ -111,8 +111,8 @@
                                             </div>      
                                             <group> 
                                                 <field name="indication_type"/>
-                                                <field name="indication_condition_id" class="oe_edit_only" attrs="{'invisible': [('indication_type','!=','condition')]}"/>
-                                                <field name="indication_procedure_id" class="oe_edit_only" attrs="{'invisible': [('indication_type','!=','procedure')]}"/>
+                                                <!-- <field name="indication_condition_id" class="oe_edit_only" attrs="{'invisible': [('indication_type','!=','condition')]}"/> -->
+                                                <!-- <field name="indication_procedure_id" class="oe_edit_only" attrs="{'invisible': [('indication_type','!=','procedure')]}"/> -->
                                             </group>    
                                         </sheet>            
                                     </form>             
