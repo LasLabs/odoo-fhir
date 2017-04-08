@@ -6,6 +6,10 @@ class Observation(models.Model):
     _name = "hc.res.observation"    
     _description = "Observation"
 
+    name = fields.Char(
+        string="Event Name", 
+        required="True", 
+        help="Text representation of the observation event. Subject Name + Code + Effective Date.")
     identifier_ids = fields.One2many(
         comodel_name="hc.observation.identifier", 
         inverse_name="observation_id", 
@@ -60,13 +64,13 @@ class Observation(models.Model):
         string="Encounter", 
         help="Healthcare event during which this observation is made.")                    
     effective_type = fields.Selection(
-        string="Observation Effective Type", 
+        string="Effective Date Type", 
         selection=[
             ("date_time", "Datetime"), 
             ("period", "Period")], 
         help="Type of Clinically relevant time/time-period for observation.")                    
     effective_name = fields.Char(
-        string="Effective", 
+        string="Effective Date", 
         compute="_compute_effective_name", 
         help="Clinically relevant time/time.")                    
     effective_datetime = fields.Datetime(
