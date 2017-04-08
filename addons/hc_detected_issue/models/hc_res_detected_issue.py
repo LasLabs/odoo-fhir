@@ -9,7 +9,7 @@ class DetectedIssue(models.Model):
     name = fields.Char(
         string="Event Name", 
         required="True", 
-        help="Text representation of the detected issue event. Patient Name + Detected Issue + Date.")
+        help="Text representation of the detected issue event. Patient + Detected Issue + Date.")
     patient_id = fields.Many2one(
         comodel_name="hc.res.patient", 
         string="Patient", 
@@ -68,6 +68,14 @@ class DetectedIssue(models.Model):
         string="Mitigation", 
         help="taken to address.")
 
+    @api.depends('author_type')         
+    def _compute_author_name(self):         
+        for hc_res_detected_issue in self:      
+            if hc_res_detected_issue.author_type == 'practitioner': 
+                hc_res_detected_issue.author_name = hc_res_detected_issue.author_practitioner_id.name
+            elif hc_res_detected_issue.author_type == 'device': 
+                hc_res_detected_issue.author_name = hc_res_detected_issue.author_device_id.name
+
 class DetectedIssueMitigation(models.Model):
     _name = "hc.detected.issue.mitigation"
     _description = "Detected Issue Mitigation"
@@ -97,24 +105,28 @@ class DetectedIssueImplicated(models.Model):
         comodel_name="hc.res.detected.issue", 
         string="Detected Issue", 
         help="Detected Issue associated with this Detected Issue Implicated.")
-    implicated_type = fields.Selection(
+    implicated_type = fields.Char(
         string="Implicated Type", 
-        required="True", 
-        selection=[
-            ("string", "String"), 
-            ("Code", "Code")], 
-        help="Type of resource representing the current activity or proposed activity that is potentially problematic.")
-    implicated_name = fields.Char(
+        compute="_compute_implicated_type", 
+        store="True", 
+        help="Type of resource representing the current activity or proposed activity that is potentially problematic..")
+    implicated_name = fields.Reference(
         string="Implicated", 
-        compute="_compute_implicated_name", 
-        help="Indicates the resource representing the current activity or proposed activity that is potentially problematic.")
-    implicated_string = fields.Char(
-        string="Implicated String", 
-        help="String of problem resource.")
-    implicated_code_id = fields.Many2one(
-        comodel_name="hc.vs.resource.type", 
-        string="Implicated Code", 
-        help="Resource type of problem resource.")
+        selection="_reference_models", 
+        help="Problem resource.")
+
+    @api.model          
+    def _reference_models(self):            
+        models = self.env['ir.model'].search([('state', '!=', 'manual')])       
+        return [(model.model, model.name)       
+            for model in models 
+                if model.model.startswith('hc.res')]
+                
+    @api.depends('implicated_name')         
+    def _compute_implicated_type(self):         
+        for this in self:       
+            if this.implicated_name:    
+                this.implicated_type = this.implicated_name._description
 
 class DetectedIssueIdentifier(models.Model):
     _name = "hc.detected.issue.identifier"
@@ -140,3 +152,4 @@ class DetectedIssueImplicated(models.Model):
     _name = "hc.vs.detected.issue.implicated"
     _description = "Detected Issue Implicated"
     _inherit = ["hc.value.set.contains"]
+
