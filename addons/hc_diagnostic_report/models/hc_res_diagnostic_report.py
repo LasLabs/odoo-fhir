@@ -6,15 +6,15 @@ class DiagnosticReport(models.Model):
     _name = "hc.res.diagnostic.report"    
     _description = "Diagnostic Report"        
 
+    name = fields.Char(
+        string="Name", 
+        required="True", 
+        help="Name for this diagnostic report. Subject Name + Code + Issued.") 
     identifier_ids = fields.One2many(
         comodel_name="hc.diagnostic.report.identifier", 
         inverse_name="diagnostic_report_id", 
         string="Identifiers", 
-        help="Id for external references to this report.")                
-    name = fields.Char(
-        string="Name", 
-        required="True", 
-        help="Name for this diagnostic report.")                
+        help="Id for external references to this report.")                               
     status = fields.Selection(
         string="Diagnostic Report Status", 
         required="True", 
@@ -40,10 +40,10 @@ class DiagnosticReport(models.Model):
         string="Subject Type", 
         required="True", 
         selection=[
-            ("Patient", "Patient"), 
-            ("Group", "Group"), 
-            ("Device", "Device"), 
-            ("Location", "Location")], 
+            ("patient", "Patient"), 
+            ("group", "Group"), 
+            ("device", "Device"), 
+            ("location", "Location")], 
         help="Type of plan or agreement issuer.")                
     subject_name = fields.Char(
         string="Subject", 
@@ -100,8 +100,8 @@ class DiagnosticReport(models.Model):
         string="Performer Type", 
         required="True", 
         selection=[
-            ("Practitioner", "Practitioner"), 
-            ("Organization", "Organization")], 
+            ("practitioner", "Practitioner"), 
+            ("organization", "Organization")], 
         help="Type of plan or agreement issuer.")                
     performer_name = fields.Char(
         string="Performer", 
@@ -153,6 +153,34 @@ class DiagnosticReport(models.Model):
         string="Images", 
         help="Key images associated with this report.")                
 
+    @api.depends('subject_type')            
+    def _compute_subject_name(self):            
+        for hc_res_diagnostic_report in self:       
+            if hc_res_diagnostic_report.subject_type == 'patient':  
+                hc_res_diagnostic_report.subject_name = hc_res_diagnostic_report.subject_patient_id.name
+            elif hc_res_diagnostic_report.subject_type == 'group':  
+                hc_res_diagnostic_report.subject_name = hc_res_diagnostic_report.subject_group_id.name
+            elif hc_res_diagnostic_report.subject_type == 'device': 
+                hc_res_diagnostic_report.subject_name = hc_res_diagnostic_report.subject_device_id.name
+            elif hc_res_diagnostic_report.subject_type == 'location':   
+                hc_res_diagnostic_report.subject_name = hc_res_diagnostic_report.subject_location_id.name
+
+    @api.depends('effective_type')          
+    def _compute_effective_name(self):          
+        for hc_res_diagnostic_report in self:       
+            if hc_res_diagnostic_report.effective_type == 'date_time':  
+                hc_res_diagnostic_report.effective_name = hc_res_diagnostic_report.effective_date_time_id.name
+            elif hc_res_diagnostic_report.effective_type == 'period':
+                hc_res_diagnostic_report.effective_name = 'Between' + str(hc_res_diagnostic_report.effective_start_date) + ' and ' + str(hc_res_diagnostic_report.effective_end_date)
+    
+    @api.depends('performer_type')          
+    def _compute_performer_name(self):          
+        for hc_res_diagnostic_report in self:       
+            if hc_res_diagnostic_report.performer_type == 'practitioner':   
+                hc_res_diagnostic_report.performer_name = hc_res_diagnostic_report.performer_practitioner_id.name
+            elif hc_res_diagnostic_report.performer_type == 'organization': 
+                hc_res_diagnostic_report.performer_name = hc_res_diagnostic_report.performer_organization_id.name
+
 class DiagnosticReportImage(models.Model):    
     _name = "hc.diagnostic.report.image"    
     _description = "Diagnostic Report Image"        
@@ -182,9 +210,9 @@ class DiagnosticReportRequest(models.Model):
     request_type = fields.Selection(
         string="Request Type", 
         selection=[
-            ("Diagnostic Request", "Diagnostic Request"), 
-            ("Procedure Request", "Procedure Request"), 
-            ("Referral Request", "Referral Request")], 
+            ("diagnostic_request", "Diagnostic Request"), 
+            ("procedure_request", "Procedure Request"), 
+            ("referral_request", "Referral Request")], 
         help="Type of what was requested.")
     request_name = fields.Char(
         string="Request", 
@@ -202,6 +230,16 @@ class DiagnosticReportRequest(models.Model):
         comodel_name="hc.res.referral.request", 
         string="Referral Request", 
         help="Referral Request what was requested.")                
+
+    @api.depends('request_type')            
+    def _compute_request_name(self):            
+        for hc_diagnostic_report_request in self:       
+            if hc_diagnostic_report_request.request_type == 'diagnostic_request':   
+                hc_diagnostic_report_request.request_name = hc_diagnostic_report_request.diagnostic_request_id.name
+            elif hc_diagnostic_report_request.request_type == 'procedure_request':  
+                hc_diagnostic_report_request.request_name = hc_diagnostic_report_request.procedure_request_id.name
+            elif hc_diagnostic_report_request.request_type == 'referral_request':   
+                hc_diagnostic_report_request.request_name = hc_diagnostic_report_request.referral_request_id.name
 
 class DiagnosticReportIdentifier(models.Model):    
     _name = "hc.diagnostic.report.identifier"    
@@ -321,7 +359,7 @@ class ConditionStageAssessment(models.Model):
         string="Assessment Diagnostic Reports", 
         help="Diagnostic Report formal record of assessment.")
 
-    @api.multi          
+    @api.depends('stage_assessment_type')          
     def _compute_stage_assessment_name(self):         
         for hc_condition_stage_assessment in self:       
             if hc_condition_stage_assessment.stage_assessment_type == 'observation': 
