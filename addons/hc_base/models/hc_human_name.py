@@ -71,6 +71,7 @@ class HumanName(models.Model):
 
     _name = "hc.human.name"
     _description = "Human Name"
+    _inherit = ["hc.human.name.use"]
     
     name = fields.Char(
         compute='_compute_full_name',
@@ -144,7 +145,18 @@ class HumanName(models.Model):
             ("first_last_maiden", "First Last Maiden (e.g., Hispanic name)")],
         default="first_maiden_last",
         help="The display order of this human name.")                 
-
+    use = fields.Selection(
+        string="Use", 
+        selection=[
+            ("usual", "Usual"), 
+            ("official", "Official"), 
+            ("temp", "Temp"), 
+            ("nickname", "Nickname"), 
+            ("anonymous", "Anonymous"), 
+            ("old", "Old"), ("maiden", "Maiden")], 
+        default="usual",
+        help="The use of a human name.")
+    # 
     @api.depends('display_order', 'prefix_ids', 'first_id', 'middle_ids', 'initial_ids', 'nickname_ids', 'mother_maiden_id', 'surname_id', 'suffix_ids', 'previous_surname_ids', 'birth_surname_id')
     def _compute_full_name(self):
         first = self.first_id.name if self.first_id else ''
