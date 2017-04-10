@@ -8,6 +8,7 @@
         <field name="model">hc.res.condition</field>        
         <field name="arch" type="xml">      
             <search string="Conditions">
+                <field name="name"/> 
                 <field name="code_id"/>
                 <field name="code"/>    
                 <field name="identifier_ids"/>
@@ -37,6 +38,7 @@
         <field name="model">hc.res.condition</field>        
         <field name="arch" type="xml">      
             <tree string="Conditions">
+                <field name="name"/>
                 <field name="subject_name"/>
                 <field name="subject_type"/>
                 <field name="code_id"/>  
@@ -55,15 +57,16 @@
         <field name="arch" type="xml">                                                          
             <form string="Condition">                                                       
                 <sheet>                                                                                            
-                    <h1>                                            
-                        <field name="subject_patient_id" attrs="{'invisible': [('subject_type','!=','patient')]}" placeholder="Patient"/>
-                        <field name="subject_group_id" attrs="{'invisible': [('subject_type','!=','group')]}" placeholder="Group"/>                                     
+                    <h1>
+                        <field name="name"/>                                                                               
                     </h1>                                           
                     <div name="buttons" class="oe_right oe_button_box"></div>                                               
                     <group>                                             
                         <group>                                         
                             <field name="subject_type"/>
-                            <!-- <field name="subject_name"/> -->
+                            <field name="subject_name"/>
+                            <field name="subject_patient_id" attrs="{'invisible': [('subject_type','!=','patient')]}" placeholder="Patient"/>
+                            <field name="subject_group_id" attrs="{'invisible': [('subject_type','!=','group')]}" placeholder="Group"/>  
                             <field name="code_id"/>
                             <field name="code" readonly="1"/>
                             <field name="date_asserted"/>

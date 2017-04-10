@@ -7,7 +7,7 @@ class Procedure(models.Model):
     _description = "Procedure"          
 
     name = fields.Char(
-        string="Name", 
+        string="Event Name", 
         required="True", 
         help="Text representation of the procedure event. Subject Name + Code + Performed Date/Period.")                   
     identifier_ids = fields.One2many(

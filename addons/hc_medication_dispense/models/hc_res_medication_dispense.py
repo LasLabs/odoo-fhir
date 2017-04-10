@@ -97,7 +97,7 @@ class MedicationDispense(models.Model):
         string="Authorizing Prescriptions", 
         help="Medication order that authorizes the dispense.")                
     type_id = fields.Many2one(
-        comodel_name="hc.vs.medication.dispense.type", 
+        comodel_name="hc.vs.act.pharmacy.supply.type", 
         string="Type", 
         help="Trial fill, partial fill, emergency fill, etc.")              
     quantity = fields.Float(
@@ -240,7 +240,7 @@ class MedicationDispenseSubstitution(models.Model):
         required="True", 
         help="Whether a substitution was or was not performed on the dispense.")
     type_id = fields.Many2one(
-        comodel_name="hc.vs.substance.admin.substitution.code", 
+        comodel_name="hc.vs.act.substance.admin.substitution.code", 
         string="Type", 
         required="True", 
         help="Code signifying whether a different drug was dispensed from what was prescribed.")              
@@ -265,7 +265,7 @@ class MedicationDispensePartOf(models.Model):
     _description = "Medication Dispense Part Of"
 
     medication_dispense_id = fields.Many2one(
-        omodel_name="hc.res.medication.dispense", 
+        comodel_name="hc.res.medication.dispense", 
         string="Medication Dispense", 
         help="Medication Dispense associated with this Medication Dispense Receiver.")        
     part_of_id = fields.Many2one(
@@ -453,18 +453,18 @@ class MedicationNotDoneReason(models.Model):
         string="Parent", 
         help="Parent medication not done reason.")                    
 
-class ActSubstanceAdminSubsititutionCode(models.Model): 
-    _name = "hc.vs.act.substance.admin.subsititution.code"  
-    _description = "Act Substance Admin Subsititution Code"         
+class ActSubstanceAdminSubstitutionCode(models.Model): 
+    _name = "hc.vs.act.substance.admin.substitution.code"  
+    _description = "Act Substance Admin Substitution Code"         
     _inherit = ["hc.value.set.contains"]
 
     name = fields.Char(
         string="Name", 
-        help="Name of this act substance admin subsititution code.")                  
+        help="Name of this act substance admin substitution code.")                  
     code = fields.Char(
         string="Code", 
-        help="Code of this act substance admin subsititution code.")                  
+        help="Code of this act substance admin substitution code.")                  
     contains_id = fields.Many2one(
-        comodel_name="hc.vs.act.substance.admin.subsititution.code", 
+        comodel_name="hc.vs.act.substance.admin.substitution.code", 
         string="Parent", 
-        help="Parent act substance admin subsititution code.")                    
+        help="Parent act substance admin substitution code.")                    

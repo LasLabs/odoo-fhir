@@ -405,7 +405,7 @@ class MedOrderDosageInstrAddlInstr(models.Model):
         string="Additional Instructions", 
         help="Text of supplemental instructions.")           
     additional_instruction_code_id = fields.Many2one(
-        comodel_name="hc.vs.additional.instructions.code", 
+        comodel_name="hc.vs.additional.instruction.code", 
         string="Additional Instructions Code", 
         help="Code of supplemental instructions.")
 

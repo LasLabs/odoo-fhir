@@ -8,7 +8,7 @@ class AllergyIntolerance(models.Model):
     _inherit = ["hc.basic.association"]
 
     name = fields.Char(
-        string="Allergy Intolerance Case Name", 
+        string="Event Name", 
         required="True", 
         help="Text representation of the allergy intolerance event. Patient + Allergy + Onset Name.")
     identifier_ids = fields.One2many(
