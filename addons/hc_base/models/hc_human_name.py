@@ -67,6 +67,29 @@ class HumanNameSuffix(models.Model):
         # default="generational",
         help="Category of suffix.")
 
+class HumanNameUse(models.Model):   
+    _name = "hc.human.name.use" 
+    _description = "Human Name Use"         
+    _inherit = ["hc.basic.association"]
+
+    use = fields.Selection(
+        string="Use", 
+        selection=[
+            ("usual", "Usual"), 
+            ("official", "Official"), 
+            ("temp", "Temp"), 
+            ("nickname", "Nickname"), 
+            ("anonymous", "Anonymous"), 
+            ("old", "Old"), ("maiden", "Maiden")], 
+        default="usual",
+        help="The use of a human name.")                   
+    start_date = fields.Datetime(
+        string="Start Date", 
+        help="Start of the time period when name was/is in use.")                 
+    end_date = fields.Datetime(
+        string="End Date", 
+        help="End of the time period when name was/is in use.")
+    
 class HumanName(models.Model):
 
     _name = "hc.human.name"
@@ -194,30 +217,7 @@ class HumanName(models.Model):
 
         if self.display_order == 'first_last_maiden':
             full_family_reverse = prefix + ' ' + given + ' ' + family_reverse + ' ' + suffix
-            self.name = full_family_reverse
-
-class HumanNameUse(models.Model):   
-    _name = "hc.human.name.use" 
-    _description = "Human Name Use"         
-    _inherit = ["hc.basic.association"]
-
-    use = fields.Selection(
-        string="Use", 
-        selection=[
-            ("usual", "Usual"), 
-            ("official", "Official"), 
-            ("temp", "Temp"), 
-            ("nickname", "Nickname"), 
-            ("anonymous", "Anonymous"), 
-            ("old", "Old"), ("maiden", "Maiden")], 
-        default="usual",
-        help="The use of a human name.")                   
-    start_date = fields.Datetime(
-        string="Start Date", 
-        help="Start of the time period when name was/is in use.")                 
-    end_date = fields.Datetime(
-        string="End Date", 
-        help="End of the time period when name was/is in use.")  
+            self.name = full_family_reverse  
 
 # class HcExtensionHumanNameFull(models.Model):
 #     _inherit = 'hc.human.name'

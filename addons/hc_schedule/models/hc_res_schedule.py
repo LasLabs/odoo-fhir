@@ -88,10 +88,10 @@ class ScheduleActor(models.Model):
         comodel_name="hc.res.practitioner", 
         string="Actor Practitioner", 
         help="Practitioner resource this schedule resource is providing availability information for.")                
-    actor_practitioner_role_id = fields.Many2one(
-        comodel_name="hc.res.practitioner.role", 
-        string="Actor Practitioner Role", 
-        help="Practitioner Role resource this schedule resource is providing availability information for.")                 
+    # actor_practitioner_role_id = fields.Many2one(
+    #     comodel_name="hc.res.practitioner.role", 
+    #     string="Actor Practitioner Role", 
+    #     help="Practitioner Role resource this schedule resource is providing availability information for.")                 
     actor_related_person_id = fields.Many2one(
         comodel_name="hc.res.related.person", 
         string="Actor Related Person", 
@@ -115,8 +115,8 @@ class ScheduleActor(models.Model):
             if hc_schedule_actor.actor_type == 'patient': 
                 hc_schedule_actor.actor_name = hc_schedule_actor.actor_patient_id.name
             elif hc_schedule_actor.actor_type == 'practitioner':  
-                hc_schedule_actor.actor_name = hc_schedule_actor.actor_practitioner_id.name
-            elif hc_schedule_actor.actor_type == 'practitioner_role':  
+            #     hc_schedule_actor.actor_name = hc_schedule_actor.actor_practitioner_id.name
+            # elif hc_schedule_actor.actor_type == 'practitioner_role':  
                 hc_schedule_actor.actor_name = hc_schedule_actor.actor_practitioner_role_id.name
             elif hc_schedule_actor.actor_type == 'related_person':    
                 hc_schedule_actor.actor_name = hc_schedule_actor.actor_related_person_id.name

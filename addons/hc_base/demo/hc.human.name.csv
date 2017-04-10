@@ -1,4 +1,4 @@
-"id","display_order","use","first_id/id","middle_ids/id","nickname_ids/id","mother_maiden_name_id/id","surname_id/id","preferred_name","previous_last_id/id"
+"id","display_order","use","first_id/id","middle_ids/id","nickname_ids/id","mother_maiden_id/id","surname_id/id","preferred_name","previous_surname_ids/id"
 "human_name_3","First Last (default)","Usual","human_name_term_4","","","","human_name_term_5","",""
 "human_name_4","First Last (default)","Usual","human_name_term_32","","","","human_name_term_33","",""
 "human_name_5","First Last (default)","Usual","human_name_term_17","","","","human_name_term_18","",""

@@ -235,59 +235,59 @@ class DiagnosticRequest(models.Model):
         string="Relevant Histories", 
         help="Request provenance.")                    
 
-        @api.depends('subject_type')            
-        def _compute_subject_name(self):            
-            for hc_res_diagnostic_request in self:      
-                if hc_res_diagnostic_request.subject_type == 'patient': 
-                    hc_res_diagnostic_request.subject_name = hc_res_diagnostic_request.subject_patient_id.name
-                elif hc_res_diagnostic_request.subject_type == 'group': 
-                    hc_res_diagnostic_request.subject_name = hc_res_diagnostic_request.subject_group_id.name
-                elif hc_res_diagnostic_request.subject_type == 'location':  
-                    hc_res_diagnostic_request.subject_name = hc_res_diagnostic_request.subject_location_id.name
-                elif hc_res_diagnostic_request.subject_type == 'device':    
-                    hc_res_diagnostic_request.subject_name = hc_res_diagnostic_request.subject_device_id.name
+    @api.depends('subject_type')            
+    def _compute_subject_name(self):            
+        for hc_res_diagnostic_request in self:      
+            if hc_res_diagnostic_request.subject_type == 'patient': 
+                hc_res_diagnostic_request.subject_name = hc_res_diagnostic_request.subject_patient_id.name
+            elif hc_res_diagnostic_request.subject_type == 'group': 
+                hc_res_diagnostic_request.subject_name = hc_res_diagnostic_request.subject_group_id.name
+            elif hc_res_diagnostic_request.subject_type == 'location':  
+                hc_res_diagnostic_request.subject_name = hc_res_diagnostic_request.subject_location_id.name
+            elif hc_res_diagnostic_request.subject_type == 'device':    
+                hc_res_diagnostic_request.subject_name = hc_res_diagnostic_request.subject_device_id.name
 
-        @api.depends('context_type')            
-        def _compute_context_name(self):            
-            for hc_res_diagnostic_request in self:      
-                if hc_res_diagnostic_request.context_type == 'encounter':   
-                    hc_res_diagnostic_request.context_name = hc_res_diagnostic_request.context_encounter_id.name
-                elif hc_res_diagnostic_request.context_type == 'episode_of_care':   
-                    hc_res_diagnostic_request.context_name = hc_res_diagnostic_request.context_episode_of_care_id.name
+    @api.depends('context_type')            
+    def _compute_context_name(self):            
+        for hc_res_diagnostic_request in self:      
+            if hc_res_diagnostic_request.context_type == 'encounter':   
+                hc_res_diagnostic_request.context_name = hc_res_diagnostic_request.context_encounter_id.name
+            elif hc_res_diagnostic_request.context_type == 'episode_of_care':   
+                hc_res_diagnostic_request.context_name = hc_res_diagnostic_request.context_episode_of_care_id.name
 
-        @api.depends('occurrence_type')         
-        def _compute_occurrence_name(self):         
-            for hc_res_diagnostic_report in self:       
-                if hc_res_diagnostic_report.occurrence_type == 'datetime':  
-                    hc_res_diagnostic_report.occurrence_name = str(hc_res_diagnostic_report.occurrence_datetime)
-                elif hc_res_diagnostic_report.occurrence_type == 'period':  
-                    hc_res_diagnostic_report.occurrence_name = 'Between' + str(hc_res_diagnostic_report.occurrence_start_date) + ' and ' + str(hc_res_diagnostic_report.occurrence_end_date)
-                elif hc_res_diagnostic_report.occurrence_type == 'timing':  
-                    hc_res_diagnostic_report.occurrence_name = hc_res_diagnostic_report.occurrence_timing_id.name
+    @api.depends('occurrence_type')         
+    def _compute_occurrence_name(self):         
+        for hc_res_diagnostic_report in self:       
+            if hc_res_diagnostic_report.occurrence_type == 'datetime':  
+                hc_res_diagnostic_report.occurrence_name = str(hc_res_diagnostic_report.occurrence_datetime)
+            elif hc_res_diagnostic_report.occurrence_type == 'period':  
+                hc_res_diagnostic_report.occurrence_name = 'Between' + str(hc_res_diagnostic_report.occurrence_start_date) + ' and ' + str(hc_res_diagnostic_report.occurrence_end_date)
+            elif hc_res_diagnostic_report.occurrence_type == 'timing':  
+                hc_res_diagnostic_report.occurrence_name = hc_res_diagnostic_report.occurrence_timing_id.name
 
-        @api.depends('requester_type')          
-        def _compute_requester_name(self):          
-            for hc_res_diagnostic_request in self:      
-                if hc_res_diagnostic_request.requester_type == 'device':    
-                    hc_res_diagnostic_request.requester_name = hc_res_diagnostic_request.requester_device_id.name
-                elif hc_res_diagnostic_request.requester_type == 'practitioner':    
-                    hc_res_diagnostic_request.requester_name = hc_res_diagnostic_request.requester_practitioner_id.name
-                elif hc_res_diagnostic_request.requester_type == 'organization':    
-                    hc_res_diagnostic_request.requester_name = hc_res_diagnostic_request.requester_organization_id.name
+    @api.depends('requester_type')          
+    def _compute_requester_name(self):          
+        for hc_res_diagnostic_request in self:      
+            if hc_res_diagnostic_request.requester_type == 'device':    
+                hc_res_diagnostic_request.requester_name = hc_res_diagnostic_request.requester_device_id.name
+            elif hc_res_diagnostic_request.requester_type == 'practitioner':    
+                hc_res_diagnostic_request.requester_name = hc_res_diagnostic_request.requester_practitioner_id.name
+            elif hc_res_diagnostic_request.requester_type == 'organization':    
+                hc_res_diagnostic_request.requester_name = hc_res_diagnostic_request.requester_organization_id.name
 
-        @api.depends('requested_performer_type')            
-        def _compute_requested_performer_name(self):            
-            for hc_res_diagnostic_request in self:      
-                if hc_res_diagnostic_request.requested_performer_type == 'practitioner':    
-                    hc_res_diagnostic_request.requested_performer_name = hc_res_diagnostic_request.requested_performer_practitioner_id.name
-                elif hc_res_diagnostic_request.requested_performer_type == 'organization':  
-                    hc_res_diagnostic_request.requested_performer_name = hc_res_diagnostic_request.requested_performer_organization_id.name
-                elif hc_res_diagnostic_request.requested_performer_type == 'patient':   
-                    hc_res_diagnostic_request.requested_performer_name = hc_res_diagnostic_request.requested_performer_patient_id.name
-                elif hc_res_diagnostic_request.requested_performer_type == 'device':    
-                    hc_res_diagnostic_request.requested_performer_name = hc_res_diagnostic_request.requested_performer_device_id.name
-                elif hc_res_diagnostic_request.requested_performer_type == 'related_person':    
-                    hc_res_diagnostic_request.requested_performer_name = hc_res_diagnostic_request.requested_performer_related_person_id.name
+    @api.depends('requested_performer_type')            
+    def _compute_requested_performer_name(self):            
+        for hc_res_diagnostic_request in self:      
+            if hc_res_diagnostic_request.requested_performer_type == 'practitioner':    
+                hc_res_diagnostic_request.requested_performer_name = hc_res_diagnostic_request.requested_performer_practitioner_id.name
+            elif hc_res_diagnostic_request.requested_performer_type == 'organization':  
+                hc_res_diagnostic_request.requested_performer_name = hc_res_diagnostic_request.requested_performer_organization_id.name
+            elif hc_res_diagnostic_request.requested_performer_type == 'patient':   
+                hc_res_diagnostic_request.requested_performer_name = hc_res_diagnostic_request.requested_performer_patient_id.name
+            elif hc_res_diagnostic_request.requested_performer_type == 'device':    
+                hc_res_diagnostic_request.requested_performer_name = hc_res_diagnostic_request.requested_performer_device_id.name
+            elif hc_res_diagnostic_request.requested_performer_type == 'related_person':    
+                hc_res_diagnostic_request.requested_performer_name = hc_res_diagnostic_request.requested_performer_related_person_id.name
 
 class DiagnosticRequestIdentifier(models.Model):    
     _name = "hc.diagnostic.request.identifier"    

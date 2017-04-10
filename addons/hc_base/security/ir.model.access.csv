@@ -8,6 +8,7 @@ access_hc_base_hc_attachment_user,hc.base.hc.attachment.user,model_hc_attachment
 access_hc_base_hc_basic_association_manager,hc.base.hc.basic.association.manager,model_hc_basic_association,group_hc_base_manager,1,1,1,1
 access_hc_base_hc_basic_association_user,hc.base.hc.basic.association.user,model_hc_basic_association,group_hc_base_user,1,0,0,0
 access_hc_base_hc_human_name_user,hc.base.hc.human.name.user,model_hc_human_name,hc_base.group_hc_base_user,1,0,0,0
+access_hc_base_hc_human_name_use_user,hc.base.hc.human.name.use.user,model_hc_human_name_use,hc_base.group_hc_base_user,1,0,0,0
 access_hc_base_hc_human_name_user,hc.base.hc.human.name.user,model_hc_human_name,group_hc_base_user,1,0,0,0
 access_hc_base_hc_human_name_suffix_user,hc.base.hc.human.name.suffix.user,model_hc_human_name_suffix,group_hc_base_user,1,0,0,0
 access_hc_base_hc_human_name_term_manager,hc.base.hc.human.name.term.manager,model_hc_human_name_term,group_hc_base_manager,1,1,1,1
@@ -181,6 +182,7 @@ access_hc_base_hc_vs_extension_coding_manager,hc.base.hc.vs.extension.coding.man
 access_hc_base_hc_vs_extension_codeable_concept_manager,hc.base.hc.vs.extension.codeable.concept.manager,model_hc_vs_extension_codeable_concept,hc_base.group_hc_base_manager,1,1,1,1
 access_hc_base_hc_reference_user,hc.base.hc.reference.user,model_hc_reference,hc_base.group_hc_base_user,1,0,0,0
 access_hc_base_hc_reference_identifier_user,hc.base.hc.reference.identifier.user,model_hc_reference_identifier,hc_base.group_hc_base_user,1,0,0,0
+access_hc_base_hc_narrative_user,hc.base.hc.narrative.user,model_hc_narrative,hc_base.group_hc_base_user,1,0,0,0
 
 
 

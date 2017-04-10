@@ -87,9 +87,10 @@ class Procedure(models.Model):
         inverse_name="procedure_id", 
         string="Reason References", 
         help="Condition that is the reason the procedure performed.")                 
-    reason_code_id = fields.Many2one(
+    reason_code_ids = fields.Many2many(
         comodel_name="hc.vs.procedure.reason", 
-        string="Reason Code", 
+        relation="procedure_reason_code_rel", 
+        string="Reason Codes", 
         help="Coded reason procedure performed.")
     is_not_performed = fields.Boolean(
         string="Not Performed", 

@@ -163,7 +163,7 @@ class ActivityDefinition(models.Model):
     dosage_ids = fields.One2many(
         comodel_name="hc.activity.definition.dosage", 
         inverse_name="activity_definition_id", 
-        string="Dosage Instructions", 
+        string="Dosages", 
         help="Detailed dosage instructions.")                    
     body_site_ids = fields.Many2many(
         comodel_name="hc.vs.body.site", 
