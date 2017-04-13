@@ -1,6 +1,6 @@
-#Odoo
+# Odoo
 
-##Ubuntu Desktop
+## Ubuntu Desktop
 
 * Set up VirtualBox
 
@@ -37,7 +37,7 @@ sudo wget https://raw.githubusercontent.com/luigisison/moxylus/master/Odoo8/odoo
 * Execute the script to install Odoo: ```./odoo-install.sh```
 * When prompted, enter your GitHub username and password to download the enterprise package.
 
-##Update Odoo, Thank you, [Yenthe](http://www.odoo.yenthevg.com/update-odoo-environment-github/)
+## Update Odoo, Thank you, [Yenthe](http://www.odoo.yenthevg.com/update-odoo-environment-github/)
 
 * Go to directory where Odoo is installed
 ```
@@ -56,9 +56,9 @@ sudo git reset --hard origin/9.0
 sudo service odoo-server restart -u all -d FHIR-DEV
 ```
 
-#Linux
+# Linux
 
-##Cheatsheet
+## Cheatsheet
 
 ```
 sudo mkdir mydir --create directory
@@ -80,20 +80,20 @@ sudo apt-get install git
 sudo git --version
 ```
 
-#GitHub
+# GitHub
 
 * Reference: [How to Install Git on Ubuntu](https://www.digitalocean.com/community/tutorials/how-to-install-git-on-ubuntu-14-04)
 * Reference: [Git - Installng Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 * Reference: [Ubuntu Server Guide](https://help.ubuntu.com/lts/serverguide/git.html)
 
-##Setup - Do once
+## Setup - Do once
 
-###Install Git dependencies
+### Install Git dependencies
 ```
 sudo apt-get install build-essential libssl-dev libcurl4-gnutls-dev libexpat1-dev gettext unzip
 ```
 
-###Install Git
+### Install Git
 * [Check latest version](https://github.com/git/git/tree/master/Documentation)
 ```
 cd /opt
@@ -102,7 +102,7 @@ sudo unzip git.zip
 cd git-*
 sudo make prefix=/usr/local install
 ```
-###Register GitHub account
+### Register GitHub account
 ```
 git config --list
 git config --global user.name "Luigi Sison"
