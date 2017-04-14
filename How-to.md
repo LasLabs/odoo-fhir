@@ -6,6 +6,7 @@
 
 ```sudo /etc/init.d/vboxadd setup```
 
+
 * Enable clipboard
 
 ```sudo /usr/bin/VBoxClient --clipboard```
@@ -15,6 +16,7 @@
 ```sudo ps aux | grep openerp```
 
 * Kill specific process (id)
+
 
 ```sudo kill -9 id```
 
@@ -26,6 +28,7 @@
 Odoo 10 Community
 sudo wget https://raw.githubusercontent.com/luigisison/moxylus/master/Odoo10Community/install-odoo10c.sh
 
+
 Odoo 9 Enterprise
 sudo wget https://raw.githubusercontent.com/luigisison/moxylus/master/Odoo9Enterprise/odoo-install.sh
 
@@ -35,6 +38,7 @@ sudo wget https://raw.githubusercontent.com/luigisison/moxylus/master/Odoo9Commu
 Odoo 8
 sudo wget https://raw.githubusercontent.com/luigisison/moxylus/master/Odoo8/odoo-install.sh
 ```
+
 * (Optional) Edit the file to change parameters: ```sudo nano odoo-install.sh```
 * Save changes and then make the file executable: ```sudo chmod +x odoo-install.sh```
 * Execute the script to install Odoo: ```./odoo-install.sh```
@@ -45,6 +49,7 @@ sudo wget https://raw.githubusercontent.com/luigisison/moxylus/master/Odoo8/odoo
 * Go to directory where Odoo is installed
 ```
 cd /odoo/odoo-server
+
 ```
 * Fetch latest Odoo version from GitHub
 ```
@@ -54,6 +59,7 @@ sudo git fetch origin 9.0
 ```
 sudo git reset --hard origin/9.0
 ```
+
 * Update databases
 ```
 sudo service odoo-server restart -u all -d FHIR-DEV
@@ -64,6 +70,7 @@ sudo service odoo-server restart -u all -d FHIR-DEV
 ```
 cd /usr/lib/python2.7/dist-packages/reportlab/
 sudo mkdir fonts
+
 ```
 
 * download [pfbfer.zip](http://www.reportlab.com/ftp/fonts/pfbfer.zip) to download folder
@@ -74,6 +81,7 @@ sudo mkdir fonts
 sudo mv _abi____.pfb /usr/lib/python2.7/dist-packages/reportlab/fonts/_abi____.pfb
 sudo mv _ab_____.pfb /usr/lib/python2.7/dist-packages/reportlab/fonts/_ab_____.pfb
 sudo mv _ai_____.pfb /usr/lib/python2.7/dist-packages/reportlab/fonts/_ai_____.pfb
+
 sudo mv _a______.pfb /usr/lib/python2.7/dist-packages/reportlab/fonts/_a______.pfb
 sudo mv cobo____.pfb /usr/lib/python2.7/dist-packages/reportlab/fonts/cobo____.pfb
 sudo mv cob_____.pfb /usr/lib/python2.7/dist-packages/reportlab/fonts/cob_____.pfb
@@ -84,6 +92,7 @@ sudo mv _eb_____.pfb /usr/lib/python2.7/dist-packages/reportlab/fonts/_eb_____.p
 sudo mv _ei_____.pfb /usr/lib/python2.7/dist-packages/reportlab/fonts/_ei_____.pfb
 sudo mv _er_____.pfb /usr/lib/python2.7/dist-packages/reportlab/fonts/_er_____.pfb
 sudo mv sy______.pfb /usr/lib/python2.7/dist-packages/reportlab/fonts/sy______.pfb
+
 sudo mv zd______.pfb /usr/lib/python2.7/dist-packages/reportlab/fonts/zd______.pfb
 sudo mv zx______.pfb /usr/lib/python2.7/dist-packages/reportlab/fonts/zx______.pfb
 sudo mv zy______.pfb /usr/lib/python2.7/dist-packages/reportlab/fonts/zy______.pfb
@@ -94,6 +103,7 @@ sudo mv zy______.pfb /usr/lib/python2.7/dist-packages/reportlab/fonts/zy______.p
 
 ```
 sudo mkdir mydir --create directory
+
 sudo rm -rf mydir --delete directory
 clear --clear the terminal screen
 sudo touch /odoo/odoo-fhir/addons/hc_allergy_intolerance/views/hc_route_codes_views.xml --create file
@@ -104,6 +114,7 @@ sudo wget http://url -- download to current location
 sudo chown $USER:$USER $HOME/.bash_history
 sudo chmod u+w $HOME/.bash_history
 ```
+
 * Update GIT
 ```
 sudo apt-get upgrade
@@ -112,6 +123,7 @@ sudo git --version
 ```
 
 # GitHub
+
 
 * Reference: [How to Install Git on Ubuntu](https://www.digitalocean.com/community/tutorials/how-to-install-git-on-ubuntu-14-04)
 * Reference: [Git - Installng Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
@@ -124,6 +136,7 @@ sudo git --version
 sudo apt-get install build-essential libssl-dev libcurl4-gnutls-dev libexpat1-dev gettext unzip
 ```
 
+
 ### Install Git
 * [Check latest version](https://github.com/git/git/tree/master/Documentation)
 ```
@@ -133,6 +146,7 @@ sudo unzip git.zip
 cd git-*
 sudo make prefix=/usr/local install
 ```
+
 ### Register GitHub account
 ```
 git config --list
@@ -142,7 +156,8 @@ git config --global user.email lsison@moxylus.com
 
 # Odoo Server
 
-*## Initial
+## Initial
+
 
 ### Initialize odoo-fhir with content from GitHub
 ```
@@ -153,6 +168,7 @@ sudo git clone --depth 1 https://github.com/luigisison/odoo-fhir.git
 ### Setup addons directory /odoo/odoo-fhir/addons
 ```
 sudo nano /etc/odoo-server.conf
+
 addons_path=/odoo/odoo-server/openerp/addons,/odoo/odoo-server/addons,/odoo/odoo-fhir/addons,/odoo/odoo-server/addons/web_kanban
 ```
 ## Create database
@@ -163,6 +179,7 @@ addons_path=/odoo/odoo-server/openerp/addons,/odoo/odoo-server/addons,/odoo/odoo
 cd /odoo/odoo-server
 createdb FHIR-DEV
 ./odoo.py -d FHIR-DEV --addons-path /odoo/odoo-fhir/addons
+
 ```
 
 ## Do every time a change occurs
@@ -173,6 +190,7 @@ createdb FHIR-DEV
 cd /odoo/odoo-fhir
 sudo git add .
 sudo git status
+
 sudo git commit -m "Initial Commit" -a
 sudo git push origin master
 ```
@@ -182,6 +200,7 @@ sudo git push origin master
 When remote repository changes or when error "! [rejected] master -> master (fetch first) error" occurs
 
 ```
+
 cd /odoo/odoo-fhir
 sudo git fetch origin
 sudo git pull origin master
@@ -189,9 +208,10 @@ sudo git pull origin master
 
 ## Update Changes
 
-syntax: *./odoo.py -d <database> --addons-path <directories> -i <modules>
+syntax: `./odoo.py -d <database> --addons-path <directories> -i <modules>**
 
 ```
+
 cd /odoo/odoo-server
 sudo service odoo-server stop
 ./odoo.py -d FHIR-DEV --addons-path /odoo/odoo-fhir/addons,/odoo/odoo-server/addons -u hc_base
@@ -202,6 +222,7 @@ sudo service odoo-server stop
 ### Save terminal output to a file
 
 * Start a ```script``` session and save output to ```output.txt``` in the current directory.
+
 ```
 script output.txt
 ```
@@ -211,6 +232,7 @@ script output.txt
 exit
 ```
 ## Error
+
 
 ### ERROR ? openerp.service.server: Failed to load server-wide module `web_kanban`
 ```
@@ -222,6 +244,7 @@ now you can assign multiple addons path,
 opt/openerp/server$ ./openerp-server --addons-path=web/addons,../addons1,../addons2
 ```
 
+
 ## Synching fork with master
 
 * Go to local repository (e.g., /odoo/odoo-fhir)
@@ -232,6 +255,7 @@ cd /odoo/odoo-fhir
 ```
 sudo git remote add upstream https://github.com/luigisison/odoo-fhir.git
 sudo git remote -v
+
 ```
 * Fetch master repository and then checkout local master
 ```
@@ -242,6 +266,7 @@ sudo git checkout master
 ```
 sudo git merge upstream/master
 sudo git push origin master
+
 ```
 
 ## Create Data Set
@@ -251,6 +276,7 @@ sudo git push origin master
 * Create view file `sudo nano /odoo/odoo-fhir/addons/hc_base/views/hc_participation_type_views.xml`
 
 ## Create Module
+
 
 * Create scaffold
 ```
@@ -262,6 +288,7 @@ sudo mv hc_location /odoo/odoo-fhir/addons/hc_location
 ```
 * Rename files
 ```
+
 cd /odoo/odoo-fhir/addons/hc_location
 sudo mv models/models.py models/hc_res_location.py
 sudo mv views/views.xml views/hc_res_location_views.xml
@@ -271,6 +298,7 @@ sudo mv views/templates.xml views/hc_res_location_templates.xml
 ```
 #models/__init__.py
 from . import hc_res_location
+
 
 #hc_location/__openerp__.py
 'name': "Location"
@@ -282,6 +310,7 @@ from . import hc_res_location
 """
 'author': "Luigi Sison",
 'website': "https://hl7-fhir.github.io/location.html",
+
 'category': 'Health Care',
 'depends': ['hc_base'],
 'data': [
@@ -291,7 +320,8 @@ from . import hc_res_location
 ],
 # only loaded in demonstration mode
 'demo': [
-    'demo/demo.xml',
+
+'demo/demo.xml',
 ],
     'installable': 'True',
     'auto-install': 'True',
@@ -301,6 +331,7 @@ from . import hc_res_location
 
 * Create sample data in Odoo
 * Export file to ```/home/odoo/Downloads```
+
 * Transfer file to demo directory ```/odoo/odoo-fhir/addons/hc_base/demo/```
 
 ```
