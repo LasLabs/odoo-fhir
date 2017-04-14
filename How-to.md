@@ -26,7 +26,7 @@
 * Place install script in the directory
 ```
 Odoo 10 Community
-sudo wget https://raw.githubusercontent.com/luigisison/moxylus/master/Odoo10Community/install-odoo10c.sh
+sudo wget https://raw.githubusercontent.com/luigisison/moxylus/master/Odoo10Community/odoo_install.sh
 
 
 Odoo 9 Enterprise
