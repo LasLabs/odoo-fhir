@@ -106,7 +106,6 @@ sudo chmod u+w $HOME/.bash_history
 ```
 * Update GIT
 ```
-sudo apt-get update
 sudo apt-get upgrade
 sudo apt-get install git
 sudo git --version
@@ -143,7 +142,7 @@ git config --global user.email lsison@moxylus.com
 
 # Odoo Server
 
-## Initial
+*## Initial
 
 ### Initialize odoo-fhir with content from GitHub
 ```
@@ -159,6 +158,7 @@ addons_path=/odoo/odoo-server/openerp/addons,/odoo/odoo-server/addons,/odoo/odoo
 ## Create database
 
 * In browser, go to `http://localhost:8069/web/database/manager#action=database_manager`
+
 ```
 cd /odoo/odoo-server
 createdb FHIR-DEV
@@ -168,17 +168,19 @@ createdb FHIR-DEV
 ## Do every time a change occurs
 
 ### Upload changes
+
 ```
 cd /odoo/odoo-fhir
 sudo git add .
 sudo git status
 sudo git commit -m "Initial Commit" -a
 sudo git push origin master
-``
+```
 
 ### Update local repository 
 
 When remote repository changes or when error "! [rejected] master -> master (fetch first) error" occurs
+
 ```
 cd /odoo/odoo-fhir
 sudo git fetch origin
@@ -187,7 +189,8 @@ sudo git pull origin master
 
 ## Update Changes
 
-syntax: ./odoo.py -d <database> --addons-path <directories> -i <modules>
+syntax: *./odoo.py -d <database> --addons-path <directories> -i <modules>
+
 ```
 cd /odoo/odoo-server
 sudo service odoo-server stop
