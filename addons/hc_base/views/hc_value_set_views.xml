@@ -64,7 +64,7 @@
     
         <menuitem id="hc_base.menu_root" 
                   name="FHIR" 
-                  web_icon="hc_base,static/description/medicine.png" 
+                  web_icon="hc_base,static/description/logo.png" 
                   sequence="1"/>
             
             <menuitem id="hc_base.menu_datatype" 
