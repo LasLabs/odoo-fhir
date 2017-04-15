@@ -243,7 +243,8 @@
                     limit=""/>
 
         <menuitem id="hc_allergy_intolerance.menu_allergy" 
-                  name="Allergy Intolerances" 
+                  name="Allergy Intolerances"
+                  web_icon="hc_allergy_intolerance,static/description/allergy.png" 
                   parent="hc_base.menu_clinic_gen" 
                   action="hc_res_allergy_intolerance_action"
                   groups="hc_base.group_hc_base_manager"
