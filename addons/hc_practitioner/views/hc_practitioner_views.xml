@@ -161,7 +161,8 @@
         </record>  -->  
 
         <menuitem id="hc_practitioner.menu_prac" 
-                  name="Practitioners" 
+                  name="Practitioners"
+                  web_icon="hc_practitioner,static/description/icon.png" 
                   parent="hc_base.menu_indiv" 
                   action="hc_res_practitioner_action" 
                   groups="hc_base.group_hc_base_manager" 

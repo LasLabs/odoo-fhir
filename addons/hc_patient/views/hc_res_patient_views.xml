@@ -409,7 +409,8 @@
         </record>
 
         <menuitem id="hc_patient.menu_pat" 
-                  name="Patients" 
+                  name="Patients"
+                  web_icon="hc_patient,static/description/icon.png" 
                   parent="hc_base.menu_indiv" 
                   action="hc_res_patient_action" 
                   groups="hc_base.group_hc_base_manager" 

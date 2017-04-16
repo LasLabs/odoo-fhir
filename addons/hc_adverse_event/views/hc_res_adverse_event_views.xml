@@ -12,7 +12,8 @@
                 limit=""/>
 
     <menuitem id="hc_adverse_event.menu_adv_event" 
-              name="Adverse Events" 
+              name="Adverse Events"
+              web_icon="hc_adverse_event,static/description/icon.png"  
               parent="hc_base.menu_clinic_gen" 
               action="hc_res_adverse_event_action" 
               groups="hc_base.group_hc_base_manager" 

@@ -241,7 +241,8 @@
                     limit=""/>
 
         <menuitem id="hc_person.menu_pers" 
-                  name="Persons" 
+                  name="Persons"
+                  web_icon="hc_person,static/description/icon.png"   
                   parent="hc_base.menu_indiv" 
                   action="hc_res_person_action" 
                   groups="hc_base.group_hc_base_manager" 

@@ -230,7 +230,8 @@
                     limit=""/>
 
         <menuitem id="hc_appointment.menu_appt" 
-                  name="Appointments" 
+                  name="Appointments"
+                  web_icon="hc_appointment,static/description/icon.png"  
                   parent="hc_base.menu_work_sched" 
                   action="hc_res_appointment_action" 
                   groups="hc_base.group_hc_base_manager" 

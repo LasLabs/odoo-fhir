@@ -12,7 +12,8 @@
                     limit=""/>  
 
         <menuitem id="hc_practitioner_role.menu_prac_role" 
-                  name="Practitioner Roles" 
+                  name="Practitioner Roles"
+                  web_icon="hc_practitioner_role,static/description/icon.png"    
                   parent="hc_base.menu_indiv" 
                   action="hc_res_practitioner_role_action" 
                   groups="hc_base.group_hc_base_manager" 

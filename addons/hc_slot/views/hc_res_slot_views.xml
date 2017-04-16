@@ -113,7 +113,8 @@
                     limit=""/>
 
         <menuitem id="hc_slot.menu_slot" 
-                  name="Slots" 
+                  name="Slots"
+                  web_icon="hc_slot,static/description/icon.png"    
                   parent="hc_base.menu_work_sched" 
                   action="hc_res_slot_action" 
                   groups="hc_base.group_hc_base_manager" 

@@ -12,7 +12,8 @@
                     limit=""/>
 
         <menuitem id="hc_device.menu_dev_dev" 
-                  name="Devices" 
+                  name="Devices"
+                  web_icon="hc_device,static/description/icon.png"   
                   parent="hc_base.menu_dev" 
                   action="hc_res_device_action" 
                   groups="hc_base.group_hc_base_manager" 

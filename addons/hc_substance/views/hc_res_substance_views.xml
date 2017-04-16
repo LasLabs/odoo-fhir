@@ -12,7 +12,8 @@
                     limit=""/>
 
         <menuitem id="hc_substance.menu_substance" 
-                  name="Substances" 
+                  name="Substances"
+                  web_icon="hc_substance,static/description/icon.png"  
                   parent="hc_base.menu_entity" 
                   action="hc_res_substance_action" 
                   groups="hc_base.group_hc_base_manager" 

@@ -12,7 +12,8 @@
                     limit=""/>
 
         <menuitem id="hc_account.menu_acct" 
-                  name="Accounts" 
+                  name="Accounts"
+                  web_icon="hc_account,static/description/icon.png"  
                   parent="hc_base.menu_pat_mgt" 
                   action="hc_res_account_action" 
                   groups="hc_base.group_hc_base_manager" 

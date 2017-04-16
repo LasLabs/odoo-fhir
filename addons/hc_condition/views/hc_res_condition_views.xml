@@ -235,7 +235,8 @@
                 limit=""/>
 
     <menuitem id="hc_condition.menu_cond" 
-              name="Conditions" 
+              name="Conditions"
+              web_icon="hc_condition,static/description/icon.png"  
               parent="hc_base.menu_clinic_gen" 
               action="hc_res_condition_action"
               groups="hc_base.group_hc_base_manager" 

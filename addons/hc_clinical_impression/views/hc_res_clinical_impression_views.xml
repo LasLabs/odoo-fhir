@@ -12,7 +12,8 @@
                 limit=""/>
 
     <menuitem id="hc_clinical_impression.menu_clinic_imp" 
-              name="Clinical Impressions" 
+              name="Clinical Impressions"
+              web_icon="hc_clinical_impression,static/description/icon.png"  
               parent="hc_base.menu_clinic_gen" 
               action="hc_res_clinical_impression_action" 
               groups="hc_base.group_hc_base_manager" 

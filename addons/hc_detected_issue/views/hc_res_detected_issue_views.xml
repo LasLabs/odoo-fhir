@@ -12,7 +12,8 @@
                 limit=""/>
 
     <menuitem id="hc_detected_issue.menu_issue" 
-              name="Detected Issues" 
+              name="Detected Issues"
+              web_icon="hc_detected_issue,static/description/icon.png"  
               parent="hc_base.menu_clinic_gen" 
               action="hc_res_detected_issue_action" 
               groups="hc_base.group_hc_base_manager" 

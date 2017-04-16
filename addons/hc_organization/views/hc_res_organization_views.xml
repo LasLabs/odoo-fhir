@@ -12,7 +12,8 @@
                     limit=""/> 
 
         <menuitem id="hc_organization.menu_org" 
-                  name="Organizations" 
+                  name="Organizations"
+                  web_icon="hc_organization,static/description/icon.png" 
                   parent="hc_base.menu_entity" 
                   action="hc_res_organization_action" 
                   groups="hc_base.group_hc_base_manager" 

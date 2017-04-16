@@ -13,7 +13,8 @@
                     limit=""/>
 
         <menuitem id="hc_encounter.menu_enc" 
-                  name="Encounters" 
+                  name="Encounters"
+                  web_icon="hc_encounter,static/description/icon.png"   
                   parent="hc_base.menu_pat_mgt" 
                   action="hc_res_encounter_action" 
                   groups="hc_base.group_hc_base_manager" 
