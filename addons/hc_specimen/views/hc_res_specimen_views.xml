@@ -12,7 +12,8 @@
             limit=""/>
 
         <menuitem id="hc_specimen.menu_specimen" 
-                  name="Specimens" 
+                  name="Specimens"
+                  web_icon="hc_specimen,static/description/icon.png"   
                   parent="hc_base.menu_clinic_diag" 
                   action="hc_res_specimen_action" 
                   groups="hc_base.group_hc_base_manager" 

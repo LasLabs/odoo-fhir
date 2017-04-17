@@ -12,7 +12,8 @@
                     limit=""/>
 
         <menuitem id="hc_imaging_study.menu_image_study" 
-                  name="Imaging Studies" 
+                  name="Imaging Studies"
+                  web_icon="hc_imaging_study,static/description/icon.png"   
                   parent="hc_base.menu_clinic_diag" 
                   action="hc_res_imaging_study_action" 
                   groups="hc_base.group_hc_base_manager" 

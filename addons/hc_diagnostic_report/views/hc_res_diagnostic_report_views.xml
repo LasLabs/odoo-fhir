@@ -12,7 +12,8 @@
                     limit=""/>
 
         <menuitem id="hc_diagnostic_report.menu_diag_rpt" 
-                  name="Diagnostic Reports" 
+                  name="Diagnostic Reports"
+                  web_icon="hc_diagnostic_report,static/description/icon.png"   
                   parent="hc_base.menu_clinic_diag" 
                   action="hc_res_diagnostic_report_action" 
                   groups="hc_base.group_hc_base_manager" 

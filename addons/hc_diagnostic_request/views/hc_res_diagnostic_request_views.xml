@@ -12,7 +12,8 @@
                     limit=""/>
 
         <menuitem id="hc_diagnostic_request.menu_diag_req" 
-                  name="Diagnostic Requests" 
+                  name="Diagnostic Requests"
+                  web_icon="hc_diagnostic_request,static/description/icon.png"   
                   parent="hc_base.menu_clinic_diag" 
                   action="hc_res_diagnostic_request_action" 
                   groups="hc_base.group_hc_base_manager" 

@@ -12,7 +12,8 @@
                     limit=""/>
 
         <menuitem id="hc_observation.menu_obs" 
-                  name="Observations" 
+                  name="Observations"
+                  web_icon="hc_observation,static/description/icon.png"   
                   parent="hc_base.menu_clinic_diag" 
                   action="hc_res_observation_action" 
                   groups="hc_base.group_hc_base_manager" 

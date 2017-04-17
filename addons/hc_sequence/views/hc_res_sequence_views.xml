@@ -11,7 +11,8 @@
                     limit=""/>
 
         <menuitem id="hc_sequence.menu_seq" 
-                  name="Sequences" 
+                  name="Sequences"
+                  web_icon="hc_sequence,static/description/icon.png"   
                   parent="hc_base.menu_clinic_diag" 
                   action="hc_res_sequence_action" 
                   groups="hc_base.group_hc_base_manager" 
