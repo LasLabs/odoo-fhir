@@ -12,7 +12,8 @@
                     limit=""/>
 
         <menuitem id="hc_body_site.menu_body_site" 
-                  name="Body Sites" 
+                  name="Body Sites"
+                  web_icon="hc_body_site,static/description/icon.png"   
                   parent="hc_base.menu_clinic_diag" 
                   action="hc_res_body_site_action" 
                   groups="hc_base.group_hc_base_manager" 
