@@ -3,7 +3,7 @@
     'name': "Observation",
 
     'summary': """
-        Meaurements, assertions
+        Measurements, assertions
         """,
 
     'description': """

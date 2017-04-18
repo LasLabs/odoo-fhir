@@ -15,6 +15,11 @@ class DiagnosticReport(models.Model):
         inverse_name="diagnostic_report_id", 
         string="Identifiers", 
         help="Id for external references to this report.")                               
+    based_on_ids = fields.One2many(
+        comodel_name="hc.diagnostic.report.based.on", 
+        inverse_name="diagnostic_report_id", 
+        string="Based Ons", 
+        help="What was requested.")
     status = fields.Selection(
         string="Diagnostic Report Status", 
         required="True", 
@@ -66,23 +71,38 @@ class DiagnosticReport(models.Model):
         comodel_name="hc.res.device", 
         string="Subject Device", 
         help="Device subject of the report, usually, but not always, the patient.")                
-    encounter_id = fields.Many2one(
+    context_type = fields.Selection(
+        string="Context Type", 
+        selection=[
+            ("encounter", "Encounter"), 
+            ("episode_of_care", "Episode Of Care")], 
+        help="Type of health care event when test ordered.")
+    context_name = fields.Char(
+        string="Context", 
+        compute="_compute_context_name", 
+        store="True", 
+        help="Health care event when test ordered.")
+    context_encounter_id = fields.Many2one(
         comodel_name="hc.res.encounter", 
-        string="Encounter", 
-        help="Health care event when test ordered.")                
+        string="Context Encounter", 
+        help="Encounter health care event when test ordered.")
+    context_episode_of_care_id = fields.Many2one(
+        comodel_name="hc.res.episode.of.care", 
+        string="Context Episode Of Care", 
+        help="Episode Of Care health care event when test ordered.")               
     effective_type = fields.Selection(
         string="Effective Type", 
         required="True", 
         selection=[
-            ("dateTime", "Datetime"), 
-            ("Period", "Period")], 
+            ("date_time", "Datetime"), 
+            ("period", "Period")], 
         help="Type of plan or agreement issuer.")                
     effective_name = fields.Char(
         string="Effective", 
         compute="_compute_effective_name", 
         required="True", 
         help="Clinically Relevant time/time-period for report.")                
-    effective_datetime = fields.Datetime(
+    effective_date_time = fields.Datetime(
         string="Effective Datetime", 
         required="True", 
         help="DateTime clinically relevant time/time-period for report.")                
@@ -95,31 +115,7 @@ class DiagnosticReport(models.Model):
     issued = fields.Datetime(
         string="Issued Date", 
         required="True", 
-        help="DateTime this version was released.")                
-    performer_type = fields.Selection(
-        string="Performer Type", 
-        required="True", 
-        selection=[
-            ("practitioner", "Practitioner"), 
-            ("organization", "Organization")], 
-        help="Type of plan or agreement issuer.")                
-    performer_name = fields.Char(
-        string="Performer", 
-        compute="_compute_performer_name", 
-        help="Responsible Diagnostic Service.")                
-    performer_practitioner_id = fields.Many2one(
-        comodel_name="hc.res.practitioner", 
-        string="Performer Practitioner",
-        help="Practitioner responsible diagnostic service.")                
-    performer_organization_id = fields.Many2one(
-        comodel_name="hc.res.organization", 
-        string="Performer Organization", 
-        help="Organization responsible diagnostic service.")                
-    request_ids = fields.One2many(
-        comodel_name="hc.diagnostic.report.request", 
-        inverse_name="diagnostic_report_id", 
-        string="Requests", 
-        help="What was requested.")                
+        help="DateTime this version was released.")             
     specimen_ids = fields.One2many(
         comodel_name="hc.diagnostic.report.specimen", 
         inverse_name="diagnostic_report_id", 
@@ -147,6 +143,11 @@ class DiagnosticReport(models.Model):
         inverse_name="diagnostic_report_id", 
         string="Presented Forms", 
         help="Entire Report as issued.")                
+    performer_ids = fields.One2many(
+        comodel_name="hc.diagnostic.report.performer", 
+        inverse_name="diagnostic_report_id", 
+        string="Performers", 
+        help="Participants in producing the report.")
     image_ids = fields.One2many(
         comodel_name="hc.diagnostic.report.image", 
         inverse_name="diagnostic_report_id", 
@@ -169,17 +170,51 @@ class DiagnosticReport(models.Model):
     def _compute_effective_name(self):          
         for hc_res_diagnostic_report in self:       
             if hc_res_diagnostic_report.effective_type == 'date_time':  
-                hc_res_diagnostic_report.effective_name = hc_res_diagnostic_report.effective_date_time_id.name
+                hc_res_diagnostic_report.effective_name = str(hc_res_diagnostic_report.effective_date_time)
             elif hc_res_diagnostic_report.effective_type == 'period':
                 hc_res_diagnostic_report.effective_name = 'Between' + str(hc_res_diagnostic_report.effective_start_date) + ' and ' + str(hc_res_diagnostic_report.effective_end_date)
     
-    @api.depends('performer_type')          
-    def _compute_performer_name(self):          
-        for hc_res_diagnostic_report in self:       
-            if hc_res_diagnostic_report.performer_type == 'practitioner':   
-                hc_res_diagnostic_report.performer_name = hc_res_diagnostic_report.performer_practitioner_id.name
-            elif hc_res_diagnostic_report.performer_type == 'organization': 
-                hc_res_diagnostic_report.performer_name = hc_res_diagnostic_report.performer_organization_id.name
+class DiagnosticReportPerformer(models.Model):  
+    _name = "hc.diagnostic.report.performer"    
+    _description = "Diagnostic Report Performer"
+
+    diagnostic_report_id = fields.Many2one(
+        comodel_name="hc.res.diagnostic.report", 
+        string="Diagnostic Report", 
+        help="Diagnostic Report associated with this performer.")       
+    role_id = fields.Many2one(
+        comodel_name="hc.vs.performer.role", 
+        string="Role", 
+        help="Type of performer")       
+    actor_type = fields.Selection(
+        string="Actor Type", 
+        required="True", 
+        selection=[
+            ("practitioner", "Practitioner"), 
+            ("organization", "Organization")], 
+        help="Type of participant.")        
+    actor_name = fields.Char(
+        string="Actor", 
+        compute="_compute_actor_name", 
+        store="True", 
+        help="Practitioner or Organization participant.")     
+    actor_practitioner_id = fields.Many2one(
+        comodel_name="hc.res.practitioner", 
+        string="Actor Practitioner", 
+        required="True", 
+        help="Practitioner participant.")        
+    actor_organization_id = fields.Many2one(
+        comodel_name="hc.res.organization", 
+        string="Actor Organization", 
+        help="Organization participant.")     
+
+    @api.depends('actor_type')          
+    def _compute_actor_name(self):          
+        for hc_diagnostic_report_performer in self:     
+            if hc_diagnostic_report_performer.actor_type == 'practitioner': 
+                hc_diagnostic_report_performer.actor_name = hc_diagnostic_report_performer.actor_practitioner_id.name
+            elif hc_diagnostic_report_performer.actor_type == 'organization':   
+                hc_diagnostic_report_performer.actor_name = hc_diagnostic_report_performer.actor_organization_id.name
 
 class DiagnosticReportImage(models.Model):    
     _name = "hc.diagnostic.report.image"    
@@ -198,49 +233,6 @@ class DiagnosticReportImage(models.Model):
         required="True", 
         help="Reference to the image source.")                           
 
-class DiagnosticReportRequest(models.Model):    
-    _name = "hc.diagnostic.report.request"    
-    _description = "Diagnostic Report Request"
-    _inherit = ["hc.basic.association"]        
-
-    diagnostic_report_id = fields.Many2one(
-        comodel_name="hc.res.diagnostic.report", 
-        string="Diagnostic Report", 
-        help="Diagnostic Report associated with this Diagnostic Report Request.")                
-    request_type = fields.Selection(
-        string="Request Type", 
-        selection=[
-            ("diagnostic_request", "Diagnostic Request"), 
-            ("procedure_request", "Procedure Request"), 
-            ("referral_request", "Referral Request")], 
-        help="Type of what was requested.")
-    request_name = fields.Char(
-        string="Request", 
-        compute="_compute_request_name", 
-        help="What was requested.")                
-    diagnostic_request_id = fields.Many2one(
-        comodel_name="hc.res.diagnostic.request", 
-        string="Diagnostic Report", 
-        help="Diagnostic Request what was requested.")                
-    procedure_request_id = fields.Many2one(
-        comodel_name="hc.res.procedure.request", 
-        string="Procedure Request", 
-        help="Procedure Request what was requested.")                
-    referral_request_id = fields.Many2one(
-        comodel_name="hc.res.referral.request", 
-        string="Referral Request", 
-        help="Referral Request what was requested.")                
-
-    @api.depends('request_type')            
-    def _compute_request_name(self):            
-        for hc_diagnostic_report_request in self:       
-            if hc_diagnostic_report_request.request_type == 'diagnostic_request':   
-                hc_diagnostic_report_request.request_name = hc_diagnostic_report_request.diagnostic_request_id.name
-            elif hc_diagnostic_report_request.request_type == 'procedure_request':  
-                hc_diagnostic_report_request.request_name = hc_diagnostic_report_request.procedure_request_id.name
-            elif hc_diagnostic_report_request.request_type == 'referral_request':   
-                hc_diagnostic_report_request.request_name = hc_diagnostic_report_request.referral_request_id.name
-
 class DiagnosticReportIdentifier(models.Model):    
     _name = "hc.diagnostic.report.identifier"    
     _description = "Diagnostic Report Identifier"        
@@ -250,6 +242,55 @@ class DiagnosticReportIdentifier(models.Model):
         comodel_name="hc.res.diagnostic.report", 
         string="Diagnostic Report", 
         help="Diagnostic Report associated with this Diagnostic Report Identifier.")                
+
+class DiagnosticReportBasedOn(models.Model):    
+    _name = "hc.diagnostic.report.based.on" 
+    _description = "Diagnostic Report Based On"         
+    _inherit = ["hc.basic.association"]
+
+    diagnostic_report_id = fields.Many2one(
+        comodel_name="hc.res.diagnostic.report", 
+        string="Diagnostic Report", 
+        help="Diagnostic Report associated with this diagnostic report based on.")                  
+    based_on_type = fields.Selection(
+        string="Based On Type", 
+        selection=[
+            ("care_plan", "Care Plan"), 
+            ("immunization_recommendation", "Immunization Recommendation"), 
+            ("medication_request", "Medication Request"), 
+            ("nutrition_order", "Nutrition Order"), 
+            ("procedure_request", "Procedure Request"), 
+            ("referral_request", "Referral Request")], 
+        help="Type of what was requested.")                    
+    based_on_name = fields.Char(
+        string="Based On", 
+        compute="_compute_based_on_name", 
+        store="True", 
+        help="What was requested.")                  
+    based_on_care_plan_id = fields.Many2one(
+        comodel_name="hc.res.care.plan", 
+        string="Diagnostic Report", 
+        help="Care Plan what was requested.")                  
+    based_on_immunization_recommendation_id = fields.Many2one(
+        comodel_name="hc.res.immunization.recommendation", 
+        string="Based On Immunization Recommendation", 
+        help="Immunization Recommendation what was requested.")                 
+    based_on_medication_request_id = fields.Many2one(
+        comodel_name="hc.res.medication.request", 
+        string="Based On Medication Request", 
+        help="Medication Request what was requested.")                 
+    based_on_nutrition_order_id = fields.Many2one(
+        comodel_name="hc.res.nutrition.order", 
+        string="Based On Nutrition Order", 
+        help="Nutrition Order what was requested.")                 
+    bsaed_on_procedure_request_id = fields.Many2one(
+        comodel_name="hc.res.procedure.request", 
+        string="Bsaed On Procedure Request", 
+        help="Procedure Request what was requested.")                 
+    based_on_referral_request_id = fields.Many2one(
+        comodel_name="hc.res.referral.request", 
+        string="Based On Referral Request", 
+        help="Referral Request what was requested.")                 
 
 class DiagnosticReportImagingStudy(models.Model):    
     _name = "hc.diagnostic.report.imaging.study"    

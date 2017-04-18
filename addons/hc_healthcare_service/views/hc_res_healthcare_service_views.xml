@@ -12,7 +12,8 @@
                     limit=""/>
 
         <menuitem id="hc_healthcare_service.menu_hc_service" 
-                  name="Healthcare Services" 
+                  name="Healthcare Services"
+                  web_icon="hc_healthcare_service,static/description/icon.png"    
                   parent="hc_base.menu_entity" 
                   action="hc_res_healthcare_service_action" 
                   groups="hc_base.group_hc_base_manager" 

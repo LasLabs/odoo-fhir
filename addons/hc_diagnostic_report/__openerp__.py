@@ -28,7 +28,7 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['hc_media', 'hc_imaging_manifest','hc_referral_request'],
+    'depends': ['hc_media', 'hc_imaging_manifest', 'hc_immunization_recommendation'],
 
     # always loaded
     'data': [
