@@ -33,7 +33,7 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['hc_family_member_history','hc_questionnaire_response','hc_diagnostic_report','hc_care_plan'],
+    'depends': ['hc_family_member_history','hc_diagnostic_report'],
 
     # always loaded
     'data': [

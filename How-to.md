@@ -327,6 +327,20 @@ from . import hc_res_location
     'auto-install': 'True',
 }
 ```
+## Create module icons
+```
+sudo mkdir /odoo/odoo-fhir/addons/hc_healthcare_service/static
+sudo mkdir /odoo/odoo-fhir/addons/hc_healthcare_service/static/description
+sudo mv /home/odoo/Downloads/healthcare_service.png /odoo/odoo-fhir/addons/hc_healthcare_service/static/description/icon.png
+
+```
+* Add ```web_icon``` to view
+```
+    menuitem id="hc_allergy_intolerance.menu_allergy" 
+      name="Allergy Intolerances"
+      web_icon="hc_healthcare_service,static/description/icon.png"
+``` 
+
 ## Create demo data
 
 * Create sample data in Odoo

@@ -52,13 +52,25 @@ class ClinicalImpression(models.Model):
         string="Subject Group", 
         required="True", 
         help="Group assessed.")                
-    assessor_practitioner_id = fields.Many2one(
-        comodel_name="hc.res.practitioner", 
-        string="Assessor Practitioner", 
-        help="The clinician performing the assessment.")                
-    date = fields.Datetime(
-        string="Date", 
-        help="When the assessment occurred.")                
+    context_type = fields.Selection(
+        string="Context Type",
+        selection=[
+            ("encounter", "Encounter"), 
+            ("episode_of_care", "Episode Of Care")],
+        help="Type of Encounter or Episode created from.")                
+    context_name = fields.Char(
+        string="Context", 
+        compute="_compute_context_name",
+        store="True", 
+        help="Encounter or Episode created from.")                
+    context_encounter_id = fields.Many2one(
+        comodel_name="hc.res.encounter", 
+        string="Context Encounter", 
+        help="Encounter created from.")                
+    context_episode_of_care_id = fields.Many2one(
+        comodel_name="hc.res.episode.of.care", 
+        string="Context Episode Of Care", 
+        help="Episode Of Care created from.")                
     effective_type = fields.Selection(
         string="Effective Type", 
         selection=[
@@ -79,28 +91,16 @@ class ClinicalImpression(models.Model):
     effective_end_date = fields.Datetime(
         string="Effective End Date", 
         help="End of the time of assessment.")
-    context_type = fields.Selection(
-        string="Context Type",
-        selection=[
-            ("encounter", "Encounter"), 
-            ("episode_of_care", "Episode Of Care")],
-        help="Type of Encounter or Episode created from.")                
-    context_name = fields.Char(
-        string="Context", 
-        compute="_compute_context_name",
-        store="True", 
-        help="Encounter or Episode created from.")                
-    context_encounter_id = fields.Many2one(
-        comodel_name="hc.res.encounter", 
-        string="Context Encounter", 
-        help="Encounter created from.")                
-    context_episode_of_care_id = fields.Many2one(
-        comodel_name="hc.res.episode.of.care", 
-        string="Context Episode Of Care", 
-        help="Episode Of Care created from.")                
-    previous_clinical_impression_id = fields.Many2one(
+    date = fields.Datetime(
+        string="Date", 
+        help="When the assessment occurred.")                
+    assessor_id = fields.Many2one(
+        comodel_name="hc.res.practitioner", 
+        string="Assessor", 
+        help="The clinician performing the assessment.")                    
+    previous_id = fields.Many2one(
         comodel_name="hc.res.clinical.impression", 
-        string="Previous Clinical Impression", 
+        string="Previous", 
         help="Reference to last assessment.")                
     problem_ids = fields.One2many(
         comodel_name="hc.clinical.impression.problem", 
@@ -115,21 +115,16 @@ class ClinicalImpression(models.Model):
     summary = fields.Text(
         string="Summary", 
         help="Summary of the assessment.")                
-    prognosis_ids = fields.Many2many(
+    prognosis_codeable_concept_ids = fields.Many2many(
         comodel_name="hc.vs.clinical.impression.prognosis", 
-        relation="clinical_impression_prognosis_rel", 
-        string="Prognosis", 
+        relation="clinical_impression_prognosis_codeable_concept_rel", 
+        string="Prognosis Codeable Concept", 
         help="Estimate of likely outcome.")
     prognosis_reference_ids = fields.One2many(
         comodel_name="hc.clinical.impression.prognosis.reference", 
         inverse_name="clinical_impression_id", 
         string="Prognosis References", 
-        help="RiskAssessment expressing likely outcome.")                
-    plan_ids = fields.One2many(
-        comodel_name="hc.clinical.impression.plan", 
-        inverse_name="clinical_impression_id", 
-        string="Plans", 
-        help="Plan of action after assessment.")                
+        help="RiskAssessment expressing likely outcome.")                               
     action_ids = fields.One2many(
         comodel_name="hc.clinical.impression.action", 
         inverse_name="clinical_impression_id", 
@@ -143,18 +138,13 @@ class ClinicalImpression(models.Model):
     investigation_ids = fields.One2many(
         comodel_name="hc.clinical.impression.investigation", 
         inverse_name="clinical_impression_id", 
-        string="Investigations", 
+        string="Investigation", 
         help="One or more sets of investigations (signs, symptions, etc).")                
     finding_ids = fields.One2many(
         comodel_name="hc.clinical.impression.finding", 
         inverse_name="clinical_impression_id", 
         string="Findings", 
-        help="Possible or likely findings and diagnoses.")                
-    # ruled_out_ids = fields.One2many(
-    #     comodel_name="hc.clinical.impression.ruled.out", 
-    #     inverse_name="clinical_impression_id", 
-    #     string="Ruled Outs", 
-    #     help="Diagnosis considered not possible.")                
+        help="Possible or likely findings and diagnoses.")                               
 
     @api.depends('subject_type')          
     def _compute_subject_name(self):            
@@ -180,113 +170,6 @@ class ClinicalImpression(models.Model):
             elif hc_res_clinical_impression.context_type == 'episode_of_care':  
                 hc_res_clinical_impression.context_name = hc_res_clinical_impression.context_episode_of_care_id.name
 
-class ClinicalImpressionPlan(models.Model): 
-    _name = "hc.clinical.impression.plan"   
-    _description = "Clinical Impression Plan"       
-    _inherit = ["hc.basic.association"]
-
-    clinical_impression_id = fields.Many2one(
-        comodel_name="hc.res.clinical.impression", 
-        string="Clinical Impression", 
-        help="Clinical impression associated with this clinical impression plan.")                
-    plan_type = fields.Selection(
-        string="Plan Type", 
-        selection=[
-            ("care_plan", "Care Plan"), 
-            ("appointment", "Appointment"),
-            ("communication_request", "Communication Request"),
-            ("device_use_request", "Device Use Request"),
-            ("diagnostic_request", "Diagnostic Request"),
-            ("medication_request", "Medication Request"),
-            ("nutrition_request", "Nutrition Request"), 
-            ("procedure_request", "Procedure Request"),
-            ("process_request", "Process Request"),
-            ("referral_request", "Referral Request"),
-            ("supply_request", "Supply Request"),
-            ("vision_prescription", "Vision Prescription")], 
-        help="Type of plan of action after assessment.")
-    plan_name = fields.Char(
-        string="Plan", 
-        compute="_compute_plan_name",
-        store="True", 
-        help="Plan of action after assessment.")                
-    plan_care_plan_id = fields.Many2one(
-        comodel_name="hc.res.care.plan", 
-        string="Plan Care Plan", 
-        help="Care Plan plan of action after assessment.")                
-    plan_appointment_id = fields.Many2one(
-        comodel_name="hc.res.appointment", 
-        string="Plan Appointment", 
-        help="Appointment plan of action after assessment.")                
-    plan_communication_request_id = fields.Many2one(
-        comodel_name="hc.res.communication.request", 
-        string="Plan Communication Request", 
-        help="Communication Request plan of action after assessment.")                
-    plan_device_use_request_id = fields.Many2one(
-        comodel_name="hc.res.device.use.request", 
-        string="Plan Device Use Request", 
-        help="Device Use Request plan of action after assessment.")                
-    plan_diagnostic_request_id = fields.Many2one(
-        comodel_name="hc.res.diagnostic.request", 
-        string="Plan Diagnostic Request", 
-        help="Diagnostic Request plan of action after assessment.")                
-    plan_medication_request_id = fields.Many2one(
-        comodel_name="hc.res.medication.request", 
-        string="Plan Medication Request", 
-        help="Medication Request plan of action after assessment.")                
-    plan_nutrition_request_id = fields.Many2one(
-        comodel_name="hc.res.nutrition.request", 
-        string="Plan Nutrition Request", 
-        help="Nutrition Request plan of action after assessment.")                
-    plan_procedure_request_id = fields.Many2one(
-        comodel_name="hc.res.procedure.request", 
-        string="Plan Procedure Request", 
-        help="Procedure Request plan of action after assessment.")                
-    plan_process_request_id = fields.Many2one(
-        comodel_name="hc.res.process.request", 
-        string="Plan Process Request", 
-        help="Process Request plan of action after assessment.")                
-    plan_referral_request_id = fields.Many2one(
-        comodel_name="hc.res.referral.request", 
-        string="Plan Referral Request", 
-        help="Referral Request plan of action after assessment.")                
-    plan_supply_request_id = fields.Many2one(
-        comodel_name="hc.res.supply.request", 
-        string="Plan Supply Request", 
-        help="Supply Request plan of action after assessment.")                
-    plan_vision_prescription_id = fields.Many2one(
-        comodel_name="hc.res.vision.prescription", 
-        string="Plan Vision Prescription", 
-        help="Vision Prescription plan of action after assessment.")                
-
-    @api.depends('plan_type')         
-    def _compute_plan_name(self):           
-        for hc_res_clinical_impression in self:     
-            if hc_res_clinical_impression.plan_type == 'care_plan': 
-                hc_res_clinical_impression.plan_name = hc_res_clinical_impression.plan_care_plan_id.name
-            elif hc_res_clinical_impression.plan_type == 'appointment': 
-                hc_res_clinical_impression.plan_name = hc_res_clinical_impression.plan_appointment_id.name
-            elif hc_res_clinical_impression.plan_type == 'communication_request':   
-                hc_res_clinical_impression.plan_name = hc_res_clinical_impression.plan_communication_request_id.name
-            elif hc_res_clinical_impression.plan_type == 'device_use_request':  
-                hc_res_clinical_impression.plan_name = hc_res_clinical_impression.plan_device_use_request_id.name
-            elif hc_res_clinical_impression.plan_type == 'diagnostic_request':  
-                hc_res_clinical_impression.plan_name = hc_res_clinical_impression.plan_diagnostic_request_id.name
-            elif hc_res_clinical_impression.plan_type == 'medication_request':    
-                hc_res_clinical_impression.plan_name = hc_res_clinical_impression.plan_medication_request_id.name
-            elif hc_res_clinical_impression.plan_type == 'nutrition_request': 
-                hc_res_clinical_impression.plan_name = hc_res_clinical_impression.plan_nutrition_request_id.name
-            elif hc_res_clinical_impression.plan_type == 'procedure_request':   
-                hc_res_clinical_impression.plan_name = hc_res_clinical_impression.plan_procedure_request_id.name
-            elif hc_res_clinical_impression.plan_type == 'process_request': 
-                hc_res_clinical_impression.plan_name = hc_res_clinical_impression.plan_process_request_id.name
-            elif hc_res_clinical_impression.plan_type == 'referral_request':    
-                hc_res_clinical_impression.plan_name = hc_res_clinical_impression.plan_referral_request_id.name
-            elif hc_res_clinical_impression.plan_type == 'supply_request':  
-                hc_res_clinical_impression.plan_name = hc_res_clinical_impression.plan_supply_request_id.name
-            elif hc_res_clinical_impression.plan_type == 'vision_prescription': 
-                hc_res_clinical_impression.plan_name = hc_res_clinical_impression.plan_vision_prescription_id.name
-
 class ClinicalImpressionAction(models.Model):    
     _name = "hc.clinical.impression.action"    
     _description = "Clinical Impression Action"        
@@ -302,10 +185,7 @@ class ClinicalImpressionAction(models.Model):
             ("referral_request", "Referral Request"), 
             ("procedure_request", "Procedure Request"), 
             ("procedure", "Procedure"), 
-            ("medication_request", "Medication Request"), 
-            ("diagnostic_request", "Diagnostic Request"), 
-            ("nutrition_request", "Nutrition Request"), 
-            ("supply_request", "Supply Request"), 
+            ("medication_request", "Medication Request"),
             ("appointment", "Appointment")], 
         help="Type of actions taken during assessment.")     
     action_name = fields.Char(
@@ -328,18 +208,6 @@ class ClinicalImpressionAction(models.Model):
         comodel_name="hc.res.medication.request", 
         string="Action Medication Request", 
         help="Medication Request actions taken during assessment.")
-    action_diagnostic_request_id = fields.Many2one(
-        comodel_name="hc.res.diagnostic.request", 
-        string="Action Diagnostic Request", 
-        help="Diagnostic Request actions taken during assessment.")
-    action_nutrition_request_id = fields.Many2one(
-        comodel_name="hc.res.nutrition.request", 
-        string="Action Nutrition Request", 
-        help="Nutrition Request actions taken during assessment.")
-    action_supply_request_id = fields.Many2one(
-        comodel_name="hc.res.supply.request", 
-        string="Action Supply Request", 
-        help="Supply Request actions taken during assessment.")
     action_appointment_id = fields.Many2one(
         comodel_name="hc.res.appointment", 
         string="Action Appointment", 
@@ -356,12 +224,6 @@ class ClinicalImpressionAction(models.Model):
                 hc_res_clinical_impression.action_name = hc_res_clinical_impression.action_procedure_request_id.name
             elif hc_res_clinical_impression.action_type == 'medication_request':  
                 hc_res_clinical_impression.action_name = hc_res_clinical_impression.action_medication_request_id.name
-            elif hc_res_clinical_impression.action_type == 'diagnostic_request':    
-                hc_res_clinical_impression.action_name = hc_res_clinical_impression.action_diagnostic_request_id.name
-            elif hc_res_clinical_impression.action_type == 'nutrition_request': 
-                hc_res_clinical_impression.action_name = hc_res_clinical_impression.action_nutrition_request_id.name
-            elif hc_res_clinical_impression.action_type == 'supply_request':    
-                hc_res_clinical_impression.action_name = hc_res_clinical_impression.action_supply_request_id.name
             elif hc_res_clinical_impression.action_type == 'appointment':   
                 hc_res_clinical_impression.action_name = hc_res_clinical_impression.action_appointment_id.name
 
@@ -479,27 +341,7 @@ class ClinicalImpressionFinding(models.Model):
             elif hc_res_clinical_impression.item_type == 'condition':   
                 hc_res_clinical_impression.item_name = hc_res_clinical_impression.item_condition_id.name
             elif hc_res_clinical_impression.item_type == 'observation': 
-                hc_res_clinical_impression.item_name = hc_res_clinical_impression.item_observation_id.name
-
-# Deprecated
-
-# class ClinicalImpressionRuledOut(models.Model): 
-#     _name = "hc.clinical.impression.ruled.out"  
-#     _description = "Clinical Impression Ruled Out"
-#     _inherit = ["hc.basic.association"]       
-
-#     clinical_impression_id = fields.Many2one(
-#         comodel_name="hc.res.clinical.impression", 
-#         string="Clinical Impression", 
-#         help="Clinical Impression associated with this Clinical Impression Ruled Out.")                
-#     item_id = fields.Many2one(
-#         comodel_name="hc.vs.condition.code", 
-#         string="Item", 
-#         required="True", 
-#         help="Specific text of code for diagnosis.")                
-#     reason = fields.Text(
-#         string="Reason", 
-#         help="Grounds for elimination.")                
+                hc_res_clinical_impression.item_name = hc_res_clinical_impression.item_observation_id.name                
 
 class ClinicalImpressionIdentifier(models.Model):    
     _name = "hc.clinical.impression.identifier"    

@@ -1,0 +1,14 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_hc_device_request_hc_res_device_request_user,hc.device.request.hc.res.device.request.user,model_hc_res_device_request,hc_base.group_hc_base_user,1,0,0,0
+access_hc_device_request_hc_device_request_requester_user,hc.device.request.hc.device.request.requester.user,model_hc_device_request_requester,hc_base.group_hc_base_user,1,0,0,0
+access_hc_device_request_hc_device_request_identifier_user,hc.device.request.hc.device.request.identifier.user,model_hc_device_request_identifier,hc_base.group_hc_base_user,1,0,0,0
+access_hc_device_request_hc_device_request_definition_user,hc.device.request.hc.device.request.definition.user,model_hc_device_request_definition,hc_base.group_hc_base_user,1,0,0,0
+access_hc_device_request_hc_device_request_based_on_user,hc.device.request.hc.device.request.based.on.user,model_hc_device_request_based_on,hc_base.group_hc_base_user,1,0,0,0
+access_hc_device_request_hc_device_request_prior_request_user,hc.device.request.hc.device.request.prior.request.user,model_hc_device_request_prior_request,hc_base.group_hc_base_user,1,0,0,0
+access_hc_device_request_hc_device_request_group_identifier_user,hc.device.request.hc.device.request.group.identifier.user,model_hc_device_request_group_identifier,hc_base.group_hc_base_user,1,0,0,0
+access_hc_device_request_hc_device_request_occurrence_timing_user,hc.device.request.hc.device.request.occurrence.timing.user,model_hc_device_request_occurrence_timing,hc_base.group_hc_base_user,1,0,0,0
+access_hc_device_request_hc_device_request_reason_reference_user,hc.device.request.hc.device.request.reason.reference.user,model_hc_device_request_reason_reference,hc_base.group_hc_base_user,1,0,0,0
+access_hc_device_request_hc_device_request_supporting_info_user,hc.device.request.hc.device.request.supporting.info.user,model_hc_device_request_supporting_info,hc_base.group_hc_base_user,1,0,0,0
+access_hc_device_request_hc_device_request_note_user,hc.device.request.hc.device.request.note.user,model_hc_device_request_note,hc_base.group_hc_base_user,1,0,0,0
+access_hc_device_request_hc_device_request_relevant_history_user,hc.device.request.hc.device.request.relevant.history.user,model_hc_device_request_relevant_history,hc_base.group_hc_base_user,1,0,0,0
+access_hc_device_request_hc_vs_device_kind_manager,hc.device.request.hc.vs.device.kind.manager,model_hc_vs_device_kind,hc_base.group_hc_base_manager,1,1,1,1
