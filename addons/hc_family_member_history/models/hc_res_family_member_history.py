@@ -13,6 +13,10 @@ class FamilyMemberHistory(models.Model):
     #     required="True",
     #     ondelete="restrict",
     #     help="Person who is this Family Member.")
+    record_name = fields.Char(
+        string="Record Name", 
+        required="True", 
+        help="Human-readable label for this family member history definition. Patient Name + Family Member Name + Update Date.")
     identifier_ids = fields.One2many(
         comodel_name="hc.family.member.history.identifier", 
         inverse_name="family_member_history_id", 
@@ -28,7 +32,7 @@ class FamilyMemberHistory(models.Model):
         string="Definition", 
         compute="_compute_definition_name", 
         store="True", 
-        help="Instantiates protocol or definitio.")
+        help="Instantiates protocol or definition.")
     definition_plan_definition_id = fields.Many2one(
         comodel_name="hc.res.plan.definition", 
         string="Definition Plan Definition", 

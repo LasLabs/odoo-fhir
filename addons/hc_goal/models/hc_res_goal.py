@@ -41,7 +41,7 @@ class Goal(models.Model):
             ("low", "Low")], 
         help="Identifies the mutually agreed level of importance associated with reaching/sustaining the goal.")
     description_id = fields.Many2one(
-        comodel_name="hc.vs.goal.description", 
+        comodel_name="hc.vs.clinical.finding", 
         string="Description", 
         required="True", 
         help="Code or text describing goal.")
@@ -86,39 +86,7 @@ class Goal(models.Model):
     start_code_id = fields.Many2one(
         comodel_name="hc.vs.goal.start.event", 
         string="Start Code", 
-        help="Code of when goal pursuit begins.")                
-    target_type = fields.Selection(
-        string="Target Type", 
-        selection=[
-            ("date", "Date"), 
-            ("duration", "Duration")], 
-        help="Type of reach goal on or before.")                
-    target_name = fields.Char(
-        string="Target", 
-        compute="_compute_target_name", 
-        store="True", 
-        help="Reach goal on or before.")                
-    target_date = fields.Date(
-        string="Target Date", 
-        help="Reach goal on or before.")                
-    target_duration = fields.Float(
-        string="Target Duration", 
-        help="Duration reach goal on or before.")
-    target_duration_uom_id = fields.Many2one(
-        comodel_name="hc.vs.time.uom", 
-        string="Target Duration UOM", 
-        help="Target Duration unit of measure." )            
-    # target_duration_uom = fields.Selection(
-    #     string="Target Duration UOM", 
-    #     selection=[
-    #         ("s", "S"), 
-    #         ("min", "Min"), 
-    #         ("h", "H"), 
-    #         ("d", "D"), 
-    #         ("wk", "Wk"), 
-    #         ("mo", "Mo"), 
-    #         ("a", "A")], 
-    #     help="Reach goal on or before unit of measure.")                                 
+        help="Code of when goal pursuit begins.")                                              
     status_date = fields.Date(
         string="Status Date", 
         help="When goal status took effect.")                
@@ -160,40 +128,106 @@ class Goal(models.Model):
         comodel_name="hc.goal.note", 
         inverse_name="goal_id", 
         string="Notes", 
-        help="Comments about the goal.")                
-    outcome_ids = fields.One2many(
-        comodel_name="hc.goal.outcome", 
+        help="Comments about the goal.")                                               
+    outcome_code_ids = fields.Many2many(
+        comodel_name="hc.vs.clinical.finding", 
+        relation="goal_outcome_code_rel", 
+        string="Categories", 
+        help="What result was achieved regarding the goal?")
+    outcome_reference_ids = fields.One2many(
+        comodel_name="hc.goal.outcome.reference", 
         inverse_name="goal_id", 
-        string="Outcomes", 
-        help="What was end result of goal?")                
+        string="Outcome References", 
+        help="Observation that resulted from goal.")
+    target_ids = fields.One2many(
+        comodel_name="hc.goal.target", 
+        inverse_name="goal_id", 
+        string="Targets", 
+        help="Target outcome for the goal.")
 
-class GoalOutcome(models.Model):    
-    _name = "hc.goal.outcome"    
-    _description = "Goal Outcome"        
+class GoalTarget(models.Model): 
+    _name = "hc.goal.target"    
+    _description = "Goal Target"
 
     goal_id = fields.Many2one(
         comodel_name="hc.res.goal", 
         string="Goal", 
-        help="Goal associated with this Goal Outcome.")                
-    result_type = fields.Selection(
-        string="Result Type", 
+        help="Goal associated with this target.")
+    measure_id = fields.Many2one(
+        comodel_name="hc.vs.observation.code", 
+        string="Measure", 
+        help="The parameter whose value is being tracked.")
+    detail_type = fields.Selection(
+        string="Detail Type", 
         selection=[
-            ("code", "Code"), 
-            ("observation", "Observation")], 
-        help="Type of reach goal on or before.")                
-    result_name = fields.Char(
-        string="Result", 
-        compute="_compute_result_name", 
+            ("quantity", "Quantity"), 
+            ("range", "Range"), 
+            ("codeable_concept", "Codeable Concept")], 
+        help="Type of the target value to be achieved.")
+    detail_name = fields.Char(
+        string="Detail", 
+        compute="_compute_detail_name", 
         store="True", 
-        help="Code or observation that resulted from goal.")                
-    result_code_id = fields.Many2one(
-        comodel_name="hc.vs.goal.outcome.result", 
-        string="Result Code", 
-        help="Code that resulted from goal.")                
-    result_observation_id = fields.Many2one(
-        comodel_name="hc.res.observation", 
-        string="Result Observation", 
-        help="Observation that resulted from goal.")                
+        help="The target value to be achieved.")
+    detail_quantity = fields.Float(
+        string="Detail Quantity", 
+        help="The target value to be achieved.")
+    detail_quantity_uom_id = fields.Many2one(
+        comodel_name="product.uom", 
+        string="Detail Start Date UOM", 
+        help="Detail Quantity unit of measure.")
+    detail_start_date = fields.Datetime(
+        string="Detail Start Date", 
+        help="Start of the target value to be achieved.")
+    detail_end_date = fields.Datetime(
+        string="Detail End Date", 
+        help="End of the target value to be achieved.")
+    detail_code_id = fields.Many2one(
+        comodel_name="hc.vs.goal.target.detail", 
+        string="Detail Code", 
+        help="Code of the target value to be achieved.")
+    due_type = fields.Selection(
+        string="Due Type", 
+        selection=[
+            ("date", "Date"), 
+            ("duration", "Duration")], 
+            help="Type of reach goal on or before.")
+    due_name = fields.Char(
+        string="Due", 
+        compute="_compute_due_name", 
+        store="True", 
+        help="Reach goal on or before.")
+    due_date = fields.Date(
+        string="Due Date", 
+        help="Reach goal on or before.")
+    due_duration = fields.Float(
+        string="Due Duration", 
+        help="Duration reach goal on or before.")
+    due_duration_uom_id = fields.Many2one(
+        comodel_name="hc.vs.time.uom", 
+        string="Due Duration UOM", 
+        help="Due Duration unit of measure.")
+    # due_duration_uom = fields.Selection(
+    #     string="Due Duration UOM", 
+    #     selection=[
+    #         ("s", "S"), 
+    #         ("min", "Min"), 
+    #         ("h", "H"), 
+    #         ("d", "D"), 
+    #         ("wk", "Wk"), 
+    #         ("mo", "Mo"), 
+    #         ("a", "A")], 
+    #     help="Reach goal on or before unit of measure.")   
+
+class GoalIdentifier(models.Model):    
+    _name = "hc.goal.identifier"    
+    _description = "Goal Identifier"        
+    _inherit = ["hc.basic.association", "hc.identifier"]
+
+    goal_id = fields.Many2one(
+        comodel_name="hc.res.goal", 
+        string="Goal", 
+        help="Goal associated with this Goal Identifier.")  
 
 class GoalAddresses(models.Model):    
     _name = "hc.goal.addresses"    
@@ -210,7 +244,7 @@ class GoalAddresses(models.Model):
             ("condition", "Condition"), 
             ("observation", "Observation"),
             ("medication_statement", "Medication Statement"), 
-            ("nutrition_request", "Nutrition Request"),
+            ("nutrition_order", "Nutrition Order"),
             ("procedure_request", "Procedure Request"), 
             ("risk_assessment", "Risk Assessment")],
         help="Type of issues addressed by this goal.")                
@@ -231,10 +265,10 @@ class GoalAddresses(models.Model):
         comodel_name="hc.res.medication.statement", 
         string="Addresses Medication Statements", 
         help="Medication Statement issues addressed by this goal.")                
-    addresses_nutrition_request_ids = fields.Many2one(
-        comodel_name="hc.res.nutrition.request", 
-        string="Addresses Nutrition Requests", 
-        help="Nutrition Request issues addressed by this goal.")                
+    addresses_nutrition_order_id = fields.Many2one(
+        comodel_name="hc.res.nutrition.order", 
+        string="Addresses Nutrition Order", 
+        help="Nutrition Order issues addressed by this goal.")               
     addresses_procedure_request_ids = fields.Many2one(
         comodel_name="hc.res.procedure.request", 
         string="Addresses Procedure Requests", 
@@ -242,17 +276,7 @@ class GoalAddresses(models.Model):
     addresses_risk_assessment_ids = fields.Many2one(
         comodel_name="hc.res.risk.assessment", 
         string="Addresses Risk Assessments", 
-        help="Risk Assessment issues addressed by this goal.")                            
-
-class GoalIdentifier(models.Model):    
-    _name = "hc.goal.identifier"    
-    _description = "Goal Identifier"        
-    _inherit = ["hc.basic.association", "hc.identifier"]
-
-    goal_id = fields.Many2one(
-        comodel_name="hc.res.goal", 
-        string="Goal", 
-        help="Goal associated with this Goal Identifier.")                
+        help="Risk Assessment issues addressed by this goal.")                                          
 
 class GoalNote(models.Model):    
     _name = "hc.goal.note"    
@@ -264,37 +288,19 @@ class GoalNote(models.Model):
         string="Goal", 
         help="Goal associated with this Goal Note.")                               
 
-class GoalDescription(models.Model):    
-    _name = "hc.vs.goal.description"    
-    _description = "Goal Description"        
-    _inherit = ["hc.value.set.contains"]
+class GoalOutcomeReference(models.Model):
+    _name = "hc.goal.outcome.reference"
+    _description = "Goal Outcome Reference"
+    _inherit = ["hc.basic.association"]
 
-    name = fields.Char(
-        string="Name", 
-        help="Name of this goal description.")
-    code = fields.Char(
-        string="Code", 
-        help="Code of this goal description.")
-    contains_id = fields.Many2one(
-        comodel_name="hc.vs.goal.description", 
-        string="Parent", 
-        help="Parent goal description.")
-
-class GoalOutcomeResult(models.Model):    
-    _name = "hc.vs.goal.outcome.result"    
-    _description = "Goal Outcome Result"        
-    _inherit = ["hc.value.set.contains"]
-
-    name = fields.Char(
-        string="Name", 
-        help="Name of this goal outcome result.")
-    code = fields.Char(
-        string="Code", 
-        help="Code of this goal outcome result.")
-    contains_id = fields.Many2one(
-        comodel_name="hc.vs.goal.outcome.result", 
-        string="Parent", 
-        help="Parent goal outcome result.")
+    goal_id = fields.Many2one(
+        comodel_name="hc.res.goal", 
+        string="Goal", 
+        help="Goal associated with this Goal Outcome Reference.")                  
+    outcome_reference_id = fields.Many2one(
+        comodel_name="hc.res.observation", 
+        string="Outcome Reference", 
+        help="Observation associated with this Goal Outcome Reference.")
 
 class GoalStatusReason(models.Model):    
     _name = "hc.vs.goal.status.reason"    
@@ -311,6 +317,22 @@ class GoalStatusReason(models.Model):
         comodel_name="hc.vs.goal.status.reason", 
         string="Parent", 
         help="Parent goal status reason.")
+
+class GoalTargetDetail(models.Model):
+    _name = "hc.vs.goal.target.detail"
+    _description = "Goal Target Detail"
+    _inherit = ["hc.value.set.contains"]
+
+    name = fields.Char(
+        tring="Name", 
+        help="Name of this goal target detail.")                  
+    code = fields.Char(
+        string="Code", 
+        help="Code of this goal target detail.")                  
+    contains_id = fields.Many2one(
+        comodel_name="hc.vs.goal.target.detail", 
+        string="Parent", 
+        help="Parent goal target detail.")                  
 
 # External reference
 
