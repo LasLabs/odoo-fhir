@@ -361,7 +361,7 @@ sudo mv /home/odoo/Downloads/hc.human.name.suffix.csv /odoo/odoo-fhir/addons/hc_
 ```
 ### Odoo Coding Guidelines
 
-* [Oodoo Guidelines](https://www.odoo.com/documentation/9.0/reference/guidelines.html)
+* [Odoo Guidelines](https://www.odoo.com/documentation/9.0/reference/guidelines.html)
 * [OCA Guidelines](https://github.com/OCA/maintainer-tools/blob/master/CONTRIBUTING.mdo)
 
 ## Views

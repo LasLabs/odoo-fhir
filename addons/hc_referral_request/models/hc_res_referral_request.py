@@ -293,22 +293,6 @@ class MedicationRequestBasedOn(models.Model):
         string="Based On Referral Request", 
         help="Referral Request fulfills.")
 
-class Procedure(models.Model):  
-    _inherit = "hc.res.procedure"
-    
-    request_type = fields.Selection(
-        string="Procedure Request Type", 
-        selection=[
-            ("care_plan", "Care Plan"), 
-            ("diagnostic_request", "Diagnostic Request"),
-            ("procedure_request", "Procedure Request"),
-            ("referral_request", "Referral Request")], 
-        help="Type of request for this procedure.")
-    request_referral_request_id = fields.Many2one(
-        comodel_name="hc.res.referral.request", 
-        string="Request Referral Request", 
-        help="Referral Request for this procedure.")
-
 class AppointmentIncomingReferral(models.Model):    
     _inherit = "hc.appointment.incoming.referral"  
                   

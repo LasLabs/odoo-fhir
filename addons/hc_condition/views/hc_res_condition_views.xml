@@ -58,7 +58,7 @@
             <form string="Condition">                                                       
                 <sheet>                                                                                            
                     <h1>
-                        <field name="name"/>                                                                               
+                        <field name="name" default_focus="1" placeholder="Event Name (e.g., Subject Name + Code + Onset Name)"/>
                     </h1>                                           
                     <div name="buttons" class="oe_right oe_button_box"></div>                                               
                     <group>                                             

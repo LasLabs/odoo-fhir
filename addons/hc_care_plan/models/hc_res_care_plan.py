@@ -801,19 +801,3 @@ class MedicationStatementBasedOn(models.Model):
         string="Based On Care Plan", 
         help="Care Plan that is fulfilled in whole or in part by this event.")
 
-class Procedure(models.Model):  
-    _inherit = "hc.res.procedure"
-
-    request_type = fields.Selection(
-        string="Procedure Request Type", 
-        selection=[
-            ("care_plan", "Care Plan"), 
-            ("diagnostic_request", "Diagnostic Request"),
-            ("procedure_request", "Procedure Request"),
-            ("referral_request", "Referral Request")], 
-        help="Type of request for this procedure.")
-    request_care_plan_id = fields.Many2one(
-        comodel_name="hc.res.care.plan", 
-        string="Request Care Plan", 
-        help="Care Plan request for this procedure.")
-
