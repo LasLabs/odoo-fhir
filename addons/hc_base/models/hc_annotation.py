@@ -6,10 +6,10 @@ class Annotation(models.AbstractModel):
     _name = "hc.annotation"
     _description = "Annotation"
  
-    # name = fields.Char(
-    # 	string="Name",
-    #     required="True",
-    # 	help="The name of the annotation.")
+    name = fields.Char(
+        string="Name",
+        required="True",
+        help="The name of the annotation.")
     text = fields.Text(
         string="Text", 
         required="True", 

@@ -848,3 +848,20 @@ class WorkflowTask(models.Model):
         comodel_name="hc.vs.workflow.task",
         string="Parent",
         help="Parent workflow task.")
+
+# Standard Data Set
+
+class EntityNameUse(models.Model):
+    _name = "hc.vs.entity.name.use"
+    _description = "Entity Name Use"
+
+    name = fields.Char(
+        string="Name", 
+        help="Name of this entity name use.")                 
+    code = fields.Char(
+        string="Code", 
+        help="Code of this entity name use.")                 
+    contains_id = fields.Many2one(
+        comodel_name="hc.vs.entity.name.use", 
+        string="Parent", 
+        help="Parent entity name use.")                    

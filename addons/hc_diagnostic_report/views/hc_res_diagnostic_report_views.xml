@@ -19,5 +19,29 @@
                   groups="hc_base.group_hc_base_manager" 
                   sequence="20"/>
 
+        <record id="hc_res_procedure_view_form_report_inherit" model="ir.ui.view">
+            <field name="name">Procedure Form Inherit</field>
+            <field name="model">hc.res.procedure</field>
+            <field name="inherit_id" ref="hc_procedure.hc_res_procedure_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='report_ids']" position="after">
+                    <tree>                      
+                        <field name="report_id"/>                 
+                    </tree>                     
+                    <form>                      
+                        <sheet>                              
+                            <h1>            
+                                <field name="report_id" placeholder="Diagnostic Report"/>        
+                            </h1>                    
+                            <group>             
+                                <group>
+                                </group>           
+                            </group>                
+                        </sheet>                    
+                    </form> 
+                </xpath>
+            </field>
+        </record>
+
     </data>
 </openerp>

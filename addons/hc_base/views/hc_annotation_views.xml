@@ -45,6 +45,9 @@
                                     <group>
                                         <field name="author_type"/>
                                         <field name="author_string" attrs="{'invisible': [('author_type','!=','string')]}"/>
+                                        <!-- <field name="author_practitioner_id" attrs="{'invisible': [('author_type','!=','practitioner')]}"/> -->
+                                        <!-- <field name="author_patient_id" attrs="{'invisible': [('author_type','!=','patient')]}"/> -->
+                                        <!-- <field name="author_related_person_id" attrs="{'invisible': [('author_type','!=','related_person')]}"/> -->
                                         <field name="recorded_date"/>
                                     </group>
                                     <group>       

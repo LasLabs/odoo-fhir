@@ -131,11 +131,12 @@ class Procedure(models.Model):
         comodel_name="hc.vs.condition.code", 
         string="Complications", 
         help="Complication following the procedure.")                  
-    complication_detail_ids = fields.One2many(
-        comodel_name="hc.procedure.complication.detail", 
-        inverse_name="procedure_id", 
-        string="Complication Details", 
-        help="A condition that is a result of the procedure.")
+    # Note: Causes UnicodeWarning: Unicode unequal comparison failed
+    # complication_detail_ids = fields.One2many(
+    #     comodel_name="hc.procedure.complication.detail", 
+    #     inverse_name="procedure_id", 
+    #     string="Complication Details", 
+    #     help="A condition that is a result of the procedure.")
     follow_up_ids = fields.Many2many(
         comodel_name="hc.vs.procedure.follow.up", 
         string="Follow Ups", 
@@ -177,7 +178,7 @@ class Procedure(models.Model):
     def _compute_performed_date_name(self):         
         for hc_res_procedure in self:       
             if hc_res_procedure.performed_date_type == 'date_time': 
-                hc_res_procedure.performed_date_name = hc_res_procedure.performed_date_date_time_id.name
+                hc_res_procedure.performed_date_name = str(hc_res_procedure.performed_datetime)
             elif hc_res_procedure.performed_date_type == 'period':  
                 hc_res_procedure.performed_date_name = 'Between' + str(hc_res_procedure.performed_start_date) + ' and ' + str(hc_res_procedure.performed_end_date)
             
@@ -280,36 +281,110 @@ class ProcedureDefinition(models.Model):
     _description = "Procedure Definition"
     _inherit = ["hc.basic.association"]
 
-    procedure_id = fields.Many2one(comodel_name="hc.res.procedure", string="Procedure", help="Procedure associated with this Procedure Procedure Definition.")                  
-    subject_type = fields.Selection(string="Subject Type", selection=[("plan_definition", "Plan Definition"), ("activity_definition", "Activity Definition"), ("healthcare_service", "Healthcare Service")], help="Type of subject the procedure was performed on.")                    
-    definition_name = fields.Char(string="Definition", compute="_compute_definition_name", store="True", help="Instantiates protocol or definition.")                   
-    definition_plan_definition_id = fields.Many2one(comodel_name="hc.res.plan.definition", string="Definition Plan Definition", help="Plan Definition antiates protocol or definition.")                    
-    definition_activity_definition_id = fields.Many2one(comodel_name="hc.res.activity.definition", string="Definition Activity Definition", help="Activity Definition antiates protocol or definition.")                    
-    definition_healthcare_service_id = fields.Many2one(comodel_name="hc.res.healthcare.service", string="Definition Healthcare Service", help="Healthcare Service antiates protocol or definition.")                    
+    procedure_id = fields.Many2one(
+        comodel_name="hc.res.procedure", 
+        string="Procedure", 
+        help="Procedure associated with this Procedure Procedure Definition.")                  
+    definition_type = fields.Selection(
+        string="Definition Type", 
+        selection=[
+            ("plan_definition", "Plan Definition"), 
+            ("activity_definition", "Activity Definition"), 
+            ("healthcare_service", "Healthcare Service")], 
+        help="Type of instantiates protocol or definition.")
+    subject_type = fields.Selection(
+        string="Subject Type", 
+        selection=[
+            ("plan_definition", "Plan Definition"), 
+            ("activity_definition", "Activity Definition"), 
+            ("healthcare_service", "Healthcare Service")], 
+        help="Type of subject the procedure was performed on.")                    
+    definition_name = fields.Char(
+        string="Definition", 
+        compute="_compute_definition_name", 
+        store="True", 
+        help="Instantiates protocol or definition.")                   
+    definition_plan_definition_id = fields.Many2one(
+        comodel_name="hc.res.plan.definition", 
+        string="Definition Plan Definition", 
+        help="Plan Definition instantiates protocol or definition.")                    
+    definition_activity_definition_id = fields.Many2one(
+        comodel_name="hc.res.activity.definition", 
+        string="Definition Activity Definition", 
+        help="Activity Definition instantiates protocol or definition.")                    
+    definition_healthcare_service_id = fields.Many2one(
+        comodel_name="hc.res.healthcare.service", 
+        string="Definition Healthcare Service", 
+        help="Healthcare Service instantiates protocol or definition.")                    
 
 class ProcedureBasedOn(models.Model): 
     _name = "hc.procedure.based.on"
     _description = "Procedure Based On"
     _inherit = ["hc.basic.association"]
 
-    procedure_id = fields.Many2one(comodel_name="hc.res.procedure", string="Procedure", help="Procedure associated with this Procedure Procedure Based On.")                    
-    subject_type = fields.Selection(string="Subject Type", selection=[("care_plan", "Care Plan"), ("procedure_request", "Procedure Request"), ("referral_request", "Referral Request")], help="Type of subject the procedure was performed on.")                    
-    based_on_name = fields.Char(string="Based On", compute="_compute_based_on_name", store="True", help="A request for this procedure.")                    
-    based_on_care_plan_id = fields.Many2one(comodel_name="hc.res.care.plan", string="Based On Care Plan", help="Care Plan for this procedure.")                   
-    based_on_procedure_request_id = fields.Many2one(comodel_name="hc.res.procedure.request", string="Based On Procedure Request", help="Procedure Request for this procedure.")                   
-    based_on_referral_request_id = fields.Many2one(comodel_name="hc.res.referral.request", string="Based On Referral Request", help="Referral Request for this procedure.")                   
+    procedure_id = fields.Many2one(
+        comodel_name="hc.res.procedure", 
+        string="Procedure", 
+        help="Procedure associated with this Procedure Procedure Based On.")                    
+    based_on_type = fields.Selection(
+        string="Based On Type", 
+        selection=[
+            # ("care_plan", "Care Plan"), 
+            ("procedure_request", "Procedure Request"), 
+            # ("referral_request", "Referral Request")
+            ], 
+        help="Type of request for this procedure.")                    
+    based_on_name = fields.Char(
+        string="Based On", 
+        compute="_compute_based_on_name", 
+        store="True", 
+        help="A request for this procedure.")                    
+    # based_on_care_plan_id = fields.Many2one(
+    #     comodel_name="hc.res.care.plan", 
+    #     string="Based On Care Plan", 
+    #     help="Care Plan for this procedure.")                   
+    based_on_procedure_request_id = fields.Many2one(
+        comodel_name="hc.res.procedure.request", 
+        string="Based On Procedure Request", 
+        help="Procedure Request for this procedure.")                   
+    # based_on_referral_request_id = fields.Many2one(
+    #     comodel_name="hc.res.referral.request", 
+    #     string="Based On Referral Request", 
+    #     help="Referral Request for this procedure.")                   
 
 class ProcedurePartOf(models.Model):
     _name = "hc.procedure.part.of"
     _description = "Procedure Part Of"
     _inherit = ["hc.basic.association"]
 
-    procedure_id = fields.Many2one(comodel_name="hc.res.procedure", string="Procedure", help="Procedure associated with this Procedure Procedure Part Of.")                 
-    subject_type = fields.Selection(string="Subject Type", selection=[("procedure", "Procedure"), ("observation", "Observation"), ("medication_administration", "Medication Administration")], help="Type of subject the procedure was performed on.")                  
-    part_of_name = fields.Char(string="Part Of", compute="_compute_part_of_name", store="True", help="Part of referenced event.")                   
-    part_of_procedure_id = fields.Many2one(comodel_name="hc.res.procedure", string="Part Of Procedure", help="Procedure of referenced event.")                  
-    part_of_observation_id = fields.Many2one(comodel_name="hc.res.observation", string="Part Of Observation", help="Observation of referenced event.")                  
-    part_of_medication_administration_id = fields.Many2one(comodel_name="hc.res.medication.administration", string="Part Of Medication Administration", help="Medication Administration of referenced event.")                  
+    procedure_id = fields.Many2one(
+        comodel_name="hc.res.procedure", 
+        string="Procedure", 
+        help="Procedure associated with this Procedure Procedure Part Of.")                 
+    part_of_type = fields.Selection(
+        string="Part Of Type", 
+        selection=[
+            ("procedure", "Procedure"), 
+            ("observation", "Observation"), 
+            ("medication_administration", "Medication Administration")], 
+        help="Type of part of referenced event.")
+    part_of_name = fields.Char(
+        string="Part Of", 
+        compute="_compute_part_of_name", 
+        store="True", 
+        help="Part of referenced event.")                   
+    part_of_procedure_id = fields.Many2one(
+        comodel_name="hc.res.procedure", 
+        string="Part Of Procedure", 
+        help="Procedure of referenced event.")                  
+    part_of_observation_id = fields.Many2one(
+        comodel_name="hc.res.observation", 
+        string="Part Of Observation", 
+        help="Observation of referenced event.")                  
+    part_of_medication_administration_id = fields.Many2one(
+        comodel_name="hc.res.medication.administration", 
+        string="Part Of Medication Administration", 
+        help="Medication Administration of referenced event.")                  
 
 class ProcedureReasonReference(models.Model):   
     _name = "hc.procedure.reason.reference" 
@@ -339,19 +414,20 @@ class ProcedureReport(models.Model):
     #     string="Report", 
     #     help="Diagnostic Report associated with this Procedure Report.")
                  
-class ProcedureComplicationDetail(models.Model):
-    _name = "hc.procedure.complication.detail"
-    _description = "Procedure Complication Detail"
-    _inherit = ["hc.basic.association"]
+# Note: Causes UnicodeWarning: Unicode unequal comparison failed
+# class ProcedureComplicationDetail(models.Model):
+#     _name = "hc.procedure.complication.detail"
+#     _description = "Procedure Complication Detail"
+#     _inherit = ["hc.basic.association"]
 
-    procedure_id = fields.Many2one(
-        comodel_name="hc.res.procedure", 
-        string="Procedure", 
-        help="Procedure associated with this Procedure Procedure Complication Detail.")                 
-    complication_detail_id = fields.Many2one(
-        comodel_name="hc.res.condition", 
-        string="Complication Detail", 
-        help="Condition associated with this Procedure Complication Detail.")                 
+#     procedure_id = fields.Many2one(
+#         comodel_name="hc.res.procedure",
+#         string="Procedure",
+#         help="Procedure associated with this Procedure Complication Detail.")
+#     complication_detail_id = fields.Many2one(
+#         comodel_name="hc.res.condition", 
+#         string="Complication Detail", 
+#         help="Condition associated with this Procedure Complication Detail.")                 
                                                     
 class ProcedureNote(models.Model): 
     _name = "hc.procedure.note"    
@@ -500,18 +576,7 @@ class EncounterIndication(models.Model):
 
 class AppointmentIndication(models.Model):  
     _inherit = "hc.appointment.indication" 
-                                   
-    # indication_type = fields.Selection(
-    #     string="Indication Type", 
-    #     selection=[
-    #         ("condition", "Condition"), 
-    #         ("procedure", "Procedure")], 
-    #     help="Type of reason the appointment is to take place (resource).")                   
-    # indication_name = fields.Char(
-    #     string="Indication", 
-    #     compute="_compute_indication_name", 
-    #     store="True", 
-    #     help="Reason the appointment is to take place (resource).")                                     
+                                                                        
     indication_condition_id = fields.Many2one(
         comodel_name="hc.res.condition", 
         string="Indication Condition", 

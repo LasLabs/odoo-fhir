@@ -181,6 +181,17 @@
             <field name="country_id" ref="base.us"/>
         </record>
 
+        <record id="base.oasis" model="res.partner">  
+            <field name="name">OASIS (Organization for the Advancement of Structured Information Standards)</field>
+            <field name="company_type">company</field>
+            <field name="website">www.oasis.org</field>
+            <field name="comment">OASIS is the Organization for the Advancement of Structured Information Standards, a not-for-profit, international consortium that drives the development, convergence and adoption of open standards for the global information society. (Ref: https://www.oasis-open.org/org/faq)       
+            </field>
+            <field name="notify_email">none</field>
+            <field name="category_id" eval="[(6, 0, [ref('hc_base.partner_source'), ref('hc_base.partner_organization')])]"/>
+            <field name="country_id" ref="base.us"/>
+        </record>
+    
     </data>
 </openerp>
 
