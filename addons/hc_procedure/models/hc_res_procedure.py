@@ -488,81 +488,144 @@ class ProcedureNotPerformedReason(models.Model):
     _description = "Procedure Not Performed Reason"     
     _inherit = ["hc.value.set.contains"]    
 
-    name = fields.Char(string="Name", help="Name of this procedure not performed reason.")
-    code = fields.Char(string="Code", help="Code of this procedure not performed reason.")
-    contains_id = fields.Many2one(comodel_name="hc.vs.procedure.not.performed.reason", string="Parent", help="Parent procedure not performed reason.")
+    name = fields.Char(
+        string="Name", 
+        help="Name of this procedure not performed reason.")
+    code = fields.Char(
+        string="Code", 
+        help="Code of this procedure not performed reason.")
+    contains_id = fields.Many2one(
+        comodel_name="hc.vs.procedure.not.performed.reason", 
+        string="Parent", 
+        help="Parent procedure not performed reason.")
 
 class ProcedureNotPerformed(models.Model):  
     _name = "hc.vs.procedure.not.performed" 
     _description = "Procedure Not Performed"        
     _inherit = ["hc.value.set.contains"]      
 
-    name = fields.Char(string="Name", help="Name of this procedure not performed.")
-    code = fields.Char(string="Code", help="Code of this procedure not performed.")
-    contains_id = fields.Many2one(comodel_name="hc.vs.procedure.not.performed", string="Parent", help="Parent procedure not performed.")
+    name = fields.Char(
+        string="Name", 
+        help="Name of this procedure not performed.")
+    code = fields.Char(
+        string="Code", 
+        help="Code of this procedure not performed.")
+    contains_id = fields.Many2one(
+        comodel_name="hc.vs.procedure.not.performed", 
+        string="Parent", 
+        help="Parent procedure not performed.")
 
 class ProcedureCategory(models.Model):  
     _name = "hc.vs.procedure.category"  
     _description = "Procedure Category"     
     _inherit = ["hc.value.set.contains"]     
 
-    name = fields.Char(string="Name", help="Name of this procedure category.")
-    code = fields.Char(string="Code", help="Code of this procedure category.")
-    contains_id = fields.Many2one(comodel_name="hc.vs.procedure.category", string="Parent", help="Parent procedure category.")
+    name = fields.Char(
+        string="Name", 
+        help="Name of this procedure category.")
+    code = fields.Char(
+        string="Code", 
+        help="Code of this procedure category.")
+    contains_id = fields.Many2one(
+        comodel_name="hc.vs.procedure.category", 
+        string="Parent", 
+        help="Parent procedure category.")
 
 class ProcedureOutcome(models.Model):   
     _name = "hc.vs.procedure.outcome"   
     _description = "Procedure Outcome"      
     _inherit = ["hc.value.set.contains"]    
 
-    name = fields.Char(string="Name", help="Name of this procedure outcome.")
-    code = fields.Char(string="Code", help="Code of this procedure outcome.")
-    contains_id = fields.Many2one(comodel_name="hc.vs.procedure.outcome", string="Parent", help="Parent procedure outcome.")
+    name = fields.Char(
+        string="Name", 
+        help="Name of this procedure outcome.")
+    code = fields.Char(
+        string="Code", 
+        help="Code of this procedure outcome.")
+    contains_id = fields.Many2one(
+        comodel_name="hc.vs.procedure.outcome", 
+        string="Parent", 
+        help="Parent procedure outcome.")
 
 class ConditionCode(models.Model):  
     _name = "hc.vs.condition.code"  
     _description = "Condition Code"     
     _inherit = ["hc.value.set.contains"]    
 
-    name = fields.Char(string="Name", help="Name of this condition code.")
-    code = fields.Char(string="Code", help="Code of this condition code.")
-    contains_id = fields.Many2one(comodel_name="hc.vs.condition.code", string="Parent", help="Parent condition code.")
+    name = fields.Char(
+        string="Name", 
+        help="Name of this condition code.")
+    code = fields.Char(
+        string="Code", 
+        help="Code of this condition code.")
+    contains_id = fields.Many2one(
+        comodel_name="hc.vs.condition.code", 
+        string="Parent", 
+        help="Parent condition code.")
 
 class ProcedureFollowUp(models.Model):  
     _name = "hc.vs.procedure.follow.up" 
     _description = "Procedure Follow Up"        
     _inherit = ["hc.value.set.contains"]    
 
-    name = fields.Char(string="Name", help="Name of this procedure follow up.")
-    code = fields.Char(string="Code", help="Code of this procedure follow up.")
-    contains_id = fields.Many2one(comodel_name="hc.vs.procedure.follow.up", string="Parent", help="Parent procedure follow up.")
+    name = fields.Char(
+        string="Name", 
+        help="Name of this procedure follow up.")
+    code = fields.Char(
+        string="Code", 
+        help="Code of this procedure follow up.")
+    contains_id = fields.Many2one(
+        comodel_name="hc.vs.procedure.follow.up", 
+        string="Parent", 
+        help="Parent procedure follow up.")
 
 class ProcedureUsedCode(models.Model):  
     _name = "hc.vs.procedure.used.code" 
     _description = "Procedure Used Code"        
     _inherit = ["hc.value.set.contains"]    
 
-    name = fields.Char(string="Name", help="Name of this procedure used code.")
-    code = fields.Char(string="Code", help="Code of this procedure used code.")
-    contains_id = fields.Many2one(comodel_name="hc.vs.procedure.used.code", string="Parent", help="Parent procedure used code.")
+    name = fields.Char(
+        string="Name", 
+        help="Name of this procedure used code.")
+    code = fields.Char(
+        string="Code", 
+        help="Code of this procedure used code.")
+    contains_id = fields.Many2one(
+        comodel_name="hc.vs.procedure.used.code", 
+        string="Parent", 
+        help="Parent procedure used code.")
 
 class PerformerRole(models.Model):  
     _name = "hc.vs.performer.role"  
     _description = "Performer Role"     
     _inherit = ["hc.value.set.contains"]    
 
-    name = fields.Char(string="Name", help="Name of this performer role.")
-    code = fields.Char(string="Code", help="Code of this performer role.")
-    contains_id = fields.Many2one(comodel_name="hc.vs.performer.role", string="Parent", help="Parent performer role.")
+    name = fields.Char(
+        string="Name", 
+        help="Name of this performer role.")
+    code = fields.Char(
+        string="Code", 
+        help="Code of this performer role.")
+    contains_id = fields.Many2one(
+        comodel_name="hc.vs.performer.role", 
+        string="Parent", 
+        help="Parent performer role.")
 
 class DeviceAction(models.Model):   
     _name = "hc.vs.device.action"   
     _description = "Device Action"      
     _inherit = ["hc.value.set.contains"]    
 
-    name = fields.Char(string="Name", help="Name of this device action.")
-    code = fields.Char(string="Code", help="Code of this device action.")
-    contains_id = fields.Many2one(comodel_name="hc.vs.device.action", string="Parent", help="Parent device action.")
+    name = fields.Char(
+        string="Name", 
+        help="Name of this device action.")
+    code = fields.Char(
+        string="Code", 
+        help="Code of this device action.")
+    contains_id = fields.Many2one(
+        comodel_name="hc.vs.device.action", 
+        string="Parent", 
+        help="Parent device action.")
 
 # External Reference
 

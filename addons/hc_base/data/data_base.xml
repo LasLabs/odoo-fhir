@@ -93,11 +93,11 @@
         </record>
 
         <!-- Entity Name Use -->
-        
+
         <record id="hc_base.name_use_l" model="hc.vs.entity.name.use">  
             <field name="code">L</field>
             <field name="name">Legal</field>
-            <field name="definition">"known as/conventional/the one you useknown as/conventional/the one you use"</field>
+            <field name="definition">"known as/conventional/the one you use"</field>
             <field name="source_id" ref="base.oasis"/>
             <field name="system">https://www.oasis-open.org/committees/ubl/lcsc/doc/qateam/Comment%20work%20from%20HL7/datatypes-its-xml.html</field>
         </record>   
@@ -129,7 +129,7 @@
         <record id="hc_base.name_use_abc" model="hc.vs.entity.name.use">    
             <field name="code">ABC</field>
             <field name="name">Alphabetic</field>
-            <field name="definition">"Alphabetic transcription of name (Japanese: romaji)Alphabetic transcription of name (Japanese: romaji)Alphabetic transcription of name (Japanese: romaji)"</field>
+            <field name="definition">"Alphabetic transcription of name (Japanese: romaji)"</field>
             <field name="source_id" ref="base.oasis"/>
             <field name="system">https://www.oasis-open.org/committees/ubl/lcsc/doc/qateam/Comment%20work%20from%20HL7/datatypes-its-xml.html</field>
         </record>   
@@ -137,7 +137,7 @@
         <record id="hc_base.name_use_syl" model="hc.vs.entity.name.use">    
             <field name="code">SYL</field>
             <field name="name">Syllabic</field>
-            <field name="definition">"Syllabic transcription of name (e.g., Japanese kana, Korean hangul)Syllabic transcription of name (e.g., Japanese kana, Korean hangul)Syllabic transcription of name (e.g., Japanese kana, Korean hangul)"</field>
+            <field name="definition">"Syllabic transcription of name (e.g., Japanese kana, Korean hangul)"</field>
             <field name="source_id" ref="base.oasis"/>
             <field name="system">https://www.oasis-open.org/committees/ubl/lcsc/doc/qateam/Comment%20work%20from%20HL7/datatypes-its-xml.html</field>
         </record>   
@@ -145,7 +145,7 @@
         <record id="hc_base.name_use_ide" model="hc.vs.entity.name.use">    
             <field name="code">IDE</field>
             <field name="name">Ideographic</field>
-            <field name="definition">"Ideographic representation of name (e.g., Japanese kanji, Chinese characters)Ideographic representation of name (e.g., Japanese kanji, Chinese characters)Ideographic representation of name (e.g., Japanese kanji, Chinese characters)"</field>
+            <field name="definition">"Ideographic representation of name (e.g., Japanese kanji, Chinese characters)"</field>
             <field name="source_id" ref="base.oasis"/>
             <field name="system">https://www.oasis-open.org/committees/ubl/lcsc/doc/qateam/Comment%20work%20from%20HL7/datatypes-its-xml.html</field>
         </record>   

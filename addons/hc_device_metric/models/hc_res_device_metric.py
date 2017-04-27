@@ -6,6 +6,10 @@ class DeviceMetric(models.Model):
     _name = "hc.res.device.metric"    
     _description = "Device Metric"            
 
+    name = fields.Char(
+        string="Name", 
+        required="True", 
+        help="Human-readable label for this device metric.")
     type_id = fields.Many2one(
         comodel_name="hc.vs.device.metric.type", 
         string="Type", 
@@ -16,7 +20,8 @@ class DeviceMetric(models.Model):
         string="Identifier", 
         required="True", 
         help="Unique identifier of this Device Metric.")                    
-    unit_id = fields.Many2one(comodel_name="hc.vs.device.metric.unit", 
+    unit_id = fields.Many2one(
+        comodel_name="hc.vs.device.metric.unit", 
         string="Unit", 
         help="Unit of metric.")                    
     source_device_id = fields.Many2one(

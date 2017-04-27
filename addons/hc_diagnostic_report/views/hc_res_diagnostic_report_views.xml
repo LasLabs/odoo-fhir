@@ -3,6 +3,8 @@
     
         <!-- Diagnostic Report Action and Menu -->  
   
+        
+
         <act_window id="hc_res_diagnostic_report_action"  
                     name="HC Diagnostic Reports"
                     res_model="hc.res.diagnostic.report"
@@ -19,16 +21,20 @@
                   groups="hc_base.group_hc_base_manager" 
                   sequence="20"/>
 
-        <record id="hc_res_procedure_view_form_report_inherit" model="ir.ui.view">
+        <record id="hc_res_procedure_view_form" model="ir.ui.view">
             <field name="name">Procedure Form Inherit</field>
             <field name="model">hc.res.procedure</field>
             <field name="inherit_id" ref="hc_procedure.hc_res_procedure_view_form"/>
             <field name="arch" type="xml">
-                <xpath expr="//field[@name='report_ids']" position="after">
+                <xpath expr="//field[@name='based_on_ids']//form//group//field[@name='based_on_type']" position="after">
+                    <field name="based_on_care_plan_id" class="oe_edit_only" attrs="{'invisible': [('based_on_type','!=','care_plan')]}"/>
+                    <field name="based_on_referral_request_id" class="oe_edit_only" attrs="{'invisible': [('based_on_type','!=','referral_request')]}"/>
+                </xpath>
+                <!-- <xpath expr="//field[@name='report_ids']" position="after">
                     <tree>                      
-                        <field name="report_id"/>                 
+                        <field name="report_id"/>
                     </tree>                     
-                    <form>                      
+                    <form>                     
                         <sheet>                              
                             <h1>            
                                 <field name="report_id" placeholder="Diagnostic Report"/>        
@@ -39,7 +45,7 @@
                             </group>                
                         </sheet>                    
                     </form> 
-                </xpath>
+                </xpath> -->
             </field>
         </record>
 

@@ -18,7 +18,7 @@
                   groups="hc_base.group_hc_base_manager" 
                   sequence="10"/>
         
-        <record id="hc_res_procedure_view_form_inherit" model="ir.ui.view">
+<!--         <record id="hc_res_procedure_view_form_inherit" model="ir.ui.view">
             <field name="name">Procedure Form Inherit</field>
             <field name="model">hc.res.procedure</field>
             <field name="inherit_id" ref="hc_procedure.hc_res_procedure_view_form"/>
@@ -28,7 +28,7 @@
                     <field name="based_on_referral_request_id" class="oe_edit_only" attrs="{'invisible': [('based_on_type','!=','referral_request')]}"/>
                 </xpath>
             </field>
-        </record>
+        </record> -->
     
     </data>
 </openerp>

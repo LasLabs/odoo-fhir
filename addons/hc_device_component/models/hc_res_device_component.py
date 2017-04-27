@@ -6,6 +6,10 @@ class DeviceComponent(models.Model):
     _name = "hc.res.device.component"    
     _description = "Device Component"        
 
+    name = fields.Char(
+        string="Name", 
+        required="True", 
+        help="Human-readable label for this device component.")
     type_id = fields.Many2one(
         comodel_name="hc.vs.device.component.type", 
         string="Type", 

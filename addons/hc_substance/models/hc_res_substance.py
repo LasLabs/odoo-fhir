@@ -6,6 +6,10 @@ class Substance(models.Model):
     _name = "hc.res.substance"    
     _description = "Substance"        
 
+    name = fields.Char(
+    	string="Event Name", 
+    	required="True", 
+    	help="Human-readable label for this substance.")
     identifier_ids = fields.One2many(
         comodel_name="hc.substance.identifier", 
         inverse_name="substance_id", 
@@ -58,8 +62,12 @@ class SubstanceInstance(models.Model):
         help="When no longer valid to use.")                
     quantity = fields.Float(
         string="Quantity", 
-        help="Amount of substance in the package.")                
-
+        help="Amount of substance in the package.")
+    quantity_uom_id = fields.Many2one(
+        comodel_name="product.uom", 
+        string="Quantity UOM", 
+        help="Quantity unit of measure.")
+                
 class SubstanceIngredient(models.Model):    
     _name = "hc.substance.ingredient"   
     _description = "Substance Ingredient"       

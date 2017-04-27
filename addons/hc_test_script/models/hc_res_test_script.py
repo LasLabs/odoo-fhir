@@ -220,10 +220,10 @@ class TestScriptMetadataCapability(models.Model):
     	string="Destination", 
     	help="Which server these requirements apply to.")                        
     link_ids = fields.One2many(
-    	comodel_name="hc.test.script.metadata.capability.link", 
-    	inverse_name="capability_id", 
-    	string="Links", 
-    	help="An indicator of the intended usage for the supplemental data element.")                        
+        comodel_name="hc.test.script.metadata.capability.link", 
+        inverse_name="capability_id", 
+        string="Link URIs", 
+        help="An indicator of the intended usage for the supplemental data element.")                      
     capabilities_id = fields.Many2one(
     	comodel_name="hc.res.capability.statement", 
     	string="Capabilities", 

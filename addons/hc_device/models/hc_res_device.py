@@ -6,24 +6,25 @@ class Device(models.Model):
     _name = "hc.res.device" 
     _description = "Device"
 
+    name = fields.Char(
+        string="Event Name", 
+        required="True", 
+        help="Human-readable label for this device. UDI ID + Name.")
     identifier_ids = fields.One2many(
         comodel_name="hc.device.identifier", 
         inverse_name="device_id", 
         string="Identifiers", 
-        help="Instance id from manufacturer, owner, and others.")     
-    udi_carrier_id = fields.Many2one(
-        comodel_name="hc.device.identifier", 
-        string="UDI Carrier", 
-        help="Unique Device Identifier (UDI) Barcode string.")      
+        help="Instance id from manufacturer, owner, and others.")          
     status = fields.Selection(
         string="Device Status", 
         selection=[
             ("available", "Available"), 
             ("not-available", "Not-Available"), 
-            ("entered-in-error", "Entered-In-Error")], 
+            ("entered-in-error", "Entered-In-Error"), 
+            ("unknown", "Unknown")],
         help="Status of the Device availability.")      
     type_id = fields.Many2one(
-        comodel_name="hc.vs.device.type", 
+        comodel_name="hc.vs.device.kind", 
         string="Type", 
         required="True", 
         help="What kind of device this is.")        
@@ -70,7 +71,46 @@ class Device(models.Model):
         comodel_name="hc.device.note", 
         inverse_name="device_id", 
         string="Notes", 
-        help="Device notes and comments.")                       
+        help="Device notes and comments.")
+    safety_ids = fields.Many2many(
+        comodel_name="hc.vs.device.safety", 
+        relation="device_safety_rel", 
+        string="Safety", 
+        help="Safety Characteristics of Device.")
+    udi_id = fields.Many2one(
+        comodel_name="hc.device.udi", 
+        string="UDI", 
+        help="UDI associated with this Device Resource.")                     
+
+class DeviceUDI(models.Model):  
+    _name = "hc.device.udi"
+    _description = "Device UDI"
+
+    device_identifier = fields.Char(
+        string="Device Identifier", 
+        help="Mandatory fixed portion of UDI.")     
+    name = fields.Char(
+        string="Name", 
+        help="Device Name as appears on UDI label.")      
+    jurisdiction = fields.Char(
+        string="Jurisdiction URI", 
+        help="Regional UDI authority.")        
+    carrier_hrf = fields.Char(
+        string="Carrier HRF", 
+        help="UDI Human Readable Barcode String.")      
+    carrier_aidc = fields.Binary(
+        string="Carrier AIDC", 
+        help="UDI Machine Readable Barcode String.")        
+    issuer = fields.Char(
+        string="Issuer URI", 
+        help="UDI Issuing Organization.")
+    entry_type = fields.Selection(
+        string="UDI Entry Type", 
+        selection=[
+            ("barcode", "Barcode"), 
+            ("rfid", "RfID"), 
+            ("manual +", "Manual +")], 
+        help="Status of the Device availability.")        
 
 class DeviceIdentifier(models.Model):    
     _name = "hc.device.identifier"    
@@ -109,10 +149,37 @@ class DeviceNote(models.Model):
         string="Device", 
         help="Device associated with this device telecom.")                    
 
-class DeviceType(models.Model): 
-    _name = "hc.vs.device.type" 
-    _description = "Device Type"        
+class DeviceKind(models.Model):
+    _name = "hc.vs.device.kind"
+    _description = "Device Kind"
     _inherit = ["hc.value.set.contains"]
+    
+    name = fields.Char(
+        string="Name", 
+        help="Name of this device kind.")
+    code = fields.Char(
+        string="Code", 
+        help="Code of this device kind.")
+    contains_id = fields.Many2one(
+        comodel_name="hc.vs.device.kind", 
+        string="Parent", 
+        help="Parent device kind.")
+
+class DeviceSafety(models.Model):
+    _name = "hc.vs.device.safety"
+    _description = "Device Safety"
+    _inherit = ["hc.value.set.contains"]
+
+    name = fields.Char(
+        string="Name", 
+        help="Name of this device safety.")       
+    code = fields.Char(
+        string="Code", 
+        help="Code of this device safety.")       
+    contains_id = fields.Many2one(
+        comodel_name="hc.vs.device.safety", 
+        string="Parent", 
+        help="Parent device safety.")        
 
 # External Reference
 

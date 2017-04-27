@@ -411,19 +411,3 @@ class DeviceRequestRelevantHistory(models.Model):
         comodel_name="hc.res.provenance", 
         string="Relevant History", 
         help="Request provenance.")
-    
-class DeviceKind(models.Model):
-    _name = "hc.vs.device.kind"
-    _description = "Device Kind"
-    _inherit = ["hc.value.set.contains"]
-    
-    name = fields.Char(
-        string="Name", 
-        help="Name of this device kind.")
-    code = fields.Char(
-        string="Code", 
-        help="Code of this device kind.")
-    contains_id = fields.Many2one(
-        comodel_name="hc.vs.device.kind", 
-        string="Parent", 
-        help="Parent device kind.")
