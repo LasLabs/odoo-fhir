@@ -140,8 +140,8 @@ class SubstanceIdentifier(models.Model):
 
 class SubstanceInstanceIdentifier(models.Model):    
     _name = "hc.substance.instance.identifier"    
-    _description = "Substance Package Identifier"        
-    _inherit = ["hc.identifier"]     
+    _description = "Substance Instance Identifier"        
+    _inherit = ["hc.basic.association", "hc.identifier"]    
 
 class SubstanceCategory(models.Model):    
     _name = "hc.vs.substance.category"    

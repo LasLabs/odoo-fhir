@@ -15,10 +15,10 @@ class VisionPrescription(models.Model):
         string="Status", 
         selection=[
             ("active", "Active"), 
-            ("suspended", "Suspended"), 
-            ("inactive", "Inactive"), 
-            ("entered_in_error", "Entered In Error")], 
-        help="Indicates whether the care team is currently active, suspended, inactive, or entered in error.")      
+            ("cancelled", "Cancelled"), 
+            ("draft", "Draft"), 
+            ("entered-in-error", "Entered-In-Error")], 
+        help="The status of the resource instance.")   
     patient_id = fields.Many2one(
         comodel_name="hc.res.patient", 
         string="Patient", 
@@ -73,7 +73,7 @@ class VisionPrescriptionDispense(models.Model):
         required="True", 
         help="Identifies the type of vision correction product which is required for the patient.")                
     eye = fields.Selection(
-        string="Dispense Eye", 
+        string="Eye", 
         selection=[
             ("right", "Right"), 
             ("left", "Left")], 
@@ -91,7 +91,7 @@ class VisionPrescriptionDispense(models.Model):
         string="Prism", 
         help="Amount of prism to compensate for eye alignment in fractional units.")                
     base = fields.Selection(
-        string="Dispense Base", 
+        string="Base", 
         selection=[
             ("up", "Up"), 
             ("down", "Down"), 
@@ -123,9 +123,11 @@ class VisionPrescriptionDispense(models.Model):
     brand = fields.Text(
         string="Brand", 
         help="Brand recommendations or restrictions.")                
-    notes = fields.Text(
+    note_ids = fields.One2many(
+        comodel_name="hc.vision.prescription.dispense.note", 
+        inverse_name="dispense_id", 
         string="Notes", 
-        help="Notes for special requirements such as coatings and lens materials.")                
+        help="Notes for coatings.")              
 
 class VisionPrescriptionIdentifier(models.Model):    
     _name = "hc.vision.prescription.identifier"    
@@ -137,6 +139,16 @@ class VisionPrescriptionIdentifier(models.Model):
         string="Vision Prescription", 
         help="Vision Prescription associated with this Vision Prescription Identifier.")                
 
+class VisionPrescriptionDispenseNote(models.Model):
+    _name = "hc.vision.prescription.dispense.note"
+    _description = "Vision Prescription Dispense Note"
+    _inherit = ["hc.basic.association", "hc.annotation"]
+
+    dispense_id = fields.Many2one(
+        comodel_name="hc.vision.prescription.dispense", 
+        string="Dispense", 
+        help="Dispense associated with this Vision Prescription Dispense Note.")
+                  
 class VisionPrescriptionReason(models.Model):    
     _name = "hc.vs.vision.prescription.reason"    
     _description = "Vision Prescription Reason"        

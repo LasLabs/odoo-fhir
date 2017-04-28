@@ -11,12 +11,12 @@ access_hc_base_hc_human_name_manager,hc.base.hc.human.name.manager,model_hc_huma
 access_hc_base_hc_human_name_suffix_manager,hc.base.hc.human.name.suffix.manager,model_hc_human_name_suffix,hc_base.group_hc_base_manager,1,1,1,1
 access_hc_base_hc_human_name_term_manager,hc.base.hc.human.name.term.manager,model_hc_human_name_term,hc_base.group_hc_base_manager,1,1,1,1
 access_hc_base_hc_human_name_use_manager,hc.base.hc.human.name.use.manager,model_hc_human_name_use,hc_base.group_hc_base_manager,1,1,1,1
+access_hc_base_hc_extension_human_name_manager,hc.base.hc.extension.human.name.user,model_hc_extension_human_name,hc_base.group_hc_base_manager,1,1,1,1
 access_hc_base_hc_human_name_user,hc.base.hc.human.name.user,model_hc_human_name,hc_base.group_hc_base_user,1,0,0,0
+access_hc_base_hc_human_name_suffix_user,hc.base.hc.human.name.suffix.user,model_hc_human_name_suffix,hc_base.group_hc_base_user,1,0,0,0
+access_hc_base_hc_human_name_term_user,hc.base.hc.human.name.term.user,model_hc_human_name_term,hc_base.group_hc_base_user,1,0,0,0
 access_hc_base_hc_human_name_use_user,hc.base.hc.human.name.use.user,model_hc_human_name_use,hc_base.group_hc_base_user,1,0,0,0
-access_hc_base_hc_human_name_user,hc.base.hc.human.name.user,model_hc_human_name,group_hc_base_user,1,0,0,0
-access_hc_base_hc_human_name_suffix_user,hc.base.hc.human.name.suffix.user,model_hc_human_name_suffix,group_hc_base_user,1,0,0,0
-access_hc_base_hc_human_name_term_manager,hc.base.hc.human.name.term.manager,model_hc_human_name_term,group_hc_base_manager,1,1,1,1
-access_hc_base_hc_human_name_term_user,hc.base.hc.human.name.term.user,model_hc_human_name_term,group_hc_base_user,1,0,0,0
+access_hc_base_hc_extension_human_name_user,hc.base.hc.extension.human.name.user,model_hc_extension_human_name,hc_base.group_hc_base_user,1,0,0,0
 access_hc_base_hc_identifier_manager,hc.base.hc.identifier.manager,model_hc_identifier,group_hc_base_manager,1,1,1,1
 access_hc_base_hc_identifier_user,hc.base.hc.identifier.user,model_hc_identifier,group_hc_base_user,1,0,0,0
 access_hc_base_hc_contact_point_manager,hc.base.hc.contact.point.manager,model_hc_contact_point,group_hc_base_manager,1,1,1,1
@@ -173,7 +173,6 @@ access_hc_base_hc_extension_user,hc.base.hc.extension.user,model_hc_extension,hc
 access_hc_base_hc_extension_attachment_user,hc.base.hc.extension.attachment.user,model_hc_extension_attachment,hc_base.group_hc_base_user,1,0,0,0
 access_hc_base_hc_extension_identifier_user,hc.base.hc.extension.identifier.user,model_hc_extension_identifier,hc_base.group_hc_base_user,1,0,0,0
 access_hc_base_hc_extension_sampled_data_user,hc.base.hc.extension.sampled.data.user,model_hc_extension_sampled_data,hc_base.group_hc_base_user,1,0,0,0
-access_hc_base_hc_extension_human_name_user,hc.base.hc.extension.human.name.user,model_hc_extension_human_name,hc_base.group_hc_base_user,1,0,0,0
 access_hc_base_hc_extension_address_user,hc.base.hc.extension.address.user,model_hc_extension_address,hc_base.group_hc_base_user,1,0,0,0
 access_hc_base_hc_extension_telecom_user,hc.base.hc.extension.telecom.user,model_hc_extension_telecom,hc_base.group_hc_base_user,1,0,0,0
 access_hc_base_hc_extension_timing_user,hc.base.hc.extension.timing.user,model_hc_extension_timing,hc_base.group_hc_base_user,1,0,0,0

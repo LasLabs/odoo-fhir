@@ -32,11 +32,15 @@ class StructureDefinition(models.Model):
         selection=[
             ("draft", "Draft"), 
             ("active", "Active"), 
-            ("retired", "Retired")], 
-        help="The status of this structure definition. Enables tracking the life-cycle of the content.")                    
+            ("retired", "Retired"), 
+            ("unknown", "Unknown")], 
+        help="The status of this structure definition. Enables tracking the life-cycle of the content.")                     
     is_experimental = fields.Boolean(
         string="Experimental", 
         help="If for testing purposes, not real usage.")                    
+    date = fields.Datetime(
+        string="Date", 
+        help="Date for this version of the StructureDefinition.")      
     publisher = fields.Char(
         string="Publisher", 
         help="Name of the publisher (Organization or individual).")                    
@@ -44,10 +48,7 @@ class StructureDefinition(models.Model):
         comodel_name="hc.structure.definition.contact", 
         inverse_name="structure_definition_id", 
         string="Contacts", 
-        help="Contact details for the publisher.")                    
-    date = fields.Datetime(
-        string="Date", 
-        help="Date for this version of the StructureDefinition.")                    
+        help="Contact details for the publisher.")                            
     description = fields.Text(
         string="Description", 
         help="Natural language description of the StructureDefinition.")                    
@@ -93,7 +94,6 @@ class StructureDefinition(models.Model):
         selection=[
             ("resource", "Resource"), 
             ("datatype", "Datatype"), 
-            ("mapping", "Mapping"), 
             ("extension", "Extension")], 
         help="If this is an extension, Identifies the context within FHIR resources where the extension can be used.")                    
     context_ids = fields.One2many(
@@ -105,7 +105,7 @@ class StructureDefinition(models.Model):
         comodel_name="hc.structure.definition.context.invariant", 
         inverse_name="structure_definition_id", 
         string="Context Invariants", 
-        help="FluentPath invariants - when the extension can be used.")                    
+        help="FHIRPath invariants - when the extension can be used.")                    
     type = fields.Selection(
         string="Type", 
         required="True", 
@@ -118,8 +118,8 @@ class StructureDefinition(models.Model):
     base_definition = fields.Char(
         string="Base Definition URI", 
         help="Definition that this type is constrained/specialized from.")                    
-    context_type = fields.Selection(
-        string="Context Type", 
+    derivation = fields.Selection(
+        string="Derivation", 
         selection=[
             ("specialization", "Specialization"), 
             ("constraint", "Constraint")], 

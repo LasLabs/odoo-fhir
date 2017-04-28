@@ -170,12 +170,12 @@ class ImagingStudySeries(models.Model):
         help="When the series started.")                
     base_location_ids = fields.One2many(
         comodel_name="hc.imaging.study.series.base.location", 
-        inverse_name="imaging_study_series_id", 
+        inverse_name="series_id", 
         string="Base Locations", 
         help="Series access endpoint.")                
     instance_ids = fields.One2many(
         comodel_name="hc.imaging.study.series.instance", 
-        inverse_name="imaging_study_series_id", 
+        inverse_name="series_id", 
         string="Instances", 
         help="A single SOP instance from the series.")                
 
@@ -183,7 +183,7 @@ class ImagingStudySeriesBaseLocation(models.Model):
     _name = "hc.imaging.study.series.base.location" 
     _description = "Imaging Study Series Base Location"
 
-    imaging_study_series_id = fields.Many2one(
+    series_id = fields.Many2one(
         comodel_name="hc.imaging.study.series", 
         string="Imaging Study Series", 
         help="Imaging study series associated with this Imaging Study Series Base Location.")                
@@ -201,7 +201,7 @@ class ImagingStudySeriesInstance(models.Model):
     _name = "hc.imaging.study.series.instance"    
     _description = "Imaging Study Series Instance"
 
-    imaging_study_series_id = fields.Many2one(
+    series_id = fields.Many2one(
         comodel_name="hc.imaging.study.series", 
         string="Imaging Study Series", 
         help="Imaging study series associated with this instance.")                
