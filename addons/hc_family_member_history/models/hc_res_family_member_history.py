@@ -50,11 +50,8 @@ class FamilyMemberHistory(models.Model):
             ("entered-in-error", "Entered-In-Error"), 
             ("health-unknown", "Health-Unknown")], 
         help="A code specifying the status of the record of the family history of a specific family member.")
-    is_not_done = fields.Boolean(
-        string="Not Done", 
-        help="Family member history did not occur.")
-    not_done_reason = fields.Char(
-        string="Not Done Reason", 
+    data_absent_reason = fields.Char(
+        string="Data Absent Reason", 
         selection=[
             ("subject-unknown", "Subject-Unknown"), 
             ("withheld", "Withheld"), 

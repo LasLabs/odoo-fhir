@@ -12,7 +12,8 @@
                     limit=""/>
 
         <menuitem id="hc_care_team.menu_care_team" 
-                  name="Care Teams" 
+                  name="Care Teams"
+                  web_icon="hc_care_team,static/description/icon.png" 
                   parent="hc_base.menu_clinic_care" 
                   action="hc_res_care_team_action" 
                   groups="hc_base.group_hc_base_manager" 

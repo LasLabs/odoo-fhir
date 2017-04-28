@@ -12,7 +12,8 @@
                     limit=""/>
 
         <menuitem id="hc_care_plan.menu_care_plan" 
-                  name="Care Plans" 
+                  name="Care Plans"
+                  web_icon="hc_care_plan,static/description/icon.png" 
                   parent="hc_base.menu_clinic_care" 
                   action="hc_res_care_plan_action" 
                   groups="hc_base.group_hc_base_manager" 
