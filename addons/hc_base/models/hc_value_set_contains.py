@@ -854,6 +854,7 @@ class WorkflowTask(models.Model):
 class EntityNameUse(models.Model):
     _name = "hc.vs.entity.name.use"
     _description = "Entity Name Use"
+    _inherit = ["hc.value.set.contains"]
 
     name = fields.Char(
         string="Name", 
